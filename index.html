@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Music Rainbow" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
   <link rel="manifest" href="manifest.webmanifest" />
@@ -442,7 +442,7 @@ body {
       -webkit-overflow-scrolling: touch;
     }
 
-    .app { padding-bottom:40px; margin: 20px; padding:0; width: calc(100% - 40px); height: calc(100% - 40px); background:white; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
+    .app { padding-bottom:40px; margin: 20px; padding:0; width: calc(100% - 40px); height: calc(100% - 40px); background: transparent; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
 
     
 
@@ -1305,28 +1305,21 @@ body {
     .medal-icon.silver { background: radial-gradient(circle at 30% 30%, #ffedd5, #f97316, #7c2d12); border:2px solid #f97316; color:#7c2d12; }
     .medal-icon.green { background: radial-gradient(circle at 30% 30%, #dcfce7, #22c55e, #14532d); border:2px solid #22c55e; color:#14532d; }
 .medal-icon.gold { background: radial-gradient(circle at 30% 30%, #fef9c3, #eab308, #92400e); border:2px solid #eab308; color:#92400e; }
-
-    
 .staff-container {
-  padding: 8px;
+  padding: 6px;
   margin-top: 4px;
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
 
-  /* LIQUID GLASS STAFF */
-  background: rgba(255,255,255,0.18);
-  border: 2px solid rgba(255,255,255,0.45);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  box-shadow:
-    0 10px 22px rgba(15,23,42,0.35),
-    inset 0 0 14px rgba(255,255,255,0.75);
+  /* STAFF WHITE BACKPLATE */
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 10px 22px rgba(15,23,42,0.25);
   border-radius: 18px;
   overflow: visible;
 }
-
-    svg.staff {
+svg.staff {
       width: 100%;
       max-width: none;
       display: block;
@@ -2006,7 +1999,7 @@ body {
     /* ===========================
        PAGINA TROFEI
        =========================== */
-    #trophyPage .app { padding-bottom:40px; margin: 20px; padding:0; width: calc(100% - 40px); height: calc(100% - 40px); background:white; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
+    #trophyPage .app { padding-bottom:40px; margin: 20px; padding:0; width: calc(100% - 40px); height: calc(100% - 40px); background: transparent; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
 
     .trophy-main {
       text-align: center;
@@ -2313,29 +2306,21 @@ body {
   margin-right: 20px;
   margin-top: 8px;
 }
-
-  
 .staff-container {
-  padding: 8px;
+  padding: 6px;
   margin-top: 4px;
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
 
-  /* LIQUID GLASS STAFF */
-  background: rgba(255,255,255,0.18);
-  border: 2px solid rgba(255,255,255,0.45);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  box-shadow:
-    0 10px 22px rgba(15,23,42,0.35),
-    inset 0 0 14px rgba(255,255,255,0.75);
+  /* STAFF WHITE BACKPLATE */
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 10px 22px rgba(15,23,42,0.25);
   border-radius: 18px;
   overflow: visible;
 }
-
-
-  svg.staff {
+svg.staff {
     max-height: 160px;
   }
 
@@ -2501,23 +2486,19 @@ body {
 /* Override for MAPPA: remove frame around pentagram */
 #learnNotesPage 
 .staff-container {
-  padding: 8px;
+  padding: 6px;
   margin-top: 4px;
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
 
-  /* STAFF TRANSPARENT ON PAGE BACKGROUND */
-  background: transparent;
+  /* STAFF WHITE BACKPLATE */
+  background: #ffffff;
   border: none;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-radius: 0;
+  box-shadow: 0 10px 22px rgba(15,23,42,0.25);
+  border-radius: 18px;
+  overflow: visible;
 }
-
-
-
 @keyframes notePulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.15); }
@@ -2957,7 +2938,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build p1.042</div>
+      <div class="home-version-label">Build 2.001</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4055,9 +4036,20 @@ let hasPlayedHomeJingle = false;
 let homeIntroTimeoutId = null;
 let homeIntroTimerElapsed = false;
 
-// Stato globale audio: spento di default
+// Preferenza audio (persistente)
+const AUDIO_PREF_KEY = "musicRainbowAudioEnabled";
+let audioPreferenceExplicit = false;
 let audioEnabled = false;
-
+let isAudioInit = true;
+try {
+  const v = localStorage.getItem(AUDIO_PREF_KEY);
+  if (v !== null) {
+    audioPreferenceExplicit = true;
+    audioEnabled = (v === "1" || v === "true");
+  }
+} catch (e) {
+  // ignore
+}
 // Stato globale per i jingle finali degli spartiti
 let isJinglePlaying = false;
 let activeJingleTimeouts = [];
@@ -4357,22 +4349,33 @@ function resetAudioOnEnable() {
   }
 }
 
-function setAudioEnabled(enabled) {
+function setAudioEnabled(enabled, persist = true) {
   const wasEnabled = audioEnabled;
   audioEnabled = !!enabled;
+
+  if (persist) {
+    audioPreferenceExplicit = true;
+    try {
+      localStorage.setItem(AUDIO_PREF_KEY, audioEnabled ? "1" : "0");
+    } catch (e) {
+      // ignore
+    }
+  }
+
   updateAudioButtonsUI();
 
-  // Se lo stiamo appena attivando, fai un reset veloce dell'audio (per iPad/iOS)
+  // Se lo stiamo appena attivando, fai un reset veloce dell\'audio (per iPad/iOS)
   if (audioEnabled && !wasEnabled) {
     resetAudioOnEnable();
 
-    // Suona il jingle iniziale do–re–mi solo la prima volta
-    if (!hasPlayedHomeJingle) {
+    // Suona il jingle iniziale do–re–mi solo la prima volta (mai durante init)
+    if (!hasPlayedHomeJingle && !isAudioInit) {
       playHomeJingle();
       hasPlayedHomeJingle = true;
     }
   }
 }
+
 
 // Toggle rapido (usato dai pulsanti)
 function toggleAudio() {
@@ -7440,65 +7443,85 @@ const trophyOverlayCloseBtn = document.getElementById("trophyOverlayClose");
 
 function showChestDetails(session) {
   if (!trophyOverlayEl || !trophyOverlayContentEl || !session) return;
-  const bronzeCount = session.bronze || 0;
-  const silverCount = session.silver || 0;
-  const goldCount   = session.gold   || 0;
-  const greenCount  = session.green  || 0;
 
-  let htmlInner = "";
+  const bronzeCount = Number(session.bronze) || 0;
+  const silverCount = Number(session.silver) || 0;
+  const goldCount   = Number(session.gold)   || 0;
+  const greenCount  = Number(session.green)  || 0;
+
   const labelNumber = (typeof session.displayNumber === "number")
     ? session.displayNumber
     : session.id;
 
-  htmlInner += `<div class="trophy-section">
-    <h2>Scrigno ${labelNumber}</h2>
-    <div class="trophy-medals-row">`;
+  // Pulisci contenuto precedente
+  trophyOverlayContentEl.textContent = "";
+
+  // Sezione medaglie
+  const section = document.createElement("div");
+  section.className = "trophy-section";
+  const h2 = document.createElement("h2");
+  h2.textContent = `Scrigno ${labelNumber}`;
+  section.appendChild(h2);
+
+  const row = document.createElement("div");
+  row.className = "trophy-medals-row";
+
   const totalCoins = bronzeCount + silverCount + goldCount + greenCount;
   if (totalCoins === 0) {
-    htmlInner += `<div class="trophy-empty">Nessuna medaglia in questa sessione.</div>`;
+    const empty = document.createElement("div");
+    empty.className = "trophy-empty";
+    empty.textContent = "Nessuna medaglia in questa sessione.";
+    row.appendChild(empty);
   } else {
-    for (let i = 0; i < bronzeCount; i++) {
-      htmlInner += `<div class="medal-icon bronze">●</div>`;
-    }
-    for (let i = 0; i < silverCount; i++) {
-      htmlInner += `<div class="medal-icon silver">●</div>`;
-    }
-    for (let i = 0; i < goldCount; i++) {
-      htmlInner += `<div class="medal-icon gold">●</div>`;
-    }
-    for (let i = 0; i < greenCount; i++) {
-      htmlInner += `<div class="medal-icon green">●</div>`;
-    }
+    const addMedal = (cls, count) => {
+      for (let i = 0; i < count; i++) {
+        const d = document.createElement("div");
+        d.className = `medal-icon ${cls}`;
+        d.textContent = "●";
+        row.appendChild(d);
+      }
+    };
+    addMedal("bronze", bronzeCount);
+    addMedal("silver", silverCount);
+    addMedal("gold", goldCount);
+    addMedal("green", greenCount);
   }
-  
-  htmlInner += `</div></div>`;
+
+  section.appendChild(row);
+  trophyOverlayContentEl.appendChild(section);
 
   // Gettoni Play legati a questa sessione
-  const tokens = typeof session.tokens === "number" ? session.tokens : 0;
+  const tokens = (typeof session.tokens === "number") ? session.tokens : 0;
   if (tokens > 0) {
-    htmlInner += `<div class="trophy-section">
-        <h2>Gettoni Play</h2>
-        <div class="trophy-medals-row">`;
+    const tokenSection = document.createElement("div");
+    tokenSection.className = "trophy-section";
+    const th2 = document.createElement("h2");
+    th2.textContent = "Gettoni Play";
+    tokenSection.appendChild(th2);
+
+    const trow = document.createElement("div");
+    trow.className = "trophy-medals-row";
     for (let i = 0; i < tokens; i++) {
-      htmlInner += `<button type="button" class="token-icon-btn" data-session-id="${session.id}">` + getTokenSvgMarkup("token-svg") + `</button>`;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "token-icon-btn";
+      btn.dataset.sessionId = String(session.id);
+      // SVG markup interno (controllato)
+      btn.innerHTML = getTokenSvgMarkup("token-svg");
+      btn.addEventListener("click", () => {
+        const sid = parseInt(btn.dataset.sessionId || "", 10);
+        if (!isNaN(sid)) spendTokenFromSession(sid);
+      });
+      trow.appendChild(btn);
     }
-    htmlInner += `</div></div>`;
+
+    tokenSection.appendChild(trow);
+    trophyOverlayContentEl.appendChild(tokenSection);
   }
 
-  trophyOverlayContentEl.innerHTML = htmlInner;
-  if (trophyOverlayContentEl) {
-    const tokenBtns = trophyOverlayContentEl.querySelectorAll(".token-icon-btn");
-    tokenBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const sid = parseInt(btn.getAttribute("data-session-id"), 10);
-        if (!isNaN(sid)) {
-          spendTokenFromSession(sid);
-        }
-      });
-    });
-  }
   trophyOverlayEl.classList.add("active");
 }
+
 
 function renderChestGrid() {
   if (!chestGridEl) return;
@@ -7947,11 +7970,11 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
       if (!playSessionActive && !testPlayUnlocked) return;
 
       // Quando si entra in modalità Play, attiva automaticamente l'audio
-      if (!audioEnabled) {
-        setAudioEnabled(true);
+// solo se l'utente non ha già scelto esplicitamente lo stato audio.
+      if (!audioEnabled && !audioPreferenceExplicit) {
+        setAudioEnabled(true, false);
       }
-
-      homeScreen.style.display = "none";
+homeScreen.style.display = "none";
       level1Page.style.display = "none";
       level2Page.style.display = "none";
       level3Page.style.display = "none";
@@ -8003,10 +8026,12 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   
   
 
-  // Imposta audio spento di default e aggiorna subito i pulsanti
-  setAudioEnabled(false);
-
-  // Inizializza sistema gettoni (non persistenti)
+  // Imposta audio da preferenza (persistente) e aggiorna subito i pulsanti
+  const _initialAudio = audioEnabled;
+  audioEnabled = false;
+  setAudioEnabled(_initialAudio, false);
+  isAudioInit = false;
+// Inizializza sistema gettoni (non persistenti)
   lastTotalMedalsForTokens = getTotalMedalsCount();
   updateTokensUIAll();
 
@@ -8018,12 +8043,37 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script>
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("./service-worker.js")
-        .catch(err => {
-          console.log("Service worker registration failed:", err);
+    window.addEventListener("load", async () => {
+      try {
+        const reg = await navigator.serviceWorker.register("./service-worker.js");
+
+        // Se c'è già un SW in attesa, forzalo subito
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: "SKIP_WAITING" });
+        }
+
+        // Quando arriva un update, forzalo
+        reg.addEventListener("updatefound", () => {
+          const newWorker = reg.installing;
+          if (!newWorker) return;
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed") {
+              if (navigator.serviceWorker.controller) {
+                try { newWorker.postMessage({ type: "SKIP_WAITING" }); } catch (e) {}
+              }
+            }
+          });
         });
+
+        // Ricarica UNA sola volta quando il nuovo SW prende il controllo
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (sessionStorage.getItem("swReloadedOnce")) return;
+          sessionStorage.setItem("swReloadedOnce", "1");
+          window.location.reload();
+        });
+      } catch (err) {
+        console.log("Service worker registration failed:", err);
+      }
     });
   }
 </script>

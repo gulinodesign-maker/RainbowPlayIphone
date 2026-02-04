@@ -22,7 +22,7 @@
     
 body {
   margin: 0;
-  padding: 15px;
+  padding: 0;
 
   /* LIQUID GLASS ACQUAMARINA */
   background: linear-gradient(
@@ -37,7 +37,9 @@ body {
     inset 0 0 40px rgba(255,255,255,0.35),
     inset 0 0 80px rgba(255,255,255,0.20);
 
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 0;
+  overflow: hidden;
 }
 
 
@@ -450,17 +452,29 @@ body {
     .page-container {
       height: calc(var(--vh) * 100);
       min-height: 0;
+      width: 100%;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+      align-items: stretch;
+      overflow: hidden;
     }
 
-    .app { padding-bottom:40px; margin: 20px; padding:0; width: calc(100% - 40px); height: calc(100% - 40px); background: transparent; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
-
-    
-
+    .app {
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
 
 .top-panel {
   border-radius: 22px;
@@ -487,10 +501,10 @@ body {
 
   background-clip: padding-box;
 
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 8px;
+  margin-bottom: 12px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
 }
 
     .top-row {
@@ -1322,10 +1336,7 @@ body {
 .medal-icon.gold { background: radial-gradient(circle at 30% 30%, #fef9c3, #eab308, #92400e); border:2px solid #eab308; color:#92400e; }
 .staff-container {
   padding: 6px;
-  margin-top: 4px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0;
 
   /* STAFF WHITE BACKPLATE */
   background: #ffffff;
@@ -1333,10 +1344,18 @@ body {
   box-shadow: 0 10px 22px rgba(15,23,42,0.25);
   border-radius: 18px;
   overflow: visible;
+
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 svg.staff {
       width: 100%;
       max-width: none;
+      height: auto;
       display: block;
       margin: 0 auto;
       cursor: pointer;
@@ -1511,45 +1530,20 @@ svg.staff {
     }
 
     .keyboard-container {
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-bottom: 12px;
-  padding: 4px 2px 6px;
-
-  /* Massimizza la tastiera a pianoforte nello spazio disponibile */
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  align-items: stretch;
-}
-
-    .piano {
-  width: 100%;
   margin: 0;
-  background: #d4d4d8;
-  padding: 10px 12px 12px;
-  border-radius: 18px;
-  box-shadow: 0 4px 10px rgba(15,23,42,0.18);
-
-  /* Fill container */
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex;
-  align-items: stretch;
+  padding: 0;
+  width: 100%;
+  flex: 0 0 auto;
+  margin-top: auto;
 }
 
     .piano-keys {
       position: relative;
       display: flex;
-
-      /* Massimizza altezza tastiera a pianoforte */
-      flex: 1 1 auto;
-      min-height: 0;
-      height: 100%;
-
       width: 100%;
       max-width: none;
       margin: 0;
+      height: clamp(120px, min(calc((100vw - 20px) * 0.32), 35vh), 320px);
     }
 
     .white-key {
@@ -1625,18 +1619,7 @@ svg.staff {
       box-shadow: 0 2px 4px rgba(0,0,0,0.7);
     }
 
-    .note-buttons-container {
-      
-      text-align: center;
-    
-  
-  
-  
-  
-  margin-left: 20px;
-  margin-right: 20px;
-  
-  margin-top: 20px;}
+    .note-buttons-container { text-align: center; margin: 0 10px 10px; }
 
     
     .tempo-action-container {
@@ -2256,6 +2239,9 @@ svg.staff {
 :root {
   /* fix per 100vh sui mobile browser */
   --vh: 1vh;
+  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-left: env(safe-area-inset-left);
+  --safe-right: env(safe-area-inset-right);
 }
 
 /* Override body per fullscreen su iPhone in landscape */
@@ -2374,9 +2360,7 @@ svg.staff {
   box-shadow: 0 4px 10px rgba(15,23,42,0.18);
 }
 
-  .piano-keys {
-    height: 120px;
-  }
+  /* altezza piano gestita via JS */
 
   .trophy-main {
     padding: 10px 8px 4px;
@@ -2972,7 +2956,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.002</div>
+      <div class="home-version-label">Build 2.005</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4783,6 +4767,7 @@ function checkForNewToken() {
     showTokenWonPopup();
     saveSessionsToStorage();
     updateTokensUIAll();
+
   }
 }
 
@@ -7628,6 +7613,49 @@ let lastGamePageId = "level2Page";
 let homePlayBtn = null;
 
 document.addEventListener("DOMContentLoaded", function() {
+  // Responsive layout: staff centered, keyboard anchored bottom with 10px margins (no deformation)
+  function _mr_getDirectChildren(appEl){ return Array.from(appEl.children); }
+
+  function _mr_setupMiddleArea(appEl){
+    if(!appEl) return;
+    if(appEl.querySelector(':scope > .middle-area')) return;
+
+    const topPanel = appEl.querySelector(':scope > .top-panel');
+    if(!topPanel) return;
+
+    const kids = _mr_getDirectChildren(appEl);
+    const kbCandidates = kids.filter(el => el.classList.contains('keyboard-container') || el.classList.contains('note-buttons-container'));
+    if(!kbCandidates.length) return;
+
+    const keyboardEl = kbCandidates[kbCandidates.length - 1];
+    const startIndex = kids.indexOf(topPanel) + 1;
+    const endIndex = kids.indexOf(keyboardEl);
+    if(endIndex <= startIndex) return;
+
+    const middle = document.createElement('div');
+    middle.className = 'middle-area';
+    kids.slice(startIndex, endIndex).forEach(n => middle.appendChild(n));
+    appEl.insertBefore(middle, keyboardEl);
+  }
+
+  function _mr_updatePianoSizing(){
+    document.querySelectorAll('.piano-keys').forEach(el=>{
+      const w = el.clientWidth || 0;
+      if(!w) return;
+      const h = Math.round(Math.min(260, Math.max(150, w * 0.22)));
+      el.style.setProperty('--pianoKeysH', h + 'px');
+    });
+  }
+
+  function _mr_applyResponsiveLayout(){
+    document.querySelectorAll('.page-container .app').forEach(appEl=>_mr_setupMiddleArea(appEl));
+    _mr_updatePianoSizing();
+  }
+
+  window.addEventListener('resize', _mr_applyResponsiveLayout, {passive:true});
+  window.addEventListener('orientationchange', _mr_applyResponsiveLayout, {passive:true});
+  _mr_applyResponsiveLayout();
+
   loadSessionsFromStorage();
   renderChestGrid();
   startNewSessionChest();
@@ -7911,6 +7939,7 @@ function hideAllPages() {
     if (pageMap[pageId]) {
       pageMap[pageId].style.display = "flex";
       requestAnimationFrame(() => fitVisibleLevelTitles());
+      requestAnimationFrame(() => { try { window.__fitPianos && window.__fitPianos(); } catch(e){} });
       lastGamePageId = pageId;
       if (pageId === "level1Page") softResetLevel1();
       if (pageId === "level2Page") softResetLevel2();

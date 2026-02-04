@@ -99,7 +99,22 @@ body {
 }
 
 
-    .home-title {
+    
+
+/* Titolo nei livelli: massimizzato ma sempre dentro la top-bar (senza invadere i tasti) */
+.rainbow-title-level {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0.9;
+  white-space: nowrap;
+  max-width: 100%;
+  min-width: 0;
+  justify-self: center;
+}
+.top-row > .rainbow-title-level {
+  min-width: 0;
+}
+.home-title {
       font-size: 2.6rem;
       margin-bottom: 20px;
     }
@@ -1496,23 +1511,42 @@ svg.staff {
     }
 
     .keyboard-container {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  padding: 6px 4px 8px;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  padding: 4px 2px 6px;
+
+  /* Massimizza la tastiera a pianoforte nello spazio disponibile */
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
 }
+
     .piano {
   width: 100%;
   margin: 0;
   background: #d4d4d8;
-  padding: 14px 16px 18px;
+  padding: 10px 12px 12px;
   border-radius: 18px;
   box-shadow: 0 4px 10px rgba(15,23,42,0.18);
+
+  /* Fill container */
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
 }
+
     .piano-keys {
       position: relative;
       display: flex;
-      height: 260px;
+
+      /* Massimizza altezza tastiera a pianoforte */
+      flex: 1 1 auto;
+      min-height: 0;
+      height: 100%;
+
       width: 100%;
       max-width: none;
       margin: 0;
@@ -2938,7 +2972,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.001</div>
+      <div class="home-version-label">Build 2.002</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -3225,9 +3259,9 @@ body {
       <div class="top-row">
         <div class="top-left-controls">
           <button class="menu-btn" id="menuBtnLearn" aria-label="Menu">🏠</button>
-          <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
           
         </div>
+        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
           <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnLearn" aria-label="Chiave di violino">&#119070;</button>
           <button class="clef-btn clef-bass-btn" id="clefBassBtnLearn" aria-label="Chiave di basso">&#119074;</button>
@@ -3736,14 +3770,9 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtnTempo" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnTempo" aria-label="Menu">🏠</button>
-          <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-          <button class="trophy-btn" id="trophyBtnTempo" aria-label="Trofei">🏆</button>
           
-          
-          <div class="stat-pill stat-errors-normal error-pill" id="errorPillTempo">
-            Errori: 0
-          </div>
         </div>
+        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
           <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnTempo" aria-label="Chiave di violino">&#119070;</button>
           <button class="clef-btn clef-bass-btn" id="clefBassBtnTempo" aria-label="Chiave di basso">&#119074;</button>
@@ -7795,7 +7824,65 @@ function regenerateNotesForCurrentPage() {
 
   refreshGenderButtons();
 
-  function hideAllPages() {
+  
+
+  // ===========================
+  // FIT TITOLI (per livello) - massimizza senza invadere i tasti
+  // ===========================
+  function fitLevelTitleInTopRow(pageEl) {
+    if (!pageEl) return;
+    const topRow = pageEl.querySelector(".top-row");
+    if (!topRow) return;
+
+    const title = topRow.querySelector("h1.rainbow-title-level");
+    const left  = topRow.querySelector(".top-left-controls");
+    const right = topRow.querySelector(".top-right-controls");
+    if (!title || !left || !right) return;
+
+    title.style.whiteSpace = "nowrap";
+    title.style.margin = "0";
+    title.style.padding = "0";
+    title.style.minWidth = "0";
+
+    const rowRect = topRow.getBoundingClientRect();
+    const leftRect = left.getBoundingClientRect();
+    const rightRect = right.getBoundingClientRect();
+
+    const safetyPad = 14; // px
+    const availableWidth = Math.max(80, rowRect.width - leftRect.width - rightRect.width - safetyPad);
+    title.style.maxWidth = availableWidth + "px";
+
+    const targetHeight = Math.max(leftRect.height, rightRect.height);
+
+    const minPx = 18;
+    const maxPx = Math.min(84, Math.floor(window.innerHeight * 0.18));
+
+    let lo = minPx, hi = maxPx, best = minPx;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      title.style.fontSize = mid + "px";
+
+      const w = title.scrollWidth;
+      const h = title.getBoundingClientRect().height;
+
+      if (w <= availableWidth && h <= targetHeight + 2) {
+        best = mid;
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
+      }
+    }
+    title.style.fontSize = best + "px";
+  }
+
+  function fitVisibleLevelTitles() {
+    const visiblePages = Array.from(document.querySelectorAll(".page-container"))
+      .filter(el => window.getComputedStyle(el).display !== "none");
+
+    visiblePages.forEach(pageEl => fitLevelTitleInTopRow(pageEl));
+  }
+
+function hideAllPages() {
     level1Page.style.display = "none";
     level2Page.style.display = "none";
     level3Page.style.display = "none";
@@ -7823,6 +7910,7 @@ function regenerateNotesForCurrentPage() {
     };
     if (pageMap[pageId]) {
       pageMap[pageId].style.display = "flex";
+      requestAnimationFrame(() => fitVisibleLevelTitles());
       lastGamePageId = pageId;
       if (pageId === "level1Page") softResetLevel1();
       if (pageId === "level2Page") softResetLevel2();
@@ -7836,6 +7924,7 @@ function regenerateNotesForCurrentPage() {
     homeScreen.style.display = "none";
     if (learnNotesPage) {
       learnNotesPage.style.display = "flex";
+      requestAnimationFrame(() => fitVisibleLevelTitles());
     }
   }
 
@@ -7844,6 +7933,7 @@ function regenerateNotesForCurrentPage() {
     homeScreen.style.display = "none";
     if (learnTempoPage) {
       learnTempoPage.style.display = "flex";
+      requestAnimationFrame(() => fitVisibleLevelTitles());
     }
   }
 
@@ -8037,6 +8127,16 @@ homeScreen.style.display = "none";
 
   showHome();
   updateRainbowCountersGlobal();
+
+  // Re-fit titoli quando cambia orientamento / dimensione (iOS incluso)
+  window.addEventListener("resize", () => {
+    requestAnimationFrame(() => fitVisibleLevelTitles());
+  });
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => fitVisibleLevelTitles(), 80);
+  });
+
+
 });
 </script>
 

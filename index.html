@@ -457,7 +457,7 @@ body {
       -webkit-overflow-scrolling: touch;
     }
 
-    .app { padding-bottom:40px; margin: 20px; padding:0; width: calc(100% - 40px); height: calc(100% - 40px); background: transparent; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
+    .app { padding-bottom:40px; margin: 20px 10px 10px; padding:0; width: calc(100% - 20px); height: calc(100% - 30px); background: transparent; border-radius:12px; position:relative; z-index:1; display:flex; flex-direction:column; }
 
     
 
@@ -1511,16 +1511,20 @@ svg.staff {
     }
 
     .keyboard-container {
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-bottom: 12px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
   padding: 4px 2px 6px;
 
-  /* Massimizza la tastiera a pianoforte nello spazio disponibile */
+  /* Massimizza la tastiera nello spazio disponibile, ma senza deformarla:
+     l'altezza viene limitata dinamicamente (JS) in base al display. */
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   align-items: stretch;
+
+  /* fallback se JS non è ancora partito */
+  max-height: 320px;
 }
 
     .piano {
@@ -2256,6 +2260,9 @@ svg.staff {
 :root {
   /* fix per 100vh sui mobile browser */
   --vh: 1vh;
+  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-left: env(safe-area-inset-left);
+  --safe-right: env(safe-area-inset-right);
 }
 
 /* Override body per fullscreen su iPhone in landscape */
@@ -2374,9 +2381,7 @@ svg.staff {
   box-shadow: 0 4px 10px rgba(15,23,42,0.18);
 }
 
-  .piano-keys {
-    height: 120px;
-  }
+  /* altezza piano gestita via JS */
 
   .trophy-main {
     padding: 10px 8px 4px;
@@ -2972,7 +2977,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.002</div>
+      <div class="home-version-label">Build 2.003</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -7911,6 +7916,7 @@ function hideAllPages() {
     if (pageMap[pageId]) {
       pageMap[pageId].style.display = "flex";
       requestAnimationFrame(() => fitVisibleLevelTitles());
+      requestAnimationFrame(() => { try { window.__fitPianos && window.__fitPianos(); } catch(e){} });
       lastGamePageId = pageId;
       if (pageId === "level1Page") softResetLevel1();
       if (pageId === "level2Page") softResetLevel2();
@@ -8192,6 +8198,54 @@ homeScreen.style.display = "none";
 
   // prima chiamata
   updateViewportVH();
+})();
+</script>
+
+<script>
+/* Fit tastiera pianoforte (anti-deformazione iPad) */
+(() => {
+  const RATIO_CAP = 0.32;     // altezza max = larghezza * RATIO_CAP
+  const MIN_H = 120;          // px
+  const MAX_H = 320;          // px
+  const OUTER_GAP = 10;       // px (margine richiesto)
+
+  const cssPxVar = (name) => {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const n = parseFloat(v);
+    return Number.isFinite(n) ? n : 0;
+  };
+
+  const fit = () => {
+    const safeBottom = cssPxVar("--safe-bottom");
+    const containers = document.querySelectorAll(".keyboard-container");
+    containers.forEach(kc => {
+      // Solo quelli visibili (le pagine non attive sono display:none)
+      if (kc.offsetParent === null) return;
+
+      const rect = kc.getBoundingClientRect();
+      const w = rect.width;
+      if (!w) return;
+
+      // spazio disponibile fino al bordo inferiore del display
+      const avail = Math.max(MIN_H, Math.floor(window.innerHeight - rect.top - OUTER_GAP - safeBottom));
+
+      // limite proporzionale (per non "allungare" verticalmente su iPad)
+      const ratioCap = Math.round(w * RATIO_CAP);
+
+      const h = Math.max(MIN_H, Math.min(avail, ratioCap, MAX_H));
+
+      kc.style.maxHeight = h + "px";
+      kc.style.height = h + "px";
+    });
+  };
+
+  window.__fitPianos = fit;
+  window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", () => setTimeout(fit, 80));
+
+  // prima chiamata (subito + dopo layout)
+  try { fit(); } catch(e) {}
+  requestAnimationFrame(() => { try { fit(); } catch(e) {} });
 })();
 </script>
 

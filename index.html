@@ -32,17 +32,23 @@ body {
   margin: 0;
   padding: 0;
 
-  /* LIQUID GLASS ACQUAMARINA */
-  background: #46d1c6;
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  box-shadow:
-    inset 0 0 40px rgba(255,255,255,0.35),
-    inset 0 0 80px rgba(255,255,255,0.20);
+  /* BASE ACQUAMARINA (tinta unita) */
+  background: #74E7DF;
+  background-color: #74E7DF;
 
-  height: calc(var(--vh, 1vh) * 100);
-  min-height: 0;
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+
+  /* Evita barre bianche su iOS */
   overflow: hidden;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background: #74E7DF;
+  background-color: #74E7DF;
 }
 
 
@@ -470,7 +476,6 @@ body {
       justify-content: center;
       align-items: stretch;
       overflow: hidden;
-      background: #46d1c6;
     }
 
     .app {
@@ -491,34 +496,14 @@ body {
 }
 
 .top-panel {
-  border-radius: 22px;
-  padding: 4px 14px 4px;
-
-  /* LIQUID GLASS AZZURRO / BLU REALISTICO */
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.45);
-
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-
-  box-shadow:
-    0 12px 28px rgba(30, 58, 138, 0.45),
-    inset 0 0 16px rgba(255, 255, 255, 0.8),
-    inset 0 0 8px rgba(147, 197, 253, 0.8);
-
-  background-image: linear-gradient(
-    135deg,
-    rgba(191, 219, 254, 0.35),
-    rgba(59, 130, 246, 0.25),
-    rgba(255, 255, 255, 0.30)
-  );
-
-  background-clip: padding-box;
-
-  margin-bottom: 12px;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
+  /* Niente pill/glass: tutto appoggiato sulla base acquamarina */
+  border-radius: 0;
+  padding: 6px 14px 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
     .top-row {
@@ -1597,9 +1582,9 @@ svg.staff {
   flex: 0 0 auto;
   margin-top: auto;
 
-  /* Spazio di sicurezza (iPhone / safe-area) per evitare tagli in basso */
-  padding-bottom: calc(18px + env(safe-area-inset-bottom));
-  margin-bottom: calc(10px + env(safe-area-inset-bottom));
+  /* Più spazio sopra la Home Bar (iPhone) così i tasti restano cliccabili */
+  padding-bottom: calc(44px + env(safe-area-inset-bottom));
+  margin-bottom: 0;
 }
 
     .piano-keys {
@@ -2362,34 +2347,14 @@ body {
 
 
 .top-panel {
-  border-radius: 22px;
-  padding: 4px 14px 4px;
-
-  /* LIQUID GLASS AZZURRO / BLU REALISTICO */
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.45);
-
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-
-  box-shadow:
-    0 12px 28px rgba(30, 58, 138, 0.45),
-    inset 0 0 16px rgba(255, 255, 255, 0.8),
-    inset 0 0 8px rgba(147, 197, 253, 0.8);
-
-  background-image: linear-gradient(
-    135deg,
-    rgba(191, 219, 254, 0.35),
-    rgba(59, 130, 246, 0.25),
-    rgba(255, 255, 255, 0.30)
-  );
-
-  background-clip: padding-box;
-
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 8px;
+  /* Niente pill/glass: tutto appoggiato sulla base acquamarina */
+  border-radius: 0;
+  padding: 6px 14px 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 .staff-container {
   padding: 6px;
@@ -2410,10 +2375,14 @@ svg.staff {
   }
 
   .keyboard-container {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  padding: 6px 4px 8px;
+  margin: 0;
+  width: 100%;
+  flex: 0 0 auto;
+  margin-top: auto;
+
+  /* Più spazio sopra la Home Bar (iPhone) così i tasti restano cliccabili */
+  padding-bottom: calc(44px + env(safe-area-inset-bottom));
+  margin-bottom: 0;
 }
 
   .piano {
@@ -2623,13 +2592,19 @@ svg.staff {
 
 /* GLOBAL APP BACKGROUND ACQUAMARINA */
 body {
-  background: #46d1c6;
+  background: radial-gradient(circle at center,
+    #88f7e2 0%,
+    #5cdccb 40%,
+    #36b5aa 75%,
+    #1c8f82 100%);
+  background-attachment: fixed;
 }
 
 
 /* HOME BACKGROUND ACQUAMARINA */
 #homePage {
-  background: #46d1c6 !important;
+  background: radial-gradient(circle at center,
+    #88f7e2 0%, #5cdccb 40%, #36b5aa 75%, #1c8f82 100%) !important;
 }
 
  .learn-popup button {text-align:center;} </style>
@@ -2930,7 +2905,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.019)
+   RESPONSIVE CLEANUP (Build 2.020)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2940,14 +2915,19 @@ html {
   height: 100%;
   min-height: 100%;
   /* Keep the aquamarine background even if body height is shorter */
-  background: #46d1c6;
+  background: linear-gradient(
+      135deg,
+      rgba(70, 209, 198, 0.45),
+      rgba(70, 209, 198, 0.30),
+      rgba(255, 255, 255, 0.25)
+  );
 }
 
 body {
   min-height: 100svh;
   min-height: 100dvh;
   height: auto;
-  background: #46d1c6;
+  background: transparent;
 }
 
 /* Ensure every page fills the viewport */
@@ -3002,7 +2982,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.019 — UI allineamenti */
+/* PATCH Build 2.020 — UI allineamenti */
 .top-row { grid-template-columns: 1fr auto 1fr !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3016,24 +2996,6 @@ body {
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
-}
-</style>
-
-
-<style>
-/* PATCH Build 2.019 — base tinta unita + fix barra bianca iOS */
-html, body, .page-container, #homePage {
-  background: #46d1c6 !important;
-  background-image: none !important;
-}
-/* Copertura totale anche con safe-area / overscroll */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: #46d1c6;
-  z-index: -9999;
-  pointer-events: none;
 }
 </style>
 
@@ -3122,7 +3084,7 @@ body::before {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.019</div>
+      <div class="home-version-label">Build 2.020</div>
     </div>
     <div class="home-right">
 <div class="home-levels">

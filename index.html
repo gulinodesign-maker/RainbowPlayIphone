@@ -19,6 +19,8 @@
 
   <style>
     * { box-sizing: border-box; }
+
+html, body { width: 100%; height: 100%; }
     
 body {
   margin: 0;
@@ -37,8 +39,10 @@ body {
     inset 0 0 40px rgba(255,255,255,0.35),
     inset 0 0 80px rgba(255,255,255,0.20);
 
+  min-height: 100vh;
+  min-height: 100dvh;
   height: calc(var(--vh, 1vh) * 100);
-  min-height: 0;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -450,8 +454,10 @@ body {
     }
 
     .page-container {
-      height: calc(var(--vh) * 100);
-      min-height: 0;
+      height: calc(var(--vh, 1vh) * 100);
+      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -1531,10 +1537,10 @@ svg.staff {
 
     .keyboard-container {
   margin: 0;
-  padding: 0;
   width: 100%;
   flex: 0 0 auto;
   margin-top: auto;
+  padding: 0 clamp(6px, 2vw, 20px) calc(18px + env(safe-area-inset-bottom, 0px));
 }
 
     .piano-keys {
@@ -1543,7 +1549,7 @@ svg.staff {
       width: 100%;
       max-width: none;
       margin: 0;
-      height: clamp(120px, min(calc((100vw - 20px) * 0.32), 35vh), 320px);
+      height: clamp(140px, min(calc(100vw * 0.36), 42vh), 360px);
     }
 
     .white-key {
@@ -2355,7 +2361,7 @@ svg.staff {
   width: 100%;
   margin: 0;
   background: #d4d4d8;
-  padding: 14px 16px 18px;
+  padding: clamp(10px, 2vw, 16px) clamp(10px, 2vw, 16px) clamp(12px, 2.5vw, 18px);
   border-radius: 18px;
   box-shadow: 0 4px 10px rgba(15,23,42,0.18);
 }
@@ -2573,7 +2579,23 @@ body {
     #88f7e2 0%, #5cdccb 40%, #36b5aa 75%, #1c8f82 100%) !important;
 }
 
- .learn-popup button {text-align:center;} </style>
+ .learn-popup button {text-align:center;} 
+
+    @media (max-width: 520px) {
+      .app {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+      .piano-keys {
+        height: clamp(170px, min(calc(100vw * 0.48), 52vh), 380px);
+      }
+      .keyboard-container {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+    }
+
+</style>
 
 <style>
 /* Raddoppio altezza tasti Livello 1 e Mappa */
@@ -2869,80 +2891,6 @@ body {
   filter: brightness(1.4);
   animation: bounceIcon 1.2s infinite ease-in-out;
 }
-
-/* ===========================
-   RESPONSIVE CLEANUP (Build 2.006)
-   - full background coverage (iPad)
-   - centered layout on large screens
-   - safe-area spacing (iPhone swipe)
-   =========================== */
-
-html {
-  height: 100%;
-  min-height: 100%;
-  /* Keep the aquamarine background even if body height is shorter */
-  background: linear-gradient(
-      135deg,
-      rgba(70, 209, 198, 0.45),
-      rgba(70, 209, 198, 0.30),
-      rgba(255, 255, 255, 0.25)
-  );
-}
-
-body {
-  min-height: 100svh;
-  min-height: 100dvh;
-  height: auto;
-  background: transparent;
-}
-
-/* Ensure every page fills the viewport */
-.page-container,
-.home-screen {
-  height: 100%;
-  min-height: 100%;
-}
-
-/* Center core blocks on tablets/large screens */
-.top-panel,
-.staff-container,
-.keyboard-container {
-  width: min(100%, 1400px);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Give the keyboard a safer bottom spacing (avoid iOS swipe area) */
-.keyboard-container {
-  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-}
-
-/* Make the piano breathe less on small screens so keys can grow */
-@media (orientation: landscape) and (max-height: 480px) {
-  .app {
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
-  }
-
-  .top-panel {
-    margin-bottom: 10px;
-  }
-
-  .staff-container {
-    padding: 4px;
-  }
-
-  .keyboard-container {
-    margin-bottom: 0;
-    padding: 4px 0 calc(18px + env(safe-area-inset-bottom, 0px));
-  }
-
-  .piano {
-    padding: 10px 10px 12px;
-  }
-}
-
 </style>
 
 </head>
@@ -3030,7 +2978,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.006</div>
+      <div class="home-version-label">Build 2.007</div>
     </div>
     <div class="home-right">
 <div class="home-levels">

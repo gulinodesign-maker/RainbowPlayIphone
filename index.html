@@ -2869,6 +2869,80 @@ body {
   filter: brightness(1.4);
   animation: bounceIcon 1.2s infinite ease-in-out;
 }
+
+/* ===========================
+   RESPONSIVE CLEANUP (Build 2.006)
+   - full background coverage (iPad)
+   - centered layout on large screens
+   - safe-area spacing (iPhone swipe)
+   =========================== */
+
+html {
+  height: 100%;
+  min-height: 100%;
+  /* Keep the aquamarine background even if body height is shorter */
+  background: linear-gradient(
+      135deg,
+      rgba(70, 209, 198, 0.45),
+      rgba(70, 209, 198, 0.30),
+      rgba(255, 255, 255, 0.25)
+  );
+}
+
+body {
+  min-height: 100svh;
+  min-height: 100dvh;
+  height: auto;
+  background: transparent;
+}
+
+/* Ensure every page fills the viewport */
+.page-container,
+.home-screen {
+  height: 100%;
+  min-height: 100%;
+}
+
+/* Center core blocks on tablets/large screens */
+.top-panel,
+.staff-container,
+.keyboard-container {
+  width: min(100%, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Give the keyboard a safer bottom spacing (avoid iOS swipe area) */
+.keyboard-container {
+  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Make the piano breathe less on small screens so keys can grow */
+@media (orientation: landscape) and (max-height: 480px) {
+  .app {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .top-panel {
+    margin-bottom: 10px;
+  }
+
+  .staff-container {
+    padding: 4px;
+  }
+
+  .keyboard-container {
+    margin-bottom: 0;
+    padding: 4px 0 calc(18px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .piano {
+    padding: 10px 10px 12px;
+  }
+}
+
 </style>
 
 </head>
@@ -2956,7 +3030,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.005</div>
+      <div class="home-version-label">Build 2.006</div>
     </div>
     <div class="home-right">
 <div class="home-levels">

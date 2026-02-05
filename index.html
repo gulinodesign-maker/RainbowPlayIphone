@@ -1580,11 +1580,15 @@ svg.staff {
   margin: 0;
   width: 100%;
   flex: 0 0 auto;
-  margin-top: auto;
 
-  /* Spazio extra sotto la tastiera (home bar iPhone + comfort touch) */
-  padding-bottom: calc(84px + env(safe-area-inset-bottom));
-  margin-bottom: 0;
+  /* IMPORTANTE (iPhone): non “ancorare” la tastiera al fondo con margin-top:auto,
+     perché il blocco staff (flex:1) la spinge sempre giù.
+     Lasciamo che stia subito sotto lo staff e creiamo un gap reale sotto. */
+  margin-top: 10px;
+
+  /* Gap costante + safe-area: così i tasti non restano a filo bordo */
+  margin-bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: 0;
 }
 
     .piano-keys {

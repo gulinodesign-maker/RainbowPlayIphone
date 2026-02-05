@@ -1297,6 +1297,47 @@ body {
       opacity: 1;
       
     }
+    .metronome-switch {
+      position: relative;
+      display: inline-flex;
+      width: 44px;
+      height: 24px;
+      flex: 0 0 auto;
+    }
+    .metronome-switch input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .metronome-slider {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.20);
+      border: 2px solid rgba(255,255,255,0.65);
+      box-shadow: inset 0 0 6px rgba(255,255,255,0.25);
+      transition: background 0.15s ease-out;
+    }
+    .metronome-slider:before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 2px;
+      top: 2px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(15,23,42,0.35);
+      transition: transform 0.15s ease-out;
+    }
+    .metronome-switch input:checked + .metronome-slider {
+      background: rgba(34, 197, 94, 0.45);
+    }
+    .metronome-switch input:checked + .metronome-slider:before {
+      transform: translateX(20px);
+    }
+
     
 
     .error-pill {
@@ -2896,7 +2937,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.011)
+   RESPONSIVE CLEANUP (Build 2.012)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2972,7 +3013,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.011 — UI allineamenti */
+/* PATCH Build 2.012 — UI allineamenti */
 .top-row { grid-template-columns: 1fr auto 1fr !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3074,7 +3115,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.011</div>
+      <div class="home-version-label">Build 2.012</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -3362,12 +3403,13 @@ body {
         <div class="top-left-controls">
           <button class="menu-btn" id="menuBtnLearn" aria-label="Menu">🏠</button>
           
-        </div>
-        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-        <div class="top-right-controls">
+        
           <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnLearn" aria-label="Chiave di violino">&#119070;</button>
           <button class="clef-btn clef-bass-btn" id="clefBassBtnLearn" aria-label="Chiave di basso">&#119074;</button>
-          <button class="rainbow-counter" id="resetAudioBtnLearn" type="button">
+          </div>
+        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+        <div class="top-right-controls">
+<button class="rainbow-counter" id="resetAudioBtnLearn" type="button">
             Attiva audio
           </button>
 </div>
@@ -3531,14 +3573,15 @@ body {
           <button class="hint-btn" id="hintBtnL1" aria-label="Suggerimento">💡</button>
 <div class="stat-pill stat-errors-normal error-pill" id="errorPillL1">
             Errori: 0
+          
+          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL1" aria-label="Chiave di violino">&#119070;</button>
+          <button class="clef-btn clef-bass-btn" id="clefBassBtnL1" aria-label="Chiave di basso">&#119074;</button>
+          
           </div>
         </div>
         <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
-          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL1" aria-label="Chiave di violino">&#119070;</button>
-          <button class="clef-btn clef-bass-btn" id="clefBassBtnL1" aria-label="Chiave di basso">&#119074;</button>
-          
-          <button class="rainbow-counter" id="resetAudioBtnL1" type="button">
+<button class="rainbow-counter" id="resetAudioBtnL1" type="button">
             Attiva audio
             <span id="rainbowCountL1" class="rainbow-hidden-count">0</span>
           </button>
@@ -3616,13 +3659,14 @@ body {
           <button class="menu-btn" id="menuBtnL2" aria-label="Menu">🏠</button>
 <div class="stat-pill stat-errors-normal error-pill" id="errorPillL2">
             Errori: 0
+          
+          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL2" aria-label="Chiave di violino">&#119070;</button>
+          <button class="clef-btn clef-bass-btn" id="clefBassBtnL2" aria-label="Chiave di basso">&#119074;</button>
           </div>
         </div>
         <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
-          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL2" aria-label="Chiave di violino">&#119070;</button>
-          <button class="clef-btn clef-bass-btn" id="clefBassBtnL2" aria-label="Chiave di basso">&#119074;</button>
-          <button class="rainbow-counter" id="resetAudioBtnL2" type="button">
+<button class="rainbow-counter" id="resetAudioBtnL2" type="button">
             Attiva audio
             <span id="rainbowCount" class="rainbow-hidden-count">0</span>
           </button>
@@ -3694,13 +3738,14 @@ body {
           <button class="menu-btn" id="menuBtnL3" aria-label="Menu">🏠</button>
 <div class="stat-pill stat-errors-normal error-pill" id="errorPillL3">
             Errori: 0
+          
+          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL3" aria-label="Chiave di violino">&#119070;</button>
+          <button class="clef-btn clef-bass-btn" id="clefBassBtnL3" aria-label="Chiave di basso">&#119074;</button>
           </div>
         </div>
         <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
-          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL3" aria-label="Chiave di violino">&#119070;</button>
-          <button class="clef-btn clef-bass-btn" id="clefBassBtnL3" aria-label="Chiave di basso">&#119074;</button>
-          <button class="rainbow-counter" id="resetAudioBtnL3" type="button">
+<button class="rainbow-counter" id="resetAudioBtnL3" type="button">
             Attiva audio
             <span id="rainbowCountL3" class="rainbow-hidden-count">0</span>
           </button>
@@ -3772,22 +3817,22 @@ body {
           <button class="menu-btn" id="menuBtnL4" aria-label="Menu">🏠</button>
 <div class="stat-pill stat-errors-normal error-pill" id="errorPillL4">
             Errori: 0
+          
+          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL4" aria-label="Chiave di violino">&#119070;</button>
+          <button class="clef-btn clef-bass-btn" id="clefBassBtnL4" aria-label="Chiave di basso">&#119074;</button>
           </div>
         </div>
         <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
-          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL4" aria-label="Chiave di violino">&#119070;</button>
-          <button class="clef-btn clef-bass-btn" id="clefBassBtnL4" aria-label="Chiave di basso">&#119074;</button>
-          <div class="metronome-pill" id="metronomePillL4">
+<div class="metronome-pill" id="metronomePillL4">
             <input id="bpmInputL4" class="metronome-bpm-input" type="number" min="40" max="160" value="80" aria-label="Tempo in BPM">
             <div class="metronome-dot" id="metronomeDotL4"></div>
+            <label class="metronome-switch">
+              <input type="checkbox" id="metronomeToggleSwitchL4" aria-label="Metronomo">
+              <span class="metronome-slider" aria-hidden="true"></span>
+            </label>
           </div>
-          <button
-            id="metronomeToggleBtnL4"
-            class="rainbow-counter"
-            type="button"
-            aria-label="Avvia o ferma il metronomo">⏱</button>
-          <button class="rainbow-counter" id="resetAudioBtnL4" type="button">
+<button class="rainbow-counter" id="resetAudioBtnL4" type="button">
             Attiva audio
             <span id="rainbowCountL4" class="rainbow-hidden-count">0</span>
           </button>
@@ -3861,21 +3906,21 @@ body {
           <button class="reset-btn" id="resetBtnTempo" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnTempo" aria-label="Menu">🏠</button>
           
-        </div>
-        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-        <div class="top-right-controls">
+        
           <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnTempo" aria-label="Chiave di violino">&#119070;</button>
           <button class="clef-btn clef-bass-btn" id="clefBassBtnTempo" aria-label="Chiave di basso">&#119074;</button>
-          <div class="metronome-pill" id="metronomePillTempo">
+          </div>
+        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+        <div class="top-right-controls">
+<div class="metronome-pill" id="metronomePillTempo">
             <input id="bpmInputTempo" class="metronome-bpm-input" type="number" min="40" max="160" value="80" aria-label="Tempo in BPM">
             <div class="metronome-dot" id="metronomeDotTempo"></div>
+            <label class="metronome-switch">
+              <input type="checkbox" id="metronomeToggleSwitchTempo" aria-label="Metronomo">
+              <span class="metronome-slider" aria-hidden="true"></span>
+            </label>
           </div>
-          <button
-            id="metronomeToggleBtnTempo"
-            class="rainbow-counter"
-            type="button"
-            aria-label="Avvia o ferma il metronomo">⏱</button>
-          <button class="rainbow-counter" id="resetAudioBtnTempo" type="button">
+<button class="rainbow-counter" id="resetAudioBtnTempo" type="button">
             Attiva audio
             <span id="rainbowCountTempo" class="rainbow-hidden-count">0</span>
           </button>
@@ -3954,12 +3999,13 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtnPlay" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnPlay" aria-label="Menu">🏠</button>
-</div>
-        <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-        <div class="top-right-controls">
+
           <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnPlay" aria-label="Chiave di violino">&#119070;</button>
           <button class="clef-btn clef-bass-btn" id="clefBassBtnPlay" aria-label="Chiave di basso">&#119074;</button>
-          <button class="rainbow-counter" id="resetAudioBtnPlay" type="button">
+          </div>
+        <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+        <div class="top-right-controls">
+<button class="rainbow-counter" id="resetAudioBtnPlay" type="button">
             Attiva audio
             <span id="rainbowCountPlay" class="rainbow-hidden-count">0</span>
           </button>
@@ -6525,6 +6571,8 @@ function startMetronomeL4() {
   metronomeIntervalIdL4 = setInterval(() => {
     clickMetronomeL4();
   }, getBeatIntervalMsL4());
+
+  if (metronomeToggleBtnL4) metronomeToggleBtnL4.checked = true;
 }
 
 function stopMetronomeL4() {
@@ -6535,7 +6583,9 @@ function stopMetronomeL4() {
   if (metronomeDotL4) {
     metronomeDotL4.classList.remove("active");
   }
+  if (metronomeToggleBtnL4) metronomeToggleBtnL4.checked = false;
 }
+
 
 
 
@@ -7017,6 +7067,8 @@ function startMetronomeTempo() {
   clickMetronomeTempo();
   const interval = getBeatIntervalMsTempo();
   metronomeIntervalIdTempo = setInterval(clickMetronomeTempo, interval);
+
+  if (metronomeToggleBtnTempo) metronomeToggleBtnTempo.checked = true;
 }
 
 
@@ -7032,7 +7084,9 @@ function stopMetronomeTempo() {
   if (metronomeDotTempo) {
     metronomeDotTempo.classList.remove("active");
   }
+  if (metronomeToggleBtnTempo) metronomeToggleBtnTempo.checked = false;
 }
+
 
 
 function restartSamePatternTempo() {
@@ -7908,35 +7962,25 @@ function regenerateNotesForCurrentPage() {
   const resetAudioBtnLearn = document.getElementById("resetAudioBtnLearn");
 
 
-  metronomeToggleBtnL4 = document.getElementById("metronomeToggleBtnL4");
-  metronomeToggleBtnTempo = document.getElementById("metronomeToggleBtnTempo");
+  metronomeToggleBtnL4 = document.getElementById("metronomeToggleSwitchL4");
+  metronomeToggleBtnTempo = document.getElementById("metronomeToggleSwitchTempo");
 
   if (metronomeToggleBtnL4) {
-    metronomeToggleBtnL4.addEventListener("click", () => {
-      if (metronomeIntervalIdL4) {
-        stopMetronomeL4();
-        metronomeToggleBtnL4.textContent = "▶";
-        metronomeToggleBtnL4.classList.remove("active");
-      } else {
-        startMetronomeL4();
-        metronomeToggleBtnL4.textContent = "⏸";
-        metronomeToggleBtnL4.classList.add("active");
-      }
+    metronomeToggleBtnL4.addEventListener("change", () => {
+      if (metronomeToggleBtnL4.checked) startMetronomeL4();
+      else stopMetronomeL4();
     });
+    // Allinea lo stato iniziale
+    metronomeToggleBtnL4.checked = !!metronomeIntervalIdL4;
   }
 
   if (metronomeToggleBtnTempo) {
-    metronomeToggleBtnTempo.addEventListener("click", () => {
-      if (metronomeIntervalIdTempo) {
-        stopMetronomeTempo();
-        metronomeToggleBtnTempo.textContent = "▶";
-        metronomeToggleBtnTempo.classList.remove("active");
-      } else {
-        startMetronomeTempo();
-        metronomeToggleBtnTempo.textContent = "⏸";
-        metronomeToggleBtnTempo.classList.add("active");
-      }
+    metronomeToggleBtnTempo.addEventListener("change", () => {
+      if (metronomeToggleBtnTempo.checked) startMetronomeTempo();
+      else stopMetronomeTempo();
     });
+    // Allinea lo stato iniziale
+    metronomeToggleBtnTempo.checked = !!metronomeIntervalIdTempo;
   }
 
   function refreshGenderButtons() {

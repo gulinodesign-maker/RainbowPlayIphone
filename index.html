@@ -1597,10 +1597,13 @@ svg.staff {
 
     .keyboard-container {
   margin: 0;
-  padding: 0;
   width: 100%;
   flex: 0 0 auto;
   margin-top: auto;
+
+  /* Spazio di sicurezza (iPhone / safe-area) per evitare tagli in basso */
+  padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  margin-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 
     .piano-keys {
@@ -2937,7 +2940,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.013)
+   RESPONSIVE CLEANUP (Build 2.014)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2980,7 +2983,8 @@ body {
 
 /* Give the keyboard a safer bottom spacing (avoid iOS swipe area) */
 .keyboard-container {
-  padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  margin-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
 }
 
 /* Make the piano breathe less on small screens so keys can grow */
@@ -3000,7 +3004,7 @@ body {
   }
 
   .keyboard-container {
-    margin-bottom: 0;
+    margin-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
     padding: 4px 0 calc(18px + env(safe-area-inset-bottom, 0px));
   }
 
@@ -3013,7 +3017,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.013 — UI allineamenti */
+/* PATCH Build 2.014 — UI allineamenti */
 .top-row { grid-template-columns: 1fr auto 1fr !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3115,7 +3119,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.013</div>
+      <div class="home-version-label">Build 2.014</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -3570,7 +3574,6 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtnL1" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnL1" aria-label="Menu">🏠</button>
-          <button class="hint-btn" id="hintBtnL1" aria-label="Suggerimento">💡</button>
 <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL1" aria-label="Chiave di violino">&#119070;</button>
           <button class="clef-btn clef-bass-btn" id="clefBassBtnL1" aria-label="Chiave di basso">&#119074;</button>
           
@@ -3583,6 +3586,7 @@ body {
         </div>
         <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
+<button class="hint-btn" id="hintBtnL1" aria-label="Suggerimento">💡</button>
 <button class="rainbow-counter" id="resetAudioBtnL1" type="button">
             Attiva audio
             <span id="rainbowCountL1" class="rainbow-hidden-count">0</span>

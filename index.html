@@ -527,7 +527,7 @@ body {
 
     .top-row {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: 4px;
       margin-bottom: 20px;
@@ -549,7 +549,9 @@ body {
       align-items: center;
       flex-wrap: wrap;
       justify-content: flex-start;
-    }
+    
+      justify-self: start;
+}
 
     .clef-btn {
       border-radius: 999px;
@@ -581,7 +583,9 @@ body {
       gap: 10px;
       align-items: center;
       justify-content: flex-end;
-    }
+    
+      justify-self: end;
+}
 
     
     .rainbow-title span {
@@ -2889,7 +2893,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.007)
+   RESPONSIVE CLEANUP (Build 2.008)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2961,6 +2965,25 @@ body {
   }
 }
 
+</style>
+
+
+<style>
+/* PATCH Build 2.008 — UI allineamenti */
+.top-row { grid-template-columns: 1fr auto 1fr !important; }
+.top-left-controls { justify-self: start !important; }
+.top-right-controls { justify-self: end !important; }
+
+/* Titolo sempre centrato (no offset hack) */
+#learnNotesPage .top-row .rainbow-title-level { transform: none !important; }
+
+/* MAPPA NOTE: pentagramma appoggiato sullo sfondo (niente pannello bianco) */
+#learnNotesPage .staff-container {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
 </style>
 
 </head>
@@ -3048,7 +3071,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.007</div>
+      <div class="home-version-label">Build 2.008</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -3503,10 +3526,7 @@ body {
           <button class="reset-btn" id="resetBtnL1" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnL1" aria-label="Menu">🏠</button>
           <button class="hint-btn" id="hintBtnL1" aria-label="Suggerimento">💡</button>
-          <button class="trophy-btn" id="trophyBtnL1" aria-label="Trofei">🏆</button>
-          
-          
-          <div class="stat-pill stat-errors-normal error-pill" id="errorPillL1">
+<div class="stat-pill stat-errors-normal error-pill" id="errorPillL1">
             Errori: 0
           </div>
         </div>
@@ -3591,10 +3611,7 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtn" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnL2" aria-label="Menu">🏠</button>
-          <button class="trophy-btn" id="trophyBtnL2" aria-label="Trofei">🏆</button>
-          
-          
-          <div class="stat-pill stat-errors-normal error-pill" id="errorPillL2">
+<div class="stat-pill stat-errors-normal error-pill" id="errorPillL2">
             Errori: 0
           </div>
         </div>
@@ -3672,10 +3689,7 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtnL3" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnL3" aria-label="Menu">🏠</button>
-          <button class="trophy-btn" id="trophyBtnL3" aria-label="Trofei">🏆</button>
-          
-          
-          <div class="stat-pill stat-errors-normal error-pill" id="errorPillL3">
+<div class="stat-pill stat-errors-normal error-pill" id="errorPillL3">
             Errori: 0
           </div>
         </div>
@@ -3753,10 +3767,7 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtnL4" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnL4" aria-label="Menu">🏠</button>
-          <button class="trophy-btn" id="trophyBtnL4" aria-label="Trofei">🏆</button>
-          
-          
-          <div class="stat-pill stat-errors-normal error-pill" id="errorPillL4">
+<div class="stat-pill stat-errors-normal error-pill" id="errorPillL4">
             Errori: 0
           </div>
         </div>
@@ -3940,10 +3951,7 @@ body {
         <div class="top-left-controls">
           <button class="reset-btn" id="resetBtnPlay" aria-label="Reset">↻</button>
           <button class="menu-btn" id="menuBtnPlay" aria-label="Menu">🏠</button>
-          <button class="trophy-btn" id="trophyBtnPlay" aria-label="Trofei">🏆</button>
-          
-          
-        </div>
+</div>
         <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls">
           <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnPlay" aria-label="Chiave di violino">&#119070;</button>

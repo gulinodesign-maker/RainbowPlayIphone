@@ -578,6 +578,9 @@ body {
       box-shadow: 0 0 0 1px rgba(79,70,229,0.18);
     }
 
+    .clef-hidden { display: none !important; }
+
+
     .top-right-controls {
       display: flex;
       gap: 10px;
@@ -2893,7 +2896,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.008)
+   RESPONSIVE CLEANUP (Build 2.011)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2969,7 +2972,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.008 — UI allineamenti */
+/* PATCH Build 2.011 — UI allineamenti */
 .top-row { grid-template-columns: 1fr auto 1fr !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3071,7 +3074,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.008</div>
+      <div class="home-version-label">Build 2.011</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -7815,13 +7818,24 @@ document.addEventListener("DOMContentLoaded", function() {
   const clefBassButtons   = document.querySelectorAll(".clef-bass-btn");
 
   function refreshClefButtons() {
+    const isTreble = (currentClef === CLEF_TREBLE);
+
+    // Regola richiesta:
+    // - Se siamo in chiave di violino (treble), sullo schermo deve esserci SOLO il tasto della chiave di basso (opposta)
+    // - Se siamo in chiave di basso, deve esserci SOLO il tasto della chiave di violino (opposta)
+
     clefTrebleButtons.forEach(btn => {
-      if (currentClef === CLEF_TREBLE) btn.classList.add("active-clef");
-      else btn.classList.remove("active-clef");
+      // Mostra il tasto "violino" SOLO quando siamo in basso (serve per tornare al violino)
+      btn.classList.toggle("clef-hidden", isTreble);
+      btn.classList.remove("active-clef");
+      btn.setAttribute("aria-label", "Passa alla chiave di violino");
     });
+
     clefBassButtons.forEach(btn => {
-      if (currentClef === CLEF_BASS) btn.classList.add("active-clef");
-      else btn.classList.remove("active-clef");
+      // Mostra il tasto "basso" SOLO quando siamo in violino (serve per passare al basso)
+      btn.classList.toggle("clef-hidden", !isTreble);
+      btn.classList.remove("active-clef");
+      btn.setAttribute("aria-label", "Passa alla chiave di basso");
     });
   }
 

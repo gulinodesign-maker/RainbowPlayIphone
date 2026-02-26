@@ -41,7 +41,10 @@ body {
   height: 100dvh;
 
   /* Evita barre bianche su iOS */
-  overflow: hidden;
+  overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
 }
 
 html {
@@ -476,7 +479,10 @@ html {
       display: flex;
       justify-content: center;
       align-items: stretch;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
     }
 
     .app {
@@ -531,7 +537,10 @@ html {
       line-height: 0.85;
       padding: 0;
       white-space: nowrap;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
       text-overflow: ellipsis;
     }
 
@@ -1594,7 +1603,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.033 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.034 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2310,7 +2319,10 @@ svg.staff {
 /* Override body per fullscreen su iPhone in landscape */
 body {
   height: calc(var(--vh) * 100);
-  overflow: hidden;
+  overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
   touch-action: manipulation;
   -webkit-user-select: none;
   user-select: none;
@@ -2620,7 +2632,13 @@ body {
     #88f7e2 0%, #5cdccb 40%, #36b5aa 75%, #1c8f82 100%) !important;
 }
 
- .learn-popup button {text-align:center;} </style>
+ .learn-popup button {text-align:center;} 
+    /* Android keyboard fix: allow scrolling when keyboard is open */
+    body.kbd-open .page-container{
+      overflow-y: auto !important;
+    }
+
+</style>
 
 <style>
 /* Raddoppio altezza tasti Livello 1 e Mappa */
@@ -2918,7 +2936,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.033)
+   RESPONSIVE CLEANUP (Build 2.034)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2995,7 +3013,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.033 — UI allineamenti */
+/* PATCH Build 2.034 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3014,7 +3032,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.033 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.034 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3028,7 +3046,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.033): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.034): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3075,7 +3093,7 @@ button,
 
 
 <style>
-/* Build 2.033 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.034 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3273,7 +3291,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.033</div>
+      <div class="home-version-label">Build 2.034</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4686,7 +4704,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.033 — Metronome + Audio pill logic (all levels)
+/* Build 2.034 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)

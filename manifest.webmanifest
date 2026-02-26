@@ -1,9 +1,9 @@
 {
   "name": "Music Rainbow",
   "short_name": "Music Rainbow",
-  "start_url": ".",
+  "start_url": "./?v=2.034",
   "display": "standalone",
-  "orientation": "landscape",
+  "orientation": "any",
   "background_color": "#74E7DF",
   "theme_color": "#74E7DF",
   "icons": [
@@ -17,5 +17,11 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "scope": "./",
+  "display_override": [
+    "standalone",
+    "fullscreen"
+  ],
+  "id": "./"
 }

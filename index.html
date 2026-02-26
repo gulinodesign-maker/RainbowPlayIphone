@@ -2912,7 +2912,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.031)
+   RESPONSIVE CLEANUP (Build 2.032)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2989,7 +2989,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.031 — UI allineamenti */
+/* PATCH Build 2.032 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3008,7 +3008,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.031 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.032 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3022,7 +3022,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.031): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.032): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3069,7 +3069,7 @@ button,
 
 
 <style>
-/* Build 2.031 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.032 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3078,13 +3078,14 @@ button,
   height: 40px;
   border-radius: 999px;
   background: rgba(140,140,140,0.65);
-  padding: 4px;
+  /* 5px margin interno tra pill grigia e pill interne */
+  padding: 5px;
   gap: 10px;
 
-  /* more compact: prevents overlap with title on iPhone */
-  width: min(240px, 34vw);
-  max-width: 240px;
-  min-width: 190px;
+  /* auto-fit sul contenuto (evita pill grigia troppo larga) */
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
 
   box-sizing: border-box;
   flex: 0 0 auto;
@@ -3161,11 +3162,11 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 @media (max-width: 420px){
   .metronome-audio-pill{
     height: 38px;
-    padding: 4px;
+    padding: 5px;
     gap: 9px;
-    width: min(210px, 46vw);
-    max-width: 210px;
-    min-width: 170px;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
   }
   .metronome-audio-pill .metronome-bpm-tab{
     flex: 0 0 50px;
@@ -3266,7 +3267,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.031</div>
+      <div class="home-version-label">Build 2.032</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4679,7 +4680,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.031 — Metronome + Audio pill logic (all levels)
+/* Build 2.032 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)

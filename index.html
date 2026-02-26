@@ -2922,7 +2922,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.023)
+   RESPONSIVE CLEANUP (Build 2.024)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2999,7 +2999,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.023 — UI allineamenti */
+/* PATCH Build 2.024 — UI allineamenti */
 .top-row { grid-template-columns: 1fr auto 1fr !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3018,7 +3018,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.023 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.024 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3028,6 +3028,53 @@ body {
   position: relative !important;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 22px) !important;
 }
+</style>
+
+
+<style id="flat-overrides">
+/* FLAT OVERRIDES (Build 2.024): remove shadows/neon/pulsing across all levels */
+.rainbow-title span,
+.home-title,
+.page-title,
+h1, h2, h3, .title, .level-title {
+  text-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+button,
+.note-button,
+.pill,
+.tab,
+.topbar button,
+.learn-popup button,
+.modal button,
+.level-button,
+.keyboard-key,
+.key-button,
+[class*="btn-"] {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.note-button.hint-glow,
+#level1Page .note-circle.neon-pulse-l1,
+.note-symbol.note-played {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+.note-button.note-pressed,
+[class*="note-pressed"] {
+  box-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+/* Keep pressed feedback without shadow */
+.note-button.note-pressed { transform: translateY(4px) !important; }
 </style>
 
 </head>
@@ -3115,7 +3162,7 @@ body {
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.023</div>
+      <div class="home-version-label">Build 2.024</div>
     </div>
     <div class="home-right">
 <div class="home-levels">

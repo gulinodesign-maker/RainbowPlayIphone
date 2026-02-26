@@ -16,6 +16,7 @@
 
   <!-- Font morbido e grande -->
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Music&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; }
@@ -550,6 +551,7 @@ html {
 }
 
     .clef-btn {
+      font-family: "Noto Music","Noto Sans Symbols2","Segoe UI Symbol","Apple Symbols",sans-serif;
       border-radius: 999px;
       border: 2px solid #e5e7eb;
       background: #ffffff;
@@ -1594,9 +1596,9 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.033 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.034 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
-      margin-bottom: clamp(14px, 2.5vh, 34px);
+      margin-bottom: clamp(14px, calc(var(--vh) * 2.5), 34px);
     }
 
 
@@ -1606,7 +1608,7 @@ svg.staff {
       width: 100%;
       max-width: none;
       margin: 0;
-      height: clamp(120px, min(calc((100vw - 20px) * 0.32), 35vh), 320px);
+      height: clamp(120px, min(calc((100vw - 20px) * 0.32), calc(var(--vh) * 35)), 320px);
     }
 
     .white-key {
@@ -2620,7 +2622,31 @@ body {
     #88f7e2 0%, #5cdccb 40%, #36b5aa 75%, #1c8f82 100%) !important;
 }
 
- .learn-popup button {text-align:center;} </style>
+ .learn-popup button {text-align:center;} 
+
+    /* Font dedicato per simboli musicali (fix rendering Android) */
+    .clef-symbol, .clef-btn {
+      font-family: "Noto Music","Noto Sans Symbols2","Segoe UI Symbol","Apple Symbols",sans-serif;
+      font-variant-ligatures: none;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    /* Android: evita taglio della tastiera usando la vh reale (visualViewport) */
+    html.is-android #playPage #staffSvgPlay {
+      margin-bottom: clamp(12px, calc(var(--vh) * 2.2), 30px);
+    }
+    html.is-android .piano-keys {
+      height: clamp(110px, min(calc((100vw - 20px) * 0.30), calc(var(--vh) * 30)), 280px);
+    }
+    html.is-android .app {
+      padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    }
+    html.is-android .clef-btn {
+      padding-top: 2px; /* allinea la chiave su Android */
+    }
+
+</style>
 
 <style>
 /* Raddoppio altezza tasti Livello 1 e Mappa */
@@ -2918,7 +2944,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.033)
+   RESPONSIVE CLEANUP (Build 2.034)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2995,7 +3021,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.033 — UI allineamenti */
+/* PATCH Build 2.034 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3014,7 +3040,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.033 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.034 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3028,7 +3054,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.033): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.034): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3075,7 +3101,7 @@ button,
 
 
 <style>
-/* Build 2.033 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.034 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3191,6 +3217,16 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 </head>
 
 <body>
+<script>
+  (function(){
+    try{
+      var ua = navigator.userAgent || '';
+      document.documentElement.classList.toggle('is-android', /Android/i.test(ua));
+      document.documentElement.classList.toggle('is-ios', /iPhone|iPad|iPod/i.test(ua));
+    }catch(e){}
+  })();
+</script>
+
   <div id="rotateOverlay">
     <div>
       <h1>Ruota il tuo iPhone</h1>
@@ -3273,7 +3309,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.033</div>
+      <div class="home-version-label">Build 2.034</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4686,7 +4722,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.033 — Metronome + Audio pill logic (all levels)
+/* Build 2.034 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)

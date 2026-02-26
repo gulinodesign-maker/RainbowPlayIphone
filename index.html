@@ -2912,7 +2912,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.030)
+   RESPONSIVE CLEANUP (Build 2.031)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2989,7 +2989,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.030 — UI allineamenti */
+/* PATCH Build 2.031 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3008,7 +3008,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.030 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.031 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3022,7 +3022,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.030): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.031): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3069,11 +3069,12 @@ button,
 
 
 <style>
-/* Build 2.030 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.031 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 40px;
   border-radius: 999px;
   background: rgba(140,140,140,0.65);
@@ -3093,9 +3094,9 @@ button,
   position: relative;
   z-index: 2;
   height: 100%;
-  flex: 0 0 92px;
-  min-width: 92px;
-  padding: 0 10px;
+  flex: 0 0 56px;
+  min-width: 56px;
+  padding: 0 8px;
   border: none;
   border-radius: 999px;
   background: #ffffff;
@@ -3112,8 +3113,8 @@ button,
   position: relative;
   z-index: 2;
   height: 100%;
-  flex: 0 0 92px;
-  min-width: 92px;
+  flex: 0 0 56px;
+  min-width: 56px;
   border: none;
   border-radius: 999px;
   background: #34C759;
@@ -3167,13 +3168,13 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
     min-width: 170px;
   }
   .metronome-audio-pill .metronome-bpm-tab{
-    flex: 0 0 82px;
-    min-width: 82px;
+    flex: 0 0 50px;
+    min-width: 50px;
     font-size: 18px;
   }
   .metronome-audio-pill .audio-tab{
-    flex: 0 0 82px;
-    min-width: 82px;
+    flex: 0 0 50px;
+    min-width: 50px;
   }
   .metronome-audio-pill .metronome-dot{
     width: 16px; height: 16px; flex: 0 0 16px;
@@ -3265,7 +3266,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.030</div>
+      <div class="home-version-label">Build 2.031</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4678,7 +4679,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.030 — Metronome + Audio pill logic (all levels)
+/* Build 2.031 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)

@@ -117,6 +117,7 @@ html {
   margin: 0 0 20px 0;
   text-align: center;
   line-height: 1.05;
+  text-shadow: 0 0 6px rgba(70,209,198,0.85), 0 0 14px rgba(70,209,198,0.55), 0 0 26px rgba(70,209,198,0.35);
 }
 
 
@@ -589,20 +590,7 @@ html {
 }
 
     
-    .rainbow-title span {
-      display: inline-block;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-
-      /* LIQUID GLASS TEXT: ogni carattere vetroso + NEON pulsante */
-      color: currentColor;
-      text-shadow:
-        0 0 4px rgba(255,255,255,0.75),
-        0 0 10px currentColor,
-        0 0 18px currentColor;
-      filter: saturate(150%);
-      animation: neonTitlePulse 1.8s ease-in-out infinite;
-    }
+    .rainbow-title span { text-shadow: inherit; }
     .rainbow-title span:nth-child(7n+1){color:#ef4444;}
     .rainbow-title span:nth-child(7n+2){color:#f97316;}
     .rainbow-title span:nth-child(7n+3){color:#eab308;}
@@ -1264,9 +1252,7 @@ html {
       background: rgba(15, 23, 42, 0.4);
       border: 2px solid rgba(255,255,255,0.7);
 
-      box-shadow:
-        0 5px 12px rgba(15,23,42,0.5),
-        inset 0 0 8px rgba(255,255,255,0.35);
+      box-shadow: none;
       backdrop-filter: blur(12px) saturate(170%);
       -webkit-backdrop-filter: blur(12px) saturate(170%);
       background-clip: padding-box;
@@ -2922,7 +2908,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.024)
+   RESPONSIVE CLEANUP (Build 2.025)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -2999,7 +2985,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.024 — UI allineamenti */
+/* PATCH Build 2.025 — UI allineamenti */
 .top-row { grid-template-columns: 1fr auto 1fr !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3018,7 +3004,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.024 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.025 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3032,7 +3018,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.024): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.025): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3162,7 +3148,7 @@ button,
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.024</div>
+      <div class="home-version-label">Build 2.025</div>
     </div>
     <div class="home-right">
 <div class="home-levels">

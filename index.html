@@ -1603,7 +1603,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.034 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.035 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2936,7 +2936,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.034)
+   RESPONSIVE CLEANUP (Build 2.035)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3013,7 +3013,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.034 — UI allineamenti */
+/* PATCH Build 2.035 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3032,7 +3032,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.034 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.035 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3046,7 +3046,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.034): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.035): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3093,7 +3093,7 @@ button,
 
 
 <style>
-/* Build 2.034 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.035 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3206,6 +3206,523 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
   }
 }
 </style>
+
+
+<style id="ios-responsive-2035">
+/* Build 2.035 — adattamento iOS/iPad: layout, safe-area e touch targets.
+   Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
+
+:root {
+  --ios-safe-top: env(safe-area-inset-top, 0px);
+  --ios-safe-right: env(safe-area-inset-right, 0px);
+  --ios-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ios-safe-left: env(safe-area-inset-left, 0px);
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  height: calc(var(--vh) * 100) !important;
+  min-height: calc(var(--vh) * 100) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.page-container,
+.home-screen {
+  width: 100%;
+  height: calc(var(--vh) * 100) !important;
+  min-height: 0 !important;
+  padding-top: max(6px, var(--ios-safe-top));
+  padding-right: max(8px, var(--ios-safe-right));
+  padding-bottom: max(8px, var(--ios-safe-bottom));
+  padding-left: max(8px, var(--ios-safe-left));
+}
+
+.page-container {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0 !important;
+}
+
+/* Top bar: centro geometrico stabile, nessun a-capo e controlli sempre raggiungibili. */
+.top-panel {
+  width: 100% !important;
+  flex: 0 0 auto;
+}
+
+.top-row {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 52px;
+  margin: 0 auto 8px !important;
+  padding: 6px 8px !important;
+  gap: 6px !important;
+}
+
+.top-left-controls,
+.top-right-controls {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin-top: 0 !important;
+  overflow: visible !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+}
+
+.top-left-controls {
+  justify-content: flex-start !important;
+}
+
+.top-right-controls {
+  justify-content: flex-end !important;
+}
+
+.top-row h1,
+.top-row .rainbow-title-level {
+  margin: 0 !important;
+  padding: 0 !important;
+  align-self: center;
+  justify-self: center !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  line-height: 1 !important;
+}
+
+.reset-btn,
+.menu-btn,
+.trophy-btn,
+.hint-btn,
+.clef-btn {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.top-left-controls,
+.top-right-controls {
+  gap: 7px !important;
+}
+
+.metronome-audio-pill {
+  height: 48px;
+  padding: 4px;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.metronome-audio-pill .metronome-bpm-tab,
+.metronome-audio-pill .audio-tab {
+  height: 100%;
+  flex-basis: 54px;
+  min-width: 54px;
+}
+
+.play-timer-pill {
+  height: 48px;
+  min-height: 48px;
+  min-width: 76px;
+  padding: 0 12px;
+  flex: 0 0 auto;
+}
+
+/* Tastiera: resta nel normale flusso flex e la safe-area è gestita dal contenitore pagina.
+   In questo modo non può salire sopra il pentagramma quando l'altezza utile diminuisce. */
+.keyboard-container {
+  position: relative !important;
+  bottom: auto !important;
+  flex: 0 0 auto;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+.note-buttons-container,
+.tempo-action-container {
+  flex: 0 0 auto;
+  margin-top: auto;
+}
+
+/* Home: due colonne elastiche in landscape, senza traslazioni che possano tagliare i controlli. */
+.home-screen {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.home-container {
+  width: min(100%, 1100px) !important;
+  max-width: 1100px !important;
+  height: 100%;
+  min-height: 0;
+  padding: clamp(8px, 2.2vh, 24px) clamp(10px, 3vw, 32px) !important;
+  gap: clamp(14px, 3vw, 36px) !important;
+}
+
+.home-left,
+.home-right {
+  min-width: 0;
+}
+
+.home-left {
+  transform: none !important;
+}
+
+.home-rainbow-graphic {
+  width: min(100%, 320px);
+  height: auto;
+  aspect-ratio: 8 / 5;
+  margin-bottom: clamp(4px, 1.4vh, 14px);
+}
+
+.home-screen .rainbow-title {
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  margin: 0 0 clamp(6px, 1.6vh, 16px) 0;
+}
+
+.home-gender-wrapper,
+.home-gender-select {
+  margin-top: clamp(2px, 0.8vh, 8px);
+  margin-bottom: clamp(2px, 0.8vh, 8px);
+}
+
+.home-gender-option {
+  min-height: 44px;
+  padding: 8px 18px;
+}
+
+.home-levels {
+  max-width: 390px;
+  gap: clamp(7px, 1.25vh, 12px);
+}
+
+.home-level-btn {
+  min-height: 48px;
+  padding: 10px 18px;
+}
+
+.home-levels-separator {
+  height: clamp(2px, 0.8vh, 8px);
+}
+
+.home-version-label {
+  margin-top: clamp(3px, 0.8vh, 10px);
+}
+
+/* Overlay e popup: sempre dentro la visual viewport e con comandi raggiungibili. */
+#rotateOverlay,
+.level-select-overlay,
+.rainbow-overlay,
+.token-overlay,
+.trophy-overlay,
+.play-timeup-overlay {
+  padding-top: max(8px, var(--ios-safe-top));
+  padding-right: max(8px, var(--ios-safe-right));
+  padding-bottom: max(8px, var(--ios-safe-bottom));
+  padding-left: max(8px, var(--ios-safe-left));
+}
+
+.level-select-box,
+.trophy-overlay-box,
+.token-box,
+.play-timeup-box,
+.rainbow-box {
+  max-width: min(92vw, 560px);
+  max-height: calc(var(--vh) * 100 - var(--ios-safe-top) - var(--ios-safe-bottom) - 16px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* iPhone in landscape: profilo compatto, touch target >= 38/40px e nessun wrapping. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .page-container,
+  .home-screen {
+    padding-top: max(4px, var(--ios-safe-top));
+    padding-right: max(6px, var(--ios-safe-right));
+    padding-bottom: max(6px, var(--ios-safe-bottom));
+    padding-left: max(6px, var(--ios-safe-left));
+  }
+
+  .top-row {
+    min-height: 48px;
+    margin-bottom: 4px !important;
+    padding: 3px 5px !important;
+    gap: 4px !important;
+    border-radius: 11px;
+  }
+
+  .top-left-controls,
+  .top-right-controls {
+    gap: 4px !important;
+  }
+
+  .reset-btn,
+  .menu-btn,
+  .trophy-btn,
+  .hint-btn,
+  .clef-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  .clef-btn {
+    font-size: 23px;
+  }
+
+  .metronome-audio-pill {
+    height: 44px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .metronome-audio-pill .metronome-bpm-tab,
+  .metronome-audio-pill .audio-tab {
+    flex-basis: 44px;
+    min-width: 44px;
+    padding: 0 5px;
+    font-size: 16px;
+  }
+
+  .metronome-audio-pill .metronome-dot {
+    width: 13px;
+    height: 13px;
+    flex-basis: 13px;
+  }
+
+  .metronome-audio-pill .audio-icon {
+    font-size: 16px;
+  }
+
+  .play-timer-pill {
+    min-width: 62px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0 8px;
+    font-size: 1rem;
+  }
+
+  #playPage .top-row .rainbow-title,
+  #trophyPage .top-row .rainbow-title {
+    font-size: clamp(1.05rem, 3.1vw, 1.5rem) !important;
+    max-width: 25vw;
+  }
+
+  .status-bar {
+    min-height: 1.25em;
+    margin-top: 2px;
+    font-size: 0.82rem;
+  }
+
+  .piano-keys {
+    height: clamp(104px, 29vh, 132px);
+  }
+
+  #playPage #staffSvgPlay {
+    margin-bottom: clamp(6px, 1.4vh, 12px);
+  }
+
+  .note-buttons-container {
+    margin-right: 4px;
+    margin-bottom: 0;
+    margin-left: 4px;
+  }
+
+  .note-buttons-wrapper {
+    margin-top: 4px;
+    padding: 6px 5px 7px;
+    gap: 5px;
+    border-radius: 12px;
+    flex-wrap: nowrap;
+  }
+
+  #level1Page .note-button,
+  #learnNotesPage .note-button,
+  .note-button {
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 5px !important;
+    font-size: clamp(0.86rem, 2.1vw, 1rem);
+  }
+
+  .tempo-action-container {
+    margin: 8px 8px 0;
+  }
+
+  .tempo-action-btn {
+    max-width: 460px;
+    min-height: 48px;
+    aspect-ratio: auto;
+    padding: 8px 14px;
+    font-size: 1.2rem;
+  }
+
+  .home-container {
+    grid-template-columns: minmax(0, 0.9fr) minmax(250px, 1.1fr) !important;
+    column-gap: clamp(8px, 2vw, 18px) !important;
+    padding: 2px 4px !important;
+  }
+
+  .home-rainbow-graphic {
+    width: clamp(150px, 29vw, 230px);
+    height: clamp(82px, 25vh, 118px);
+    aspect-ratio: auto;
+    margin: 0 auto 2px;
+  }
+
+  .home-screen .rainbow-title {
+    font-size: clamp(1.55rem, 4vw, 2.05rem);
+    margin-bottom: 3px;
+  }
+
+  .home-gender-wrapper,
+  .home-gender-select {
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+
+  .home-gender-select {
+    gap: 7px;
+  }
+
+  .home-gender-option {
+    min-height: 44px;
+    padding: 5px 12px;
+    border-radius: 13px;
+  }
+
+  .home-gender-option span {
+    font-size: 0.88rem;
+  }
+
+  .home-version-label {
+    margin-top: 2px;
+    font-size: 0.72rem;
+  }
+
+  .home-levels {
+    max-width: 340px;
+    gap: 6px;
+  }
+
+  .home-level-btn {
+    min-height: 44px;
+    padding: 7px 12px;
+    font-size: 1rem;
+  }
+
+  .home-levels-separator {
+    height: 1px;
+  }
+
+  .level-select-box {
+    width: min(390px, 92vw);
+    padding: 10px 14px 9px;
+    border-radius: 18px;
+  }
+
+  .level-select-title {
+    margin-bottom: 4px;
+    font-size: 1.15rem;
+  }
+
+  .level-select-subtitle {
+    margin-bottom: 7px;
+    font-size: 0.82rem;
+  }
+
+  .level-select-grid {
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+
+  .level-select-btn {
+    min-height: 52px;
+    padding: 7px 10px;
+    font-size: 1.5rem;
+  }
+
+  #learnSelectOverlay .level-select-btn .home-level-btn-label {
+    margin-left: 0 !important;
+    font-size: 2.25rem !important;
+  }
+
+  .level-select-close {
+    min-height: 44px;
+    padding: 6px 16px;
+  }
+}
+
+/* iPad: usa lo spazio disponibile senza allungare eccessivamente i controlli. */
+@media (orientation: landscape) and (min-width: 900px) and (min-height: 600px) {
+  .page-container,
+  .home-screen {
+    padding-top: max(10px, var(--ios-safe-top));
+    padding-right: max(12px, var(--ios-safe-right));
+    padding-bottom: max(12px, var(--ios-safe-bottom));
+    padding-left: max(12px, var(--ios-safe-left));
+  }
+
+  .top-row {
+    min-height: 58px;
+    max-width: 1320px;
+    padding: 7px 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .keyboard-container,
+  .staff-container {
+    max-width: 1280px;
+  }
+
+  .piano-keys {
+    height: clamp(190px, 27vh, 300px);
+  }
+
+  .home-container {
+    max-width: 1120px !important;
+  }
+
+  .home-level-btn {
+    min-height: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-level-btn,
+  .level-select-btn,
+  .note-button,
+  .white-key,
+  .black-key {
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -3291,7 +3808,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
         </label>
       </div>
       </div>
-      <div class="home-version-label">Build 2.034</div>
+      <div class="home-version-label">Build 2.035</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4704,7 +5221,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.034 — Metronome + Audio pill logic (all levels)
+/* Build 2.035 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)

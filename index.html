@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.042 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.043 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.042)
+   RESPONSIVE CLEANUP (Build 2.043)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.042 — UI allineamenti */
+/* PATCH Build 2.043 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.042 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.043 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.042): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.043): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.042 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.043 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.042 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.043 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.042 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.043 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.042 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.043 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.042 — livelli 5 e 6. */
+/* Build 2.043 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3946,9 +3946,9 @@ html {
   shape-rendering:geometricPrecision;
 }
 
-/* Build 2.042 — grand staff L6 ridisegnato come un unico componente vettoriale.
+/* Build 2.043 — grand staff L6 ridisegnato come un unico componente vettoriale.
    Sistema di coordinate stabile: x=104..950, violino y=60..120,
-   basso y=220..280. La graffa è vettoriale e incorporata nello stesso SVG. */
+   basso y=220..280. La graffa è un vero glifo tipografico incorporato nello stesso SVG. */
 #level6Page .grand-staff-lines-l6 line {
   stroke:#111827;
   stroke-width:1.8;
@@ -3960,9 +3960,14 @@ html {
   stroke-width:2.6;
   vector-effect:non-scaling-stroke;
 }
-#level6Page .grand-brace-l6 {
+#level6Page .grand-brace-glyph-l6 {
   fill:#111827;
   pointer-events:none;
+}
+#level6Page .grand-brace-glyph-l6 text {
+  fill:#111827;
+  font-family:"Times New Roman","Times","STIX Two Math","Apple Symbols","Arial Unicode MS",serif;
+  font-weight:400;
 }
 #level6Page .grand-final-bar-thin-l6 {
   stroke:#111827;
@@ -4032,10 +4037,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.042" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.043" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.042</div>
+      <div class="home-version-label">Build 2.043</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4959,19 +4964,10 @@ html {
 
     <svg id="staffSvgL6" class="staff grand-staff-l6" overflow="visible" viewBox="0 0 1000 340" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
       <g id="staffL6Group" class="grand-staff-system-l6">
-        <!-- Graffa musicale vettoriale incorporata: nessun asset esterno. -->
-        <path class="grand-brace-l6"
-              d="M88 50
-                 C63 50 58 76 55 103
-                 C52 130 43 150 24 170
-                 C43 190 52 210 55 237
-                 C58 264 63 290 88 290
-                 L81 276
-                 C69 273 67 254 65 234
-                 C62 207 53 185 39 170
-                 C53 155 62 133 65 106
-                 C67 86 69 67 81 64
-                 Z" />
+        <!-- Graffa tipografica reale: glifo matematico {, incorporato nello stesso SVG. -->
+        <g class="grand-brace-glyph-l6" transform="translate(23 0) scale(0.58 1)" aria-hidden="true">
+          <text x="0" y="294" font-size="320">{</text>
+        </g>
 
         <!-- Barline iniziale comune: collega i due righi come un unico grand staff. -->
         <line class="grand-system-bar-l6" x1="104" y1="60" x2="104" y2="280" />
@@ -5671,7 +5667,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.042 — Metronome + Audio pill logic (all levels)
+/* Build 2.043 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -8646,6 +8642,22 @@ let pendingChordTimeoutL6=null;
 const TOLERANCE_MS_L6=360;
 const CHORD_WINDOW_MS_L6=650;
 
+/* La generazione del Livello 6 usa esattamente lo stesso range della tastiera visibile.
+   In futuro questo vincolo potrà essere esteso quando verrà collegato un controller MIDI. */
+const L6_WHITE_NOTES=["do","re","mi","fa","sol","la","si"];
+const L6_VISIBLE_OCTAVES=[1,2];
+const L6_VISIBLE_BLACK_KEYS=[
+  {name:"do#",i:0,o:1},{name:"re#",i:1,o:1},{name:"fa#",i:3,o:1},{name:"sol#",i:4,o:1},{name:"la#",i:5,o:1},
+  {name:"do#",i:7,o:2},{name:"re#",i:8,o:2},{name:"fa#",i:10,o:2},{name:"sol#",i:11,o:2},{name:"la#",i:12,o:2}
+];
+const L6_PLAYABLE_TOKENS=new Set([
+  ...L6_VISIBLE_OCTAVES.flatMap(octave=>L6_WHITE_NOTES.map(noteName=>`${noteName}:${octave}`)),
+  ...L6_VISIBLE_BLACK_KEYS.map(k=>`${k.name}:${k.o}`)
+]);
+function isPlayableOnVisibleKeyboardL6(noteName,octave){
+  return L6_PLAYABLE_TOKENS.has(`${noteName}:${octave}`);
+}
+
 const TREBLE_Y_L6={do:82.5,re:75,mi:67.5,fa:60,sol:105,la:97.5,si:90};
 const BASS_Y_L6={do:257.5,re:250,mi:242.5,fa:235,sol:280,la:272.5,si:265};
 const KEY_CHORDS_L6={
@@ -8722,14 +8734,26 @@ function createNotesL6(){
     (staffGroupL6||staffSvgL6).appendChild(line);
   });
   const keyName=Math.random()<.5?"C_MAJOR":"A_MINOR";
-  const chordPool=KEY_CHORDS_L6[keyName];
+  const chordPool=KEY_CHORDS_L6[keyName].filter(chord=>{
+    const rootPlayable=isPlayableOnVisibleKeyboardL6(chord[0],1);
+    const treblePlayable=[chord[1],chord[2]].some(n=>isPlayableOnVisibleKeyboardL6(n,2));
+    return rootPlayable && treblePlayable;
+  });
   const patterns=[];for(let i=0;i<measureCount;i++)patterns.push(pickMeasurePatternL4(DURATIONS_L4));
   let lastRoot=null;
-  function chooseChord(){let choices=chordPool.filter(c=>c[0]!==lastRoot);if(!choices.length)choices=chordPool;const c=choices[Math.floor(Math.random()*choices.length)];lastRoot=c[0];return c;}
+  function chooseChord(){
+    let choices=chordPool.filter(c=>c[0]!==lastRoot);
+    if(!choices.length)choices=chordPool;
+    const c=choices[Math.floor(Math.random()*choices.length)];
+    lastRoot=c[0];
+    return c;
+  }
   function place(pattern,fromX,toX){
     const count=pattern.length;
     for(let i=0;i<count;i++){
-      const chord=chooseChord(),root=chord[0],trebleName=Math.random()<.5?chord[1]:chord[2];
+      const chord=chooseChord(),root=chord[0];
+      const playableTreble=[chord[1],chord[2]].filter(n=>isPlayableOnVisibleKeyboardL6(n,2));
+      const trebleName=playableTreble[Math.floor(Math.random()*playableTreble.length)];
       const margin=25,t=count===1?.5:i/Math.max(1,count-1),cx=(fromX+margin)+((toX-margin)-(fromX+margin))*t;
       const dur=pattern[i],beats=dur.beats,durationName=dur.name;
       const bassVisual=appendNoteVisualL6(cx,BASS_Y_L6[root],durationName,root);
@@ -8785,10 +8809,17 @@ function bindPianoKeyL6(key,noteName,octave,freq){
 
 function renderPianoL6(){
   if(!pianoKeysElL6)return;pianoKeysElL6.innerHTML="";
-  const whites=["do","re","mi","fa","sol","la","si"],totalWhite=14;
-  for(let octave=1;octave<=2;octave++)whites.forEach(noteName=>{const freq=(NOTE_FREQS[noteName]||440)*(octave===2?2:1);const key=document.createElement("div");key.className="white-key";key.dataset.noteName=noteName;key.dataset.octave=String(octave);bindPianoKeyL6(key,noteName,octave,freq);pianoKeysElL6.appendChild(key);});
-  const blacks=[{name:"do#",i:0,o:1},{name:"re#",i:1,o:1},{name:"fa#",i:3,o:1},{name:"sol#",i:4,o:1},{name:"la#",i:5,o:1},{name:"do#",i:7,o:2},{name:"re#",i:8,o:2},{name:"fa#",i:10,o:2},{name:"sol#",i:11,o:2},{name:"la#",i:12,o:2}];
-  blacks.forEach(b=>{const freq=(NOTE_FREQS[b.name]||440)*(b.o===2?2:1);const key=document.createElement("div");key.className="black-key";key.style.left=((b.i+1)/totalWhite*100)+"%";bindPianoKeyL6(key,b.name,b.o,freq);pianoKeysElL6.appendChild(key);});
+  const totalWhite=L6_WHITE_NOTES.length*L6_VISIBLE_OCTAVES.length;
+  L6_VISIBLE_OCTAVES.forEach(octave=>L6_WHITE_NOTES.forEach(noteName=>{
+    const freq=(NOTE_FREQS[noteName]||440)*(octave===2?2:1);
+    const key=document.createElement("div");key.className="white-key";key.dataset.noteName=noteName;key.dataset.octave=String(octave);
+    bindPianoKeyL6(key,noteName,octave,freq);pianoKeysElL6.appendChild(key);
+  }));
+  L6_VISIBLE_BLACK_KEYS.forEach(b=>{
+    const freq=(NOTE_FREQS[b.name]||440)*(b.o===2?2:1);
+    const key=document.createElement("div");key.className="black-key";key.dataset.noteName=b.name;key.dataset.octave=String(b.o);
+    key.style.left=((b.i+1)/totalWhite*100)+"%";bindPianoKeyL6(key,b.name,b.o,freq);pianoKeysElL6.appendChild(key);
+  });
 }
 
 function softResetLevel6(){if(!staffSvgL6)return;clearPendingChordL6();stopMetronomeL6();currentChordsL6=[];currentIndexL6=0;consecutiveErrorsL6=0;lastHitTimeL6=null;updateErrorPill(errorPillL6,0,7);createNotesL6();renderPianoL6();}

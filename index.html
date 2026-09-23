@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.043 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.044 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.043)
+   RESPONSIVE CLEANUP (Build 2.044)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.043 — UI allineamenti */
+/* PATCH Build 2.044 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.043 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.044 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.043): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.044): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.043 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.044 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.043 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.044 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.043 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.044 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.043 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.044 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.043 — livelli 5 e 6. */
+/* Build 2.044 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3939,56 +3939,48 @@ html {
   pointer-events:none;
 }
 
-#level6Page .grand-staff-l6 {
+#level6Page .staff-stage-l6 {
+  position:relative;
   width:min(100%, 1240px);
-  max-height:min(46vh, 390px);
+  aspect-ratio:1000 / 340;
+  margin:0 auto;
+  flex:0 0 auto;
+}
+
+/* Build 2.044 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+   La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
+#level6Page .staff-bg-l6,
+#level6Page .staff-overlay-l6 {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+#level6Page .staff-bg-l6 {
+  object-fit:contain;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+#level6Page .staff-overlay-l6 {
   overflow:visible;
   shape-rendering:geometricPrecision;
 }
-
-/* Build 2.043 — grand staff L6 ridisegnato come un unico componente vettoriale.
-   Sistema di coordinate stabile: x=104..950, violino y=60..120,
-   basso y=220..280. La graffa è un vero glifo tipografico incorporato nello stesso SVG. */
-#level6Page .grand-staff-lines-l6 line {
-  stroke:#111827;
-  stroke-width:1.8;
-  stroke-linecap:square;
-  vector-effect:non-scaling-stroke;
-}
-#level6Page .grand-system-bar-l6 {
-  stroke:#111827;
-  stroke-width:2.6;
-  vector-effect:non-scaling-stroke;
-}
-#level6Page .grand-brace-glyph-l6 {
-  fill:#111827;
+#level6Page .pitch-guides-l6 {
+  opacity:0;
   pointer-events:none;
-}
-#level6Page .grand-brace-glyph-l6 text {
-  fill:#111827;
-  font-family:"Times New Roman","Times","STIX Two Math","Apple Symbols","Arial Unicode MS",serif;
-  font-weight:400;
-}
-#level6Page .grand-final-bar-thin-l6 {
-  stroke:#111827;
-  stroke-width:1.8;
-  vector-effect:non-scaling-stroke;
-}
-#level6Page .grand-final-bar-thick-l6 {
-  stroke:#111827;
-  stroke-width:4.8;
-  vector-effect:non-scaling-stroke;
-}
-#level6Page .grand-clef-treble,
-#level6Page .grand-clef-bass {
-  fill:#111827;
-  font-family:"Apple Symbols","Noto Music","Bravura","Times New Roman",serif;
-  font-weight:400;
 }
 #level6Page .measure-bar-l6 {
   stroke:#111827;
   stroke-width:1.8;
   vector-effect:non-scaling-stroke;
+}
+#level6Page .ledger-line-l6 {
+  stroke:#111827;
+  stroke-width:2.2;
+  vector-effect:non-scaling-stroke;
+  pointer-events:none;
 }
 #level6Page .chord-note-pending .note-head {
   stroke:#0ea5e9 !important;
@@ -4012,7 +4004,8 @@ html {
     padding:3px 10px !important;
     font-size:1.16rem !important;
   }
-  #level6Page .grand-staff-l6 {
+  #level6Page .staff-stage-l6 {
+    width:min(100%, 1120px);
     max-height:190px !important;
   }
 }
@@ -4037,10 +4030,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.043" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.044" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.043</div>
+      <div class="home-version-label">Build 2.044</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4962,43 +4955,29 @@ html {
       <div class="medals-panel-container"><div class="medals-panel" id="medalsPanelL6"></div><div class="tokens-panel" id="tokensPanelL6"></div></div>
     </div>
 
-    <svg id="staffSvgL6" class="staff grand-staff-l6" overflow="visible" viewBox="0 0 1000 340" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <g id="staffL6Group" class="grand-staff-system-l6">
-        <!-- Graffa tipografica reale: glifo matematico {, incorporato nello stesso SVG. -->
-        <g class="grand-brace-glyph-l6" transform="translate(23 0) scale(0.58 1)" aria-hidden="true">
-          <text x="0" y="294" font-size="320">{</text>
+    <div class="staff-stage-l6" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
+      <img class="staff-bg-l6" src="Assets/grand-staff-l6.png?v=2.044" alt="" aria-hidden="true" />
+      <svg id="staffSvgL6" class="staff-overlay-l6" viewBox="0 0 1000 340" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
+        <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
+        <g id="staffGuidesL6" class="pitch-guides-l6">
+          <line data-midi="48" x1="175" y1="257.5" x2="925" y2="257.5" />
+          <line data-midi="50" x1="175" y1="250"   x2="925" y2="250" />
+          <line data-midi="52" x1="175" y1="242.5" x2="925" y2="242.5" />
+          <line data-midi="53" x1="175" y1="235"   x2="925" y2="235" />
+          <line data-midi="55" x1="175" y1="227.5" x2="925" y2="227.5" />
+          <line data-midi="57" x1="175" y1="220"   x2="925" y2="220" />
+          <line data-midi="59" x1="175" y1="212.5" x2="925" y2="212.5" />
+          <line data-midi="60" x1="175" y1="135"   x2="925" y2="135" />
+          <line data-midi="62" x1="175" y1="127.5" x2="925" y2="127.5" />
+          <line data-midi="64" x1="175" y1="120"   x2="925" y2="120" />
+          <line data-midi="65" x1="175" y1="112.5" x2="925" y2="112.5" />
+          <line data-midi="67" x1="175" y1="105"   x2="925" y2="105" />
+          <line data-midi="69" x1="175" y1="97.5"  x2="925" y2="97.5" />
+          <line data-midi="71" x1="175" y1="90"    x2="925" y2="90" />
         </g>
-
-        <!-- Barline iniziale comune: collega i due righi come un unico grand staff. -->
-        <line class="grand-system-bar-l6" x1="104" y1="60" x2="104" y2="280" />
-
-        <!-- Pentagramma superiore. -->
-        <g class="grand-staff-lines-l6 grand-staff-lines-treble-l6">
-          <line x1="104" y1="60"  x2="950" y2="60" />
-          <line x1="104" y1="75"  x2="950" y2="75" />
-          <line x1="104" y1="90"  x2="950" y2="90" />
-          <line x1="104" y1="105" x2="950" y2="105" />
-          <line x1="104" y1="120" x2="950" y2="120" />
-        </g>
-
-        <!-- Pentagramma inferiore, perfettamente allineato al superiore. -->
-        <g class="grand-staff-lines-l6 grand-staff-lines-bass-l6">
-          <line x1="104" y1="220" x2="950" y2="220" />
-          <line x1="104" y1="235" x2="950" y2="235" />
-          <line x1="104" y1="250" x2="950" y2="250" />
-          <line x1="104" y1="265" x2="950" y2="265" />
-          <line x1="104" y1="280" x2="950" y2="280" />
-        </g>
-
-        <!-- Zona chiavi dedicata, separata dall'area delle note. -->
-        <text x="116" y="126" font-size="102" class="grand-clef-treble">&#119070;</text>
-        <text x="121" y="274" font-size="70" class="grand-clef-bass">&#119074;</text>
-
-        <!-- Doppia stanghetta finale comune. -->
-        <line class="grand-final-bar-thin-l6"  x1="940" y1="60" x2="940" y2="280" />
-        <line class="grand-final-bar-thick-l6" x1="950" y1="60" x2="950" y2="280" />
-      </g>
-    </svg>
+        <g id="staffL6Group"></g>
+      </svg>
+    </div>
     <div class="status-bar" id="statusBarL6"></div>
     <div class="keyboard-container"><div class="piano"><div class="piano-keys piano-keys-l6" id="pianoKeysL6"></div></div></div>
   </div>
@@ -5667,7 +5646,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.043 — Metronome + Audio pill logic (all levels)
+/* Build 2.044 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -8618,6 +8597,7 @@ if(staffSvgL5 && pianoKeysElL5){createNotesL5();renderPianoL5();}
 
 /* ===========================
    LIVELLO 6 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
+   Build 2.044: motore a pitch assoluto, vincolato alla tastiera visibile.
    =========================== */
 
 const staffSvgL6=document.getElementById("staffSvgL6");
@@ -8642,27 +8622,50 @@ let pendingChordTimeoutL6=null;
 const TOLERANCE_MS_L6=360;
 const CHORD_WINDOW_MS_L6=650;
 
-/* La generazione del Livello 6 usa esattamente lo stesso range della tastiera visibile.
-   In futuro questo vincolo potrà essere esteso quando verrà collegato un controller MIDI. */
-const L6_WHITE_NOTES=["do","re","mi","fa","sol","la","si"];
-const L6_VISIBLE_OCTAVES=[1,2];
-const L6_VISIBLE_BLACK_KEYS=[
-  {name:"do#",i:0,o:1},{name:"re#",i:1,o:1},{name:"fa#",i:3,o:1},{name:"sol#",i:4,o:1},{name:"la#",i:5,o:1},
-  {name:"do#",i:7,o:2},{name:"re#",i:8,o:2},{name:"fa#",i:10,o:2},{name:"sol#",i:11,o:2},{name:"la#",i:12,o:2}
-];
-const L6_PLAYABLE_TOKENS=new Set([
-  ...L6_VISIBLE_OCTAVES.flatMap(octave=>L6_WHITE_NOTES.map(noteName=>`${noteName}:${octave}`)),
-  ...L6_VISIBLE_BLACK_KEYS.map(k=>`${k.name}:${k.o}`)
-]);
-function isPlayableOnVisibleKeyboardL6(noteName,octave){
-  return L6_PLAYABLE_TOKENS.has(`${noteName}:${octave}`);
+/* La tastiera visibile L6 è ora definita in pitch assoluti: C3..B4.
+   Finché non viene collegato un controller MIDI, il generatore può scegliere
+   esclusivamente note comprese in questo insieme. */
+const L6_NOTE_NAMES_BY_PC={0:"do",1:"do#",2:"re",3:"re#",4:"mi",5:"fa",6:"fa#",7:"sol",8:"sol#",9:"la",10:"la#",11:"si"};
+const L6_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
+const L6_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
+const L6_VISIBLE_MIDI=new Set([...L6_WHITE_MIDI,...L6_BLACK_MIDI]);
+const L6_PITCH_GUIDES={
+  48:{midi:48,noteName:"do", octave:3,staff:"bass",y:257.5},
+  50:{midi:50,noteName:"re", octave:3,staff:"bass",y:250},
+  52:{midi:52,noteName:"mi", octave:3,staff:"bass",y:242.5},
+  53:{midi:53,noteName:"fa", octave:3,staff:"bass",y:235},
+  55:{midi:55,noteName:"sol",octave:3,staff:"bass",y:227.5},
+  57:{midi:57,noteName:"la", octave:3,staff:"bass",y:220},
+  59:{midi:59,noteName:"si", octave:3,staff:"bass",y:212.5},
+  60:{midi:60,noteName:"do", octave:4,staff:"treble",y:135,ledger:true},
+  62:{midi:62,noteName:"re", octave:4,staff:"treble",y:127.5},
+  64:{midi:64,noteName:"mi", octave:4,staff:"treble",y:120},
+  65:{midi:65,noteName:"fa", octave:4,staff:"treble",y:112.5},
+  67:{midi:67,noteName:"sol",octave:4,staff:"treble",y:105},
+  69:{midi:69,noteName:"la", octave:4,staff:"treble",y:97.5},
+  71:{midi:71,noteName:"si", octave:4,staff:"treble",y:90}
+};
+function midiToFreqL6(midi){return 440*Math.pow(2,(midi-69)/12);}
+function pitchMetaL6(midi){
+  if(L6_PITCH_GUIDES[midi]) return L6_PITCH_GUIDES[midi];
+  const pc=((midi%12)+12)%12;
+  return {midi,noteName:L6_NOTE_NAMES_BY_PC[pc]||"do",octave:Math.floor(midi/12)-1};
 }
+function isPlayableMidiL6(midi){return L6_VISIBLE_MIDI.has(midi);}
 
-const TREBLE_Y_L6={do:82.5,re:75,mi:67.5,fa:60,sol:105,la:97.5,si:90};
-const BASS_Y_L6={do:257.5,re:250,mi:242.5,fa:235,sol:280,la:272.5,si:265};
+/* Accordi consonanti, tutti nella stessa tonalità e interamente compresi C3..B4.
+   Ogni coppia usa una fondamentale nel rigo di basso e una nota dell'accordo nel rigo di violino. */
 const KEY_CHORDS_L6={
-  C_MAJOR:[ ["do","mi","sol"], ["re","fa","la"], ["mi","sol","si"], ["fa","la","do"], ["sol","si","re"], ["la","do","mi"] ],
-  A_MINOR:[ ["la","do","mi"], ["do","mi","sol"], ["re","fa","la"], ["mi","sol","si"], ["fa","la","do"], ["sol","si","re"] ]
+  C_MAJOR:[
+    {bass:48,treble:[64,67]}, {bass:50,treble:[65,69]}, {bass:52,treble:[67,71]},
+    {bass:53,treble:[60,69]}, {bass:55,treble:[62,71]}, {bass:57,treble:[60,64]},
+    {bass:59,treble:[62,65]}
+  ],
+  A_MINOR:[
+    {bass:57,treble:[60,64]}, {bass:59,treble:[62,65]}, {bass:48,treble:[64,67]},
+    {bass:50,treble:[65,69]}, {bass:52,treble:[67,71]}, {bass:53,treble:[60,69]},
+    {bass:55,treble:[62,71]}
+  ]
 };
 
 function getBeatIntervalMsL6(){
@@ -8707,13 +8710,24 @@ function onPatternCompletedL6(){
   },lastDelay);
 }
 
-function appendNoteVisualL6(cx,cy,durationName,noteName){
-  const group=document.createElementNS("http://www.w3.org/2000/svg","g");group.classList.add("note-symbol");group.setAttribute("transform",`translate(${cx}, ${cy})`);
-  const head=document.createElementNS("http://www.w3.org/2000/svg","ellipse");head.setAttribute("cx",0);head.setAttribute("cy",0);head.setAttribute("rx",NOTE_HEAD_RX);head.setAttribute("ry",NOTE_HEAD_RY);head.setAttribute("transform","rotate(-15)");head.classList.add("note-head");if(durationName==="semiminima"||durationName==="croma")head.classList.add("filled");group.appendChild(head);
+function appendNoteVisualL6(cx,pitch,durationName){
+  const group=document.createElementNS("http://www.w3.org/2000/svg","g");
+  group.classList.add("note-symbol");
+  group.setAttribute("transform",`translate(${cx}, ${pitch.y})`);
+  group.dataset.midi=String(pitch.midi);
+  if(pitch.ledger){
+    const ledger=document.createElementNS("http://www.w3.org/2000/svg","line");
+    ledger.setAttribute("x1",-20);ledger.setAttribute("x2",20);ledger.setAttribute("y1",0);ledger.setAttribute("y2",0);
+    ledger.classList.add("ledger-line-l6");group.appendChild(ledger);
+  }
+  const head=document.createElementNS("http://www.w3.org/2000/svg","ellipse");
+  head.setAttribute("cx",0);head.setAttribute("cy",0);head.setAttribute("rx",NOTE_HEAD_RX);head.setAttribute("ry",NOTE_HEAD_RY);head.setAttribute("transform","rotate(-15)");
+  head.classList.add("note-head");if(durationName==="semiminima"||durationName==="croma")head.classList.add("filled");group.appendChild(head);
   if(durationName!=="semibreve"){
     const stem=document.createElementNS("http://www.w3.org/2000/svg","line");stem.setAttribute("x1",STEM_X);stem.setAttribute("y1",0);stem.setAttribute("x2",STEM_X);stem.setAttribute("y2",-42);stem.classList.add("note-stem");group.appendChild(stem);
   }
-  (staffGroupL6||staffSvgL6).appendChild(group);return {noteName,element:group};
+  (staffGroupL6||staffSvgL6).appendChild(group);
+  return {midi:pitch.midi,noteName:pitch.noteName,octave:pitch.octave,element:group};
 }
 
 function createNotesL6(){
@@ -8728,38 +8742,31 @@ function createNotesL6(){
   for(let i=1;i<measureCount;i++)bars.push(startX+span*i/measureCount);
   bars.forEach(x=>{
     const line=document.createElementNS("http://www.w3.org/2000/svg","line");
-    line.setAttribute("x1",x);line.setAttribute("x2",x);
-    line.setAttribute("y1",60);line.setAttribute("y2",280);
-    line.classList.add("measure-bar-l6");
+    line.setAttribute("x1",x);line.setAttribute("x2",x);line.setAttribute("y1",60);line.setAttribute("y2",280);line.classList.add("measure-bar-l6");
     (staffGroupL6||staffSvgL6).appendChild(line);
   });
+
   const keyName=Math.random()<.5?"C_MAJOR":"A_MINOR";
-  const chordPool=KEY_CHORDS_L6[keyName].filter(chord=>{
-    const rootPlayable=isPlayableOnVisibleKeyboardL6(chord[0],1);
-    const treblePlayable=[chord[1],chord[2]].some(n=>isPlayableOnVisibleKeyboardL6(n,2));
-    return rootPlayable && treblePlayable;
-  });
+  const chordPool=KEY_CHORDS_L6[keyName].filter(ch=>isPlayableMidiL6(ch.bass)&&ch.treble.every(isPlayableMidiL6));
   const patterns=[];for(let i=0;i<measureCount;i++)patterns.push(pickMeasurePatternL4(DURATIONS_L4));
-  let lastRoot=null;
+  let lastBass=null;
   function chooseChord(){
-    let choices=chordPool.filter(c=>c[0]!==lastRoot);
-    if(!choices.length)choices=chordPool;
-    const c=choices[Math.floor(Math.random()*choices.length)];
-    lastRoot=c[0];
-    return c;
+    let choices=chordPool.filter(c=>c.bass!==lastBass);if(!choices.length)choices=chordPool;
+    const c=choices[Math.floor(Math.random()*choices.length)];lastBass=c.bass;return c;
   }
   function place(pattern,fromX,toX){
     const count=pattern.length;
     for(let i=0;i<count;i++){
-      const chord=chooseChord(),root=chord[0];
-      const playableTreble=[chord[1],chord[2]].filter(n=>isPlayableOnVisibleKeyboardL6(n,2));
-      const trebleName=playableTreble[Math.floor(Math.random()*playableTreble.length)];
+      const chord=chooseChord();
+      const trebleMidi=chord.treble[Math.floor(Math.random()*chord.treble.length)];
+      const bassPitch=L6_PITCH_GUIDES[chord.bass],treblePitch=L6_PITCH_GUIDES[trebleMidi];
+      if(!bassPitch||!treblePitch||!isPlayableMidiL6(chord.bass)||!isPlayableMidiL6(trebleMidi))continue;
       const margin=25,t=count===1?.5:i/Math.max(1,count-1),cx=(fromX+margin)+((toX-margin)-(fromX+margin))*t;
       const dur=pattern[i],beats=dur.beats,durationName=dur.name;
-      const bassVisual=appendNoteVisualL6(cx,BASS_Y_L6[root],durationName,root);
-      const trebleVisual=appendNoteVisualL6(cx,TREBLE_Y_L6[trebleName],durationName,trebleName);
-      const bass={noteName:root,octave:1,freq:(NOTE_FREQS[root]||440),element:bassVisual.element};
-      const treble={noteName:trebleName,octave:2,freq:(NOTE_FREQS[trebleName]||440)*2,element:trebleVisual.element};
+      const bassVisual=appendNoteVisualL6(cx,bassPitch,durationName);
+      const trebleVisual=appendNoteVisualL6(cx,treblePitch,durationName);
+      const bass={...bassVisual,freq:midiToFreqL6(chord.bass)};
+      const treble={...trebleVisual,freq:midiToFreqL6(trebleMidi)};
       currentChordsL6.push({cx,beats,durationName,keyName,bass,treble});
     }
   }
@@ -8775,13 +8782,11 @@ function restartSamePatternL6(){
 
 function failChordL6(){playError();consecutiveErrorsL6++;updateErrorPill(errorPillL6,consecutiveErrorsL6,7);restartSamePatternL6();}
 
-function handleAnswerL6(noteName,octave){
+function handleAnswerL6(midi){
   const target=currentChordsL6[currentIndexL6];if(!target)return;
-  const token=`${noteName}:${octave}`;
-  const bassToken=`${target.bass.noteName}:${target.bass.octave}`;
-  const trebleToken=`${target.treble.noteName}:${target.treble.octave}`;
-  if(token!==bassToken && token!==trebleToken){failChordL6();return;}
-  if(pendingChordNotesL6.has(token))return;
+  if(!isPlayableMidiL6(midi)){failChordL6();return;}
+  if(midi!==target.bass.midi && midi!==target.treble.midi){failChordL6();return;}
+  if(pendingChordNotesL6.has(midi))return;
   const now=performance.now();
   if(pendingChordNotesL6.size===0){
     let inTime=currentIndexL6===0 || lastHitTimeL6==null;
@@ -8791,8 +8796,8 @@ function handleAnswerL6(noteName,octave){
     if(currentIndexL6===0 && !metronomeIntervalIdL6)startMetronomeL6();
     pendingChordTimeoutL6=setTimeout(()=>{if(pendingChordNotesL6.size<2)failChordL6();},CHORD_WINDOW_MS_L6);
   }
-  pendingChordNotesL6.add(token);
-  const targetNote=token===bassToken?target.bass:target.treble;
+  pendingChordNotesL6.add(midi);
+  const targetNote=midi===target.bass.midi?target.bass:target.treble;
   if(targetNote.element)targetNote.element.classList.add("chord-note-pending");
   if(pendingChordNotesL6.size>=2){
     if(pendingChordTimeoutL6)clearTimeout(pendingChordTimeoutL6);pendingChordTimeoutL6=null;
@@ -8802,23 +8807,24 @@ function handleAnswerL6(noteName,octave){
   }
 }
 
-function bindPianoKeyL6(key,noteName,octave,freq){
-  const action=(ev)=>{if(ev){ev.preventDefault();ev.stopPropagation();}animateKeyPress(key);playToneExactMR(freq);handleAnswerL6(noteName,octave);};
+function bindPianoKeyL6(key,midi){
+  const meta=pitchMetaL6(midi),freq=midiToFreqL6(midi);
+  key.dataset.midi=String(midi);key.dataset.noteName=meta.noteName;key.dataset.octave=String(meta.octave);
+  const action=(ev)=>{if(ev){ev.preventDefault();ev.stopPropagation();}animateKeyPress(key);playToneExactMR(freq);handleAnswerL6(midi);};
   if("ontouchstart" in window)key.addEventListener("touchstart",action,{passive:false});else key.addEventListener("mousedown",action);
 }
 
 function renderPianoL6(){
   if(!pianoKeysElL6)return;pianoKeysElL6.innerHTML="";
-  const totalWhite=L6_WHITE_NOTES.length*L6_VISIBLE_OCTAVES.length;
-  L6_VISIBLE_OCTAVES.forEach(octave=>L6_WHITE_NOTES.forEach(noteName=>{
-    const freq=(NOTE_FREQS[noteName]||440)*(octave===2?2:1);
-    const key=document.createElement("div");key.className="white-key";key.dataset.noteName=noteName;key.dataset.octave=String(octave);
-    bindPianoKeyL6(key,noteName,octave,freq);pianoKeysElL6.appendChild(key);
-  }));
-  L6_VISIBLE_BLACK_KEYS.forEach(b=>{
-    const freq=(NOTE_FREQS[b.name]||440)*(b.o===2?2:1);
-    const key=document.createElement("div");key.className="black-key";key.dataset.noteName=b.name;key.dataset.octave=String(b.o);
-    key.style.left=((b.i+1)/totalWhite*100)+"%";bindPianoKeyL6(key,b.name,b.o,freq);pianoKeysElL6.appendChild(key);
+  const totalWhite=L6_WHITE_MIDI.length;
+  L6_WHITE_MIDI.forEach(midi=>{
+    const key=document.createElement("div");key.className="white-key";bindPianoKeyL6(key,midi);pianoKeysElL6.appendChild(key);
+  });
+  /* Indici dei tasti neri rispetto ai 14 bianchi C3..B4. */
+  const blackPositions=[0,1,3,4,5,7,8,10,11,12];
+  L6_BLACK_MIDI.forEach((midi,idx)=>{
+    const key=document.createElement("div");key.className="black-key";key.style.left=((blackPositions[idx]+1)/totalWhite*100)+"%";
+    bindPianoKeyL6(key,midi);pianoKeysElL6.appendChild(key);
   });
 }
 

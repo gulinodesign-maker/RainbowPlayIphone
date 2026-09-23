@@ -1603,7 +1603,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.035 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.036 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2936,7 +2936,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.035)
+   RESPONSIVE CLEANUP (Build 2.036)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3013,7 +3013,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.035 — UI allineamenti */
+/* PATCH Build 2.036 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3032,7 +3032,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.035 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.036 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3046,7 +3046,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.035): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.036): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3093,7 +3093,7 @@ button,
 
 
 <style>
-/* Build 2.035 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.036 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3209,7 +3209,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.035 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.036 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3721,6 +3721,141 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Build 2.036 — Home update: main graphic, rectangular buttons, settings page */
+.home-rainbow-graphic {
+  width: min(100%, 430px) !important;
+  height: auto !important;
+  aspect-ratio: 593 / 534;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto clamp(8px, 1.8vh, 18px) !important;
+}
+
+.home-rainbow-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-level-btn {
+  border-radius: 18px !important;
+  min-height: 56px;
+  justify-content: center;
+  text-align: center;
+}
+
+.home-level-btn-label {
+  text-align: center;
+}
+
+.home-level-settings {
+  background: linear-gradient(to bottom, #c7d2fe, #a5b4fc);
+  color: #1f2a74;
+}
+
+.settings-page .app {
+  width: 100%;
+}
+
+.settings-main {
+  flex: 1;
+  width: min(100%, 960px);
+  margin: 0 auto;
+  padding: 0 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-card {
+  width: min(100%, 560px);
+  background: rgba(255,255,255,0.88);
+  border: 2px solid rgba(255,255,255,0.8);
+  border-radius: 24px;
+  padding: 24px 22px;
+  box-shadow: 0 10px 24px rgba(15,23,42,0.12);
+  text-align: center;
+}
+
+.settings-title {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: clamp(1.8rem, 4vw, 2.35rem);
+}
+
+.settings-subtitle {
+  margin: 0 0 18px;
+  color: #334155;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.settings-section-label {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.settings-gender-select {
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .home-rainbow-graphic {
+    width: clamp(190px, 34vw, 290px) !important;
+    margin-bottom: 4px !important;
+  }
+
+  .home-level-btn {
+    min-height: 46px;
+    border-radius: 14px !important;
+  }
+
+  .settings-main {
+    padding-bottom: 10px;
+  }
+
+  .settings-card {
+    width: min(100%, 500px);
+    padding: 14px 16px;
+    border-radius: 18px;
+  }
+
+  .settings-title {
+    font-size: 1.5rem;
+  }
+
+  .settings-subtitle {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .settings-gender-select {
+    gap: 8px;
+  }
+}
+
+@media (orientation: portrait) {
+  .home-rainbow-graphic {
+    width: min(100%, 360px) !important;
+  }
+
+  .settings-card {
+    width: min(100%, 460px);
+  }
+}
+
 </style>
 
 </head>
@@ -3742,73 +3877,10 @@ body {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      
-      <svg viewBox="0 0 300 180" aria-hidden="true">
-        <defs>
-          <!-- Effetto Liquid Glass per l'arcobaleno -->
-          <filter id="liquidGlassRainbow" x="-20%" y="-20%" width="140%" height="140%">
-            <!-- Alone morbido -->
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-            <!-- Aumenta leggermente la luminosità -->
-            <feColorMatrix in="blur" type="matrix"
-              values="1 0 0 0 0
-                      0 1 0 0 0
-                      0 0 1 0 0
-                      0 0 0 1.2 0"
-              result="bright"/>
-            <!-- Unisce alone e forma originale -->
-            <feMerge>
-              <feMergeNode in="bright"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-
-        <path d="M30 150 Q150 20 270 150"
-              stroke="#ef4444" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-        <path d="M40 150 Q150 30 260 150"
-              stroke="#f97316" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-        <path d="M50 150 Q150 40 250 150"
-              stroke="#eab308" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-        <path d="M60 150 Q150 50 240 150"
-              stroke="#22c55e" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-        <path d="M70 150 Q150 60 230 150"
-              stroke="#38bdf8" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-        <path d="M80 150 Q150 70 220 150"
-              stroke="#a855f7" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-        <path d="M90 150 Q150 80 210 150"
-              stroke="#4f46e5" stroke-width="18" fill="none"
-              stroke-linecap="round" stroke-opacity="0.9"
-              filter="url(#liquidGlassRainbow)"/>
-      </svg>
-
+      <img class="home-rainbow-image" src="assets/home-rainbow-main.png?v=2.036" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-gender-wrapper">
-<div class="home-gender-select">
-        <label class="home-gender-option">
-          <input type="radio" name="gender" value="M" checked />
-          <span>Maschio</span>
-        </label>
-        <label class="home-gender-option">
-          <input type="radio" name="gender" value="F" />
-          <span>Femmina</span>
-        </label>
-      </div>
-      </div>
-      <div class="home-version-label">Build 2.035</div>
+      <div class="home-version-label">Build 2.036</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -3826,6 +3898,9 @@ body {
       </button>
       <button id="homeTrophyBtn" class="home-level-btn home-level-trophy" type="button">
         Scrigno dei trofei
+      </button>
+      <button id="homeSettingsBtn" class="home-level-btn home-level-settings" type="button">
+        Impostazioni
       </button>
     </div>
 
@@ -4767,6 +4842,45 @@ body {
 </div>
 
 <!-- ===========================
+     PAGINA IMPOSTAZIONI
+     =========================== -->
+
+<div id="settingsPage" class="page-container settings-page" style="display:none">
+  <div class="app">
+    <div class="top-panel">
+      <div class="top-row">
+        <div class="top-left-controls">
+          <button class="menu-btn" id="settingsBackBtn">⏪</button>
+          <button class="menu-btn" id="settingsHomeBtn">🏠</button>
+        </div>
+        <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+        <div class="top-right-controls"></div>
+      </div>
+    </div>
+
+    <div class="settings-main">
+      <div class="settings-card">
+        <h2 class="settings-title">Impostazioni</h2>
+        <p class="settings-subtitle">Scegli il profilo da usare nell'app.</p>
+        <div class="settings-section">
+          <div class="settings-section-label">Profilo</div>
+          <div class="home-gender-select settings-gender-select">
+            <label class="home-gender-option">
+              <input type="radio" name="gender" value="M" checked />
+              <span>Maschio</span>
+            </label>
+            <label class="home-gender-option">
+              <input type="radio" name="gender" value="F" />
+              <span>Femmina</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
      PAGINA TROFEI
      =========================== -->
 
@@ -5221,7 +5335,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.035 — Metronome + Audio pill logic (all levels)
+/* Build 2.036 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -8702,6 +8816,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const level4Page = document.getElementById("level4Page");
   const learnTempoPage = document.getElementById("learnTempoPage");
   const playPage   = document.getElementById("playPage");
+  const settingsPage = document.getElementById("settingsPage");
 
   homePlayBtn = document.getElementById("homePlayBtn");
 
@@ -8721,6 +8836,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const learnSelectOverlay = document.getElementById("learnSelectOverlay");
   const homeLearnMainBtn   = document.getElementById("homeLearnMainBtn");
+  const homeSettingsBtn    = document.getElementById("homeSettingsBtn");
+  const settingsBackBtn    = document.getElementById("settingsBackBtn");
+  const settingsHomeBtn    = document.getElementById("settingsHomeBtn");
   const btnLearnSelectClose = document.getElementById("learnSelectClose");
 
   const menuBtnL1   = document.getElementById("menuBtnL1");
@@ -8948,6 +9066,7 @@ function hideAllPages() {
     level4Page.style.display = "none";
     playPage.style.display   = "none";
     trophyPageEl.style.display = "none";
+    if (settingsPage) settingsPage.style.display = "none";
     if (learnNotesPage) learnNotesPage.style.display = "none";
     if (learnTempoPage) learnTempoPage.style.display = "none";
   }
@@ -8993,6 +9112,15 @@ function hideAllPages() {
     homeScreen.style.display = "none";
     if (learnTempoPage) {
       learnTempoPage.style.display = "flex";
+      requestAnimationFrame(() => fitVisibleLevelTitles());
+    }
+  }
+
+  function showSettingsPage() {
+    hideAllPages();
+    homeScreen.style.display = "none";
+    if (settingsPage) {
+      settingsPage.style.display = "flex";
       requestAnimationFrame(() => fitVisibleLevelTitles());
     }
   }
@@ -9084,6 +9212,10 @@ function hideAllPages() {
       highlightLearnNote(noteName);
     });
   });
+
+if (homeSettingsBtn) homeSettingsBtn.addEventListener("click", showSettingsPage);
+  if (settingsBackBtn) settingsBackBtn.addEventListener("click", showHome);
+  if (settingsHomeBtn) settingsHomeBtn.addEventListener("click", showHome);
 
 if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page"); });
   if (btnLevel2) btnLevel2.addEventListener("click", () => { showLevel("level2Page"); });

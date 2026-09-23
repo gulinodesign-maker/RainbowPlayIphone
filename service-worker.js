@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.035 */
-const BUILD = "2.035";
+/* Music Rainbow Service Worker - Build 2.036 */
+const BUILD = "2.036";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -7,6 +7,7 @@ const PRECACHE_URLS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
+  "./assets/home-rainbow-main.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"

@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.039 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.041 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.039)
+   RESPONSIVE CLEANUP (Build 2.041)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.039 — UI allineamenti */
+/* PATCH Build 2.041 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.039 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.041 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.039): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.041): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.039 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.041 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.039 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.041 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.039 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.041 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.039 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.041 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.039 — livelli 5 e 6. */
+/* Build 2.041 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3940,11 +3940,42 @@ html {
 }
 
 #level6Page .grand-staff-l6 {
+  width:min(100%, 1240px);
   max-height:min(46vh, 390px);
+  overflow:visible;
+}
+
+/* Schema grafico del grand staff L6:
+   x=92 inizio comune, x=950 fine comune;
+   violino y=60..120, basso y=220..280;
+   graffa interamente a sinistra di x=92. */
+#level6Page .grand-staff-lines-l6 line {
+  stroke:#111827;
+  stroke-width:2.2;
+  vector-effect:non-scaling-stroke;
+}
+#level6Page .grand-system-bar-l6 {
+  stroke:#111827;
+  stroke-width:3;
+  vector-effect:non-scaling-stroke;
+}
+#level6Page .grand-brace-asset-l6 {
+  overflow:visible;
+}
+#level6Page .grand-final-bar-thin-l6 {
+  stroke:#111827;
+  stroke-width:2.2;
+  vector-effect:non-scaling-stroke;
+}
+#level6Page .grand-final-bar-thick-l6 {
+  stroke:#111827;
+  stroke-width:5;
+  vector-effect:non-scaling-stroke;
 }
 #level6Page .grand-clef-treble,
 #level6Page .grand-clef-bass {
   fill:#111827;
+  font-family:"Noto Music","Bravura","Times New Roman",serif;
 }
 #level6Page .chord-note-pending .note-head {
   stroke:#0ea5e9 !important;
@@ -3993,10 +4024,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.039" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.041" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.039</div>
+      <div class="home-version-label">Build 2.041</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4918,27 +4949,42 @@ html {
       <div class="medals-panel-container"><div class="medals-panel" id="medalsPanelL6"></div><div class="tokens-panel" id="tokensPanelL6"></div></div>
     </div>
 
-    <svg id="staffSvgL6" class="staff grand-staff-l6" overflow="visible" viewBox="0 0 1000 340">
-      <g id="staffL6Group">
-        <text x="0" y="255" font-size="245" font-family="serif" fill="#111827">{</text>
-        <line x1="38" y1="60" x2="980" y2="60" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="75" x2="980" y2="75" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="90" x2="980" y2="90" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="105" x2="980" y2="105" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="120" x2="980" y2="120" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="220" x2="980" y2="220" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="235" x2="980" y2="235" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="250" x2="980" y2="250" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="265" x2="980" y2="265" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="280" x2="980" y2="280" stroke="#111827" stroke-width="2"/>
-        <line x1="38" y1="60" x2="38" y2="120" stroke="#111827" stroke-width="3"/>
-        <line x1="38" y1="220" x2="38" y2="280" stroke="#111827" stroke-width="3"/>
-        <line x1="970" y1="60" x2="970" y2="120" stroke="#111827" stroke-width="2"/>
-        <line x1="980" y1="59" x2="980" y2="121" stroke="#111827" stroke-width="4"/>
-        <line x1="970" y1="220" x2="970" y2="280" stroke="#111827" stroke-width="2"/>
-        <line x1="980" y1="219" x2="980" y2="281" stroke="#111827" stroke-width="4"/>
-        <text x="52" y="128" font-size="110" class="grand-clef-treble">&#119070;</text>
-        <text x="58" y="270" font-size="68" class="grand-clef-bass">&#119074;</text>
+    <svg id="staffSvgL6" class="staff grand-staff-l6" overflow="visible" viewBox="0 0 1000 340" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
+      <g id="staffL6Group" class="grand-staff-system-l6">
+        <!-- Parentesi graffa reale come asset SVG dedicato, esterna ai pentagrammi e proporzionata al grand staff. -->
+        <image class="grand-brace-asset-l6"
+               href="Assets/grand-brace-l6.svg?v=2.041"
+               x="4" y="52" width="66" height="236"
+               preserveAspectRatio="xMidYMid meet" />
+
+        <!-- Barline iniziale comune: collega graficamente i due righi senza invadere la graffa. -->
+        <line class="grand-system-bar-l6" x1="92" y1="60" x2="92" y2="280" />
+
+        <!-- Pentagramma superiore: cinque linee, passo verticale costante di 15 unità. -->
+        <g class="grand-staff-lines-l6 grand-staff-lines-treble-l6">
+          <line x1="92" y1="60"  x2="950" y2="60" />
+          <line x1="92" y1="75"  x2="950" y2="75" />
+          <line x1="92" y1="90"  x2="950" y2="90" />
+          <line x1="92" y1="105" x2="950" y2="105" />
+          <line x1="92" y1="120" x2="950" y2="120" />
+        </g>
+
+        <!-- Pentagramma inferiore: stessa geometria del superiore. -->
+        <g class="grand-staff-lines-l6 grand-staff-lines-bass-l6">
+          <line x1="92" y1="220" x2="950" y2="220" />
+          <line x1="92" y1="235" x2="950" y2="235" />
+          <line x1="92" y1="250" x2="950" y2="250" />
+          <line x1="92" y1="265" x2="950" y2="265" />
+          <line x1="92" y1="280" x2="950" y2="280" />
+        </g>
+
+        <!-- Chiavi: allineate ai rispettivi pentagrammi e separate dalla graffa. -->
+        <text x="103" y="126" font-size="102" class="grand-clef-treble">&#119070;</text>
+        <text x="108" y="274" font-size="70" class="grand-clef-bass">&#119074;</text>
+
+        <!-- Stanghetta finale comune: linea sottile + linea spessa, entrambe uniscono i due pentagrammi. -->
+        <line class="grand-final-bar-thin-l6"  x1="940" y1="60" x2="940" y2="280" />
+        <line class="grand-final-bar-thick-l6" x1="950" y1="60" x2="950" y2="280" />
       </g>
     </svg>
     <div class="status-bar" id="statusBarL6"></div>
@@ -5609,7 +5655,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.039 — Metronome + Audio pill logic (all levels)
+/* Build 2.041 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -8653,7 +8699,13 @@ function createNotesL6(){
   const startX=185,endX=820,span=endX-startX,bars=[];
   for(let i=1;i<measureCount;i++)bars.push(startX+span*i/measureCount);
   bars.forEach(x=>{
-    [ [60,120], [220,280] ].forEach(([y1,y2])=>{const line=document.createElementNS("http://www.w3.org/2000/svg","line");line.setAttribute("x1",x);line.setAttribute("x2",x);line.setAttribute("y1",y1);line.setAttribute("y2",y2);line.setAttribute("stroke","#111827");line.setAttribute("stroke-width","2");line.classList.add("measure-bar-l6");(staffGroupL6||staffSvgL6).appendChild(line);});
+    const line=document.createElementNS("http://www.w3.org/2000/svg","line");
+    line.setAttribute("x1",x);line.setAttribute("x2",x);
+    line.setAttribute("y1",60);line.setAttribute("y2",280);
+    line.setAttribute("stroke","#111827");line.setAttribute("stroke-width","2");
+    line.setAttribute("vector-effect","non-scaling-stroke");
+    line.classList.add("measure-bar-l6");
+    (staffGroupL6||staffSvgL6).appendChild(line);
   });
   const keyName=Math.random()<.5?"C_MAJOR":"A_MINOR";
   const chordPool=KEY_CHORDS_L6[keyName];

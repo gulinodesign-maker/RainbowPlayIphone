@@ -1450,7 +1450,9 @@ svg.staff {
   filter: drop-shadow(0 6px 14px rgba(15,23,42,0.55));
 }
 /* Override: nel Livello 4 le note NON devono lampeggiare quando vengono suonate */
-#level4Page .note-symbol.note-played {
+#level4Page .note-symbol.note-played,
+#level5Page .note-symbol.note-played,
+#level6Page .note-symbol.note-played {
   animation: none !important;
   filter: none !important;
   transform: none !important;
@@ -1603,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.038 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.039 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2466,25 +2468,43 @@ svg.staff {
     #level4Page .note-head,
     #level4Page .note-stem,
     #level4Page .note-flag,
-    #level4Page .ledger-line {
+    #level4Page .ledger-line,
+    #level5Page .note-head,
+    #level5Page .note-stem,
+    #level5Page .note-flag,
+    #level5Page .ledger-line,
+    #level6Page .note-head,
+    #level6Page .note-stem,
+    #level6Page .note-flag {
       vector-effect: non-scaling-stroke;
     }
 
     /* Spessori aumentati solo nel livello 4 per maggiore leggibilità */
-    #level4Page .note-head {
+    #level4Page .note-head,
+    #level5Page .note-head,
+    #level6Page .note-head {
       stroke-width: 2.6;
     }
 
     #level4Page .note-stem,
     #level4Page .note-flag,
-    #level4Page .ledger-line {
+    #level4Page .ledger-line,
+    #level5Page .note-stem,
+    #level5Page .note-flag,
+    #level5Page .ledger-line,
+    #level6Page .note-stem,
+    #level6Page .note-flag {
       stroke-width: 3;
     }
 
     /* In landscape basso su iPhone permette una migliore dimensione delle note */
     @media (orientation: landscape) and (max-height: 480px) {
-      #level4Page svg.staff {
+      #level4Page svg.staff,
+      #level5Page svg.staff {
         max-height: 190px !important;
+      }
+      #level6Page svg.staff {
+        max-height: 205px !important;
       }
     }
 
@@ -2792,7 +2812,9 @@ body {
 #level1Page .medals-panel-container,
 #level2Page .medals-panel-container,
 #level3Page .medals-panel-container,
-#level4Page .medals-panel-container {
+#level4Page .medals-panel-container,
+#level5Page .medals-panel-container,
+#level6Page .medals-panel-container {
     display: none !important;
 }
 </style>
@@ -2878,7 +2900,9 @@ body {
 #level1Page .top-row .rainbow-title-level,
 #level2Page .top-row .rainbow-title-level,
 #level3Page .top-row .rainbow-title-level,
-#level4Page .top-row .rainbow-title-level {
+#level4Page .top-row .rainbow-title-level,
+#level5Page .top-row .rainbow-title-level,
+#level6Page .top-row .rainbow-title-level {
   font-size: 1.9rem;
   line-height: 1;
   margin: 0;
@@ -2936,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.038)
+   RESPONSIVE CLEANUP (Build 2.039)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3013,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.038 — UI allineamenti */
+/* PATCH Build 2.039 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3032,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.038 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.039 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3046,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.038): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.039): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3093,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.038 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.039 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3209,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.038 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.039 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3723,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.038 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.039 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3859,8 +3883,8 @@ body {
 </style>
 
 
-<style id="build-2038-display-fixes">
-/* Build 2.038 — copertura completa del fondo iOS e selettore livelli squadrato. */
+<style id="build-2039-display-fixes">
+/* Build 2.039 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3902,6 +3926,54 @@ html {
 }
 </style>
 
+
+<style id="build-2039-levels-5-6">
+/* Build 2.039 — livelli 5 e 6. */
+#levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
+#levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
+
+#level5Page .accidental-symbol {
+  fill:#111827;
+  font-family:"Times New Roman", serif;
+  font-weight:700;
+  pointer-events:none;
+}
+
+#level6Page .grand-staff-l6 {
+  max-height:min(46vh, 390px);
+}
+#level6Page .grand-clef-treble,
+#level6Page .grand-clef-bass {
+  fill:#111827;
+}
+#level6Page .chord-note-pending .note-head {
+  stroke:#0ea5e9 !important;
+  stroke-width:4 !important;
+}
+
+#level6Page .piano-keys,
+#level6Page .white-key,
+#level6Page .black-key {
+  touch-action:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+@media (orientation:landscape) and (max-height:500px) {
+  #levelSelectOverlay .level-select-grid {
+    gap:4px !important;
+  }
+  #levelSelectOverlay .level-select-btn {
+    min-height:40px !important;
+    padding:3px 10px !important;
+    font-size:1.16rem !important;
+  }
+  #level6Page .grand-staff-l6 {
+    max-height:190px !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -3921,10 +3993,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.038" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.039" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.038</div>
+      <div class="home-version-label">Build 2.039</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -3968,6 +4040,12 @@ html {
       </button>
       <button type="button" class="level-select-btn" data-level="level4Page">
         4
+      </button>
+      <button type="button" class="level-select-btn" data-level="level5Page">
+        5
+      </button>
+      <button type="button" class="level-select-btn" data-level="level6Page">
+        6
       </button>
     </div>
     <div class="level-select-actions">
@@ -4100,6 +4178,44 @@ html {
 
     <div id="rainbowOverlayL4Main" class="rainbow-message-main">Che ritmo perfetto!</div>
     <div id="rainbowOverlayL4Sub" class="rainbow-message-sub">Hai suonato tutto a tempo. Ora ascolta la melodia.</div>
+  </div>
+</div>
+
+<div class="rainbow-overlay" id="rainbowOverlayL5">
+  <div class="rainbow-box">
+    <div class="rainbow-graphic">
+      <svg viewBox="0 0 300 180">
+        <path d="M30 150 Q150 20 270 150" stroke="#ef4444" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M40 150 Q150 30 260 150" stroke="#f97316" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M50 150 Q150 40 250 150" stroke="#eab308" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M60 150 Q150 50 240 150" stroke="#22c55e" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M70 150 Q150 60 230 150" stroke="#38bdf8" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M80 150 Q150 70 220 150" stroke="#a855f7" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M90 150 Q150 80 210 150" stroke="#4f46e5" stroke-width="18" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="medal-in-arc"><div class="medal-circle"><span id="rainbowWinIndexL5">1</span></div></div>
+    </div>
+    <div id="rainbowOverlayL5Main" class="rainbow-message-main">Alterazioni perfette!</div>
+    <div id="rainbowOverlayL5Sub" class="rainbow-message-sub">Hai letto diesis e bemolle a tempo. Ora ascolta la melodia.</div>
+  </div>
+</div>
+
+<div class="rainbow-overlay" id="rainbowOverlayL6">
+  <div class="rainbow-box">
+    <div class="rainbow-graphic">
+      <svg viewBox="0 0 300 180">
+        <path d="M30 150 Q150 20 270 150" stroke="#ef4444" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M40 150 Q150 30 260 150" stroke="#f97316" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M50 150 Q150 40 250 150" stroke="#eab308" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M60 150 Q150 50 240 150" stroke="#22c55e" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M70 150 Q150 60 230 150" stroke="#38bdf8" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M80 150 Q150 70 220 150" stroke="#a855f7" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M90 150 Q150 80 210 150" stroke="#4f46e5" stroke-width="18" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="medal-in-arc"><div class="medal-circle"><span id="rainbowWinIndexL6">1</span></div></div>
+    </div>
+    <div id="rainbowOverlayL6Main" class="rainbow-message-main">Che armonia!</div>
+    <div id="rainbowOverlayL6Sub" class="rainbow-message-sub">Hai suonato insieme le due chiavi nella stessa tonalità.</div>
   </div>
 </div>
 
@@ -4735,6 +4851,102 @@ html {
 </div>
 
 <!-- ===========================
+     LIVELLO 5 — RITMO + DIESIS/BEMOLLE
+     =========================== -->
+<div id="level5Page" class="page-container" style="display:none">
+  <div class="app">
+    <div class="top-panel">
+      <div class="top-row">
+        <div class="top-left-controls">
+          <button class="reset-btn" id="resetBtnL5" aria-label="Reset">↻</button>
+          <button class="menu-btn" id="menuBtnL5" aria-label="Menu">🏠</button>
+          <button class="clef-btn clef-treble-btn active-clef" id="clefTrebleBtnL5" aria-label="Chiave di violino">&#119070;</button>
+          <button class="clef-btn clef-bass-btn" id="clefBassBtnL5" aria-label="Chiave di basso">&#119074;</button>
+          <div class="stat-pill stat-errors-normal error-pill" id="errorPillL5">Errori: 0</div>
+        </div>
+        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+        <div class="top-right-controls">
+          <div class="metronome-audio-pill" id="metronomeAudioPillL5">
+            <button class="metronome-bpm-tab" id="bpmTabL5" type="button" aria-label="Imposta tempo"><span class="bpm-value" id="bpmValueL5">80</span></button>
+            <div class="metronome-dot" id="metronomeDotL5" role="button" tabindex="0" aria-label="Metronomo"></div>
+            <button class="audio-tab" id="audioTabL5" type="button" aria-label="Attiva audio"><span class="audio-icon">🔊</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="medals-panel-container"><div class="medals-panel" id="medalsPanelL5"></div><div class="tokens-panel" id="tokensPanelL5"></div></div>
+    </div>
+
+    <svg id="staffSvgL5" class="staff" overflow="visible" viewBox="0 0 1000 200">
+      <g id="staffL5Group">
+        <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
+        <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
+        <line x1="20" y1="123.08" x2="980" y2="123.08" stroke="#111827" stroke-width="2"/>
+        <line x1="20" y1="138.46" x2="980" y2="138.46" stroke="#111827" stroke-width="2"/>
+        <line x1="20" y1="153.85" x2="980" y2="153.85" stroke="#111827" stroke-width="2"/>
+        <line x1="20" y1="92.31" x2="20" y2="153.85" stroke="#111827" stroke-width="3"/>
+        <line x1="970" y1="92.31" x2="970" y2="153.85" stroke="#111827" stroke-width="2"/>
+        <line x1="980" y1="91.54" x2="980" y2="154.62" stroke="#111827" stroke-width="4"/>
+        <g class="clef-group"><text x="40" y="164" font-size="115" class="clef-symbol">&#119070;</text><circle class="bass-dot" cx="95" cy="131" r="4" fill="#111827"/><circle class="bass-dot" cx="95" cy="146" r="4" fill="#111827"/></g>
+      </g>
+    </svg>
+    <div class="status-bar" id="statusBarL5"></div>
+    <div class="keyboard-container"><div class="piano"><div class="piano-keys" id="pianoKeysL5"></div></div></div>
+  </div>
+</div>
+
+<!-- ===========================
+     LIVELLO 6 — DOPPIO PENTAGRAMMA / ACCORDI NATURALI
+     =========================== -->
+<div id="level6Page" class="page-container" style="display:none">
+  <div class="app">
+    <div class="top-panel">
+      <div class="top-row">
+        <div class="top-left-controls">
+          <button class="reset-btn" id="resetBtnL6" aria-label="Reset">↻</button>
+          <button class="menu-btn" id="menuBtnL6" aria-label="Menu">🏠</button>
+          <div class="stat-pill stat-errors-normal error-pill" id="errorPillL6">Errori: 0</div>
+        </div>
+        <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+        <div class="top-right-controls">
+          <div class="metronome-audio-pill" id="metronomeAudioPillL6">
+            <button class="metronome-bpm-tab" id="bpmTabL6" type="button" aria-label="Imposta tempo"><span class="bpm-value" id="bpmValueL6">80</span></button>
+            <div class="metronome-dot" id="metronomeDotL6" role="button" tabindex="0" aria-label="Metronomo"></div>
+            <button class="audio-tab" id="audioTabL6" type="button" aria-label="Attiva audio"><span class="audio-icon">🔊</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="medals-panel-container"><div class="medals-panel" id="medalsPanelL6"></div><div class="tokens-panel" id="tokensPanelL6"></div></div>
+    </div>
+
+    <svg id="staffSvgL6" class="staff grand-staff-l6" overflow="visible" viewBox="0 0 1000 340">
+      <g id="staffL6Group">
+        <text x="0" y="255" font-size="245" font-family="serif" fill="#111827">{</text>
+        <line x1="38" y1="60" x2="980" y2="60" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="75" x2="980" y2="75" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="90" x2="980" y2="90" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="105" x2="980" y2="105" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="120" x2="980" y2="120" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="220" x2="980" y2="220" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="235" x2="980" y2="235" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="250" x2="980" y2="250" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="265" x2="980" y2="265" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="280" x2="980" y2="280" stroke="#111827" stroke-width="2"/>
+        <line x1="38" y1="60" x2="38" y2="120" stroke="#111827" stroke-width="3"/>
+        <line x1="38" y1="220" x2="38" y2="280" stroke="#111827" stroke-width="3"/>
+        <line x1="970" y1="60" x2="970" y2="120" stroke="#111827" stroke-width="2"/>
+        <line x1="980" y1="59" x2="980" y2="121" stroke="#111827" stroke-width="4"/>
+        <line x1="970" y1="220" x2="970" y2="280" stroke="#111827" stroke-width="2"/>
+        <line x1="980" y1="219" x2="980" y2="281" stroke="#111827" stroke-width="4"/>
+        <text x="52" y="128" font-size="110" class="grand-clef-treble">&#119070;</text>
+        <text x="58" y="270" font-size="68" class="grand-clef-bass">&#119074;</text>
+      </g>
+    </svg>
+    <div class="status-bar" id="statusBarL6"></div>
+    <div class="keyboard-container"><div class="piano"><div class="piano-keys piano-keys-l6" id="pianoKeysL6"></div></div></div>
+  </div>
+</div>
+
+<!-- ===========================
      IMPARA IL TEMPO
      =========================== -->
 <div id="learnTempoPage" class="page-container" style="display:none">
@@ -5102,6 +5314,8 @@ let nextScoreTimeoutL1 = null;
 let nextScoreTimeoutL2 = null;
 let nextScoreTimeoutL3 = null;
 let nextScoreTimeoutL4 = null;
+let nextScoreTimeoutL5 = null;
+let nextScoreTimeoutL6 = null;
 
 
 function clearJingleTimeouts() {
@@ -5130,6 +5344,14 @@ function stopGlobalJinglePlayback() {
   if (typeof nextScoreTimeoutL4 !== "undefined" && nextScoreTimeoutL4) {
     clearTimeout(nextScoreTimeoutL4);
     nextScoreTimeoutL4 = null;
+  }
+  if (typeof nextScoreTimeoutL5 !== "undefined" && nextScoreTimeoutL5) {
+    clearTimeout(nextScoreTimeoutL5);
+    nextScoreTimeoutL5 = null;
+  }
+  if (typeof nextScoreTimeoutL6 !== "undefined" && nextScoreTimeoutL6) {
+    clearTimeout(nextScoreTimeoutL6);
+    nextScoreTimeoutL6 = null;
   }
 
   currentJingleLevel = null;
@@ -5230,6 +5452,12 @@ window.addEventListener("pointerdown", function(ev) {
       if (typeof createNotesL4 === "function") {
         createNotesL4();
       }
+    } else if (level === 5) {
+      if (typeof rainbowOverlayL5 !== "undefined" && rainbowOverlayL5) rainbowOverlayL5.classList.remove("active");
+      if (typeof createNotesL5 === "function") createNotesL5();
+    } else if (level === 6) {
+      if (typeof rainbowOverlayL6 !== "undefined" && rainbowOverlayL6) rainbowOverlayL6.classList.remove("active");
+      if (typeof createNotesL6 === "function") createNotesL6();
     }
   } catch (e) {
     // ignora eventuali errori
@@ -5358,6 +5586,8 @@ function updateAudioButtonsUI() {
     document.getElementById("audioTabL2"),
     document.getElementById("audioTabL3"),
     document.getElementById("audioTabL4"),
+    document.getElementById("audioTabL5"),
+    document.getElementById("audioTabL6"),
     document.getElementById("audioTabPlay"),
     document.getElementById("audioTabTempo"),
     document.getElementById("audioTabLearn")
@@ -5379,7 +5609,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.038 — Metronome + Audio pill logic (all levels)
+/* Build 2.039 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -5684,6 +5914,18 @@ function setNormalOverlayTexts(level) {
     if (!mainEl || !subEl) return;
     mainEl.textContent = (g === "F" ? "Brava" : "Bravo") + nameFrag + ", che ritmo perfetto!";
     subEl.textContent = "Hai suonato tutto a tempo. Ora ascolta la melodia.";
+  } else if (level === 5) {
+    const mainEl = document.getElementById("rainbowOverlayL5Main");
+    const subEl  = document.getElementById("rainbowOverlayL5Sub");
+    if (!mainEl || !subEl) return;
+    mainEl.textContent = (g === "F" ? "Brava" : "Bravo") + nameFrag + ", alterazioni perfette!";
+    subEl.textContent = "Hai letto diesis e bemolle a tempo. Ora ascolta la melodia.";
+  } else if (level === 6) {
+    const mainEl = document.getElementById("rainbowOverlayL6Main");
+    const subEl  = document.getElementById("rainbowOverlayL6Sub");
+    if (!mainEl || !subEl) return;
+    mainEl.textContent = (g === "F" ? "Brava" : "Bravo") + nameFrag + ", che armonia!";
+    subEl.textContent = "Hai suonato insieme le due chiavi nella stessa tonalità.";
   }
 }
 function setFinalOverlayTexts(level) {
@@ -8035,6 +8277,458 @@ if (staffSvgL4 && pianoKeysElL4) {
 }
 
 
+
+/* ===========================
+   LIVELLO 5 - RITMO + DIESIS/BEMOLLE
+   =========================== */
+
+const staffSvgL5 = document.getElementById("staffSvgL5");
+const staffGroupL5 = document.getElementById("staffL5Group");
+const errorPillL5 = document.getElementById("errorPillL5");
+const pianoKeysElL5 = document.getElementById("pianoKeysL5");
+const resetBtnL5 = document.getElementById("resetBtnL5");
+const metronomeDotL5 = document.getElementById("metronomeDotL5");
+const medalsPanelL5 = document.getElementById("medalsPanelL5");
+const rainbowOverlayL5 = document.getElementById("rainbowOverlayL5");
+const rainbowWinIndexL5 = document.getElementById("rainbowWinIndexL5");
+
+let currentNotesL5 = [];
+let currentIndexL5 = 0;
+let consecutiveErrorsL5 = 0;
+let lastHitTimeL5 = null;
+let metronomeIntervalIdL5 = null;
+let rainbowsL5Local = 0;
+const TOLERANCE_MS_L5 = 340;
+
+const SHARP_PITCH_L5 = { do:"do#", re:"re#", fa:"fa#", sol:"sol#", la:"la#" };
+const FLAT_PITCH_L5  = { re:"do#", mi:"re#", sol:"fa#", la:"sol#", si:"la#" };
+
+function getBeatIntervalMsL5() {
+  const bpm = (typeof metronomeBpm === "number" && metronomeBpm > 0) ? metronomeBpm : 80;
+  return 60000 / bpm;
+}
+
+function playToneExactMR(freq, durationMs) {
+  if (!audioEnabled) return;
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  const run = () => {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.frequency.value = freq;
+    o.type = "sine";
+    o.connect(g);
+    g.connect(ctx.destination);
+    const now = ctx.currentTime;
+    const durationSec = (typeof durationMs === "number" && durationMs > 0) ? durationMs / 1000 : 0.5;
+    g.gain.setValueAtTime(0.4, now);
+    g.gain.exponentialRampToValueAtTime(0.001, now + durationSec);
+    o.start(now);
+    o.stop(now + durationSec + 0.05);
+  };
+  if (ctx.state === "suspended" && ctx.resume) ctx.resume().then(run).catch(() => {});
+  else run();
+}
+
+function clickMetronomeL5() {
+  if (metronomeDotL5) {
+    metronomeDotL5.classList.add("active");
+    setTimeout(() => metronomeDotL5 && metronomeDotL5.classList.remove("active"), 90);
+  }
+  if (audioEnabled) playToneExactMR(1200, 120);
+}
+function stopMetronomeL5() {
+  if (metronomeIntervalIdL5) clearInterval(metronomeIntervalIdL5);
+  metronomeIntervalIdL5 = null;
+  if (metronomeDotL5) metronomeDotL5.classList.remove("active");
+}
+function startMetronomeL5() {
+  stopMetronomeL5();
+  clickMetronomeL5();
+  metronomeIntervalIdL5 = setInterval(clickMetronomeL5, getBeatIntervalMsL5());
+}
+
+function addMedalIconL5(index) {
+  if (!medalsPanelL5) return;
+  const medal = document.createElement("div");
+  medal.className = "medal-icon green";
+  medal.textContent = index;
+  medalsPanelL5.appendChild(medal);
+}
+
+function playVictoryPatternL5() {
+  if (!currentNotesL5.length) return 0;
+  const beatMs = getBeatIntervalMsL5();
+  let offset = 0;
+  clearJingleTimeouts();
+  isJinglePlaying = true;
+  currentJingleLevel = 5;
+  currentNotesL5.forEach(n => {
+    const duration = (n.beats || 1) * beatMs;
+    const id = setTimeout(() => {
+      if (!isJinglePlaying) return;
+      playTone(n.freq, duration);
+    }, offset);
+    activeJingleTimeouts.push(id);
+    offset += duration;
+  });
+  const endId = setTimeout(() => { isJinglePlaying = false; clearJingleTimeouts(); }, offset + 100);
+  activeJingleTimeouts.push(endId);
+  return offset;
+}
+
+function onPatternCompletedL5() {
+  rainbowsL5Local++;
+  if (rainbowWinIndexL5) rainbowWinIndexL5.textContent = rainbowsL5Local;
+  addMedalIconL5(rainbowsL5Local);
+  incrementSessionMedal("green");
+  updateRainbowCountersGlobal();
+  checkForNewToken();
+  setNormalOverlayTexts(5);
+  let lastDelay = 0;
+  if (currentNotesL5.length) lastDelay = (currentNotesL5[currentNotesL5.length - 1].beats || 1) * getBeatIntervalMsL5();
+  setTimeout(() => {
+    if (rainbowOverlayL5) rainbowOverlayL5.classList.add("active");
+    stopMetronomeL5();
+    const melodyDuration = playVictoryPatternL5();
+    if (nextScoreTimeoutL5) clearTimeout(nextScoreTimeoutL5);
+    nextScoreTimeoutL5 = setTimeout(() => {
+      if (rainbowOverlayL5) rainbowOverlayL5.classList.remove("active");
+      createNotesL5();
+      nextScoreTimeoutL5 = null;
+    }, melodyDuration + 600);
+  }, lastDelay);
+}
+
+function l5PickPosition(pool, kind) {
+  const supports = (p) => kind === "sharp" ? !!SHARP_PITCH_L5[p.noteName] : kind === "flat" ? !!FLAT_PITCH_L5[p.noteName] : true;
+  let candidates = pool.map((p,i)=>({p,i})).filter(x => supports(x.p));
+  if (!candidates.length) return null;
+  const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+  pool.splice(chosen.i, 1);
+  return chosen.p;
+}
+
+function createNotesL5() {
+  if (!staffSvgL5) return;
+  let pool = STAFF_CORE_POSITIONS.slice();
+  staffSvgL5.querySelectorAll(".note-symbol, .error-x, .ledger-line, .measure-bar-l5").forEach(e => e.remove());
+  currentNotesL5 = [];
+  currentIndexL5 = 0;
+  consecutiveErrorsL5 = 0;
+  lastHitTimeL5 = null;
+  updateErrorPill(errorPillL5, 0, 7);
+
+  let totalMedals = 0;
+  try { if (Array.isArray(sessions)) totalMedals = sessions.reduce((a,s)=>a+(s.bronze||0)+(s.silver||0)+(s.gold||0),0); } catch(e) {}
+  const measureCount = totalMedals >= 5 ? 3 : 2;
+  const startX = 180, endX = 820, span = endX - startX;
+  const bars = [];
+  for (let i=1;i<measureCount;i++) bars.push(startX + span*i/measureCount);
+  bars.forEach(x => {
+    const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+    line.setAttribute("x1",x); line.setAttribute("x2",x); line.setAttribute("y1",92.31); line.setAttribute("y2",153.85);
+    line.setAttribute("stroke","#111827"); line.setAttribute("stroke-width","2"); line.classList.add("measure-bar-l5");
+    (staffGroupL5 || staffSvgL5).appendChild(line);
+  });
+
+  const patterns = [];
+  for (let i=0;i<measureCount;i++) patterns.push(pickMeasurePatternL4(DURATIONS_L4));
+  let placedCount = 0;
+
+  function replenish() { if (!pool.length) pool = STAFF_CORE_POSITIONS.slice(); }
+  function takeForKind(kind) {
+    replenish();
+    let p = l5PickPosition(pool, kind);
+    if (!p) { pool = STAFF_CORE_POSITIONS.slice(); p = l5PickPosition(pool, kind); }
+    return p;
+  }
+
+  function appendMeasure(pattern, fromX, toX) {
+    const count = pattern.length;
+    for (let i=0;i<count;i++) {
+      let kind;
+      if (placedCount === 0) kind = "sharp";
+      else if (placedCount === 1) kind = "flat";
+      else {
+        const r = Math.random();
+        kind = r < 0.28 ? "sharp" : r < 0.56 ? "flat" : "natural";
+      }
+      let p = kind === "natural" ? takeForKind("natural") : takeForKind(kind);
+      if (!p) { kind = "natural"; p = takeForKind("natural"); }
+      const margin=25;
+      const t = count === 1 ? .5 : i/Math.max(1,count-1);
+      const cx=(fromX+margin)+((toX-margin)-(fromX+margin))*t;
+      const displayName=p.noteName;
+      const octave=p.octave;
+      const cy=getStaffY(displayName,octave);
+      const accidental = kind === "sharp" ? "♯" : kind === "flat" ? "♭" : "";
+      const pitchName = kind === "sharp" ? SHARP_PITCH_L5[displayName] : kind === "flat" ? FLAT_PITCH_L5[displayName] : displayName;
+      const baseFreq=NOTE_FREQS[pitchName] || NOTE_FREQS[displayName] || 440;
+      const freq=baseFreq*(octave===2?2:1);
+      const duration=pattern[i], beats=duration.beats, durationName=duration.name;
+      const group=document.createElementNS("http://www.w3.org/2000/svg","g");
+      group.classList.add("note-symbol"); group.setAttribute("transform",`translate(${cx}, ${cy})`);
+      if (accidental) {
+        const acc=document.createElementNS("http://www.w3.org/2000/svg","text");
+        acc.setAttribute("x","-29"); acc.setAttribute("y","7"); acc.setAttribute("font-size",accidental==="♭"?"30":"25");
+        acc.classList.add("accidental-symbol"); acc.textContent=accidental; group.appendChild(acc);
+      }
+      const head=document.createElementNS("http://www.w3.org/2000/svg","ellipse");
+      head.setAttribute("cx",0); head.setAttribute("cy",0); head.setAttribute("rx",NOTE_HEAD_RX); head.setAttribute("ry",NOTE_HEAD_RY); head.setAttribute("transform","rotate(-15)"); head.classList.add("note-head");
+      if (durationName === "semiminima" || durationName === "croma") head.classList.add("filled");
+      group.appendChild(head);
+      if (durationName !== "semibreve") {
+        const stem=document.createElementNS("http://www.w3.org/2000/svg","line");
+        stem.setAttribute("x1",STEM_X); stem.setAttribute("y1",0); stem.setAttribute("x2",STEM_X); stem.setAttribute("y2",-42); stem.classList.add("note-stem"); group.appendChild(stem);
+      }
+      (staffGroupL5 || staffSvgL5).appendChild(group);
+      currentNotesL5.push({cx,cy,noteName:pitchName,displayNoteName:displayName,accidental,octave,freq,beats,durationName,element:group});
+      placedCount++;
+    }
+  }
+
+  let from=startX;
+  for (let m=0;m<measureCount;m++) {
+    const to = m < bars.length ? bars[m] : endX;
+    appendMeasure(patterns[m],from,to); from=to;
+  }
+  currentNotesL5.sort((a,b)=>a.cx-b.cx);
+  stopMetronomeL5();
+}
+
+function restartSamePatternL5() {
+  currentIndexL5=0; consecutiveErrorsL5=0; lastHitTimeL5=null;
+  currentNotesL5.forEach(n=>{
+    if (!n.element) return;
+    const head=n.element.querySelector(".note-head"); if(head){head.style.stroke="";head.style.fill="";}
+    n.element.querySelectorAll(".note-stem,.note-flag").forEach(x=>x.style.stroke="");
+    n.element.classList.remove("note-played");
+  });
+  updateErrorPill(errorPillL5,0,7);
+}
+
+function handleAnswerL5(noteName, octave) {
+  const target=currentNotesL5[currentIndexL5]; if(!target) return;
+  const now=performance.now();
+  const inPitch=noteName===target.noteName && octave===target.octave;
+  let inTime=currentIndexL5===0 || lastHitTimeL5==null;
+  if (!inTime) {
+    const prev=currentNotesL5[currentIndexL5-1];
+    const delta=Math.abs((now-lastHitTimeL5)-prev.beats*getBeatIntervalMsL5());
+    const tol=currentIndexL5===currentNotesL5.length-1?TOLERANCE_MS_L5*2.4:TOLERANCE_MS_L5;
+    inTime=delta<=tol;
+  }
+  if(inPitch && inTime){
+    if(currentIndexL5===0 && !metronomeIntervalIdL5) startMetronomeL5();
+    playTone(target.freq,(target.beats||1)*getBeatIntervalMsL5());
+    colorNoteElementByName(target); lastHitTimeL5=now; currentIndexL5++;
+    if(currentIndexL5>=currentNotesL5.length) onPatternCompletedL5();
+  } else {
+    playError(); consecutiveErrorsL5++; updateErrorPill(errorPillL5,consecutiveErrorsL5,7); restartSamePatternL5();
+  }
+}
+
+function renderPianoL5() {
+  if(!pianoKeysElL5) return;
+  pianoKeysElL5.innerHTML="";
+  const whites=["do","re","mi","fa","sol","la","si"], totalWhite=14;
+  for(let octave=1;octave<=2;octave++) whites.forEach(noteName=>{
+    const freq=(NOTE_FREQS[noteName]||440)*(octave===2?2:1);
+    const key=document.createElement("div"); key.className="white-key"; key.dataset.noteName=noteName; key.dataset.octave=String(octave);
+    key.onclick=()=>{animateKeyPress(key);playTone(freq);handleAnswerL5(noteName,octave);}; pianoKeysElL5.appendChild(key);
+  });
+  const blacks=[
+    {name:"do#",i:0,o:1},{name:"re#",i:1,o:1},{name:"fa#",i:3,o:1},{name:"sol#",i:4,o:1},{name:"la#",i:5,o:1},
+    {name:"do#",i:7,o:2},{name:"re#",i:8,o:2},{name:"fa#",i:10,o:2},{name:"sol#",i:11,o:2},{name:"la#",i:12,o:2}
+  ];
+  blacks.forEach(b=>{
+    const freq=(NOTE_FREQS[b.name]||440)*(b.o===2?2:1);
+    const key=document.createElement("div"); key.className="black-key"; key.dataset.noteName=b.name; key.dataset.octave=String(b.o); key.style.left=((b.i+1)/totalWhite*100)+"%";
+    key.onclick=(ev)=>{ev.stopPropagation();animateKeyPress(key);playTone(freq);handleAnswerL5(b.name,b.o);}; pianoKeysElL5.appendChild(key);
+  });
+}
+
+function softResetLevel5(){
+  if(!staffSvgL5) return;
+  stopMetronomeL5(); currentNotesL5=[]; currentIndexL5=0; consecutiveErrorsL5=0; lastHitTimeL5=null;
+  updateErrorPill(errorPillL5,0,7); createNotesL5(); renderPianoL5();
+}
+if(resetBtnL5) resetBtnL5.onclick=resetAllLevels;
+if(staffSvgL5 && pianoKeysElL5){createNotesL5();renderPianoL5();}
+
+
+/* ===========================
+   LIVELLO 6 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
+   =========================== */
+
+const staffSvgL6=document.getElementById("staffSvgL6");
+const staffGroupL6=document.getElementById("staffL6Group");
+const pianoKeysElL6=document.getElementById("pianoKeysL6");
+const resetBtnL6=document.getElementById("resetBtnL6");
+const errorPillL6=document.getElementById("errorPillL6");
+const metronomeDotL6=document.getElementById("metronomeDotL6");
+const medalsPanelL6=document.getElementById("medalsPanelL6");
+const rainbowOverlayL6=document.getElementById("rainbowOverlayL6");
+const rainbowWinIndexL6=document.getElementById("rainbowWinIndexL6");
+
+let currentChordsL6=[];
+let currentIndexL6=0;
+let consecutiveErrorsL6=0;
+let lastHitTimeL6=null;
+let metronomeIntervalIdL6=null;
+let rainbowsL6Local=0;
+let pendingChordNotesL6=new Set();
+let pendingChordStartTimeL6=null;
+let pendingChordTimeoutL6=null;
+const TOLERANCE_MS_L6=360;
+const CHORD_WINDOW_MS_L6=650;
+
+const TREBLE_Y_L6={do:82.5,re:75,mi:67.5,fa:60,sol:105,la:97.5,si:90};
+const BASS_Y_L6={do:257.5,re:250,mi:242.5,fa:235,sol:280,la:272.5,si:265};
+const KEY_CHORDS_L6={
+  C_MAJOR:[ ["do","mi","sol"], ["re","fa","la"], ["mi","sol","si"], ["fa","la","do"], ["sol","si","re"], ["la","do","mi"] ],
+  A_MINOR:[ ["la","do","mi"], ["do","mi","sol"], ["re","fa","la"], ["mi","sol","si"], ["fa","la","do"], ["sol","si","re"] ]
+};
+
+function getBeatIntervalMsL6(){
+  const bpm=(typeof metronomeBpm==="number" && metronomeBpm>0)?metronomeBpm:80;
+  return 60000/bpm;
+}
+function clickMetronomeL6(){
+  if(metronomeDotL6){metronomeDotL6.classList.add("active");setTimeout(()=>metronomeDotL6&&metronomeDotL6.classList.remove("active"),90);}
+  if(audioEnabled) playToneExactMR(1200,120);
+}
+function stopMetronomeL6(){if(metronomeIntervalIdL6)clearInterval(metronomeIntervalIdL6);metronomeIntervalIdL6=null;if(metronomeDotL6)metronomeDotL6.classList.remove("active");}
+function startMetronomeL6(){stopMetronomeL6();clickMetronomeL6();metronomeIntervalIdL6=setInterval(clickMetronomeL6,getBeatIntervalMsL6());}
+
+function clearPendingChordL6(){
+  if(pendingChordTimeoutL6)clearTimeout(pendingChordTimeoutL6);
+  pendingChordTimeoutL6=null; pendingChordNotesL6.clear(); pendingChordStartTimeL6=null;
+  currentChordsL6.forEach(c=>{ if(c.bass&&c.bass.element)c.bass.element.classList.remove("chord-note-pending"); if(c.treble&&c.treble.element)c.treble.element.classList.remove("chord-note-pending"); });
+}
+
+function addMedalIconL6(index){if(!medalsPanelL6)return;const medal=document.createElement("div");medal.className="medal-icon green";medal.textContent=index;medalsPanelL6.appendChild(medal);}
+
+function playVictoryPatternL6(){
+  if(!currentChordsL6.length)return 0;
+  const beatMs=getBeatIntervalMsL6();let offset=0;
+  clearJingleTimeouts();isJinglePlaying=true;currentJingleLevel=6;
+  currentChordsL6.forEach(ch=>{
+    const dur=(ch.beats||1)*beatMs;
+    const id=setTimeout(()=>{if(!isJinglePlaying)return;playToneExactMR(ch.bass.freq,dur);playToneExactMR(ch.treble.freq,dur);},offset);
+    activeJingleTimeouts.push(id);offset+=dur;
+  });
+  const endId=setTimeout(()=>{isJinglePlaying=false;clearJingleTimeouts();},offset+100);activeJingleTimeouts.push(endId);return offset;
+}
+
+function onPatternCompletedL6(){
+  rainbowsL6Local++;if(rainbowWinIndexL6)rainbowWinIndexL6.textContent=rainbowsL6Local;addMedalIconL6(rainbowsL6Local);
+  incrementSessionMedal("green");updateRainbowCountersGlobal();checkForNewToken();setNormalOverlayTexts(6);
+  let lastDelay=0;if(currentChordsL6.length)lastDelay=(currentChordsL6[currentChordsL6.length-1].beats||1)*getBeatIntervalMsL6();
+  setTimeout(()=>{
+    if(rainbowOverlayL6)rainbowOverlayL6.classList.add("active");stopMetronomeL6();const melodyDuration=playVictoryPatternL6();
+    if(nextScoreTimeoutL6)clearTimeout(nextScoreTimeoutL6);
+    nextScoreTimeoutL6=setTimeout(()=>{if(rainbowOverlayL6)rainbowOverlayL6.classList.remove("active");createNotesL6();nextScoreTimeoutL6=null;},melodyDuration+600);
+  },lastDelay);
+}
+
+function appendNoteVisualL6(cx,cy,durationName,noteName){
+  const group=document.createElementNS("http://www.w3.org/2000/svg","g");group.classList.add("note-symbol");group.setAttribute("transform",`translate(${cx}, ${cy})`);
+  const head=document.createElementNS("http://www.w3.org/2000/svg","ellipse");head.setAttribute("cx",0);head.setAttribute("cy",0);head.setAttribute("rx",NOTE_HEAD_RX);head.setAttribute("ry",NOTE_HEAD_RY);head.setAttribute("transform","rotate(-15)");head.classList.add("note-head");if(durationName==="semiminima"||durationName==="croma")head.classList.add("filled");group.appendChild(head);
+  if(durationName!=="semibreve"){
+    const stem=document.createElementNS("http://www.w3.org/2000/svg","line");stem.setAttribute("x1",STEM_X);stem.setAttribute("y1",0);stem.setAttribute("x2",STEM_X);stem.setAttribute("y2",-42);stem.classList.add("note-stem");group.appendChild(stem);
+  }
+  (staffGroupL6||staffSvgL6).appendChild(group);return {noteName,element:group};
+}
+
+function createNotesL6(){
+  if(!staffSvgL6)return;
+  clearPendingChordL6();stopMetronomeL6();
+  staffSvgL6.querySelectorAll(".note-symbol,.measure-bar-l6").forEach(e=>e.remove());
+  currentChordsL6=[];currentIndexL6=0;consecutiveErrorsL6=0;lastHitTimeL6=null;updateErrorPill(errorPillL6,0,7);
+
+  let totalMedals=0;try{if(Array.isArray(sessions))totalMedals=sessions.reduce((a,s)=>a+(s.bronze||0)+(s.silver||0)+(s.gold||0),0);}catch(e){}
+  const measureCount=totalMedals>=5?3:2;
+  const startX=185,endX=820,span=endX-startX,bars=[];
+  for(let i=1;i<measureCount;i++)bars.push(startX+span*i/measureCount);
+  bars.forEach(x=>{
+    [ [60,120], [220,280] ].forEach(([y1,y2])=>{const line=document.createElementNS("http://www.w3.org/2000/svg","line");line.setAttribute("x1",x);line.setAttribute("x2",x);line.setAttribute("y1",y1);line.setAttribute("y2",y2);line.setAttribute("stroke","#111827");line.setAttribute("stroke-width","2");line.classList.add("measure-bar-l6");(staffGroupL6||staffSvgL6).appendChild(line);});
+  });
+  const keyName=Math.random()<.5?"C_MAJOR":"A_MINOR";
+  const chordPool=KEY_CHORDS_L6[keyName];
+  const patterns=[];for(let i=0;i<measureCount;i++)patterns.push(pickMeasurePatternL4(DURATIONS_L4));
+  let lastRoot=null;
+  function chooseChord(){let choices=chordPool.filter(c=>c[0]!==lastRoot);if(!choices.length)choices=chordPool;const c=choices[Math.floor(Math.random()*choices.length)];lastRoot=c[0];return c;}
+  function place(pattern,fromX,toX){
+    const count=pattern.length;
+    for(let i=0;i<count;i++){
+      const chord=chooseChord(),root=chord[0],trebleName=Math.random()<.5?chord[1]:chord[2];
+      const margin=25,t=count===1?.5:i/Math.max(1,count-1),cx=(fromX+margin)+((toX-margin)-(fromX+margin))*t;
+      const dur=pattern[i],beats=dur.beats,durationName=dur.name;
+      const bassVisual=appendNoteVisualL6(cx,BASS_Y_L6[root],durationName,root);
+      const trebleVisual=appendNoteVisualL6(cx,TREBLE_Y_L6[trebleName],durationName,trebleName);
+      const bass={noteName:root,octave:1,freq:(NOTE_FREQS[root]||440),element:bassVisual.element};
+      const treble={noteName:trebleName,octave:2,freq:(NOTE_FREQS[trebleName]||440)*2,element:trebleVisual.element};
+      currentChordsL6.push({cx,beats,durationName,keyName,bass,treble});
+    }
+  }
+  let from=startX;for(let m=0;m<measureCount;m++){const to=m<bars.length?bars[m]:endX;place(patterns[m],from,to);from=to;}
+  currentChordsL6.sort((a,b)=>a.cx-b.cx);
+}
+
+function restartSamePatternL6(){
+  clearPendingChordL6();currentIndexL6=0;consecutiveErrorsL6=0;lastHitTimeL6=null;
+  currentChordsL6.forEach(ch=>[ch.bass,ch.treble].forEach(n=>{if(!n||!n.element)return;const h=n.element.querySelector(".note-head");if(h){h.style.stroke="";h.style.fill="";}n.element.querySelectorAll(".note-stem,.note-flag").forEach(x=>x.style.stroke="");n.element.classList.remove("note-played","chord-note-pending");}));
+  updateErrorPill(errorPillL6,0,7);
+}
+
+function failChordL6(){playError();consecutiveErrorsL6++;updateErrorPill(errorPillL6,consecutiveErrorsL6,7);restartSamePatternL6();}
+
+function handleAnswerL6(noteName,octave){
+  const target=currentChordsL6[currentIndexL6];if(!target)return;
+  const token=`${noteName}:${octave}`;
+  const bassToken=`${target.bass.noteName}:${target.bass.octave}`;
+  const trebleToken=`${target.treble.noteName}:${target.treble.octave}`;
+  if(token!==bassToken && token!==trebleToken){failChordL6();return;}
+  if(pendingChordNotesL6.has(token))return;
+  const now=performance.now();
+  if(pendingChordNotesL6.size===0){
+    let inTime=currentIndexL6===0 || lastHitTimeL6==null;
+    if(!inTime){const prev=currentChordsL6[currentIndexL6-1];const delta=Math.abs((now-lastHitTimeL6)-prev.beats*getBeatIntervalMsL6());const tol=currentIndexL6===currentChordsL6.length-1?TOLERANCE_MS_L6*2.4:TOLERANCE_MS_L6;inTime=delta<=tol;}
+    if(!inTime){failChordL6();return;}
+    pendingChordStartTimeL6=now;
+    if(currentIndexL6===0 && !metronomeIntervalIdL6)startMetronomeL6();
+    pendingChordTimeoutL6=setTimeout(()=>{if(pendingChordNotesL6.size<2)failChordL6();},CHORD_WINDOW_MS_L6);
+  }
+  pendingChordNotesL6.add(token);
+  const targetNote=token===bassToken?target.bass:target.treble;
+  if(targetNote.element)targetNote.element.classList.add("chord-note-pending");
+  if(pendingChordNotesL6.size>=2){
+    if(pendingChordTimeoutL6)clearTimeout(pendingChordTimeoutL6);pendingChordTimeoutL6=null;
+    [target.bass,target.treble].forEach(n=>{n.element&&n.element.classList.remove("chord-note-pending");colorNoteElementByName(n);});
+    lastHitTimeL6=pendingChordStartTimeL6;pendingChordNotesL6.clear();pendingChordStartTimeL6=null;currentIndexL6++;
+    if(currentIndexL6>=currentChordsL6.length)onPatternCompletedL6();
+  }
+}
+
+function bindPianoKeyL6(key,noteName,octave,freq){
+  const action=(ev)=>{if(ev){ev.preventDefault();ev.stopPropagation();}animateKeyPress(key);playToneExactMR(freq);handleAnswerL6(noteName,octave);};
+  if("ontouchstart" in window)key.addEventListener("touchstart",action,{passive:false});else key.addEventListener("mousedown",action);
+}
+
+function renderPianoL6(){
+  if(!pianoKeysElL6)return;pianoKeysElL6.innerHTML="";
+  const whites=["do","re","mi","fa","sol","la","si"],totalWhite=14;
+  for(let octave=1;octave<=2;octave++)whites.forEach(noteName=>{const freq=(NOTE_FREQS[noteName]||440)*(octave===2?2:1);const key=document.createElement("div");key.className="white-key";key.dataset.noteName=noteName;key.dataset.octave=String(octave);bindPianoKeyL6(key,noteName,octave,freq);pianoKeysElL6.appendChild(key);});
+  const blacks=[{name:"do#",i:0,o:1},{name:"re#",i:1,o:1},{name:"fa#",i:3,o:1},{name:"sol#",i:4,o:1},{name:"la#",i:5,o:1},{name:"do#",i:7,o:2},{name:"re#",i:8,o:2},{name:"fa#",i:10,o:2},{name:"sol#",i:11,o:2},{name:"la#",i:12,o:2}];
+  blacks.forEach(b=>{const freq=(NOTE_FREQS[b.name]||440)*(b.o===2?2:1);const key=document.createElement("div");key.className="black-key";key.style.left=((b.i+1)/totalWhite*100)+"%";bindPianoKeyL6(key,b.name,b.o,freq);pianoKeysElL6.appendChild(key);});
+}
+
+function softResetLevel6(){if(!staffSvgL6)return;clearPendingChordL6();stopMetronomeL6();currentChordsL6=[];currentIndexL6=0;consecutiveErrorsL6=0;lastHitTimeL6=null;updateErrorPill(errorPillL6,0,7);createNotesL6();renderPianoL6();}
+if(resetBtnL6)resetBtnL6.onclick=resetAllLevels;
+if(staffSvgL6&&pianoKeysElL6){createNotesL6();renderPianoL6();}
+
 /* ===========================
    IMPARA TEMPO - RITMO GUIDATO
    =========================== */
@@ -8617,6 +9311,24 @@ function resetAllLevels() {
     }
   }
 
+  // L5
+  rainbowsL5Local = 0;
+  consecutiveErrorsL5 = 0;
+  currentIndexL5 = 0;
+  lastHitTimeL5 = null;
+  if (rainbowWinIndexL5) rainbowWinIndexL5.textContent = "0";
+  if (medalsPanelL5) medalsPanelL5.innerHTML = "";
+  if (typeof softResetLevel5 === "function") softResetLevel5();
+
+  // L6
+  rainbowsL6Local = 0;
+  consecutiveErrorsL6 = 0;
+  currentIndexL6 = 0;
+  lastHitTimeL6 = null;
+  if (rainbowWinIndexL6) rainbowWinIndexL6.textContent = "0";
+  if (medalsPanelL6) medalsPanelL6.innerHTML = "";
+  if (typeof softResetLevel6 === "function") softResetLevel6();
+
   // Play
   clearPlayStaff();
 
@@ -8858,6 +9570,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const level2Page = document.getElementById("level2Page");
   const level3Page = document.getElementById("level3Page");
   const level4Page = document.getElementById("level4Page");
+  const level5Page = document.getElementById("level5Page");
+  const level6Page = document.getElementById("level6Page");
   const learnTempoPage = document.getElementById("learnTempoPage");
   const playPage   = document.getElementById("playPage");
   const settingsPage = document.getElementById("settingsPage");
@@ -8889,6 +9603,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const menuBtnL2   = document.getElementById("menuBtnL2");
   const menuBtnL3   = document.getElementById("menuBtnL3");
   const menuBtnL4   = document.getElementById("menuBtnL4");
+  const menuBtnL5   = document.getElementById("menuBtnL5");
+  const menuBtnL6   = document.getElementById("menuBtnL6");
   const menuBtnPlay = document.getElementById("menuBtnPlay");
   const menuBtnTempo = document.getElementById("menuBtnTempo");
   const learnNotesPage = document.getElementById("learnNotesPage");
@@ -8952,6 +9668,8 @@ function regenerateNotesForCurrentPage() {
       if (typeof softResetLevel3 === "function") softResetLevel3();
     } else if (lastGamePageId === "level4Page") {
       if (typeof softResetLevel4 === "function") softResetLevel4();
+    } else if (lastGamePageId === "level5Page") {
+      if (typeof softResetLevel5 === "function") softResetLevel5();
     } else if (lastGamePageId === "playPage") {
       if (typeof clearPlayStaff === "function") clearPlayStaff();
     }
@@ -9108,6 +9826,8 @@ function hideAllPages() {
     level2Page.style.display = "none";
     level3Page.style.display = "none";
     level4Page.style.display = "none";
+    level5Page.style.display = "none";
+    level6Page.style.display = "none";
     playPage.style.display   = "none";
     trophyPageEl.style.display = "none";
     if (settingsPage) settingsPage.style.display = "none";
@@ -9128,7 +9848,9 @@ function hideAllPages() {
       "level1Page": level1Page,
       "level2Page": level2Page,
       "level3Page": level3Page,
-      "level4Page": level4Page
+      "level4Page": level4Page,
+      "level5Page": level5Page,
+      "level6Page": level6Page
     };
     if (pageMap[pageId]) {
       pageMap[pageId].style.display = "flex";
@@ -9139,6 +9861,8 @@ function hideAllPages() {
       if (pageId === "level2Page") softResetLevel2();
       if (pageId === "level3Page") softResetLevel3();
       if (pageId === "level4Page") softResetLevel4();
+      if (pageId === "level5Page") softResetLevel5();
+      if (pageId === "level6Page") softResetLevel6();
     }
   }
 
@@ -9175,6 +9899,8 @@ function hideAllPages() {
     level2Page.style.display = "none";
     level3Page.style.display = "none";
     level4Page.style.display = "none";
+    level5Page.style.display = "none";
+    level6Page.style.display = "none";
     playPage.style.display   = "none";
     if (learnNotesPage) learnNotesPage.style.display = "none";
     if (learnTempoPage) learnTempoPage.style.display = "none";
@@ -9280,6 +10006,8 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   if (menuBtnL2)   menuBtnL2.addEventListener("click", showHome);
   if (menuBtnL3)   menuBtnL3.addEventListener("click", showHome);
   if (menuBtnL4)   menuBtnL4.addEventListener("click", showHome);
+  if (menuBtnL5)   menuBtnL5.addEventListener("click", () => { stopMetronomeL5(); showHome(); });
+  if (menuBtnL6)   menuBtnL6.addEventListener("click", () => { clearPendingChordL6(); stopMetronomeL6(); showHome(); });
   if (menuBtnPlay) menuBtnPlay.addEventListener("click", showHome);
   if (menuBtnTempo) menuBtnTempo.addEventListener("click", showHome);
   if (menuBtnLearn) menuBtnLearn.addEventListener("click", showHome);
@@ -9322,6 +10050,8 @@ homeScreen.style.display = "none";
         if (lastGamePageId === "level2Page") level2Page.style.display = "flex";
         if (lastGamePageId === "level3Page") level3Page.style.display = "flex";
         if (lastGamePageId === "level4Page") level4Page.style.display = "flex";
+        if (lastGamePageId === "level5Page") level5Page.style.display = "flex";
+        if (lastGamePageId === "level6Page") level6Page.style.display = "flex";
         if (lastGamePageId === "playPage")   playPage.style.display   = "flex";
       } else {
         showHome();

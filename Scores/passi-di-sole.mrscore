@@ -1,0 +1,20 @@
+{
+  "format": "music-rainbow-score",
+  "version": 1,
+  "id": "passi-di-sole",
+  "title": "Passi di sole",
+  "composer": "Music Rainbow",
+  "difficulty": "Intermedio",
+  "bpm": 92,
+  "timeSignature": "4/4",
+  "measures": [
+    {"treble":[{"onset":0,"duration":"semiminima_puntata","midi":64},{"onset":1.5,"duration":"croma","midi":65},{"onset":2,"duration":"minima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":52},{"onset":2,"duration":"minima","midi":55}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":69},{"onset":1,"duration":"semiminima","midi":67},{"onset":2,"duration":"semiminima_puntata","midi":65},{"onset":3.5,"duration":"croma","midi":64}],"bass":[{"onset":0,"duration":"semibreve","midi":57}]},
+    {"treble":[{"onset":0,"duration":"minima","midi":62},{"onset":2,"duration":"semiminima","midi":64},{"onset":3,"duration":"semiminima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":50},{"onset":2,"duration":"minima","midi":55}]},
+    {"treble":[{"onset":0,"duration":"semiminima_puntata","midi":69},{"onset":1.5,"duration":"croma","midi":67},{"onset":2,"duration":"minima","midi":64}],"bass":[{"onset":0,"duration":"minima","midi":57},{"onset":2,"duration":"minima","midi":52}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":65},{"onset":1,"duration":"semiminima","midi":67},{"onset":2,"duration":"semiminima","midi":69},{"onset":3,"duration":"semiminima","midi":71}],"bass":[{"onset":0,"duration":"semibreve","midi":53}]},
+    {"treble":[{"onset":0,"duration":"minima","midi":69},{"onset":2,"duration":"semiminima_puntata","midi":67},{"onset":3.5,"duration":"croma","midi":65}],"bass":[{"onset":0,"duration":"minima","midi":57},{"onset":2,"duration":"minima","midi":53}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":64},{"onset":1,"duration":"semiminima","midi":62},{"onset":2,"duration":"semiminima","midi":64},{"onset":3,"duration":"semiminima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":52},{"onset":2,"duration":"minima","midi":55}]},
+    {"treble":[{"onset":0,"duration":"minima","midi":62},{"onset":2,"duration":"minima","midi":60}],"bass":[{"onset":0,"duration":"semibreve","midi":48}]}
+  ]
+}

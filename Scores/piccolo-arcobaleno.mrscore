@@ -1,0 +1,20 @@
+{
+  "format": "music-rainbow-score",
+  "version": 1,
+  "id": "piccolo-arcobaleno",
+  "title": "Il piccolo arcobaleno",
+  "composer": "Music Rainbow",
+  "difficulty": "Facile",
+  "bpm": 84,
+  "timeSignature": "4/4",
+  "measures": [
+    {"treble":[{"onset":0,"duration":"semiminima","midi":60},{"onset":1,"duration":"semiminima","midi":62},{"onset":2,"duration":"semiminima","midi":64},{"onset":3,"duration":"semiminima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":48},{"onset":2,"duration":"minima","midi":55}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":64},{"onset":1,"duration":"semiminima","midi":62},{"onset":2,"duration":"semiminima","midi":60},{"onset":3,"duration":"semiminima","midi":67}],"bass":[{"onset":0,"duration":"semibreve","midi":48}]},
+    {"treble":[{"onset":0,"duration":"minima","midi":65},{"onset":2,"duration":"semiminima","midi":64},{"onset":3,"duration":"semiminima","midi":62}],"bass":[{"onset":0,"duration":"minima","midi":53},{"onset":2,"duration":"minima","midi":48}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":60},{"onset":1,"duration":"semiminima","midi":62},{"onset":2,"duration":"minima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":48},{"onset":2,"duration":"minima","midi":55}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":69},{"onset":1,"duration":"semiminima","midi":67},{"onset":2,"duration":"semiminima","midi":65},{"onset":3,"duration":"semiminima","midi":64}],"bass":[{"onset":0,"duration":"semibreve","midi":57}]},
+    {"treble":[{"onset":0,"duration":"minima","midi":62},{"onset":2,"duration":"semiminima","midi":64},{"onset":3,"duration":"semiminima","midi":65}],"bass":[{"onset":0,"duration":"minima","midi":50},{"onset":2,"duration":"minima","midi":53}]},
+    {"treble":[{"onset":0,"duration":"semiminima","midi":67},{"onset":1,"duration":"semiminima","midi":69},{"onset":2,"duration":"semiminima","midi":67},{"onset":3,"duration":"semiminima","midi":64}],"bass":[{"onset":0,"duration":"minima","midi":55},{"onset":2,"duration":"minima","midi":48}]},
+    {"treble":[{"onset":0,"duration":"minima","midi":62},{"onset":2,"duration":"minima","midi":60}],"bass":[{"onset":0,"duration":"semibreve","midi":48}]}
+  ]
+}

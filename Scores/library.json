@@ -1,0 +1,30 @@
+{
+  "format": "music-rainbow-library",
+  "version": 1,
+  "scores": [
+    {
+      "id": "piccolo-arcobaleno",
+      "file": "piccolo-arcobaleno.mrscore",
+      "title": "Il piccolo arcobaleno",
+      "composer": "Music Rainbow",
+      "difficulty": "Facile",
+      "cover": { "theme": "coral", "icon": "🌈" }
+    },
+    {
+      "id": "passi-di-sole",
+      "file": "passi-di-sole.mrscore",
+      "title": "Passi di sole",
+      "composer": "Music Rainbow",
+      "difficulty": "Intermedio",
+      "cover": { "theme": "sun", "icon": "☀️" }
+    },
+    {
+      "id": "stelle-in-punta-di-piedi",
+      "file": "stelle-in-punta-di-piedi.mrscore",
+      "title": "Stelle in punta di piedi",
+      "composer": "Music Rainbow",
+      "difficulty": "Intermedio",
+      "cover": { "theme": "night", "icon": "⭐" }
+    }
+  ]
+}

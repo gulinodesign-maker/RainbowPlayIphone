@@ -8,6 +8,6 @@ Sample hosting/source used by Music Rainbow:
 https://tonejs.github.io/audio/salamander/
 https://github.com/Tonejs/audio/tree/master/salamander
 
-The Music Rainbow 2.074 audio engine uses the sampled notes C, D#, F#, A
+The Music Rainbow 2.075 audio engine uses the sampled notes C, D#, F#, A
 across the required octaves and pitch-shifts by at most one semitone to cover C3–B5.
 No reverb, ambience, chorus or delay is added by Music Rainbow.

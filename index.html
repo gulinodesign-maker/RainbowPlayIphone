@@ -20,7 +20,7 @@
   <style>
     @font-face {
       font-family: "MusicRainbow SMuFL";
-      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.079") format("woff2");
+      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.080") format("woff2");
       font-style: normal;
       font-weight: 400;
       font-display: block;
@@ -451,7 +451,7 @@ html {
       color: #f9fafb;
     }
 
-    /* Build 2.079 — un gettone custodito in uno scrigno rende evidente Modalità Play.
+    /* Build 2.080 — un gettone custodito in uno scrigno rende evidente Modalità Play.
        Il lampeggio usa solo opacità/scala: nessuna ombra o effetto neon. */
     .home-play-token-ready {
       border: 3px solid #facc15;
@@ -1625,7 +1625,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.079 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.080 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2980,7 +2980,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.079)
+   RESPONSIVE CLEANUP (Build 2.080)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3057,7 +3057,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.079 — UI allineamenti */
+/* PATCH Build 2.080 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3076,7 +3076,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.079 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.080 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3090,7 +3090,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.079): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.080): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3137,7 +3137,7 @@ button,
 
 
 <style>
-/* Build 2.079 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.080 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3253,7 +3253,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.079 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.080 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3767,7 +3767,7 @@ body {
 }
 
 
-/* Build 2.079 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.080 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3904,7 +3904,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.079 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.080 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3948,7 +3948,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.079 — livelli 5 e 6. */
+/* Build 2.080 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3968,7 +3968,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.079 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.080 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level8Page .staff-bg-l8,
 #level8Page .staff-overlay-l8 {
@@ -4035,7 +4035,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.079 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.080 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4123,7 +4123,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.079 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.080 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level8Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4180,7 +4180,7 @@ html {
   }
 }
 
-/* Build 2.079 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.080 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4191,7 +4191,7 @@ html {
 </style>
 
 <style id="build-2051-levels-5-8">
-/* Build 2.079 — selettore livelli 2 righe x 4 colonne. */
+/* Build 2.080 — selettore livelli 2 righe x 4 colonne. */
 #levelSelectOverlay .level-select-box{width:min(620px,94vw)!important;}
 #levelSelectOverlay .level-select-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(100%,540px)!important;gap:10px!important;}
 #levelSelectOverlay .level-select-btn{min-width:0!important;min-height:58px!important;border-radius:14px!important;}
@@ -4217,7 +4217,7 @@ html {
 #level8Page .measure-bar-l8{stroke:#111827;stroke-width:1.8;vector-effect:non-scaling-stroke;}
 #level8Page .ledger-line-l8{stroke:#111827;stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none;}
 #level8Page .chord-note-pending .note-head{stroke:#0ea5e9!important;stroke-width:4!important;}
-/* Build 2.079 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
+/* Build 2.080 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
 #level1Page .smufl-l123-glyph,#level2Page .smufl-l123-glyph,#level3Page .smufl-l123-glyph,
 #learnTempoPage .smufl-note-glyph,#level4Page .smufl-note-glyph,#level5Page .smufl-note-glyph,#level6Page .smufl-note-glyph,#level7Page .smufl-note-glyph,#level8Page .smufl-note-glyph,
 #level4Page .smufl-note-flag-glyph,#level5Page .smufl-note-flag-glyph,#level6Page .smufl-note-flag-glyph,#level7Page .smufl-note-flag-glyph,#level8Page .smufl-note-flag-glyph,
@@ -4231,7 +4231,7 @@ html {
   pointer-events:none;
   text-rendering:geometricPrecision;
 }
-/* Build 2.079 — L1-L3: i precedenti pallini sono semibrevi SMuFL.
+/* Build 2.080 — L1-L3: i precedenti pallini sono semibrevi SMuFL.
    Il gruppo conserva gli stessi cx/cy logici e quindi la stessa associazione pitch/riga-spazio. */
 #level1Page .smufl-whole-note-wrap,#level2Page .smufl-whole-note-wrap,#level3Page .smufl-whole-note-wrap{
   fill:#111827;
@@ -4279,7 +4279,7 @@ html {
 
 
 <style id="build-2058-l8-keyboard-edge-alignment">
-/* Build 2.079 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
+/* Build 2.080 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
    Il raster contiene margini interni (barra sx a x=75/2000, barra finale dx a x=1890/2000);
    la misura effettiva viene sincronizzata in JS con #pianoKeysL8 per iPhone/iPad. */
 #level8Page .middle-area {
@@ -4302,7 +4302,7 @@ html {
 </style>
 
 <style id="patch-2075-metronome-learn-smufl">
-/* Build 2.079 — controllo metronomo: vero pulsante compatto accanto al BPM, non LED. */
+/* Build 2.080 — controllo metronomo: vero pulsante compatto accanto al BPM, non LED. */
 .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
   position:relative;
   z-index:3;
@@ -4345,7 +4345,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
   }
 }
 
-/* Build 2.079 — Impara Note usa noteheadWhole SMuFL mantenendo gli stessi centri musicali. */
+/* Build 2.080 — Impara Note usa noteheadWhole SMuFL mantenendo gli stessi centri musicali. */
 #learnNotesPage .learn-note .smufl-learn-glyph{
   font-family:"MusicRainbow SMuFL";
   font-style:normal;
@@ -4363,7 +4363,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="patch-2079-metronome-volume">
-/* Build 2.079 — long press su MET: volume metronomo separato dal pianoforte. */
+/* Build 2.080 — long press su MET: volume metronomo separato dal pianoforte. */
 .metronome-volume-popover{
   position:fixed;
   z-index:10050;
@@ -4420,10 +4420,10 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.079" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.080" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.079</div>
+      <div class="home-version-label">Build 2.080</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4824,7 +4824,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5010,7 +5010,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5105,7 +5105,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5194,7 +5194,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5284,7 +5284,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5363,7 +5363,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5410,7 +5410,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5457,7 +5457,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5502,7 +5502,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.079" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.080" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -5566,7 +5566,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5658,7 +5658,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.079" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.080" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5967,7 +5967,7 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.079 — Salamander Grand Piano (Yamaha C5), lo stesso banco della demo approvata.
+/* Build 2.080 — Salamander Grand Piano (Yamaha C5), lo stesso banco della demo approvata.
    Campioni reali ogni terza minore: nell'estensione C3–B5 ogni nota richiede al massimo
    ±1 semitono di trasposizione. Percorso completamente dry, senza riverbero/ambience. */
 const PIANO_SAMPLE_BASE_URL = "https://tonejs.github.io/audio/salamander/";
@@ -6009,7 +6009,7 @@ function getAudioCtx() {
 function getPianoMasterNode(ctx) {
   if (pianoMasterNode && pianoMasterNode.context === ctx) return pianoMasterNode;
   try {
-    // Build 2.079 — percorso completamente dry: solo gain diretto, nessun compressore,
+    // Build 2.080 — percorso completamente dry: solo gain diretto, nessun compressore,
     // convolver, delay o riverbero. Lascia intatto il transiente naturale dei campioni.
     const gain = ctx.createGain();
     gain.gain.value = 0.68;
@@ -6105,7 +6105,7 @@ function playPianoFrequency(freq, durationMs) {
     source.connect(gain);
     gain.connect(master);
 
-    // Build 2.079 — conserva attacco e decadimento del campione: il gain serve solo
+    // Build 2.080 — conserva attacco e decadimento del campione: il gain serve solo
     // come anti-click e per il key-off. Nessuna coda ambientale artificiale.
     const now = ctx.currentTime + 0.001;
     const requested = (typeof durationMs === "number" && durationMs > 0) ? durationMs / 1000 : 0.72;
@@ -6153,7 +6153,7 @@ function playMetronomeClick() {
   const ctx = getAudioCtx();
   if (!ctx) return;
   const run = () => {
-    // Build 2.079 — tic asciutto, udibile e privo di sweep/tono "laser".
+    // Build 2.080 — tic asciutto, udibile e privo di sweep/tono "laser".
     // Il volume è indipendente dal piano ed è regolabile con long press su MET.
     const volume = Math.max(0, Math.min(1, Number(metronomeVolume) || 0));
     if (volume <= 0) return;
@@ -6303,7 +6303,7 @@ function playTone(freq, durationMs) {
   playPianoFrequency(effectiveFreq, durationMs);
 }
 
-/* Build 2.079 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
+/* Build 2.080 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
   playPianoFrequency(freq, durationMs);
@@ -6386,7 +6386,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.079 — Metronome + Audio pill logic (all levels)
+/* Build 2.080 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO dal pulsante MET accanto al BPM
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -6394,6 +6394,7 @@ function updateAudioButtonsUI() {
 let metronomeOn = false;
 let metronomeBpm = 80;
 let metronomeTimer = null;
+let metronomeAutoOwner = null;
 let metronomeVolumePopover = null;
 let metronomeVolumeSlider = null;
 let metronomeVolumeValue = null;
@@ -6518,6 +6519,7 @@ function setMetronomeBpm(next){
 
 function setMetronomeOn(next){
   metronomeOn = !!next;
+  if (!metronomeOn) metronomeAutoOwner = null;
   document.documentElement.classList.toggle("metronome-on", metronomeOn);
   document.querySelectorAll(".metronome-audio-pill .metronome-toggle-btn").forEach(btn => {
     btn.setAttribute("aria-pressed", metronomeOn ? "true" : "false");
@@ -6530,7 +6532,25 @@ function setMetronomeOn(next){
 }
 
 function toggleMetronome(){
+  metronomeAutoOwner = null;
   setMetronomeOn(!metronomeOn);
+}
+
+function ensureMetronomeForExercise(owner){
+  const id = String(owner || "exercise");
+  if (!metronomeOn) {
+    metronomeAutoOwner = id;
+    setMetronomeOn(true);
+  } else if (!metronomeTimer) {
+    startMetronome();
+  }
+}
+
+function releaseMetronomeForExercise(owner){
+  const id = String(owner || "exercise");
+  if (metronomeAutoOwner !== id) return;
+  metronomeAutoOwner = null;
+  setMetronomeOn(false);
 }
 
 function setupMetronomeAudioPills(){
@@ -6718,7 +6738,7 @@ function playError() {
   const ctx = getAudioCtx();
   if (!ctx) return;
   const run = () => {
-    // Build 2.079 — feedback errore dedicato: breve "toc" sintetico, non usa mai campioni del piano.
+    // Build 2.080 — feedback errore dedicato: breve "toc" sintetico, non usa mai campioni del piano.
     const now = ctx.currentTime + 0.001;
     const osc = ctx.createOscillator();
     const toneGain = ctx.createGain();
@@ -6804,8 +6824,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.079"
-    : "Assets/staff-base-treble.png?v=2.079";
+    ? "Assets/staff-base-bass.png?v=2.080"
+    : "Assets/staff-base-treble.png?v=2.080";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -7127,7 +7147,7 @@ function getAvailableTokens() {
   return Math.max(0, tokens);
 }
 
-/* Build 2.079 — i gettoni restano fisicamente associati ai rispettivi scrigni.
+/* Build 2.080 — i gettoni restano fisicamente associati ai rispettivi scrigni.
    Il tasto Modalità Play vede però il totale disponibile in tutti gli scrigni. */
 function getTotalAvailableTokensAcrossChests() {
   return sessions.reduce((total, s) => {
@@ -8866,56 +8886,17 @@ function pickMeasurePatternL4(durationsPool) {
 }
 
 function getBeatIntervalMsL4() {
-  return 60000 / bpmL4;
+  const bpm = (typeof metronomeBpm === "number" && metronomeBpm > 0) ? metronomeBpm : 80;
+  return 60000 / bpm;
 }
 
-function clickMetronomeL4() {
-  if (!metronomeDotL4) return;
-
-  // Click visivo
-  metronomeDotL4.classList.add("active");
-  setTimeout(() => {
-    if (metronomeDotL4) metronomeDotL4.classList.remove("active");
-  }, 90);
-
-  // Click sonoro (solo se l'audio è attivo)
-  if (typeof audioEnabled !== "undefined" && audioEnabled) {
-    try {
-      // Click breve e secco
-      playMetronomeClick();
-    } catch (e) {
-      // ignora eventuali errori audio
-    }
-  }
-}
-
-function startMetronomeL4() {
-  stopMetronomeL4();
-  if (!metronomeDotL4) return;
-
-  // Primo click immediato, in sincro con la prima nota
-  clickMetronomeL4();
-
-  // Click successivi ad ogni battito
-  metronomeIntervalIdL4 = setInterval(() => {
-    clickMetronomeL4();
-  }, getBeatIntervalMsL4());
-
-  if (metronomeToggleBtnL4) metronomeToggleBtnL4.checked = true;
-}
-
+function clickMetronomeL4() { metronomeBeat(); }
+function startMetronomeL4() { ensureMetronomeForExercise("L4"); }
 function stopMetronomeL4() {
-  if (metronomeIntervalIdL4) {
-    clearInterval(metronomeIntervalIdL4);
-    metronomeIntervalIdL4 = null;
-  }
-  if (metronomeDotL4) {
-    metronomeDotL4.classList.remove("active");
-  }
-  if (metronomeToggleBtnL4) metronomeToggleBtnL4.checked = false;
+  releaseMetronomeForExercise("L4");
+  metronomeIntervalIdL4 = null;
+  if (metronomeDotL4) metronomeDotL4.classList.remove("active");
 }
-
-
 
 
 // Geometria nota livello 4: pallino + gambo
@@ -8923,7 +8904,7 @@ const NOTE_HEAD_RX = 10.5;   // raggio orizzontale pallino
 const NOTE_HEAD_RY = 7.5;   // raggio verticale pallino
 const STEM_X       = NOTE_HEAD_RX; // gambo tangente al bordo destro del pallino
 
-/* Build 2.079 — subset SMuFL usato per le figure dei livelli 1–8.
+/* Build 2.080 — subset SMuFL usato per le figure dei livelli 1–8.
    Il gruppo continua a essere traslato sulla medesima (cx, cy) già calcolata dalla
    logica del gioco. Gli offset qui sotto compensano soltanto le metriche interne
    del font, mantenendo il centro della testa esattamente sulla coordinata cy. */
@@ -8944,7 +8925,7 @@ const MR_SMUFL_GLYPHS = Object.freeze({
   rest8th:         String.fromCodePoint(0xE4E6)
 });
 
-/* Build 2.079 — L4-L8 usa i glifi SMuFL precomposti per le figure con gambo.
+/* Build 2.080 — L4-L8 usa i glifi SMuFL precomposti per le figure con gambo.
    In questo modo testa e asta sono un unico contorno musicale: l'asta è tangente
    internamente alla testa senza gradini o sbordamenti. Gli offset compensano solo
    le metriche del font e mantengono il centro della testa esattamente su (0,0). */
@@ -8980,7 +8961,7 @@ function augmentationDotYOffsetForNoteMR(absoluteCy, staffKind="single") {
 function appendSmuflAugmentationDotMR(group, xCenter, yCenter=0) {
   const dot=document.createElementNS("http://www.w3.org/2000/svg","text");
   const size=84;
-  // Build 2.079: augmentationDot è un vero glifo SMuFL isolato con advance non nullo
+  // Build 2.080: augmentationDot è un vero glifo SMuFL isolato con advance non nullo
   // nel subset, così Safari/iOS non lo scarta. Il centro visivo resta deterministico.
   dot.setAttribute("x",String(xCenter-3.948));
   dot.setAttribute("y",String(yCenter+23.352));
@@ -9033,7 +9014,7 @@ function appendSmuflRestPartsMR(group,durationName) {
   return glyph;
 }
 
-/* Build 2.079 — geometria orizzontale delle battute.
+/* Build 2.080 — geometria orizzontale delle battute.
    I bordi usati qui corrispondono alle stanghette realmente visibili
    nel raster del pentagramma singolo (3000 px -> viewBox 1000).
    Le stanghette interne vengono quindi equidistanti tra loro e l'ultima
@@ -9044,7 +9025,7 @@ const MR_MEASURE_LEFT_GAP = 36;
 const MR_FIRST_MEASURE_LEFT_GAP = 100;
 const MR_MEASURE_RIGHT_GAP = 52;
 
-/* Build 2.079 — la prima battuta è larga 4/3 rispetto alla precedente
+/* Build 2.080 — la prima battuta è larga 4/3 rispetto alla precedente
    larghezza uniforme. Lo spazio supplementare compensa l'ingombro della
    chiave senza cambiare la larghezza totale del pentagramma; le battute
    successive si dividono in parti uguali lo spazio rimanente. */
@@ -9077,7 +9058,7 @@ function noteXInsideMeasureMR(index, count, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * t;
 }
 
-/* Build 2.079 — controllo canonico della durata: una battuta in 4/4 deve
+/* Build 2.080 — controllo canonico della durata: una battuta in 4/4 deve
    contenere esattamente 8 unità di croma. Per le durate prive di `units`
    (L4/L8) il valore viene ricavato dai beat senza modificare la logica pitch. */
 function durationUnitsMR(duration) {
@@ -9096,7 +9077,7 @@ function measureIsExactlyFourFourMR(pattern) {
   return Array.isArray(pattern) && pattern.length > 0 && measureUnitsMR(pattern) === 8;
 }
 
-/* Build 2.079 — la X deriva dall'attacco ritmico effettivo nella battuta,
+/* Build 2.080 — la X deriva dall'attacco ritmico effettivo nella battuta,
    non dal numero di simboli presenti. 0..4 beat occupano la stessa area utile
    già usata dal layout, quindi le coordinate verticali/pitch restano invariate. */
 function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
@@ -9111,7 +9092,7 @@ function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * (beat / 4);
 }
 
-/* Build 2.079 — distribuzione orizzontale omogenea dentro ogni battuta.
+/* Build 2.080 — distribuzione orizzontale omogenea dentro ogni battuta.
    La posizione grafica è separata dall'onset musicale: onsetBeat/durate restano invariati.
    Gli spazi liberi tra i bounding box visivi sono uguali, mentre crome e figure puntate
    ricevono un ingombro maggiore a destra per bandierina/punto. */
@@ -9204,7 +9185,7 @@ function createNotesL4() {
   const startX = MR_SINGLE_STAFF_LEFT_X;
   const endX = MR_SINGLE_STAFF_RIGHT_X;
 
-  // Build 2.079 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
+  // Build 2.080 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
   // La geometria resta condivisa con measureBoundsMR/noteXInsideMeasureMR:
   // prima battuta più larga per la chiave e margine sicuro prima di ogni stanghetta.
   const measureCount = 4;
@@ -9385,7 +9366,7 @@ function handleAnswerL4(answerNoteName, answerOctave) {
 
   if (inPitch && inTime) {
     // Se è la primissima nota dello spartito e il metronomo è fermo, avvialo ora
-    if (currentIndexL4 === 0 && !metronomeIntervalIdL4) {
+    if (currentIndexL4 === 0) {
       startMetronomeL4();
     }
 
@@ -9497,19 +9478,7 @@ if (bpmInputL4) {
     v = Math.max(40, Math.min(160, v));
     bpmInputL4.value = v;
     bpmL4 = v;
-    // Se il metronomo è già in funzione, riavvialo con il nuovo BPM.
-    // Se è fermo, non lo avviamo: partirà solo quando il bimbo suona la prima nota.
-    if (metronomeIntervalIdL4) {
-      startMetronomeL4();
-    }
-  });
-}
-
-// Compatibilità Livello 4: il controllo metronomo ferma il metronomo didattico locale e rigenera lo spartito
-if (metronomeDotL4) {
-  metronomeDotL4.addEventListener("click", () => {
-    stopMetronomeL4();
-    softResetLevel4();
+    setMetronomeBpm(v);
   });
 }
 
@@ -9662,17 +9631,17 @@ function getBeatIntervalMsMR(){
   const bpm=(typeof metronomeBpm==="number"&&metronomeBpm>0)?metronomeBpm:80;
   return 60000/bpm;
 }
-function clickMetronomeMR(s){
-  if(s.dot){s.dot.classList.add("active");setTimeout(()=>s.dot&&s.dot.classList.remove("active"),90);}
-  if(audioEnabled) playMetronomeClick();
-}
+function clickMetronomeMR(s){ metronomeBeat(); }
 function stopMetronomeMR(s){
-  if(s.metro) clearInterval(s.metro); s.metro=null;
-  if(s.dot) s.dot.classList.remove("active");
+  if(!s)return;
+  releaseMetronomeForExercise("L"+s.level);
+  s.metro=null;
+  if(s.dot)s.dot.classList.remove("active");
 }
 function startMetronomeMR(s){
-  stopMetronomeMR(s); clickMetronomeMR(s);
-  s.metro=setInterval(()=>clickMetronomeMR(s),getBeatIntervalMsMR());
+  if(!s)return;
+  ensureMetronomeForExercise("L"+s.level);
+  s.metro=null;
 }
 function addMedalMR(s,index){
   if(!s.medals)return;
@@ -9713,7 +9682,7 @@ function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
   group.classList.add("note-symbol"); group.setAttribute("transform",`translate(${cx}, ${cy})`);
   if(accidental){
     const acc=document.createElementNS("http://www.w3.org/2000/svg","text");
-    /* Build 2.079 — l'alterazione termina sempre prima del bordo sinistro della testa.
+    /* Build 2.080 — l'alterazione termina sempre prima del bordo sinistro della testa.
        text-anchor=end rende il margine indipendente dalla diversa larghezza di ♯ e ♭,
        evitando che il glifo invada la nota senza modificare cx/cy o il pitch. */
     acc.setAttribute("x","-15");
@@ -9728,7 +9697,7 @@ function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
   return {cx,cy,noteName:pitchName,displayNoteName:displayName,accidental,octave,freq,beats:duration.beats,durationName,element:group,isRest:false};
 }
 
-/* Build 2.079 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
+/* Build 2.080 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
    La logica ritmica e le coordinate delle battute restano invariate. */
 function appendRestGlyphMR(parent,cx,cy,durationName,className="rest-symbol") {
   const group=document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -9898,7 +9867,7 @@ function handleAnswerRhythmMR(s,noteName,octave){
     inTime=delta<=tol;
   }
   if(inPitch&&inTime){
-    if(s.index===0&&!s.metro)startMetronomeMR(s);
+    if(s.index===0)startMetronomeMR(s);
     playTone(target.freq,(target.beats||1)*getBeatIntervalMsMR());
     colorNoteElementByName(target);s.lastHit=now;s.index++;
     if(s.index>=s.notes.length)completePatternMR(s);
@@ -9929,7 +9898,7 @@ if(staffSvgL5&&rhythmL5.piano){createNotesL5();renderPianoRhythmMR(rhythmL5);}if
 
 /* ===========================
    LIVELLO 8 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.079: motore del precedente Livello 6 trasferito integralmente al Livello 8.
+   Build 2.080: motore del precedente Livello 6 trasferito integralmente al Livello 8.
    =========================== */
 
 const staffSvgL8=document.getElementById("staffSvgL8");
@@ -9964,7 +9933,7 @@ const L8_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L8_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L8_VISIBLE_MIDI=new Set([...L8_WHITE_MIDI,...L8_BLACK_MIDI]);
 
-/* Build 2.079 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+/* Build 2.080 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
    Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l8.png:
    - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
    - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
@@ -10051,12 +10020,16 @@ function getBeatIntervalMsL8(){
   const bpm=(typeof metronomeBpm==="number" && metronomeBpm>0)?metronomeBpm:80;
   return 60000/bpm;
 }
-function clickMetronomeL8(){
-  if(metronomeDotL8){metronomeDotL8.classList.add("active");setTimeout(()=>metronomeDotL8&&metronomeDotL8.classList.remove("active"),90);}
-  if(audioEnabled) playMetronomeClick();
+function clickMetronomeL8(){ metronomeBeat(); }
+function stopMetronomeL8(){
+  releaseMetronomeForExercise("L8");
+  metronomeIntervalIdL8=null;
+  if(metronomeDotL8)metronomeDotL8.classList.remove("active");
 }
-function stopMetronomeL8(){if(metronomeIntervalIdL8)clearInterval(metronomeIntervalIdL8);metronomeIntervalIdL8=null;if(metronomeDotL8)metronomeDotL8.classList.remove("active");}
-function startMetronomeL8(){stopMetronomeL8();clickMetronomeL8();metronomeIntervalIdL8=setInterval(clickMetronomeL8,getBeatIntervalMsL8());}
+function startMetronomeL8(){
+  ensureMetronomeForExercise("L8");
+  metronomeIntervalIdL8=null;
+}
 
 function clearPendingChordL8(){
   if(pendingChordTimeoutL8)clearTimeout(pendingChordTimeoutL8);
@@ -10117,7 +10090,7 @@ function appendRestVisualL8(cx,voice,durationName){
   return {voice,cx,cy,durationName,element,isRest:true};
 }
 
-/* Build 2.079 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
+/* Build 2.080 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
    Le suddivisioni del rigo superiore e inferiore restano diverse. Gli onset condivisi
    tra le due voci mantengono la stessa X, ma i gruppi di attacco vengono distribuiti
    omogeneamente nella battuta per evitare addensamenti e grandi vuoti grafici. */
@@ -10212,7 +10185,7 @@ function createNotesL8(){
   staffSvgL8.querySelectorAll(".note-symbol,.rest-symbol,.measure-bar-l8").forEach(e=>e.remove());
   currentChordsL8=[];currentVoiceNotesL8={bass:[],treble:[]};currentVoiceRestsL8={bass:[],treble:[]};currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);
 
-  /* Build 2.079 — L8 ha sempre due battute di identica larghezza.
+  /* Build 2.080 — L8 ha sempre due battute di identica larghezza.
      Qui NON si applica la prima-battuta 4/3 usata nei pentagrammi da quattro battute. */
   const measureCount=2;
   const startX=37.5,endX=945;
@@ -10344,12 +10317,12 @@ function handleAnswerL8(midi){
     }
     if(!inTime){failChordL8();return;}
     pendingChordStartTimeL8=now;
-    if(currentIndexL8===0 && !metronomeIntervalIdL8)startMetronomeL8();
+    if(currentIndexL8===0)startMetronomeL8();
     if(required.length>1){
       pendingChordTimeoutL8=setTimeout(()=>{if(pendingChordNotesL8.size<required.length)failChordL8();},CHORD_WINDOW_MS_L8);
     }
   }
-  // Build 2.079 — solo una nota validata produce il suono del pianoforte.
+  // Build 2.080 — solo una nota validata produce il suono del pianoforte.
   playToneExactMR(targetNote.freq,(targetNote.beats||1)*getBeatIntervalMsL8());
   pendingChordNotesL8.add(midi);
   if(targetNote.element)targetNote.element.classList.add("chord-note-pending");
@@ -10411,64 +10384,30 @@ let metronomeStopTimeoutTempo = null;
 const TOLERANCE_MS_TEMPO = (typeof TOLERANCE_MS_L4 !== "undefined" ? TOLERANCE_MS_L4 : 340);
 
 function getBeatIntervalMsTempo() {
-  return 60000 / bpmTempo;
+  const bpm = (typeof metronomeBpm === "number" && metronomeBpm > 0) ? metronomeBpm : 80;
+  return 60000 / bpm;
 }
 
-function clickMetronomeTempo() {
-  if (!metronomeDotTempo) return;
-  // click visivo
-  metronomeDotTempo.classList.add("active");
-  setTimeout(() => {
-    if (metronomeDotTempo) metronomeDotTempo.classList.remove("active");
-  }, 90);
-  // click sonoro se l'audio è attivo
-  if (typeof audioEnabled !== "undefined" && audioEnabled) {
-    try {
-      playMetronomeClick();
-    } catch (e) {
-      // ignora errori audio
-    }
-  }
-}
+function clickMetronomeTempo() { metronomeBeat(); }
 
 function startMetronomeTempo() {
-  if (!bpmInputTempo) return;
-  const v = parseInt(bpmInputTempo.value, 10) || 80;
-  bpmTempo = v;
-
-  // Se c'è un timer programmato per spegnere il metronomo (ultima nota), annullalo
   if (typeof metronomeStopTimeoutTempo !== "undefined" && metronomeStopTimeoutTempo) {
     clearTimeout(metronomeStopTimeoutTempo);
     metronomeStopTimeoutTempo = null;
   }
-
-  if (metronomeIntervalIdTempo) {
-    clearInterval(metronomeIntervalIdTempo);
-    metronomeIntervalIdTempo = null;
-  }
-  clickMetronomeTempo();
-  const interval = getBeatIntervalMsTempo();
-  metronomeIntervalIdTempo = setInterval(clickMetronomeTempo, interval);
-
-  if (metronomeToggleBtnTempo) metronomeToggleBtnTempo.checked = true;
+  ensureMetronomeForExercise("Tempo");
+  metronomeIntervalIdTempo = null;
 }
-
 
 function stopMetronomeTempo() {
-  if (metronomeIntervalIdTempo) {
-    clearInterval(metronomeIntervalIdTempo);
-    metronomeIntervalIdTempo = null;
-  }
   if (typeof metronomeStopTimeoutTempo !== "undefined" && metronomeStopTimeoutTempo) {
     clearTimeout(metronomeStopTimeoutTempo);
     metronomeStopTimeoutTempo = null;
   }
-  if (metronomeDotTempo) {
-    metronomeDotTempo.classList.remove("active");
-  }
-  if (metronomeToggleBtnTempo) metronomeToggleBtnTempo.checked = false;
+  releaseMetronomeForExercise("Tempo");
+  metronomeIntervalIdTempo = null;
+  if (metronomeDotTempo) metronomeDotTempo.classList.remove("active");
 }
-
 
 
 function restartSamePatternTempo() {
@@ -10511,7 +10450,7 @@ function createNotesTempo() {
   const startX = MR_SINGLE_STAFF_LEFT_X;
   const endX = MR_SINGLE_STAFF_RIGHT_X;
 
-  // Build 2.079 — anche Impara Tempo usa sempre 4 battute,
+  // Build 2.080 — anche Impara Tempo usa sempre 4 battute,
   // con la stessa geometria/spaziatura dei livelli ritmici.
   const measureCount = 4;
 
@@ -10686,7 +10625,7 @@ function handleTapTempo() {
   }
 
   if (inTime) {
-    if (currentIndexTempo === 0 && !metronomeIntervalIdTempo) {
+    if (currentIndexTempo === 0) {
       startMetronomeTempo();
     }
 
@@ -10739,16 +10678,7 @@ if (bpmInputTempo) {
     v = Math.max(40, Math.min(160, v));
     bpmInputTempo.value = v;
     bpmTempo = v;
-    if (metronomeIntervalIdTempo) {
-      startMetronomeTempo();
-    }
-  });
-}
-
-if (metronomeDotTempo) {
-  metronomeDotTempo.addEventListener("click", () => {
-    stopMetronomeTempo();
-    createNotesTempo();
+    setMetronomeBpm(v);
   });
 }
 
@@ -11472,6 +11402,10 @@ function regenerateNotesForCurrentPage() {
   }
 
 function hideAllPages() {
+    // Build 2.080 — se il metronomo era stato avviato automaticamente da un esercizio,
+    // uscendo dalla pagina si spegne quello stesso metronomo globale. Un metronomo
+    // acceso manualmente resta invece sotto il controllo esclusivo del pulsante MET.
+    if (metronomeAutoOwner) releaseMetronomeForExercise(metronomeAutoOwner);
     level1Page.style.display = "none";
     level2Page.style.display = "none";
     level3Page.style.display = "none";
@@ -11551,6 +11485,7 @@ function hideAllPages() {
   }
 
   function showTrophyPage() {
+    if (metronomeAutoOwner) releaseMetronomeForExercise(metronomeAutoOwner);
     homeScreen.style.display = "none";
     level1Page.style.display = "none";
     level2Page.style.display = "none";
@@ -11705,7 +11640,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
         return;
       }
 
-      // Build 2.079 — consumo automatico: un solo gettone, dallo scrigno
+      // Build 2.080 — consumo automatico: un solo gettone, dallo scrigno
       // più vecchio (numero di scrigno più basso) che ne possiede ancora.
       if (getTotalAvailableTokensAcrossChests() <= 0) {
         updateHomePlayButtonState();
@@ -11798,7 +11733,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", async () => {
       try {
-        const reg = await navigator.serviceWorker.register("./service-worker.js?v=2.079", { updateViaCache: "none" });
+        const reg = await navigator.serviceWorker.register("./service-worker.js?v=2.080", { updateViaCache: "none" });
         try { await reg.update(); } catch (e) {}
 
         // Se c'è già un SW in attesa, forzalo subito
@@ -11819,14 +11754,14 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
           });
         });
 
-        // Build 2.079 — ricarica una sola volta PER BUILD quando il nuovo SW prende il controllo.
+        // Build 2.080 — ricarica una sola volta PER BUILD quando il nuovo SW prende il controllo.
         // La chiave non è più globale, quindi una build futura non resta bloccata da un reload passato.
-        const swReloadKey = "swReloadedForBuild:2.079";
+        const swReloadKey = "swReloadedForBuild:2.080";
         navigator.serviceWorker.addEventListener("controllerchange", () => {
           if (sessionStorage.getItem(swReloadKey)) return;
           sessionStorage.setItem(swReloadKey, "1");
           const url = new URL(window.location.href);
-          url.searchParams.set("v", "2.079");
+          url.searchParams.set("v", "2.080");
           window.location.replace(url.href);
         });
       } catch (err) {

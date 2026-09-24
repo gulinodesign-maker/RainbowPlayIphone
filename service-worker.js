@@ -1,7 +1,25 @@
-/* Music Rainbow Service Worker - Build 2.072 */
-const BUILD = "2.072";
+/* Music Rainbow Service Worker - Build 2.074 */
+const BUILD = "2.074";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
+
+// Salamander Grand Piano — Yamaha C5 (CC BY 3.0, Alexander Holm).
+// Gli URL sono gli stessi usati dalla demo Tone.js approvata.
+const PIANO_REMOTE_URLS = [
+  "https://tonejs.github.io/audio/salamander/C3.mp3",
+  "https://tonejs.github.io/audio/salamander/Ds3.mp3",
+  "https://tonejs.github.io/audio/salamander/Fs3.mp3",
+  "https://tonejs.github.io/audio/salamander/A3.mp3",
+  "https://tonejs.github.io/audio/salamander/C4.mp3",
+  "https://tonejs.github.io/audio/salamander/Ds4.mp3",
+  "https://tonejs.github.io/audio/salamander/Fs4.mp3",
+  "https://tonejs.github.io/audio/salamander/A4.mp3",
+  "https://tonejs.github.io/audio/salamander/C5.mp3",
+  "https://tonejs.github.io/audio/salamander/Ds5.mp3",
+  "https://tonejs.github.io/audio/salamander/Fs5.mp3",
+  "https://tonejs.github.io/audio/salamander/A5.mp3",
+  "https://tonejs.github.io/audio/salamander/C6.mp3"
+];
 
 const PRECACHE_URLS = [
   "./",
@@ -12,9 +30,6 @@ const PRECACHE_URLS = [
   "./Assets/staff-base-bass.png",
   "./Assets/staff-base-treble.png",
   "./Assets/MusicRainbow-SMuFL.woff2",
-  "./Assets/audio/piano-C3.wav",
-  "./Assets/audio/piano-C4.wav",
-  "./Assets/audio/piano-C5.wav",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"
@@ -22,11 +37,22 @@ const PRECACHE_URLS = [
 
 // Install: precache + activate subito
 self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(PRECACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil((async () => {
+    // Gli asset locali restano obbligatori: se uno manca, l'installazione non deve mascherarlo.
+    const precache = await caches.open(PRECACHE);
+    await precache.addAll(PRECACHE_URLS);
+
+    // Il banco piano remoto viene scaldato in cache senza rendere fragile l'update PWA:
+    // un eventuale problema temporaneo del CDN non blocca l'attivazione della nuova build.
+    const runtime = await caches.open(RUNTIME);
+    await Promise.allSettled(PIANO_REMOTE_URLS.map(async url => {
+      const req = new Request(url, { mode: "cors", cache: "no-cache" });
+      const res = await fetch(req);
+      if (res && res.ok) await runtime.put(req, res.clone());
+    }));
+
+    await self.skipWaiting();
+  })());
 });
 
 // Activate: cleanup + claim
@@ -110,6 +136,13 @@ self.addEventListener("fetch", event => {
   // Google Fonts: stale-while-revalidate
   if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
     event.respondWith(staleWhileRevalidate(req));
+    return;
+  }
+
+  // Banco Salamander: cache-first anche cross-origin, così dopo il primo caricamento
+  // i campioni restano disponibili nella PWA installata anche senza rete.
+  if (url.hostname === "tonejs.github.io" && url.pathname.startsWith("/audio/salamander/")) {
+    event.respondWith(cacheFirst(req));
     return;
   }
 

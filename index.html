@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.055 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.056 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.055)
+   RESPONSIVE CLEANUP (Build 2.056)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.055 — UI allineamenti */
+/* PATCH Build 2.056 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.055 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.056 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.055): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.056): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.055 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.056 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.055 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.056 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.055 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.056 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.055 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.056 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.055 — livelli 5 e 6. */
+/* Build 2.056 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3948,7 +3948,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.055 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.056 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level8Page .staff-bg-l8,
 #level8Page .staff-overlay-l8 {
@@ -4015,7 +4015,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.055 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.056 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4103,7 +4103,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.055 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.056 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level8Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4160,7 +4160,7 @@ html {
   }
 }
 
-/* Build 2.055 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.056 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4171,7 +4171,7 @@ html {
 </style>
 
 <style id="build-2051-levels-5-8">
-/* Build 2.055 — selettore livelli 2 righe x 4 colonne. */
+/* Build 2.056 — selettore livelli 2 righe x 4 colonne. */
 #levelSelectOverlay .level-select-box{width:min(620px,94vw)!important;}
 #levelSelectOverlay .level-select-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(100%,540px)!important;gap:10px!important;}
 #levelSelectOverlay .level-select-btn{min-width:0!important;min-height:58px!important;border-radius:14px!important;}
@@ -4215,6 +4215,30 @@ html {
 @media (orientation:landscape) and (max-height:500px){#level7Page .note-head,#level7Page .note-stem,#level7Page .note-flag,#level8Page .note-head,#level8Page .note-stem,#level8Page .note-flag{vector-effect:non-scaling-stroke;}}
 </style>
 
+
+<style id="build-2056-l8-keyboard-edge-alignment">
+/* Build 2.056 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
+   Il raster contiene margini interni (barra sx a x=75/2000, barra finale dx a x=1890/2000);
+   la misura effettiva viene sincronizzata in JS con #pianoKeysL8 per iPhone/iPad. */
+#level8Page .middle-area {
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+#level8Page .staff-stage-l8 {
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: 1000 / 244 !important;
+  flex: 0 0 auto !important;
+}
+#level8Page .staff-bg-l8,
+#level8Page .staff-overlay-l8 {
+  width: 100% !important;
+  height: 100% !important;
+  inset: 0 !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -4234,10 +4258,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.055" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.056" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.055</div>
+      <div class="home-version-label">Build 2.056</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4638,7 +4662,7 @@ html {
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4824,7 +4848,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4919,7 +4943,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5008,7 +5032,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5098,7 +5122,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5177,7 +5201,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5224,7 +5248,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5271,7 +5295,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5316,7 +5340,7 @@ html {
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.055" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.056" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -5380,7 +5404,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5472,7 +5496,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.056" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5781,11 +5805,11 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.055 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
+/* Build 2.056 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
 const PIANO_SAMPLE_DEFS = [
-  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.055" },
-  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.055" },
-  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.055" }
+  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.056" },
+  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.056" },
+  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.056" }
 ];
 let pianoSampleBuffers = [];
 let pianoSampleLoadPromise = null;
@@ -6086,7 +6110,7 @@ function playTone(freq, durationMs) {
   playPianoFrequency(effectiveFreq, durationMs);
 }
 
-/* Build 2.055 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
+/* Build 2.056 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
   playPianoFrequency(freq, durationMs);
@@ -6169,7 +6193,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.055 — Metronome + Audio pill logic (all levels)
+/* Build 2.056 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -6407,8 +6431,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.055"
-    : "Assets/staff-base-treble.png?v=2.055";
+    ? "Assets/staff-base-bass.png?v=2.056"
+    : "Assets/staff-base-treble.png?v=2.056";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -9146,7 +9170,7 @@ if(staffSvgL5&&rhythmL5.piano){createNotesL5();renderPianoRhythmMR(rhythmL5);}if
 
 /* ===========================
    LIVELLO 8 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.055: motore del precedente Livello 6 trasferito integralmente al Livello 8.
+   Build 2.056: motore del precedente Livello 6 trasferito integralmente al Livello 8.
    =========================== */
 
 const staffSvgL8=document.getElementById("staffSvgL8");
@@ -9180,7 +9204,7 @@ const L8_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L8_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L8_VISIBLE_MIDI=new Set([...L8_WHITE_MIDI,...L8_BLACK_MIDI]);
 
-/* Build 2.055 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+/* Build 2.056 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
    Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l8.png:
    - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
    - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
@@ -9332,7 +9356,7 @@ function appendNoteVisualL8(cx,pitch,durationName){
   return {midi:pitch.midi,noteName:pitch.noteName,octave:pitch.octave,element:group};
 }
 
-/* Build 2.055 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
+/* Build 2.056 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
    Le suddivisioni del rigo superiore e inferiore sono diverse: ad esempio una minima
    sopra può corrispondere a due semiminime sotto. Le coordinate X derivano dal beat
    reale della battuta, così gli attacchi coincidono solo quando musicalmente devono. */
@@ -11001,6 +11025,90 @@ homeScreen.style.display = "none";
 
   // prima chiamata
   updateViewportVH();
+})();
+</script>
+
+
+<script id="build-2056-l8-keyboard-edge-alignment-js">
+(() => {
+  // Coordinate orizzontali reali delle due stanghette esterne nel PNG grand-staff-l6.png (2000 px).
+  const STAFF_LEFT_FRACTION = 75 / 2000;
+  const STAFF_RIGHT_FRACTION = 1890 / 2000;
+  const STAFF_SPAN_FRACTION = STAFF_RIGHT_FRACTION - STAFF_LEFT_FRACTION;
+  let l8AlignRaf = 0;
+
+  function alignLevel8StaffToKeyboard() {
+    const page = document.getElementById('level8Page');
+    const stage = page && page.querySelector('.staff-stage-l8');
+    const keys = document.getElementById('pianoKeysL8');
+    if (!page || !stage || !keys || !stage.parentElement) return;
+    if (getComputedStyle(page).display === 'none') return;
+
+    const keyRect = keys.getBoundingClientRect();
+    if (keyRect.width < 10) return;
+    const parentRect = stage.parentElement.getBoundingClientRect();
+
+    // Risolve: stageLeft + leftFraction*stageWidth = keyboardLeft
+    //          stageLeft + rightFraction*stageWidth = keyboardRight
+    const stageWidth = keyRect.width / STAFF_SPAN_FRACTION;
+    const stageLeftViewport = keyRect.left - STAFF_LEFT_FRACTION * stageWidth;
+    const marginLeft = stageLeftViewport - parentRect.left;
+
+    stage.style.setProperty('width', `${stageWidth}px`, 'important');
+    stage.style.setProperty('margin-left', `${marginLeft}px`, 'important');
+    stage.style.setProperty('margin-right', '0px', 'important');
+    stage.style.setProperty('max-width', 'none', 'important');
+    stage.style.setProperty('aspect-ratio', '1000 / 244', 'important');
+  }
+
+  function queueLevel8StaffAlignment() {
+    if (l8AlignRaf) cancelAnimationFrame(l8AlignRaf);
+    l8AlignRaf = requestAnimationFrame(() => {
+      l8AlignRaf = requestAnimationFrame(() => {
+        l8AlignRaf = 0;
+        alignLevel8StaffToKeyboard();
+      });
+    });
+  }
+
+  function installLevel8StaffAlignment() {
+    const page = document.getElementById('level8Page');
+    const keys = document.getElementById('pianoKeysL8');
+    if (!page || !keys) return;
+
+    window.addEventListener('resize', queueLevel8StaffAlignment, { passive: true });
+    window.addEventListener('orientationchange', () => {
+      queueLevel8StaffAlignment();
+      setTimeout(queueLevel8StaffAlignment, 120);
+    }, { passive: true });
+
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(queueLevel8StaffAlignment);
+      ro.observe(keys);
+      if (keys.parentElement) ro.observe(keys.parentElement);
+      if (page.querySelector('.middle-area')) ro.observe(page.querySelector('.middle-area'));
+    }
+
+    const mo = new MutationObserver(queueLevel8StaffAlignment);
+    mo.observe(page, { attributes: true, attributeFilter: ['style', 'class'] });
+
+    document.addEventListener('click', (ev) => {
+      const levelBtn = ev.target.closest && ev.target.closest('[data-level="level8Page"]');
+      if (levelBtn) {
+        queueLevel8StaffAlignment();
+        setTimeout(queueLevel8StaffAlignment, 80);
+      }
+    }, true);
+
+    queueLevel8StaffAlignment();
+    setTimeout(queueLevel8StaffAlignment, 100);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', installLevel8StaffAlignment, { once: true });
+  } else {
+    installLevel8StaffAlignment();
+  }
 })();
 </script>
 

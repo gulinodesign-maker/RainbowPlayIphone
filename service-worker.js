@@ -11,7 +11,7 @@ const PRECACHE_URLS = [
   "./Assets/grand-staff-l6.png",
   "./Assets/staff-base-bass.png",
   "./Assets/staff-base-treble.png",
-  "./Assets/MusicRainbow-SMuFL.woff2",
+  "./Assets/MusicRainbowSMuFL.woff2",
   "./Assets/audio/piano-C3.wav",
   "./Assets/audio/piano-C4.wav",
   "./Assets/audio/piano-C5.wav",

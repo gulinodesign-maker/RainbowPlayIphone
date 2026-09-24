@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.077 */
-const BUILD = "2.077";
+/* Music Rainbow Service Worker - Build 2.078 */
+const BUILD = "2.078";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -66,7 +66,7 @@ self.addEventListener("activate", event => {
     );
     await self.clients.claim();
 
-    // Build 2.077 — refresh affidabile anche se la pagina ancora aperta appartiene
+    // Build 2.078 — refresh affidabile anche se la pagina ancora aperta appartiene
     // a una build precedente con un vecchio guard di sessionStorage. L'activate
     // avviene una sola volta per questo worker, quindi la navigazione non crea loop.
     const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });

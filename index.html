@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.048 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.049 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.048)
+   RESPONSIVE CLEANUP (Build 2.049)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.048 — UI allineamenti */
+/* PATCH Build 2.049 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.048 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.049 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.048): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.049): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.048 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.049 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.048 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.049 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.048 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.049 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.048 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.049 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.048 — livelli 5 e 6. */
+/* Build 2.049 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3948,7 +3948,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.048 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.049 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level6Page .staff-bg-l6,
 #level6Page .staff-overlay-l6 {
@@ -4015,7 +4015,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.048 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.049 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4103,7 +4103,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.048 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.049 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level6Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4159,6 +4159,15 @@ html {
     margin-top: 0 !important;
   }
 }
+
+/* Build 2.049 — risposta touch immediata per tastiera e note su iOS. */
+.piano-keys .white-key,
+.piano-keys .black-key,
+.note-buttons button,
+.learn-note-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
 </style>
 </head>
 
@@ -4179,10 +4188,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.048" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.049" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.048</div>
+      <div class="home-version-label">Build 2.049</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4539,7 +4548,7 @@ html {
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4725,7 +4734,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4820,7 +4829,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4909,7 +4918,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4999,7 +5008,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5078,7 +5087,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5123,7 +5132,7 @@ html {
     </div>
 
     <div class="staff-stage-l6" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l6" src="Assets/grand-staff-l6.png?v=2.048" alt="" aria-hidden="true" />
+      <img class="staff-bg-l6" src="Assets/grand-staff-l6.png?v=2.049" alt="" aria-hidden="true" />
       <svg id="staffSvgL6" class="staff-overlay-l6" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL6" class="pitch-guides-l6">
@@ -5187,7 +5196,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5279,7 +5288,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.048" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5575,23 +5584,196 @@ function stopGlobalJinglePlayback() {
 }
 
 
+/* Build 2.049 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
+const PIANO_SAMPLE_DEFS = [
+  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.049" },
+  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.049" },
+  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.049" }
+];
+let pianoSampleBuffers = [];
+let pianoSampleLoadPromise = null;
+let pianoMasterNode = null;
+const activePianoSources = new Set();
+
+function createLowLatencyAudioContext() {
+  if (!AudioContextWeb) return null;
+  try {
+    return new AudioContextWeb({ latencyHint: "interactive" });
+  } catch (e) {
+    try { return new AudioContextWeb(); } catch (err) { return null; }
+  }
+}
+
 function getAudioCtx() {
-  // Crea o ricrea il contesto se non esiste o è stato chiuso
+  // Il contesto rimane vivo per tutta la sessione: chiuderlo e ricrearlo ad ogni toggle
+  // introduceva una latenza percepibile soprattutto su Safari/iOS.
   if (!audioCtx || audioCtx.state === "closed") {
-    audioCtx = new AudioContextWeb();
+    audioCtx = createLowLatencyAudioContext();
+    pianoMasterNode = null;
   }
   return audioCtx;
 }
 
-// Sblocco esplicito per Safari / iOS: viene chiamato al primo tap/click
-function unlockAudioOnce() {
-  if (audioUnlocked) return;
-  const ctx = getAudioCtx();
-  if (ctx && ctx.state === "suspended") {
-    ctx.resume().catch(() => {});
+function getPianoMasterNode(ctx) {
+  if (pianoMasterNode && pianoMasterNode.context === ctx) return pianoMasterNode;
+  try {
+    const gain = ctx.createGain();
+    gain.gain.value = 0.82;
+    const compressor = ctx.createDynamicsCompressor();
+    compressor.threshold.value = -10;
+    compressor.knee.value = 16;
+    compressor.ratio.value = 3;
+    compressor.attack.value = 0.002;
+    compressor.release.value = 0.16;
+    gain.connect(compressor);
+    compressor.connect(ctx.destination);
+    pianoMasterNode = gain;
+  } catch (e) {
+    pianoMasterNode = ctx.destination;
   }
-  audioUnlocked = true;
+  return pianoMasterNode;
 }
+
+function ensurePianoSamplesLoaded() {
+  if (pianoSampleBuffers.length === PIANO_SAMPLE_DEFS.length) return Promise.resolve(pianoSampleBuffers);
+  if (pianoSampleLoadPromise) return pianoSampleLoadPromise;
+  const ctx = getAudioCtx();
+  if (!ctx || typeof fetch !== "function") return Promise.resolve([]);
+
+  pianoSampleLoadPromise = Promise.all(PIANO_SAMPLE_DEFS.map(def =>
+    fetch(def.url, { cache: "force-cache" })
+      .then(res => {
+        if (!res.ok) throw new Error("Piano sample HTTP " + res.status);
+        return res.arrayBuffer();
+      })
+      .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer.slice(0)))
+      .then(buffer => ({ id: def.id, freq: def.freq, buffer }))
+  )).then(buffers => {
+    pianoSampleBuffers = buffers;
+    return buffers;
+  }).catch(err => {
+    console.warn("Music Rainbow: campioni pianoforte non disponibili", err);
+    pianoSampleLoadPromise = null;
+    return [];
+  });
+  return pianoSampleLoadPromise;
+}
+
+function stopAllPianoVoices() {
+  activePianoSources.forEach(source => {
+    try { source.stop(); } catch (e) {}
+  });
+  activePianoSources.clear();
+}
+
+function playPianoFallback(freq, durationMs) {
+  // Fallback istantaneo solo mentre i campioni stanno terminando il preload.
+  // Usa armoniche ed envelope per evitare il vecchio tono sinusoidale puro.
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  const master = getPianoMasterNode(ctx);
+  const now = ctx.currentTime + 0.001;
+  const durationSec = Math.max(0.22, Math.min(2.2, (durationMs > 0 ? durationMs / 1000 : 0.65)));
+  const harmonics = [
+    [1, 0.72], [2, 0.24], [3, 0.14], [4.02, 0.075], [5.04, 0.04]
+  ];
+  harmonics.forEach(([ratio, level], i) => {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = i === 0 ? "triangle" : "sine";
+    o.frequency.setValueAtTime(freq * ratio, now);
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(level, now + 0.004 + i * 0.001);
+    g.gain.exponentialRampToValueAtTime(0.001, now + durationSec + 0.12 / (i + 1));
+    o.connect(g); g.connect(master);
+    o.start(now); o.stop(now + durationSec + 0.18);
+  });
+}
+
+function playPianoFrequency(freq, durationMs) {
+  if (!audioEnabled || !(freq > 0)) return;
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+
+  const start = () => {
+    if (!pianoSampleBuffers.length) {
+      ensurePianoSamplesLoaded();
+      playPianoFallback(freq, durationMs);
+      return;
+    }
+    let sample = pianoSampleBuffers[0];
+    let best = Infinity;
+    pianoSampleBuffers.forEach(item => {
+      const d = Math.abs(Math.log2(freq / item.freq));
+      if (d < best) { best = d; sample = item; }
+    });
+
+    const source = ctx.createBufferSource();
+    const gain = ctx.createGain();
+    const master = getPianoMasterNode(ctx);
+    source.buffer = sample.buffer;
+    source.playbackRate.value = freq / sample.freq;
+    source.connect(gain);
+    gain.connect(master);
+
+    // Attacco immediato, sustain naturale e release breve: risposta molto più simile a un tasto reale.
+    const now = ctx.currentTime + 0.001;
+    const requested = (typeof durationMs === "number" && durationMs > 0) ? durationMs / 1000 : 0.72;
+    const audible = Math.max(0.28, Math.min(2.6, requested));
+    const releaseAt = now + audible;
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.95, now + 0.0035);
+    gain.gain.exponentialRampToValueAtTime(0.70, now + 0.055);
+    gain.gain.setValueAtTime(0.70, Math.max(now + 0.056, releaseAt - 0.05));
+    gain.gain.exponentialRampToValueAtTime(0.001, releaseAt + 0.16);
+
+    activePianoSources.add(source);
+    source.onended = () => activePianoSources.delete(source);
+    source.start(now);
+    source.stop(Math.min(now + 3.15, releaseAt + 0.22));
+  };
+
+  if (ctx.state === "suspended" && typeof ctx.resume === "function") {
+    ctx.resume().then(() => { audioUnlocked = true; start(); }).catch(start);
+  } else {
+    start();
+  }
+}
+
+function playMetronomeClick() {
+  if (!audioEnabled) return;
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  const run = () => {
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    const now = ctx.currentTime + 0.001;
+    o.type = "square";
+    o.frequency.setValueAtTime(1450, now);
+    o.frequency.exponentialRampToValueAtTime(980, now + 0.035);
+    g.gain.setValueAtTime(0.16, now);
+    g.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(now); o.stop(now + 0.06);
+  };
+  if (ctx.state === "suspended" && ctx.resume) ctx.resume().then(run).catch(run);
+  else run();
+}
+
+// Sblocco esplicito per Safari / iOS: viene chiamato al primo gesto e mantiene il motore caldo.
+function unlockAudioOnce() {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  ensurePianoSamplesLoaded();
+  if (ctx.state === "suspended" && typeof ctx.resume === "function") {
+    ctx.resume().then(() => { audioUnlocked = true; }).catch(() => {});
+  } else {
+    audioUnlocked = true;
+  }
+}
+
+// Avvia subito il preload locale; il primo gesto servirà soltanto a sbloccare l'uscita audio iOS.
+try { ensurePianoSamplesLoaded(); } catch (e) {}
 
 // Agganciamo l’unlock al primo gesto dell’utente
 window.addEventListener("touchstart", unlockAudioOnce, { once: true });
@@ -5677,71 +5859,25 @@ window.addEventListener("pointerdown", function(ev) {
 
 
 function hardResetAudio() {
+  stopAllPianoVoices();
   try {
-    if (audioCtx && audioCtx.state !== "closed") {
-      audioCtx.close();
-    }
-  } catch (e) {
-    // ignore
-  }
-
+    if (audioCtx && audioCtx.state !== "closed") audioCtx.close();
+  } catch (e) {}
   audioCtx = null;
+  pianoMasterNode = null;
+  pianoSampleBuffers = [];
+  pianoSampleLoadPromise = null;
   audioUnlocked = false;
-
-  try {
-    unlockAudioOnce();
-  } catch (e) {
-    // ignore
-  }
-
-  alert("Audio reimpostato! Se non senti ancora i suoni, prova a toccare di nuovo lo schermo.");
+  try { unlockAudioOnce(); } catch (e) {}
+  alert("Audio reimpostato! Tocca di nuovo lo schermo se iOS richiede lo sblocco audio.");
 }
 
 function playTone(freq, durationMs) {
-  // Non suonare nulla se l'audio è disattivato
   if (!audioEnabled) return;
-
-  const ctx = getAudioCtx();
-  if (!ctx) return;
-
-  const doPlay = () => {
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    const effectiveFreq = (typeof currentClef !== "undefined" && currentClef === CLEF_BASS)
-      ? freq * 0.5
-      : freq;
-    o.frequency.value = effectiveFreq;
-    o.type = "sine";
-    o.connect(g);
-    g.connect(ctx.destination);
-
-    const now = ctx.currentTime;
-    const durationSec = (typeof durationMs === "number" && durationMs > 0)
-      ? (durationMs / 1000)
-      : 0.5;
-
-    g.gain.setValueAtTime(0.4, now);
-    g.gain.exponentialRampToValueAtTime(0.001, now + durationSec);
-    o.start(now);
-    o.stop(now + durationSec + 0.05);
-  };
-
-  if (ctx.state === "suspended" && typeof ctx.resume === "function") {
-    try {
-      const resumeResult = ctx.resume();
-      if (resumeResult && typeof resumeResult.then === "function") {
-        resumeResult.then(doPlay).catch(doPlay);
-      } else {
-        // resume non restituisce una Promise: proviamo comunque a suonare
-        doPlay();
-      }
-    } catch (e) {
-      // in caso di errore, proviamo comunque a suonare
-      doPlay();
-    }
-  } else {
-    doPlay();
-  }
+  const effectiveFreq = (typeof currentClef !== "undefined" && currentClef === CLEF_BASS)
+    ? freq * 0.5
+    : freq;
+  playPianoFrequency(effectiveFreq, durationMs);
 }
 
 function playHomeJingle() {
@@ -5819,7 +5955,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.048 — Metronome + Audio pill logic (all levels)
+/* Build 2.049 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -5852,7 +5988,7 @@ function metronomeBeat(){
 
   // Click sonoro (solo se l'audio è attivo)
   if (typeof audioEnabled !== "undefined" && audioEnabled) {
-    try { playTone(1200, 120); } catch (e) {}
+    try { playMetronomeClick(); } catch (e) {}
   }
 }
 
@@ -5960,24 +6096,12 @@ if (document.readyState === "loading") {
 
 
 
-// Imposta lo stato audio globale
-// Piccolo reset audio ogni volta che si ri-attiva l'audio (utile per iOS/iPadOS)
+// Imposta lo stato audio globale.
+// Il reset non chiude più l'AudioContext: mantiene il motore caldo e annulla soltanto le voci attive.
 function resetAudioOnEnable() {
-  try {
-    if (audioCtx && audioCtx.state !== "closed") {
-      audioCtx.close();
-    }
-  } catch (e) {
-    // ignore
-  }
-  audioCtx = null;
-  audioUnlocked = false;
-
-  try {
-    unlockAudioOnce();
-  } catch (e) {
-    // ignore
-  }
+  try { stopAllPianoVoices(); } catch (e) {}
+  try { unlockAudioOnce(); } catch (e) {}
+  try { ensurePianoSamplesLoaded(); } catch (e) {}
 }
 
 function setAudioEnabled(enabled, persist = true) {
@@ -5995,7 +6119,11 @@ function setAudioEnabled(enabled, persist = true) {
 
   updateAudioButtonsUI();
 
-  // Se lo stiamo appena attivando, fai un reset veloce dell\'audio (per iPad/iOS)
+  if (!audioEnabled && wasEnabled) {
+    try { stopAllPianoVoices(); } catch (e) {}
+  }
+
+  // Riattivazione: manteniamo il contesto caldo e ci limitiamo a sbloccarlo/precaricare.
   if (audioEnabled && !wasEnabled) {
     resetAudioOnEnable();
 
@@ -6065,8 +6193,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.048"
-    : "Assets/staff-base-treble.png?v=2.048";
+    ? "Assets/staff-base-bass.png?v=2.049"
+    : "Assets/staff-base-treble.png?v=2.049";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -7260,7 +7388,8 @@ function renderPiano() {
       whiteKey.style.webkitBackdropFilter = "blur(10px)";
       whiteKey.style.opacity = "0.96";
 
-      whiteKey.onclick = () => {
+      whiteKey.onpointerdown = (ev) => {
+        if (ev) ev.preventDefault();
         animateKeyPress(whiteKey);
         playTone(baseFreq);
         handleAnswer(noteName, octave);
@@ -7294,7 +7423,8 @@ function renderPiano() {
     const leftPercent = ((b.whiteIndex + 1) / totalWhite) * 100;
     blackKey.style.left = leftPercent + "%";
 
-    blackKey.onclick = (ev) => {
+    blackKey.onpointerdown = (ev) => {
+      ev.preventDefault();
       ev.stopPropagation();
       animateKeyPress(blackKey);
       playTone(freq);
@@ -7591,7 +7721,8 @@ function renderPianoL3() {
 
       whiteKey.style.background = "linear-gradient(to bottom, #ffffff 0%, #f3f4f6 40%, #e5e7eb 100%)";
 
-      whiteKey.onclick = () => {
+      whiteKey.onpointerdown = (ev) => {
+        if (ev) ev.preventDefault();
         animateKeyPress(whiteKey);
         playTone(baseFreq);
         handleAnswerL3(noteName, octave);
@@ -7625,7 +7756,8 @@ function renderPianoL3() {
     const leftPercent = ((b.whiteIndex + 1) / totalWhite) * 100;
     blackKey.style.left = leftPercent + "%";
 
-    blackKey.onclick = (ev) => {
+    blackKey.onpointerdown = (ev) => {
+      ev.preventDefault();
       ev.stopPropagation();
       animateKeyPress(blackKey);
       playTone(freq);
@@ -8043,7 +8175,7 @@ function clickMetronomeL4() {
   if (typeof audioEnabled !== "undefined" && audioEnabled) {
     try {
       // Click breve e secco
-      playTone(1200, 120);
+      playMetronomeClick();
     } catch (e) {
       // ignora eventuali errori audio
     }
@@ -8401,7 +8533,8 @@ function renderPianoL4() {
 
       whiteKey.style.background = "linear-gradient(to bottom, #ffffff 0%, #f3f4f6 40%, #e5e7eb 100%)";
 
-      whiteKey.onclick = () => {
+      whiteKey.onpointerdown = (ev) => {
+        if (ev) ev.preventDefault();
         animateKeyPress(whiteKey);
         playTone(baseFreq);
         handleAnswerL4(noteName, octave);
@@ -8435,7 +8568,8 @@ function renderPianoL4() {
     const leftPercent = ((b.whiteIndex + 1) / totalWhite) * 100;
     blackKey.style.left = leftPercent + "%";
 
-    blackKey.onclick = (ev) => {
+    blackKey.onpointerdown = (ev) => {
+      ev.preventDefault();
       ev.stopPropagation();
       animateKeyPress(blackKey);
       playTone(freq);
@@ -8527,24 +8661,7 @@ function getBeatIntervalMsL5() {
 
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
-  const ctx = getAudioCtx();
-  if (!ctx) return;
-  const run = () => {
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.frequency.value = freq;
-    o.type = "sine";
-    o.connect(g);
-    g.connect(ctx.destination);
-    const now = ctx.currentTime;
-    const durationSec = (typeof durationMs === "number" && durationMs > 0) ? durationMs / 1000 : 0.5;
-    g.gain.setValueAtTime(0.4, now);
-    g.gain.exponentialRampToValueAtTime(0.001, now + durationSec);
-    o.start(now);
-    o.stop(now + durationSec + 0.05);
-  };
-  if (ctx.state === "suspended" && ctx.resume) ctx.resume().then(run).catch(() => {});
-  else run();
+  playPianoFrequency(freq, durationMs);
 }
 
 function clickMetronomeL5() {
@@ -8552,7 +8669,7 @@ function clickMetronomeL5() {
     metronomeDotL5.classList.add("active");
     setTimeout(() => metronomeDotL5 && metronomeDotL5.classList.remove("active"), 90);
   }
-  if (audioEnabled) playToneExactMR(1200, 120);
+  if (audioEnabled) playMetronomeClick();
 }
 function stopMetronomeL5() {
   if (metronomeIntervalIdL5) clearInterval(metronomeIntervalIdL5);
@@ -8753,7 +8870,7 @@ function renderPianoL5() {
   for(let octave=1;octave<=2;octave++) whites.forEach(noteName=>{
     const freq=(NOTE_FREQS[noteName]||440)*(octave===2?2:1);
     const key=document.createElement("div"); key.className="white-key"; key.dataset.noteName=noteName; key.dataset.octave=String(octave);
-    key.onclick=()=>{animateKeyPress(key);playTone(freq);handleAnswerL5(noteName,octave);}; pianoKeysElL5.appendChild(key);
+    key.onpointerdown=(ev)=>{if(ev)ev.preventDefault();animateKeyPress(key);playTone(freq);handleAnswerL5(noteName,octave);}; pianoKeysElL5.appendChild(key);
   });
   const blacks=[
     {name:"do#",i:0,o:1},{name:"re#",i:1,o:1},{name:"fa#",i:3,o:1},{name:"sol#",i:4,o:1},{name:"la#",i:5,o:1},
@@ -8762,7 +8879,7 @@ function renderPianoL5() {
   blacks.forEach(b=>{
     const freq=(NOTE_FREQS[b.name]||440)*(b.o===2?2:1);
     const key=document.createElement("div"); key.className="black-key"; key.dataset.noteName=b.name; key.dataset.octave=String(b.o); key.style.left=((b.i+1)/totalWhite*100)+"%";
-    key.onclick=(ev)=>{ev.stopPropagation();animateKeyPress(key);playTone(freq);handleAnswerL5(b.name,b.o);}; pianoKeysElL5.appendChild(key);
+    key.onpointerdown=(ev)=>{ev.preventDefault();ev.stopPropagation();animateKeyPress(key);playTone(freq);handleAnswerL5(b.name,b.o);}; pianoKeysElL5.appendChild(key);
   });
 }
 
@@ -8777,7 +8894,7 @@ if(staffSvgL5 && pianoKeysElL5){createNotesL5();renderPianoL5();}
 
 /* ===========================
    LIVELLO 6 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.048: motore a pitch assoluto, vincolato alla tastiera visibile.
+   Build 2.049: motore a pitch assoluto, vincolato alla tastiera visibile.
    =========================== */
 
 const staffSvgL6=document.getElementById("staffSvgL6");
@@ -8854,7 +8971,7 @@ function getBeatIntervalMsL6(){
 }
 function clickMetronomeL6(){
   if(metronomeDotL6){metronomeDotL6.classList.add("active");setTimeout(()=>metronomeDotL6&&metronomeDotL6.classList.remove("active"),90);}
-  if(audioEnabled) playToneExactMR(1200,120);
+  if(audioEnabled) playMetronomeClick();
 }
 function stopMetronomeL6(){if(metronomeIntervalIdL6)clearInterval(metronomeIntervalIdL6);metronomeIntervalIdL6=null;if(metronomeDotL6)metronomeDotL6.classList.remove("active");}
 function startMetronomeL6(){stopMetronomeL6();clickMetronomeL6();metronomeIntervalIdL6=setInterval(clickMetronomeL6,getBeatIntervalMsL6());}
@@ -9050,7 +9167,7 @@ function clickMetronomeTempo() {
   // click sonoro se l'audio è attivo
   if (typeof audioEnabled !== "undefined" && audioEnabled) {
     try {
-      playTone(1200, 120);
+      playMetronomeClick();
     } catch (e) {
       // ignora errori audio
     }
@@ -9487,7 +9604,8 @@ function renderPianoPlay() {
 
       whiteKey.style.background = "linear-gradient(to bottom, #ffffff 0%, #f3f4f6 40%, #e5e7eb 100%)";
 
-      whiteKey.onclick = () => {
+      whiteKey.onpointerdown = (ev) => {
+        if (ev) ev.preventDefault();
         animateKeyPress(whiteKey);
         playTone(baseFreq);
         addPlayNote(noteName, octave);
@@ -9520,7 +9638,8 @@ function renderPianoPlay() {
     const leftPercent = ((b.whiteIndex + 1) / totalWhite) * 100;
     blackKey.style.left = leftPercent + "%";
 
-    blackKey.onclick = (ev) => {
+    blackKey.onpointerdown = (ev) => {
+      ev.preventDefault();
       ev.stopPropagation();
       animateKeyPress(blackKey);
       playTone(freq);

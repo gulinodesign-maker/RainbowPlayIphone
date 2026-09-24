@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.048 */
-const BUILD = "2.048";
+/* Music Rainbow Service Worker - Build 2.049 */
+const BUILD = "2.049";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -11,6 +11,9 @@ const PRECACHE_URLS = [
   "./Assets/grand-staff-l6.png",
   "./Assets/staff-base-bass.png",
   "./Assets/staff-base-treble.png",
+  "./Assets/audio/piano-C3.wav",
+  "./Assets/audio/piano-C4.wav",
+  "./Assets/audio/piano-C5.wav",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"
@@ -47,7 +50,8 @@ self.addEventListener("message", event => {
 });
 
 async function cacheFirst(request) {
-  const cached = await caches.match(request);
+  // Prima match esatto; poi ignora la query di versione per usare anche gli asset precache offline.
+  const cached = await caches.match(request) || await caches.match(request, { ignoreSearch: true });
   if (cached) return cached;
 
   const res = await fetch(request);

@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.054 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.055 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.054)
+   RESPONSIVE CLEANUP (Build 2.055)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.054 — UI allineamenti */
+/* PATCH Build 2.055 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.054 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.055 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.054): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.055): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.054 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.055 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.054 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.055 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.054 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.055 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.054 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.055 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.054 — livelli 5 e 6. */
+/* Build 2.055 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3948,7 +3948,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.054 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.055 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level8Page .staff-bg-l8,
 #level8Page .staff-overlay-l8 {
@@ -4015,7 +4015,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.054 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.055 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4103,7 +4103,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.054 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.055 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level8Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4160,7 +4160,7 @@ html {
   }
 }
 
-/* Build 2.054 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.055 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4171,7 +4171,7 @@ html {
 </style>
 
 <style id="build-2051-levels-5-8">
-/* Build 2.054 — selettore livelli 2 righe x 4 colonne. */
+/* Build 2.055 — selettore livelli 2 righe x 4 colonne. */
 #levelSelectOverlay .level-select-box{width:min(620px,94vw)!important;}
 #levelSelectOverlay .level-select-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(100%,540px)!important;gap:10px!important;}
 #levelSelectOverlay .level-select-btn{min-width:0!important;min-height:58px!important;border-radius:14px!important;}
@@ -4234,10 +4234,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.054" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.055" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.054</div>
+      <div class="home-version-label">Build 2.055</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4638,7 +4638,7 @@ html {
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4824,7 +4824,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4919,7 +4919,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5008,7 +5008,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5098,7 +5098,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5177,7 +5177,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5224,7 +5224,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5271,7 +5271,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5316,7 +5316,7 @@ html {
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.054" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.055" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -5380,7 +5380,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5472,7 +5472,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.054" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.055" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5781,11 +5781,11 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.054 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
+/* Build 2.055 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
 const PIANO_SAMPLE_DEFS = [
-  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.054" },
-  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.054" },
-  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.054" }
+  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.055" },
+  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.055" },
+  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.055" }
 ];
 let pianoSampleBuffers = [];
 let pianoSampleLoadPromise = null;
@@ -6086,7 +6086,7 @@ function playTone(freq, durationMs) {
   playPianoFrequency(effectiveFreq, durationMs);
 }
 
-/* Build 2.054 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
+/* Build 2.055 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
   playPianoFrequency(freq, durationMs);
@@ -6169,7 +6169,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.054 — Metronome + Audio pill logic (all levels)
+/* Build 2.055 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -6407,8 +6407,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.054"
-    : "Assets/staff-base-treble.png?v=2.054";
+    ? "Assets/staff-base-bass.png?v=2.055"
+    : "Assets/staff-base-treble.png?v=2.055";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -9146,7 +9146,7 @@ if(staffSvgL5&&rhythmL5.piano){createNotesL5();renderPianoRhythmMR(rhythmL5);}if
 
 /* ===========================
    LIVELLO 8 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.054: motore del precedente Livello 6 trasferito integralmente al Livello 8.
+   Build 2.055: motore del precedente Livello 6 trasferito integralmente al Livello 8.
    =========================== */
 
 const staffSvgL8=document.getElementById("staffSvgL8");
@@ -9160,6 +9160,7 @@ const rainbowOverlayL8=document.getElementById("rainbowOverlayL8");
 const rainbowWinIndexL8=document.getElementById("rainbowWinIndexL8");
 
 let currentChordsL8=[];
+let currentVoiceNotesL8={bass:[],treble:[]};
 let currentIndexL8=0;
 let consecutiveErrorsL8=0;
 let lastHitTimeL8=null;
@@ -9179,7 +9180,7 @@ const L8_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L8_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L8_VISIBLE_MIDI=new Set([...L8_WHITE_MIDI,...L8_BLACK_MIDI]);
 
-/* Build 2.054 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+/* Build 2.055 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
    Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l8.png:
    - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
    - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
@@ -9282,15 +9283,22 @@ function clearPendingChordL8(){
 function addMedalIconL8(index){if(!medalsPanelL8)return;const medal=document.createElement("div");medal.className="medal-icon pink";medal.textContent=index;medalsPanelL8.appendChild(medal);}
 
 function playVictoryPatternL8(){
-  if(!currentChordsL8.length)return 0;
-  const beatMs=getBeatIntervalMsL8();let offset=0;
+  const allNotes=[...(currentVoiceNotesL8.bass||[]),...(currentVoiceNotesL8.treble||[])];
+  if(!allNotes.length)return 0;
+  const beatMs=getBeatIntervalMsL8();
+  let maxEndBeat=0;
   clearJingleTimeouts();isJinglePlaying=true;currentJingleLevel=8;
-  currentChordsL8.forEach(ch=>{
-    const dur=(ch.beats||1)*beatMs;
-    const id=setTimeout(()=>{if(!isJinglePlaying)return;playToneExactMR(ch.bass.freq,dur);playToneExactMR(ch.treble.freq,dur);},offset);
-    activeJingleTimeouts.push(id);offset+=dur;
+  allNotes.forEach(n=>{
+    const onset=Math.max(0,Number(n.onsetBeat)||0);
+    const beats=Math.max(.25,Number(n.beats)||1);
+    const id=setTimeout(()=>{if(isJinglePlaying)playToneExactMR(n.freq,beats*beatMs);},onset*beatMs);
+    activeJingleTimeouts.push(id);
+    maxEndBeat=Math.max(maxEndBeat,onset+beats);
   });
-  const endId=setTimeout(()=>{isJinglePlaying=false;clearJingleTimeouts();},offset+100);activeJingleTimeouts.push(endId);return offset;
+  const totalMs=maxEndBeat*beatMs;
+  const endId=setTimeout(()=>{isJinglePlaying=false;clearJingleTimeouts();},totalMs+100);
+  activeJingleTimeouts.push(endId);
+  return totalMs;
 }
 
 function onPatternCompletedL8(){
@@ -9324,11 +9332,84 @@ function appendNoteVisualL8(cx,pitch,durationName){
   return {midi:pitch.midi,noteName:pitch.noteName,octave:pitch.octave,element:group};
 }
 
+/* Build 2.055 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
+   Le suddivisioni del rigo superiore e inferiore sono diverse: ad esempio una minima
+   sopra può corrispondere a due semiminime sotto. Le coordinate X derivano dal beat
+   reale della battuta, così gli attacchi coincidono solo quando musicalmente devono. */
+const L8_RHYTHM_TEMPLATES=[
+  ["semibreve"],
+  ["minima","minima"],
+  ["minima","semiminima","semiminima"],
+  ["semiminima","minima","semiminima"],
+  ["semiminima","semiminima","minima"],
+  ["semiminima","semiminima","semiminima","semiminima"]
+];
+function durationByNameL8(name){
+  return DURATIONS_L4.find(d=>d.name===name) || (name==="semibreve"?{name,beats:4}:name==="minima"?{name,beats:2}:{name:"semiminima",beats:1});
+}
+function makeRhythmPatternL8(template){return template.map(durationByNameL8);}
+function timelineForPatternL8(pattern){
+  let beat=0;
+  return pattern.map(duration=>{const start=beat;beat+=Number(duration.beats)||0;return {start,duration};});
+}
+function patternSignatureL8(pattern){return pattern.map(d=>Number(d.beats)||0).join("+");}
+function patternsAreIndependentL8(a,b){
+  if(!measureIsFourFourMR(a)||!measureIsFourFourMR(b))return false;
+  if(patternSignatureL8(a)===patternSignatureL8(b))return false;
+  const bOnsets=new Map(timelineForPatternL8(b).map(e=>[e.start,Number(e.duration.beats)||0]));
+  return timelineForPatternL8(a).every(e=>!bOnsets.has(e.start) || bOnsets.get(e.start)!==(Number(e.duration.beats)||0));
+}
+function pickIndependentPatternsL8(){
+  const all=L8_RHYTHM_TEMPLATES.map(makeRhythmPatternL8);
+  const treble=all[Math.floor(Math.random()*all.length)];
+  const choices=all.filter(b=>patternsAreIndependentL8(treble,b));
+  const bass=choices.length?choices[Math.floor(Math.random()*choices.length)]:makeRhythmPatternL8(["semiminima","semiminima","semiminima","semiminima"]);
+  return {treble,bass};
+}
+function randomItemL8(items){return items[Math.floor(Math.random()*items.length)];}
+function expandedChordPairsL8(chordPool){
+  const pairs=[];
+  chordPool.forEach(ch=>ch.treble.forEach(treble=>pairs.push({bass:ch.bass,treble})));
+  return pairs;
+}
+function assignPitchesToMeasureL8(treblePattern,bassPattern,chordPool,previousPair){
+  const trebleEntries=timelineForPatternL8(treblePattern).map(e=>({...e,midi:null}));
+  const bassEntries=timelineForPatternL8(bassPattern).map(e=>({...e,midi:null}));
+  const onsets=[...new Set([...trebleEntries.map(e=>e.start),...bassEntries.map(e=>e.start)])].sort((a,b)=>a-b);
+  const pairs=expandedChordPairsL8(chordPool);
+  let currentBass=previousPair?previousPair.bass:null;
+  let currentTreble=previousPair?previousPair.treble:null;
+  onsets.forEach(onset=>{
+    const te=trebleEntries.find(e=>e.start===onset);
+    const be=bassEntries.find(e=>e.start===onset);
+    if(te&&be){
+      let choices=pairs.filter(p=>p.bass!==currentBass || p.treble!==currentTreble);
+      if(!choices.length)choices=pairs;
+      const pair=randomItemL8(choices);
+      currentBass=pair.bass;currentTreble=pair.treble;
+    }else if(be){
+      let choices=chordPool.filter(ch=>ch.treble.includes(currentTreble));
+      let preferred=choices.filter(ch=>ch.bass!==currentBass);
+      const chord=randomItemL8(preferred.length?preferred:choices.length?choices:chordPool);
+      currentBass=chord.bass;
+      if(!chord.treble.includes(currentTreble))currentTreble=randomItemL8(chord.treble);
+    }else if(te){
+      let chord=chordPool.find(ch=>ch.bass===currentBass);
+      if(!chord)chord=randomItemL8(chordPool);
+      currentBass=chord.bass;
+      let choices=chord.treble.filter(m=>m!==currentTreble);
+      currentTreble=randomItemL8(choices.length?choices:chord.treble);
+    }
+    if(be)be.midi=currentBass;
+    if(te)te.midi=currentTreble;
+  });
+  return {trebleEntries,bassEntries,lastPair:{bass:currentBass,treble:currentTreble}};
+}
 function createNotesL8(){
   if(!staffSvgL8)return;
   clearPendingChordL8();stopMetronomeL8();
   staffSvgL8.querySelectorAll(".note-symbol,.measure-bar-l8").forEach(e=>e.remove());
-  currentChordsL8=[];currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);
+  currentChordsL8=[];currentVoiceNotesL8={bass:[],treble:[]};currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);
 
   let totalMedals=0;try{if(Array.isArray(sessions))totalMedals=sessions.reduce((a,s)=>a+(s.bronze||0)+(s.silver||0)+(s.gold||0),0);}catch(e){}
   const measureCount=totalMedals>=5?3:2;
@@ -9342,36 +9423,46 @@ function createNotesL8(){
 
   const keyName=Math.random()<.5?"C_MAJOR":"A_MINOR";
   const chordPool=KEY_CHORDS_L8[keyName].filter(ch=>isPlayableMidiL8(ch.bass)&&ch.treble.every(isPlayableMidiL8));
-  const patterns=[];
-  for(let i=0;i<measureCount;i++){
-    let pattern=pickMeasurePatternL4(DURATIONS_L4);
-    // Contratto L8: ogni battuta deve chiudere esattamente a 4/4.
-    if(!measureIsFourFourMR(pattern)) pattern=[MR_DUR.semiminima,MR_DUR.semiminima,MR_DUR.semiminima,MR_DUR.semiminima];
-    patterns.push(pattern);
-  }
-  let lastBass=null;
-  function chooseChord(){
-    let choices=chordPool.filter(c=>c.bass!==lastBass);if(!choices.length)choices=chordPool;
-    const c=choices[Math.floor(Math.random()*choices.length)];lastBass=c.bass;return c;
-  }
-  function place(pattern,fromX,toX){
-    const count=pattern.length;
-    for(let i=0;i<count;i++){
-      const chord=chooseChord();
-      const trebleMidi=chord.treble[Math.floor(Math.random()*chord.treble.length)];
-      const bassPitch=pitchMetaL8(chord.bass),treblePitch=pitchMetaL8(trebleMidi);
-      if(!bassPitch||!treblePitch||!Number.isFinite(bassPitch.y)||!Number.isFinite(treblePitch.y)||!isPlayableMidiL8(chord.bass)||!isPlayableMidiL8(trebleMidi))continue;
-      const margin=25,t=count===1?.5:i/Math.max(1,count-1),cx=(fromX+margin)+((toX-margin)-(fromX+margin))*t;
-      const dur=pattern[i],beats=dur.beats,durationName=dur.name;
-      const bassVisual=appendNoteVisualL8(cx,bassPitch,durationName);
-      const trebleVisual=appendNoteVisualL8(cx,treblePitch,durationName);
-      const bass={...bassVisual,freq:midiToFreqL8(chord.bass)};
-      const treble={...trebleVisual,freq:midiToFreqL8(trebleMidi)};
-      currentChordsL8.push({cx,beats,durationName,keyName,bass,treble});
+  let previousPair=null;
+  let from=startX;
+  for(let m=0;m<measureCount;m++){
+    const to=m<bars.length?bars[m]:endX;
+    const pair=pickIndependentPatternsL8();
+    if(!measureIsFourFourMR(pair.treble)||!measureIsFourFourMR(pair.bass)){
+      pair.treble=makeRhythmPatternL8(["minima","minima"]);
+      pair.bass=makeRhythmPatternL8(["semiminima","semiminima","semiminima","semiminima"]);
     }
+    const assigned=assignPitchesToMeasureL8(pair.treble,pair.bass,chordPool,previousPair);
+    previousPair=assigned.lastPair;
+    const margin=25,usable=Math.max(1,(to-from)-margin*2);
+    const renderVoice=(entries,voice)=>{
+      entries.forEach(entry=>{
+        const midi=entry.midi,pitch=pitchMetaL8(midi);
+        if(!pitch||!Number.isFinite(pitch.y)||!isPlayableMidiL8(midi))return;
+        const cx=from+margin+(entry.start/4)*usable;
+        const duration=entry.duration;
+        const visual=appendNoteVisualL8(cx,pitch,duration.name);
+        const note={...visual,voice,cx,freq:midiToFreqL8(midi),beats:duration.beats,durationName:duration.name,onsetBeat:m*4+entry.start,keyName};
+        currentVoiceNotesL8[voice].push(note);
+      });
+    };
+    renderVoice(assigned.trebleEntries,"treble");
+    renderVoice(assigned.bassEntries,"bass");
+    from=to;
   }
-  let from=startX;for(let m=0;m<measureCount;m++){const to=m<bars.length?bars[m]:endX;place(patterns[m],from,to);from=to;}
-  currentChordsL8.sort((a,b)=>a.cx-b.cx);
+
+  const eventMap=new Map();
+  [...currentVoiceNotesL8.bass,...currentVoiceNotesL8.treble].forEach(note=>{
+    const key=String(note.onsetBeat);
+    if(!eventMap.has(key))eventMap.set(key,{onsetBeat:note.onsetBeat,cx:note.cx,keyName,bass:null,treble:null});
+    const ev=eventMap.get(key);ev[note.voice]=note;
+  });
+  currentChordsL8=[...eventMap.values()].sort((a,b)=>a.onsetBeat-b.onsetBeat);
+  const totalBeats=measureCount*4;
+  currentChordsL8.forEach((ev,i)=>{
+    const next=i+1<currentChordsL8.length?currentChordsL8[i+1].onsetBeat:totalBeats;
+    ev.beats=Math.max(.5,next-ev.onsetBeat);
+  });
 }
 
 function restartSamePatternL8(){
@@ -9384,24 +9475,33 @@ function failChordL8(){playError();consecutiveErrorsL8++;updateErrorPill(errorPi
 
 function handleAnswerL8(midi){
   const target=currentChordsL8[currentIndexL8];if(!target)return;
+  const required=[target.bass,target.treble].filter(Boolean);
+  if(!required.length)return;
   if(!isPlayableMidiL8(midi)){failChordL8();return;}
-  if(midi!==target.bass.midi && midi!==target.treble.midi){failChordL8();return;}
+  const targetNote=required.find(n=>n.midi===midi);
+  if(!targetNote){failChordL8();return;}
   if(pendingChordNotesL8.has(midi))return;
   const now=performance.now();
   if(pendingChordNotesL8.size===0){
     let inTime=currentIndexL8===0 || lastHitTimeL8==null;
-    if(!inTime){const prev=currentChordsL8[currentIndexL8-1];const delta=Math.abs((now-lastHitTimeL8)-prev.beats*getBeatIntervalMsL8());const tol=currentIndexL8===currentChordsL8.length-1?TOLERANCE_MS_L8*2.4:TOLERANCE_MS_L8;inTime=delta<=tol;}
+    if(!inTime){
+      const prev=currentChordsL8[currentIndexL8-1];
+      const delta=Math.abs((now-lastHitTimeL8)-prev.beats*getBeatIntervalMsL8());
+      const tol=currentIndexL8===currentChordsL8.length-1?TOLERANCE_MS_L8*2.4:TOLERANCE_MS_L8;
+      inTime=delta<=tol;
+    }
     if(!inTime){failChordL8();return;}
     pendingChordStartTimeL8=now;
     if(currentIndexL8===0 && !metronomeIntervalIdL8)startMetronomeL8();
-    pendingChordTimeoutL8=setTimeout(()=>{if(pendingChordNotesL8.size<2)failChordL8();},CHORD_WINDOW_MS_L8);
+    if(required.length>1){
+      pendingChordTimeoutL8=setTimeout(()=>{if(pendingChordNotesL8.size<required.length)failChordL8();},CHORD_WINDOW_MS_L8);
+    }
   }
   pendingChordNotesL8.add(midi);
-  const targetNote=midi===target.bass.midi?target.bass:target.treble;
   if(targetNote.element)targetNote.element.classList.add("chord-note-pending");
-  if(pendingChordNotesL8.size>=2){
+  if(pendingChordNotesL8.size>=required.length){
     if(pendingChordTimeoutL8)clearTimeout(pendingChordTimeoutL8);pendingChordTimeoutL8=null;
-    [target.bass,target.treble].forEach(n=>{n.element&&n.element.classList.remove("chord-note-pending");colorNoteElementByName(n);});
+    required.forEach(n=>{if(n.element)n.element.classList.remove("chord-note-pending");colorNoteElementByName(n);});
     lastHitTimeL8=pendingChordStartTimeL8;pendingChordNotesL8.clear();pendingChordStartTimeL8=null;currentIndexL8++;
     if(currentIndexL8>=currentChordsL8.length)onPatternCompletedL8();
   }
@@ -9428,7 +9528,7 @@ function renderPianoL8(){
   });
 }
 
-function softResetLevel8(){if(!staffSvgL8)return;clearPendingChordL8();stopMetronomeL8();currentChordsL8=[];currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);createNotesL8();renderPianoL8();}
+function softResetLevel8(){if(!staffSvgL8)return;clearPendingChordL8();stopMetronomeL8();currentChordsL8=[];currentVoiceNotesL8={bass:[],treble:[]};currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);createNotesL8();renderPianoL8();}
 if(resetBtnL8)resetBtnL8.onclick=resetAllLevels;
 if(staffSvgL8&&pianoKeysElL8){createNotesL8();renderPianoL8();}
 

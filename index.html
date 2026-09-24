@@ -1605,7 +1605,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.049 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.050 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2960,7 +2960,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.049)
+   RESPONSIVE CLEANUP (Build 2.050)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3037,7 +3037,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.049 — UI allineamenti */
+/* PATCH Build 2.050 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3056,7 +3056,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.049 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.050 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3070,7 +3070,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.049): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.050): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3117,7 +3117,7 @@ button,
 
 
 <style>
-/* Build 2.049 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.050 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3233,7 +3233,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.049 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.050 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3747,7 +3747,7 @@ body {
 }
 
 
-/* Build 2.049 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.050 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3884,7 +3884,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.049 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.050 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3928,7 +3928,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.049 — livelli 5 e 6. */
+/* Build 2.050 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3948,7 +3948,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.049 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.050 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level6Page .staff-bg-l6,
 #level6Page .staff-overlay-l6 {
@@ -4015,7 +4015,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.049 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.050 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4103,7 +4103,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.049 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.050 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level6Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4160,7 +4160,7 @@ html {
   }
 }
 
-/* Build 2.049 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.050 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4188,10 +4188,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.049" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.050" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.049</div>
+      <div class="home-version-label">Build 2.050</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4548,7 +4548,7 @@ html {
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4734,7 +4734,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4829,7 +4829,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4918,7 +4918,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5008,7 +5008,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5087,7 +5087,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5132,24 +5132,24 @@ html {
     </div>
 
     <div class="staff-stage-l6" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l6" src="Assets/grand-staff-l6.png?v=2.049" alt="" aria-hidden="true" />
+      <img class="staff-bg-l6" src="Assets/grand-staff-l6.png?v=2.050" alt="" aria-hidden="true" />
       <svg id="staffSvgL6" class="staff-overlay-l6" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL6" class="pitch-guides-l6">
-          <line data-midi="48" x1="175" y1="257.5" x2="925" y2="257.5" />
-          <line data-midi="50" x1="175" y1="250"   x2="925" y2="250" />
-          <line data-midi="52" x1="175" y1="242.5" x2="925" y2="242.5" />
-          <line data-midi="53" x1="175" y1="235"   x2="925" y2="235" />
-          <line data-midi="55" x1="175" y1="227.5" x2="925" y2="227.5" />
-          <line data-midi="57" x1="175" y1="220"   x2="925" y2="220" />
-          <line data-midi="59" x1="175" y1="212.5" x2="925" y2="212.5" />
-          <line data-midi="60" x1="175" y1="135"   x2="925" y2="135" />
-          <line data-midi="62" x1="175" y1="127.5" x2="925" y2="127.5" />
-          <line data-midi="64" x1="175" y1="120"   x2="925" y2="120" />
-          <line data-midi="65" x1="175" y1="112.5" x2="925" y2="112.5" />
-          <line data-midi="67" x1="175" y1="105"   x2="925" y2="105" />
-          <line data-midi="69" x1="175" y1="97.5"  x2="925" y2="97.5" />
-          <line data-midi="71" x1="175" y1="90"    x2="925" y2="90" />
+          <line data-midi="48" x1="175" y1="254.50" x2="925" y2="254.50" />
+          <line data-midi="50" x1="175" y1="246.25" x2="925" y2="246.25" />
+          <line data-midi="52" x1="175" y1="238.00" x2="925" y2="238.00" />
+          <line data-midi="53" x1="175" y1="229.75" x2="925" y2="229.75" />
+          <line data-midi="55" x1="175" y1="221.50" x2="925" y2="221.50" />
+          <line data-midi="57" x1="175" y1="213.25" x2="925" y2="213.25" />
+          <line data-midi="59" x1="175" y1="205.00" x2="925" y2="205.00" />
+          <line data-midi="60" x1="175" y1="143.375" x2="925" y2="143.375" />
+          <line data-midi="62" x1="175" y1="135.0625" x2="925" y2="135.0625" />
+          <line data-midi="64" x1="175" y1="126.750" x2="925" y2="126.750" />
+          <line data-midi="65" x1="175" y1="118.4375" x2="925" y2="118.4375" />
+          <line data-midi="67" x1="175" y1="110.125" x2="925" y2="110.125" />
+          <line data-midi="69" x1="175" y1="101.8125" x2="925" y2="101.8125" />
+          <line data-midi="71" x1="175" y1="93.500" x2="925" y2="93.500" />
         </g>
         <g id="staffL6Group"></g>
       </svg>
@@ -5196,7 +5196,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5288,7 +5288,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.049" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.050" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5584,11 +5584,11 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.049 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
+/* Build 2.050 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
 const PIANO_SAMPLE_DEFS = [
-  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.049" },
-  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.049" },
-  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.049" }
+  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.050" },
+  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.050" },
+  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.050" }
 ];
 let pianoSampleBuffers = [];
 let pianoSampleLoadPromise = null;
@@ -5955,7 +5955,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.049 — Metronome + Audio pill logic (all levels)
+/* Build 2.050 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -6193,8 +6193,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.049"
-    : "Assets/staff-base-treble.png?v=2.049";
+    ? "Assets/staff-base-bass.png?v=2.050"
+    : "Assets/staff-base-treble.png?v=2.050";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -8894,7 +8894,7 @@ if(staffSvgL5 && pianoKeysElL5){createNotesL5();renderPianoL5();}
 
 /* ===========================
    LIVELLO 6 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.049: motore a pitch assoluto, vincolato alla tastiera visibile.
+   Build 2.050: motore a pitch assoluto, vincolato alla tastiera visibile.
    =========================== */
 
 const staffSvgL6=document.getElementById("staffSvgL6");
@@ -8926,22 +8926,49 @@ const L6_NOTE_NAMES_BY_PC={0:"do",1:"do#",2:"re",3:"re#",4:"mi",5:"fa",6:"fa#",7
 const L6_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L6_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L6_VISIBLE_MIDI=new Set([...L6_WHITE_MIDI,...L6_BLACK_MIDI]);
-const L6_PITCH_GUIDES={
-  48:{midi:48,noteName:"do", octave:3,staff:"bass",y:257.5},
-  50:{midi:50,noteName:"re", octave:3,staff:"bass",y:250},
-  52:{midi:52,noteName:"mi", octave:3,staff:"bass",y:242.5},
-  53:{midi:53,noteName:"fa", octave:3,staff:"bass",y:235},
-  55:{midi:55,noteName:"sol",octave:3,staff:"bass",y:227.5},
-  57:{midi:57,noteName:"la", octave:3,staff:"bass",y:220},
-  59:{midi:59,noteName:"si", octave:3,staff:"bass",y:212.5},
-  60:{midi:60,noteName:"do", octave:4,staff:"treble",y:135,ledger:true},
-  62:{midi:62,noteName:"re", octave:4,staff:"treble",y:127.5},
-  64:{midi:64,noteName:"mi", octave:4,staff:"treble",y:120},
-  65:{midi:65,noteName:"fa", octave:4,staff:"treble",y:112.5},
-  67:{midi:67,noteName:"sol",octave:4,staff:"treble",y:105},
-  69:{midi:69,noteName:"la", octave:4,staff:"treble",y:97.5},
-  71:{midi:71,noteName:"si", octave:4,staff:"treble",y:90}
+
+/* Build 2.050 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+   Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l6.png:
+   - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
+   - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
+   In questo modo un MIDI genera sempre lo stesso tasto, suono e punto sul rigo. */
+const L6_PC_TO_DIATONIC={0:0,2:1,4:2,5:3,7:4,9:5,11:6};
+const L6_STAFF_GEOMETRY={
+  treble:{anchorMidi:64,anchorY:126.75,stepY:8.3125}, // E4, linea inferiore
+  bass:{anchorMidi:50,anchorY:246.25,stepY:8.25}       // D3, linea centrale
 };
+function diatonicIndexL6(midi){
+  const pc=((midi%12)+12)%12;
+  const letter=L6_PC_TO_DIATONIC[pc];
+  if(letter===undefined)return null;
+  const octave=Math.floor(midi/12)-1;
+  return octave*7+letter;
+}
+function staffYForMidiL6(midi,staff){
+  const geom=L6_STAFF_GEOMETRY[staff];
+  if(!geom)return null;
+  const idx=diatonicIndexL6(midi),anchorIdx=diatonicIndexL6(geom.anchorMidi);
+  if(idx===null||anchorIdx===null)return null;
+  return geom.anchorY-(idx-anchorIdx)*geom.stepY;
+}
+function makePitchGuideL6(midi,staff){
+  const pc=((midi%12)+12)%12;
+  const y=staffYForMidiL6(midi,staff);
+  if(y===null)return null;
+  return {
+    midi,
+    noteName:L6_NOTE_NAMES_BY_PC[pc]||"do",
+    octave:Math.floor(midi/12)-1,
+    staff,
+    y,
+    ledger:(staff==="treble" && midi===60)
+  };
+}
+const L6_PITCH_GUIDES={};
+L6_WHITE_MIDI.forEach(midi=>{
+  const staff=midi<=59?"bass":"treble";
+  L6_PITCH_GUIDES[midi]=makePitchGuideL6(midi,staff);
+});
 function midiToFreqL6(midi){return 440*Math.pow(2,(midi-69)/12);}
 function pitchMetaL6(midi){
   if(L6_PITCH_GUIDES[midi]) return L6_PITCH_GUIDES[midi];
@@ -8949,6 +8976,24 @@ function pitchMetaL6(midi){
   return {midi,noteName:L6_NOTE_NAMES_BY_PC[pc]||"do",octave:Math.floor(midi/12)-1};
 }
 function isPlayableMidiL6(midi){return L6_VISIBLE_MIDI.has(midi);}
+function syncPitchGuidesL6(){
+  const guideRoot=document.getElementById("staffGuidesL6");
+  if(!guideRoot)return;
+  guideRoot.querySelectorAll("line[data-midi]").forEach(line=>{
+    const midi=Number(line.dataset.midi),meta=L6_PITCH_GUIDES[midi];
+    if(!meta)return;
+    line.setAttribute("y1",String(meta.y));
+    line.setAttribute("y2",String(meta.y));
+  });
+}
+function validatePitchContractL6(){
+  return L6_WHITE_MIDI.every(midi=>{
+    const meta=L6_PITCH_GUIDES[midi];
+    return !!meta && meta.midi===midi && isPlayableMidiL6(midi) && Number.isFinite(meta.y);
+  });
+}
+syncPitchGuidesL6();
+if(!validatePitchContractL6()) console.error("Music Rainbow L6: pitch contract non valido");
 
 /* Accordi consonanti, tutti nella stessa tonalità e interamente compresi C3..B4.
    Ogni coppia usa una fondamentale nel rigo di basso e una nota dell'accordo nel rigo di violino. */
@@ -9056,8 +9101,8 @@ function createNotesL6(){
     for(let i=0;i<count;i++){
       const chord=chooseChord();
       const trebleMidi=chord.treble[Math.floor(Math.random()*chord.treble.length)];
-      const bassPitch=L6_PITCH_GUIDES[chord.bass],treblePitch=L6_PITCH_GUIDES[trebleMidi];
-      if(!bassPitch||!treblePitch||!isPlayableMidiL6(chord.bass)||!isPlayableMidiL6(trebleMidi))continue;
+      const bassPitch=pitchMetaL6(chord.bass),treblePitch=pitchMetaL6(trebleMidi);
+      if(!bassPitch||!treblePitch||!Number.isFinite(bassPitch.y)||!Number.isFinite(treblePitch.y)||!isPlayableMidiL6(chord.bass)||!isPlayableMidiL6(trebleMidi))continue;
       const margin=25,t=count===1?.5:i/Math.max(1,count-1),cx=(fromX+margin)+((toX-margin)-(fromX+margin))*t;
       const dur=pattern[i],beats=dur.beats,durationName=dur.name;
       const bassVisual=appendNoteVisualL6(cx,bassPitch,durationName);

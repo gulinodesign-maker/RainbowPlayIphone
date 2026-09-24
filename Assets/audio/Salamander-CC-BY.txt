@@ -1,0 +1,13 @@
+Salamander Grand Piano V2/V3 — Yamaha C5
+
+Author: Alexander Holm
+License: Creative Commons Attribution 3.0 (CC BY 3.0)
+https://creativecommons.org/licenses/by/3.0/
+
+Sample hosting/source used by Music Rainbow:
+https://tonejs.github.io/audio/salamander/
+https://github.com/Tonejs/audio/tree/master/salamander
+
+The Music Rainbow 2.074 audio engine uses the sampled notes C, D#, F#, A
+across the required octaves and pitch-shifts by at most one semitone to cover C3–B5.
+No reverb, ambience, chorus or delay is added by Music Rainbow.

@@ -20,7 +20,7 @@
   <style>
     @font-face {
       font-family: "MusicRainbow SMuFL";
-      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.069") format("woff2");
+      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.070") format("woff2");
       font-style: normal;
       font-weight: 400;
       font-display: block;
@@ -1613,7 +1613,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.069 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.070 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2968,7 +2968,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.069)
+   RESPONSIVE CLEANUP (Build 2.070)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3045,7 +3045,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.069 — UI allineamenti */
+/* PATCH Build 2.070 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3064,7 +3064,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.069 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.070 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3078,7 +3078,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.069): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.070): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3125,7 +3125,7 @@ button,
 
 
 <style>
-/* Build 2.069 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.070 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3241,7 +3241,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.069 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.070 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3755,7 +3755,7 @@ body {
 }
 
 
-/* Build 2.069 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.070 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3892,7 +3892,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.069 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.070 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3936,7 +3936,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.069 — livelli 5 e 6. */
+/* Build 2.070 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3956,7 +3956,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.069 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.070 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level8Page .staff-bg-l8,
 #level8Page .staff-overlay-l8 {
@@ -4023,7 +4023,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.069 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.070 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4111,7 +4111,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.069 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.070 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level8Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4168,7 +4168,7 @@ html {
   }
 }
 
-/* Build 2.069 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.070 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4179,7 +4179,7 @@ html {
 </style>
 
 <style id="build-2051-levels-5-8">
-/* Build 2.069 — selettore livelli 2 righe x 4 colonne. */
+/* Build 2.070 — selettore livelli 2 righe x 4 colonne. */
 #levelSelectOverlay .level-select-box{width:min(620px,94vw)!important;}
 #levelSelectOverlay .level-select-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(100%,540px)!important;gap:10px!important;}
 #levelSelectOverlay .level-select-btn{min-width:0!important;min-height:58px!important;border-radius:14px!important;}
@@ -4205,7 +4205,7 @@ html {
 #level8Page .measure-bar-l8{stroke:#111827;stroke-width:1.8;vector-effect:non-scaling-stroke;}
 #level8Page .ledger-line-l8{stroke:#111827;stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none;}
 #level8Page .chord-note-pending .note-head{stroke:#0ea5e9!important;stroke-width:4!important;}
-/* Build 2.069 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
+/* Build 2.070 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
 #level1Page .smufl-l123-glyph,#level2Page .smufl-l123-glyph,#level3Page .smufl-l123-glyph,
 #level4Page .smufl-note-glyph,#level5Page .smufl-note-glyph,#level6Page .smufl-note-glyph,#level7Page .smufl-note-glyph,#level8Page .smufl-note-glyph,
 #level4Page .smufl-note-flag-glyph,#level5Page .smufl-note-flag-glyph,#level6Page .smufl-note-flag-glyph,#level7Page .smufl-note-flag-glyph,#level8Page .smufl-note-flag-glyph,
@@ -4219,7 +4219,7 @@ html {
   pointer-events:none;
   text-rendering:geometricPrecision;
 }
-/* Build 2.069 — L1-L3: i precedenti pallini sono semibrevi SMuFL.
+/* Build 2.070 — L1-L3: i precedenti pallini sono semibrevi SMuFL.
    Il gruppo conserva gli stessi cx/cy logici e quindi la stessa associazione pitch/riga-spazio. */
 #level1Page .smufl-whole-note-wrap,#level2Page .smufl-whole-note-wrap,#level3Page .smufl-whole-note-wrap{
   fill:#111827;
@@ -4267,7 +4267,7 @@ html {
 
 
 <style id="build-2058-l8-keyboard-edge-alignment">
-/* Build 2.069 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
+/* Build 2.070 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
    Il raster contiene margini interni (barra sx a x=75/2000, barra finale dx a x=1890/2000);
    la misura effettiva viene sincronizzata in JS con #pianoKeysL8 per iPhone/iPad. */
 #level8Page .middle-area {
@@ -4308,10 +4308,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.069" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.070" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.069</div>
+      <div class="home-version-label">Build 2.070</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4712,7 +4712,7 @@ html {
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4898,7 +4898,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4993,7 +4993,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5082,7 +5082,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5172,7 +5172,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5251,7 +5251,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5298,7 +5298,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5345,7 +5345,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5390,7 +5390,7 @@ html {
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.069" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.070" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -5454,7 +5454,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5546,7 +5546,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.069" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.070" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5855,11 +5855,11 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.069 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
+/* Build 2.070 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
 const PIANO_SAMPLE_DEFS = [
-  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.069" },
-  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.069" },
-  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.069" }
+  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.070" },
+  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.070" },
+  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.070" }
 ];
 let pianoSampleBuffers = [];
 let pianoSampleLoadPromise = null;
@@ -6160,7 +6160,7 @@ function playTone(freq, durationMs) {
   playPianoFrequency(effectiveFreq, durationMs);
 }
 
-/* Build 2.069 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
+/* Build 2.070 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
   playPianoFrequency(freq, durationMs);
@@ -6243,7 +6243,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.069 — Metronome + Audio pill logic (all levels)
+/* Build 2.070 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -6482,8 +6482,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.069"
-    : "Assets/staff-base-treble.png?v=2.069";
+    ? "Assets/staff-base-bass.png?v=2.070"
+    : "Assets/staff-base-treble.png?v=2.070";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -8548,7 +8548,7 @@ const NOTE_HEAD_RX = 10.5;   // raggio orizzontale pallino
 const NOTE_HEAD_RY = 7.5;   // raggio verticale pallino
 const STEM_X       = NOTE_HEAD_RX; // gambo tangente al bordo destro del pallino
 
-/* Build 2.069 — subset SMuFL usato per le figure dei livelli 1–8.
+/* Build 2.070 — subset SMuFL usato per le figure dei livelli 1–8.
    Il gruppo continua a essere traslato sulla medesima (cx, cy) già calcolata dalla
    logica del gioco. Gli offset qui sotto compensano soltanto le metriche interne
    del font, mantenendo il centro della testa esattamente sulla coordinata cy. */
@@ -8569,7 +8569,7 @@ const MR_SMUFL_GLYPHS = Object.freeze({
   rest8th:         String.fromCodePoint(0xE4E6)
 });
 
-/* Build 2.069 — le note L4-L8 sono composte da notehead SMuFL + gambo primitivo
+/* Build 2.070 — le note L4-L8 sono composte da notehead SMuFL + gambo primitivo
    (come raccomandato per i software di notazione) + flag SMuFL separata per la croma.
    La testa resta centrata esattamente su (0,0), quindi cy/pitch non cambia. */
 const MR_SMUFL_NOTE_METRICS = Object.freeze({
@@ -8604,7 +8604,7 @@ function augmentationDotYOffsetForNoteMR(absoluteCy, staffKind="single") {
 function appendSmuflAugmentationDotMR(group, xCenter, yCenter=0) {
   const dot=document.createElementNS("http://www.w3.org/2000/svg","text");
   const size=84;
-  // Build 2.069: augmentationDot è un vero glifo SMuFL isolato con advance non nullo
+  // Build 2.070: augmentationDot è un vero glifo SMuFL isolato con advance non nullo
   // nel subset, così Safari/iOS non lo scarta. Il centro visivo resta deterministico.
   dot.setAttribute("x",String(xCenter-3.948));
   dot.setAttribute("y",String(yCenter+23.352));
@@ -8621,6 +8621,20 @@ function appendSmuflNotePartsMR(group,durationName,absoluteCy=null,staffKind="si
   const baseName=dotted?durationName.replace(/_puntata$/,''):durationName;
   const metric=MR_SMUFL_NOTE_METRICS[baseName] || MR_SMUFL_NOTE_METRICS.semiminima;
 
+  /* Build 2.070 — il gambo viene disegnato dietro la testa e termina al suo
+     punto di innesto sul bordo destro. In questo modo non resta alcun tratto
+     visibile dentro/sotto la testa, senza spostare il centro (0,0) della nota. */
+  if(metric.stem){
+    const stem=document.createElementNS("http://www.w3.org/2000/svg","line");
+    stem.setAttribute("x1","8.85");
+    stem.setAttribute("x2","8.85");
+    stem.setAttribute("y1","0");
+    stem.setAttribute("y2","-42");
+    stem.classList.add("note-stem","smufl-note-stem");
+    group.appendChild(stem);
+  }
+
+  // La testa viene dopo il gambo nello z-order SVG e maschera perfettamente l'innesto.
   const glyph=document.createElementNS("http://www.w3.org/2000/svg","text");
   glyph.setAttribute("x",String(metric.x));
   glyph.setAttribute("y",String(metric.y));
@@ -8629,16 +8643,6 @@ function appendSmuflNotePartsMR(group,durationName,absoluteCy=null,staffKind="si
   glyph.dataset.smuflDuration=baseName;
   glyph.textContent=metric.glyph;
   group.appendChild(glyph);
-
-  if(metric.stem){
-    const stem=document.createElementNS("http://www.w3.org/2000/svg","line");
-    stem.setAttribute("x1","8.85");
-    stem.setAttribute("x2","8.85");
-    stem.setAttribute("y1","1.2");
-    stem.setAttribute("y2","-42");
-    stem.classList.add("note-stem","smufl-note-stem");
-    group.appendChild(stem);
-  }
 
   if(metric.flag){
     const flag=document.createElementNS("http://www.w3.org/2000/svg","text");
@@ -8679,7 +8683,7 @@ function appendSmuflRestPartsMR(group,durationName) {
   return glyph;
 }
 
-/* Build 2.069 — geometria orizzontale delle battute.
+/* Build 2.070 — geometria orizzontale delle battute.
    I bordi usati qui corrispondono alle stanghette realmente visibili
    nel raster del pentagramma singolo (3000 px -> viewBox 1000).
    Le stanghette interne vengono quindi equidistanti tra loro e l'ultima
@@ -8690,7 +8694,7 @@ const MR_MEASURE_LEFT_GAP = 36;
 const MR_FIRST_MEASURE_LEFT_GAP = 100;
 const MR_MEASURE_RIGHT_GAP = 52;
 
-/* Build 2.069 — la prima battuta è larga 4/3 rispetto alla precedente
+/* Build 2.070 — la prima battuta è larga 4/3 rispetto alla precedente
    larghezza uniforme. Lo spazio supplementare compensa l'ingombro della
    chiave senza cambiare la larghezza totale del pentagramma; le battute
    successive si dividono in parti uguali lo spazio rimanente. */
@@ -8723,7 +8727,7 @@ function noteXInsideMeasureMR(index, count, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * t;
 }
 
-/* Build 2.069 — controllo canonico della durata: una battuta in 4/4 deve
+/* Build 2.070 — controllo canonico della durata: una battuta in 4/4 deve
    contenere esattamente 8 unità di croma. Per le durate prive di `units`
    (L4/L8) il valore viene ricavato dai beat senza modificare la logica pitch. */
 function durationUnitsMR(duration) {
@@ -8742,7 +8746,7 @@ function measureIsExactlyFourFourMR(pattern) {
   return Array.isArray(pattern) && pattern.length > 0 && measureUnitsMR(pattern) === 8;
 }
 
-/* Build 2.069 — la X deriva dall'attacco ritmico effettivo nella battuta,
+/* Build 2.070 — la X deriva dall'attacco ritmico effettivo nella battuta,
    non dal numero di simboli presenti. 0..4 beat occupano la stessa area utile
    già usata dal layout, quindi le coordinate verticali/pitch restano invariate. */
 function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
@@ -8757,7 +8761,7 @@ function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * (beat / 4);
 }
 
-/* Build 2.069 — layout anti-sovrapposizione per le battute che contengono crome.
+/* Build 2.070 — layout anti-sovrapposizione per le battute che contengono crome.
    L'onset musicale resta invariato nei dati (`onsetBeat`); qui cambia soltanto la X
    grafica, assegnando alla bandierina SMuFL della croma il suo reale ingombro a destra.
    Lo spazio residuo viene distribuito in proporzione agli intervalli ritmici, così
@@ -8860,7 +8864,7 @@ function createNotesL4() {
   const startX = MR_SINGLE_STAFF_LEFT_X;
   const endX = MR_SINGLE_STAFF_RIGHT_X;
 
-  // Build 2.069 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
+  // Build 2.070 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
   // La geometria resta condivisa con measureBoundsMR/noteXInsideMeasureMR:
   // prima battuta più larga per la chiave e margine sicuro prima di ogni stanghetta.
   const measureCount = 4;
@@ -9378,7 +9382,7 @@ function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
   return {cx,cy,noteName:pitchName,displayNoteName:displayName,accidental,octave,freq,beats:duration.beats,durationName,element:group,isRest:false};
 }
 
-/* Build 2.069 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
+/* Build 2.070 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
    La logica ritmica e le coordinate delle battute restano invariate. */
 function appendRestGlyphMR(parent,cx,cy,durationName,className="rest-symbol") {
   const group=document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -9579,7 +9583,7 @@ if(staffSvgL5&&rhythmL5.piano){createNotesL5();renderPianoRhythmMR(rhythmL5);}if
 
 /* ===========================
    LIVELLO 8 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.069: motore del precedente Livello 6 trasferito integralmente al Livello 8.
+   Build 2.070: motore del precedente Livello 6 trasferito integralmente al Livello 8.
    =========================== */
 
 const staffSvgL8=document.getElementById("staffSvgL8");
@@ -9614,7 +9618,7 @@ const L8_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L8_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L8_VISIBLE_MIDI=new Set([...L8_WHITE_MIDI,...L8_BLACK_MIDI]);
 
-/* Build 2.069 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+/* Build 2.070 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
    Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l8.png:
    - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
    - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
@@ -9767,7 +9771,7 @@ function appendRestVisualL8(cx,voice,durationName){
   return {voice,cx,cy,durationName,element,isRest:true};
 }
 
-/* Build 2.069 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
+/* Build 2.070 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
    Le suddivisioni del rigo superiore e inferiore sono diverse: ad esempio una minima
    sopra può corrispondere a due semiminime sotto. Le coordinate X derivano dal beat
    reale della battuta, così gli attacchi coincidono solo quando musicalmente devono. */
@@ -9862,7 +9866,7 @@ function createNotesL8(){
   staffSvgL8.querySelectorAll(".note-symbol,.rest-symbol,.measure-bar-l8").forEach(e=>e.remove());
   currentChordsL8=[];currentVoiceNotesL8={bass:[],treble:[]};currentVoiceRestsL8={bass:[],treble:[]};currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);
 
-  /* Build 2.069 — L8 ha sempre due battute di identica larghezza.
+  /* Build 2.070 — L8 ha sempre due battute di identica larghezza.
      Qui NON si applica la prima-battuta 4/3 usata nei pentagrammi da quattro battute. */
   const measureCount=2;
   const startX=37.5,endX=945;

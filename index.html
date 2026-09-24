@@ -10,7 +10,6 @@
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="preload" href="Assets/MusicRainbowSMuFL.woff2?v=2.065" as="font" type="font/woff2" crossorigin />
 
   <meta charset="UTF-8" />
   <title>Music Rainbow — Livelli</title>
@@ -19,6 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    @font-face {
+      font-family: "MusicRainbow SMuFL";
+      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.066") format("woff2");
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+    }
+
     * { box-sizing: border-box; }
     
     html, body {
@@ -1606,7 +1613,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.065 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.066 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2961,7 +2968,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.065)
+   RESPONSIVE CLEANUP (Build 2.066)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3038,7 +3045,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.065 — UI allineamenti */
+/* PATCH Build 2.066 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3057,7 +3064,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.065 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.066 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3071,7 +3078,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.065): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.066): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3118,7 +3125,7 @@ button,
 
 
 <style>
-/* Build 2.065 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.066 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3234,7 +3241,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.065 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.066 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3748,7 +3755,7 @@ body {
 }
 
 
-/* Build 2.065 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.066 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3885,7 +3892,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.065 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.066 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3929,7 +3936,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.065 — livelli 5 e 6. */
+/* Build 2.066 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3949,7 +3956,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.065 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.066 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level8Page .staff-bg-l8,
 #level8Page .staff-overlay-l8 {
@@ -4016,7 +4023,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.065 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.066 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4104,7 +4111,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.065 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.066 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level8Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4161,7 +4168,7 @@ html {
   }
 }
 
-/* Build 2.065 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.066 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4172,7 +4179,7 @@ html {
 </style>
 
 <style id="build-2051-levels-5-8">
-/* Build 2.065 — selettore livelli 2 righe x 4 colonne. */
+/* Build 2.066 — selettore livelli 2 righe x 4 colonne. */
 #levelSelectOverlay .level-select-box{width:min(620px,94vw)!important;}
 #levelSelectOverlay .level-select-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(100%,540px)!important;gap:10px!important;}
 #levelSelectOverlay .level-select-btn{min-width:0!important;min-height:58px!important;border-radius:14px!important;}
@@ -4198,6 +4205,19 @@ html {
 #level8Page .measure-bar-l8{stroke:#111827;stroke-width:1.8;vector-effect:non-scaling-stroke;}
 #level8Page .ledger-line-l8{stroke:#111827;stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none;}
 #level8Page .chord-note-pending .note-head{stroke:#0ea5e9!important;stroke-width:4!important;}
+/* Build 2.066 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
+#level4Page .smufl-note-glyph,#level5Page .smufl-note-glyph,#level6Page .smufl-note-glyph,#level7Page .smufl-note-glyph,#level8Page .smufl-note-glyph,
+#level5Page .smufl-rest-glyph,#level6Page .smufl-rest-glyph,#level7Page .smufl-rest-glyph,#level8Page .smufl-rest-glyph,
+#level4Page .smufl-augmentation-dot,#level5Page .smufl-augmentation-dot,#level6Page .smufl-augmentation-dot,#level7Page .smufl-augmentation-dot,#level8Page .smufl-augmentation-dot{
+  font-family:"MusicRainbow SMuFL";
+  font-style:normal;
+  font-weight:400;
+  fill:#111827;
+  stroke:none;
+  pointer-events:none;
+  text-rendering:geometricPrecision;
+}
+
 #level8Page .piano-keys,#level8Page .white-key,#level8Page .black-key{touch-action:none;-webkit-user-select:none;user-select:none;}
 @media (orientation:landscape) and (max-height:500px){#levelSelectOverlay .level-select-box{width:min(560px,94vw)!important;padding:8px 12px!important;}#levelSelectOverlay .level-select-grid{width:min(100%,520px)!important;gap:5px!important;margin-bottom:7px!important;}#levelSelectOverlay .level-select-btn{min-height:40px!important;padding:3px 8px!important;font-size:1.12rem!important;}#levelSelectOverlay .level-select-title{margin-bottom:6px!important;}#levelSelectOverlay .level-select-subtitle{margin-bottom:7px!important;}#level8Page .staff-stage-l8{width:calc(100vw - 8px)!important;max-height:none!important;}}
 </style>
@@ -4218,7 +4238,7 @@ html {
 
 
 <style id="build-2058-l8-keyboard-edge-alignment">
-/* Build 2.065 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
+/* Build 2.066 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
    Il raster contiene margini interni (barra sx a x=75/2000, barra finale dx a x=1890/2000);
    la misura effettiva viene sincronizzata in JS con #pianoKeysL8 per iPhone/iPad. */
 #level8Page .middle-area {
@@ -4237,48 +4257,6 @@ html {
   width: 100% !important;
   height: 100% !important;
   inset: 0 !important;
-}
-</style>
-
-
-<style id="build-2065-smufl-renderer">
-@font-face {
-  font-family: "MusicRainbow SMuFL";
-  src: url("Assets/MusicRainbowSMuFL.woff2?v=2.065") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-}
-#level4Page .smufl-glyph,
-#level5Page .smufl-glyph,
-#level6Page .smufl-glyph,
-#level7Page .smufl-glyph,
-#level8Page .smufl-glyph {
-  font-family: "MusicRainbow SMuFL" !important;
-  font-style: normal;
-  font-weight: 400;
-  fill: #111827;
-  stroke: none;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-  text-rendering: geometricPrecision;
-}
-#level4Page .smufl-note-glyph,
-#level5Page .smufl-note-glyph,
-#level6Page .smufl-note-glyph,
-#level7Page .smufl-note-glyph,
-#level8Page .smufl-note-glyph,
-#level4Page .smufl-dot-glyph,
-#level5Page .smufl-dot-glyph,
-#level6Page .smufl-dot-glyph,
-#level7Page .smufl-dot-glyph,
-#level8Page .smufl-dot-glyph {
-  transition: fill .12s ease, opacity .12s ease;
-}
-#level8Page .chord-note-pending .smufl-note-glyph,
-#level8Page .chord-note-pending .smufl-dot-glyph {
-  fill: #0ea5e9 !important;
 }
 </style>
 
@@ -4301,10 +4279,10 @@ html {
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.065" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.066" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.065</div>
+      <div class="home-version-label">Build 2.066</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -4705,7 +4683,7 @@ html {
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4891,7 +4869,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -4986,7 +4964,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5075,7 +5053,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5165,7 +5143,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5244,7 +5222,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5291,7 +5269,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5338,7 +5316,7 @@ html {
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -5383,7 +5361,7 @@ html {
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.065" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.066" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -5447,7 +5425,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -5539,7 +5517,7 @@ html {
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.065" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.066" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -5848,11 +5826,11 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.065 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
+/* Build 2.066 — motore audio a campioni di pianoforte, ottimizzato per bassa latenza iOS. */
 const PIANO_SAMPLE_DEFS = [
-  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.065" },
-  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.065" },
-  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.065" }
+  { id: "C3", freq: 130.81278265, url: "Assets/audio/piano-C3.wav?v=2.066" },
+  { id: "C4", freq: 261.62556530, url: "Assets/audio/piano-C4.wav?v=2.066" },
+  { id: "C5", freq: 523.25113060, url: "Assets/audio/piano-C5.wav?v=2.066" }
 ];
 let pianoSampleBuffers = [];
 let pianoSampleLoadPromise = null;
@@ -6153,7 +6131,7 @@ function playTone(freq, durationMs) {
   playPianoFrequency(effectiveFreq, durationMs);
 }
 
-/* Build 2.065 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
+/* Build 2.066 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
   playPianoFrequency(freq, durationMs);
@@ -6236,7 +6214,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.065 — Metronome + Audio pill logic (all levels)
+/* Build 2.066 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO cliccando il pallino verde centrale
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -6435,7 +6413,6 @@ function colorNoteElementByName(noteObj) {
   const el = noteObj.element;
   const head = el.querySelector(".note-head");
   const parts = el.querySelectorAll(".note-stem, .note-flag");
-  const smuflParts = el.querySelectorAll(".smufl-note-glyph, .smufl-dot-glyph");
 
   if (head) {
     head.style.stroke = color;
@@ -6443,9 +6420,6 @@ function colorNoteElementByName(noteObj) {
   }
   parts.forEach(p => {
     p.style.stroke = color;
-  });
-  smuflParts.forEach(p => {
-    p.style.fill = color;
   });
 
   // Manteniamo la classe come marcatore logico
@@ -6478,8 +6452,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.065"
-    : "Assets/staff-base-treble.png?v=2.065";
+    ? "Assets/staff-base-bass.png?v=2.066"
+    : "Assets/staff-base-treble.png?v=2.066";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -8535,7 +8509,82 @@ const NOTE_HEAD_RX = 10.5;   // raggio orizzontale pallino
 const NOTE_HEAD_RY = 7.5;   // raggio verticale pallino
 const STEM_X       = NOTE_HEAD_RX; // gambo tangente al bordo destro del pallino
 
-/* Build 2.065 — geometria orizzontale delle battute.
+/* Build 2.066 — subset SMuFL usato esclusivamente per le figure dei livelli 4–8.
+   Il gruppo continua a essere traslato sulla medesima (cx, cy) già calcolata dalla
+   logica del gioco. Gli offset qui sotto compensano soltanto le metriche interne
+   del font, mantenendo il centro della testa esattamente sulla coordinata cy. */
+const MR_SMUFL_GLYPHS = Object.freeze({
+  noteWhole:       String.fromCodePoint(0xE1D2),
+  noteHalfUp:      String.fromCodePoint(0xE1D3),
+  noteQuarterUp:   String.fromCodePoint(0xE1D5),
+  note8thUp:       String.fromCodePoint(0xE1D7),
+  augmentationDot:String.fromCodePoint(0xE1E7),
+  restWhole:       String.fromCodePoint(0xE4E3),
+  restHalf:        String.fromCodePoint(0xE4E4),
+  restQuarter:     String.fromCodePoint(0xE4E5),
+  rest8th:         String.fromCodePoint(0xE4E6)
+});
+
+const MR_SMUFL_NOTE_METRICS = Object.freeze({
+  semibreve:  { glyph:MR_SMUFL_GLYPHS.noteWhole,     size:60, x:-15.42, y:8.04 },
+  minima:     { glyph:MR_SMUFL_GLYPHS.noteHalfUp,    size:60, x:-11.91, y:8.04 },
+  semiminima: { glyph:MR_SMUFL_GLYPHS.noteQuarterUp, size:60, x:-12.03, y:8.16 },
+  croma:      { glyph:MR_SMUFL_GLYPHS.note8thUp,     size:60, x:-12.03, y:8.16 }
+});
+
+const MR_SMUFL_REST_METRICS = Object.freeze({
+  semibreve:  { glyph:MR_SMUFL_GLYPHS.restWhole,   size:44, x:-17.23, y:7.15 },
+  minima:     { glyph:MR_SMUFL_GLYPHS.restHalf,    size:44, x:-17.23, y:10.73 },
+  semiminima: { glyph:MR_SMUFL_GLYPHS.restQuarter, size:42, x:-7.52,  y:21.02 },
+  croma:      { glyph:MR_SMUFL_GLYPHS.rest8th,     size:45, x:-8.15,  y:22.48 }
+});
+
+function appendSmuflAugmentationDotMR(group, xCenter, yCenter=0) {
+  const dot=document.createElementNS("http://www.w3.org/2000/svg","text");
+  const size=60;
+  // Il glifo ha advance zero: questi offset allineano il centro visivo a xCenter/yCenter.
+  dot.setAttribute("x",String(xCenter-2.82));
+  dot.setAttribute("y",String(yCenter+16.68));
+  dot.setAttribute("font-size",String(size));
+  dot.classList.add("smufl-augmentation-dot");
+  dot.textContent=MR_SMUFL_GLYPHS.augmentationDot;
+  group.appendChild(dot);
+  return dot;
+}
+
+function appendSmuflNotePartsMR(group,durationName) {
+  const dotted=typeof durationName==="string" && durationName.endsWith("_puntata");
+  const baseName=dotted?durationName.replace(/_puntata$/,''):durationName;
+  const metric=MR_SMUFL_NOTE_METRICS[baseName] || MR_SMUFL_NOTE_METRICS.semiminima;
+  const glyph=document.createElementNS("http://www.w3.org/2000/svg","text");
+  glyph.setAttribute("x",String(metric.x));
+  glyph.setAttribute("y",String(metric.y));
+  glyph.setAttribute("font-size",String(metric.size));
+  glyph.classList.add("note-head","smufl-note-glyph");
+  glyph.dataset.smuflDuration=baseName;
+  glyph.textContent=metric.glyph;
+  group.appendChild(glyph);
+  if(dotted) appendSmuflAugmentationDotMR(group,23,0);
+  return glyph;
+}
+
+function appendSmuflRestPartsMR(group,durationName) {
+  const dotted=typeof durationName==="string" && durationName.endsWith("_puntata");
+  const baseName=dotted?durationName.replace(/_puntata$/,''):durationName;
+  const metric=MR_SMUFL_REST_METRICS[baseName] || MR_SMUFL_REST_METRICS.semiminima;
+  const glyph=document.createElementNS("http://www.w3.org/2000/svg","text");
+  glyph.setAttribute("x",String(metric.x));
+  glyph.setAttribute("y",String(metric.y));
+  glyph.setAttribute("font-size",String(metric.size));
+  glyph.classList.add("smufl-rest-glyph");
+  glyph.dataset.smuflDuration=baseName;
+  glyph.textContent=metric.glyph;
+  group.appendChild(glyph);
+  if(dotted) appendSmuflAugmentationDotMR(group,(baseName==="semibreve"||baseName==="minima")?21:14,0);
+  return glyph;
+}
+
+/* Build 2.066 — geometria orizzontale delle battute.
    I bordi usati qui corrispondono alle stanghette realmente visibili
    nel raster del pentagramma singolo (3000 px -> viewBox 1000).
    Le stanghette interne vengono quindi equidistanti tra loro e l'ultima
@@ -8546,7 +8595,7 @@ const MR_MEASURE_LEFT_GAP = 36;
 const MR_FIRST_MEASURE_LEFT_GAP = 100;
 const MR_MEASURE_RIGHT_GAP = 52;
 
-/* Build 2.065 — la prima battuta è larga 4/3 rispetto alla precedente
+/* Build 2.066 — la prima battuta è larga 4/3 rispetto alla precedente
    larghezza uniforme. Lo spazio supplementare compensa l'ingombro della
    chiave senza cambiare la larghezza totale del pentagramma; le battute
    successive si dividono in parti uguali lo spazio rimanente. */
@@ -8579,120 +8628,38 @@ function noteXInsideMeasureMR(index, count, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * t;
 }
 
+/* Build 2.066 — controllo canonico della durata: una battuta in 4/4 deve
+   contenere esattamente 8 unità di croma. Per le durate prive di `units`
+   (L4/L8) il valore viene ricavato dai beat senza modificare la logica pitch. */
+function durationUnitsMR(duration) {
+  if (!duration) return 0;
+  const explicitUnits = Number(duration.units);
+  if (Number.isFinite(explicitUnits)) return explicitUnits;
+  const beats = Number(duration.beats);
+  if (!Number.isFinite(beats)) return 0;
+  return beats * 2;
+}
+function measureUnitsMR(pattern) {
+  if (!Array.isArray(pattern)) return 0;
+  return pattern.reduce((sum, duration) => sum + durationUnitsMR(duration), 0);
+}
+function measureIsExactlyFourFourMR(pattern) {
+  return Array.isArray(pattern) && pattern.length > 0 && measureUnitsMR(pattern) === 8;
+}
 
-/* Build 2.065 — renderer musicale SMuFL per i Livelli 4–8.
-   I simboli dinamici usano i code point canonici SMuFL; il font locale è un
-   sottoinsieme incorporato nell'app, quindi la resa non dipende dai font di iOS.
-   La coordinata cy continua ad essere la sorgente di verità dell'altezza: il
-   centro della testa della nota viene allineato metricamente a cy. */
-const MR_SMUFL = Object.freeze({
-  noteWhole: "\uE1D2",
-  noteHalfUp: "\uE1D3",
-  noteQuarterUp: "\uE1D5",
-  note8thUp: "\uE1D7",
-  augmentationDot: "\uE1E7",
-  accidentalFlat: "\uE260",
-  accidentalNatural: "\uE261",
-  accidentalSharp: "\uE262",
-  restWhole: "\uE4E3",
-  restHalf: "\uE4E4",
-  restQuarter: "\uE4E5",
-  rest8th: "\uE4E6"
-});
-const MR_SMUFL_NOTE_SIZE = 66;
-const MR_SMUFL_NOTEHEAD_CENTER_Y_EM = 0.134;
-const MR_SINGLE_STAFF_LINES = [92.31,107.69,123.08,138.46,153.85];
-const MR_SINGLE_STAFF_STEP = 15.38;
-
-function baseDurationNameSMuFLMR(durationName){
-  return String(durationName||"").replace(/_puntata$/," ").trim();
-}
-function noteGlyphForDurationSMuFLMR(durationName){
-  const base=baseDurationNameSMuFLMR(durationName);
-  if(base==="semibreve") return {glyph:MR_SMUFL.noteWhole, originXEm:.257};
-  if(base==="minima") return {glyph:MR_SMUFL.noteHalfUp, originXEm:.1985};
-  if(base==="croma") return {glyph:MR_SMUFL.note8thUp, originXEm:.200};
-  return {glyph:MR_SMUFL.noteQuarterUp, originXEm:.2005};
-}
-function restGlyphForDurationSMuFLMR(durationName){
-  const base=baseDurationNameSMuFLMR(durationName);
-  if(base==="semibreve") return MR_SMUFL.restWhole;
-  if(base==="minima") return MR_SMUFL.restHalf;
-  if(base==="croma") return MR_SMUFL.rest8th;
-  return MR_SMUFL.restQuarter;
-}
-function appendSmuflTextMR(parent,glyph,x,y,fontSize,classNames="smufl-glyph",anchor="start"){
-  const el=document.createElementNS("http://www.w3.org/2000/svg","text");
-  el.setAttribute("x",String(x));
-  el.setAttribute("y",String(y));
-  el.setAttribute("font-size",String(fontSize));
-  el.setAttribute("font-family","MusicRainbow SMuFL");
-  el.setAttribute("text-anchor",anchor);
-  el.setAttribute("aria-hidden","true");
-  String(classNames||"").split(/\s+/).filter(Boolean).forEach(c=>el.classList.add(c));
-  el.textContent=glyph;
-  parent.appendChild(el);
-  return el;
-}
-function isOnStaffLineSMuFLMR(cy,lines,tolerance=1.35){
-  return Array.isArray(lines)&&lines.some(y=>Math.abs(Number(cy)-Number(y))<=tolerance);
-}
-function dotYOffsetSMuFLMR(cy,lines,staffStep){
-  return isOnStaffLineSMuFLMR(cy,lines) ? -(Number(staffStep)||MR_SINGLE_STAFF_STEP)/2 : 0;
-}
-function appendAccidentalSMuFLMR(group,kind){
-  const size=46;
-  if(kind==="flat"){
-    // bbox verticale del glifo: -25..524; baseline scelta per centrarlo sulla testa.
-    return appendSmuflTextMR(group,MR_SMUFL.accidentalFlat,-18.5,0.2495*size,size,"smufl-glyph smufl-accidental-glyph","middle");
+/* Build 2.066 — la X deriva dall'attacco ritmico effettivo nella battuta,
+   non dal numero di simboli presenti. 0..4 beat occupano la stessa area utile
+   già usata dal layout, quindi le coordinate verticali/pitch restano invariate. */
+function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
+  const leftGap = firstMeasure ? MR_FIRST_MEASURE_LEFT_GAP : MR_MEASURE_LEFT_GAP;
+  let leftX = fromX + leftGap;
+  let rightX = toX - MR_MEASURE_RIGHT_GAP;
+  if (rightX <= leftX) {
+    leftX = fromX + Math.min(28, Math.max(12, (toX-fromX)*0.18));
+    rightX = toX - Math.min(34, Math.max(16, (toX-fromX)*0.22));
   }
-  if(kind==="sharp"){
-    // bbox verticale del glifo: -233..590; baseline scelta per centrarlo sulla testa.
-    return appendSmuflTextMR(group,MR_SMUFL.accidentalSharp,-23,0.1785*size,size,"smufl-glyph smufl-accidental-glyph","middle");
-  }
-  return null;
-}
-function appendNoteSMuFLMR(parent,cx,cy,durationName,options={}){
-  const group=document.createElementNS("http://www.w3.org/2000/svg","g");
-  group.classList.add("note-symbol","smufl-note-symbol");
-  group.setAttribute("transform",`translate(${cx}, ${cy})`);
-  group.dataset.durationName=durationName;
-  if(options.midi!==undefined&&options.midi!==null) group.dataset.midi=String(options.midi);
-
-  if(options.ledger){
-    const ledger=document.createElementNS("http://www.w3.org/2000/svg","line");
-    ledger.setAttribute("x1",String(options.ledgerX1??-20));
-    ledger.setAttribute("x2",String(options.ledgerX2??20));
-    ledger.setAttribute("y1","0");ledger.setAttribute("y2","0");
-    ledger.classList.add(options.ledgerClass||"ledger-line");
-    group.appendChild(ledger);
-  }
-
-  appendAccidentalSMuFLMR(group,options.accidentalKind||"");
-
-  const spec=noteGlyphForDurationSMuFLMR(durationName);
-  const size=Number(options.noteSize)||MR_SMUFL_NOTE_SIZE;
-  // Tutti i glifi usati condividono il centro della testa a circa y=0.134em.
-  // L'origine x è specifica: per la croma evita che la bandierina sposti il pitch.
-  appendSmuflTextMR(
-    group,spec.glyph,-spec.originXEm*size,MR_SMUFL_NOTEHEAD_CENTER_Y_EM*size,size,
-    "smufl-glyph smufl-note-glyph","start"
-  );
-
-  if(String(durationName||"").endsWith("_puntata")){
-    const dotSize=56;
-    const lines=options.staffLines||MR_SINGLE_STAFF_LINES;
-    const staffStep=Number(options.staffStep)||MR_SINGLE_STAFF_STEP;
-    const desiredY=dotYOffsetSMuFLMR(cy,lines,staffStep);
-    // augmentationDot ha centro verticale a circa 0.278em e larghezza ~0.094em.
-    appendSmuflTextMR(group,MR_SMUFL.augmentationDot,15,desiredY+0.278*dotSize,dotSize,"smufl-glyph smufl-dot-glyph","start");
-  }
-  parent.appendChild(group);
-  return group;
-}
-function resetSmuflNoteColorMR(element){
-  if(!element)return;
-  element.querySelectorAll(".smufl-note-glyph,.smufl-dot-glyph").forEach(g=>{g.style.fill="";});
+  const beat = Math.max(0, Math.min(4, Number(beatInMeasure) || 0));
+  return leftX + (rightX - leftX) * (beat / 4);
 }
 
 function createNotesL4() {
@@ -8730,7 +8697,7 @@ function createNotesL4() {
   const startX = MR_SINGLE_STAFF_LEFT_X;
   const endX = MR_SINGLE_STAFF_RIGHT_X;
 
-  // Build 2.065 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
+  // Build 2.066 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
   // La geometria resta condivisa con measureBoundsMR/noteXInsideMeasureMR:
   // prima battuta più larga per la chiave e margine sicuro prima di ogni stanghetta.
   const measureCount = 4;
@@ -8763,10 +8730,12 @@ function createNotesL4() {
   });
 
   // Genera esattamente quattro battute complete da 4/4.
-  const measuresL4 = Array.from(
-    { length: measureCount },
-    () => pickMeasurePatternL4(durationsPool)
-  );
+  const measuresL4 = Array.from({ length: measureCount }, () => {
+    const pattern = pickMeasurePatternL4(durationsPool);
+    if (measureIsExactlyFourFourMR(pattern)) return pattern;
+    const semiminima = DURATIONS_L4.find(d => d.name === "semiminima") || { name:"semiminima", beats:1 };
+    return [semiminima, semiminima, semiminima, semiminima];
+  });
 
   let lastName = null;
   let lastOct = null;
@@ -8781,10 +8750,11 @@ function createNotesL4() {
 
   function placeMeasure(pattern, fromX, toX) {
     const count = pattern.length;
-    if (count === 0) return;
+    if (count === 0 || !measureIsExactlyFourFourMR(pattern)) return;
+    let beatInMeasure = 0;
     for (let i = 0; i < count; i++) {
       const p = takeRandomPositionFromPool();
-      const cx = noteXInsideMeasureMR(i, count, fromX, toX, Math.abs(fromX-startX) < 0.01);
+      const cx = noteXAtBeatMR(beatInMeasure, fromX, toX, Math.abs(fromX-startX) < 0.01);
       const cy = getStaffY(p.noteName, p.octave);
 
       const noteName = p.noteName;
@@ -8814,10 +8784,11 @@ function createNotesL4() {
       const beats = duration.beats;
       const durationName = duration.name;
 
-      const group = appendNoteSMuFLMR(
-        (staffGroupL4 || staffSvgL4), cx, cy, durationName,
-        {staffLines:MR_SINGLE_STAFF_LINES,staffStep:MR_SINGLE_STAFF_STEP}
-      );
+      const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      group.classList.add("note-symbol");
+      group.setAttribute("transform", "translate(" + cx + ", " + cy + ")");
+      appendSmuflNotePartsMR(group,durationName);
+      (staffGroupL4 || staffSvgL4).appendChild(group);
 
       const obj = {
         cx,
@@ -8830,6 +8801,7 @@ function createNotesL4() {
         element: group
       };
       currentNotesL4.push(obj);
+      beatInMeasure += Number(beats) || 0;
     }
   }
 
@@ -8866,7 +8838,6 @@ function restartSamePatternL4() {
         parts.forEach(p => {
           p.style.stroke = "";
         });
-        resetSmuflNoteColorMR(el);
 
         if (el.classList) {
           el.classList.remove("note-played");
@@ -9226,60 +9197,34 @@ function pickPositionMR(pool,kind){
 }
 function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
   const displayName=p.noteName, octave=p.octave;
-  const pitchName=kind==="sharp"?MR_SHARP_PITCH[displayName]:kind==="flat"?MR_FLAT_PITCH[displayName]:displayName;
   const accidental=kind==="sharp"?"♯":kind==="flat"?"♭":"";
+  const pitchName=kind==="sharp"?MR_SHARP_PITCH[displayName]:kind==="flat"?MR_FLAT_PITCH[displayName]:displayName;
   const baseFreq=NOTE_FREQS[pitchName]||NOTE_FREQS[displayName]||440;
   const freq=baseFreq*(octave===2?2:1);
   const durationName=duration.name;
-  const group=appendNoteSMuFLMR(
-    (s.staffGroup||s.staffSvg),cx,cy,durationName,
-    {
-      accidentalKind:kind==="sharp"?"sharp":kind==="flat"?"flat":"",
-      staffLines:MR_SINGLE_STAFF_LINES,
-      staffStep:MR_SINGLE_STAFF_STEP
-    }
-  );
+  const group=document.createElementNS("http://www.w3.org/2000/svg","g");
+  group.classList.add("note-symbol"); group.setAttribute("transform",`translate(${cx}, ${cy})`);
+  if(accidental){
+    const acc=document.createElementNS("http://www.w3.org/2000/svg","text");
+    acc.setAttribute("x","-29");acc.setAttribute("y","7");acc.setAttribute("font-size",accidental==="♭"?"30":"25");
+    acc.classList.add("accidental-symbol");acc.textContent=accidental;group.appendChild(acc);
+  }
+  appendSmuflNotePartsMR(group,durationName);
+  (s.staffGroup||s.staffSvg).appendChild(group);
   return {cx,cy,noteName:pitchName,displayNoteName:displayName,accidental,octave,freq,beats:duration.beats,durationName,element:group,isRest:false};
 }
 
-/* Build 2.065 — pause SMuFL standard per L5-L8.
-   whole/half sono registrate sulle linee corrette; quarter/eighth sono centrate
-   metricamente sul rigo. Il punto usa augmentationDot SMuFL e cade in uno spazio. */
-function appendRestGlyphMR(parent,cx,cy,durationName,className="rest-symbol",staffStep=MR_SINGLE_STAFF_STEP) {
+/* Build 2.066 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
+   La logica ritmica e le coordinate delle battute restano invariate. */
+function appendRestGlyphMR(parent,cx,cy,durationName,className="rest-symbol") {
   const group=document.createElementNS("http://www.w3.org/2000/svg","g");
-  group.classList.add(className,"rest-symbol","smufl-rest-symbol");
+  group.classList.add(className,"rest-symbol");
   group.setAttribute("transform",`translate(${cx}, ${cy})`);
   group.dataset.durationName=durationName;
-
-  const base=baseDurationNameSMuFLMR(durationName);
-  const glyph=restGlyphForDurationSMuFLMR(durationName);
-  let size=44, baselineY=0;
-  if(base==="semibreve"){
-    size=34;
-    // restWhole: il bordo superiore pende dalla linea immediatamente sopra la centrale.
-    baselineY=-staffStep + 0.512*size;
-  } else if(base==="minima"){
-    size=34;
-    // restHalf: il bordo inferiore poggia sulla linea centrale.
-    baselineY=0.244*size;
-  } else if(base==="croma"){
-    size=46;
-    baselineY=0.4995*size;
-  } else {
-    size=44;
-    baselineY=0.5005*size;
-  }
-  appendSmuflTextMR(group,glyph,0,baselineY,size,"smufl-glyph smufl-rest-glyph","middle");
-
-  if(String(durationName||"").endsWith("_puntata")){
-    const dotSize=56;
-    const desiredY=-staffStep/2;
-    appendSmuflTextMR(group,MR_SMUFL.augmentationDot,16.5,desiredY+0.278*dotSize,dotSize,"smufl-glyph smufl-dot-glyph","start");
-  }
+  appendSmuflRestPartsMR(group,durationName);
   parent.appendChild(group);
   return group;
 }
-
 function drawRhythmRestMR(s,cx,duration){
   const durationName=duration.name;
   const element=appendRestGlyphMR((s.staffGroup||s.staffSvg),cx,123.08,durationName,"rest-symbol-rhythm");
@@ -9313,8 +9258,7 @@ function planRestsForPatternsMR(patterns){
 
 function measureIsFourFourMR(pattern, previousDotted=false, level=null, previousDurationName=""){
   if(!Array.isArray(pattern) || !pattern.length || pattern.length>4) return false;
-  const units=pattern.reduce((sum,d)=>sum+(Number(d.units)||Math.round((Number(d.beats)||0)*2)),0);
-  if(units!==MR_MEASURE_UNITS) return false;
+  if(!measureIsExactlyFourFourMR(pattern)) return false;
   let prev=!!previousDotted;
   let prevName=typeof previousDurationName === "string" ? previousDurationName : "";
   let dottedQuarterCount=0;
@@ -9355,6 +9299,12 @@ function createNotesRhythmMR(s){
             ? [MR_DUR.minima,MR_DUR.minima]
             : [MR_DUR.minima_puntata,MR_DUR.semiminima]);
     }
+    // Ultima barriera anti-regressione: nessuna battuta viene disegnata se non vale 8/8 esatti.
+    if(!measureIsExactlyFourFourMR(pattern)){
+      pattern=forceCrome
+        ? [MR_DUR.minima,MR_DUR.semiminima,MR_DUR.croma,MR_DUR.croma]
+        : [MR_DUR.semibreve];
+    }
     patterns.push(pattern);
     previousDotted=isDottedDurationMR(pattern[pattern.length-1]);
     previousDurationName=(pattern[pattern.length-1]&&pattern[pattern.length-1].name)||"";
@@ -9369,7 +9319,7 @@ function createNotesRhythmMR(s){
     for(let i=0;i<count;i++){
       const duration=pattern[i];
       const onsetBeat=measureIndex*4+beatInMeasure;
-      const cx=noteXInsideMeasureMR(i,count,fromX,toX,Math.abs(fromX-startX)<0.01);
+      const cx=noteXAtBeatMR(beatInMeasure,fromX,toX,Math.abs(fromX-startX)<0.01);
       if(restFlags[measureIndex] && restFlags[measureIndex][i]){
         const rest=drawRhythmRestMR(s,cx,duration);
         rest.onsetBeat=onsetBeat;
@@ -9396,7 +9346,7 @@ function createNotesRhythmMR(s){
 }
 function restartPatternMR(s){
   s.index=0;s.errors=0;s.lastHit=null;
-  s.notes.forEach(n=>{if(!n.element)return;const head=n.element.querySelector(".note-head");if(head){head.style.stroke="";head.style.fill="";}n.element.querySelectorAll(".note-stem,.note-flag").forEach(x=>x.style.stroke="");resetSmuflNoteColorMR(n.element);n.element.classList.remove("note-played");});
+  s.notes.forEach(n=>{if(!n.element)return;const head=n.element.querySelector(".note-head");if(head){head.style.stroke="";head.style.fill="";}n.element.querySelectorAll(".note-stem,.note-flag").forEach(x=>x.style.stroke="");n.element.classList.remove("note-played");});
   updateErrorPill(s.errorPill,0,7);
 }
 function playVictoryPatternMR(s){
@@ -9464,7 +9414,7 @@ if(staffSvgL5&&rhythmL5.piano){createNotesL5();renderPianoRhythmMR(rhythmL5);}if
 
 /* ===========================
    LIVELLO 8 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.065: motore del precedente Livello 6 trasferito integralmente al Livello 8.
+   Build 2.066: motore del precedente Livello 6 trasferito integralmente al Livello 8.
    =========================== */
 
 const staffSvgL8=document.getElementById("staffSvgL8");
@@ -9499,7 +9449,7 @@ const L8_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L8_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L8_VISIBLE_MIDI=new Set([...L8_WHITE_MIDI,...L8_BLACK_MIDI]);
 
-/* Build 2.065 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+/* Build 2.066 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
    Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l8.png:
    - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
    - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
@@ -9632,35 +9582,27 @@ function onPatternCompletedL8(){
 }
 
 function appendNoteVisualL8(cx,pitch,durationName){
-  const geom=L8_STAFF_GEOMETRY[pitch.staff]||L8_STAFF_GEOMETRY.treble;
-  const step=geom.stepY*2;
-  const lines=pitch.staff==="bass"
-    ? [geom.anchorY-step*2,geom.anchorY-step,geom.anchorY,geom.anchorY+step,geom.anchorY+step*2]
-    : [geom.anchorY-step*4,geom.anchorY-step*3,geom.anchorY-step*2,geom.anchorY-step,geom.anchorY];
-  const group=appendNoteSMuFLMR(
-    (staffGroupL8||staffSvgL8),cx,pitch.y,durationName,
-    {
-      midi:pitch.midi,
-      ledger:!!pitch.ledger,
-      ledgerClass:"ledger-line-l8",
-      ledgerX1:-20,ledgerX2:20,
-      staffLines:lines,
-      staffStep:step
-    }
-  );
+  const group=document.createElementNS("http://www.w3.org/2000/svg","g");
+  group.classList.add("note-symbol");
+  group.setAttribute("transform",`translate(${cx}, ${pitch.y})`);
+  group.dataset.midi=String(pitch.midi);
+  if(pitch.ledger){
+    const ledger=document.createElementNS("http://www.w3.org/2000/svg","line");
+    ledger.setAttribute("x1",-20);ledger.setAttribute("x2",20);ledger.setAttribute("y1",0);ledger.setAttribute("y2",0);
+    ledger.classList.add("ledger-line-l8");group.appendChild(ledger);
+  }
+  appendSmuflNotePartsMR(group,durationName);
+  (staffGroupL8||staffSvgL8).appendChild(group);
   return {midi:pitch.midi,noteName:pitch.noteName,octave:pitch.octave,element:group,isRest:false};
 }
-
 function appendRestVisualL8(cx,voice,durationName){
-  const geom=L8_STAFF_GEOMETRY[voice]||L8_STAFF_GEOMETRY.treble;
-  const cy=geom.anchorY-(voice==="treble"?2*geom.stepY:0); // linea centrale reale del rigo
-  const staffStep=geom.stepY*2;
-  const element=appendRestGlyphMR((staffGroupL8||staffSvgL8),cx,cy,durationName,"rest-symbol-l8",staffStep);
+  const cy=voice==="treble"?93:246;
+  const element=appendRestGlyphMR((staffGroupL8||staffSvgL8),cx,cy,durationName,"rest-symbol-l8");
   element.dataset.voice=voice;
   return {voice,cx,cy,durationName,element,isRest:true};
 }
 
-/* Build 2.065 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
+/* Build 2.066 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
    Le suddivisioni del rigo superiore e inferiore sono diverse: ad esempio una minima
    sopra può corrispondere a due semiminime sotto. Le coordinate X derivano dal beat
    reale della battuta, così gli attacchi coincidono solo quando musicalmente devono. */
@@ -9755,7 +9697,7 @@ function createNotesL8(){
   staffSvgL8.querySelectorAll(".note-symbol,.rest-symbol,.measure-bar-l8").forEach(e=>e.remove());
   currentChordsL8=[];currentVoiceNotesL8={bass:[],treble:[]};currentVoiceRestsL8={bass:[],treble:[]};currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);
 
-  /* Build 2.065 — L8 ha sempre due battute di identica larghezza.
+  /* Build 2.066 — L8 ha sempre due battute di identica larghezza.
      Qui NON si applica la prima-battuta 4/3 usata nei pentagrammi da quattro battute. */
   const measureCount=2;
   const startX=37.5,endX=945;
@@ -9802,6 +9744,10 @@ function createNotesL8(){
     if(m===0 && pair.bass.length>2 && Math.random()<.35)markOneRestL8(pair.bass,{forbidFirst:true,forbidLast:false});
     if(m===1 && pair.treble.length>2 && Math.random()<.35)markOneRestL8(pair.treble,{forbidFirst:false,forbidLast:true});
 
+    // Anche dopo la sostituzione nota→pausa, ciascuna voce deve restare esattamente 8/8.
+    if(!measureIsExactlyFourFourMR(pair.treble)) pair.treble=makeRhythmPatternL8(["minima","minima"]);
+    if(!measureIsExactlyFourFourMR(pair.bass)) pair.bass=makeRhythmPatternL8(["semiminima","semiminima","semiminima","semiminima"]);
+
     const assigned=assignPitchesToMeasureL8(pair.treble,pair.bass,chordPool,previousPair);
     previousPair=assigned.lastPair;
     const leftMargin=(m===0?100:36),rightMargin=52,usable=Math.max(1,(to-from)-leftMargin-rightMargin);
@@ -9844,7 +9790,7 @@ function createNotesL8(){
 
 function restartSamePatternL8(){
   clearPendingChordL8();currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;
-  currentChordsL8.forEach(ch=>[ch.bass,ch.treble].forEach(n=>{if(!n||!n.element)return;const h=n.element.querySelector(".note-head");if(h){h.style.stroke="";h.style.fill="";}n.element.querySelectorAll(".note-stem,.note-flag").forEach(x=>x.style.stroke="");resetSmuflNoteColorMR(n.element);n.element.classList.remove("note-played","chord-note-pending");}));
+  currentChordsL8.forEach(ch=>[ch.bass,ch.treble].forEach(n=>{if(!n||!n.element)return;const h=n.element.querySelector(".note-head");if(h){h.style.stroke="";h.style.fill="";}n.element.querySelectorAll(".note-stem,.note-flag").forEach(x=>x.style.stroke="");n.element.classList.remove("note-played","chord-note-pending");}));
   updateErrorPill(errorPillL8,0,7);
 }
 

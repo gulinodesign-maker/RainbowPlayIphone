@@ -8,17 +8,337 @@
   "bpm": 72,
   "timeSignature": "4/4",
   "measures": [
-    {"treble":[{"onset":0,"duration":"semiminima","rest":true},{"onset":1,"duration":"semiminima","midi":67},{"onset":2,"duration":"minima","midi":69}],"bass":[{"onset":0,"duration":"semibreve","midi":48}]},
-    {"treble":[{"onset":0,"duration":"minima","midi":71},{"onset":2,"duration":"minima","midi":69}],"bass":[{"onset":0,"duration":"minima","midi":55},{"onset":2,"duration":"minima","midi":52}]},
-    {"treble":[{"onset":0,"duration":"semiminima","midi":67},{"onset":1,"duration":"semiminima","rest":true},{"onset":2,"duration":"semiminima","midi":64},{"onset":3,"duration":"semiminima","midi":65}],"bass":[{"onset":0,"duration":"semibreve","midi":53}]},
-    {"treble":[{"onset":0,"duration":"minima","midi":67},{"onset":2,"duration":"minima","midi":64}],"bass":[{"onset":0,"duration":"minima","midi":55},{"onset":2,"duration":"minima","midi":52}]},
-    {"treble":[{"onset":0,"duration":"semiminima","midi":62},{"onset":1,"duration":"semiminima","midi":64},{"onset":2,"duration":"semiminima","midi":65},{"onset":3,"duration":"semiminima","midi":67}],"bass":[{"onset":0,"duration":"semibreve","midi":50}]},
-    {"treble":[{"onset":0,"duration":"minima","midi":69},{"onset":2,"duration":"semiminima","rest":true},{"onset":3,"duration":"semiminima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":57},{"onset":2,"duration":"minima","midi":55}]},
-    {"treble":[{"onset":0,"duration":"semiminima_puntata","midi":65},{"onset":1.5,"duration":"croma","midi":64},{"onset":2,"duration":"minima","midi":62}],"bass":[{"onset":0,"duration":"semibreve","midi":53}]},
-    {"treble":[{"onset":0,"duration":"minima","midi":64},{"onset":2,"duration":"minima","midi":60}],"bass":[{"onset":0,"duration":"minima","midi":52},{"onset":2,"duration":"minima","midi":48}]},
-    {"treble":[{"onset":0,"duration":"semiminima","rest":true},{"onset":1,"duration":"semiminima","midi":64},{"onset":2,"duration":"semiminima","midi":67},{"onset":3,"duration":"semiminima","midi":69}],"bass":[{"onset":0,"duration":"semibreve","midi":48}]},
-    {"treble":[{"onset":0,"duration":"minima","midi":71},{"onset":2,"duration":"minima","midi":67}],"bass":[{"onset":0,"duration":"minima","midi":55},{"onset":2,"duration":"minima","midi":52}]},
-    {"treble":[{"onset":0,"duration":"semiminima","midi":65},{"onset":1,"duration":"semiminima","midi":64},{"onset":2,"duration":"semiminima","midi":62},{"onset":3,"duration":"semiminima","midi":60}],"bass":[{"onset":0,"duration":"semibreve","midi":53}]},
-    {"treble":[{"onset":0,"duration":"semibreve","midi":60}],"bass":[{"onset":0,"duration":"semibreve","midi":48}]}
-  ]
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "rest": true
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 69
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 48
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 71
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 69
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 55
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 52
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "rest": true
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 64
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 65
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 53
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 64
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 55
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 52
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 62
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 64
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 65
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 50
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 69
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "rest": true
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 57
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 55
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima_puntata",
+          "midi": 65
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 64
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 62
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 53
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 64
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 60
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 52
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 48
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "rest": true
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 64
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 69
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 48
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 71
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 67
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 55
+        },
+        {
+          "onset": 2,
+          "duration": "minima",
+          "midi": 52
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 65
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 64
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 62
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 60
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 53
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 60
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semibreve",
+          "midi": 48
+        }
+      ]
+    }
+  ],
+  "cover": {
+    "theme": "night",
+    "icon": "⭐",
+    "image": "data:image/webp;base64,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"
+  }
 }

@@ -1,0 +1,798 @@
+{
+  "format": "music-rainbow-score",
+  "version": 1,
+  "id": "i-soldatini",
+  "title": "I soldatini",
+  "composer": "Autore non indicato",
+  "difficulty": "Principiante",
+  "bpm": 152,
+  "timeSignature": "4/4",
+  "measures": [
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 0.5,
+          "duration": "croma",
+          "midi": 77
+        }
+      ],
+      "bass": []
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 79
+        },
+        {
+          "onset": 1,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 77
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 0.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 1,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 79
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 77
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 77
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 76
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 79
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 79
+        },
+        {
+          "onset": 1,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 77
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 0.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 1,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 79
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 77
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 77
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 76
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima_puntata",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 72
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 76
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 74
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 72
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 76
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 74
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima_puntata",
+          "midi": 76
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 79
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 79
+        },
+        {
+          "onset": 1,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 77
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 0.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 1,
+          "duration": "croma",
+          "midi": 79
+        },
+        {
+          "onset": 1.5,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 72
+        },
+        {
+          "onset": 3,
+          "duration": "croma",
+          "midi": 76
+        },
+        {
+          "onset": 3.5,
+          "duration": "croma",
+          "midi": 79
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 77
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 77
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 74
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 76
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 3,
+          "duration": "semiminima",
+          "midi": 67
+        }
+      ]
+    },
+    {
+      "treble": [
+        {
+          "onset": 0,
+          "duration": "minima_puntata",
+          "midi": 72
+        }
+      ],
+      "bass": [
+        {
+          "onset": 0,
+          "duration": "semiminima",
+          "midi": 60
+        },
+        {
+          "onset": 1,
+          "duration": "semiminima",
+          "midi": 67
+        },
+        {
+          "onset": 2,
+          "duration": "semiminima",
+          "midi": 60
+        }
+      ]
+    }
+  ]
+}

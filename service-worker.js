@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.114 */
-const BUILD = "2.114";
+/* Music Rainbow Service Worker - Build 2.115 */
+const BUILD = "2.115";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -44,7 +44,7 @@ self.addEventListener("install", event => {
   event.waitUntil((async () => {
     // Gli asset locali restano obbligatori: se uno manca, l'installazione non deve mascherarlo.
     const precache = await caches.open(PRECACHE);
-    await precache.addAll(PRECACHE_URLS);
+    await precache.addAll(PRECACHE_URLS.map(url => new Request(url, { cache: "reload" })));
 
     // Il banco piano remoto viene scaldato in cache senza rendere fragile l'update PWA:
     // un eventuale problema temporaneo del CDN non blocca l'attivazione della nuova build.
@@ -70,7 +70,7 @@ self.addEventListener("activate", event => {
     );
     await self.clients.claim();
 
-    // Build 2.114 — refresh affidabile anche se la pagina ancora aperta appartiene
+    // Build 2.115 — refresh affidabile anche se la pagina ancora aperta appartiene
     // a una build precedente con un vecchio guard di sessionStorage. L'activate
     // avviene una sola volta per questo worker, quindi la navigazione non crea loop.
     const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
@@ -108,7 +108,7 @@ async function cacheFirst(request) {
 
 async function networkFirst(request) {
   try {
-    const res = await fetch(request);
+    const res = await fetch(request, { cache: "no-store" });
     if (res && res.ok) {
       const cache = await caches.open(PRECACHE);
       cache.put(request, res.clone());

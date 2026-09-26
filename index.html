@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
-  <link rel="manifest" href="manifest.webmanifest?v=2.141" />
+  <link rel="manifest" href="manifest.webmanifest?v=2.144" />
 
   <meta charset="UTF-8" />
   <title>Music Rainbow — Livelli</title>
@@ -20,7 +20,7 @@
   <style>
     @font-face {
       font-family: "MusicRainbow SMuFL";
-      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.141") format("woff2");
+      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.144") format("woff2");
       font-style: normal;
       font-weight: 400;
       font-display: block;
@@ -451,7 +451,7 @@ html {
       color: #f9fafb;
     }
 
-    /* Build 2.141 — un gettone custodito in uno scrigno rende evidente Modalità Play.
+    /* Build 2.144 — un gettone custodito in uno scrigno rende evidente Modalità Play.
        Il lampeggio usa solo opacità/scala: nessuna ombra o effetto neon. */
     .home-play-token-ready {
       border: 3px solid #facc15;
@@ -1625,7 +1625,7 @@ svg.staff {
   margin-bottom: 0;
 }
 
-    /* Build 2.141 — Play: più spazio tra pentagramma e tastiera */
+    /* Build 2.144 — Play: più spazio tra pentagramma e tastiera */
     #playPage #staffSvgPlay {
       margin-bottom: clamp(14px, 2.5vh, 34px);
     }
@@ -2980,7 +2980,7 @@ body {
 }
 
 /* ===========================
-   RESPONSIVE CLEANUP (Build 2.141)
+   RESPONSIVE CLEANUP (Build 2.144)
    - full background coverage (iPad)
    - centered layout on large screens
    - safe-area spacing (iPhone swipe)
@@ -3057,7 +3057,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.141 — UI allineamenti */
+/* PATCH Build 2.144 — UI allineamenti */
 .top-row { grid-template-columns: auto minmax(0,1fr) auto !important; }
 .top-left-controls { justify-self: start !important; }
 .top-right-controls { justify-self: end !important; }
@@ -3076,7 +3076,7 @@ body {
 
 
 <style>
-/* PATCH Build 2.141 — Keyboard non incollata al bordo (iOS/Safari)
+/* PATCH Build 2.144 — Keyboard non incollata al bordo (iOS/Safari)
    Fix: elimina spinta "a fondo pagina" e solleva fisicamente la tastiera rispetto alla Home Bar. */
 .keyboard-container {
   margin-top: 0 !important;
@@ -3090,7 +3090,7 @@ body {
 
 
 <style id="flat-overrides">
-/* FLAT OVERRIDES (Build 2.141): remove shadows/neon/pulsing across all levels */
+/* FLAT OVERRIDES (Build 2.144): remove shadows/neon/pulsing across all levels */
 .rainbow-title span,
 .home-title,
 .page-title,
@@ -3137,7 +3137,7 @@ button,
 
 
 <style>
-/* Build 2.141 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
+/* Build 2.144 — Metronome + Audio pill (all levels) — proportions + iPhone safe layout */
 .metronome-audio-pill{
   position: relative;
   display: flex;
@@ -3253,7 +3253,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot{
 
 
 <style id="ios-responsive-2035">
-/* Build 2.141 — adattamento iOS/iPad: layout, safe-area e touch targets.
+/* Build 2.144 — adattamento iOS/iPad: layout, safe-area e touch targets.
    Solo presentazione: nessuna coordinata musicale o logica di gioco viene modificata. */
 
 :root {
@@ -3767,7 +3767,7 @@ body {
 }
 
 
-/* Build 2.141 — Home update: main graphic, rectangular buttons, settings page */
+/* Build 2.144 — Home update: main graphic, rectangular buttons, settings page */
 .home-rainbow-graphic {
   width: min(100%, 430px) !important;
   height: auto !important;
@@ -3904,7 +3904,7 @@ body {
 
 
 <style id="build-2039-display-fixes">
-/* Build 2.141 — copertura completa del fondo iOS e selettore livelli squadrato. */
+/* Build 2.144 — copertura completa del fondo iOS e selettore livelli squadrato. */
 html {
   background-color: #74E7DF !important;
 }
@@ -3948,7 +3948,7 @@ html {
 
 
 <style id="build-2039-levels-5-6">
-/* Build 2.141 — livelli 5 e 6. */
+/* Build 2.144 — livelli 5 e 6. */
 #levelSelectOverlay .level-select-btn:nth-child(5) { border-color:#38bdf8; background:rgba(14,116,144,.48); }
 #levelSelectOverlay .level-select-btn:nth-child(6) { border-color:#a855f7; background:rgba(88,28,135,.48); }
 
@@ -3968,7 +3968,7 @@ html {
   flex:0 0 auto;
 }
 
-/* Build 2.141 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
+/* Build 2.144 — L6: spartito statico ad alta risoluzione + layer SVG dinamico.
    La grafica di base (graffa, chiavi, righe e stanghette) non viene più ricostruita dal motore. */
 #level8Page .staff-bg-l8,
 #level8Page .staff-overlay-l8 {
@@ -4035,7 +4035,7 @@ html {
 
 
 <style id="build-2045-staff-images">
-/* Build 2.141 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
+/* Build 2.144 — pentagrammi statici ad alta risoluzione + layer SVG dinamico.
    Le linee SVG originali restano invisibili come riferimenti geometrici per le note. */
 .staff-stage-single {
   position: relative;
@@ -4123,7 +4123,7 @@ html {
 
 
 <style id="build-2048-l6-fullwidth">
-/* Build 2.141 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
+/* Build 2.144 — L6 full-width: stesso motore/coordinate, solo viewport grafico più largo. */
 #level8Page .top-panel {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
@@ -4180,7 +4180,7 @@ html {
   }
 }
 
-/* Build 2.141 — risposta touch immediata per tastiera e note su iOS. */
+/* Build 2.144 — risposta touch immediata per tastiera e note su iOS. */
 .piano-keys .white-key,
 .piano-keys .black-key,
 .note-buttons button,
@@ -4191,7 +4191,7 @@ html {
 </style>
 
 <style id="build-2051-levels-5-8">
-/* Build 2.141 — selettore livelli 2 righe x 4 colonne. */
+/* Build 2.144 — selettore livelli 2 righe x 4 colonne. */
 #levelSelectOverlay .level-select-box{width:min(620px,94vw)!important;}
 #levelSelectOverlay .level-select-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(100%,540px)!important;gap:10px!important;}
 #levelSelectOverlay .level-select-btn{min-width:0!important;min-height:58px!important;border-radius:14px!important;}
@@ -4217,7 +4217,7 @@ html {
 #level8Page .measure-bar-l8{stroke:#111827;stroke-width:1.8;vector-effect:non-scaling-stroke;}
 #level8Page .ledger-line-l8{stroke:#111827;stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none;}
 #level8Page .chord-note-pending .note-head{stroke:#0ea5e9!important;stroke-width:4!important;}
-/* Build 2.141 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
+/* Build 2.144 — figure ritmiche L4-L8 rese tramite glifi SMuFL. */
 #level1Page .smufl-l123-glyph,#level2Page .smufl-l123-glyph,#level3Page .smufl-l123-glyph,
 #learnTempoPage .smufl-note-glyph,#level4Page .smufl-note-glyph,#level5Page .smufl-note-glyph,#level6Page .smufl-note-glyph,#level7Page .smufl-note-glyph,#level8Page .smufl-note-glyph,
 #level4Page .smufl-note-flag-glyph,#level5Page .smufl-note-flag-glyph,#level6Page .smufl-note-flag-glyph,#level7Page .smufl-note-flag-glyph,#level8Page .smufl-note-flag-glyph,
@@ -4231,7 +4231,7 @@ html {
   pointer-events:none;
   text-rendering:geometricPrecision;
 }
-/* Build 2.141 — L1-L3: i precedenti pallini sono semibrevi SMuFL.
+/* Build 2.144 — L1-L3: i precedenti pallini sono semibrevi SMuFL.
    Il gruppo conserva gli stessi cx/cy logici e quindi la stessa associazione pitch/riga-spazio. */
 #level1Page .smufl-whole-note-wrap,#level2Page .smufl-whole-note-wrap,#level3Page .smufl-whole-note-wrap{
   fill:#111827;
@@ -4279,7 +4279,7 @@ html {
 
 
 <style id="build-2058-l8-keyboard-edge-alignment">
-/* Build 2.141 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
+/* Build 2.144 — L8: i bordi verticali reali del grand staff seguono esattamente i bordi della tastiera.
    Il raster contiene margini interni (barra sx a x=75/2000, barra finale dx a x=1890/2000);
    la misura effettiva viene sincronizzata in JS con #pianoKeysL8 per iPhone/iPad. */
 #level8Page .middle-area {
@@ -4302,7 +4302,7 @@ html {
 </style>
 
 <style id="patch-2075-metronome-learn-smufl">
-/* Build 2.141 — controllo metronomo: vero pulsante compatto accanto al BPM, non LED. */
+/* Build 2.144 — controllo metronomo: vero pulsante compatto accanto al BPM, non LED. */
 .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
   position:relative;
   z-index:3;
@@ -4345,7 +4345,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
   }
 }
 
-/* Build 2.141 — Impara Note usa noteheadWhole SMuFL mantenendo gli stessi centri musicali. */
+/* Build 2.144 — Impara Note usa noteheadWhole SMuFL mantenendo gli stessi centri musicali. */
 #learnNotesPage .learn-note .smufl-learn-glyph{
   font-family:"MusicRainbow SMuFL";
   font-style:normal;
@@ -4363,7 +4363,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="patch-2079-metronome-volume">
-/* Build 2.141 — long press su MET: volume metronomo separato dal pianoforte. */
+/* Build 2.144 — long press su MET: volume metronomo separato dal pianoforte. */
 .metronome-volume-popover{
   position:fixed;
   z-index:10050;
@@ -4403,7 +4403,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2084-score-library">
-/* Build 2.141 — Libreria Spartiti: scaffale semplice, grande e touch-friendly per bambini. */
+/* Build 2.144 — Libreria Spartiti: scaffale semplice, grande e touch-friendly per bambini. */
 .home-level-scores{background:linear-gradient(to bottom,#fb923c,#f97316);color:#431407;}
 #scoreLibraryPage .app{width:100%;min-height:0;}
 #scoreLibraryPage .top-panel{flex:0 0 auto;}
@@ -4414,7 +4414,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 }
 .score-library-intro{text-align:center;color:#4b2e18;font-size:1rem;font-weight:700;margin:0 0 8px;}
 .score-library-empty{text-align:center;font-size:1.15rem;font-weight:800;color:#4b2e18;padding:28px 10px;}
-/* Build 2.141 — importazione locale .mrscore: nessun filtro accept lato iOS; validazione interna dopo la selezione. */
+/* Build 2.144 — importazione locale .mrscore: nessun filtro accept lato iOS; validazione interna dopo la selezione. */
 .score-library-import-btn{
   appearance:none;border:2px solid #cbd5e1;background:#fff;color:#1f2937;border-radius:12px;
   height:48px;min-width:118px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;
@@ -4437,7 +4437,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 .score-shelf-plank{position:absolute;left:-2px;right:-2px;bottom:0;height:24px;background:linear-gradient(to bottom,#b96f36 0 34%,#8d4b25 34% 100%);border:2px solid #6f391c;border-radius:4px 4px 8px 8px;}
 .score-book{appearance:none;border:0;background:transparent;padding:0;width:100%;min-width:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;touch-action:manipulation;}
 .score-book-cover{width:min(100%,156px);aspect-ratio:3/4;border:3px solid rgba(80,38,16,.72);border-radius:10px 10px 5px 5px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;color:#fff;text-align:center;overflow:hidden;transform-origin:bottom center;transition:transform .12s ease;}
-/* Build 2.141 — la copertina può contenere una vera immagine incorporata nel file .mrscore. */
+/* Build 2.144 — la copertina può contenere una vera immagine incorporata nel file .mrscore. */
 .score-book-cover.has-image{padding:0;background:#fff;color:#fff;display:block;}
 .score-book-cover-image{width:100%;height:100%;min-width:0;min-height:0;object-fit:cover;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none;}
 .score-book-cover.has-image .score-book-icon{display:none;}
@@ -4455,7 +4455,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 .score-book-midi-badge{display:inline-flex;align-items:center;justify-content:center;margin-left:5px;padding:2px 6px;border:1.5px solid #475569;border-radius:999px;background:#eef2ff;color:#312e81;font-size:.66rem;font-weight:900;line-height:1;vertical-align:middle;white-space:nowrap;}
 .score-book-midi-badge.ready{background:#dcfce7;color:#166534;border-color:#22c55e;}
 .score-book-medal{display:inline-block;margin-left:4px;padding:1px 6px;border:2px solid #ca8a04;border-radius:999px;background:#fef08a;color:#713f12;}
-/* Build 2.141 — la medaglia speciale del brano vive sopra la sua copertina.
+/* Build 2.144 — la medaglia speciale del brano vive sopra la sua copertina.
    Lo slot resta presente anche prima della conquista, così lo scaffale non salta. */
 .score-book-card{width:100%;display:flex;flex-direction:column;align-items:center;min-width:0;}
 .score-book-topline{width:min(100%,176px);display:flex;align-items:flex-end;justify-content:center;gap:8px;margin:0 auto 4px;}
@@ -4475,7 +4475,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 #scorePlayerPage .staff-bg-l8,#scorePlayerPage .staff-overlay-l8{position:absolute;inset:0;width:100%;height:100%;display:block;}
 #scorePlayerPage .staff-bg-l8{object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none;}
 #scorePlayerPage .staff-overlay-l8{overflow:visible;shape-rendering:geometricPrecision;}
-/* Build 2.141 — player automatico compatto nella top bar dello spartito. */
+/* Build 2.144 — player automatico compatto nella top bar dello spartito. */
 #scorePlayerPage .top-right-controls{gap:5px;}
 #scorePlayerPage .score-auto-player{display:flex;align-items:center;gap:3px;flex:0 0 auto;}
 #scorePlayerPage .score-auto-btn{
@@ -4498,12 +4498,12 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 .score-midi-lock-notice{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);z-index:8;max-width:min(92%,620px);padding:6px 11px;border:2px solid #7c3aed;border-radius:999px;background:rgba(255,255,255,.96);color:#4c1d95;font-size:.75rem;font-weight:900;line-height:1.1;text-align:center;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .score-midi-lock-notice[hidden]{display:none!important;}
 #scorePlayerPage.score-midi-locked .keyboard-container{opacity:.55;}
-/* Build 2.141 — Modalità Spartito: se il brano richiede MIDI oppure una tastiera
+/* Build 2.144 — Modalità Spartito: se il brano richiede MIDI oppure una tastiera
    esterna è collegata, la tastiera virtuale sparisce e lo spartito usa il centro
    verticale del display. La geometria musicale resta invariata. */
 #scorePlayerPage #scoreStaffStage{touch-action:pan-y;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;}
 #scorePlayerPage.score-keyboard-hidden .keyboard-container{display:none!important;}
-/* Build 2.141 — quando la tastiera virtuale non occupa più il fondo, la middle-area
+/* Build 2.144 — quando la tastiera virtuale non occupa più il fondo, la middle-area
    diventa il vero spazio elastico fra top bar e safe-area inferiore. Il pentagramma
    può così usare i margini automatici sull'asse verticale ed essere realmente
    centrato nello spazio disponibile, lasciando respiro alle note fuori rigo. */
@@ -4527,7 +4527,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 #scorePlayerPage .measure-bar-l8{stroke:#111827;stroke-width:1.8;vector-effect:non-scaling-stroke;}
 #scorePlayerPage .ledger-line-l8{stroke:#111827;stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none;}
 #scorePlayerPage .score-note-pending .note-head{stroke:#0ea5e9!important;stroke-width:4!important;}
-/* Build 2.141 — durante il player automatico si illumina la testa della nota
+/* Build 2.144 — durante il player automatico si illumina la testa della nota
    realmente in riproduzione, senza modificare la valutazione dell'esercizio. */
 #scorePlayerPage .note-symbol.score-auto-active .note-head{
   fill:#facc15!important;
@@ -4545,7 +4545,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 #scorePlayerPage .score-note-beam{fill:#111827;stroke:none;pointer-events:none;}
 #scorePlayerPage .smufl-note-flag-glyph{fill:#111827;stroke:none!important;}
 #scorePlayerPage .piano-keys,#scorePlayerPage .white-key,#scorePlayerPage .black-key{touch-action:none;-webkit-user-select:none;user-select:none;}
-/* Build 2.141 — una sola riga di comandi: il selettore mani è accanto a reset/libreria.
+/* Build 2.144 — una sola riga di comandi: il selettore mani è accanto a reset/libreria.
    L'avanzamento vive nella cella centrale della stessa top bar, in posizione assoluta:
    quindi non aggiunge altezza e lascia alla tastiera lo stesso spazio verticale dei livelli. */
 #scorePlayerPage .score-top-panel{padding-bottom:0!important;}
@@ -4589,7 +4589,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 #scorePlayerPage.score-mode-treble .score-voice-bass,
 #scorePlayerPage.score-mode-bass .score-voice-treble{opacity:.28;}
 #scorePlayerPage .score-voice-treble,#scorePlayerPage .score-voice-bass{transition:opacity .15s linear;}
-/* Build 2.141 — Modalità Spartito: la finestra è sempre agganciata ai confini
+/* Build 2.144 — Modalità Spartito: la finestra è sempre agganciata ai confini
    delle battute e mostra due battute intere. Il clip SVG è solo orizzontale:
    le note di battute adiacenti restano invisibili, mentre le estensioni verticali
    (note acute/gravi e tagli addizionali) continuano a poter uscire dal rigo. */
@@ -4645,7 +4645,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 @media (max-width:720px){.score-shelf-books{grid-template-columns:repeat(3,minmax(0,1fr));}}
 @media (prefers-reduced-motion:reduce){.score-book-cover,.score-progress-fill{animation:none!important;transition:none!important;}}
 
-/* Build 2.141 — configurazione MIDI fuori dal layout dei livelli: nessun ingombro aggiuntivo su iPhone. */
+/* Build 2.144 — configurazione MIDI fuori dal layout dei livelli: nessun ingombro aggiuntivo su iPhone. */
 .settings-midi-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px;}
 .settings-midi-status{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:7px 10px;border:2px solid #cbd5e1;border-radius:12px;background:#fff;color:#334155;font-weight:900;}
 .settings-midi-status.connected{border-color:#22c55e;background:#dcfce7;color:#166534;}
@@ -4654,7 +4654,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 .settings-midi-help{margin:7px 0 0;color:#475569;font-size:.78rem;font-weight:700;line-height:1.25;}
 
 
-/* Build 2.141 — icone UI semplici e chiusure uniformi, senza toccare i glifi musicali. */
+/* Build 2.144 — icone UI semplici e chiusure uniformi, senza toccare i glifi musicali. */
 .level-select-box{position:relative;}
 .level-select-actions{height:0!important;margin:0!important;min-height:0!important;}
 .level-select-close,
@@ -4694,7 +4694,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2099-ui-settings">
-/* Build 2.141 — icone più visibili e colorate + riordino pagina Impostazioni. */
+/* Build 2.144 — icone più visibili e colorate + riordino pagina Impostazioni. */
 .home-level-btn,.settings-midi-connect,.settings-midi-status,.score-library-import-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;}
 .home-level-btn::before,.score-library-import-btn::before{font-size:1.18em;line-height:1;flex:0 0 auto;}
 #btnOpenLevelSelect::before{content:"🎯";}
@@ -4733,6 +4733,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 .settings-midi-status{justify-content:flex-start;min-height:50px;padding:12px 14px;border-radius:16px;border:2px solid #93c5fd;background:#eff6ff;color:#1d4ed8;font-weight:900;}
 .settings-midi-status.connected{border-color:#86efac;background:#dcfce7;color:#166534;}
 .settings-midi-connect{min-height:50px;padding:12px 16px;border-radius:16px;border:2px solid #fdba74;background:#fff7ed;color:#c2410c;font-weight:900;box-shadow:none;}
+.settings-midi-connect.connected{border-color:#fca5a5;background:#fff1f2;color:#be123c;}
 .settings-midi-select-wrap{grid-column:1 / -1;display:flex;flex-direction:column;gap:7px;}
 .settings-field-label{font-size:0.92rem;font-weight:800;color:#334155;}
 .settings-midi-select{width:100%;min-height:50px;padding:10px 14px;border-radius:16px;border:2px solid #cbd5e1;background:#f8fafc;color:#0f172a;font:inherit;font-weight:800;}
@@ -4757,7 +4758,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 </style>
 
 <style id="build-2100-learn-chest-icons">
-/* Build 2.141 — icone Impara più chiare e scrigno ripristinato nei trofei. */
+/* Build 2.144 — icone Impara più chiare e scrigno ripristinato nei trofei. */
 #homeLearnMainBtn::before{font-size:1.28em;}
 #learnSelectOverlay .level-select-btn{display:flex;align-items:center;justify-content:center;}
 #learnSelectOverlay .learn-choice-icon{display:inline-flex;align-items:center;justify-content:center;font-size:clamp(2.55rem,7vw,4rem);line-height:1;min-width:1.2em;min-height:1.2em;filter:none;}
@@ -4780,7 +4781,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2105-progression-teacher-learn">
-/* Build 2.141 — progressione per sessioni, Modalità Teacher e pulsanti Impara quadrati. */
+/* Build 2.144 — progressione per sessioni, Modalità Teacher e pulsanti Impara quadrati. */
 #levelSelectOverlay .level-select-btn.level-locked{
   opacity:.58!important;filter:saturate(.28)!important;cursor:not-allowed!important;
   background:rgba(71,85,105,.52)!important;border-color:#94a3b8!important;box-shadow:none!important;
@@ -4822,7 +4823,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 }
 </style>
 <style id="build-2102-score-slurs">
-/* Build 2.141 — legature di frase puramente grafiche nella Modalità Spartito.
+/* Build 2.144 — legature di frase puramente grafiche nella Modalità Spartito.
    Non modificano durata, input, correttezza o avanzamento musicale. */
 #scorePlayerPage .score-phrase-slur{
   fill:none;
@@ -4837,7 +4838,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 </style>
 
 <style id="build-2139-midi-ledgers-visible">
-/* Build 2.141 — Le linee addizionali generate per pitch MIDI non vengono scambiate per guide invisibili. */
+/* Build 2.144 — Le linee addizionali generate per pitch MIDI non vengono scambiate per guide invisibili. */
 #staffSvgL1 > .midi-ledger-line,
 #staffSvg > .midi-ledger-line,
 #staffSvgL3 > .midi-ledger-line,
@@ -4857,7 +4858,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 </style>
 
 <style id="build-2107-rhythm-beams-ledgers">
-/* Build 2.141 — travi L5-L8 e linee addizionali sempre leggibili. */
+/* Build 2.144 — travi L5-L8 e linee addizionali sempre leggibili. */
 #level5Page .rhythm-note-beam,#level6Page .rhythm-note-beam,#level7Page .rhythm-note-beam,#level8Page .rhythm-note-beam{fill:#111827;stroke:none;pointer-events:none;}
 #level5Page .rhythm-note-stem,#level6Page .rhythm-note-stem,#level7Page .rhythm-note-stem,#level8Page .rhythm-note-stem{fill:#111827;stroke:none;pointer-events:none;shape-rendering:geometricPrecision;}
 #level5Page .rhythm-notehead-glyph,#level6Page .rhythm-notehead-glyph,#level7Page .rhythm-notehead-glyph,#level8Page .rhythm-notehead-glyph{font-family:"MusicRainbow SMuFL";font-style:normal;font-weight:400;fill:#111827;stroke:none;pointer-events:none;text-rendering:geometricPrecision;}
@@ -4865,7 +4866,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 </style>
 
 <style id="build-2111-learn-notes-guide">
-/* Build 2.141 — Impara: associazione visiva nome ↔ posizione ↔ tasto. */
+/* Build 2.144 — Impara: associazione visiva nome ↔ posizione ↔ tasto. */
 #learnNotesPage .staff-container{
   display:flex;
   flex-direction:column;
@@ -4950,7 +4951,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 </style>
 
 <style id="build-2122-learn-tempo-tap">
-/* Build 2.141 — Impara Tempo: soglia a mezza barra, pill uniformi/cliccabili e demo tamburello più lunga. */
+/* Build 2.144 — Impara Tempo: soglia a mezza barra, pill uniformi/cliccabili e demo tamburello più lunga. */
 #learnTempoPage #bpmTabTempo,
 #learnTempoPage #metronomeDotTempo{display:none!important;}
 #learnTempoPage #metronomeAudioPillTempo{
@@ -5183,7 +5184,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2129-learn-tempo-step2">
-/* Build 2.141 — Impara Tempo: secondo passo ritmico solo tamburo, senza metronomo. */
+/* Build 2.144 — Impara Tempo: secondo passo ritmico solo tamburo, senza metronomo. */
 #learnTempoPage .tempo-step-toggle-btn{
   position:absolute;
   right:18px;
@@ -5242,7 +5243,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2130-learn-notes-layout">
-/* Build 2.141 — Impara Note: guida sopra il pentagramma, note giustificate e colore solo alla selezione. */
+/* Build 2.144 — Impara Note: guida sopra il pentagramma, note giustificate e colore solo alla selezione. */
 #learnNotesPage .staff-container{
   display:flex;
   flex-direction:column;
@@ -5293,7 +5294,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2132-learn-popup-notes-steps">
-/* Build 2.141 — Popup Impara + percorso Impara Note in due passaggi. */
+/* Build 2.144 — Popup Impara + percorso Impara Note in due passaggi. */
 #learnSelectOverlay .learn-select-box-mr{
   width:min(88vw,520px);
   padding:24px 26px 20px;
@@ -5384,7 +5385,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2133-language-settings">
-/* Build 2.141 — lingua dell'app e nomenclatura delle note. */
+/* Build 2.144 — lingua dell'app e nomenclatura delle note. */
 .settings-panel-icon-language{background:#e0f2fe;color:#0369a1;}
 .settings-language-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:4px;}
 .settings-language-field{display:flex;flex-direction:column;gap:7px;min-width:0;text-align:left;}
@@ -5399,7 +5400,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
 
 <style id="build-2136-learn-notes-guide-align">
-/* Build 2.141 — Impara Note: barra nome compatta e allineata al pulsante di avanzamento. */
+/* Build 2.144 — Impara Note: barra nome compatta e allineata al pulsante di avanzamento. */
 #learnNotesPage .learn-guide-card{
   position:absolute!important;
   top:82px!important;
@@ -5448,10 +5449,10 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
   <div class="home-container">
     <div class="home-left">
 <div class="home-rainbow-graphic">
-      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.141" alt="Arcobaleno musicale" />
+      <img class="home-rainbow-image" src="Assets/Home-rainbow-main.png?v=2.144" alt="Arcobaleno musicale" />
     </div>
       <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
-      <div class="home-version-label">Build 2.141</div>
+      <div class="home-version-label">Build 2.144</div>
     </div>
     <div class="home-right">
 <div class="home-levels">
@@ -5852,7 +5853,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6003,7 +6004,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 </div>
 
 <!-- ===========================
-     LIBRERIA SPARTITI — Build 2.141
+     LIBRERIA SPARTITI — Build 2.144
      =========================== -->
 <div id="scoreLibraryPage" class="page-container" style="display:none">
   <div class="app">
@@ -6067,7 +6068,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
       </div>
     </div>
     <div id="scoreStaffStage" class="staff-stage-l8" aria-label="Spartito a doppio pentagramma">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.141" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.144" alt="" aria-hidden="true" />
       <svg id="scoreStaffSvg" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <defs>
           <clipPath id="scoreHorizontalClip" clipPathUnits="userSpaceOnUse">
@@ -6135,7 +6136,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6230,7 +6231,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6319,7 +6320,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6409,7 +6410,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6488,7 +6489,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -6535,7 +6536,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -6582,7 +6583,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -6627,7 +6628,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.141" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.144" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -6692,7 +6693,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
       <span id="tempoBeatDots" class="tempo-beat-dots" aria-label="Colpi riconosciuti"></span>
 
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 220">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6740,7 +6741,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     <div class="tempo-action-container">
       <button id="tempoActionBtn" class="tempo-action-btn" type="button" aria-label="Tamburo per battere il tempo">
-        <img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.141" alt="" aria-hidden="true" draggable="false" />
+        <img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.144" alt="" aria-hidden="true" draggable="false" />
       </button>
     </div>
 
@@ -6788,7 +6789,7 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.141" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.144" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -6901,11 +6902,12 @@ html.metronome-on .metronome-audio-pill .metronome-dot.metronome-toggle-btn{
               <button id="midiConnectBtn" class="settings-midi-connect" type="button">🔌 Collega MIDI</button>
               <label class="settings-midi-select-wrap">
                 <span class="settings-field-label" id="settingsMidiRangeLabelMR">Estensione controller MIDI</span>
-                <select id="midiRangeSelect" class="settings-midi-select" aria-label="Estensione controller MIDI">
+                <select id="midiRangeSelect" class="settings-midi-select" aria-label="Tastiera da usare">
+                  <option id="midiVirtualOptionMR" value="virtual" selected>Tastiera virtuale · C4–B5</option>
                   <option value="25">25 tasti · C3–C5</option>
                   <option value="49">49 tasti · C2–C6</option>
                   <option value="61">61 tasti · C2–C7</option>
-                  <option value="88" selected>88 tasti · A0–C8</option>
+                  <option value="88">88 tasti · A0–C8</option>
                 </select>
               </label>
             </div>
@@ -6995,7 +6997,7 @@ const NOTES = [
 
 
 /* ===========================
-   BUILD 2.141 — LINGUA APP + NOMI NOTE
+   BUILD 2.144 — LINGUA APP + NOMI NOTE
    =========================== */
 const MR_LANGUAGE_KEY="musicRainbowLanguage";
 const MR_NOTE_NAMING_KEY="musicRainbowNoteNaming";
@@ -7007,23 +7009,23 @@ try{const v=localStorage.getItem(MR_NOTE_NAMING_KEY);if(v==="letters"||v==="solf
 
 const MR_I18N={
   it:{
-    settings:"Impostazioni",settings_sub:"Scegli il profilo da usare nell'app.",language:"Lingua",language_note:"Scegli la lingua dell'app e come visualizzare i nomi delle note.",app_language:"Lingua dell'app",note_names:"Nomi delle note",profile:"Profilo",profile_note:"Scegli chi sta giocando in questo momento.",male:"Maschio",female:"Femmina",midi:"Tastiera MIDI",midi_note:"Collega una tastiera vera e scegli il registro da usare.",midi_range:"Estensione controller MIDI",teacher:"Modalità Teacher",teacher_note:"Sblocca tutti i livelli e Modalità Play con una password locale.",teacher_help:"La password viene scelta alla prima attivazione e non prevede recupero o reset.",teacher_off:"🔒 Teacher non attivo",teacher_on:"✅ Teacher attivo · tutto sbloccato",teacher_activate:"🔑 Attiva Teacher",teacher_setup:"🔑 Imposta Teacher",teacher_disable:"Disattiva Teacher",choose_level:"Scegli il livello",scores:"Spartiti",play:"Modalità Play",learn:"Impara",trophies:"Scrigno dei trofei",level_sub:"Completa 10 sessioni valide per sbloccare il livello successivo.",learn_notes:"Impara le note",learn_tempo:"Impara il tempo",explore_notes:"Esplora le note",find_note:"Trova la nota",score_library:"Libreria Spartiti",import:"Importa",score_library_note:"Scegli uno spartito dallo scaffale e suonalo dall'inizio alla fine.",clear_chests:"Cancella tutti gli scrigni",rotate:"Ruota il tuo iPhone",rotate_note:"Music Rainbow funziona solo in orizzontale (landscape).",midi_disconnected:"🎹 MIDI non collegato",midi_connected:"🎹 MIDI collegato",midi_connect:"🔌 Collega MIDI",midi_unavailable:"Su iPhone/iPad la PWA non riceve direttamente USB MIDI. La stessa logica è pronta per il bridge Core MIDI della futura app nativa.",play_again:"Suona ancora",library:"Libreria",score:"Spartito",settings_language_aria:"Lingua dell'app",settings_note_aria:"Nomi delle note"},
+    settings:"Impostazioni",settings_sub:"Scegli il profilo da usare nell'app.",language:"Lingua",language_note:"Scegli la lingua dell'app e come visualizzare i nomi delle note.",app_language:"Lingua dell'app",note_names:"Nomi delle note",profile:"Profilo",profile_note:"Scegli chi sta giocando in questo momento.",male:"Maschio",female:"Femmina",midi:"Tastiera MIDI",midi_note:"Scegli la tastiera virtuale oppure collega una tastiera MIDI esterna.",midi_range:"Tastiera da usare",teacher:"Modalità Teacher",teacher_note:"Sblocca tutti i livelli e Modalità Play con una password locale.",teacher_help:"La password viene scelta alla prima attivazione e non prevede recupero o reset.",teacher_off:"🔒 Teacher non attivo",teacher_on:"✅ Teacher attivo · tutto sbloccato",teacher_activate:"🔑 Attiva Teacher",teacher_setup:"🔑 Imposta Teacher",teacher_disable:"Disattiva Teacher",choose_level:"Scegli il livello",scores:"Spartiti",play:"Modalità Play",learn:"Impara",trophies:"Scrigno dei trofei",level_sub:"Completa 10 sessioni valide per sbloccare il livello successivo.",learn_notes:"Impara le note",learn_tempo:"Impara il tempo",explore_notes:"Esplora le note",find_note:"Trova la nota",score_library:"Libreria Spartiti",import:"Importa",score_library_note:"Scegli uno spartito dallo scaffale e suonalo dall'inizio alla fine.",clear_chests:"Cancella tutti gli scrigni",rotate:"Ruota il tuo iPhone",rotate_note:"Music Rainbow funziona solo in orizzontale (landscape).",midi_disconnected:"🎹 MIDI non collegato",midi_connected:"🎹 MIDI collegato",midi_connect:"🔌 Collega MIDI",midi_disconnect:"🔌 Scollega MIDI",midi_virtual:"Tastiera virtuale · C4–B5",midi_unavailable:"Su iPhone/iPad la PWA non riceve direttamente USB MIDI. La stessa logica è pronta per il bridge Core MIDI della futura app nativa.",play_again:"Suona ancora",library:"Libreria",score:"Spartito",settings_language_aria:"Lingua dell'app",settings_note_aria:"Nomi delle note"},
   en:{
-    settings:"Settings",settings_sub:"Choose the profile to use in the app.",language:"Language",language_note:"Choose the app language and how note names are displayed.",app_language:"App language",note_names:"Note names",profile:"Profile",profile_note:"Choose who is playing right now.",male:"Boy",female:"Girl",midi:"MIDI keyboard",midi_note:"Connect a real keyboard and choose its range.",midi_range:"MIDI controller range",teacher:"Teacher Mode",teacher_note:"Unlock all levels and Play Mode with a local password.",teacher_help:"The password is chosen the first time Teacher Mode is enabled and cannot be recovered or reset.",teacher_off:"🔒 Teacher inactive",teacher_on:"✅ Teacher active · everything unlocked",teacher_activate:"🔑 Enable Teacher",teacher_setup:"🔑 Set up Teacher",teacher_disable:"Disable Teacher",choose_level:"Choose level",scores:"Scores",play:"Play Mode",learn:"Learn",trophies:"Trophy chest",level_sub:"Complete 10 valid sessions to unlock the next level.",learn_notes:"Learn notes",learn_tempo:"Learn rhythm",explore_notes:"Explore notes",find_note:"Find the note",score_library:"Score Library",import:"Import",score_library_note:"Choose a score from the shelf and play it from start to finish.",clear_chests:"Clear all chests",rotate:"Rotate your iPhone",rotate_note:"Music Rainbow works only in landscape orientation.",midi_disconnected:"🎹 MIDI not connected",midi_connected:"🎹 MIDI connected",midi_connect:"🔌 Connect MIDI",midi_unavailable:"On iPhone/iPad the PWA cannot receive USB MIDI directly. The same logic is ready for the Core MIDI bridge in a future native app.",play_again:"Play again",library:"Library",score:"Score",settings_language_aria:"App language",settings_note_aria:"Note names"},
+    settings:"Settings",settings_sub:"Choose the profile to use in the app.",language:"Language",language_note:"Choose the app language and how note names are displayed.",app_language:"App language",note_names:"Note names",profile:"Profile",profile_note:"Choose who is playing right now.",male:"Boy",female:"Girl",midi:"MIDI keyboard",midi_note:"Use the virtual keyboard or connect an external MIDI keyboard.",midi_range:"Keyboard to use",teacher:"Teacher Mode",teacher_note:"Unlock all levels and Play Mode with a local password.",teacher_help:"The password is chosen the first time Teacher Mode is enabled and cannot be recovered or reset.",teacher_off:"🔒 Teacher inactive",teacher_on:"✅ Teacher active · everything unlocked",teacher_activate:"🔑 Enable Teacher",teacher_setup:"🔑 Set up Teacher",teacher_disable:"Disable Teacher",choose_level:"Choose level",scores:"Scores",play:"Play Mode",learn:"Learn",trophies:"Trophy chest",level_sub:"Complete 10 valid sessions to unlock the next level.",learn_notes:"Learn notes",learn_tempo:"Learn rhythm",explore_notes:"Explore notes",find_note:"Find the note",score_library:"Score Library",import:"Import",score_library_note:"Choose a score from the shelf and play it from start to finish.",clear_chests:"Clear all chests",rotate:"Rotate your iPhone",rotate_note:"Music Rainbow works only in landscape orientation.",midi_disconnected:"🎹 MIDI not connected",midi_connected:"🎹 MIDI connected",midi_connect:"🔌 Connect MIDI",midi_disconnect:"🔌 Disconnect MIDI",midi_virtual:"Virtual keyboard · C4–B5",midi_unavailable:"On iPhone/iPad the PWA cannot receive USB MIDI directly. The same logic is ready for the Core MIDI bridge in a future native app.",play_again:"Play again",library:"Library",score:"Score",settings_language_aria:"App language",settings_note_aria:"Note names"},
   es:{
-    settings:"Ajustes",settings_sub:"Elige el perfil que se usará en la app.",language:"Idioma",language_note:"Elige el idioma de la app y cómo mostrar los nombres de las notas.",app_language:"Idioma de la app",note_names:"Nombres de las notas",profile:"Perfil",profile_note:"Elige quién está tocando ahora.",male:"Niño",female:"Niña",midi:"Teclado MIDI",midi_note:"Conecta un teclado real y elige su registro.",midi_range:"Extensión del controlador MIDI",teacher:"Modo Teacher",teacher_note:"Desbloquea todos los niveles y el Modo Play con una contraseña local.",teacher_help:"La contraseña se elige al activar por primera vez el modo Teacher y no tiene recuperación ni restablecimiento.",teacher_off:"🔒 Teacher desactivado",teacher_on:"✅ Teacher activo · todo desbloqueado",teacher_activate:"🔑 Activar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desactivar Teacher",choose_level:"Elige el nivel",scores:"Partituras",play:"Modo Play",learn:"Aprende",trophies:"Cofre de trofeos",level_sub:"Completa 10 sesiones válidas para desbloquear el siguiente nivel.",learn_notes:"Aprende las notas",learn_tempo:"Aprende el ritmo",explore_notes:"Explora las notas",find_note:"Encuentra la nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Elige una partitura y tócala de principio a fin.",clear_chests:"Borrar todos los cofres",rotate:"Gira tu iPhone",rotate_note:"Music Rainbow funciona solo en horizontal.",midi_disconnected:"🎹 MIDI no conectado",midi_connected:"🎹 MIDI conectado",midi_connect:"🔌 Conectar MIDI",midi_unavailable:"En iPhone/iPad la PWA no recibe USB MIDI directamente. La misma lógica está preparada para un futuro puente Core MIDI nativo.",play_again:"Tocar de nuevo",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma de la app",settings_note_aria:"Nombres de las notas"},
+    settings:"Ajustes",settings_sub:"Elige el perfil que se usará en la app.",language:"Idioma",language_note:"Elige el idioma de la app y cómo mostrar los nombres de las notas.",app_language:"Idioma de la app",note_names:"Nombres de las notas",profile:"Perfil",profile_note:"Elige quién está tocando ahora.",male:"Niño",female:"Niña",midi:"Teclado MIDI",midi_note:"Usa el teclado virtual o conecta un teclado MIDI externo.",midi_range:"Teclado a usar",teacher:"Modo Teacher",teacher_note:"Desbloquea todos los niveles y el Modo Play con una contraseña local.",teacher_help:"La contraseña se elige al activar por primera vez el modo Teacher y no tiene recuperación ni restablecimiento.",teacher_off:"🔒 Teacher desactivado",teacher_on:"✅ Teacher activo · todo desbloqueado",teacher_activate:"🔑 Activar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desactivar Teacher",choose_level:"Elige el nivel",scores:"Partituras",play:"Modo Play",learn:"Aprende",trophies:"Cofre de trofeos",level_sub:"Completa 10 sesiones válidas para desbloquear el siguiente nivel.",learn_notes:"Aprende las notas",learn_tempo:"Aprende el ritmo",explore_notes:"Explora las notas",find_note:"Encuentra la nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Elige una partitura y tócala de principio a fin.",clear_chests:"Borrar todos los cofres",rotate:"Gira tu iPhone",rotate_note:"Music Rainbow funciona solo en horizontal.",midi_disconnected:"🎹 MIDI no conectado",midi_connected:"🎹 MIDI conectado",midi_connect:"🔌 Conectar MIDI",midi_disconnect:"🔌 Desconectar MIDI",midi_virtual:"Teclado virtual · C4–B5",midi_unavailable:"En iPhone/iPad la PWA no recibe USB MIDI directamente. La misma lógica está preparada para un futuro puente Core MIDI nativo.",play_again:"Tocar de nuevo",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma de la app",settings_note_aria:"Nombres de las notas"},
   fr:{
-    settings:"Réglages",settings_sub:"Choisis le profil à utiliser dans l'application.",language:"Langue",language_note:"Choisis la langue de l'application et l'affichage des noms de notes.",app_language:"Langue de l'application",note_names:"Noms des notes",profile:"Profil",profile_note:"Choisis qui joue maintenant.",male:"Garçon",female:"Fille",midi:"Clavier MIDI",midi_note:"Connecte un vrai clavier et choisis son étendue.",midi_range:"Étendue du contrôleur MIDI",teacher:"Mode Teacher",teacher_note:"Déverrouille tous les niveaux et le mode Play avec un mot de passe local.",teacher_help:"Le mot de passe est choisi lors de la première activation du mode Teacher et ne peut pas être récupéré ni réinitialisé.",teacher_off:"🔒 Teacher inactif",teacher_on:"✅ Teacher actif · tout déverrouillé",teacher_activate:"🔑 Activer Teacher",teacher_setup:"🔑 Configurer Teacher",teacher_disable:"Désactiver Teacher",choose_level:"Choisis le niveau",scores:"Partitions",play:"Mode Play",learn:"Apprendre",trophies:"Coffre à trophées",level_sub:"Termine 10 sessions valides pour déverrouiller le niveau suivant.",learn_notes:"Apprendre les notes",learn_tempo:"Apprendre le rythme",explore_notes:"Explore les notes",find_note:"Trouve la note",score_library:"Bibliothèque de partitions",import:"Importer",score_library_note:"Choisis une partition et joue-la du début à la fin.",clear_chests:"Effacer tous les coffres",rotate:"Tourne ton iPhone",rotate_note:"Music Rainbow fonctionne uniquement en mode paysage.",midi_disconnected:"🎹 MIDI non connecté",midi_connected:"🎹 MIDI connecté",midi_connect:"🔌 Connecter MIDI",midi_unavailable:"Sur iPhone/iPad, la PWA ne reçoit pas directement l'USB MIDI. La logique est prête pour un futur pont Core MIDI natif.",play_again:"Rejouer",library:"Bibliothèque",score:"Partition",settings_language_aria:"Langue de l'application",settings_note_aria:"Noms des notes"},
+    settings:"Réglages",settings_sub:"Choisis le profil à utiliser dans l'application.",language:"Langue",language_note:"Choisis la langue de l'application et l'affichage des noms de notes.",app_language:"Langue de l'application",note_names:"Noms des notes",profile:"Profil",profile_note:"Choisis qui joue maintenant.",male:"Garçon",female:"Fille",midi:"Clavier MIDI",midi_note:"Utilise le clavier virtuel ou connecte un clavier MIDI externe.",midi_range:"Clavier à utiliser",teacher:"Mode Teacher",teacher_note:"Déverrouille tous les niveaux et le mode Play avec un mot de passe local.",teacher_help:"Le mot de passe est choisi lors de la première activation du mode Teacher et ne peut pas être récupéré ni réinitialisé.",teacher_off:"🔒 Teacher inactif",teacher_on:"✅ Teacher actif · tout déverrouillé",teacher_activate:"🔑 Activer Teacher",teacher_setup:"🔑 Configurer Teacher",teacher_disable:"Désactiver Teacher",choose_level:"Choisis le niveau",scores:"Partitions",play:"Mode Play",learn:"Apprendre",trophies:"Coffre à trophées",level_sub:"Termine 10 sessions valides pour déverrouiller le niveau suivant.",learn_notes:"Apprendre les notes",learn_tempo:"Apprendre le rythme",explore_notes:"Explore les notes",find_note:"Trouve la note",score_library:"Bibliothèque de partitions",import:"Importer",score_library_note:"Choisis une partition et joue-la du début à la fin.",clear_chests:"Effacer tous les coffres",rotate:"Tourne ton iPhone",rotate_note:"Music Rainbow fonctionne uniquement en mode paysage.",midi_disconnected:"🎹 MIDI non connecté",midi_connected:"🎹 MIDI connecté",midi_connect:"🔌 Connecter MIDI",midi_disconnect:"🔌 Déconnecter MIDI",midi_virtual:"Clavier virtuel · C4–B5",midi_unavailable:"Sur iPhone/iPad, la PWA ne reçoit pas directement l'USB MIDI. La logique est prête pour un futur pont Core MIDI natif.",play_again:"Rejouer",library:"Bibliothèque",score:"Partition",settings_language_aria:"Langue de l'application",settings_note_aria:"Noms des notes"},
   de:{
-    settings:"Einstellungen",settings_sub:"Wähle das Profil für die App.",language:"Sprache",language_note:"Wähle die App-Sprache und die Anzeige der Notennamen.",app_language:"App-Sprache",note_names:"Notennamen",profile:"Profil",profile_note:"Wähle, wer gerade spielt.",male:"Junge",female:"Mädchen",midi:"MIDI-Tastatur",midi_note:"Verbinde eine echte Tastatur und wähle ihren Tonumfang.",midi_range:"MIDI-Controller-Umfang",teacher:"Teacher-Modus",teacher_note:"Schaltet alle Level und den Play-Modus mit einem lokalen Passwort frei.",teacher_help:"Das Passwort wird bei der ersten Aktivierung festgelegt und kann nicht wiederhergestellt oder zurückgesetzt werden.",teacher_off:"🔒 Teacher nicht aktiv",teacher_on:"✅ Teacher aktiv · alles freigeschaltet",teacher_activate:"🔑 Teacher aktivieren",teacher_setup:"🔑 Teacher einrichten",teacher_disable:"Teacher deaktivieren",choose_level:"Level wählen",scores:"Noten",play:"Play-Modus",learn:"Lernen",trophies:"Trophäenkiste",level_sub:"Schließe 10 gültige Sitzungen ab, um das nächste Level freizuschalten.",learn_notes:"Noten lernen",learn_tempo:"Rhythmus lernen",explore_notes:"Noten entdecken",find_note:"Finde die Note",score_library:"Notenbibliothek",import:"Importieren",score_library_note:"Wähle ein Stück aus dem Regal und spiele es von Anfang bis Ende.",clear_chests:"Alle Kisten löschen",rotate:"Drehe dein iPhone",rotate_note:"Music Rainbow funktioniert nur im Querformat.",midi_disconnected:"🎹 MIDI nicht verbunden",midi_connected:"🎹 MIDI verbunden",midi_connect:"🔌 MIDI verbinden",midi_unavailable:"Auf iPhone/iPad empfängt die PWA USB-MIDI nicht direkt. Die Logik ist für eine zukünftige native Core-MIDI-Brücke vorbereitet.",play_again:"Nochmal spielen",library:"Bibliothek",score:"Noten",settings_language_aria:"App-Sprache",settings_note_aria:"Notennamen"},
+    settings:"Einstellungen",settings_sub:"Wähle das Profil für die App.",language:"Sprache",language_note:"Wähle die App-Sprache und die Anzeige der Notennamen.",app_language:"App-Sprache",note_names:"Notennamen",profile:"Profil",profile_note:"Wähle, wer gerade spielt.",male:"Junge",female:"Mädchen",midi:"MIDI-Tastatur",midi_note:"Nutze die virtuelle Tastatur oder verbinde eine externe MIDI-Tastatur.",midi_range:"Zu verwendende Tastatur",teacher:"Teacher-Modus",teacher_note:"Schaltet alle Level und den Play-Modus mit einem lokalen Passwort frei.",teacher_help:"Das Passwort wird bei der ersten Aktivierung festgelegt und kann nicht wiederhergestellt oder zurückgesetzt werden.",teacher_off:"🔒 Teacher nicht aktiv",teacher_on:"✅ Teacher aktiv · alles freigeschaltet",teacher_activate:"🔑 Teacher aktivieren",teacher_setup:"🔑 Teacher einrichten",teacher_disable:"Teacher deaktivieren",choose_level:"Level wählen",scores:"Noten",play:"Play-Modus",learn:"Lernen",trophies:"Trophäenkiste",level_sub:"Schließe 10 gültige Sitzungen ab, um das nächste Level freizuschalten.",learn_notes:"Noten lernen",learn_tempo:"Rhythmus lernen",explore_notes:"Noten entdecken",find_note:"Finde die Note",score_library:"Notenbibliothek",import:"Importieren",score_library_note:"Wähle ein Stück aus dem Regal und spiele es von Anfang bis Ende.",clear_chests:"Alle Kisten löschen",rotate:"Drehe dein iPhone",rotate_note:"Music Rainbow funktioniert nur im Querformat.",midi_disconnected:"🎹 MIDI nicht verbunden",midi_connected:"🎹 MIDI verbunden",midi_connect:"🔌 MIDI verbinden",midi_disconnect:"🔌 MIDI trennen",midi_virtual:"Virtuelle Tastatur · C4–B5",midi_unavailable:"Auf iPhone/iPad empfängt die PWA USB-MIDI nicht direkt. Die Logik ist für eine zukünftige native Core-MIDI-Brücke vorbereitet.",play_again:"Nochmal spielen",library:"Bibliothek",score:"Noten",settings_language_aria:"App-Sprache",settings_note_aria:"Notennamen"},
   pt:{
-    settings:"Definições",settings_sub:"Escolhe o perfil a usar na aplicação.",language:"Idioma",language_note:"Escolhe o idioma da aplicação e como mostrar os nomes das notas.",app_language:"Idioma da aplicação",note_names:"Nomes das notas",profile:"Perfil",profile_note:"Escolhe quem está a tocar agora.",male:"Menino",female:"Menina",midi:"Teclado MIDI",midi_note:"Liga um teclado real e escolhe a extensão.",midi_range:"Extensão do controlador MIDI",teacher:"Modo Teacher",teacher_note:"Desbloqueia todos os níveis e o Modo Play com uma palavra-passe local.",teacher_help:"A palavra-passe é escolhida na primeira ativação do modo Teacher e não pode ser recuperada nem reposta.",teacher_off:"🔒 Teacher inativo",teacher_on:"✅ Teacher ativo · tudo desbloqueado",teacher_activate:"🔑 Ativar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desativar Teacher",choose_level:"Escolhe o nível",scores:"Partituras",play:"Modo Play",learn:"Aprender",trophies:"Baú de troféus",level_sub:"Completa 10 sessões válidas para desbloquear o nível seguinte.",learn_notes:"Aprender as notas",learn_tempo:"Aprender o ritmo",explore_notes:"Explora as notas",find_note:"Encontra a nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Escolhe uma partitura e toca-a do início ao fim.",clear_chests:"Apagar todos os baús",rotate:"Roda o teu iPhone",rotate_note:"Music Rainbow funciona apenas na horizontal.",midi_disconnected:"🎹 MIDI não ligado",midi_connected:"🎹 MIDI ligado",midi_connect:"🔌 Ligar MIDI",midi_unavailable:"No iPhone/iPad, a PWA não recebe USB MIDI diretamente. A lógica está preparada para uma futura ponte Core MIDI nativa.",play_again:"Tocar novamente",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma da aplicação",settings_note_aria:"Nomes das notas"},
+    settings:"Definições",settings_sub:"Escolhe o perfil a usar na aplicação.",language:"Idioma",language_note:"Escolhe o idioma da aplicação e como mostrar os nomes das notas.",app_language:"Idioma da aplicação",note_names:"Nomes das notas",profile:"Perfil",profile_note:"Escolhe quem está a tocar agora.",male:"Menino",female:"Menina",midi:"Teclado MIDI",midi_note:"Usa o teclado virtual ou liga um teclado MIDI externo.",midi_range:"Teclado a usar",teacher:"Modo Teacher",teacher_note:"Desbloqueia todos os níveis e o Modo Play com uma palavra-passe local.",teacher_help:"A palavra-passe é escolhida na primeira ativação do modo Teacher e não pode ser recuperada nem reposta.",teacher_off:"🔒 Teacher inativo",teacher_on:"✅ Teacher ativo · tudo desbloqueado",teacher_activate:"🔑 Ativar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desativar Teacher",choose_level:"Escolhe o nível",scores:"Partituras",play:"Modo Play",learn:"Aprender",trophies:"Baú de troféus",level_sub:"Completa 10 sessões válidas para desbloquear o nível seguinte.",learn_notes:"Aprender as notas",learn_tempo:"Aprender o ritmo",explore_notes:"Explora as notas",find_note:"Encontra a nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Escolhe uma partitura e toca-a do início ao fim.",clear_chests:"Apagar todos os baús",rotate:"Roda o teu iPhone",rotate_note:"Music Rainbow funciona apenas na horizontal.",midi_disconnected:"🎹 MIDI não ligado",midi_connected:"🎹 MIDI ligado",midi_connect:"🔌 Ligar MIDI",midi_disconnect:"🔌 Desligar MIDI",midi_virtual:"Teclado virtual · C4–B5",midi_unavailable:"No iPhone/iPad, a PWA não recebe USB MIDI diretamente. A lógica está preparada para uma futura ponte Core MIDI nativa.",play_again:"Tocar novamente",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma da aplicação",settings_note_aria:"Nomes das notas"},
   ru:{
-    settings:"Настройки",settings_sub:"Выберите профиль для приложения.",language:"Язык",language_note:"Выберите язык приложения и способ отображения названий нот.",app_language:"Язык приложения",note_names:"Названия нот",profile:"Профиль",profile_note:"Выберите, кто сейчас играет.",male:"Мальчик",female:"Девочка",midi:"MIDI-клавиатура",midi_note:"Подключите настоящую клавиатуру и выберите её диапазон.",midi_range:"Диапазон MIDI-контроллера",teacher:"Режим Teacher",teacher_note:"Открывает все уровни и режим Play с локальным паролем.",teacher_help:"Пароль задаётся при первом включении режима Teacher и не может быть восстановлен или сброшен.",teacher_off:"🔒 Teacher выключен",teacher_on:"✅ Teacher включён · всё открыто",teacher_activate:"🔑 Включить Teacher",teacher_setup:"🔑 Настроить Teacher",teacher_disable:"Выключить Teacher",choose_level:"Выберите уровень",scores:"Ноты",play:"Режим Play",learn:"Учиться",trophies:"Сундук трофеев",level_sub:"Пройдите 10 успешных занятий, чтобы открыть следующий уровень.",learn_notes:"Учить ноты",learn_tempo:"Учить ритм",explore_notes:"Изучай ноты",find_note:"Найди ноту",score_library:"Библиотека нот",import:"Импорт",score_library_note:"Выберите произведение и сыграйте его от начала до конца.",clear_chests:"Удалить все сундуки",rotate:"Поверните iPhone",rotate_note:"Music Rainbow работает только в альбомной ориентации.",midi_disconnected:"🎹 MIDI не подключен",midi_connected:"🎹 MIDI подключен",midi_connect:"🔌 Подключить MIDI",midi_unavailable:"На iPhone/iPad PWA не получает USB MIDI напрямую. Логика готова для будущего нативного моста Core MIDI.",play_again:"Сыграть ещё раз",library:"Библиотека",score:"Ноты",settings_language_aria:"Язык приложения",settings_note_aria:"Названия нот"},
+    settings:"Настройки",settings_sub:"Выберите профиль для приложения.",language:"Язык",language_note:"Выберите язык приложения и способ отображения названий нот.",app_language:"Язык приложения",note_names:"Названия нот",profile:"Профиль",profile_note:"Выберите, кто сейчас играет.",male:"Мальчик",female:"Девочка",midi:"MIDI-клавиатура",midi_note:"Используйте виртуальную клавиатуру или подключите внешнюю MIDI-клавиатуру.",midi_range:"Используемая клавиатура",teacher:"Режим Teacher",teacher_note:"Открывает все уровни и режим Play с локальным паролем.",teacher_help:"Пароль задаётся при первом включении режима Teacher и не может быть восстановлен или сброшен.",teacher_off:"🔒 Teacher выключен",teacher_on:"✅ Teacher включён · всё открыто",teacher_activate:"🔑 Включить Teacher",teacher_setup:"🔑 Настроить Teacher",teacher_disable:"Выключить Teacher",choose_level:"Выберите уровень",scores:"Ноты",play:"Режим Play",learn:"Учиться",trophies:"Сундук трофеев",level_sub:"Пройдите 10 успешных занятий, чтобы открыть следующий уровень.",learn_notes:"Учить ноты",learn_tempo:"Учить ритм",explore_notes:"Изучай ноты",find_note:"Найди ноту",score_library:"Библиотека нот",import:"Импорт",score_library_note:"Выберите произведение и сыграйте его от начала до конца.",clear_chests:"Удалить все сундуки",rotate:"Поверните iPhone",rotate_note:"Music Rainbow работает только в альбомной ориентации.",midi_disconnected:"🎹 MIDI не подключен",midi_connected:"🎹 MIDI подключен",midi_connect:"🔌 Подключить MIDI",midi_disconnect:"🔌 Отключить MIDI",midi_virtual:"Виртуальная клавиатура · C4–B5",midi_unavailable:"На iPhone/iPad PWA не получает USB MIDI напрямую. Логика готова для будущего нативного моста Core MIDI.",play_again:"Сыграть ещё раз",library:"Библиотека",score:"Ноты",settings_language_aria:"Язык приложения",settings_note_aria:"Названия нот"},
   zh:{
-    settings:"设置",settings_sub:"选择应用中使用的个人资料。",language:"语言",language_note:"选择应用语言以及音名的显示方式。",app_language:"应用语言",note_names:"音名",profile:"个人资料",profile_note:"选择现在正在练习的人。",male:"男孩",female:"女孩",midi:"MIDI 键盘",midi_note:"连接真实键盘并选择音域。",midi_range:"MIDI 控制器音域",teacher:"Teacher 模式",teacher_note:"使用本地密码解锁全部关卡和 Play 模式。",teacher_help:"首次启用 Teacher 模式时设置密码，之后无法找回或重置。",teacher_off:"🔒 Teacher 未启用",teacher_on:"✅ Teacher 已启用 · 全部解锁",teacher_activate:"🔑 启用 Teacher",teacher_setup:"🔑 设置 Teacher",teacher_disable:"停用 Teacher",choose_level:"选择关卡",scores:"乐谱",play:"Play 模式",learn:"学习",trophies:"奖杯宝箱",level_sub:"完成 10 次有效练习即可解锁下一关。",learn_notes:"学习音符",learn_tempo:"学习节奏",explore_notes:"认识音符",find_note:"找到音符",score_library:"乐谱库",import:"导入",score_library_note:"从书架选择一首乐谱并从头到尾演奏。",clear_chests:"清除所有宝箱",rotate:"旋转 iPhone",rotate_note:"Music Rainbow 仅支持横屏使用。",midi_disconnected:"🎹 MIDI 未连接",midi_connected:"🎹 MIDI 已连接",midi_connect:"🔌 连接 MIDI",midi_unavailable:"在 iPhone/iPad 上，PWA 无法直接接收 USB MIDI。相关逻辑已为未来原生 Core MIDI 桥接做好准备。",play_again:"再弹一次",library:"乐谱库",score:"乐谱",settings_language_aria:"应用语言",settings_note_aria:"音名"},
+    settings:"设置",settings_sub:"选择应用中使用的个人资料。",language:"语言",language_note:"选择应用语言以及音名的显示方式。",app_language:"应用语言",note_names:"音名",profile:"个人资料",profile_note:"选择现在正在练习的人。",male:"男孩",female:"女孩",midi:"MIDI 键盘",midi_note:"使用虚拟键盘或连接外部 MIDI 键盘。",midi_range:"使用的键盘",teacher:"Teacher 模式",teacher_note:"使用本地密码解锁全部关卡和 Play 模式。",teacher_help:"首次启用 Teacher 模式时设置密码，之后无法找回或重置。",teacher_off:"🔒 Teacher 未启用",teacher_on:"✅ Teacher 已启用 · 全部解锁",teacher_activate:"🔑 启用 Teacher",teacher_setup:"🔑 设置 Teacher",teacher_disable:"停用 Teacher",choose_level:"选择关卡",scores:"乐谱",play:"Play 模式",learn:"学习",trophies:"奖杯宝箱",level_sub:"完成 10 次有效练习即可解锁下一关。",learn_notes:"学习音符",learn_tempo:"学习节奏",explore_notes:"认识音符",find_note:"找到音符",score_library:"乐谱库",import:"导入",score_library_note:"从书架选择一首乐谱并从头到尾演奏。",clear_chests:"清除所有宝箱",rotate:"旋转 iPhone",rotate_note:"Music Rainbow 仅支持横屏使用。",midi_disconnected:"🎹 MIDI 未连接",midi_connected:"🎹 MIDI 已连接",midi_connect:"🔌 连接 MIDI",midi_disconnect:"🔌 断开 MIDI",midi_virtual:"虚拟键盘 · C4–B5",midi_unavailable:"在 iPhone/iPad 上，PWA 无法直接接收 USB MIDI。相关逻辑已为未来原生 Core MIDI 桥接做好准备。",play_again:"再弹一次",library:"乐谱库",score:"乐谱",settings_language_aria:"应用语言",settings_note_aria:"音名"},
   ja:{
-    settings:"設定",settings_sub:"アプリで使うプロフィールを選びます。",language:"言語",language_note:"アプリの言語と音名の表示方法を選びます。",app_language:"アプリの言語",note_names:"音名",profile:"プロフィール",profile_note:"いま演奏している人を選びます。",male:"男の子",female:"女の子",midi:"MIDIキーボード",midi_note:"実際のキーボードを接続して音域を選びます。",midi_range:"MIDIコントローラーの音域",teacher:"Teacherモード",teacher_note:"ローカルパスワードで全レベルとPlayモードを解除します。",teacher_help:"パスワードはTeacherモード初回有効化時に設定し、復元やリセットはできません。",teacher_off:"🔒 Teacher 無効",teacher_on:"✅ Teacher 有効 · すべて解除",teacher_activate:"🔑 Teacher を有効化",teacher_setup:"🔑 Teacher を設定",teacher_disable:"Teacher を無効化",choose_level:"レベルを選ぶ",scores:"楽譜",play:"Playモード",learn:"学ぶ",trophies:"トロフィー宝箱",level_sub:"有効な練習を10回完了すると次のレベルが開きます。",learn_notes:"音符を学ぶ",learn_tempo:"リズムを学ぶ",explore_notes:"音符を見てみよう",find_note:"音符を見つけよう",score_library:"楽譜ライブラリ",import:"読み込む",score_library_note:"棚から楽譜を選び、最初から最後まで演奏します。",clear_chests:"宝箱をすべて消す",rotate:"iPhoneを回転してください",rotate_note:"Music Rainbow は横向きでのみ動作します。",midi_disconnected:"🎹 MIDI 未接続",midi_connected:"🎹 MIDI 接続済み",midi_connect:"🔌 MIDI を接続",midi_unavailable:"iPhone/iPad のPWAではUSB MIDIを直接受信できません。将来のネイティブCore MIDIブリッジ向けのロジックは準備済みです。",play_again:"もう一度演奏",library:"ライブラリ",score:"楽譜",settings_language_aria:"アプリの言語",settings_note_aria:"音名"}
+    settings:"設定",settings_sub:"アプリで使うプロフィールを選びます。",language:"言語",language_note:"アプリの言語と音名の表示方法を選びます。",app_language:"アプリの言語",note_names:"音名",profile:"プロフィール",profile_note:"いま演奏している人を選びます。",male:"男の子",female:"女の子",midi:"MIDIキーボード",midi_note:"バーチャルキーボードを使うか、外部MIDIキーボードを接続します。",midi_range:"使用するキーボード",teacher:"Teacherモード",teacher_note:"ローカルパスワードで全レベルとPlayモードを解除します。",teacher_help:"パスワードはTeacherモード初回有効化時に設定し、復元やリセットはできません。",teacher_off:"🔒 Teacher 無効",teacher_on:"✅ Teacher 有効 · すべて解除",teacher_activate:"🔑 Teacher を有効化",teacher_setup:"🔑 Teacher を設定",teacher_disable:"Teacher を無効化",choose_level:"レベルを選ぶ",scores:"楽譜",play:"Playモード",learn:"学ぶ",trophies:"トロフィー宝箱",level_sub:"有効な練習を10回完了すると次のレベルが開きます。",learn_notes:"音符を学ぶ",learn_tempo:"リズムを学ぶ",explore_notes:"音符を見てみよう",find_note:"音符を見つけよう",score_library:"楽譜ライブラリ",import:"読み込む",score_library_note:"棚から楽譜を選び、最初から最後まで演奏します。",clear_chests:"宝箱をすべて消す",rotate:"iPhoneを回転してください",rotate_note:"Music Rainbow は横向きでのみ動作します。",midi_disconnected:"🎹 MIDI 未接続",midi_connected:"🎹 MIDI 接続済み",midi_connect:"🔌 MIDI を接続",midi_disconnect:"🔌 MIDI を切断",midi_virtual:"バーチャルキーボード · C4–B5",midi_unavailable:"iPhone/iPad のPWAではUSB MIDIを直接受信できません。将来のネイティブCore MIDIブリッジ向けのロジックは準備済みです。",play_again:"もう一度演奏",library:"ライブラリ",score:"楽譜",settings_language_aria:"アプリの言語",settings_note_aria:"音名"}
 };
 function mrT(key){const lang=MR_I18N[mrAppLanguage]||MR_I18N.it;return lang[key]??MR_I18N.it[key]??key;}
 const MR_NOTE_LABELS_SOLFEGE={do:"DO",re:"RE",mi:"MI",fa:"FA",sol:"SOL",la:"LA",si:"SI"};
@@ -7048,6 +7050,7 @@ function applyLanguageMR(){
   pairs.forEach(([sel,key])=>mrSetText(sel,key));
   const langSel=document.getElementById('appLanguageSelect');if(langSel){langSel.value=mrAppLanguage;langSel.setAttribute('aria-label',mrT('settings_language_aria'));}
   const noteSel=document.getElementById('noteNamingSelect');if(noteSel){noteSel.value=mrNoteNaming;noteSel.setAttribute('aria-label',mrT('settings_note_aria'));}
+  const midiVirtualOpt=document.getElementById('midiVirtualOptionMR');if(midiVirtualOpt)midiVirtualOpt.textContent=mrT('midi_virtual');
   try{if(typeof updateMidiUiMR==="function")updateMidiUiMR();}catch(e){}
   try{if(typeof updateTeacherSettingsUIMR==="function")updateTeacherSettingsUIMR();}catch(e){}
   try{if(typeof updateLearnGuideMR==="function")updateLearnGuideMR(typeof currentLearnNoteMR!=="undefined"?currentLearnNoteMR:"");}catch(e){}
@@ -7150,16 +7153,18 @@ const MELODY_STEP_MS = 250;
 
 
 /* ===========================
-   MIDI / REGISTRO ESTESO — Build 2.141
-   La tastiera touch resta invariata. Il controller esterno estende il registro
-   senza aggiungere elementi permanenti al layout dei livelli.
+   MIDI / REGISTRO ESTESO — Build 2.144
+   Stato esplicito: all'avvio si usa sempre la tastiera virtuale. Un controller
+   MIDI esterno entra in gioco soltanto dopo "Collega MIDI" e torna OFF quando
+   viene scollegato fisicamente o quando l'utente preme "Scollega MIDI".
    =========================== */
 const MR_FULL_PIANO_MIN_MIDI=21;  // A0
 const MR_FULL_PIANO_MAX_MIDI=108; // C8
 const MR_TOUCH_SINGLE_MIN_MIDI=60; // C4
 const MR_TOUCH_SINGLE_MAX_MIDI=83; // B5
-const MR_MIDI_PROFILE_KEY="MR_MIDI_RANGE_PROFILE";
+const MR_MIDI_PROFILE_KEY="MR_MIDI_RANGE_PROFILE"; // conserva solo l'ultima estensione hardware scelta
 const MR_MIDI_PROFILE_RANGES=Object.freeze({
+  virtual:{min:MR_TOUCH_SINGLE_MIN_MIDI,max:MR_TOUCH_SINGLE_MAX_MIDI,label:"Tastiera virtuale · C4–B5",virtual:true},
   "25":{min:48,max:72,label:"25 tasti · C3–C5"},
   "49":{min:36,max:84,label:"49 tasti · C2–C6"},
   "61":{min:36,max:96,label:"61 tasti · C2–C7"},
@@ -7171,14 +7176,14 @@ const MR_NATURAL_PC=new Set([0,2,4,5,7,9,11]);
 const MR_LETTER_INDEX=Object.freeze({"do":0,"re":1,"mi":2,"fa":3,"sol":4,"la":5,"si":6});
 const mrMidiState={
   supported:!!(navigator&&typeof navigator.requestMIDIAccess==="function"),
-  access:null,webInputs:new Map(),nativeConnected:false,nativeName:"",connected:false,
-  profile:"88",min:21,max:108,lastError:""
+  access:null,webInputs:new Map(),webMidiEnabled:false,
+  nativeConnected:false,nativeAvailable:false,nativeName:"",connected:false,
+  profile:"virtual",lastHardwareProfile:"88",min:MR_TOUCH_SINGLE_MIN_MIDI,max:MR_TOUCH_SINGLE_MAX_MIDI,lastError:""
 };
 try{
   const saved=localStorage.getItem(MR_MIDI_PROFILE_KEY);
-  if(saved&&MR_MIDI_PROFILE_RANGES[saved])mrMidiState.profile=saved;
+  if(saved&&saved!=="virtual"&&MR_MIDI_PROFILE_RANGES[saved])mrMidiState.lastHardwareProfile=saved;
 }catch(e){}
-(function(){const r=MR_MIDI_PROFILE_RANGES[mrMidiState.profile]||MR_MIDI_PROFILE_RANGES["88"];mrMidiState.min=r.min;mrMidiState.max=r.max;})();
 
 function isFullPianoMidiMR(midi){midi=Number(midi);return Number.isInteger(midi)&&midi>=MR_FULL_PIANO_MIN_MIDI&&midi<=MR_FULL_PIANO_MAX_MIDI;}
 function isTouchMidiSingleMR(midi){midi=Number(midi);return midi>=MR_TOUCH_SINGLE_MIN_MIDI&&midi<=MR_TOUCH_SINGLE_MAX_MIDI;}
@@ -7191,7 +7196,7 @@ function midiToFrequencyMR(midi){return 440*Math.pow(2,(Number(midi)-69)/12);}
 function legacyPitchToMidiMR(noteName,octave){
   const pc=MR_NOTE_PC[String(noteName||"").toLowerCase()];
   if(pc===undefined)return null;
-  const standardOctave=Math.floor(Number(octave)||0)+3; // legacy 1 = C4
+  const standardOctave=Math.floor(Number(octave)||0)+3;
   const midi=(standardOctave+1)*12+pc;
   return isFullPianoMidiMR(midi)?midi:null;
 }
@@ -7236,16 +7241,9 @@ function extendedSingleStaffNaturalPoolMR(tier){
 function ledgerYsForSingleStaffYMR(cy){
   const y=Number(cy);if(!Number.isFinite(y))return[];
   const topLine=92.31,bottomLine=153.85,lineStep=15.385;
-  const firstAbove=topLine-lineStep;     // prima linea addizionale sopra
-  const firstBelow=bottomLine+lineStep;  // prima linea addizionale sotto
-  const ys=[];
-  // Gli spazi immediatamente esterni al pentagramma non richiedono linee.
-  // Le linee compaiono soltanto quando la testa raggiunge/supera una vera linea addizionale.
-  if(y<=firstAbove+0.35){
-    for(let ly=firstAbove;ly>=y-0.35;ly-=lineStep)ys.push(ly);
-  }else if(y>=firstBelow-0.35){
-    for(let ly=firstBelow;ly<=y+0.35;ly+=lineStep)ys.push(ly);
-  }
+  const firstAbove=topLine-lineStep,firstBelow=bottomLine+lineStep,ys=[];
+  if(y<=firstAbove+0.35){for(let ly=firstAbove;ly>=y-0.35;ly-=lineStep)ys.push(ly);}
+  else if(y>=firstBelow-0.35){for(let ly=firstBelow;ly<=y+0.35;ly+=lineStep)ys.push(ly);}
   return ys;
 }
 function ledgerYsForSingleStaffPitchMR(noteName,octave,clef=currentClef){
@@ -7258,39 +7256,72 @@ function appendSingleStaffLedgerLinesMR(parent,cx,noteName,octave,options={}){
   ledgerYsForSingleStaffYMR(y).forEach(ledgerY=>{
     const line=document.createElementNS("http://www.w3.org/2000/svg","line");
     line.setAttribute("x1",cx-18);line.setAttribute("x2",cx+18);line.setAttribute("y1",ledgerY);line.setAttribute("y2",ledgerY);
-    line.classList.add("midi-ledger-line");
-    if(options&&options.play)line.dataset.play="1";
-    parent.appendChild(line);
+    line.classList.add("midi-ledger-line");if(options&&options.play)line.dataset.play="1";parent.appendChild(line);
   });
 }
-function setMidiProfileMR(profile,persist=true){
-  profile=String(profile||"88");if(!MR_MIDI_PROFILE_RANGES[profile])profile="88";
-  mrMidiState.profile=profile;const r=MR_MIDI_PROFILE_RANGES[profile];mrMidiState.min=r.min;mrMidiState.max=r.max;
+function applyMidiEffectiveProfileMR(profile){
+  const key=MR_MIDI_PROFILE_RANGES[profile]?String(profile):"virtual";
+  const r=MR_MIDI_PROFILE_RANGES[key];mrMidiState.profile=key;mrMidiState.min=r.min;mrMidiState.max=r.max;
+}
+function rememberMidiHardwareProfileMR(profile,persist=true){
+  profile=String(profile||"88");if(profile==="virtual"||!MR_MIDI_PROFILE_RANGES[profile])return;
+  mrMidiState.lastHardwareProfile=profile;
   if(persist){try{localStorage.setItem(MR_MIDI_PROFILE_KEY,profile);}catch(e){}}
+}
+function setMidiProfileMR(profile,persist=true){
+  profile=String(profile||"virtual");
+  if(profile==="virtual"){
+    applyMidiEffectiveProfileMR("virtual");
+    if(isMidiConnectedMR())disconnectMidiMR();else updateMidiUiMR();
+    return;
+  }
+  rememberMidiHardwareProfileMR(profile,persist);
+  if(isMidiConnectedMR())applyMidiEffectiveProfileMR(profile);else applyMidiEffectiveProfileMR("virtual");
   updateMidiUiMR();
 }
+function hasNativeMidiBridgeMR(){
+  try{return !!(window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.musicRainbowMIDI&&typeof window.webkit.messageHandlers.musicRainbowMIDI.postMessage==="function");}catch(e){return false;}
+}
+function postNativeMidiMR(type){
+  try{const h=window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.musicRainbowMIDI;if(h&&typeof h.postMessage==="function"){h.postMessage({type});return true;}}catch(e){}
+  return false;
+}
+function refreshExerciseAfterMidiDisconnectMR(){
+  try{
+    if(isPageVisibleMR("level1Page")&&typeof createNotesL1==="function")createNotesL1();
+    else if(isPageVisibleMR("level2Page")&&typeof createNotes==="function")createNotes();
+    else if(isPageVisibleMR("level3Page")&&typeof createNotesL3==="function")createNotesL3();
+    else if(isPageVisibleMR("level4Page")&&typeof createNotesL4==="function")createNotesL4();
+    else if(isPageVisibleMR("level5Page")&&typeof createNotesL5==="function")createNotesL5();
+    else if(isPageVisibleMR("level6Page")&&typeof createNotesL6==="function")createNotesL6();
+    else if(isPageVisibleMR("level7Page")&&typeof createNotesL7==="function")createNotesL7();
+  }catch(e){}
+}
 function recomputeMidiConnectionMR(){
-  const webConnected=[...mrMidiState.webInputs.values()].some(input=>input&&input.state!=="disconnected");
+  const webConnected=mrMidiState.webMidiEnabled&&[...mrMidiState.webInputs.values()].some(input=>input&&input.state!=="disconnected");
   const next=!!(mrMidiState.nativeConnected||webConnected),changed=next!==mrMidiState.connected;
   mrMidiState.connected=next;
-  document.documentElement.classList.toggle("midi-connected",next);
-  updateMidiUiMR();
+  if(next){if(mrMidiState.profile==="virtual")applyMidiEffectiveProfileMR(mrMidiState.lastHardwareProfile);}
+  else applyMidiEffectiveProfileMR("virtual");
+  document.documentElement.classList.toggle("midi-connected",next);updateMidiUiMR();
   if(changed){
     try{window.dispatchEvent(new CustomEvent("musicrainbow:midi-state",{detail:{...mrMidiState,access:undefined,webInputs:undefined}}));}catch(e){}
     try{if(typeof renderScoreLibraryMR==="function")renderScoreLibraryMR();}catch(e){}
     try{if(typeof updateScoreMidiLockUI==="function")updateScoreMidiLockUI();}catch(e){}
+    if(!next)refreshExerciseAfterMidiDisconnectMR();
   }
 }
 function updateMidiUiMR(){
   const label=document.getElementById("midiStatusLabel"),btn=document.getElementById("midiConnectBtn"),sel=document.getElementById("midiRangeSelect"),help=document.getElementById("midiHelpText");
   if(sel&&sel.value!==mrMidiState.profile)sel.value=mrMidiState.profile;
   if(label){label.classList.toggle("connected",isMidiConnectedMR());label.textContent=isMidiConnectedMR()?mrT("midi_connected"):mrT("midi_disconnected");}
-  if(btn){btn.textContent=isMidiConnectedMR()?mrT("midi_connected").replace(/^🎹/,"✅"):mrT("midi_connect");btn.disabled=!!mrMidiState.nativeConnected;}
-  if(help&&!mrMidiState.supported&&!mrMidiState.nativeConnected)help.textContent=mrT("midi_unavailable");
+  if(btn){btn.classList.toggle("connected",isMidiConnectedMR());btn.textContent=isMidiConnectedMR()?mrT("midi_disconnect"):mrT("midi_connect");btn.disabled=false;}
+  if(help&&!mrMidiState.supported&&!hasNativeMidiBridgeMR())help.textContent=mrT("midi_unavailable");
 }
 function attachWebMidiInputMR(input){
   if(!input)return;mrMidiState.webInputs.set(input.id||input.name||String(Math.random()),input);
   input.onmidimessage=(ev)=>{
+    if(!mrMidiState.webMidiEnabled)return;
     const data=ev&&ev.data;if(!data||data.length<2)return;
     const status=data[0]&0xF0,note=Number(data[1]),vel=Number(data[2]||0);
     if(status===0x90&&vel>0)routeMidiNoteOnMR(note,vel,"web");
@@ -7299,36 +7330,58 @@ function attachWebMidiInputMR(input){
 function refreshWebMidiInputsMR(){
   mrMidiState.webInputs.clear();
   if(mrMidiState.access&&mrMidiState.access.inputs)mrMidiState.access.inputs.forEach(input=>attachWebMidiInputMR(input));
+  const hasLive=[...mrMidiState.webInputs.values()].some(input=>input&&input.state!=="disconnected");
+  if(mrMidiState.webMidiEnabled&&!hasLive)mrMidiState.webMidiEnabled=false;
   recomputeMidiConnectionMR();
 }
 async function requestWebMidiMR(){
   if(!mrMidiState.supported){mrMidiState.lastError="unsupported";updateMidiUiMR();return false;}
   try{
-    mrMidiState.access=await navigator.requestMIDIAccess({sysex:false});
-    mrMidiState.access.onstatechange=refreshWebMidiInputsMR;refreshWebMidiInputsMR();return true;
-  }catch(e){mrMidiState.lastError=String(e&&e.message||e||"midi");updateMidiUiMR();return false;}
+    mrMidiState.access=mrMidiState.access||await navigator.requestMIDIAccess({sysex:false});
+    mrMidiState.webMidiEnabled=true;mrMidiState.access.onstatechange=refreshWebMidiInputsMR;refreshWebMidiInputsMR();return isMidiConnectedMR();
+  }catch(e){mrMidiState.webMidiEnabled=false;mrMidiState.lastError=String(e&&e.message||e||"midi");updateMidiUiMR();return false;}
+}
+function disconnectWebMidiMR(){
+  mrMidiState.webMidiEnabled=false;
+  mrMidiState.webInputs.forEach(input=>{try{input.onmidimessage=null;}catch(e){}});
+  mrMidiState.webInputs.clear();recomputeMidiConnectionMR();
 }
 function nativeMidiConnectMR(details={}){
+  mrMidiState.nativeAvailable=details.available!==undefined?!!details.available:true;
   mrMidiState.nativeConnected=true;mrMidiState.nativeName=String(details.name||"Core MIDI");
-  if(details.profile)setMidiProfileMR(details.profile,false);
-  if(Number.isFinite(Number(details.minMidi)))mrMidiState.min=Math.max(21,Number(details.minMidi));
-  if(Number.isFinite(Number(details.maxMidi)))mrMidiState.max=Math.min(108,Number(details.maxMidi));
-  recomputeMidiConnectionMR();
+  applyMidiEffectiveProfileMR(mrMidiState.lastHardwareProfile);recomputeMidiConnectionMR();
 }
-function nativeMidiDisconnectMR(){mrMidiState.nativeConnected=false;mrMidiState.nativeName="";recomputeMidiConnectionMR();}
+function nativeMidiDisconnectMR(details={}){
+  mrMidiState.nativeAvailable=!!(details&&details.available);mrMidiState.nativeConnected=false;mrMidiState.nativeName="";
+  applyMidiEffectiveProfileMR("virtual");recomputeMidiConnectionMR();
+}
+function nativeMidiStateMR(details={}){
+  const connected=!!(details&&details.connected);mrMidiState.nativeAvailable=!!(details&&details.available);
+  if(connected)nativeMidiConnectMR(details);else nativeMidiDisconnectMR(details);return isMidiConnectedMR();
+}
+function requestNativeMidiStateMR(){postNativeMidiMR("requestState");}
+function disconnectMidiMR(){
+  if(hasNativeMidiBridgeMR())postNativeMidiMR("disconnect");
+  mrMidiState.nativeConnected=false;mrMidiState.nativeName="";disconnectWebMidiMR();applyMidiEffectiveProfileMR("virtual");recomputeMidiConnectionMR();
+}
+async function connectMidiMR(){
+  mrMidiState.lastError="";
+  if(hasNativeMidiBridgeMR()){postNativeMidiMR("connect");return true;}
+  const ok=await requestWebMidiMR();
+  if(!ok&&mrMidiState.lastError==="unsupported")alert("In questa versione del browser l'ingresso MIDI non è disponibile. Nell'app nativa Music Rainbow usa Core MIDI.");
+  return ok;
+}
+async function toggleMidiConnectionMR(){if(isMidiConnectedMR()){disconnectMidiMR();return false;}return await connectMidiMR();}
+window.addEventListener("musicrainbow:native-midi-state",ev=>nativeMidiStateMR((ev&&ev.detail)||{}));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestNativeMidiStateMR();});
+window.addEventListener("pageshow",()=>requestNativeMidiStateMR());
 function isPageVisibleMR(id){const el=document.getElementById(id);return !!el&&el.style.display!=="none"&&getComputedStyle(el).display!=="none";}
 function routeMidiNoteOnMR(midi,velocity=127,source="midi"){
-  midi=Number(midi);if(!isFullPianoMidiMR(midi)||velocity<=0)return false;
+  midi=Number(midi);if(!isMidiConnectedMR()||!isFullPianoMidiMR(midi)||velocity<=0)return false;
   const legacy=midiToLegacyPitchMR(midi);
-  if(isPageVisibleMR("playPage")&&window.MusicRainbowPlayMIDI&&typeof window.MusicRainbowPlayMIDI.noteOn==="function"){
-    return !!window.MusicRainbowPlayMIDI.noteOn(midi,velocity);
-  }
-  if(isPageVisibleMR("learnNotesPage")&&window.MusicRainbowLearnNotesMIDI&&typeof window.MusicRainbowLearnNotesMIDI.noteOn==="function"){
-    return !!window.MusicRainbowLearnNotesMIDI.noteOn(midi,velocity);
-  }
-  if(isPageVisibleMR("learnTempoPage")){
-    playToneExactMR(midiToFrequencyMR(midi));return true;
-  }
+  if(isPageVisibleMR("playPage")&&window.MusicRainbowPlayMIDI&&typeof window.MusicRainbowPlayMIDI.noteOn==="function")return !!window.MusicRainbowPlayMIDI.noteOn(midi,velocity);
+  if(isPageVisibleMR("learnNotesPage")&&window.MusicRainbowLearnNotesMIDI&&typeof window.MusicRainbowLearnNotesMIDI.noteOn==="function")return !!window.MusicRainbowLearnNotesMIDI.noteOn(midi,velocity);
+  if(isPageVisibleMR("learnTempoPage")){playToneExactMR(midiToFrequencyMR(midi));return true;}
   if(isPageVisibleMR("scorePlayerPage")){if(typeof updateScoreMidiLockUI==="function")updateScoreMidiLockUI();if(typeof scorePlaybackLockedMR!=="undefined"&&scorePlaybackLockedMR)return false;handleScoreAnswerMR(midi);return true;}
   if(isPageVisibleMR("level8Page")){handleAnswerL8(midi);return true;}
   if(!legacy)return false;
@@ -7342,16 +7395,20 @@ function routeMidiNoteOnMR(midi,velocity=127,source="midi"){
   return false;
 }
 window.MusicRainbowMIDI={
-  connect:details=>nativeMidiConnectMR(details||{}),disconnect:()=>nativeMidiDisconnectMR(),
+  connect:details=>nativeMidiConnectMR(details||{}),disconnect:details=>nativeMidiDisconnectMR(details||{}),
+  setConnectionState:(connected,details={})=>nativeMidiStateMR({...details,connected:!!connected}),
+  connectionChanged:(connected,details={})=>nativeMidiStateMR({...details,connected:!!connected}),
   noteOn:(midi,velocity=127)=>routeMidiNoteOnMR(midi,velocity,"native"),noteOff:()=>{},
-  setRange:(minMidi,maxMidi)=>{if(Number.isFinite(Number(minMidi)))mrMidiState.min=Math.max(21,Number(minMidi));if(Number.isFinite(Number(maxMidi)))mrMidiState.max=Math.min(108,Number(maxMidi));updateMidiUiMR();},
-  setProfile:profile=>setMidiProfileMR(profile),getState:()=>({supported:mrMidiState.supported,connected:mrMidiState.connected,profile:mrMidiState.profile,min:mrMidiState.min,max:mrMidiState.max,nativeConnected:mrMidiState.nativeConnected})
+  setRange:(minMidi,maxMidi)=>{if(isMidiConnectedMR()){if(Number.isFinite(Number(minMidi)))mrMidiState.min=Math.max(21,Number(minMidi));if(Number.isFinite(Number(maxMidi)))mrMidiState.max=Math.min(108,Number(maxMidi));updateMidiUiMR();}},
+  setProfile:profile=>setMidiProfileMR(profile),requestState:()=>requestNativeMidiStateMR(),
+  getState:()=>({supported:mrMidiState.supported,connected:mrMidiState.connected,available:mrMidiState.nativeAvailable,profile:mrMidiState.profile,lastHardwareProfile:mrMidiState.lastHardwareProfile,min:mrMidiState.min,max:mrMidiState.max,nativeConnected:mrMidiState.nativeConnected,nativeName:mrMidiState.nativeName})
 };
 function initMidiInfrastructureMR(){
   const btn=document.getElementById("midiConnectBtn"),sel=document.getElementById("midiRangeSelect");
-  if(btn&&!btn.dataset.midiBound){btn.dataset.midiBound="1";btn.addEventListener("click",async()=>{const ok=await requestWebMidiMR();if(!ok&&mrMidiState.lastError==="unsupported")alert("In questa versione del browser l'ingresso MIDI non è disponibile. Nell'app nativa Music Rainbow userà Core MIDI.");});}
+  applyMidiEffectiveProfileMR("virtual");mrMidiState.connected=false;mrMidiState.nativeConnected=false;mrMidiState.webMidiEnabled=false;
+  if(btn&&!btn.dataset.midiBound){btn.dataset.midiBound="1";btn.addEventListener("click",()=>toggleMidiConnectionMR());}
   if(sel&&!sel.dataset.midiBound){sel.dataset.midiBound="1";sel.addEventListener("change",()=>setMidiProfileMR(sel.value));}
-  updateMidiUiMR();
+  updateMidiUiMR();requestNativeMidiStateMR();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initMidiInfrastructureMR,{once:true});else initMidiInfrastructureMR();
 
@@ -7449,7 +7506,7 @@ function stopGlobalJinglePlayback() {
 }
 
 
-/* Build 2.141 — Salamander Grand Piano (Yamaha C5), lo stesso banco della demo approvata.
+/* Build 2.144 — Salamander Grand Piano (Yamaha C5), lo stesso banco della demo approvata.
    Campioni reali ogni terza minore: nell'estensione C3–B5 ogni nota richiede al massimo
    ±1 semitono di trasposizione. Percorso completamente dry, senza riverbero/ambience. */
 const PIANO_SAMPLE_BASE_URL = "https://tonejs.github.io/audio/salamander/";
@@ -7491,7 +7548,7 @@ function getAudioCtx() {
 function getPianoMasterNode(ctx) {
   if (pianoMasterNode && pianoMasterNode.context === ctx) return pianoMasterNode;
   try {
-    // Build 2.141 — percorso completamente dry: solo gain diretto, nessun compressore,
+    // Build 2.144 — percorso completamente dry: solo gain diretto, nessun compressore,
     // convolver, delay o riverbero. Lascia intatto il transiente naturale dei campioni.
     const gain = ctx.createGain();
     gain.gain.value = 0.68;
@@ -7587,7 +7644,7 @@ function playPianoFrequency(freq, durationMs) {
     source.connect(gain);
     gain.connect(master);
 
-    // Build 2.141 — conserva attacco e decadimento del campione: il gain serve solo
+    // Build 2.144 — conserva attacco e decadimento del campione: il gain serve solo
     // come anti-click e per il key-off. Nessuna coda ambientale artificiale.
     const now = ctx.currentTime + 0.001;
     const requested = (typeof durationMs === "number" && durationMs > 0) ? durationMs / 1000 : 0.72;
@@ -7635,7 +7692,7 @@ function playMetronomeClick() {
   const ctx = getAudioCtx();
   if (!ctx) return;
   const run = () => {
-    // Build 2.141 — tic asciutto, udibile e privo di sweep/tono "laser".
+    // Build 2.144 — tic asciutto, udibile e privo di sweep/tono "laser".
     // Il volume è indipendente dal piano ed è regolabile con long press su MET.
     const volume = Math.max(0, Math.min(1, Number(metronomeVolume) || 0));
     if (volume <= 0) return;
@@ -7785,7 +7842,7 @@ function playTone(freq, durationMs) {
   playPianoFrequency(effectiveFreq, durationMs);
 }
 
-/* Build 2.141 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
+/* Build 2.144 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
 function playToneExactMR(freq, durationMs) {
   if (!audioEnabled) return;
   playPianoFrequency(freq, durationMs);
@@ -7869,7 +7926,7 @@ function updateAudioButtonsUI() {
   }
 }
 
-/* Build 2.141 — Metronome + Audio pill logic (all levels)
+/* Build 2.144 — Metronome + Audio pill logic (all levels)
    - Metronomo ON/OFF SOLO dal pulsante MET accanto al BPM
    - Audio ON/OFF cliccando SOLO sul tab verde con icona
    - Tempo (BPM) impostabile cliccando SOLO sul tab bianco (prompt)
@@ -8222,7 +8279,7 @@ function playError() {
   const ctx = getAudioCtx();
   if (!ctx) return;
   const run = () => {
-    // Build 2.141 — feedback errore dedicato: breve "toc" sintetico, non usa mai campioni del piano.
+    // Build 2.144 — feedback errore dedicato: breve "toc" sintetico, non usa mai campioni del piano.
     const now = ctx.currentTime + 0.001;
     const osc = ctx.createOscillator();
     const toneGain = ctx.createGain();
@@ -8309,8 +8366,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.141"
-    : "Assets/staff-base-treble.png?v=2.141";
+    ? "Assets/staff-base-bass.png?v=2.144"
+    : "Assets/staff-base-treble.png?v=2.144";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -8782,7 +8839,7 @@ function getAvailableTokens() {
   return Math.max(0, tokens);
 }
 
-/* Build 2.141 — i gettoni restano fisicamente associati ai rispettivi scrigni.
+/* Build 2.144 — i gettoni restano fisicamente associati ai rispettivi scrigni.
    Il tasto Modalità Play vede però il totale disponibile in tutti gli scrigni. */
 function getTotalAvailableTokensAcrossChests() {
   return sessions.reduce((total, s) => {
@@ -9231,7 +9288,7 @@ if (autoColorToggleL1) {
   });
 }
 
-/* Build 2.141 — progressione didattica comune: ogni fascia di difficoltà dura
+/* Build 2.144 — progressione didattica comune: ogni fascia di difficoltà dura
    esattamente tre esercizi completati. La quarta fascia copre l'ultimo esercizio
    dei livelli 1–3; i livelli successivi possono continuare nelle fasce superiori. */
 function difficultyTierMR(completions,maxTier=5){
@@ -9270,7 +9327,7 @@ function setSelectedColorL1(noteName) {
 
 const MR_SMUFL_WHOLE_NOTE_L123 = String.fromCodePoint(0xE0A2); // noteheadWhole
 function createSmuflWholeNoteL123(svg,cx,cy,noteName,octave) {
-  appendSingleStaffLedgerLinesMR(svg,cx,noteName,octave);
+  appendSingleStaffLedgerLinesMR(svg,cx,noteName,octave,{cy});
   const group=document.createElementNS("http://www.w3.org/2000/svg","g");
   group.setAttribute("transform",`translate(${cx} ${cy})`);
   group.classList.add("note-circle","smufl-whole-note-wrap");
@@ -9302,7 +9359,7 @@ try {
   }
 } catch(e){}
 
-  staffSvgL1.querySelectorAll(".note-circle, .error-x, .ledger-line").forEach(e => e.remove());
+  staffSvgL1.querySelectorAll(".note-circle, .error-x, .ledger-line, .midi-ledger-line").forEach(e => e.remove());
   clearHintL1();
   currentNotesL1 = [];
   currentIndexL1 = 0;
@@ -9839,7 +9896,7 @@ function createNotes() {
   // Le note di taglio arrivano soltanto nell'ultima fascia, dopo 9 esercizi.
   let pool = corePitchPoolForTierMR(difficultyTier,{ledgerAt:4});
 
-  staffSvg.querySelectorAll(".note-circle, .error-x, .ledger-line").forEach(e => e.remove());
+  staffSvg.querySelectorAll(".note-circle, .error-x, .ledger-line, .midi-ledger-line").forEach(e => e.remove());
   currentNotes = [];
   currentIndex = 0;
   consecutiveErrors = 0;
@@ -10148,7 +10205,7 @@ function createNotesL3() {
   // L3 ha tasti senza etichetta: per questo il registro cresce più lentamente.
   let pool = corePitchPoolForTierMR(difficultyTier,{ledgerAt:4});
 
-  staffSvgL3.querySelectorAll(".note-circle, .error-x, .ledger-line").forEach(e => e.remove());
+  staffSvgL3.querySelectorAll(".note-circle, .error-x, .ledger-line, .midi-ledger-line").forEach(e => e.remove());
   currentNotesL3 = [];
   currentIndexL3 = 0;
   consecutiveErrorsL3 = 0;
@@ -10531,7 +10588,7 @@ const NOTE_HEAD_RX = 10.5;   // raggio orizzontale pallino
 const NOTE_HEAD_RY = 7.5;   // raggio verticale pallino
 const STEM_X       = NOTE_HEAD_RX; // gambo tangente al bordo destro del pallino
 
-/* Build 2.141 — subset SMuFL usato per le figure dei livelli 1–8.
+/* Build 2.144 — subset SMuFL usato per le figure dei livelli 1–8.
    Il gruppo continua a essere traslato sulla medesima (cx, cy) già calcolata dalla
    logica del gioco. Gli offset qui sotto compensano soltanto le metriche interne
    del font, mantenendo il centro della testa esattamente sulla coordinata cy. */
@@ -10552,7 +10609,7 @@ const MR_SMUFL_GLYPHS = Object.freeze({
   rest8th:         String.fromCodePoint(0xE4E6)
 });
 
-/* Build 2.141 — L4-L8 usa i glifi SMuFL precomposti per le figure con gambo.
+/* Build 2.144 — L4-L8 usa i glifi SMuFL precomposti per le figure con gambo.
    In questo modo testa e asta sono un unico contorno musicale: l'asta è tangente
    internamente alla testa senza gradini o sbordamenti. Gli offset compensano solo
    le metriche del font e mantengono il centro della testa esattamente su (0,0). */
@@ -10588,7 +10645,7 @@ function augmentationDotYOffsetForNoteMR(absoluteCy, staffKind="single") {
 function appendSmuflAugmentationDotMR(group, xCenter, yCenter=0) {
   const dot=document.createElementNS("http://www.w3.org/2000/svg","text");
   const size=84;
-  // Build 2.141: augmentationDot è un vero glifo SMuFL isolato con advance non nullo
+  // Build 2.144: augmentationDot è un vero glifo SMuFL isolato con advance non nullo
   // nel subset, così Safari/iOS non lo scarta. Il centro visivo resta deterministico.
   dot.setAttribute("x",String(xCenter-3.948));
   dot.setAttribute("y",String(yCenter+23.352));
@@ -10671,7 +10728,7 @@ function appendSmuflRestPartsMR(group,durationName) {
   return glyph;
 }
 
-/* Build 2.141 — geometria orizzontale delle battute.
+/* Build 2.144 — geometria orizzontale delle battute.
    I bordi usati qui corrispondono alle stanghette realmente visibili
    nel raster del pentagramma singolo (3000 px -> viewBox 1000).
    Le stanghette interne vengono quindi equidistanti tra loro e l'ultima
@@ -10682,7 +10739,7 @@ const MR_MEASURE_LEFT_GAP = 64;
 const MR_FIRST_MEASURE_LEFT_GAP = 112;
 const MR_MEASURE_RIGHT_GAP = 52;
 
-/* Build 2.141 — la prima battuta è larga 4/3 rispetto alla precedente
+/* Build 2.144 — la prima battuta è larga 4/3 rispetto alla precedente
    larghezza uniforme. Lo spazio supplementare compensa l'ingombro della
    chiave senza cambiare la larghezza totale del pentagramma; le battute
    successive si dividono in parti uguali lo spazio rimanente. */
@@ -10719,7 +10776,7 @@ function noteXInsideMeasureMR(index, count, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * t;
 }
 
-/* Build 2.141 — controllo canonico della durata: una battuta in 4/4 deve
+/* Build 2.144 — controllo canonico della durata: una battuta in 4/4 deve
    contenere esattamente 8 unità di croma. Per le durate prive di `units`
    (L4/L8) il valore viene ricavato dai beat senza modificare la logica pitch. */
 function durationUnitsMR(duration) {
@@ -10738,7 +10795,7 @@ function measureIsExactlyFourFourMR(pattern) {
   return Array.isArray(pattern) && pattern.length > 0 && measureUnitsMR(pattern) === 8;
 }
 
-/* Build 2.141 — la X deriva dall'attacco ritmico effettivo nella battuta,
+/* Build 2.144 — la X deriva dall'attacco ritmico effettivo nella battuta,
    non dal numero di simboli presenti. 0..4 beat occupano la stessa area utile
    già usata dal layout, quindi le coordinate verticali/pitch restano invariate. */
 function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
@@ -10753,11 +10810,11 @@ function noteXAtBeatMR(beatInMeasure, fromX, toX, firstMeasure=false) {
   return leftX + (rightX - leftX) * (beat / 4);
 }
 
-/* Build 2.141 — distribuzione orizzontale omogenea dentro ogni battuta.
+/* Build 2.144 — distribuzione orizzontale omogenea dentro ogni battuta.
    La posizione grafica è separata dall'onset musicale: onsetBeat/durate restano invariati.
    Ogni battuta mantiene anche una fascia protetta vicino alla chiave, così nessuna
    nota, trave, alterazione o simbolo può sovrapporsi alla chiave del pentagramma. */
-/* Build 2.141 — ogni figura dichiara il proprio ingombro orizzontale in px.
+/* Build 2.144 — ogni figura dichiara il proprio ingombro orizzontale in px.
    La giustificazione lavora sui bordi reali dei simboli, non sui loro centri. */
 const MR_RHYTHM_VISUAL_EXTENTS=Object.freeze({
   semibreve:{left:13,right:13},
@@ -10778,7 +10835,7 @@ function rhythmVisualExtentMR(duration) {
 function visualCentersFromExtentsMR(extents, fromX, toX, firstMeasure=false, persistentClefSafety=false) {
   if (!Array.isArray(extents) || !extents.length) return [];
 
-  // Build 2.141 — vera giustificazione per numero di simboli della battuta.
+  // Build 2.144 — vera giustificazione per numero di simboli della battuta.
   // Dopo aver sottratto gli ingombri in px, lo spazio libero viene diviso in
   // N+1 interspazi uguali: margine iniziale, spazi fra simboli e margine finale.
   // Nei pentagrammi statici la chiave occupa soltanto la prima battuta: le altre
@@ -10851,7 +10908,7 @@ function createNotesL4() {
     // in caso di problemi, manteniamo totalMedals = 0
   }
 
-  // Build 2.141 — il vocabolario del livello resta invariato fin dalla prima fascia.
+  // Build 2.144 — il vocabolario del livello resta invariato fin dalla prima fascia.
   // L4 usa sempre semibreve, minima e semiminima: cresce solo la difficoltà
   // della loro disposizione, a blocchi di tre esercizi completati.
   const difficultyTier=difficultyTierMR(rainbowsL4Local,4);
@@ -10889,7 +10946,7 @@ function createNotesL4() {
 
   // Pulisci vecchie note/segni di errore
   staffSvgL4
-    .querySelectorAll(".note-circle, .note-symbol, .error-x, .ledger-line, .note-stem, .note-flag, .measure-bar-l4")
+    .querySelectorAll(".note-circle, .note-symbol, .error-x, .ledger-line, .midi-ledger-line, .note-stem, .note-flag, .measure-bar-l4")
     .forEach(e => e.remove());
   currentNotesL4 = [];
   currentIndexL4 = 0;
@@ -10900,7 +10957,7 @@ function createNotesL4() {
   const startX = MR_SINGLE_STAFF_LEFT_X;
   const endX = MR_SINGLE_STAFF_RIGHT_X;
 
-  // Build 2.141 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
+  // Build 2.144 — Livello 4: sempre 4 battute, come i livelli ritmici 5–7.
   // La geometria resta condivisa con measureBoundsMR/noteXInsideMeasureMR:
   // prima battuta più larga per la chiave e margine sicuro prima di ogni stanghetta.
   const measureCount = 4;
@@ -11355,7 +11412,7 @@ function rhythmDifficultyProfileMR(s){
   const tier=difficultyTierMR(s&&s.wins,5);
   if(!s)return {tier:1,restCount:0,accidentalMode:0};
 
-  /* Build 2.141 — identità del livello sempre presente.
+  /* Build 2.144 — identità del livello sempre presente.
      Ogni fascia dura tre esercizi e modifica solo la disposizione delle figure:
      - L5: crome + pause fin dalla fascia 1, con figure puntate in combinazioni semplici;
      - L6: stesso vocabolario ritmico ma con crome/puntati più frequenti e distribuiti;
@@ -11561,7 +11618,7 @@ function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
   group.classList.add("note-symbol"); group.setAttribute("transform",`translate(${cx}, ${cy})`);
   if(accidental){
     const acc=document.createElementNS("http://www.w3.org/2000/svg","text");
-    /* Build 2.141 — l'alterazione termina sempre prima del bordo sinistro della testa.
+    /* Build 2.144 — l'alterazione termina sempre prima del bordo sinistro della testa.
        text-anchor=end rende il margine indipendente dalla diversa larghezza di ♯ e ♭,
        evitando che il glifo invada la nota senza modificare cx/cy o il pitch. */
     acc.setAttribute("x","-15");
@@ -11578,7 +11635,7 @@ function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
 }
 
 
-/* Build 2.141 — travi per crome consecutive nei livelli 5–8.
+/* Build 2.144 — travi per crome consecutive nei livelli 5–8.
    La logica ritmica resta invariata: cambiamo soltanto la grafica delle crome adiacenti. */
 const MR_RHYTHM_BEAM_METRICS=Object.freeze({
   noteheadSize:60,
@@ -11690,7 +11747,7 @@ function applyRhythmEighthBeamsMR(notes,parent,staffCenterY=123.08){
   });
 }
 
-/* Build 2.141 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
+/* Build 2.144 — pause musicali standard per L5-L8 tramite glifi SMuFL self-hosted.
    La logica ritmica e le coordinate delle battute restano invariate. */
 function appendRestGlyphMR(parent,cx,cy,durationName,className="rest-symbol") {
   const group=document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -11890,7 +11947,7 @@ if(staffSvgL5&&rhythmL5.piano){createNotesL5();renderPianoRhythmMR(rhythmL5);}if
 
 /* ===========================
    LIVELLO 8 - DOPPIO PENTAGRAMMA / ACCORDI NATURALI
-   Build 2.141: motore del precedente Livello 6 trasferito integralmente al Livello 8.
+   Build 2.144: motore del precedente Livello 6 trasferito integralmente al Livello 8.
    =========================== */
 
 const staffSvgL8=document.getElementById("staffSvgL8");
@@ -11925,7 +11982,7 @@ const L8_WHITE_MIDI=[48,50,52,53,55,57,59,60,62,64,65,67,69,71];
 const L8_BLACK_MIDI=[49,51,54,56,58,61,63,66,68,70];
 const L8_VISIBLE_MIDI=new Set([...L8_WHITE_MIDI,...L8_BLACK_MIDI]);
 
-/* Build 2.141 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
+/* Build 2.144 — unica fonte di verità per pitch, tastiera e posizione sul pentagramma.
    Le coordinate sono ricavate dalla geometria reale dell'immagine grand-staff-l8.png:
    - chiave di violino: MI4 sulla linea inferiore y=126.75, passo diatonico 8.3125
    - chiave di basso: RE3 sulla linea centrale y=246.25, passo diatonico 8.25
@@ -12121,7 +12178,7 @@ function appendRestVisualL8(cx,voice,durationName){
   return {voice,cx,cy,durationName,element,isRest:true};
 }
 
-/* Build 2.141 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
+/* Build 2.144 — L8: due voci ritmiche indipendenti, entrambe rigorosamente in 4/4.
    Le suddivisioni del rigo superiore e inferiore restano diverse. Gli onset condivisi
    tra le due voci mantengono la stessa X, ma i gruppi di attacco vengono distribuiti
    omogeneamente nella battuta per evitare addensamenti e grandi vuoti grafici. */
@@ -12236,7 +12293,7 @@ function createNotesL8(){
   staffSvgL8.querySelectorAll(".note-symbol,.rest-symbol,.measure-bar-l8,.rhythm-note-beam").forEach(e=>e.remove());
   currentChordsL8=[];currentVoiceNotesL8={bass:[],treble:[]};currentVoiceRestsL8={bass:[],treble:[]};currentIndexL8=0;consecutiveErrorsL8=0;lastHitTimeL8=null;updateErrorPill(errorPillL8,0,7);
 
-  /* Build 2.141 — L8 ha sempre due battute di identica larghezza.
+  /* Build 2.144 — L8 ha sempre due battute di identica larghezza.
      Qui NON si applica la prima-battuta 4/3 usata nei pentagrammi da quattro battute. */
   const measureCount=2;
   const startX=37.5,endX=945;
@@ -12362,7 +12419,7 @@ function handleAnswerL8(midi){
       pendingChordTimeoutL8=setTimeout(()=>{if(pendingChordNotesL8.size<required.length)failChordL8();},CHORD_WINDOW_MS_L8);
     }
   }
-  // Build 2.141 — solo una nota validata produce il suono del pianoforte.
+  // Build 2.144 — solo una nota validata produce il suono del pianoforte.
   playToneExactMR(targetNote.freq,(targetNote.beats||1)*getBeatIntervalMsL8());
   pendingChordNotesL8.add(midi);
   if(targetNote.element)targetNote.element.classList.add("chord-note-pending");
@@ -12401,12 +12458,12 @@ if(staffSvgL8&&pianoKeysElL8){createNotesL8();renderPianoL8();}
 
 
 /* ===========================
-   LIBRERIA + MODALITÀ SPARTITO — Build 2.141
+   LIBRERIA + MODALITÀ SPARTITO — Build 2.144
    Formato proprietario .mrscore v1. Copertina immagine incorporata nello stesso file;
    il motore conserva geometria, tastiera, pitch e audio del Livello 8 e percorre
    l'intero brano prima della medaglia.
    =========================== */
-const MR_SCORE_LIBRARY_URL="Scores/library.json?v=2.141";
+const MR_SCORE_LIBRARY_URL="Scores/library.json?v=2.144";
 const MR_SCORE_COMPLETIONS_KEY="musicRainbowScoreCompletions";
 const MR_SCORE_AWARDS_KEY="musicRainbowScoreAwardsV1";
 const MR_IMPORTED_SCORE_DB="MusicRainbowImportedScores";
@@ -12625,7 +12682,7 @@ function buildScoreTimelineMR(score,mode=scorePlayMode){
   });
   return timeline;
 }
-/* Build 2.141 — player automatico dello spartito.
+/* Build 2.144 — player automatico dello spartito.
    È completamente separato dalla valutazione dell'esercizio: non modifica
    scoreCurrentIndex, errori, premi, sessioni o correttezza delle risposte. */
 function scoreAutoVisualKeyMR(measureIndex,voice,eventIndex){
@@ -12842,7 +12899,7 @@ function scoreSpecifiedPlacementForEntryMR(score,measureIndex,voice,eventIndex){
   return "auto";
 }
 
-/* Build 2.141 — note singole in Modalità Spartito: la direzione del gambo segue
+/* Build 2.144 — note singole in Modalità Spartito: la direzione del gambo segue
    la grammatica standard (note alte -> gambo in basso, note basse -> gambo in alto)
    oppure, per una legatura esplicitamente posizionata, viene forzata sul lato opposto. */
 const MR_SCORE_STEM_METRICS=Object.freeze({
@@ -12931,7 +12988,7 @@ function appendScoreRestVisualMR(cx,voice,durationName){
   return rest;
 }
 
-/* Build 2.141 — crome unite con trave reversibile. La trave e i gambi vengono
+/* Build 2.144 — crome unite con trave reversibile. La trave e i gambi vengono
    disegnati sul lato opposto alla legatura quando il file ne fissa il lato; in
    assenza di indicazioni si usa la direzione convenzionale del gruppo. */
 const MR_SCORE_BEAMED_EIGHTH_METRICS=Object.freeze({
@@ -13181,7 +13238,7 @@ function setScorePlayModeMR(mode,restart=true){
     else renderScoreWindowMR(0,false);
   }
 }
-/* Build 2.141 — legature di frase didattiche.
+/* Build 2.144 — legature di frase didattiche.
    Sono generate solo dal renderer e non entrano nel modello ritmico del file .mrscore.
    Le frasi restano dentro la singola battuta, così swipe e finestra a due battute
    non possono mostrare archi troncati appartenenti a battute esterne. */
@@ -13611,7 +13668,7 @@ function renderScorePianoMR(){
   const blackPositions=[0,1,3,4,5,7,8,10,11,12];
   L8_BLACK_MIDI.forEach((midi,idx)=>{const key=document.createElement("div");key.className="black-key";key.style.left=((blackPositions[idx]+1)/totalWhite*100)+"%";bindScorePianoKeyMR(key,midi);pianoKeysScore.appendChild(key);});
 }
-/* Build 2.141 — archivio persistente degli spartiti importati.
+/* Build 2.144 — archivio persistente degli spartiti importati.
    IndexedDB è il contenitore principale; localStorage resta un fallback per ambienti
    dove IndexedDB non è disponibile. I file importati non dipendono dal Service Worker. */
 function readImportedScoresFallbackMR(){
@@ -13861,7 +13918,7 @@ async function openScoreFromLibraryMR(entry){
       score=entry.importedScore;
     }else{
       if(!entry.file)throw new Error("score");
-      const res=await fetch(`Scores/${encodeURIComponent(entry.file)}?v=2.141`,{cache:"no-cache"});if(!res.ok)throw new Error("score");
+      const res=await fetch(`Scores/${encodeURIComponent(entry.file)}?v=2.144`,{cache:"no-cache"});if(!res.ok)throw new Error("score");
       score=await res.json();
     }
     if(serial!==scoreLoadSerial)return;if(!validateMrScore(score))throw new Error("invalid");
@@ -15383,7 +15440,7 @@ function isPlayablePageVisibleMR() {
 function hideAllPages() {
     try { stopScoreAutoPlaybackMR({stopVoices:true,restoreProgress:false}); } catch(e) {}
     try { resetTempoTapCaptureMR(false); clearTempoRecognitionMR(); } catch(e) {}
-    // Build 2.141 — uscendo da qualsiasi livello, modalità didattica/Play o brano,
+    // Build 2.144 — uscendo da qualsiasi livello, modalità didattica/Play o brano,
     // il metronomo viene sempre spento. BPM e volume restano memorizzati.
     stopMetronomeOnPlayableExitMR();
     level1Page.style.display = "none";
@@ -15705,7 +15762,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
         return;
       }
 
-      // Build 2.141 — consumo automatico: un solo gettone, dallo scrigno
+      // Build 2.144 — consumo automatico: un solo gettone, dallo scrigno
       // più vecchio (numero di scrigno più basso) che ne possiede ancora.
       if (getTotalAvailableTokensAcrossChests() <= 0) {
         updateHomePlayButtonState();
@@ -15798,7 +15855,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.141";
+  const PAGE_BUILD = "2.144";
   let swRegistrationMR = null;
   let lastUpdateCheckMR = 0;
   let updateCheckRunningMR = false;

@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.162 */
-const BUILD = "2.162";
+/* Music Rainbow Service Worker - Build 2.163 */
+const BUILD = "2.163";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -17,6 +17,14 @@ const CORE_PRECACHE_URLS = [
   "./Assets/staff-base-treble.png",
   "./Assets/MusicRainbow-SMuFL.woff2",
   "./Assets/tempo-drum-red-white.jpeg",
+  "./Assets/medal-token-bronze.png",
+  "./Assets/medal-token-silver.png",
+  "./Assets/medal-token-gold.png",
+  "./Assets/medal-token-green.png",
+  "./Assets/medal-token-cyan.png",
+  "./Assets/medal-token-blue.png",
+  "./Assets/medal-token-violet.png",
+  "./Assets/medal-token-pink.png",
   "./Scores/library.json",
   "./Scores/piccolo-arcobaleno.mrscore",
   "./Scores/passi-di-sole.mrscore",

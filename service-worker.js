@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.151 */
-const BUILD = "2.151";
+/* Music Rainbow Service Worker - Build 2.152 */
+const BUILD = "2.152";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 

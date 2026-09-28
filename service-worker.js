@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.169 */
-const BUILD = "2.169";
+/* Music Rainbow Service Worker - Build 2.170 */
+const BUILD = "2.170";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -10,12 +10,12 @@ const CORE_PRECACHE_URLS = [
   "./index.html",
   "./manifest.webmanifest",
   "./Assets/Home-rainbow-main.png",
-  "./Assets/home-icon-level.png",
-  "./Assets/home-icon-scores.png",
-  "./Assets/home-icon-play.png",
-  "./Assets/home-icon-learn.png",
-  "./Assets/home-icon-trophy.png",
-  "./Assets/home-icon-settings.png",
+  "./Assets/home-icon-level.svg",
+  "./Assets/home-icon-scores.svg",
+  "./Assets/home-icon-play.svg",
+  "./Assets/home-icon-learn.svg",
+  "./Assets/home-icon-trophy.svg",
+  "./Assets/home-icon-settings.svg",
   "./Assets/grand-staff-l6.png",
   "./Assets/grand-staff-l6-lower-clean.png",
   "./Assets/score-lower-treble-patch.png",

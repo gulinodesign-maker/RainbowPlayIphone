@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.171 */
-const BUILD = "2.171";
+/* Music Rainbow Service Worker - Build 2.172 */
+const BUILD = "2.172";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -60,19 +60,9 @@ self.addEventListener("activate", event => {
         .map(k => caches.delete(k))
     );
 
+    // Build 2.172 — nessuna navigazione forzata dall'activate: con controllerchange
+    // la pagina viene aggiornata una sola volta, evitando catene di reload su WKWebView.
     await self.clients.claim();
-
-    // Porta subito le finestre aperte sul documento fresco della nuova build.
-    const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-    await Promise.allSettled(windows.map(async client => {
-      try {
-        const url = new URL(client.url);
-        if (url.origin !== self.location.origin) return;
-        url.searchParams.set("v", BUILD);
-        url.searchParams.set("swrefresh", String(Date.now()));
-        await client.navigate(url.href);
-      } catch (e) {}
-    }));
   })());
 });
 

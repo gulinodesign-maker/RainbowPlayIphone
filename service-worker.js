@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.178 */
-const BUILD = "2.178";
+/* Music Rainbow Service Worker - Build 2.179 */
+const BUILD = "2.179";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -11,7 +11,7 @@ const CORE_PRECACHE_URLS = [
   "./manifest.webmanifest",
   "./Assets/Home-rainbow-main.png",
   "./Assets/home-icon-level.svg",
-  "./Assets/home-icon-scores.svg",
+  "./Assets/home-icon-scores-2179.svg",
   "./Assets/home-icon-play.svg",
   "./Assets/home-icon-learn.svg",
   "./Assets/home-icon-trophy.svg",
@@ -60,7 +60,7 @@ self.addEventListener("activate", event => {
         .map(k => caches.delete(k))
     );
 
-    // Build 2.178 — nessuna navigazione forzata dall'activate: con controllerchange
+    // Build 2.179 — nessuna navigazione forzata dall'activate: con controllerchange
     // la pagina viene aggiornata una sola volta, evitando catene di reload su WKWebView.
     await self.clients.claim();
   })());

@@ -1,7 +1,7 @@
 {
   "name": "Music Rainbow",
   "short_name": "Music Rainbow",
-  "start_url": "./?v=2.216",
+  "start_url": "./?v=2.217",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#74E7DF",

@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.221 */
-const BUILD = "2.221";
+/* Music Rainbow Service Worker - Build 2.222 */
+const BUILD = "2.222";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -60,7 +60,7 @@ self.addEventListener("activate", event => {
         .map(k => caches.delete(k))
     );
 
-    // Build 2.221 — nessuna navigazione forzata dall'activate: con controllerchange
+    // Build 2.222 — nessuna navigazione forzata dall'activate: con controllerchange
     // la pagina viene aggiornata una sola volta, evitando catene di reload su WKWebView.
     await self.clients.claim();
   })());

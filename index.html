@@ -6138,7 +6138,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.37</div>
+    <div class="intro-version-label">Build 2.38</div>
   </div>
 </div>
 
@@ -25133,8 +25133,15 @@ scorePhoneDrawerSyncMR();
   return [...map.values()].sort((a,b)=>a.t-b.t);
  }
  function markHandsError(hands){hands.forEach(hand=>{const el=svg.querySelector(`[data-hand="${hand}"]:not(.hands-hit)`);if(el){el.classList.add('hands-error');setTimeout(()=>el.classList.remove('hands-error'),400);}});}
- function failSequence(message='Sequenza non corretta: riprova'){
-  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();feedback.textContent=message;markHandsError([0,1]);
+ function failSequence(message='Sequenza non corretta: ricomincia da capo'){
+  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;
+  pendingHands.clear();
+  // Qualsiasi errore annulla tutti i progressi dell'esercizio corrente:
+  // la sequenza deve essere rieseguita integralmente dalla prima nota.
+  done=[new Set(),new Set()];eventIndex=0;running=false;
+  render();
+  feedback.textContent=message;
+  markHandsError([0,1]);
  }
  function strike(hand,record=true){drum(hand);const button=document.getElementById(hand===0?'handsRight':'handsLeft');button.classList.remove('tempo-drum-hit');void button.offsetWidth;button.classList.add('tempo-drum-hit');setTimeout(()=>button.classList.remove('tempo-drum-hit'),220);if(!record||running)return;
   const events=exerciseEvents(),ev=events[eventIndex];if(!ev)return;

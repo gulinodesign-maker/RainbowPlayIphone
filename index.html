@@ -6138,7 +6138,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.36</div>
+    <div class="intro-version-label">Build 2.37</div>
   </div>
 </div>
 
@@ -25119,7 +25119,7 @@ scorePhoneDrawerSyncMR();
  function noteKey(hand,j){return hand+'-'+j;}
  function render(){svg.replaceChildren();const [right,left]=spec();progress.textContent=`Esercizio ${index+1} / ${patterns.length} · Gruppo ${Math.floor(index/3)+1}`;
   const x=t=>190+t*44;const yy=[126.75,246.25];
-  if(guide){for(const a of right){const active=left.find(b=>b.t<=a.t&&a.t<b.t+b.d);if(active)node('line',{x1:x(a.t),y1:164,x2:x(active.t),y2:205,class:'hands-guide'});}for(const b of left){const active=right.find(a=>a.t<=b.t&&b.t<a.t+a.d);if(active)node('line',{x1:x(active.t),y1:164,x2:x(b.t),y2:205,class:'hands-guide'});}}
+  if(guide){for(const a of right){const active=left.find(b=>b.t<=a.t&&a.t<b.t+b.d);if(active)node('line',{x1:x(a.t),y1:154,x2:x(active.t),y2:218,class:'hands-guide'});}}
   [right,left].forEach((arr,hand)=>arr.forEach((n,j)=>{const px=x(n.t),y=yy[hand];const glyph=n.d===16?'noteWhole':n.d===8?'noteHalfUp':n.d===4?'noteQuarterUp':'note8thUp';const metrics=typeof MR_SMUFL_NOTE_METRICS!=='undefined'?MR_SMUFL_NOTE_METRICS:null;const m=metrics&&metrics[n.d===16?'semibreve':n.d===8?'minima':n.d===4?'semiminima':'croma'];const code=typeof MR_SMUFL_GLYPHS!=='undefined'?MR_SMUFL_GLYPHS[glyph]:String.fromCodePoint(n.d===16?0xE1D2:n.d===8?0xE1D3:n.d===4?0xE1D5:0xE1D7);const el=node('text',{x:px+(m?m.x:-12),y:y+(m?m.y:8),'font-size':m?m.size:60,class:'hands-note'+(done[hand].has(j)?' hands-hit':''),'data-hand':hand,'data-note':j});el.textContent=code;}));
   feedback.textContent='Batti i due ritmi sui tamburi';
  }
@@ -25271,6 +25271,14 @@ scorePhoneDrawerSyncMR();
   left:clamp(52px,4.6vw,76px)!important;
   width:calc(100% - clamp(76px,7.2vw,112px))!important;
 }
+</style>
+
+<style id="build-237-hands-guides-drums">
+/* Build 2.37 — Impara le due mani: collegamenti più leggibili e tamburi più grandi. */
+#learnHandsPage .hands-guide{stroke:#4b5563!important;stroke-width:1.55!important;stroke-dasharray:5 4!important;opacity:.92!important;stroke-linecap:round!important;vector-effect:non-scaling-stroke!important;}
+#learnHandsPage .hands-drums{gap:clamp(46px,13vw,200px)!important;}
+#learnHandsPage .hands-drum{width:clamp(132px,19vh,190px)!important;height:clamp(132px,19vh,190px)!important;}
+@media (orientation:landscape) and (max-height:850px){#learnHandsPage .hands-drum{width:clamp(122px,18vh,175px)!important;height:clamp(122px,18vh,175px)!important;}}
 </style>
 </body>
 </html>

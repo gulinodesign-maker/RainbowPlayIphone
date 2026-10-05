@@ -6110,7 +6110,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.34</div>
+    <div class="intro-version-label">Build 2.35</div>
   </div>
 </div>
 
@@ -25069,11 +25069,11 @@ scorePhoneDrawerSyncMR();
 })();
 </script>
 <script>
-/* Build 2.296 — didattica ritmica separata dal clock Core MIDI. */
+/* Build 2.35 — Impara le due mani: nessun clock di valutazione; conta solo sequenza e sovrapposizione delle mani. */
 (function(){
  const page=document.getElementById('learnHandsPage');if(!page)return;
  const svg=document.getElementById('handsStaff'),feedback=document.getElementById('handsFeedback'),progress=document.getElementById('handsProgress');
- const NS='http://www.w3.org/2000/svg';let index=0,guide=true,started=0,done=[new Set(),new Set()],advance=null,demoTimers=[],running=false;
+ const NS='http://www.w3.org/2000/svg';let index=0,guide=true,done=[new Set(),new Set()],advance=null,demoTimers=[],running=false,eventIndex=0,pendingHands=new Set(),pendingOverlapTimer=null;
  // Durate in semicrome: 4=semiminima, 8=minima, 2=croma, 1=semicroma; 0 è una pausa del valore seguente.
  const patterns=[
  [[4,4,4,4],[8,8]],[[8,8],[4,4,4,4]],[[4,8,4],[8,4,4]],
@@ -25095,13 +25095,34 @@ scorePhoneDrawerSyncMR();
   [right,left].forEach((arr,hand)=>arr.forEach((n,j)=>{const px=x(n.t),y=yy[hand];const glyph=n.d===16?'noteWhole':n.d===8?'noteHalfUp':n.d===4?'noteQuarterUp':'note8thUp';const metrics=typeof MR_SMUFL_NOTE_METRICS!=='undefined'?MR_SMUFL_NOTE_METRICS:null;const m=metrics&&metrics[n.d===16?'semibreve':n.d===8?'minima':n.d===4?'semiminima':'croma'];const code=typeof MR_SMUFL_GLYPHS!=='undefined'?MR_SMUFL_GLYPHS[glyph]:String.fromCodePoint(n.d===16?0xE1D2:n.d===8?0xE1D3:n.d===4?0xE1D5:0xE1D7);const el=node('text',{x:px+(m?m.x:-12),y:y+(m?m.y:8),'font-size':m?m.size:60,class:'hands-note'+(done[hand].has(j)?' hands-hit':''),'data-hand':hand,'data-note':j});el.textContent=code;}));
   feedback.textContent='Batti i due ritmi sui tamburi';
  }
- function stop(){if(advance)clearTimeout(advance);advance=null;demoTimers.forEach(clearTimeout);demoTimers=[];started=0;done=[new Set(),new Set()];running=false;}
+ function stop(){if(advance)clearTimeout(advance);advance=null;demoTimers.forEach(clearTimeout);demoTimers=[];if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;done=[new Set(),new Set()];eventIndex=0;pendingHands.clear();running=false;}
  // Stesso algoritmo timbrico di Impara il tempo, con frequenze dimezzate soltanto a sinistra.
  function drum(hand){const ctx=typeof getAudioCtx==='function'?getAudioCtx():null;if(!ctx)return;const play=()=>{const now=ctx.currentTime+.001,duration=.15,frames=Math.floor(ctx.sampleRate*duration),buffer=ctx.createBuffer(1,frames,ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<frames;i++)data[i]=(Math.random()*2-1)*Math.exp(-8.2*i/frames);const dest=typeof getAppMasterNode==='function'?getAppMasterNode(ctx):ctx.destination;const ratio=hand===1?.5:1;const noise=ctx.createBufferSource();noise.buffer=buffer;noise.playbackRate.value=ratio;const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.setValueAtTime(1500*ratio,now);const band=ctx.createBiquadFilter();band.type='bandpass';band.frequency.setValueAtTime(4700*ratio,now);band.Q.value=.72;const ng=ctx.createGain();ng.gain.setValueAtTime(.46,now);ng.gain.exponentialRampToValueAtTime(.0001,now+duration/ratio);noise.connect(hp);hp.connect(band);band.connect(ng);ng.connect(dest);noise.start(now);noise.stop(now+duration/ratio);const body=ctx.createOscillator();body.type='triangle';body.frequency.setValueAtTime(168*ratio,now);body.frequency.exponentialRampToValueAtTime(112*ratio,now+.07/ratio);const bg=ctx.createGain();bg.gain.setValueAtTime(.20,now);bg.gain.exponentialRampToValueAtTime(.0001,now+.17/ratio);body.connect(bg);bg.connect(dest);body.start(now);body.stop(now+.19/ratio);[3500,4450,5650,7100].forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='square';o.frequency.setValueAtTime(f*ratio,now+i*.001);g.gain.setValueAtTime(.042,now);g.gain.exponentialRampToValueAtTime(.0001,now+.105/ratio+i*.008);o.connect(g);g.connect(dest);o.start(now);o.stop(now+.123/ratio+i*.008);});};if(ctx.state==='suspended')ctx.resume().then(play).catch(()=>{});else play();}
+ function exerciseEvents(){
+  const [right,left]=spec(),map=new Map();
+  right.forEach((n,j)=>{if(!map.has(n.t))map.set(n.t,{t:n.t,hits:[]});map.get(n.t).hits.push({hand:0,j});});
+  left.forEach((n,j)=>{if(!map.has(n.t))map.set(n.t,{t:n.t,hits:[]});map.get(n.t).hits.push({hand:1,j});});
+  return [...map.values()].sort((a,b)=>a.t-b.t);
+ }
+ function markHandsError(hands){hands.forEach(hand=>{const el=svg.querySelector(`[data-hand="${hand}"]:not(.hands-hit)`);if(el){el.classList.add('hands-error');setTimeout(()=>el.classList.remove('hands-error'),400);}});}
+ function failSequence(message='Sequenza non corretta: riprova'){
+  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();feedback.textContent=message;markHandsError([0,1]);
+ }
  function strike(hand,record=true){drum(hand);const button=document.getElementById(hand===0?'handsRight':'handsLeft');button.classList.remove('tempo-drum-hit');void button.offsetWidth;button.classList.add('tempo-drum-hit');setTimeout(()=>button.classList.remove('tempo-drum-hit'),220);if(!record||running)return;
-  const now=performance.now(),arr=spec()[hand];if(!started)started=now;const t=(now-started)/unit;let best=-1,dist=Infinity;arr.forEach((n,j)=>{const d=Math.abs(n.t-t);if(!done[hand].has(j)&&d<dist){dist=d;best=j;}});
-  if(best>=0&&dist<=.9){done[hand].add(best);const el=svg.querySelector(`[data-hand="${hand}"][data-note="${best}"]`);if(el)el.classList.add('hands-hit');feedback.textContent='Bravo! Continua con le due mani';const [r,l]=spec();if(done[0].size===r.length&&done[1].size===l.length){running=true;feedback.textContent='Ottimo! Passiamo al prossimo esercizio';advance=setTimeout(next,850);}}
-  else{feedback.textContent='Colpo fuori tempo: riprova';const pending=svg.querySelector(`[data-hand="${hand}"]:not(.hands-hit)`);if(pending){pending.classList.add('hands-error');setTimeout(()=>pending.classList.remove('hands-error'),400);}}
+  const events=exerciseEvents(),ev=events[eventIndex];if(!ev)return;
+  const requiredHands=[...new Set(ev.hits.map(h=>h.hand))];
+  if(!requiredHands.includes(hand)||pendingHands.has(hand)){failSequence();return;}
+  pendingHands.add(hand);
+  ev.hits.filter(h=>h.hand===hand).forEach(h=>{done[hand].add(h.j);const el=svg.querySelector(`[data-hand="${hand}"][data-note="${h.j}"]`);if(el)el.classList.add('hands-hit');});
+  if(requiredHands.length>1&&pendingHands.size<requiredHands.length){
+    feedback.textContent='Completa il colpo con l’altra mano';
+    if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);
+    pendingOverlapTimer=setTimeout(()=>failSequence('Le due mani devono suonare insieme: riprova'),650);
+    return;
+  }
+  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();eventIndex++;
+  feedback.textContent='Bravo! Continua con la sequenza';
+  if(eventIndex>=events.length){running=true;feedback.textContent='Ottimo! Passiamo al prossimo esercizio';advance=setTimeout(next,850);}
  }
  function next(){stop();index=(index+1)%patterns.length;render();}
  document.getElementById('handsReset').addEventListener('click',()=>{stop();render();});document.getElementById('handsGuide').addEventListener('click',()=>{guide=!guide;render();});

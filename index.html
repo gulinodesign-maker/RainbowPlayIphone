@@ -6110,7 +6110,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.32</div>
+    <div class="intro-version-label">Build 2.33</div>
   </div>
 </div>
 
@@ -25191,6 +25191,28 @@ scorePhoneDrawerSyncMR();
 #learnTempoPage #tempoActionBtn::before,#learnTempoPage #tempoActionBtn::after{display:none!important;content:none!important;}
 #learnTempoPage .tempo-drum-image{background:transparent!important;box-shadow:none!important;filter:none;}
 #learnTempoPage #tempoActionBtn.tempo-touch-down .tempo-drum-image{box-shadow:none!important;}
+</style>
+
+<style id="build-233-hands-staff-like-level8">
+/* Build 2.33 — Impara le due mani: doppio pentagramma rifinito come il livello 8.
+   Conserva un margine di carta prima della graffa e mostra integralmente graffa e chiavi. */
+#learnHandsPage .hands-staff-wrap{
+  padding:0!important;
+  overflow:visible!important;
+}
+#learnHandsPage .hands-staff-wrap::before,
+#learnHandsPage .hands-staff-wrap::after{inset:0!important;}
+#learnHandsPage .hands-staff-wrap .staff-bg-l8,
+#learnHandsPage .hands-staff-wrap .staff-overlay-l8{
+  left:clamp(24px,2.6vw,42px)!important;
+  right:auto!important;
+  width:calc(100% - clamp(48px,5.2vw,84px))!important;
+  height:100%!important;
+}
+#learnHandsPage .hands-staff-wrap .staff-bg-l8{
+  object-fit:fill!important;
+  object-position:center!important;
+}
 </style>
 </body>
 </html>

@@ -6118,6 +6118,25 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   #learnTempoPage #tempoActionBtn{width:132px!important;height:132px!important;}
 }
 </style>
+
+<style id="build-239-learn-tempo-drum-below-paper">
+/* Build 2.39 — Impara Tempo: il tamburo resta completamente sotto il foglio. */
+#learnTempoPage .staff-stage-single{
+  height:clamp(225px,43vh,300px)!important;
+}
+#learnTempoPage .tempo-action-container{
+  padding:34px 8px 6px!important;
+  align-items:flex-start!important;
+}
+#learnTempoPage #tempoActionBtn{
+  top:0!important;
+  margin-top:0!important;
+}
+@media (orientation:landscape) and (max-height:850px){
+  #learnTempoPage .staff-stage-single{height:clamp(210px,40vh,270px)!important;}
+  #learnTempoPage .tempo-action-container{padding-top:26px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -6138,7 +6157,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.38</div>
+    <div class="intro-version-label">Build 2.39</div>
   </div>
 </div>
 

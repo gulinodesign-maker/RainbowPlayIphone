@@ -6090,6 +6090,34 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   overflow: visible !important;
 }
 </style>
+
+<style id="build-236-learn-tempo-layout">
+/* Build 2.36 — Impara Tempo: foglio più basso, tamburo interamente sotto la carta. */
+#learnTempoPage .staff-stage-single{
+  flex:0 0 auto!important;
+  width:calc(100% - 44px)!important;
+  height:clamp(250px,50vh,340px)!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  margin:6px 22px 0!important;
+}
+#learnTempoPage .tempo-action-container{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  padding:10px 8px 6px!important;
+  align-items:flex-start!important;
+}
+#learnTempoPage #tempoActionBtn{
+  top:0!important;
+  width:clamp(120px,15vw,156px)!important;
+  height:clamp(120px,15vw,156px)!important;
+}
+@media (orientation:landscape) and (max-height:850px){
+  #learnTempoPage .staff-stage-single{height:clamp(230px,48vh,315px)!important;}
+  #learnTempoPage .tempo-action-container{padding-top:8px!important;}
+  #learnTempoPage #tempoActionBtn{width:132px!important;height:132px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -6110,7 +6138,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.35</div>
+    <div class="intro-version-label">Build 2.36</div>
   </div>
 </div>
 

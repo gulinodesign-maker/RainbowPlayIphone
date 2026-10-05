@@ -6110,7 +6110,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.31</div>
+    <div class="intro-version-label">Build 2.32</div>
   </div>
 </div>
 
@@ -25170,6 +25170,27 @@ scorePhoneDrawerSyncMR();
 #learnHandsPage .hands-staff-wrap .staff-overlay-l8{
   left:12px!important;right:12px!important;width:calc(100% - 24px)!important;height:100%!important;z-index:2!important;
 }
+</style>
+
+<style id="build-232-paper-position-tempo-drum">
+/* Build 2.32 — Impara le due mani: bordo carta realmente seghettato e gruppo abbassato.
+   Impara tempo: il tamburo non ha fondi/quadrati grafici sotto l'immagine. */
+#learnHandsPage .hands-app{padding-top:0!important;}
+#learnHandsPage .hands-staff-wrap{
+  margin-top:clamp(14px,2.2vh,24px)!important;
+  clip-path:polygon(.35% .65%,8% .15%,18% .55%,29% .18%,42% .48%,54% .12%,67% .42%,79% .16%,91% .52%,99.55% .24%,99.72% 11%,99.48% 25%,99.78% 39%,99.5% 54%,99.76% 69%,99.46% 84%,99.66% 99.45%,90% 99.72%,79% 99.42%,66% 99.78%,54% 99.46%,42% 99.75%,29% 99.4%,17% 99.7%,.42% 99.48%,.2% 86%,.48% 71%,.18% 56%,.44% 41%,.16% 25%)!important;
+}
+#learnHandsPage .hands-drums{transform:translateY(clamp(8px,1.4vh,16px))!important;}
+#learnTempoPage #tempoActionBtn,
+#learnTempoPage #tempoActionBtn:hover,
+#learnTempoPage #tempoActionBtn:focus,
+#learnTempoPage #tempoActionBtn:active{
+  appearance:none!important;-webkit-appearance:none!important;background:transparent!important;background-color:transparent!important;
+  border:0!important;outline:0!important;box-shadow:none!important;filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+#learnTempoPage #tempoActionBtn::before,#learnTempoPage #tempoActionBtn::after{display:none!important;content:none!important;}
+#learnTempoPage .tempo-drum-image{background:transparent!important;box-shadow:none!important;filter:none;}
+#learnTempoPage #tempoActionBtn.tempo-touch-down .tempo-drum-image{box-shadow:none!important;}
 </style>
 </body>
 </html>

@@ -6110,7 +6110,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.30</div>
+    <div class="intro-version-label">Build 2.31</div>
   </div>
 </div>
 
@@ -7506,7 +7506,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div id="learnHandsPage" class="page-container" style="display:none">
  <div class="app hands-app">
   <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div></div></div>
-  <div class="hands-info"><span id="handsProgress">Esercizio 1 / 21</span><span id="handsFeedback" role="status" aria-live="polite">Batti i due ritmi sui tamburi</span></div>
+  <div class="hands-info" aria-hidden="true"><span id="handsProgress"></span><span id="handsFeedback" role="status" aria-live="polite"></span></div>
   <div class="hands-staff-wrap staff-stage-l8"><img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true"><svg id="handsStaff" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ritmi delle due mani con chiave di violino e basso"></svg></div>
   <div class="hands-drums"><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div></div>
   
@@ -25145,5 +25145,31 @@ scorePhoneDrawerSyncMR();
 }
 </style>
 
+
+<style id="build-231-learn-hands-paper-fix">
+/* Build 2.31 — Impara le due mani: carta seghettata, chiavi con margine, testi superiori rimossi. */
+#learnHandsPage .hands-info{display:none!important;}
+#learnHandsPage .hands-staff-wrap{
+  overflow:visible!important;
+  background:transparent!important;
+  clip-path:none!important;
+  padding:0 12px!important;
+  box-sizing:border-box!important;
+}
+#learnHandsPage .hands-staff-wrap::before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none!important;
+  background:#faf9f5 url("Assets/score-paper-crumpled.jpg?v=2.296") center/100% 100% no-repeat!important;
+  clip-path:var(--mr-paper-shape)!important;
+}
+#learnHandsPage .hands-staff-wrap::after{
+  content:""!important;position:absolute!important;inset:0!important;z-index:0!important;pointer-events:none!important;
+  background:rgba(48,34,25,.25)!important;clip-path:var(--mr-paper-shape)!important;
+  transform:translateY(9px) scale(.996)!important;filter:blur(8px)!important;opacity:.7!important;
+}
+#learnHandsPage .hands-staff-wrap .staff-bg-l8,
+#learnHandsPage .hands-staff-wrap .staff-overlay-l8{
+  left:12px!important;right:12px!important;width:calc(100% - 24px)!important;height:100%!important;z-index:2!important;
+}
+</style>
 </body>
 </html>

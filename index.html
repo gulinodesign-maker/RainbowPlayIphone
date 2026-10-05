@@ -6110,7 +6110,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.33</div>
+    <div class="intro-version-label">Build 2.34</div>
   </div>
 </div>
 
@@ -25212,6 +25212,15 @@ scorePhoneDrawerSyncMR();
 #learnHandsPage .hands-staff-wrap .staff-bg-l8{
   object-fit:fill!important;
   object-position:center!important;
+}
+</style>
+
+<style id="build-234-hands-staff-more-right">
+/* Build 2.34 — Impara le due mani: più margine a sinistra per mostrare interamente graffa e inizio pentagramma. */
+#learnHandsPage .hands-staff-wrap .staff-bg-l8,
+#learnHandsPage .hands-staff-wrap .staff-overlay-l8{
+  left:clamp(52px,4.6vw,76px)!important;
+  width:calc(100% - clamp(76px,7.2vw,112px))!important;
 }
 </style>
 </body>

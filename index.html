@@ -5202,8 +5202,8 @@ button.midi-learn-bound{box-shadow:0 0 0 4px rgba(34,197,94,.62),0 0 20px rgba(3
   display:block;
   width:100%;
   height:100%;
-  object-fit:cover;
-  border-radius:50%;
+  object-fit:contain;
+  border-radius:0;
   pointer-events:none;
   user-select:none;
   -webkit-user-drag:none;
@@ -6110,7 +6110,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.297</div>
+    <div class="intro-version-label">Build 2.30</div>
   </div>
 </div>
 
@@ -6187,15 +6187,15 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <div class="level-select-box learn-select-box-mr">
     <h2 class="level-select-title">Impara</h2>
     <div class="learn-select-stack" role="group" aria-label="Scegli cosa imparare">
-      <button type="button" id="homeLearnNotesBtn" class="learn-select-choice learn-select-notes">
+      <button type="button" id="homeLearnNotesBtn" class="learn-select-choice learn-select-notes learn-select-red">
         <span class="learn-select-choice-icon" aria-hidden="true">♪</span>
         <span class="learn-select-choice-text">Impara le note</span>
       </button>
-      <button type="button" id="homeLearnTempoBtn" class="learn-select-choice learn-select-tempo">
+      <button type="button" id="homeLearnTempoBtn" class="learn-select-choice learn-select-tempo learn-select-orange">
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
         <span class="learn-select-choice-text">Impara il tempo</span>
       </button>
-      <button type="button" id="homeLearnHandsBtn" class="learn-select-choice learn-select-tempo" aria-label="Impara le due mani">
+      <button type="button" id="homeLearnHandsBtn" class="learn-select-choice learn-select-hands learn-select-yellow" aria-label="Impara le due mani">
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
         <span class="learn-select-choice-text">Impara le due mani</span>
       </button>
@@ -7493,7 +7493,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     <div class="tempo-action-container">
       <button id="tempoActionBtn" class="tempo-action-btn" type="button" aria-label="Tamburo per battere il tempo">
-        <img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.296" alt="" aria-hidden="true" draggable="false" />
+        <img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.299" alt="" aria-hidden="true" draggable="false" />
       </button>
     </div>
 
@@ -7505,11 +7505,11 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <!-- Coordinazione ritmica: un solo schermo, due tamburi originali -->
 <div id="learnHandsPage" class="page-container" style="display:none">
  <div class="app hands-app">
-  <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button></div></div></div>
+  <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div></div></div>
   <div class="hands-info"><span id="handsProgress">Esercizio 1 / 21</span><span id="handsFeedback" role="status" aria-live="polite">Batti i due ritmi sui tamburi</span></div>
   <div class="hands-staff-wrap staff-stage-l8"><img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true"><svg id="handsStaff" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ritmi delle due mani con chiave di violino e basso"></svg></div>
   <div class="hands-drums"><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div></div>
-  <div class="hands-actions"><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div>
+  
  </div>
 </div>
 
@@ -25035,6 +25035,19 @@ scorePhoneDrawerSyncMR();
 }
 #scoreEditorExportMR[hidden]{display:none!important;}
 #scoreEditorToolbarMR.score-creator-record-mode > #scoreEditorExportMR{display:none!important;}
+
+/* Coordinazione due mani: stessa identita visiva delle altre pagine */
+#learnHandsPage .top-left-controls button,#learnHandsPage .top-right-controls button{position:relative!important;width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;padding:0!important;border-radius:12px!important;border:2px solid!important;box-shadow:none!important;font-size:0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+#learnHandsPage .top-left-controls button::before,#learnHandsPage .top-right-controls button::before{font-size:1.5rem!important;line-height:1!important;display:block!important}
+#learnHandsPage #handsHome{background:#fff7ed!important;border-color:#fdba74!important;color:#ea580c!important}
+#learnHandsPage #handsHome::before{content:"🏠"}
+#learnHandsPage #handsReset{background:#fef3c7!important;border-color:#fbbf24!important;color:#b45309!important}
+#learnHandsPage #handsReset::before{content:"🔄"}
+#learnHandsPage #handsGuide{background:#eef2ff!important;border-color:#a5b4fc!important;color:#4f46e5!important}
+#learnHandsPage #handsGuide::before{content:"✏️"}
+#learnHandsPage #handsDemo{background:#dcfce7!important;border-color:#22c55e!important;color:#166534!important}
+#learnHandsPage #handsDemo::before{content:"🎵"}
+#learnHandsPage .top-right-controls{display:flex;align-items:center;gap:5px}
 </style>
 <script id="build-2279-popup-priority">
 // Observer di compatibilita' WKWebView: ripristino automatico senza spostare la tastiera.
@@ -25097,5 +25110,40 @@ scorePhoneDrawerSyncMR();
  window.MRHands={open(){stop();index=0;render();page.style.display='flex';},close(){stop();page.style.display='none';}};render();
 })();
 </script>
+
+<style id="build-2300-learn-hands-ipad-fit">
+/* Build 2.30 — Impara le due mani: contenuto interamente nel display iPad landscape. */
+#learnHandsPage{overflow:hidden!important;}
+#learnHandsPage .hands-app{
+  box-sizing:border-box!important; width:100%!important; height:100dvh!important; max-height:100dvh!important;
+  min-height:0!important; overflow:hidden!important; justify-content:flex-start!important;
+  gap:clamp(4px,1vh,10px)!important; padding-bottom:max(6px,env(safe-area-inset-bottom))!important;
+}
+#learnHandsPage .top-panel{flex:0 0 auto!important;width:100%!important;}
+#learnHandsPage .hands-info{flex:0 0 auto!important;width:min(96%,1100px)!important;font-size:clamp(12px,1.55vw,18px)!important;}
+#learnHandsPage .hands-staff-wrap{
+  flex:0 1 auto!important; width:min(calc(100vw - 24px),1336px)!important; max-width:calc(100vw - 24px)!important;
+  height:min(38vh,330px)!important; min-height:190px!important; aspect-ratio:auto!important; overflow:hidden!important;
+}
+#learnHandsPage .hands-staff-wrap img,#learnHandsPage .hands-staff-wrap svg{width:100%!important;height:100%!important;}
+#learnHandsPage .hands-staff-wrap img{object-fit:fill!important;}
+#learnHandsPage .hands-drums{
+  flex:1 1 auto!important; min-height:0!important; width:100%!important; align-items:flex-start!important;
+  gap:clamp(40px,12vw,180px)!important; overflow:visible!important;
+}
+#learnHandsPage .hands-drums>div{min-height:0!important;gap:2px!important;}
+#learnHandsPage .hands-drum{width:clamp(105px,15vh,165px)!important;height:clamp(105px,15vh,165px)!important;}
+#learnHandsPage .metronome-audio-pill,#learnHandsPage .play-timer-pill,#learnHandsPage [class*="clock"],#learnHandsPage [id*="Clock"],#learnHandsPage [id*="clock"]{display:none!important;}
+/* Menu Impara: difficolta visiva rosso -> arancione -> giallo. */
+#learnSelectOverlay .learn-select-red{background:#fee2e2!important;color:#991b1b!important;border-color:#ef4444!important;}
+#learnSelectOverlay .learn-select-orange{background:#ffedd5!important;color:#9a3412!important;border-color:#f97316!important;}
+#learnSelectOverlay .learn-select-yellow{background:#fef9c3!important;color:#854d0e!important;border-color:#eab308!important;}
+@media (orientation:landscape) and (max-height:850px){
+ #learnHandsPage .hands-app{gap:4px!important;}
+ #learnHandsPage .hands-staff-wrap{height:min(36vh,300px)!important;min-height:170px!important;}
+ #learnHandsPage .hands-drum{width:clamp(96px,14vh,145px)!important;height:clamp(96px,14vh,145px)!important;}
+}
+</style>
+
 </body>
 </html>

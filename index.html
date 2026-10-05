@@ -6137,6 +6137,36 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   #learnTempoPage .tempo-action-container{padding-top:26px!important;}
 }
 </style>
+
+<style id="build-240-learn-tempo-separated-blocks">
+/* Build 2.40 — Impara Tempo: foglio e tamburo sono blocchi verticali separati.
+   Il tamburo ha uno spazio reale sotto il bordo della carta e non puo sovrapporsi al foglio. */
+#learnTempoPage .staff-stage-single{
+  flex:0 0 clamp(205px,38vh,260px)!important;
+  height:clamp(205px,38vh,260px)!important;
+  margin-bottom:0!important;
+}
+#learnTempoPage .tempo-action-container{
+  flex:0 0 auto!important;
+  min-height:clamp(150px,22vh,190px)!important;
+  box-sizing:border-box!important;
+  padding:clamp(48px,7vh,70px) 8px 6px!important;
+  margin:0!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  position:relative!important;
+}
+#learnTempoPage #tempoActionBtn{
+  position:relative!important;
+  top:0!important;
+  margin:0 auto!important;
+  transform:none!important;
+}
+@media (orientation:landscape) and (max-height:850px){
+  #learnTempoPage .staff-stage-single{flex-basis:clamp(195px,36vh,245px)!important;height:clamp(195px,36vh,245px)!important;}
+  #learnTempoPage .tempo-action-container{padding-top:44px!important;min-height:160px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -6157,7 +6187,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.39</div>
+    <div class="intro-version-label">Build 2.40</div>
   </div>
 </div>
 

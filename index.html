@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
-  <link rel="manifest" href="manifest.webmanifest?v=2.295" />
+  <link rel="manifest" href="manifest.webmanifest?v=2.296" />
 
   <meta charset="UTF-8" />
   <title>Music Rainbow — Livelli</title>
@@ -20,7 +20,7 @@
   <style>
     @font-face {
       font-family: "MusicRainbow SMuFL";
-      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.295") format("woff2");
+      src: url("Assets/MusicRainbow-SMuFL.woff2?v=2.296") format("woff2");
       font-style: normal;
       font-weight: 400;
       font-display: block;
@@ -2689,7 +2689,12 @@ body {
     }
 
 
-/* Build 2.295: due tamburi riutilizzano esattamente la grafica di Impara il tempo. */
+/* Build 2.297: tamburi senza fondale e comandi coerenti con le altre lezioni. */
+#learnHandsPage .top-left-controls,#learnHandsPage .top-right-controls{overflow:visible;align-items:center}
+#learnHandsPage .top-left-controls button,#learnHandsPage .top-right-controls button,#learnHandsPage .hands-actions button{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;padding:0!important;display:inline-flex!important;align-items:center;justify-content:center;font-size:24px!important;line-height:1!important;border-radius:12px!important}
+#learnHandsPage .hands-actions{justify-content:center;width:100%}
+#learnHandsPage .hands-drum{aspect-ratio:1/1!important;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important;overflow:visible!important}
+/* Build 2.296: due tamburi riutilizzano esattamente la grafica di Impara il tempo. */
 #learnHandsPage .hands-app{display:flex;flex-direction:column;align-items:center;gap:clamp(5px,1.5vh,14px);overflow:auto}
 #learnHandsPage .hands-info{width:95%;display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:clamp(12px,2vw,19px)}
 #learnHandsPage .hands-staff-wrap{position:relative;width:min(96vw,1050px);aspect-ratio:1000/244;flex-shrink:0}
@@ -5732,12 +5737,12 @@ button.midi-learn-bound{box-shadow:0 0 0 4px rgba(34,197,94,.62),0 0 20px rgba(3
   font-size:0 !important;
   line-height:0 !important;
 }
-#btnOpenLevelSelect::before{background-image:url("Assets/home-icon-level.svg?v=2.295") !important;}
-#homeScoresBtn::before{background-image:url("Assets/home-icon-scores-2179.svg?v=2.295") !important;}
-#homePlayBtn::before{background-image:url("Assets/home-icon-play.svg?v=2.295") !important;}
-#homeLearnMainBtn::before{background-image:url("Assets/home-icon-learn.svg?v=2.295") !important;}
-#homeTrophyBtn::before{background-image:url("Assets/home-icon-trophy.svg?v=2.295") !important;}
-#homeSettingsBtn::before{background-image:url("Assets/home-icon-settings.svg?v=2.295") !important;}
+#btnOpenLevelSelect::before{background-image:url("Assets/home-icon-level.svg?v=2.296") !important;}
+#homeScoresBtn::before{background-image:url("Assets/home-icon-scores-2179.svg?v=2.296") !important;}
+#homePlayBtn::before{background-image:url("Assets/home-icon-play.svg?v=2.296") !important;}
+#homeLearnMainBtn::before{background-image:url("Assets/home-icon-learn.svg?v=2.296") !important;}
+#homeTrophyBtn::before{background-image:url("Assets/home-icon-trophy.svg?v=2.296") !important;}
+#homeSettingsBtn::before{background-image:url("Assets/home-icon-settings.svg?v=2.296") !important;}
 #homeScreen .home-play-disabled{opacity:.62 !important;}
 #homeScreen .home-nav-label{
   color:#102544 !important;
@@ -5962,8 +5967,8 @@ html[data-mr-theme="rainbow"] #rotateOverlay{background:radial-gradient(circle a
 @keyframes mrRotateArrow{0%,100%{transform:translate(-50%,-55%) rotate(-30deg) scale(.92);opacity:.55}50%{transform:translate(-50%,-55%) rotate(35deg) scale(1.05);opacity:1}}
 @media (prefers-reduced-motion:reduce){.mr-rotate-device,.mr-rotate-arrow{animation:none!important}.mr-rotate-device-portrait{transform:rotate(-8deg)}.mr-rotate-device-landscape{transform:rotate(2deg);opacity:1}}
 /* Carta reale fornita come riferimento: texture fotografica sotto ogni pentagramma. */
-.staff-stage-single,.staff-stage-l8{background-color:#faf9f5!important;background-image:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url("Assets/score-paper-crumpled.jpg?v=2.295")!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;border-color:rgba(116,98,76,.24)!important;box-shadow:0 10px 24px rgba(67,45,24,.18),inset 0 0 20px rgba(255,255,255,.30)!important;}
-#scorePlayerPage .staff-stage-l8{background-color:#faf9f5!important;background-image:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url("Assets/score-paper-crumpled.jpg?v=2.295")!important;}
+.staff-stage-single,.staff-stage-l8{background-color:#faf9f5!important;background-image:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url("Assets/score-paper-crumpled.jpg?v=2.296")!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;border-color:rgba(116,98,76,.24)!important;box-shadow:0 10px 24px rgba(67,45,24,.18),inset 0 0 20px rgba(255,255,255,.30)!important;}
+#scorePlayerPage .staff-stage-l8{background-color:#faf9f5!important;background-image:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),url("Assets/score-paper-crumpled.jpg?v=2.296")!important;}
 </style>
 <style id="build-2207-paper-visible-fix">
 /* Build 2.291 — i fondi pentagramma sono ora trasparenti: la carta fotografica resta realmente visibile sotto linee e chiavi. */
@@ -5988,7 +5993,7 @@ html[data-mr-theme="rainbow"] #rotateOverlay{background:radial-gradient(circle a
 .staff-container{background:transparent!important;border-color:transparent!important;}
 .staff-stage-single,.staff-stage-l8,#scorePlayerPage .staff-stage-l8{
   background-color:transparent!important;
-  background-image:url("Assets/score-paper-crumpled.jpg?v=2.295")!important;
+  background-image:url("Assets/score-paper-crumpled.jpg?v=2.296")!important;
   background-size:cover!important;
   background-position:center center!important;
   background-repeat:no-repeat!important;
@@ -6050,7 +6055,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 /* Carta: la texture fornita e' l'unico fondale del pentagramma. Bordi volutamente irregolari. */
 .staff-container,#learnNotesPage .staff-container,.staff-stage-single,.staff-stage-l8,#scorePlayerPage .staff-stage-l8{
   background-color:transparent!important;
-  background-image:url("Assets/score-paper-crumpled.jpg?v=2.295")!important;
+  background-image:url("Assets/score-paper-crumpled.jpg?v=2.296")!important;
   background-repeat:no-repeat!important;background-position:center!important;background-size:100% 100%!important;
   border:0!important;border-radius:0!important;
   clip-path:polygon(0.3% 2.2%,2.2% 1.2%,4.7% 2.0%,7.5% .7%,10.8% 1.8%,14.4% .9%,18.1% 1.6%,22.7% .5%,27.5% 1.5%,32.3% .8%,37.6% 1.7%,43.2% .6%,49.0% 1.4%,55.1% .7%,61.0% 1.8%,67.2% .6%,73.1% 1.5%,79.0% .8%,84.8% 1.7%,90.2% .6%,95.0% 1.5%,99.6% .9%,99.2% 7%,99.8% 15%,99.3% 24%,99.8% 34%,99.2% 45%,99.7% 56%,99.1% 67%,99.8% 78%,99.2% 89%,99.5% 97.8%,96.7% 98.9%,92.4% 98.0%,87.9% 99.2%,82.8% 98.1%,77.4% 99.3%,71.8% 98.2%,66.1% 99.1%,60.2% 98.0%,54.0% 99.2%,48.1% 98.2%,42.0% 99.3%,36.2% 98.1%,30.1% 99.1%,24.4% 98.0%,18.8% 99.2%,13.3% 98.1%,8.4% 99.0%,4.1% 98.0%,.4% 98.8%,.8% 90%,.2% 80%,.7% 69%,.1% 58%,.8% 47%,.2% 36%,.7% 25%,.1% 14%)!important;
@@ -6104,8 +6109,8 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div id="introScreen" class="intro-screen" role="button" tabindex="0" aria-label="Apri Music Rainbow">
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
-    <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.295</div>
+    <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
+    <div class="intro-version-label">Build 2.296</div>
   </div>
 </div>
 
@@ -6207,7 +6212,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL1">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6224,7 +6229,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlay">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6241,7 +6246,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL3">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6259,7 +6264,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL4">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6276,7 +6281,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL5">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
       <div class="medal-in-arc"><div class="medal-circle"><span id="rainbowWinIndexL5">1</span></div></div>
     </div>
     <div id="rainbowOverlayL5Main" class="rainbow-message-main">Ritmo puntato!</div>
@@ -6287,7 +6292,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL6">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
       <div class="medal-in-arc"><div class="medal-circle"><span id="rainbowWinIndexL6">1</span></div></div>
     </div>
     <div id="rainbowOverlayL6Main" class="rainbow-message-main">Crome perfette!</div>
@@ -6298,7 +6303,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL7">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
       <div class="medal-in-arc"><div class="medal-circle"><span id="rainbowWinIndexL7">1</span></div></div>
     </div>
     <div id="rainbowOverlayL7Main" class="rainbow-message-main">Alterazioni perfette!</div>
@@ -6309,7 +6314,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="rainbowOverlayL8">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
       <div class="medal-in-arc"><div class="medal-circle"><span id="rainbowWinIndexL8">1</span></div></div>
     </div>
     <div id="rainbowOverlayL8Main" class="rainbow-message-main">Che armonia!</div>
@@ -6323,7 +6328,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="finalOverlayL1">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6342,7 +6347,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="finalOverlayL2">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6361,7 +6366,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <div class="rainbow-overlay" id="finalOverlayL3">
   <div class="rainbow-box">
     <div class="rainbow-graphic">
-      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.295" alt="" aria-hidden="true" draggable="false" />
+      <img class="rainbow-prize-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="" aria-hidden="true" draggable="false" />
 
       <div class="medal-in-arc">
         <div class="medal-circle">
@@ -6427,7 +6432,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     <div class="staff-container">
       <div class="staff-stage-single" data-staff-id="learnStaffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="learnStaffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6715,8 +6720,8 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       </div>
     </div>
     <div id="scoreStaffStage" class="staff-stage-l8" aria-label="Spartito a doppio pentagramma">
-      <img id="scoreStaffBg" class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.295" alt="" aria-hidden="true" />
-      <img id="scoreLowerTreblePatch" class="score-lower-treble-patch" src="Assets/score-lower-treble-patch.png?v=2.295" alt="" aria-hidden="true" hidden />
+      <img id="scoreStaffBg" class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true" />
+      <img id="scoreLowerTreblePatch" class="score-lower-treble-patch" src="Assets/score-lower-treble-patch.png?v=2.296" alt="" aria-hidden="true" hidden />
       <svg id="scoreStaffSvg" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <defs>
           <clipPath id="scoreHorizontalClip" clipPathUnits="userSpaceOnUse">
@@ -6886,7 +6891,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL1">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgL1" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -6981,7 +6986,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     
       <div class="staff-stage-single" data-staff-id="staffSvg">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvg" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -7070,7 +7075,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL3">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgL3" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -7160,7 +7165,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgL4">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgL4" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -7239,7 +7244,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL5">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgL5" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL5Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -7286,7 +7291,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL6">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgL6" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL6Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -7333,7 +7338,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     </div>
 
     <div class="staff-stage-single" data-staff-id="staffSvgL7">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgL7" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
       <g id="staffL7Group">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
@@ -7378,7 +7383,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     </div>
 
     <div class="staff-stage-l8" aria-label="Doppio pentagramma con chiave di violino e chiave di basso">
-      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.295" alt="" aria-hidden="true" />
+      <img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true" />
       <svg id="staffSvgL8" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" overflow="visible" aria-hidden="true">
         <!-- Guide di pitch invisibili. Il motore usa esattamente queste coordinate. -->
         <g id="staffGuidesL8" class="pitch-guides-l8">
@@ -7440,7 +7445,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <span id="tempoBeatDots" class="tempo-beat-dots" aria-label="Suddivisioni del tempo"></span>
 
       <div class="staff-stage-single" data-staff-id="staffSvgTempo">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgTempo" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 220">
         <defs>
           <linearGradient id="rainbowStroke" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -7488,7 +7493,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     <div class="tempo-action-container">
       <button id="tempoActionBtn" class="tempo-action-btn" type="button" aria-label="Tamburo per battere il tempo">
-        <img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.295" alt="" aria-hidden="true" draggable="false" />
+        <img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.296" alt="" aria-hidden="true" draggable="false" />
       </button>
     </div>
 
@@ -7502,8 +7507,8 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
  <div class="app hands-app">
   <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button></div></div></div>
   <div class="hands-info"><span id="handsProgress">Esercizio 1 / 21</span><span id="handsFeedback" role="status" aria-live="polite">Batti i due ritmi sui tamburi</span></div>
-  <div class="hands-staff-wrap staff-stage-l8"><img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.295" alt="" aria-hidden="true"><svg id="handsStaff" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ritmi delle due mani con chiave di violino e basso"></svg></div>
-  <div class="hands-drums"><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.295" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-red-white.jpeg?v=2.295" alt="" draggable="false"></button></div></div>
+  <div class="hands-staff-wrap staff-stage-l8"><img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true"><svg id="handsStaff" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ritmi delle due mani con chiave di violino e basso"></svg></div>
+  <div class="hands-drums"><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div></div>
   <div class="hands-actions"><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div>
  </div>
 </div>
@@ -7550,7 +7555,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 
     
       <div class="staff-stage-single" data-staff-id="staffSvgPlay">
-  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.295" alt="" aria-hidden="true" />
+  <img class="staff-bg-single" src="Assets/staff-base-treble.png?v=2.296" alt="" aria-hidden="true" />
   <svg id="staffSvgPlay" class="staff staff-overlay-single" overflow="visible" viewBox="0 0 1000 200">
         <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
         <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
@@ -9899,8 +9904,8 @@ function getStaffY(noteName, octave) {
 
 function updateStaffClefSymbols() {
   const staffBgSrc = (currentClef === CLEF_BASS)
-    ? "Assets/staff-base-bass.png?v=2.295"
-    : "Assets/staff-base-treble.png?v=2.295";
+    ? "Assets/staff-base-bass.png?v=2.296"
+    : "Assets/staff-base-treble.png?v=2.296";
   document.querySelectorAll(".staff-bg-single").forEach(img => {
     if (img.getAttribute("src") !== staffBgSrc) img.setAttribute("src", staffBgSrc);
   });
@@ -14062,7 +14067,7 @@ async function fetchPublicCloudScoresMR(){
   return data&&Array.isArray(data.scores)?data.scores:[];
 }
 
-const MR_SCORE_LIBRARY_URL="Scores/library.json?v=2.295";
+const MR_SCORE_LIBRARY_URL="Scores/library.json?v=2.296";
 const MR_SCORE_COMPLETIONS_KEY="musicRainbowScoreCompletions";
 const MR_SCORE_AWARDS_KEY="musicRainbowScoreAwardsV1";
 const MR_IMPORTED_SCORE_DB="MusicRainbowImportedScores";
@@ -15264,7 +15269,7 @@ function updateScoreClefUI(){
   const clefs=scoreStaffClefsMR(activeScore);
   const lowerTreble=clefs.lower==="treble";
   if(scoreStaffBg){
-    const src=lowerTreble?"Assets/grand-staff-l6-lower-clean.png?v=2.295":"Assets/grand-staff-l6.png?v=2.295";
+    const src=lowerTreble?"Assets/grand-staff-l6-lower-clean.png?v=2.296":"Assets/grand-staff-l6.png?v=2.296";
     if(scoreStaffBg.getAttribute("src")!==src)scoreStaffBg.setAttribute("src",src);
   }
   if(scoreLowerTreblePatch)scoreLowerTreblePatch.hidden=!lowerTreble;
@@ -16534,7 +16539,7 @@ async function openScoreFromLibraryMR(entry){
       score=data&&data.score?data.score:null;
     }else{
       if(!entry.file)throw new Error("score");
-      const res=await fetch(`Scores/${encodeURIComponent(entry.file)}?v=2.295`,{cache:"no-cache"});if(!res.ok)throw new Error("score");
+      const res=await fetch(`Scores/${encodeURIComponent(entry.file)}?v=2.296`,{cache:"no-cache"});if(!res.ok)throw new Error("score");
       score=await res.json();
     }
     if(serial!==scoreLoadSerial)return;if(!validateMrScore(score))throw new Error("invalid");
@@ -19596,23 +19601,23 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 .medal-circle::before,.medal-circle::after{content:none!important;display:none!important;}
 .medal-icon span,.medal-circle span{display:none!important;}
 
-.medal-icon.bronze,.medal-circle.bronze,.session-medal-icon.bronze{background-image:url("Assets/medal-token-bronze.png?v=2.295")!important;}
-.medal-icon.silver,.medal-circle.silver,.session-medal-icon.silver{background-image:url("Assets/medal-token-silver.png?v=2.295")!important;}
-.medal-icon.gold,.medal-circle.gold,.session-medal-icon.gold{background-image:url("Assets/medal-token-gold.png?v=2.295")!important;}
-.medal-icon.green,.medal-circle.green,.session-medal-icon.green{background-image:url("Assets/medal-token-green.png?v=2.295")!important;}
-.medal-icon.cyan,.medal-circle.cyan,.session-medal-icon.cyan{background-image:url("Assets/medal-token-cyan.png?v=2.295")!important;}
-.medal-icon.blue,.medal-circle.blue,.session-medal-icon.blue{background-image:url("Assets/medal-token-blue.png?v=2.295")!important;}
-.medal-icon.violet,.medal-circle.violet,.session-medal-icon.violet{background-image:url("Assets/medal-token-violet.png?v=2.295")!important;}
-.medal-icon.pink,.medal-circle.pink,.session-medal-icon.pink{background-image:url("Assets/medal-token-pink.png?v=2.295")!important;}
+.medal-icon.bronze,.medal-circle.bronze,.session-medal-icon.bronze{background-image:url("Assets/medal-token-bronze.png?v=2.296")!important;}
+.medal-icon.silver,.medal-circle.silver,.session-medal-icon.silver{background-image:url("Assets/medal-token-silver.png?v=2.296")!important;}
+.medal-icon.gold,.medal-circle.gold,.session-medal-icon.gold{background-image:url("Assets/medal-token-gold.png?v=2.296")!important;}
+.medal-icon.green,.medal-circle.green,.session-medal-icon.green{background-image:url("Assets/medal-token-green.png?v=2.296")!important;}
+.medal-icon.cyan,.medal-circle.cyan,.session-medal-icon.cyan{background-image:url("Assets/medal-token-cyan.png?v=2.296")!important;}
+.medal-icon.blue,.medal-circle.blue,.session-medal-icon.blue{background-image:url("Assets/medal-token-blue.png?v=2.296")!important;}
+.medal-icon.violet,.medal-circle.violet,.session-medal-icon.violet{background-image:url("Assets/medal-token-violet.png?v=2.296")!important;}
+.medal-icon.pink,.medal-circle.pink,.session-medal-icon.pink{background-image:url("Assets/medal-token-pink.png?v=2.296")!important;}
 
-#rainbowOverlayL1 .medal-circle,#finalOverlayL1 .medal-circle{background-image:url("Assets/medal-token-bronze.png?v=2.295")!important;}
-#rainbowOverlay .medal-circle,#finalOverlayL2 .medal-circle{background-image:url("Assets/medal-token-silver.png?v=2.295")!important;}
-#rainbowOverlayL3 .medal-circle,#finalOverlayL3 .medal-circle{background-image:url("Assets/medal-token-gold.png?v=2.295")!important;}
-#rainbowOverlayL4 .medal-circle{background-image:url("Assets/medal-token-green.png?v=2.295")!important;}
-#rainbowOverlayL5 .medal-circle{background-image:url("Assets/medal-token-cyan.png?v=2.295")!important;}
-#rainbowOverlayL6 .medal-circle{background-image:url("Assets/medal-token-blue.png?v=2.295")!important;}
-#rainbowOverlayL7 .medal-circle{background-image:url("Assets/medal-token-violet.png?v=2.295")!important;}
-#rainbowOverlayL8 .medal-circle{background-image:url("Assets/medal-token-pink.png?v=2.295")!important;}
+#rainbowOverlayL1 .medal-circle,#finalOverlayL1 .medal-circle{background-image:url("Assets/medal-token-bronze.png?v=2.296")!important;}
+#rainbowOverlay .medal-circle,#finalOverlayL2 .medal-circle{background-image:url("Assets/medal-token-silver.png?v=2.296")!important;}
+#rainbowOverlayL3 .medal-circle,#finalOverlayL3 .medal-circle{background-image:url("Assets/medal-token-gold.png?v=2.296")!important;}
+#rainbowOverlayL4 .medal-circle{background-image:url("Assets/medal-token-green.png?v=2.296")!important;}
+#rainbowOverlayL5 .medal-circle{background-image:url("Assets/medal-token-cyan.png?v=2.296")!important;}
+#rainbowOverlayL6 .medal-circle{background-image:url("Assets/medal-token-blue.png?v=2.296")!important;}
+#rainbowOverlayL7 .medal-circle{background-image:url("Assets/medal-token-violet.png?v=2.296")!important;}
+#rainbowOverlayL8 .medal-circle{background-image:url("Assets/medal-token-pink.png?v=2.296")!important;}
 
 .session-medal-icon.medal-empty{
   background-image:none!important;
@@ -20378,7 +20383,7 @@ html[data-mr-theme="galaxy"] #homeScreen .home-nav-label{color:#ffffff!important
   width:auto!important;height:auto!important;z-index:1!important;
   pointer-events:none!important;
   background-color:#faf9f5!important;
-  background-image:url("Assets/score-paper-crumpled.jpg?v=2.295")!important;
+  background-image:url("Assets/score-paper-crumpled.jpg?v=2.296")!important;
   background-repeat:no-repeat!important;background-position:center!important;background-size:100% 100%!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;
   clip-path:var(--mr-paper-shape)!important;
@@ -20448,7 +20453,7 @@ html[data-mr-theme="galaxy"] #homeScreen .home-nav-label{color:#ffffff!important
   inset:-12% 0 -12% 0!important;
 }
 .staff-stage-single::before,.staff-stage-l8::before,#scorePlayerPage .staff-stage-l8::before{
-  background-image:url("Assets/score-paper-crumpled.jpg?v=2.295")!important;
+  background-image:url("Assets/score-paper-crumpled.jpg?v=2.296")!important;
   filter:none!important;
 }
 
@@ -25051,7 +25056,7 @@ scorePhoneDrawerSyncMR();
 })();
 </script>
 <script>
-/* Build 2.295 — didattica ritmica separata dal clock Core MIDI. */
+/* Build 2.296 — didattica ritmica separata dal clock Core MIDI. */
 (function(){
  const page=document.getElementById('learnHandsPage');if(!page)return;
  const svg=document.getElementById('handsStaff'),feedback=document.getElementById('handsFeedback'),progress=document.getElementById('handsProgress');

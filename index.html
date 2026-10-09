@@ -6198,7 +6198,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.313</div>
+    <div class="intro-version-label">Build 2.314</div>
   </div>
 </div>
 
@@ -25337,47 +25337,47 @@ scorePhoneDrawerSyncMR();
 #learnHandsPage .metronome-audio-pill .audio-tab{flex:0 0 48px!important;min-width:48px!important;}
 </style>
 
-<!-- Build 2.313 — Mìmo e i suoi amici: tutor locale, voce e preferenze -->
-<style id="mimo-2313-css">
-#mimoSettingsSection .mimo-options{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:12px}
-#mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:7px;font-weight:800;color:#334155}
+<!-- Build 2.314 — Mìmo: mascotte illustrata animata, senza sintesi vocale di sistema -->
+<style id="mimo-2314-css">
+#mimoSettingsSection .mimo-options{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin-top:12px}
+#mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:8px;font-weight:800;color:#334155}
 #mimoSettingsSection input{width:23px;height:23px;accent-color:#7c3aed}
-#mimoBuddy{position:fixed;right:12px;bottom:12px;width:74px;height:82px;z-index:700;pointer-events:none;transition:transform .2s;filter:drop-shadow(0 3px 5px #0003)}
-#mimoBuddy svg{width:100%;height:100%}#mimoBuddy.mimo-talking{animation:mimo-bob .45s ease-in-out infinite alternate}
-#mimoBuddy.mimo-talking .mimo-beak{transform-origin:center;animation:mimo-beak .22s ease-in-out infinite alternate}
-@keyframes mimo-bob{to{transform:translateY(-5px)}}@keyframes mimo-beak{to{transform:scaleY(1.7)}}
-@media(max-height:650px){#mimoBuddy{width:55px;height:61px;bottom:6px;right:7px}}
+#mimoSettingsSection .mimo-preview{height:138px;object-fit:contain;filter:drop-shadow(0 6px 9px #0003);animation:mimo-idle 3s ease-in-out infinite}
+#mimoBuddy{position:fixed;left:auto;top:auto;right:12px;bottom:22px;width:clamp(90px,11vw,155px);height:clamp(90px,12vw,165px);z-index:700;pointer-events:none;transform-origin:center bottom;filter:drop-shadow(0 7px 8px #0004);transition:left 1.2s ease-in-out,top 1.2s ease-in-out,right 1.2s ease-in-out,bottom 1.2s ease-in-out}
+#mimoBuddy img{height:100%;width:100%;object-fit:contain;animation:mimo-idle 3s ease-in-out infinite}
+#mimoBuddy.mimo-cheer img{animation:mimo-cheer .52s ease-in-out 4}
+#mimoBuddy.mimo-help img{animation:mimo-help 1.2s ease-in-out 3}
+#mimoBuddy.mimo-fly img{animation:mimo-fly 1.2s ease-in-out infinite}
+#mimoBuddy.mimo-cheer:after{content:'✨ 🎵 ✨';position:absolute;left:8%;top:-17px;font-size:22px;animation:mimo-spark 1s ease-in-out infinite}
+@keyframes mimo-idle{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(3deg)}}
+@keyframes mimo-cheer{0%,100%{transform:translateY(0) rotate(-9deg) scale(1)}50%{transform:translateY(-25px) rotate(10deg) scale(1.12)}}
+@keyframes mimo-help{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(12deg) scale(.95)}}
+@keyframes mimo-fly{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-20px) rotate(8deg)}}
+@keyframes mimo-spark{50%{transform:translateY(-13px);opacity:.5}}
+@media(max-height:650px){#mimoBuddy{width:90px;height:100px;bottom:8px}}
+@media(prefers-reduced-motion:reduce){#mimoBuddy img,#mimoSettingsSection .mimo-preview{animation:none!important}}
 </style>
-<script id="mimo-2313-js">
-(function(){
-'use strict';
+<script id="mimo-2314-js">
+(function(){'use strict';
 const enabledKey='mr_mimo_enabled',voiceKey='mr_mimo_voice';
-const getPref=(k,def)=>{try{const v=localStorage.getItem(k);return v===null?def:v==='1'}catch(_){return def}};
+const getPref=(k,d)=>{try{const v=localStorage.getItem(k);return v===null?d:v==='1'}catch(_){return d}};
 const setPref=(k,v)=>{try{localStorage.setItem(k,v?'1':'0')}catch(_){}};
-const tr={
- it:['Ciao! Sono Mìmo, il tuo amico musicale!','Bravissimo! Continua così!','Riproviamo insieme, con calma.'],
- en:['Hello! I am Mimo, your music buddy!','Great job! Keep going!','Let us try again, slowly.'],
- es:['¡Hola! Soy Mimo, tu amigo musical.','¡Muy bien! ¡Sigue así!','Vamos a intentarlo otra vez.'],
- fr:['Bonjour ! Je suis Mimo, ton ami musicien !','Bravo ! Continue comme ça !','Essayons encore, doucement.'],
- de:['Hallo! Ich bin Mimo, dein Musikfreund!','Super gemacht! Weiter so!','Versuchen wir es noch einmal.'],
- pt:['Olá! Sou Mimo, teu amigo musical!','Muito bem! Continua assim!','Vamos tentar de novo.'],
- ru:['Привет! Я Мимо, твой музыкальный друг!','Молодец! Продолжай!','Давай попробуем ещё раз.'],
- zh:['你好！我是你的音乐伙伴米莫！','太棒了！继续加油！','我们再试一次吧。'],
- ja:['こんにちは！音楽のお友だちミモだよ！','すごいね！その調子！','もう一度やってみよう！']
-};
-function lang(){const v=document.getElementById('appLanguageSelect')?.value||document.documentElement.lang||'it';return tr[v]?v:'it'}
-function speak(type){if(!getPref(enabledKey,true)||!getPref(voiceKey,true)||!('speechSynthesis' in window))return;const words=tr[lang()]||tr.it;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(words[type]);u.lang=({it:'it-IT',en:'en-US',es:'es-ES',fr:'fr-FR',de:'de-DE',pt:'pt-PT',ru:'ru-RU',zh:'zh-CN',ja:'ja-JP'})[lang()];u.rate=.92;u.pitch=1.13;u.onstart=()=>document.getElementById('mimoBuddy')?.classList.add('mimo-talking');u.onend=u.onerror=()=>document.getElementById('mimoBuddy')?.classList.remove('mimo-talking');speechSynthesis.speak(u)}catch(_){}}
 function init(){const stack=document.querySelector('#settingsPage .settings-stack');if(!stack)return;
-const panel=document.createElement('div');panel.className='settings-panel settings-section';panel.id='mimoSettingsSection';panel.innerHTML='<div class="settings-panel-head"><div class="settings-panel-icon" aria-hidden="true">🦉</div><div class="settings-panel-title-wrap"><div class="settings-section-label">Mìmo e i suoi amici</div><p class="settings-panel-note">Il tuo gufo musicale: incoraggiamenti vocali nella lingua dell’app. Altri amici arriveranno!</p></div></div><div class="mimo-options"><label class="mimo-option"><input id="mimoEnabled" type="checkbox"> Tutor attivo</label><label class="mimo-option"><input id="mimoVoice" type="checkbox"> Voce attiva</label><button type="button" id="mimoTry" class="settings-midi-connect">▶ Ascolta Mìmo</button></div>';
+const panel=document.createElement('div');panel.className='settings-panel settings-section';panel.id='mimoSettingsSection';
+panel.innerHTML='<div class="settings-panel-head"><div class="settings-panel-icon">🦉</div><div class="settings-panel-title-wrap"><div class="settings-section-label">Mìmo e i suoi amici</div><p class="settings-panel-note">Mìmo ti osserva, incoraggia e festeggia con te. Nessuna voce di sistema.</p></div></div><div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><img class="mimo-preview" src="Assets/mimo-owl-314.png" alt="Mìmo, il gufo arcobaleno"><div class="mimo-options"><label class="mimo-option"><input id="mimoEnabled" type="checkbox"> Mìmo attivo</label><label class="mimo-option"><input id="mimoVoice" type="checkbox"> Voce dedicata (quando disponibile)</label><button type="button" id="mimoTry" class="settings-midi-connect">✨ Fai festeggiare Mìmo</button></div></div><p class="settings-panel-note">La voce naturale multilingue richiede registrazioni dedicate. Nessun collegamento a Siri o alla sintesi vocale di iOS.</p>';
 stack.insertBefore(panel,stack.firstChild);
-const buddy=document.createElement('div');buddy.id='mimoBuddy';buddy.setAttribute('aria-hidden','true');buddy.innerHTML='<svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 27 L13 5 34 18 Q45 11 56 18 L77 5 73 27 Q91 51 76 80 Q45 110 14 80 Q-1 51 17 27" fill="#aa75ce" stroke="#69418b" stroke-width="3"/><ellipse cx="45" cy="62" rx="29" ry="31" fill="#f7e9cb"/><circle cx="30" cy="40" r="16" fill="white"/><circle cx="60" cy="40" r="16" fill="white"/><circle cx="33" cy="42" r="7" fill="#30243f"/><circle cx="57" cy="42" r="7" fill="#30243f"/><circle cx="35" cy="39" r="2.5" fill="white"/><circle cx="59" cy="39" r="2.5" fill="white"/><path class="mimo-beak" d="M39 55 L51 55 45 65Z" fill="#f7a927"/><path d="M12 62 Q-2 71 16 83 M78 62 Q92 71 74 83" stroke="#8054ac" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M32 92v5m26-5v5" stroke="#d58b22" stroke-width="5" stroke-linecap="round"/></svg>';
-document.body.appendChild(buddy);
-const a=document.getElementById('mimoEnabled'),v=document.getElementById('mimoVoice');a.checked=getPref(enabledKey,true);v.checked=getPref(voiceKey,true);
-function refresh(){buddy.style.display=a.checked?'block':'none';v.disabled=!a.checked;if(!a.checked)try{speechSynthesis.cancel()}catch(_){}}
-a.addEventListener('change',()=>{setPref(enabledKey,a.checked);refresh();if(a.checked)speak(0)});v.addEventListener('change',()=>{setPref(voiceKey,v.checked);if(!v.checked)try{speechSynthesis.cancel()}catch(_){}});
-document.getElementById('mimoTry').addEventListener('click',()=>speak(0));refresh();
-// Suggerimenti solo su eventi osservabili, senza microfono né registrazione.
-let last=0;const status=document.getElementById('statusBarLearn');if(status){new MutationObserver(()=>{const now=Date.now();if(now-last<12000)return;const t=(status.textContent||'').toLowerCase();if(/brav|corrett|compl|perfect|success|ottim/.test(t)){last=now;speak(1)}else if(/erro|sbagli|wrong|retry|riprova/.test(t)){last=now;speak(2)}}).observe(status,{childList:true,subtree:true,characterData:true})}
+const buddy=document.createElement('div');buddy.id='mimoBuddy';buddy.setAttribute('aria-hidden','true');buddy.innerHTML='<img src="Assets/mimo-owl-314.png" alt="">';document.body.appendChild(buddy);
+const a=document.getElementById('mimoEnabled'),v=document.getElementById('mimoVoice');a.checked=getPref(enabledKey,true);v.checked=getPref(voiceKey,false);
+function refresh(){buddy.style.display=a.checked?'block':'none';v.disabled=!a.checked}
+a.addEventListener('change',()=>{setPref(enabledKey,a.checked);refresh()});v.addEventListener('change',()=>setPref(voiceKey,v.checked));refresh();
+let effectTimeout;function react(mood){if(!a.checked)return;buddy.classList.remove('mimo-cheer','mimo-help','mimo-fly');void buddy.offsetWidth;buddy.classList.add(mood);clearTimeout(effectTimeout);effectTimeout=setTimeout(()=>buddy.classList.remove(mood),3400)}
+document.getElementById('mimoTry').addEventListener('click',()=>react('mimo-cheer'));
+// Move only between safe corners; never cover the central music score or keyboard.
+function reposition(){if(!a.checked)return;const visible=document.querySelector('#learnHandsPage:not([hidden])');const page=visible&&getComputedStyle(visible).display!=='none';buddy.style.right=page?'8px':'14px';buddy.style.bottom=page?'12px':'18px'}
+window.addEventListener('resize',reposition);reposition();
+let last=0;const targets=['statusBarLearn','learnHandsStatus','statusBarHands'].map(id=>document.getElementById(id)).filter(Boolean);
+for(const status of targets){new MutationObserver(()=>{const now=Date.now();if(now-last<1800)return;const t=(status.textContent||'').toLowerCase();if(/brav|corrett|compl|perfect|success|ottim|riuscit/.test(t)){last=now;react('mimo-cheer')}else if(/erro|sbagli|wrong|retry|riprova/.test(t)){last=now;react('mimo-help')}}).observe(status,{childList:true,subtree:true,characterData:true})}
+// No speechSynthesis: voice is intentionally silent until dedicated multilingual clips exist.
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

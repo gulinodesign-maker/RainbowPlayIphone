@@ -6169,7 +6169,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 </style>
 
 <style id="build-241-learn-tempo-vertical-center">
-/* Build 2.41 — Impara Tempo: centra verticalmente il gruppo foglio + spazio + tamburo
+/* Build 2.311 — Impara Tempo: centra verticalmente il gruppo foglio + spazio + tamburo
    nell’area utile sotto la top bar, mantenendo i due blocchi separati. */
 #learnTempoPage .staff-stage-single{
   margin-top:auto!important;
@@ -6198,7 +6198,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.41</div>
+    <div class="intro-version-label">Build 2.313</div>
   </div>
 </div>
 
@@ -7593,7 +7593,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <!-- Coordinazione ritmica: un solo schermo, due tamburi originali -->
 <div id="learnHandsPage" class="page-container" style="display:none">
  <div class="app hands-app">
-  <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div></div></div>
+  <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><div class="metronome-audio-pill" id="metronomeAudioPillHands"><button class="metronome-bpm-tab" id="bpmTabHands" type="button" aria-label="Imposta tempo"><span class="bpm-value" id="bpmValueHands">80</span></button><button class="metronome-dot metronome-toggle-btn" id="metronomeDotHands" type="button" aria-label="Metronomo: disattivato" aria-pressed="false"><span class="metronome-toggle-label">MET</span></button><button class="audio-tab" id="audioTabHands" type="button" aria-label="Attiva audio"><span class="audio-icon">♪</span></button></div><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div></div></div>
   <div class="hands-info" aria-hidden="true"><span id="handsProgress"></span><span id="handsFeedback" role="status" aria-live="polite"></span></div>
   <div class="hands-staff-wrap staff-stage-l8"><img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true"><svg id="handsStaff" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ritmi delle due mani con chiave di violino e basso"></svg></div>
   <div class="hands-drums"><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div></div>
@@ -25157,12 +25157,11 @@ scorePhoneDrawerSyncMR();
 })();
 </script>
 <script>
-/* Build 2.35 — Impara le due mani: nessun clock di valutazione; conta solo sequenza e sovrapposizione delle mani. */
+/* Build 2.312 — Impara le due mani: libero senza MET; agganciato al BPM solo con MET attivo. Demo con note colorate. */
 (function(){
  const page=document.getElementById('learnHandsPage');if(!page)return;
  const svg=document.getElementById('handsStaff'),feedback=document.getElementById('handsFeedback'),progress=document.getElementById('handsProgress');
- const NS='http://www.w3.org/2000/svg';let index=0,guide=true,done=[new Set(),new Set()],advance=null,demoTimers=[],running=false,eventIndex=0,pendingHands=new Set(),pendingOverlapTimer=null;
- // Durate in semicrome: 4=semiminima, 8=minima, 2=croma, 1=semicroma; 0 è una pausa del valore seguente.
+ const NS='http://www.w3.org/2000/svg';let index=0,guide=true,done=[new Set(),new Set()],advance=null,demoTimers=[],running=false,eventIndex=0,pendingHands=new Set(),pendingOverlapTimer=null,metroAnchor=null;
  const patterns=[
  [[4,4,4,4],[8,8]],[[8,8],[4,4,4,4]],[[4,8,4],[8,4,4]],
  [[2,2,2,2,2,2,2,2],[8,8]],[[8,8],[2,2,2,2,2,2,2,2]],[[2,2,4,2,2,4],[4,2,2,4,4]],
@@ -25172,57 +25171,35 @@ scorePhoneDrawerSyncMR();
  [[1,1,2,4,1,1,2,4],[4,2,1,1,4,4]],[[4,2,1,1,4,4],[1,1,2,4,1,1,2,4]],[[1,1,2,2,2,4,4],[2,4,2,1,1,2,4]],
  [[1,2,1,4,2,2,4],[4,1,1,2,2,2,4]],[[4,1,1,2,2,2,4],[1,2,1,4,2,2,4]],[[1,1,2,4,1,1,2,4],[2,4,1,1,2,2,4]]
  ];
- const unit=150; // 100 BPM: semicroma 150 ms. Clock didattico indipendente.
+ function sixteenthMs(){return 60000/Math.max(40,Number(typeof metronomeBpm!=='undefined'?metronomeBpm:80)||80)/4;}
  function rhythm(raw){let t=0,a=[];for(let i=0;i<raw.length;i++){const d=raw[i];if(d===0){t+=raw[++i]||0;}else{a.push({t,d});t+=d;}}return a;}
  function spec(){return patterns[index].map(rhythm);}
  function node(tag,attrs){const el=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);svg.appendChild(el);return el;}
- function noteKey(hand,j){return hand+'-'+j;}
  function render(){svg.replaceChildren();const [right,left]=spec();progress.textContent=`Esercizio ${index+1} / ${patterns.length} · Gruppo ${Math.floor(index/3)+1}`;
-  const x=t=>190+t*44;const yy=[126.75,246.25];
+  const x=t=>190+t*44,yy=[126.75,246.25];
   if(guide){for(const a of right){const active=left.find(b=>b.t<=a.t&&a.t<b.t+b.d);if(active)node('line',{x1:x(a.t),y1:154,x2:x(active.t),y2:218,class:'hands-guide'});}}
-  [right,left].forEach((arr,hand)=>arr.forEach((n,j)=>{const px=x(n.t),y=yy[hand];const glyph=n.d===16?'noteWhole':n.d===8?'noteHalfUp':n.d===4?'noteQuarterUp':'note8thUp';const metrics=typeof MR_SMUFL_NOTE_METRICS!=='undefined'?MR_SMUFL_NOTE_METRICS:null;const m=metrics&&metrics[n.d===16?'semibreve':n.d===8?'minima':n.d===4?'semiminima':'croma'];const code=typeof MR_SMUFL_GLYPHS!=='undefined'?MR_SMUFL_GLYPHS[glyph]:String.fromCodePoint(n.d===16?0xE1D2:n.d===8?0xE1D3:n.d===4?0xE1D5:0xE1D7);const el=node('text',{x:px+(m?m.x:-12),y:y+(m?m.y:8),'font-size':m?m.size:60,class:'hands-note'+(done[hand].has(j)?' hands-hit':''),'data-hand':hand,'data-note':j});el.textContent=code;}));
-  feedback.textContent='Batti i due ritmi sui tamburi';
+  [right,left].forEach((arr,hand)=>arr.forEach((n,j)=>{const px=x(n.t),y=yy[hand],glyph=n.d===16?'noteWhole':n.d===8?'noteHalfUp':n.d===4?'noteQuarterUp':'note8thUp',metrics=typeof MR_SMUFL_NOTE_METRICS!=='undefined'?MR_SMUFL_NOTE_METRICS:null,m=metrics&&metrics[n.d===16?'semibreve':n.d===8?'minima':n.d===4?'semiminima':'croma'],code=typeof MR_SMUFL_GLYPHS!=='undefined'?MR_SMUFL_GLYPHS[glyph]:String.fromCodePoint(n.d===16?0xE1D2:n.d===8?0xE1D3:n.d===4?0xE1D5:0xE1D7),el=node('text',{x:px+(m?m.x:-12),y:y+(m?m.y:8),'font-size':m?m.size:60,class:'hands-note'+(done[hand].has(j)?' hands-hit':''),'data-hand':hand,'data-note':j});el.textContent=code;}));
+  feedback.textContent=(typeof metronomeOn!=='undefined'&&metronomeOn)?'Segui il metronomo e batti i due ritmi':'Batti i due ritmi sui tamburi';
  }
- function stop(){if(advance)clearTimeout(advance);advance=null;demoTimers.forEach(clearTimeout);demoTimers=[];if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;done=[new Set(),new Set()];eventIndex=0;pendingHands.clear();running=false;}
- // Stesso algoritmo timbrico di Impara il tempo, con frequenze dimezzate soltanto a sinistra.
- function drum(hand){const ctx=typeof getAudioCtx==='function'?getAudioCtx():null;if(!ctx)return;const play=()=>{const now=ctx.currentTime+.001,duration=.15,frames=Math.floor(ctx.sampleRate*duration),buffer=ctx.createBuffer(1,frames,ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<frames;i++)data[i]=(Math.random()*2-1)*Math.exp(-8.2*i/frames);const dest=typeof getAppMasterNode==='function'?getAppMasterNode(ctx):ctx.destination;const ratio=hand===1?.5:1;const noise=ctx.createBufferSource();noise.buffer=buffer;noise.playbackRate.value=ratio;const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.setValueAtTime(1500*ratio,now);const band=ctx.createBiquadFilter();band.type='bandpass';band.frequency.setValueAtTime(4700*ratio,now);band.Q.value=.72;const ng=ctx.createGain();ng.gain.setValueAtTime(.46,now);ng.gain.exponentialRampToValueAtTime(.0001,now+duration/ratio);noise.connect(hp);hp.connect(band);band.connect(ng);ng.connect(dest);noise.start(now);noise.stop(now+duration/ratio);const body=ctx.createOscillator();body.type='triangle';body.frequency.setValueAtTime(168*ratio,now);body.frequency.exponentialRampToValueAtTime(112*ratio,now+.07/ratio);const bg=ctx.createGain();bg.gain.setValueAtTime(.20,now);bg.gain.exponentialRampToValueAtTime(.0001,now+.17/ratio);body.connect(bg);bg.connect(dest);body.start(now);body.stop(now+.19/ratio);[3500,4450,5650,7100].forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='square';o.frequency.setValueAtTime(f*ratio,now+i*.001);g.gain.setValueAtTime(.042,now);g.gain.exponentialRampToValueAtTime(.0001,now+.105/ratio+i*.008);o.connect(g);g.connect(dest);o.start(now);o.stop(now+.123/ratio+i*.008);});};if(ctx.state==='suspended')ctx.resume().then(play).catch(()=>{});else play();}
- function exerciseEvents(){
-  const [right,left]=spec(),map=new Map();
-  right.forEach((n,j)=>{if(!map.has(n.t))map.set(n.t,{t:n.t,hits:[]});map.get(n.t).hits.push({hand:0,j});});
-  left.forEach((n,j)=>{if(!map.has(n.t))map.set(n.t,{t:n.t,hits:[]});map.get(n.t).hits.push({hand:1,j});});
-  return [...map.values()].sort((a,b)=>a.t-b.t);
- }
- function markHandsError(hands){hands.forEach(hand=>{const el=svg.querySelector(`[data-hand="${hand}"]:not(.hands-hit)`);if(el){el.classList.add('hands-error');setTimeout(()=>el.classList.remove('hands-error'),400);}});}
- function failSequence(message='Sequenza non corretta: ricomincia da capo'){
-  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;
-  pendingHands.clear();
-  // Qualsiasi errore annulla tutti i progressi dell'esercizio corrente:
-  // la sequenza deve essere rieseguita integralmente dalla prima nota.
-  done=[new Set(),new Set()];eventIndex=0;running=false;
-  render();
-  feedback.textContent=message;
-  markHandsError([0,1]);
- }
+ function stop(){if(advance)clearTimeout(advance);advance=null;demoTimers.forEach(clearTimeout);demoTimers=[];if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;done=[new Set(),new Set()];eventIndex=0;pendingHands.clear();running=false;metroAnchor=null;}
+ function drum(hand){const ctx=typeof getAudioCtx==='function'?getAudioCtx():null;if(!ctx)return;const play=()=>{const now=ctx.currentTime+.001,duration=.15,frames=Math.floor(ctx.sampleRate*duration),buffer=ctx.createBuffer(1,frames,ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<frames;i++)data[i]=(Math.random()*2-1)*Math.exp(-8.2*i/frames);const dest=typeof getAppMasterNode==='function'?getAppMasterNode(ctx):ctx.destination,ratio=hand===1?.5:1,noise=ctx.createBufferSource();noise.buffer=buffer;noise.playbackRate.value=ratio;const hp=ctx.createBiquadFilter();hp.type='highpass';hp.frequency.setValueAtTime(1500*ratio,now);const band=ctx.createBiquadFilter();band.type='bandpass';band.frequency.setValueAtTime(4700*ratio,now);band.Q.value=.72;const ng=ctx.createGain();ng.gain.setValueAtTime(.46,now);ng.gain.exponentialRampToValueAtTime(.0001,now+duration/ratio);noise.connect(hp);hp.connect(band);band.connect(ng);ng.connect(dest);noise.start(now);noise.stop(now+duration/ratio);const body=ctx.createOscillator();body.type='triangle';body.frequency.setValueAtTime(168*ratio,now);body.frequency.exponentialRampToValueAtTime(112*ratio,now+.07/ratio);const bg=ctx.createGain();bg.gain.setValueAtTime(.20,now);bg.gain.exponentialRampToValueAtTime(.0001,now+.17/ratio);body.connect(bg);bg.connect(dest);body.start(now);body.stop(now+.19/ratio);};if(ctx.state==='suspended')ctx.resume().then(play).catch(()=>{});else play();}
+ function exerciseEvents(){const [right,left]=spec(),map=new Map();right.forEach((n,j)=>{if(!map.has(n.t))map.set(n.t,{t:n.t,hits:[]});map.get(n.t).hits.push({hand:0,j});});left.forEach((n,j)=>{if(!map.has(n.t))map.set(n.t,{t:n.t,hits:[]});map.get(n.t).hits.push({hand:1,j});});return [...map.values()].sort((a,b)=>a.t-b.t);}
+ function markHandsError(){[0,1].forEach(hand=>{const el=svg.querySelector(`[data-hand="${hand}"]:not(.hands-hit)`);if(el){el.classList.add('hands-error');setTimeout(()=>el.classList.remove('hands-error'),400);}});}
+ function failSequence(message='Sequenza non corretta: ricomincia da capo'){if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();done=[new Set(),new Set()];eventIndex=0;running=false;metroAnchor=null;render();feedback.textContent=message;markHandsError();}
+ function colorEvent(ev,on=true){ev.hits.forEach(h=>{const el=svg.querySelector(`[data-hand="${h.hand}"][data-note="${h.j}"]`);if(el)el.classList.toggle('hands-hit',on);});}
  function strike(hand,record=true){drum(hand);const button=document.getElementById(hand===0?'handsRight':'handsLeft');button.classList.remove('tempo-drum-hit');void button.offsetWidth;button.classList.add('tempo-drum-hit');setTimeout(()=>button.classList.remove('tempo-drum-hit'),220);if(!record||running)return;
-  const events=exerciseEvents(),ev=events[eventIndex];if(!ev)return;
-  const requiredHands=[...new Set(ev.hits.map(h=>h.hand))];
+  const events=exerciseEvents(),ev=events[eventIndex];if(!ev)return;const requiredHands=[...new Set(ev.hits.map(h=>h.hand))];
   if(!requiredHands.includes(hand)||pendingHands.has(hand)){failSequence();return;}
-  pendingHands.add(hand);
-  ev.hits.filter(h=>h.hand===hand).forEach(h=>{done[hand].add(h.j);const el=svg.querySelector(`[data-hand="${hand}"][data-note="${h.j}"]`);if(el)el.classList.add('hands-hit');});
-  if(requiredHands.length>1&&pendingHands.size<requiredHands.length){
-    feedback.textContent='Completa il colpo con l’altra mano';
-    if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);
-    pendingOverlapTimer=setTimeout(()=>failSequence('Le due mani devono suonare insieme: riprova'),650);
-    return;
-  }
-  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();eventIndex++;
-  feedback.textContent='Bravo! Continua con la sequenza';
-  if(eventIndex>=events.length){running=true;feedback.textContent='Ottimo! Passiamo al prossimo esercizio';advance=setTimeout(next,850);}
+  const metro=typeof metronomeOn!=='undefined'&&metronomeOn,now=performance.now();
+  if(metro){if(metroAnchor===null)metroAnchor=now-ev.t*sixteenthMs();const expected=metroAnchor+ev.t*sixteenthMs(),tol=Math.max(85,sixteenthMs()*.72);if(Math.abs(now-expected)>tol){failSequence('Fuori tempo col metronomo: ricomincia da capo');return;}}
+  pendingHands.add(hand);ev.hits.filter(h=>h.hand===hand).forEach(h=>{done[hand].add(h.j);const el=svg.querySelector(`[data-hand="${hand}"][data-note="${h.j}"]`);if(el)el.classList.add('hands-hit');});
+  if(requiredHands.length>1&&pendingHands.size<requiredHands.length){feedback.textContent='Completa il colpo con l’altra mano';if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=setTimeout(()=>failSequence('Le due mani devono suonare insieme: riprova'),metro?Math.max(120,sixteenthMs()*.9):650);return;}
+  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();eventIndex++;feedback.textContent='Bravo! Continua con la sequenza';if(eventIndex>=events.length){running=true;feedback.textContent='Ottimo! Passiamo al prossimo esercizio';advance=setTimeout(next,850);}
  }
  function next(){stop();index=(index+1)%patterns.length;render();}
  document.getElementById('handsReset').addEventListener('click',()=>{stop();render();});document.getElementById('handsGuide').addEventListener('click',()=>{guide=!guide;render();});
  for(const [id,hand] of [['handsLeft',1],['handsRight',0]]){const b=document.getElementById(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);strike(hand);});b.addEventListener('contextmenu',e=>e.preventDefault());}
- document.getElementById('handsDemo').addEventListener('click',()=>{stop();render();running=true;feedback.textContent='Ascolta i due ritmi';spec().forEach((arr,hand)=>arr.forEach(n=>demoTimers.push(setTimeout(()=>strike(hand,false),n.t*unit))));demoTimers.push(setTimeout(()=>{running=false;feedback.textContent='Ora prova tu';},16*unit+250));});
+ document.getElementById('handsDemo').addEventListener('click',()=>{stop();render();running=true;feedback.textContent='Ascolta i due ritmi';const events=exerciseEvents(),unit=sixteenthMs();events.forEach(ev=>{demoTimers.push(setTimeout(()=>{colorEvent(ev,true);ev.hits.forEach(h=>strike(h.hand,false));},ev.t*unit));});const end=Math.max(...events.map(e=>e.t),0)*unit+Math.max(500,unit*3);demoTimers.push(setTimeout(()=>{running=false;done=[new Set(),new Set()];render();feedback.textContent='Ora prova tu';},end));});
  window.MRHands={open(){stop();index=0;render();page.style.display='flex';},close(){stop();page.style.display='none';}};render();
 })();
 </script>
@@ -25249,7 +25226,7 @@ scorePhoneDrawerSyncMR();
 }
 #learnHandsPage .hands-drums>div{min-height:0!important;gap:2px!important;}
 #learnHandsPage .hands-drum{width:clamp(105px,15vh,165px)!important;height:clamp(105px,15vh,165px)!important;}
-#learnHandsPage .metronome-audio-pill,#learnHandsPage .play-timer-pill,#learnHandsPage [class*="clock"],#learnHandsPage [id*="Clock"],#learnHandsPage [id*="clock"]{display:none!important;}
+#learnHandsPage .play-timer-pill,#learnHandsPage [class*="clock"],#learnHandsPage [id*="Clock"],#learnHandsPage [id*="clock"]{display:none!important;}
 /* Menu Impara: difficolta visiva rosso -> arancione -> giallo. */
 #learnSelectOverlay .learn-select-red{background:#fee2e2!important;color:#991b1b!important;border-color:#ef4444!important;}
 #learnSelectOverlay .learn-select-orange{background:#ffedd5!important;color:#9a3412!important;border-color:#f97316!important;}
@@ -25347,5 +25324,63 @@ scorePhoneDrawerSyncMR();
 #learnHandsPage .hands-drum{width:clamp(132px,19vh,190px)!important;height:clamp(132px,19vh,190px)!important;}
 @media (orientation:landscape) and (max-height:850px){#learnHandsPage .hands-drum{width:clamp(122px,18vh,175px)!important;height:clamp(122px,18vh,175px)!important;}}
 </style>
+
+<style id="build-2312-hands-paper-metronome">
+/* Build 2.312 — 20 px di carta sopra/sotto il pentagramma; metronomo completo nella top bar. */
+#learnHandsPage .hands-staff-wrap .staff-bg-l8,#learnHandsPage .hands-staff-wrap .staff-overlay-l8{top:20px!important;height:calc(100% - 40px)!important;}
+#learnHandsPage .metronome-audio-pill{display:flex!important;}
+#learnHandsPage .top-right-controls{gap:5px!important;flex-wrap:nowrap!important;}
+#learnHandsPage .metronome-audio-pill{height:48px!important;padding:3px!important;gap:3px!important;}
+#learnHandsPage .metronome-audio-pill .metronome-bpm-tab{flex:0 0 52px!important;min-width:52px!important;}
+#learnHandsPage .metronome-audio-pill .metronome-toggle-btn{flex:0 0 52px!important;min-width:52px!important;}
+#learnHandsPage .metronome-audio-pill .metronome-volume-btn{flex:0 0 42px!important;min-width:42px!important;}
+#learnHandsPage .metronome-audio-pill .audio-tab{flex:0 0 48px!important;min-width:48px!important;}
+</style>
+
+<!-- Build 2.313 — Mìmo e i suoi amici: tutor locale, voce e preferenze -->
+<style id="mimo-2313-css">
+#mimoSettingsSection .mimo-options{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:12px}
+#mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:7px;font-weight:800;color:#334155}
+#mimoSettingsSection input{width:23px;height:23px;accent-color:#7c3aed}
+#mimoBuddy{position:fixed;right:12px;bottom:12px;width:74px;height:82px;z-index:700;pointer-events:none;transition:transform .2s;filter:drop-shadow(0 3px 5px #0003)}
+#mimoBuddy svg{width:100%;height:100%}#mimoBuddy.mimo-talking{animation:mimo-bob .45s ease-in-out infinite alternate}
+#mimoBuddy.mimo-talking .mimo-beak{transform-origin:center;animation:mimo-beak .22s ease-in-out infinite alternate}
+@keyframes mimo-bob{to{transform:translateY(-5px)}}@keyframes mimo-beak{to{transform:scaleY(1.7)}}
+@media(max-height:650px){#mimoBuddy{width:55px;height:61px;bottom:6px;right:7px}}
+</style>
+<script id="mimo-2313-js">
+(function(){
+'use strict';
+const enabledKey='mr_mimo_enabled',voiceKey='mr_mimo_voice';
+const getPref=(k,def)=>{try{const v=localStorage.getItem(k);return v===null?def:v==='1'}catch(_){return def}};
+const setPref=(k,v)=>{try{localStorage.setItem(k,v?'1':'0')}catch(_){}};
+const tr={
+ it:['Ciao! Sono Mìmo, il tuo amico musicale!','Bravissimo! Continua così!','Riproviamo insieme, con calma.'],
+ en:['Hello! I am Mimo, your music buddy!','Great job! Keep going!','Let us try again, slowly.'],
+ es:['¡Hola! Soy Mimo, tu amigo musical.','¡Muy bien! ¡Sigue así!','Vamos a intentarlo otra vez.'],
+ fr:['Bonjour ! Je suis Mimo, ton ami musicien !','Bravo ! Continue comme ça !','Essayons encore, doucement.'],
+ de:['Hallo! Ich bin Mimo, dein Musikfreund!','Super gemacht! Weiter so!','Versuchen wir es noch einmal.'],
+ pt:['Olá! Sou Mimo, teu amigo musical!','Muito bem! Continua assim!','Vamos tentar de novo.'],
+ ru:['Привет! Я Мимо, твой музыкальный друг!','Молодец! Продолжай!','Давай попробуем ещё раз.'],
+ zh:['你好！我是你的音乐伙伴米莫！','太棒了！继续加油！','我们再试一次吧。'],
+ ja:['こんにちは！音楽のお友だちミモだよ！','すごいね！その調子！','もう一度やってみよう！']
+};
+function lang(){const v=document.getElementById('appLanguageSelect')?.value||document.documentElement.lang||'it';return tr[v]?v:'it'}
+function speak(type){if(!getPref(enabledKey,true)||!getPref(voiceKey,true)||!('speechSynthesis' in window))return;const words=tr[lang()]||tr.it;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(words[type]);u.lang=({it:'it-IT',en:'en-US',es:'es-ES',fr:'fr-FR',de:'de-DE',pt:'pt-PT',ru:'ru-RU',zh:'zh-CN',ja:'ja-JP'})[lang()];u.rate=.92;u.pitch=1.13;u.onstart=()=>document.getElementById('mimoBuddy')?.classList.add('mimo-talking');u.onend=u.onerror=()=>document.getElementById('mimoBuddy')?.classList.remove('mimo-talking');speechSynthesis.speak(u)}catch(_){}}
+function init(){const stack=document.querySelector('#settingsPage .settings-stack');if(!stack)return;
+const panel=document.createElement('div');panel.className='settings-panel settings-section';panel.id='mimoSettingsSection';panel.innerHTML='<div class="settings-panel-head"><div class="settings-panel-icon" aria-hidden="true">🦉</div><div class="settings-panel-title-wrap"><div class="settings-section-label">Mìmo e i suoi amici</div><p class="settings-panel-note">Il tuo gufo musicale: incoraggiamenti vocali nella lingua dell’app. Altri amici arriveranno!</p></div></div><div class="mimo-options"><label class="mimo-option"><input id="mimoEnabled" type="checkbox"> Tutor attivo</label><label class="mimo-option"><input id="mimoVoice" type="checkbox"> Voce attiva</label><button type="button" id="mimoTry" class="settings-midi-connect">▶ Ascolta Mìmo</button></div>';
+stack.insertBefore(panel,stack.firstChild);
+const buddy=document.createElement('div');buddy.id='mimoBuddy';buddy.setAttribute('aria-hidden','true');buddy.innerHTML='<svg viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 27 L13 5 34 18 Q45 11 56 18 L77 5 73 27 Q91 51 76 80 Q45 110 14 80 Q-1 51 17 27" fill="#aa75ce" stroke="#69418b" stroke-width="3"/><ellipse cx="45" cy="62" rx="29" ry="31" fill="#f7e9cb"/><circle cx="30" cy="40" r="16" fill="white"/><circle cx="60" cy="40" r="16" fill="white"/><circle cx="33" cy="42" r="7" fill="#30243f"/><circle cx="57" cy="42" r="7" fill="#30243f"/><circle cx="35" cy="39" r="2.5" fill="white"/><circle cx="59" cy="39" r="2.5" fill="white"/><path class="mimo-beak" d="M39 55 L51 55 45 65Z" fill="#f7a927"/><path d="M12 62 Q-2 71 16 83 M78 62 Q92 71 74 83" stroke="#8054ac" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M32 92v5m26-5v5" stroke="#d58b22" stroke-width="5" stroke-linecap="round"/></svg>';
+document.body.appendChild(buddy);
+const a=document.getElementById('mimoEnabled'),v=document.getElementById('mimoVoice');a.checked=getPref(enabledKey,true);v.checked=getPref(voiceKey,true);
+function refresh(){buddy.style.display=a.checked?'block':'none';v.disabled=!a.checked;if(!a.checked)try{speechSynthesis.cancel()}catch(_){}}
+a.addEventListener('change',()=>{setPref(enabledKey,a.checked);refresh();if(a.checked)speak(0)});v.addEventListener('change',()=>{setPref(voiceKey,v.checked);if(!v.checked)try{speechSynthesis.cancel()}catch(_){}});
+document.getElementById('mimoTry').addEventListener('click',()=>speak(0));refresh();
+// Suggerimenti solo su eventi osservabili, senza microfono né registrazione.
+let last=0;const status=document.getElementById('statusBarLearn');if(status){new MutationObserver(()=>{const now=Date.now();if(now-last<12000)return;const t=(status.textContent||'').toLowerCase();if(/brav|corrett|compl|perfect|success|ottim/.test(t)){last=now;speak(1)}else if(/erro|sbagli|wrong|retry|riprova/.test(t)){last=now;speak(2)}}).observe(status,{childList:true,subtree:true,characterData:true})}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
 </body>
 </html>

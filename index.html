@@ -6198,7 +6198,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.316</div>
+    <div class="intro-version-label">Build 2.344</div>
   </div>
 </div>
 
@@ -6224,7 +6224,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       </div>
       <div class="home-nav-item">
         <button id="homeTrophyBtn" class="home-level-btn home-level-trophy" type="button" aria-labelledby="homeTrophyLabel"></button>
-        <div id="homeTrophyLabel" class="home-nav-label">Scrigno dei trofei</div>
+        <div id="homeTrophyLabel" class="home-nav-label">Stanzetta di Mìmo</div>
       </div>
       <div class="home-nav-item">
         <button id="homeSettingsBtn" class="home-level-btn home-level-settings" type="button" aria-labelledby="homeSettingsLabel"></button>
@@ -10388,6 +10388,7 @@ function incrementSessionMedal(type) {
   const hasMedalsNow =
     ((s.bronze || 0) + (s.silver || 0) + (s.gold || 0) + (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0)) > 0;
 
+  if (!hadMedalsBefore && hasMedalsNow) window.MimoCare?.awardFruit(1);
   if (!hadMedalsBefore && hasMedalsNow && typeof s.displayNumber !== "number") {
     lastChestNumber++;
     s.displayNumber = lastChestNumber;
@@ -20268,7 +20269,7 @@ html.metronome-on .top-row .metronome-audio-pill .metronome-toggle-btn{
 </style>
 
 <style id="build-2195-settings-grid-midi-learn">
-/* Build 2.291 — Impostazioni: sei gruppi reali in griglia 2 × 3. */
+/* Griglia Impostazioni: 2 colonne × 4 righe. */
 #settingsPage .settings-card{width:min(100%,860px)!important;}
 #settingsPage .settings-stack{
   display:grid!important;
@@ -25337,15 +25338,80 @@ scorePhoneDrawerSyncMR();
 #learnHandsPage .metronome-audio-pill .audio-tab{flex:0 0 48px!important;min-width:48px!important;}
 </style>
 
-<!-- Build 2.316 — Mìmo 3D: geometria articolata WebGL, render in tempo reale -->
+<!-- Build 2.323 — Mìmo 3D: geometria articolata WebGL, render in tempo reale -->
 <style id="mimo-2315-css">
 #mimoSettingsSection .mimo-options{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px}
 #mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:8px;font-weight:800}
 #mimoSettingsSection input{width:24px;height:24px;accent-color:#7c3aed}
-#mimoBuddy{position:fixed;right:8px;bottom:14px;width:clamp(115px,15vw,205px);height:clamp(140px,18vw,240px);z-index:2147483000;pointer-events:none;overflow:visible}
-#mimoBuddy canvas{display:block;width:100%;height:100%;background:transparent} #mimoBuddy{visibility:visible!important;opacity:1!important}
-@media(max-height:650px){#mimoBuddy{width:110px;height:140px;bottom:5px}}
+#mimoBuddy{position:fixed;right:8px;bottom:14px;width:clamp(210px,24vw,340px);height:clamp(250px,29vw,390px);z-index:2147483000;pointer-events:none;overflow:visible}
+#mimoBuddy canvas{display:block;width:100%;height:100%;background:transparent}
+#mimoBuddy[data-mimo-error]::after{content:attr(data-mimo-error);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px;background:#fff3dc;color:#78350f;font-size:12px;font-weight:800;overflow-wrap:anywhere;box-sizing:border-box;border-radius:12px} #mimoBuddy{visibility:visible!important;opacity:1!important}
+@media(max-height:650px){#mimoBuddy{width:clamp(180px,21vw,290px);height:clamp(210px,25vw,320px);bottom:5px}}
 </style>
-<script src="Assets/mimo-3d-316.js"></script>
+<style id="mr319-settings-2x4">
+#settingsPage .settings-card{width:min(96vw,1040px)!important;max-width:1040px!important}
+#settingsPage .settings-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-rows:minmax(148px,auto)!important;gap:12px!important;align-items:stretch!important}
+#settingsPage .settings-stack>.settings-panel{grid-column:auto!important;min-width:0!important;min-height:148px!important;height:100%!important;box-sizing:border-box!important;overflow:visible}
+#settingsPage #mimoSettingsSection .mimo-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px!important;margin-top:5px!important}
+#settingsPage #mimoSettingsSection .mimo-options label{grid-column:1/-1}
+#settingsPage #mimoSettingsSection .mimo-options button{min-width:0!important;min-height:36px!important;padding:6px!important}
+#settingsPage #mimoStatus{font-size:11px!important;overflow-wrap:anywhere;line-height:1.2!important;margin-top:5px}
+@media(max-width:650px){#settingsPage .settings-stack{gap:7px!important;grid-auto-rows:minmax(130px,auto)!important}#settingsPage .settings-stack>.settings-panel{min-height:130px!important;padding:8px!important}}
+#settingsPage #adminSettingsSection{grid-column:auto!important;grid-row:auto!important;min-height:148px!important;max-width:100%!important;width:auto!important;align-self:stretch!important}
+#settingsPage #adminSettingsSection .settings-admin-login-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:6px!important}
+#settingsPage #adminSettingsSection .settings-admin-password{min-width:0!important;width:100%!important}
+#settingsPage #adminSettingsSection .settings-admin-cloud-note{overflow-wrap:anywhere!important}
+#settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
+#settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
+</style>
+<script src="Assets/mimo-rigged-341.js?v=344"></script>
+<style id="mr340-mimo-grid">
+#settingsPage #mimoSettingsSection .mimo-movements-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;margin:10px 0!important;width:100%}
+#settingsPage #mimoSettingsSection .mimo-icon-button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;min-height:48px!important;padding:5px!important;font-size:24px!important;line-height:1!important;white-space:nowrap!important}
+#settingsPage #mimoSettingsSection .mimo-calibration{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+#settingsPage #mimoSettingsSection .mimo-calibration label{font-size:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#settingsPage #mimoSettingsSection .mimo-calibration input[type=range]{max-width:145px;min-width:75px;flex:1}
+#settingsPage #mimoSettingsSection{height:auto!important;min-height:148px!important}
+</style>
+
+<style id="mr344-room-style">
+#mr344Heart{border:0;background:transparent;font-size:26px;cursor:pointer;padding:4px 9px;color:#d34e72}#mr344Heart.mr-needs{animation:mr344Pulse 1.7s ease-in-out infinite}@keyframes mr344Pulse{50%{transform:scale(1.22);opacity:.65}}
+#mr344Room{display:flex;flex-direction:column;gap:9px;min-height:0;flex:1;padding:10px;overflow:auto}
+#mr344Scene{position:relative;min-height:220px;flex:1;max-height:48vh;overflow:hidden;border-radius:18px;background:linear-gradient(145deg,#f8e7cf,#e5c9ac 66%,#bf916a);perspective:650px}
+#mr344Scene:before{content:'';position:absolute;bottom:-12%;left:-15%;width:130%;height:53%;transform:rotateX(48deg);background:repeating-linear-gradient(90deg,#c68c60 0 36px,#b77d54 37px 40px);border-top:6px solid #ad7653}
+.mr344Object{position:absolute;z-index:2;border:2px solid #a77a5c;background:#fff8eddd;border-radius:16px;padding:10px;min-width:85px;font-size:26px;cursor:pointer;box-shadow:0 7px 12px #754f3540}.mr344Object small{display:block;font-size:12px;font-weight:700;color:#704f40}
+#mr344Bed{left:5%;bottom:13%}#mr344Bath{right:5%;top:12%}#mr344Fruit{right:5%;bottom:12%}#mr344SceneLabel{position:absolute;left:12px;top:12px;font-weight:800;color:#75452d}
+#mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px} .mr344Stat{border-radius:12px;background:#fff2df;padding:8px 3px;text-align:center;font-size:13px;color:#6b4537}.mr344Stat b{display:block;font-size:13px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:16px}
+#mr344Message{text-align:center;font-size:14px;font-weight:700;min-height:22px;color:#70472e}#mr344Fruits{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}#mr344Fruits button{border-radius:12px;padding:8px;border:1px solid #cfa98b;background:white;font-size:15px}
+@media(max-width:600px){#mr344Stats{grid-template-columns:repeat(2,1fr)}#mr344Scene{min-height:185px}.mr344Object{min-width:64px;font-size:22px;padding:7px}}
+</style>
+<script id="mr344-room-script">
+(function(){'use strict';
+const KEY='mr344_pet';const clamp=x=>Math.max(0,Math.min(4,x));let state={food:3,sleep:3,clean:3,happy:3,fruit:0,last:Date.now()};try{const stored=JSON.parse(localStorage.getItem(KEY)||'null');if(stored&&typeof stored==='object')state={...state,...stored}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+// Un bisogno può aumentare lentamente tra le visite, ma senza punizioni o danni permanenti.
+function tick(){const now=Date.now(),hours=Math.max(0,Math.min(72,(now-state.last)/3600000));if(hours>=6){const n=Math.floor(hours/6);state.food=clamp(state.food-n);state.sleep=clamp(state.sleep-Math.floor(n/2));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
+const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return;
+const room=document.createElement('div');room.id='mr344Room';room.innerHTML='<div id="mr344Scene"><span id="mr344SceneLabel">La stanzetta di Mìmo 🦉</span><button class="mr344Object" id="mr344Bed">🛏️<small>Dormi</small></button><button class="mr344Object" id="mr344Bath">🛁<small>Bagnetto</small></button><button class="mr344Object" id="mr344Fruit">🧺<small>Frutta</small></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden><button data-fruit="1">🍎 Dai una mela</button></div><details><summary>🏆 Trofei musicali conservati</summary><div id="mr344OriginalTrophies"></div></details>';
+const old=document.createElement('div');old.id='mr344OriginalTrophiesHolder';while(main.firstChild)old.appendChild(main.firstChild);main.appendChild(room);room.querySelector('#mr344OriginalTrophies').appendChild(old);
+const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];const stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message');
+const heart=document.createElement('button');heart.id='mr344Heart';heart.textContent='♡';heart.title='Apri la stanzetta di Mìmo';heart.setAttribute('aria-label','Apri la stanzetta di Mìmo');heart.onclick=()=>{const home=document.getElementById('homeTrophyBtn');if(home)home.click()};
+function update(){tick();const need=state.food<=1||state.sleep<=1||state.clean<=1;heart.classList.toggle('mr-needs',need);heart.textContent=need?'♥':'♡';stats.innerHTML=labels.map(([k,ico,label])=>'<div class="mr344Stat">'+ico+' <b>'+label+'</b><div class="mr344Hearts">'+'♥'.repeat(clamp(state[k]))+'♡'.repeat(4-clamp(state[k]))+'</div></div>').join('');const mood=state.food<=1?'affamato':state.sleep<=1?'stanco':state.clean<=1?'sporco':state.happy<=1?'triste':'contento';window.MimoMood?.set(mood);save()}
+function message(text){msg.textContent=text;window.MimoCare.refresh()}
+room.querySelector('#mr344Bed').onclick=()=>{state.sleep=4;state.happy=clamp(state.happy+1);message('Mìmo ha riposato! 🌙')};
+room.querySelector('#mr344Bath').onclick=()=>{state.clean=4;state.happy=clamp(state.happy+1);message('Mìmo è pulitissimo! 🫧')};
+room.querySelector('#mr344Fruit').onclick=()=>{const fruits=room.querySelector('#mr344Fruits');fruits.hidden=!fruits.hidden;msg.textContent=state.fruit?'Scegli un frutto dal cestino':'Il cestino è vuoto: la frutta arriverà dalle sessioni musicali.';window.MimoCare.refresh()};
+room.querySelector('[data-fruit]').onclick=()=>{if(state.fruit<1){message('Non ci sono ancora mele nel cestino.');return}state.fruit--;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);message('Mìmo ha mangiato una mela! 🍎')};
+// API per assegnare frutta al completamento delle sessioni, senza inventare ricompense.
+window.MimoCare={awardFruit:(count=1)=>{state.fruit+=Math.max(0,Math.floor(count));save();update()},get:()=>({...state}),refresh:update};
+const fruitButton=room.querySelector('[data-fruit]');const oldUpdate=update;const refresh=()=>{oldUpdate();fruitButton.textContent='🍎 Mele: '+state.fruit+' · Dai una mela'};window.MimoCare.refresh=refresh;
+// Un solo cuore per barra superiore, con accesso alla stessa pagina della home.
+document.querySelectorAll('.top-row .top-right-controls').forEach(el=>{const b=heart.cloneNode(true);b.onclick=heart.onclick;b.id='';el.prepend(b)});
+function refreshHearts(){const need=state.food<=1||state.sleep<=1||state.clean<=1;document.querySelectorAll('#mr344Heart,.top-row .top-right-controls button[aria-label="Apri la stanzetta di Mìmo"]').forEach(b=>{b.classList.toggle('mr-needs',need);b.textContent=need?'♥':'♡'})}
+const baseRefresh=window.MimoCare.refresh;window.MimoCare.refresh=()=>{baseRefresh();refreshHearts()};
+const originalUpdate=window.MimoCare.refresh;window.MimoCare.refresh=()=>{originalUpdate();fruitButton.textContent='🍎 Mele: '+state.fruit+' · Dai una mela'};
+window.MimoCare.refresh();const observe=new MutationObserver(()=>{if(page.style.display!=='none')window.MimoCare.refresh()});observe.observe(page,{attributes:true,attributeFilter:['style']});
+})();
+</script>
 </body>
 </html>

@@ -1,10 +1,8 @@
-/* Music Rainbow Service Worker - Build 2.296 */
-const BUILD = "2.296";
+/* Music Rainbow Service Worker - Build 2.353 */
+const BUILD = "2.353";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
-// Solo risorse locali essenziali durante l'installazione: il banco piano remoto
-// non deve più ritardare l'attivazione di una nuova build.
 const CORE_PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -14,7 +12,7 @@ const CORE_PRECACHE_URLS = [
   "./Assets/home-icon-scores-2179.svg",
   "./Assets/home-icon-play.svg",
   "./Assets/home-icon-learn.svg",
-  "./Assets/home-icon-trophy.svg",
+  "./Assets/home-icon-mimo-room.svg",
   "./Assets/home-icon-settings.svg",
   "./Assets/grand-staff-l6.png",
   "./Assets/grand-staff-l6-lower-clean.png",
@@ -23,18 +21,14 @@ const CORE_PRECACHE_URLS = [
   "./Assets/staff-base-treble.png",
   "./Assets/MusicRainbow-SMuFL.woff2",
   "./Assets/tempo-drum-red-white.jpeg",
-  "./Assets/medal-token-bronze.png",
-  "./Assets/medal-token-silver.png",
-  "./Assets/medal-token-gold.png",
-  "./Assets/medal-token-green.png",
-  "./Assets/medal-token-cyan.png",
-  "./Assets/medal-token-blue.png",
-  "./Assets/medal-token-violet.png",
-  "./Assets/medal-token-pink.png",
-  "./Scores/library.json",
-  "./Scores/piccolo-arcobaleno.mrscore",
-  "./Scores/passi-di-sole.mrscore",
-  "./Scores/stelle-in-punta-di-piedi.mrscore"
+  "./Assets/mimo-rigged-341.js",
+  "./Assets/mimo-meshy-324.glb",
+  "./Assets/room/room-background.jpg",
+  "./Assets/room/fruit-apple.svg",
+  "./Assets/room/fruit-banana.svg",
+  "./Assets/room/fruit-strawberry.svg",
+  "./Assets/room/fruit-grapes.svg",
+  "./Scores/library.json"
 ];
 
 self.addEventListener("install", event => {
@@ -46,7 +40,6 @@ self.addEventListener("install", event => {
       if (!res || !res.ok) throw new Error(`Precache failed: ${url}`);
       await precache.put(req, res.clone());
     }));
-
     await self.skipWaiting();
   })());
 });
@@ -59,9 +52,6 @@ self.addEventListener("activate", event => {
         .filter(k => k.startsWith("music-rainbow-") && k !== PRECACHE && k !== RUNTIME)
         .map(k => caches.delete(k))
     );
-
-    // Build 2.296 — nessuna navigazione forzata dall'activate: con controllerchange
-    // la pagina viene aggiornata una sola volta, evitando catene di reload su WKWebView.
     await self.clients.claim();
   })());
 });
@@ -74,7 +64,6 @@ self.addEventListener("message", event => {
 async function cacheFirst(request) {
   const cached = await caches.match(request) || await caches.match(request, { ignoreSearch: true });
   if (cached) return cached;
-
   const res = await fetch(request);
   if (res && res.ok) {
     const cache = await caches.open(RUNTIME);
@@ -113,30 +102,22 @@ async function staleWhileRevalidate(request) {
 self.addEventListener("fetch", event => {
   const req = event.request;
   if (req.method !== "GET") return;
-
   const url = new URL(req.url);
-
   if (req.mode === "navigate" || req.destination === "document") {
     event.respondWith(networkFirst(req));
     return;
   }
-
   if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
     event.respondWith(staleWhileRevalidate(req));
     return;
   }
-
-  // Il banco Salamander viene memorizzato solo quando serve davvero; nessun download
-  // remoto può più bloccare l'installazione/attivazione di una nuova versione.
   if (url.hostname === "tonejs.github.io" && url.pathname.startsWith("/audio/salamander/")) {
     event.respondWith(cacheFirst(req));
     return;
   }
-
   if (url.origin === self.location.origin) {
     event.respondWith(cacheFirst(req));
     return;
   }
-
   event.respondWith(fetch(req).catch(() => caches.match(req)));
 });

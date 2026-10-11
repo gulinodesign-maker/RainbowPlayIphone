@@ -5741,7 +5741,7 @@ button.midi-learn-bound{box-shadow:0 0 0 4px rgba(34,197,94,.62),0 0 20px rgba(3
 #homeScoresBtn::before{background-image:url("Assets/home-icon-scores-2179.svg?v=2.296") !important;}
 #homePlayBtn::before{background-image:url("Assets/home-icon-play.svg?v=2.296") !important;}
 #homeLearnMainBtn::before{background-image:url("Assets/home-icon-learn.svg?v=2.296") !important;}
-#homeTrophyBtn::before{background-image:url("Assets/home-icon-trophy.svg?v=2.296") !important;}
+#homeTrophyBtn::before{background-image:url("Assets/home-icon-mimo-room.svg?v=2.353") !important;}
 #homeSettingsBtn::before{background-image:url("Assets/home-icon-settings.svg?v=2.296") !important;}
 #homeScreen .home-play-disabled{opacity:.62 !important;}
 #homeScreen .home-nav-label{
@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.350</div>
+    <div class="intro-version-label">Build 2.353</div>
   </div>
 </div>
 
@@ -7836,7 +7836,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 </div>
 
 <!-- ===========================
-     PAGINA TROFEI
+     STANZA DI MÌMO
      =========================== -->
 
 <div id="trophyPage" class="page-container" style="display:none">
@@ -7852,33 +7852,8 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     </div>
 
     <div class="trophy-main">
-      <div class="chest-grid-container">
-        <div id="chestGrid" class="chest-grid"></div>
-      </div>
-
-      <button id="clearChestsBtn" class="clear-chests-btn" type="button">
-        Cancella tutti gli scrigni
-      </button>
-
       <div id="trophyContent" class="trophy-content" style="display:none"></div>
-
-      <div id="trophyOverlay" class="trophy-overlay">
-        <div class="trophy-overlay-box">
-          <button id="trophyOverlayClose" class="trophy-overlay-close" type="button" aria-label="Chiudi scrigno">×</button>
-          <div id="trophyOverlayContent" class="trophy-overlay-content"></div>
-        </div>
-      </div>
-
-
-      
-        
-      </div>
-
-      
     </div>
-  </div>
-</div>
-
   </div>
 </div>
 
@@ -7911,23 +7886,23 @@ try{const v=localStorage.getItem(MR_NOTE_NAMING_KEY);if(v==="letters"||v==="solf
 
 const MR_I18N={
   it:{
-    settings:"Impostazioni",settings_sub:"Personalizza lingua, suoni, tastiera e accesso Teacher.",ui_sounds:"Suoni",ui_sounds_note:"Riproduce un breve click quando usi i comandi dell'app.",ui_sounds_on:"Attivi",ui_sounds_off:"Disattivati",master_volume:"Volume generale",language:"Lingua",language_note:"Scegli la lingua dell'app e come visualizzare i nomi delle note.",app_language:"Lingua dell'app",note_names:"Note",profile:"Profilo",profile_note:"Scegli chi sta giocando in questo momento.",male:"Maschio",female:"Femmina",midi:"Tastiera MIDI",midi_note:"Scegli la tastiera virtuale oppure collega una tastiera MIDI esterna.",midi_range:"Tastiera da usare",teacher:"Teacher",teacher_note:"Sblocca tutti i livelli e Modalità Play con una password locale.",teacher_help:"La password viene scelta alla prima attivazione e non prevede recupero o reset.",teacher_off:"🔒 Teacher non attivo",teacher_on:"✅ Teacher attivo · tutto sbloccato",teacher_activate:"🔑 Attiva Teacher",teacher_setup:"🔑 Imposta Teacher",teacher_disable:"Disattiva Teacher",choose_level:"Scegli il livello",scores:"Spartiti",play:"Modalità Play",learn:"Impara",trophies:"Scrigno dei trofei",level_sub:"Completa 10 sessioni valide per sbloccare il livello successivo.",learn_notes:"Impara le note",learn_tempo:"Impara il tempo",explore_notes:"Esplora le note",find_note:"Trova la nota",score_library:"Libreria Spartiti",import:"Importa",score_library_note:"Scegli uno spartito dallo scaffale e suonalo dall'inizio alla fine.",clear_chests:"Cancella tutti gli scrigni",rotate:"Ruota il dispositivo",rotate_note:"Questa schermata richiede l\'orientamento orizzontale (landscape).",midi_disconnected:"🎹 MIDI non collegato",midi_connected:"🎹 MIDI collegato",midi_connect:"🔌 Collega MIDI",midi_disconnect:"🔌 Scollega MIDI",midi_virtual:"Tastiera virtuale · C4–B5",midi_unavailable:"Su iPhone/iPad la PWA non riceve direttamente USB MIDI. La stessa logica è pronta per il bridge Core MIDI della futura app nativa.",play_again:"Suona ancora",library:"Libreria",score:"Spartito",settings_language_aria:"Lingua dell'app",settings_note_aria:"Note"},
+    settings:"Impostazioni",settings_sub:"Personalizza lingua, suoni, tastiera e accesso Teacher.",ui_sounds:"Suoni",ui_sounds_note:"Riproduce un breve click quando usi i comandi dell'app.",ui_sounds_on:"Attivi",ui_sounds_off:"Disattivati",master_volume:"Volume generale",language:"Lingua",language_note:"Scegli la lingua dell'app e come visualizzare i nomi delle note.",app_language:"Lingua dell'app",note_names:"Note",profile:"Profilo",profile_note:"Scegli chi sta giocando in questo momento.",male:"Maschio",female:"Femmina",midi:"Tastiera MIDI",midi_note:"Scegli la tastiera virtuale oppure collega una tastiera MIDI esterna.",midi_range:"Tastiera da usare",teacher:"Teacher",teacher_note:"Sblocca tutti i livelli e Modalità Play con una password locale.",teacher_help:"La password viene scelta alla prima attivazione e non prevede recupero o reset.",teacher_off:"🔒 Teacher non attivo",teacher_on:"✅ Teacher attivo · tutto sbloccato",teacher_activate:"🔑 Attiva Teacher",teacher_setup:"🔑 Imposta Teacher",teacher_disable:"Disattiva Teacher",choose_level:"Scegli il livello",scores:"Spartiti",play:"Modalità Play",learn:"Impara",trophies:"Stanza di Mìmo",level_sub:"Completa 10 sessioni valide per sbloccare il livello successivo.",learn_notes:"Impara le note",learn_tempo:"Impara il tempo",explore_notes:"Esplora le note",find_note:"Trova la nota",score_library:"Libreria Spartiti",import:"Importa",score_library_note:"Scegli uno spartito dallo scaffale e suonalo dall'inizio alla fine.",rotate:"Ruota il dispositivo",rotate_note:"Questa schermata richiede l\'orientamento orizzontale (landscape).",midi_disconnected:"🎹 MIDI non collegato",midi_connected:"🎹 MIDI collegato",midi_connect:"🔌 Collega MIDI",midi_disconnect:"🔌 Scollega MIDI",midi_virtual:"Tastiera virtuale · C4–B5",midi_unavailable:"Su iPhone/iPad la PWA non riceve direttamente USB MIDI. La stessa logica è pronta per il bridge Core MIDI della futura app nativa.",play_again:"Suona ancora",library:"Libreria",score:"Spartito",settings_language_aria:"Lingua dell'app",settings_note_aria:"Note"},
   en:{
-    settings:"Settings",settings_sub:"Customize language, sounds, keyboard and Teacher access.",ui_sounds:"Interface sounds",ui_sounds_note:"Play a short click when you use app controls.",ui_sounds_on:"On",ui_sounds_off:"Off",master_volume:"Master volume",language:"Language",language_note:"Choose the app language and how note names are displayed.",app_language:"App language",note_names:"Note names",profile:"Profile",profile_note:"Choose who is playing right now.",male:"Boy",female:"Girl",midi:"MIDI keyboard",midi_note:"Use the virtual keyboard or connect an external MIDI keyboard.",midi_range:"Keyboard to use",teacher:"Teacher Mode",teacher_note:"Unlock all levels and Play Mode with a local password.",teacher_help:"The password is chosen the first time Teacher Mode is enabled and cannot be recovered or reset.",teacher_off:"🔒 Teacher inactive",teacher_on:"✅ Teacher active · everything unlocked",teacher_activate:"🔑 Enable Teacher",teacher_setup:"🔑 Set up Teacher",teacher_disable:"Disable Teacher",choose_level:"Choose level",scores:"Scores",play:"Play Mode",learn:"Learn",trophies:"Trophy chest",level_sub:"Complete 10 valid sessions to unlock the next level.",learn_notes:"Learn notes",learn_tempo:"Learn rhythm",explore_notes:"Explore notes",find_note:"Find the note",score_library:"Score Library",import:"Import",score_library_note:"Choose a score from the shelf and play it from start to finish.",clear_chests:"Clear all chests",rotate:"Rotate your device",rotate_note:"This screen requires landscape orientation.",midi_disconnected:"🎹 MIDI not connected",midi_connected:"🎹 MIDI connected",midi_connect:"🔌 Connect MIDI",midi_disconnect:"🔌 Disconnect MIDI",midi_virtual:"Virtual keyboard · C4–B5",midi_unavailable:"On iPhone/iPad the PWA cannot receive USB MIDI directly. The same logic is ready for the Core MIDI bridge in a future native app.",play_again:"Play again",library:"Library",score:"Score",settings_language_aria:"App language",settings_note_aria:"Note names"},
+    settings:"Settings",settings_sub:"Customize language, sounds, keyboard and Teacher access.",ui_sounds:"Interface sounds",ui_sounds_note:"Play a short click when you use app controls.",ui_sounds_on:"On",ui_sounds_off:"Off",master_volume:"Master volume",language:"Language",language_note:"Choose the app language and how note names are displayed.",app_language:"App language",note_names:"Note names",profile:"Profile",profile_note:"Choose who is playing right now.",male:"Boy",female:"Girl",midi:"MIDI keyboard",midi_note:"Use the virtual keyboard or connect an external MIDI keyboard.",midi_range:"Keyboard to use",teacher:"Teacher Mode",teacher_note:"Unlock all levels and Play Mode with a local password.",teacher_help:"The password is chosen the first time Teacher Mode is enabled and cannot be recovered or reset.",teacher_off:"🔒 Teacher inactive",teacher_on:"✅ Teacher active · everything unlocked",teacher_activate:"🔑 Enable Teacher",teacher_setup:"🔑 Set up Teacher",teacher_disable:"Disable Teacher",choose_level:"Choose level",scores:"Scores",play:"Play Mode",learn:"Learn",trophies:"Mìmo's room",level_sub:"Complete 10 valid sessions to unlock the next level.",learn_notes:"Learn notes",learn_tempo:"Learn rhythm",explore_notes:"Explore notes",find_note:"Find the note",score_library:"Score Library",import:"Import",score_library_note:"Choose a score from the shelf and play it from start to finish.",rotate:"Rotate your device",rotate_note:"This screen requires landscape orientation.",midi_disconnected:"🎹 MIDI not connected",midi_connected:"🎹 MIDI connected",midi_connect:"🔌 Connect MIDI",midi_disconnect:"🔌 Disconnect MIDI",midi_virtual:"Virtual keyboard · C4–B5",midi_unavailable:"On iPhone/iPad the PWA cannot receive USB MIDI directly. The same logic is ready for the Core MIDI bridge in a future native app.",play_again:"Play again",library:"Library",score:"Score",settings_language_aria:"App language",settings_note_aria:"Note names"},
   es:{
-    settings:"Ajustes",settings_sub:"Personaliza idioma, sonidos, teclado y acceso Teacher.",ui_sounds:"Sonidos de interfaz",ui_sounds_note:"Reproduce un clic breve al usar los controles de la app.",ui_sounds_on:"Activados",ui_sounds_off:"Desactivados",master_volume:"Volumen general",language:"Idioma",language_note:"Elige el idioma de la app y cómo mostrar los nombres de las notas.",app_language:"Idioma de la app",note_names:"Nombres de las notas",profile:"Perfil",profile_note:"Elige quién está tocando ahora.",male:"Niño",female:"Niña",midi:"Teclado MIDI",midi_note:"Usa el teclado virtual o conecta un teclado MIDI externo.",midi_range:"Teclado a usar",teacher:"Modo Teacher",teacher_note:"Desbloquea todos los niveles y el Modo Play con una contraseña local.",teacher_help:"La contraseña se elige al activar por primera vez el modo Teacher y no tiene recuperación ni restablecimiento.",teacher_off:"🔒 Teacher desactivado",teacher_on:"✅ Teacher activo · todo desbloqueado",teacher_activate:"🔑 Activar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desactivar Teacher",choose_level:"Elige el nivel",scores:"Partituras",play:"Modo Play",learn:"Aprende",trophies:"Cofre de trofeos",level_sub:"Completa 10 sesiones válidas para desbloquear el siguiente nivel.",learn_notes:"Aprende las notas",learn_tempo:"Aprende el ritmo",explore_notes:"Explora las notas",find_note:"Encuentra la nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Elige una partitura y tócala de principio a fin.",clear_chests:"Borrar todos los cofres",rotate:"Gira el dispositivo",rotate_note:"Esta pantalla requiere orientación horizontal.",midi_disconnected:"🎹 MIDI no conectado",midi_connected:"🎹 MIDI conectado",midi_connect:"🔌 Conectar MIDI",midi_disconnect:"🔌 Desconectar MIDI",midi_virtual:"Teclado virtual · C4–B5",midi_unavailable:"En iPhone/iPad la PWA no recibe USB MIDI directamente. La misma lógica está preparada para un futuro puente Core MIDI nativo.",play_again:"Tocar de nuevo",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma de la app",settings_note_aria:"Nombres de las notas"},
+    settings:"Ajustes",settings_sub:"Personaliza idioma, sonidos, teclado y acceso Teacher.",ui_sounds:"Sonidos de interfaz",ui_sounds_note:"Reproduce un clic breve al usar los controles de la app.",ui_sounds_on:"Activados",ui_sounds_off:"Desactivados",master_volume:"Volumen general",language:"Idioma",language_note:"Elige el idioma de la app y cómo mostrar los nombres de las notas.",app_language:"Idioma de la app",note_names:"Nombres de las notas",profile:"Perfil",profile_note:"Elige quién está tocando ahora.",male:"Niño",female:"Niña",midi:"Teclado MIDI",midi_note:"Usa el teclado virtual o conecta un teclado MIDI externo.",midi_range:"Teclado a usar",teacher:"Modo Teacher",teacher_note:"Desbloquea todos los niveles y el Modo Play con una contraseña local.",teacher_help:"La contraseña se elige al activar por primera vez el modo Teacher y no tiene recuperación ni restablecimiento.",teacher_off:"🔒 Teacher desactivado",teacher_on:"✅ Teacher activo · todo desbloqueado",teacher_activate:"🔑 Activar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desactivar Teacher",choose_level:"Elige el nivel",scores:"Partituras",play:"Modo Play",learn:"Aprende",trophies:"Habitación de Mìmo",level_sub:"Completa 10 sesiones válidas para desbloquear el siguiente nivel.",learn_notes:"Aprende las notas",learn_tempo:"Aprende el ritmo",explore_notes:"Explora las notas",find_note:"Encuentra la nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Elige una partitura y tócala de principio a fin.",rotate:"Gira el dispositivo",rotate_note:"Esta pantalla requiere orientación horizontal.",midi_disconnected:"🎹 MIDI no conectado",midi_connected:"🎹 MIDI conectado",midi_connect:"🔌 Conectar MIDI",midi_disconnect:"🔌 Desconectar MIDI",midi_virtual:"Teclado virtual · C4–B5",midi_unavailable:"En iPhone/iPad la PWA no recibe USB MIDI directamente. La misma lógica está preparada para un futuro puente Core MIDI nativo.",play_again:"Tocar de nuevo",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma de la app",settings_note_aria:"Nombres de las notas"},
   fr:{
-    settings:"Réglages",settings_sub:"Personnalise la langue, les sons, le clavier et l’accès Teacher.",ui_sounds:"Sons de l’interface",ui_sounds_note:"Joue un petit clic lorsque tu utilises les commandes de l’application.",ui_sounds_on:"Activés",ui_sounds_off:"Désactivés",master_volume:"Volume général",language:"Langue",language_note:"Choisis la langue de l'application et l'affichage des noms de notes.",app_language:"Langue de l'application",note_names:"Noms des notes",profile:"Profil",profile_note:"Choisis qui joue maintenant.",male:"Garçon",female:"Fille",midi:"Clavier MIDI",midi_note:"Utilise le clavier virtuel ou connecte un clavier MIDI externe.",midi_range:"Clavier à utiliser",teacher:"Mode Teacher",teacher_note:"Déverrouille tous les niveaux et le mode Play avec un mot de passe local.",teacher_help:"Le mot de passe est choisi lors de la première activation du mode Teacher et ne peut pas être récupéré ni réinitialisé.",teacher_off:"🔒 Teacher inactif",teacher_on:"✅ Teacher actif · tout déverrouillé",teacher_activate:"🔑 Activer Teacher",teacher_setup:"🔑 Configurer Teacher",teacher_disable:"Désactiver Teacher",choose_level:"Choisis le niveau",scores:"Partitions",play:"Mode Play",learn:"Apprendre",trophies:"Coffre à trophées",level_sub:"Termine 10 sessions valides pour déverrouiller le niveau suivant.",learn_notes:"Apprendre les notes",learn_tempo:"Apprendre le rythme",explore_notes:"Explore les notes",find_note:"Trouve la note",score_library:"Bibliothèque de partitions",import:"Importer",score_library_note:"Choisis une partition et joue-la du début à la fin.",clear_chests:"Effacer tous les coffres",rotate:"Tourne ton appareil",rotate_note:"Cet écran nécessite le mode paysage.",midi_disconnected:"🎹 MIDI non connecté",midi_connected:"🎹 MIDI connecté",midi_connect:"🔌 Connecter MIDI",midi_disconnect:"🔌 Déconnecter MIDI",midi_virtual:"Clavier virtuel · C4–B5",midi_unavailable:"Sur iPhone/iPad, la PWA ne reçoit pas directement l'USB MIDI. La logique est prête pour un futur pont Core MIDI natif.",play_again:"Rejouer",library:"Bibliothèque",score:"Partition",settings_language_aria:"Langue de l'application",settings_note_aria:"Noms des notes"},
+    settings:"Réglages",settings_sub:"Personnalise la langue, les sons, le clavier et l’accès Teacher.",ui_sounds:"Sons de l’interface",ui_sounds_note:"Joue un petit clic lorsque tu utilises les commandes de l’application.",ui_sounds_on:"Activés",ui_sounds_off:"Désactivés",master_volume:"Volume général",language:"Langue",language_note:"Choisis la langue de l'application et l'affichage des noms de notes.",app_language:"Langue de l'application",note_names:"Noms des notes",profile:"Profil",profile_note:"Choisis qui joue maintenant.",male:"Garçon",female:"Fille",midi:"Clavier MIDI",midi_note:"Utilise le clavier virtuel ou connecte un clavier MIDI externe.",midi_range:"Clavier à utiliser",teacher:"Mode Teacher",teacher_note:"Déverrouille tous les niveaux et le mode Play avec un mot de passe local.",teacher_help:"Le mot de passe est choisi lors de la première activation du mode Teacher et ne peut pas être récupéré ni réinitialisé.",teacher_off:"🔒 Teacher inactif",teacher_on:"✅ Teacher actif · tout déverrouillé",teacher_activate:"🔑 Activer Teacher",teacher_setup:"🔑 Configurer Teacher",teacher_disable:"Désactiver Teacher",choose_level:"Choisis le niveau",scores:"Partitions",play:"Mode Play",learn:"Apprendre",trophies:"Chambre de Mìmo",level_sub:"Termine 10 sessions valides pour déverrouiller le niveau suivant.",learn_notes:"Apprendre les notes",learn_tempo:"Apprendre le rythme",explore_notes:"Explore les notes",find_note:"Trouve la note",score_library:"Bibliothèque de partitions",import:"Importer",score_library_note:"Choisis une partition et joue-la du début à la fin.",rotate:"Tourne ton appareil",rotate_note:"Cet écran nécessite le mode paysage.",midi_disconnected:"🎹 MIDI non connecté",midi_connected:"🎹 MIDI connecté",midi_connect:"🔌 Connecter MIDI",midi_disconnect:"🔌 Déconnecter MIDI",midi_virtual:"Clavier virtuel · C4–B5",midi_unavailable:"Sur iPhone/iPad, la PWA ne reçoit pas directement l'USB MIDI. La logique est prête pour un futur pont Core MIDI natif.",play_again:"Rejouer",library:"Bibliothèque",score:"Partition",settings_language_aria:"Langue de l'application",settings_note_aria:"Noms des notes"},
   de:{
-    settings:"Einstellungen",settings_sub:"Passe Sprache, Töne, Tastatur und Teacher-Zugang an.",ui_sounds:"Oberflächentöne",ui_sounds_note:"Spielt einen kurzen Klick bei der Bedienung der App.",ui_sounds_on:"Ein",ui_sounds_off:"Aus",master_volume:"Gesamtlautstärke",language:"Sprache",language_note:"Wähle die App-Sprache und die Anzeige der Notennamen.",app_language:"App-Sprache",note_names:"Notennamen",profile:"Profil",profile_note:"Wähle, wer gerade spielt.",male:"Junge",female:"Mädchen",midi:"MIDI-Tastatur",midi_note:"Nutze die virtuelle Tastatur oder verbinde eine externe MIDI-Tastatur.",midi_range:"Zu verwendende Tastatur",teacher:"Teacher-Modus",teacher_note:"Schaltet alle Level und den Play-Modus mit einem lokalen Passwort frei.",teacher_help:"Das Passwort wird bei der ersten Aktivierung festgelegt und kann nicht wiederhergestellt oder zurückgesetzt werden.",teacher_off:"🔒 Teacher nicht aktiv",teacher_on:"✅ Teacher aktiv · alles freigeschaltet",teacher_activate:"🔑 Teacher aktivieren",teacher_setup:"🔑 Teacher einrichten",teacher_disable:"Teacher deaktivieren",choose_level:"Level wählen",scores:"Noten",play:"Play-Modus",learn:"Lernen",trophies:"Trophäenkiste",level_sub:"Schließe 10 gültige Sitzungen ab, um das nächste Level freizuschalten.",learn_notes:"Noten lernen",learn_tempo:"Rhythmus lernen",explore_notes:"Noten entdecken",find_note:"Finde die Note",score_library:"Notenbibliothek",import:"Importieren",score_library_note:"Wähle ein Stück aus dem Regal und spiele es von Anfang bis Ende.",clear_chests:"Alle Kisten löschen",rotate:"Drehe dein Gerät",rotate_note:"Dieser Bildschirm benötigt das Querformat.",midi_disconnected:"🎹 MIDI nicht verbunden",midi_connected:"🎹 MIDI verbunden",midi_connect:"🔌 MIDI verbinden",midi_disconnect:"🔌 MIDI trennen",midi_virtual:"Virtuelle Tastatur · C4–B5",midi_unavailable:"Auf iPhone/iPad empfängt die PWA USB-MIDI nicht direkt. Die Logik ist für eine zukünftige native Core-MIDI-Brücke vorbereitet.",play_again:"Nochmal spielen",library:"Bibliothek",score:"Noten",settings_language_aria:"App-Sprache",settings_note_aria:"Notennamen"},
+    settings:"Einstellungen",settings_sub:"Passe Sprache, Töne, Tastatur und Teacher-Zugang an.",ui_sounds:"Oberflächentöne",ui_sounds_note:"Spielt einen kurzen Klick bei der Bedienung der App.",ui_sounds_on:"Ein",ui_sounds_off:"Aus",master_volume:"Gesamtlautstärke",language:"Sprache",language_note:"Wähle die App-Sprache und die Anzeige der Notennamen.",app_language:"App-Sprache",note_names:"Notennamen",profile:"Profil",profile_note:"Wähle, wer gerade spielt.",male:"Junge",female:"Mädchen",midi:"MIDI-Tastatur",midi_note:"Nutze die virtuelle Tastatur oder verbinde eine externe MIDI-Tastatur.",midi_range:"Zu verwendende Tastatur",teacher:"Teacher-Modus",teacher_note:"Schaltet alle Level und den Play-Modus mit einem lokalen Passwort frei.",teacher_help:"Das Passwort wird bei der ersten Aktivierung festgelegt und kann nicht wiederhergestellt oder zurückgesetzt werden.",teacher_off:"🔒 Teacher nicht aktiv",teacher_on:"✅ Teacher aktiv · alles freigeschaltet",teacher_activate:"🔑 Teacher aktivieren",teacher_setup:"🔑 Teacher einrichten",teacher_disable:"Teacher deaktivieren",choose_level:"Level wählen",scores:"Noten",play:"Play-Modus",learn:"Lernen",trophies:"Mìmos Zimmer",level_sub:"Schließe 10 gültige Sitzungen ab, um das nächste Level freizuschalten.",learn_notes:"Noten lernen",learn_tempo:"Rhythmus lernen",explore_notes:"Noten entdecken",find_note:"Finde die Note",score_library:"Notenbibliothek",import:"Importieren",score_library_note:"Wähle ein Stück aus dem Regal und spiele es von Anfang bis Ende.",rotate:"Drehe dein Gerät",rotate_note:"Dieser Bildschirm benötigt das Querformat.",midi_disconnected:"🎹 MIDI nicht verbunden",midi_connected:"🎹 MIDI verbunden",midi_connect:"🔌 MIDI verbinden",midi_disconnect:"🔌 MIDI trennen",midi_virtual:"Virtuelle Tastatur · C4–B5",midi_unavailable:"Auf iPhone/iPad empfängt die PWA USB-MIDI nicht direkt. Die Logik ist für eine zukünftige native Core-MIDI-Brücke vorbereitet.",play_again:"Nochmal spielen",library:"Bibliothek",score:"Noten",settings_language_aria:"App-Sprache",settings_note_aria:"Notennamen"},
   pt:{
-    settings:"Definições",settings_sub:"Personaliza idioma, sons, teclado e acesso Teacher.",ui_sounds:"Sons da interface",ui_sounds_note:"Reproduz um clique curto ao usar os controlos da aplicação.",ui_sounds_on:"Ativos",ui_sounds_off:"Desativados",master_volume:"Volume geral",language:"Idioma",language_note:"Escolhe o idioma da aplicação e como mostrar os nomes das notas.",app_language:"Idioma da aplicação",note_names:"Nomes das notas",profile:"Perfil",profile_note:"Escolhe quem está a tocar agora.",male:"Menino",female:"Menina",midi:"Teclado MIDI",midi_note:"Usa o teclado virtual ou liga um teclado MIDI externo.",midi_range:"Teclado a usar",teacher:"Modo Teacher",teacher_note:"Desbloqueia todos os níveis e o Modo Play com uma palavra-passe local.",teacher_help:"A palavra-passe é escolhida na primeira ativação do modo Teacher e não pode ser recuperada nem reposta.",teacher_off:"🔒 Teacher inativo",teacher_on:"✅ Teacher ativo · tudo desbloqueado",teacher_activate:"🔑 Ativar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desativar Teacher",choose_level:"Escolhe o nível",scores:"Partituras",play:"Modo Play",learn:"Aprender",trophies:"Baú de troféus",level_sub:"Completa 10 sessões válidas para desbloquear o nível seguinte.",learn_notes:"Aprender as notas",learn_tempo:"Aprender o ritmo",explore_notes:"Explora as notas",find_note:"Encontra a nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Escolhe uma partitura e toca-a do início ao fim.",clear_chests:"Apagar todos os baús",rotate:"Roda o dispositivo",rotate_note:"Este ecrã requer a orientação horizontal.",midi_disconnected:"🎹 MIDI não ligado",midi_connected:"🎹 MIDI ligado",midi_connect:"🔌 Ligar MIDI",midi_disconnect:"🔌 Desligar MIDI",midi_virtual:"Teclado virtual · C4–B5",midi_unavailable:"No iPhone/iPad, a PWA não recebe USB MIDI diretamente. A lógica está preparada para uma futura ponte Core MIDI nativa.",play_again:"Tocar novamente",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma da aplicação",settings_note_aria:"Nomes das notas"},
+    settings:"Definições",settings_sub:"Personaliza idioma, sons, teclado e acesso Teacher.",ui_sounds:"Sons da interface",ui_sounds_note:"Reproduz um clique curto ao usar os controlos da aplicação.",ui_sounds_on:"Ativos",ui_sounds_off:"Desativados",master_volume:"Volume geral",language:"Idioma",language_note:"Escolhe o idioma da aplicação e como mostrar os nomes das notas.",app_language:"Idioma da aplicação",note_names:"Nomes das notas",profile:"Perfil",profile_note:"Escolhe quem está a tocar agora.",male:"Menino",female:"Menina",midi:"Teclado MIDI",midi_note:"Usa o teclado virtual ou liga um teclado MIDI externo.",midi_range:"Teclado a usar",teacher:"Modo Teacher",teacher_note:"Desbloqueia todos os níveis e o Modo Play com uma palavra-passe local.",teacher_help:"A palavra-passe é escolhida na primeira ativação do modo Teacher e não pode ser recuperada nem reposta.",teacher_off:"🔒 Teacher inativo",teacher_on:"✅ Teacher ativo · tudo desbloqueado",teacher_activate:"🔑 Ativar Teacher",teacher_setup:"🔑 Configurar Teacher",teacher_disable:"Desativar Teacher",choose_level:"Escolhe o nível",scores:"Partituras",play:"Modo Play",learn:"Aprender",trophies:"Quarto do Mìmo",level_sub:"Completa 10 sessões válidas para desbloquear o nível seguinte.",learn_notes:"Aprender as notas",learn_tempo:"Aprender o ritmo",explore_notes:"Explora as notas",find_note:"Encontra a nota",score_library:"Biblioteca de partituras",import:"Importar",score_library_note:"Escolhe uma partitura e toca-a do início ao fim.",rotate:"Roda o dispositivo",rotate_note:"Este ecrã requer a orientação horizontal.",midi_disconnected:"🎹 MIDI não ligado",midi_connected:"🎹 MIDI ligado",midi_connect:"🔌 Ligar MIDI",midi_disconnect:"🔌 Desligar MIDI",midi_virtual:"Teclado virtual · C4–B5",midi_unavailable:"No iPhone/iPad, a PWA não recebe USB MIDI diretamente. A lógica está preparada para uma futura ponte Core MIDI nativa.",play_again:"Tocar novamente",library:"Biblioteca",score:"Partitura",settings_language_aria:"Idioma da aplicação",settings_note_aria:"Nomes das notas"},
   ru:{
-    settings:"Настройки",settings_sub:"Настройте язык, звуки, клавиатуру и доступ Teacher.",ui_sounds:"Звуки интерфейса",ui_sounds_note:"Короткий щелчок при использовании элементов управления приложения.",ui_sounds_on:"Включены",ui_sounds_off:"Выключены",master_volume:"Общая громкость",language:"Язык",language_note:"Выберите язык приложения и способ отображения названий нот.",app_language:"Язык приложения",note_names:"Названия нот",profile:"Профиль",profile_note:"Выберите, кто сейчас играет.",male:"Мальчик",female:"Девочка",midi:"MIDI-клавиатура",midi_note:"Используйте виртуальную клавиатуру или подключите внешнюю MIDI-клавиатуру.",midi_range:"Используемая клавиатура",teacher:"Режим Teacher",teacher_note:"Открывает все уровни и режим Play с локальным паролем.",teacher_help:"Пароль задаётся при первом включении режима Teacher и не может быть восстановлен или сброшен.",teacher_off:"🔒 Teacher выключен",teacher_on:"✅ Teacher включён · всё открыто",teacher_activate:"🔑 Включить Teacher",teacher_setup:"🔑 Настроить Teacher",teacher_disable:"Выключить Teacher",choose_level:"Выберите уровень",scores:"Ноты",play:"Режим Play",learn:"Учиться",trophies:"Сундук трофеев",level_sub:"Пройдите 10 успешных занятий, чтобы открыть следующий уровень.",learn_notes:"Учить ноты",learn_tempo:"Учить ритм",explore_notes:"Изучай ноты",find_note:"Найди ноту",score_library:"Библиотека нот",import:"Импорт",score_library_note:"Выберите произведение и сыграйте его от начала до конца.",clear_chests:"Удалить все сундуки",rotate:"Поверните устройство",rotate_note:"Для этого экрана нужна альбомная ориентация.",midi_disconnected:"🎹 MIDI не подключен",midi_connected:"🎹 MIDI подключен",midi_connect:"🔌 Подключить MIDI",midi_disconnect:"🔌 Отключить MIDI",midi_virtual:"Виртуальная клавиатура · C4–B5",midi_unavailable:"На iPhone/iPad PWA не получает USB MIDI напрямую. Логика готова для будущего нативного моста Core MIDI.",play_again:"Сыграть ещё раз",library:"Библиотека",score:"Ноты",settings_language_aria:"Язык приложения",settings_note_aria:"Названия нот"},
+    settings:"Настройки",settings_sub:"Настройте язык, звуки, клавиатуру и доступ Teacher.",ui_sounds:"Звуки интерфейса",ui_sounds_note:"Короткий щелчок при использовании элементов управления приложения.",ui_sounds_on:"Включены",ui_sounds_off:"Выключены",master_volume:"Общая громкость",language:"Язык",language_note:"Выберите язык приложения и способ отображения названий нот.",app_language:"Язык приложения",note_names:"Названия нот",profile:"Профиль",profile_note:"Выберите, кто сейчас играет.",male:"Мальчик",female:"Девочка",midi:"MIDI-клавиатура",midi_note:"Используйте виртуальную клавиатуру или подключите внешнюю MIDI-клавиатуру.",midi_range:"Используемая клавиатура",teacher:"Режим Teacher",teacher_note:"Открывает все уровни и режим Play с локальным паролем.",teacher_help:"Пароль задаётся при первом включении режима Teacher и не может быть восстановлен или сброшен.",teacher_off:"🔒 Teacher выключен",teacher_on:"✅ Teacher включён · всё открыто",teacher_activate:"🔑 Включить Teacher",teacher_setup:"🔑 Настроить Teacher",teacher_disable:"Выключить Teacher",choose_level:"Выберите уровень",scores:"Ноты",play:"Режим Play",learn:"Учиться",trophies:"Комната Мìмо",level_sub:"Пройдите 10 успешных занятий, чтобы открыть следующий уровень.",learn_notes:"Учить ноты",learn_tempo:"Учить ритм",explore_notes:"Изучай ноты",find_note:"Найди ноту",score_library:"Библиотека нот",import:"Импорт",score_library_note:"Выберите произведение и сыграйте его от начала до конца.",rotate:"Поверните устройство",rotate_note:"Для этого экрана нужна альбомная ориентация.",midi_disconnected:"🎹 MIDI не подключен",midi_connected:"🎹 MIDI подключен",midi_connect:"🔌 Подключить MIDI",midi_disconnect:"🔌 Отключить MIDI",midi_virtual:"Виртуальная клавиатура · C4–B5",midi_unavailable:"На iPhone/iPad PWA не получает USB MIDI напрямую. Логика готова для будущего нативного моста Core MIDI.",play_again:"Сыграть ещё раз",library:"Библиотека",score:"Ноты",settings_language_aria:"Язык приложения",settings_note_aria:"Названия нот"},
   zh:{
-    settings:"设置",settings_sub:"设置语言、声音、键盘和 Teacher 访问。",ui_sounds:"界面声音",ui_sounds_note:"使用应用控件时播放短促的点击声。",ui_sounds_on:"开启",ui_sounds_off:"关闭",master_volume:"总音量",language:"语言",language_note:"选择应用语言以及音名的显示方式。",app_language:"应用语言",note_names:"音名",profile:"个人资料",profile_note:"选择现在正在练习的人。",male:"男孩",female:"女孩",midi:"MIDI 键盘",midi_note:"使用虚拟键盘或连接外部 MIDI 键盘。",midi_range:"使用的键盘",teacher:"Teacher 模式",teacher_note:"使用本地密码解锁全部关卡和 Play 模式。",teacher_help:"首次启用 Teacher 模式时设置密码，之后无法找回或重置。",teacher_off:"🔒 Teacher 未启用",teacher_on:"✅ Teacher 已启用 · 全部解锁",teacher_activate:"🔑 启用 Teacher",teacher_setup:"🔑 设置 Teacher",teacher_disable:"停用 Teacher",choose_level:"选择关卡",scores:"乐谱",play:"Play 模式",learn:"学习",trophies:"奖杯宝箱",level_sub:"完成 10 次有效练习即可解锁下一关。",learn_notes:"学习音符",learn_tempo:"学习节奏",explore_notes:"认识音符",find_note:"找到音符",score_library:"乐谱库",import:"导入",score_library_note:"从书架选择一首乐谱并从头到尾演奏。",clear_chests:"清除所有宝箱",rotate:"旋转设备",rotate_note:"此页面需要横屏显示。",midi_disconnected:"🎹 MIDI 未连接",midi_connected:"🎹 MIDI 已连接",midi_connect:"🔌 连接 MIDI",midi_disconnect:"🔌 断开 MIDI",midi_virtual:"虚拟键盘 · C4–B5",midi_unavailable:"在 iPhone/iPad 上，PWA 无法直接接收 USB MIDI。相关逻辑已为未来原生 Core MIDI 桥接做好准备。",play_again:"再弹一次",library:"乐谱库",score:"乐谱",settings_language_aria:"应用语言",settings_note_aria:"音名"},
+    settings:"设置",settings_sub:"设置语言、声音、键盘和 Teacher 访问。",ui_sounds:"界面声音",ui_sounds_note:"使用应用控件时播放短促的点击声。",ui_sounds_on:"开启",ui_sounds_off:"关闭",master_volume:"总音量",language:"语言",language_note:"选择应用语言以及音名的显示方式。",app_language:"应用语言",note_names:"音名",profile:"个人资料",profile_note:"选择现在正在练习的人。",male:"男孩",female:"女孩",midi:"MIDI 键盘",midi_note:"使用虚拟键盘或连接外部 MIDI 键盘。",midi_range:"使用的键盘",teacher:"Teacher 模式",teacher_note:"使用本地密码解锁全部关卡和 Play 模式。",teacher_help:"首次启用 Teacher 模式时设置密码，之后无法找回或重置。",teacher_off:"🔒 Teacher 未启用",teacher_on:"✅ Teacher 已启用 · 全部解锁",teacher_activate:"🔑 启用 Teacher",teacher_setup:"🔑 设置 Teacher",teacher_disable:"停用 Teacher",choose_level:"选择关卡",scores:"乐谱",play:"Play 模式",learn:"学习",trophies:"Mìmo 的房间",level_sub:"完成 10 次有效练习即可解锁下一关。",learn_notes:"学习音符",learn_tempo:"学习节奏",explore_notes:"认识音符",find_note:"找到音符",score_library:"乐谱库",import:"导入",score_library_note:"从书架选择一首乐谱并从头到尾演奏。",rotate:"旋转设备",rotate_note:"此页面需要横屏显示。",midi_disconnected:"🎹 MIDI 未连接",midi_connected:"🎹 MIDI 已连接",midi_connect:"🔌 连接 MIDI",midi_disconnect:"🔌 断开 MIDI",midi_virtual:"虚拟键盘 · C4–B5",midi_unavailable:"在 iPhone/iPad 上，PWA 无法直接接收 USB MIDI。相关逻辑已为未来原生 Core MIDI 桥接做好准备。",play_again:"再弹一次",library:"乐谱库",score:"乐谱",settings_language_aria:"应用语言",settings_note_aria:"音名"},
   ja:{
-    settings:"設定",settings_sub:"言語、サウンド、キーボード、Teacherアクセスを設定します。",ui_sounds:"操作音",ui_sounds_note:"アプリの操作時に短いクリック音を鳴らします。",ui_sounds_on:"オン",ui_sounds_off:"オフ",master_volume:"全体音量",language:"言語",language_note:"アプリの言語と音名の表示方法を選びます。",app_language:"アプリの言語",note_names:"音名",profile:"プロフィール",profile_note:"いま演奏している人を選びます。",male:"男の子",female:"女の子",midi:"MIDIキーボード",midi_note:"バーチャルキーボードを使うか、外部MIDIキーボードを接続します。",midi_range:"使用するキーボード",teacher:"Teacherモード",teacher_note:"ローカルパスワードで全レベルとPlayモードを解除します。",teacher_help:"パスワードはTeacherモード初回有効化時に設定し、復元やリセットはできません。",teacher_off:"🔒 Teacher 無効",teacher_on:"✅ Teacher 有効 · すべて解除",teacher_activate:"🔑 Teacher を有効化",teacher_setup:"🔑 Teacher を設定",teacher_disable:"Teacher を無効化",choose_level:"レベルを選ぶ",scores:"楽譜",play:"Playモード",learn:"学ぶ",trophies:"トロフィー宝箱",level_sub:"有効な練習を10回完了すると次のレベルが開きます。",learn_notes:"音符を学ぶ",learn_tempo:"リズムを学ぶ",explore_notes:"音符を見てみよう",find_note:"音符を見つけよう",score_library:"楽譜ライブラリ",import:"読み込む",score_library_note:"棚から楽譜を選び、最初から最後まで演奏します。",clear_chests:"宝箱をすべて消す",rotate:"端末を回転してください",rotate_note:"この画面は横向き表示が必要です。",midi_disconnected:"🎹 MIDI 未接続",midi_connected:"🎹 MIDI 接続済み",midi_connect:"🔌 MIDI を接続",midi_disconnect:"🔌 MIDI を切断",midi_virtual:"バーチャルキーボード · C4–B5",midi_unavailable:"iPhone/iPad のPWAではUSB MIDIを直接受信できません。将来のネイティブCore MIDIブリッジ向けのロジックは準備済みです。",play_again:"もう一度演奏",library:"ライブラリ",score:"楽譜",settings_language_aria:"アプリの言語",settings_note_aria:"音名"}
+    settings:"設定",settings_sub:"言語、サウンド、キーボード、Teacherアクセスを設定します。",ui_sounds:"操作音",ui_sounds_note:"アプリの操作時に短いクリック音を鳴らします。",ui_sounds_on:"オン",ui_sounds_off:"オフ",master_volume:"全体音量",language:"言語",language_note:"アプリの言語と音名の表示方法を選びます。",app_language:"アプリの言語",note_names:"音名",profile:"プロフィール",profile_note:"いま演奏している人を選びます。",male:"男の子",female:"女の子",midi:"MIDIキーボード",midi_note:"バーチャルキーボードを使うか、外部MIDIキーボードを接続します。",midi_range:"使用するキーボード",teacher:"Teacherモード",teacher_note:"ローカルパスワードで全レベルとPlayモードを解除します。",teacher_help:"パスワードはTeacherモード初回有効化時に設定し、復元やリセットはできません。",teacher_off:"🔒 Teacher 無効",teacher_on:"✅ Teacher 有効 · すべて解除",teacher_activate:"🔑 Teacher を有効化",teacher_setup:"🔑 Teacher を設定",teacher_disable:"Teacher を無効化",choose_level:"レベルを選ぶ",scores:"楽譜",play:"Playモード",learn:"学ぶ",trophies:"Mìmoの部屋",level_sub:"有効な練習を10回完了すると次のレベルが開きます。",learn_notes:"音符を学ぶ",learn_tempo:"リズムを学ぶ",explore_notes:"音符を見てみよう",find_note:"音符を見つけよう",score_library:"楽譜ライブラリ",import:"読み込む",score_library_note:"棚から楽譜を選び、最初から最後まで演奏します。",rotate:"端末を回転してください",rotate_note:"この画面は横向き表示が必要です。",midi_disconnected:"🎹 MIDI 未接続",midi_connected:"🎹 MIDI 接続済み",midi_connect:"🔌 MIDI を接続",midi_disconnect:"🔌 MIDI を切断",midi_virtual:"バーチャルキーボード · C4–B5",midi_unavailable:"iPhone/iPad のPWAではUSB MIDIを直接受信できません。将来のネイティブCore MIDIブリッジ向けのロジックは準備済みです。",play_again:"もう一度演奏",library:"ライブラリ",score:"楽譜",settings_language_aria:"アプリの言語",settings_note_aria:"音名"}
 };
 function mrT(key){const lang=MR_I18N[mrAppLanguage]||MR_I18N.it;return lang[key]??MR_I18N.it[key]??key;}
 const MR_NOTE_LABELS_SOLFEGE={do:"DO",re:"RE",mi:"MI",fa:"FA",sol:"SOL",la:"LA",si:"SI"};
@@ -7946,7 +7921,7 @@ function applyLanguageMR(){
     ['#settingsProfileTitleMR','profile'],['#settingsProfileNoteMR','profile_note'],['#settingsMaleMR','male'],['#settingsFemaleMR','female'],['#settingsUiSoundTitleMR','ui_sounds'],['#settingsUiSoundNoteMR','ui_sounds_note'],['#settingsMasterVolumeLabelMR','master_volume'],['#settingsMidiTitleMR','midi'],['#settingsMidiNoteMR','midi_note'],['#settingsMidiRangeLabelMR','midi_range'],['#settingsTeacherTitleMR','teacher'],['#settingsTeacherNoteMR','teacher_note'],['#settingsTeacherHelpMR','teacher_help'],
     ['#homeLevelLabel','choose_level'],['#homeScoresLabel','scores'],['#homePlayLabel','play'],['#homeLearnLabel','learn'],['#homeTrophyLabel','trophies'],['#homeSettingsLabel','settings'],
     ['#levelSelectOverlay .level-select-title','choose_level'],['#levelSelectSubtitle','level_sub'],['#learnSelectOverlay .level-select-title','learn'],['#homeLearnNotesBtn .learn-select-choice-text','learn_notes'],['#homeLearnTempoBtn .learn-select-choice-text','learn_tempo'],
-    ['#scoreLibraryPage .score-library-title','score_library'],['#scoreLibraryPage .score-library-subtitle','score_library_note'],['#clearChestsBtn','clear_chests'],
+    ['#scoreLibraryPage .score-library-title','score_library'],['#scoreLibraryPage .score-library-subtitle','score_library_note'],
     ['#scoreReplayBtn','play_again'],['#scoreReturnLibraryBtn','library']
   ];
   pairs.forEach(([sel,key])=>mrSetText(sel,key));
@@ -10281,144 +10256,100 @@ function updateLevelUnlockUIMR(){
 }
 
 /* ===========================
-   SCRIGNI DI SESSIONE (LOCALSTORAGE)
+   SESSIONI + RICOMPENSE (LOCALSTORAGE)
+   Nessuno scrigno: le sessioni servono solo a progressione e gettoni.
+   Ogni ricompensa musicale viene inoltrata direttamente al cestino di Mìmo.
    =========================== */
-const SESSIONS_KEY = "musicRainbowChests";
+const SESSIONS_KEY = "musicRainbowSessionsV2";
+const LEGACY_SESSIONS_KEY = "musicRainbowChests";
 let sessions = [];
 let currentSessionId = null;
 
-const CHEST_COUNTER_KEY = "musicRainbowChestCounter";
-let lastChestNumber = 0;
+function normalizeSessionMR(value, fallbackId) {
+  const src = value && typeof value === "object" ? value : {};
+  const out = {
+    id: Math.max(1, Math.floor(Number(src.id) || fallbackId || 1)),
+    createdAt: Number(src.createdAt) || Date.now(),
+    bronze: Math.max(0, Math.floor(Number(src.bronze) || 0)),
+    silver: Math.max(0, Math.floor(Number(src.silver) || 0)),
+    gold: Math.max(0, Math.floor(Number(src.gold) || 0)),
+    green: Math.max(0, Math.floor(Number(src.green) || 0)),
+    cyan: Math.max(0, Math.floor(Number(src.cyan) || 0)),
+    blue: Math.max(0, Math.floor(Number(src.blue) || 0)),
+    violet: Math.max(0, Math.floor(Number(src.violet) || 0)),
+    pink: Math.max(0, Math.floor(Number(src.pink) || 0)),
+    tokens: Math.max(0, Math.floor(Number(src.tokens) || 0)),
+    tokenMedalCount: Math.max(0, Math.floor(Number(src.tokenMedalCount) || 0)),
+    levelProgressMarks: Array.isArray(src.levelProgressMarks) ? src.levelProgressMarks.slice() : []
+  };
+  return out;
+}
 
 function loadSessionsFromStorage() {
   try {
     const raw = localStorage.getItem(SESSIONS_KEY);
-    if (!raw) {
-      sessions = [];
-    } else {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        sessions = parsed;
-      } else {
-        sessions = [];
-      }
-    }
-
-    // Carica il contatore globale degli scrigni
-    const rawCounter = localStorage.getItem(CHEST_COUNTER_KEY);
-    if (rawCounter) {
-      const parsedCounter = parseInt(rawCounter, 10);
-      if (!isNaN(parsedCounter) && parsedCounter > 0) {
-        lastChestNumber = parsedCounter;
-      }
-    }
-
-    // Assegna numeri sequenziali agli scrigni non vuoti che non hanno ancora un numero di visualizzazione
-    const nonEmptyWithoutNumber = sessions
-      .filter(s => ((s.bronze || 0) + (s.silver || 0) + (s.gold || 0) + (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0)) > 0 && typeof s.displayNumber !== "number")
-      .sort((a, b) => a.id - b.id);
-
-    nonEmptyWithoutNumber.forEach(s => {
-      lastChestNumber++;
-      s.displayNumber = lastChestNumber;
-    });
-
+    const parsed = raw ? JSON.parse(raw) : [];
+    sessions = Array.isArray(parsed) ? parsed.map((entry,index)=>normalizeSessionMR(entry,index+1)) : [];
+    // Gli scrigni non fanno più parte dell'app: eventuali chiavi storiche vengono soltanto eliminate.
+    localStorage.removeItem(LEGACY_SESSIONS_KEY);
+    localStorage.removeItem("musicRainbowChestCounter");
   } catch (e) {
-    console.warn("Errore nel leggere gli scrigni:", e);
+    console.warn("Errore nel leggere le sessioni:", e);
     sessions = [];
-    lastChestNumber = 0;
   }
 }
 
 function saveSessionsToStorage() {
   try {
     localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions));
-    localStorage.setItem(CHEST_COUNTER_KEY, String(lastChestNumber || 0));
+    // La vecchia persistenza degli scrigni non deve più governare l'app.
+    localStorage.removeItem(LEGACY_SESSIONS_KEY);
+    localStorage.removeItem("musicRainbowChestCounter");
   } catch (e) {
-    console.warn("Errore nel salvare gli scrigni:", e);
+    console.warn("Errore nel salvare le sessioni:", e);
   }
 }
 
-function startNewSessionChest() {
-  // Crea sempre una nuova sessione quando si parte a giocare da Home
-  const nextId = sessions.length ? (sessions[sessions.length - 1].id + 1) : 1;
-  const newSession = {
-    id: nextId,
-    createdAt: Date.now(),
-    bronze: 0,
-    silver: 0,
-    gold: 0,
-    green: 0,
-    cyan: 0,
-    blue: 0,
-    violet: 0,
-    pink: 0,
-    tokens: 0,
-    tokenMedalCount: 0
-  };
+function startNewSession() {
+  const nextId = sessions.reduce((max,s)=>Math.max(max,Number(s?.id)||0),0) + 1;
+  const newSession = normalizeSessionMR({id:nextId,createdAt:Date.now()},nextId);
   sessions.push(newSession);
-  saveSessionsToStorage();
   currentSessionId = newSession.id;
+  saveSessionsToStorage();
   if (typeof updateSessionTopbarMedalsMR === "function") updateSessionTopbarMedalsMR();
 }
 
-
-function getCurrentSessionChest() {
+function getCurrentSession() {
   if (!currentSessionId) return null;
   return sessions.find(s => s.id === currentSessionId) || null;
 }
 
 function incrementSessionMedal(type) {
-  if (!currentSessionId) return;
-  const s = sessions.find(sess => sess.id === currentSessionId);
+  const s = getCurrentSession();
   if (!s) return;
+  const valid = ["bronze","silver","gold","green","cyan","blue","violet","pink"];
+  if (!valid.includes(type)) return;
 
-  const hadMedalsBefore =
-    ((s.bronze || 0) + (s.silver || 0) + (s.gold || 0) + (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0)) > 0;
+  s[type] = Math.max(0, Math.floor(Number(s[type]) || 0)) + 1;
+  const rewardId = `${s.id}:${type}:${s[type]}`;
+  // Una vittoria = un frutto persistente nel cestino. rewardId rende l'evento idempotente.
+  if (window.MimoCare?.awardReward) window.MimoCare.awardReward(type, rewardId);
 
-  if (type === "bronze") {
-    s.bronze = (s.bronze || 0) + 1;
-  } else if (type === "silver") {
-    s.silver = (s.silver || 0) + 1;
-  } else if (type === "gold") {
-    s.gold = (s.gold || 0) + 1;
-  } else if (type === "green") {
-    s.green = (s.green || 0) + 1;
-  } else if (type === "cyan") {
-    s.cyan = (s.cyan || 0) + 1;
-  } else if (type === "blue") {
-    s.blue = (s.blue || 0) + 1;
-  } else if (type === "violet") {
-    s.violet = (s.violet || 0) + 1;
-  } else if (type === "pink") {
-    s.pink = (s.pink || 0) + 1;
-  }
-
-  const hasMedalsNow =
-    ((s.bronze || 0) + (s.silver || 0) + (s.gold || 0) + (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0)) > 0;
-
-  if (window.MimoCare?.awardReward) window.MimoCare.awardReward(type, s.id);
-  if (!hadMedalsBefore && hasMedalsNow && typeof s.displayNumber !== "number") {
-    lastChestNumber++;
-    s.displayNumber = lastChestNumber;
-  }
-
-  // Una sessione vale una sola volta per ciascun livello, quando viene realmente conquistata
-  // almeno una medaglia in quel livello. Le sessioni possono essere non consecutive.
+  // Una sessione vale una sola volta per ciascun livello ai fini dello sblocco didattico.
   recordLevelSessionProgressMR(s,type);
   saveSessionsToStorage();
   if (typeof updateSessionTopbarMedalsMR === "function") updateSessionTopbarMedalsMR();
 }
 
-function clearAllSessionChests() {
+function clearSessionHistory() {
   sessions = [];
   currentSessionId = null;
-  lastChestNumber = 0;
   try {
     localStorage.removeItem(SESSIONS_KEY);
-    localStorage.removeItem(CHEST_COUNTER_KEY);
+    localStorage.removeItem(LEGACY_SESSIONS_KEY);
+    localStorage.removeItem("musicRainbowChestCounter");
   } catch (e) {
-    console.warn("Errore nel cancellare gli scrigni:", e);
+    console.warn("Errore nel cancellare la cronologia sessioni:", e);
   }
   if (typeof updateSessionTopbarMedalsMR === "function") updateSessionTopbarMedalsMR();
 }
@@ -10478,44 +10409,38 @@ function saveTokensToStorage() {
 
 
 function getAvailableTokens() {
-  const s = getCurrentSessionChest();
+  const s = getCurrentSession();
   if (!s) return 0;
   const tokens = typeof s.tokens === "number" ? s.tokens : 0;
   return Math.max(0, tokens);
 }
 
-/* Build 2.291 — i gettoni restano fisicamente associati ai rispettivi scrigni.
-   Il tasto Modalità Play vede però il totale disponibile in tutti gli scrigni. */
-function getTotalAvailableTokensAcrossChests() {
+/* I gettoni restano associati alla sessione che li ha generati; la Home usa il totale disponibile. */
+function getTotalAvailableTokens() {
   return sessions.reduce((total, s) => {
     const tokens = typeof s.tokens === "number" ? s.tokens : 0;
     return total + Math.max(0, tokens);
   }, 0);
 }
 
-function getOldestChestWithToken() {
+function getOldestSessionWithToken() {
   const candidates = sessions.filter(s => {
     const tokens = typeof s.tokens === "number" ? s.tokens : 0;
     return tokens > 0;
   });
 
   candidates.sort((a, b) => {
-    const aNumber = typeof a.displayNumber === "number" ? a.displayNumber : Number.MAX_SAFE_INTEGER;
-    const bNumber = typeof b.displayNumber === "number" ? b.displayNumber : Number.MAX_SAFE_INTEGER;
-    if (aNumber !== bNumber) return aNumber - bNumber;
-
     const aCreated = typeof a.createdAt === "number" ? a.createdAt : Number.MAX_SAFE_INTEGER;
     const bCreated = typeof b.createdAt === "number" ? b.createdAt : Number.MAX_SAFE_INTEGER;
     if (aCreated !== bCreated) return aCreated - bCreated;
-
     return (a.id || 0) - (b.id || 0);
   });
 
   return candidates[0] || null;
 }
 
-function consumeOldestChestToken() {
-  const s = getOldestChestWithToken();
+function consumeOldestSessionToken() {
+  const s = getOldestSessionWithToken();
   if (!s) return null;
 
   const available = typeof s.tokens === "number" ? s.tokens : 0;
@@ -10549,7 +10474,7 @@ function showTokenWonPopup() {
 
 
 function checkForNewToken() {
-  const s = getCurrentSessionChest();
+  const s = getCurrentSession();
   if (!s) return;
 
   const prevTotal = typeof s.tokenMedalCount === "number" ? s.tokenMedalCount : 0;
@@ -10604,30 +10529,7 @@ function renderTokensPanel(panelId) {
   }
 }
 
-function renderTokensInTrophyPage() {
-  const row = document.getElementById("trophyTokensRow");
-  if (!row) return;
-  const available = getAvailableTokens();
-  row.innerHTML = "";
-  if (available <= 0) {
-    const empty = document.createElement("div");
-    empty.className = "trophy-empty";
-    empty.textContent = "Nessun gettone Play disponibile.";
-    row.appendChild(empty);
-    return;
-  }
-
-  for (let i = 0; i < available; i++) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "token-icon-btn trophy-token-btn";
-    btn.dataset.midiLearnKey = "token-play";
-    // svg con classe token-svg (poi resa 3x via CSS nella bacheca)
-    btn.innerHTML = getTokenSvgMarkup("token-svg");
-    btn.addEventListener("click", handleTokenClick);
-    row.appendChild(btn);
-  }
-}
+function renderTokensInTrophyPage() { /* La stanza non mostra gettoni o scrigni. */ }
 
 function updateTokensUIAll() {
   renderTokensPanel("tokensPanelL1");
@@ -10638,7 +10540,6 @@ function updateTokensUIAll() {
   renderTokensPanel("tokensPanelL6");
   renderTokensPanel("tokensPanelL7");
   renderTokensPanel("tokensPanelL8");
-  renderTokensInTrophyPage();
   if (typeof updateHomePlayButtonState === "function") {
     updateHomePlayButtonState();
   }
@@ -10648,7 +10549,7 @@ function updateTokensUIAll() {
 
 
 function spendTokenFromSession(sessionId) {
-  // Trova la sessione corrispondente allo scrigno
+  // Trova la sessione corrispondente
   const s = sessions.find(sess => sess.id === sessionId);
   if (!s) return;
   const available = typeof s.tokens === "number" ? s.tokens : 0;
@@ -10660,21 +10561,16 @@ function spendTokenFromSession(sessionId) {
     return;
   }
 
-  const ok = window.confirm("Vuoi usare il gettone Play di questo scrigno?");
+  const ok = window.confirm("Vuoi usare un gettone Play?");
   if (!ok) return;
 
-  // Scala di uno i gettoni di quello scrigno
+  // Scala di uno i gettoni della sessione
   s.tokens = available - 1;
   saveSessionsToStorage();
 
   // Aggiorna tutta l'interfaccia che mostra i gettoni
   if (typeof updateTokensUIAll === "function") {
     updateTokensUIAll();
-  }
-
-  // Chiudi l'eventuale popup dello scrigno
-  if (typeof trophyOverlayEl !== "undefined" && trophyOverlayEl) {
-    trophyOverlayEl.classList.remove("active");
   }
 
   // Avvia la modalità Play usando il gettone
@@ -10685,7 +10581,7 @@ function spendTokenFromSession(sessionId) {
 
 
 function handleTokenClick() {
-  const s = getCurrentSessionChest();
+  const s = getCurrentSession();
   if (!s) return;
   spendTokenFromSession(s.id);
 }
@@ -10702,7 +10598,7 @@ function updateHomePlayButtonState() {
   if (!homePlayBtn) return;
   homePlayBtn.classList.remove("home-play-active", "home-play-disabled", "home-play-token-ready");
 
-  const storedTokens = getTotalAvailableTokensAcrossChests();
+  const storedTokens = getTotalAvailableTokens();
   const hasStoredToken = storedTokens > 0;
   const teacherUnlocked = isTeacherModeActiveMR();
   const canPlay = teacherUnlocked || playSessionActive || testPlayUnlocked || hasStoredToken;
@@ -10822,7 +10718,7 @@ function openPlayPageFromToken() {
     playPageEl.style.display = "flex";
     clearPlayStaff();
     startPlaySession();
-    // Anche i gettoni avviati dallo Scrigno aprono la Home di composizione.
+    // Anche i gettoni avviati dalle ricompense aprono la Home di composizione.
     if(typeof enterPlayComposerHomeMR==='function')enterPlayComposerHomeMR();
   }
 }
@@ -12122,7 +12018,7 @@ function onPatternCompletedL4() {
   // Aggiungi una piccola medaglia nel pannello del livello 4
   addMedalIconL4(rainbowsL4Local);
 
-  // Aggiorna lo scrigno di sessione con una medaglia del livello 4 (verde)
+  // Registra la ricompensa della sessione per il livello 4 (verde)
   incrementSessionMedal("green");
   updateRainbowCountersGlobal();
   checkForNewToken();
@@ -14354,16 +14250,16 @@ function grantScoreAwardMR(score){
   saveScoreAwardsMR(awards);
 
   // Un brano completato per la prima volta a due mani assegna esattamente un gettone
-  // nello stesso sistema di scrigni usato dalla Modalità Play. Non passa dalla regola
+  // nella sessione corrente usata dalla Modalità Play. Non passa dalla regola
   // generale "1 gettone ogni 5 medaglie", quindi non può creare un premio doppio.
-  let chest=getCurrentSessionChest();
-  if(!chest){
-    startNewSessionChest();
-    chest=getCurrentSessionChest();
+  let session=getCurrentSession();
+  if(!session){
+    startNewSession();
+    session=getCurrentSession();
   }
   let tokenAwarded=false;
-  if(chest){
-    chest.tokens=(Number(chest.tokens)||0)+1;
+  if(session){
+    session.tokens=(Number(session.tokens)||0)+1;
     saveSessionsToStorage();
     updateTokensUIAll();
     showTokenWonPopup();
@@ -17712,182 +17608,14 @@ if (resetBtnPlay) resetBtnPlay.onclick = () => clearPlayStaff();
 
 
 /* ===========================
-   PAGINA TROFEI
+   STANZA DI MÌMO — riferimenti di navigazione
    =========================== */
-
 const trophyContentEl = document.getElementById("trophyContent");
-const chestGridEl     = document.getElementById("chestGrid");
-const clearChestsBtn  = document.getElementById("clearChestsBtn");
 const trophyBackBtn   = document.getElementById("trophyBackBtn");
 const trophyHomeBtn   = document.getElementById("trophyHomeBtn");
-const trophyOverlayEl = document.getElementById("trophyOverlay");
-const trophyOverlayContentEl = document.getElementById("trophyOverlayContent");
-const trophyOverlayCloseBtn = document.getElementById("trophyOverlayClose");
 
-
-function showChestDetails(session) {
-  if (!trophyOverlayEl || !trophyOverlayContentEl || !session) return;
-
-  const bronzeCount = Number(session.bronze) || 0;
-  const silverCount = Number(session.silver) || 0;
-  const goldCount   = Number(session.gold)   || 0;
-  const greenCount  = Number(session.green)  || 0;
-  const cyanCount   = Number(session.cyan)   || 0;
-  const blueCount   = Number(session.blue)   || 0;
-  const violetCount = Number(session.violet) || 0;
-  const pinkCount   = Number(session.pink)   || 0;
-
-  const labelNumber = (typeof session.displayNumber === "number")
-    ? session.displayNumber
-    : session.id;
-
-  // Pulisci contenuto precedente
-  trophyOverlayContentEl.textContent = "";
-
-  // Sezione medaglie
-  const section = document.createElement("div");
-  section.className = "trophy-section";
-  const h2 = document.createElement("h2");
-  h2.textContent = `Scrigno ${labelNumber}`;
-  section.appendChild(h2);
-
-  const row = document.createElement("div");
-  row.className = "trophy-medals-row";
-
-  const totalCoins = bronzeCount + silverCount + goldCount + greenCount + cyanCount + blueCount + violetCount + pinkCount;
-  if (totalCoins === 0) {
-    const empty = document.createElement("div");
-    empty.className = "trophy-empty";
-    empty.textContent = "Nessun frutto in questa sessione.";
-    row.appendChild(empty);
-  } else {
-    const addMedal = (cls, count) => {
-      for (let i = 0; i < count; i++) {
-        const d = document.createElement("div");
-        d.className = `medal-icon ${cls}`;
-        d.textContent = ({bronze:"🍎",silver:"🍌",gold:"🍓",green:"🍎",cyan:"🍌",blue:"🍓",violet:"🍇",pink:"🍇"})[cls] || "🍎";
-        row.appendChild(d);
-      }
-    };
-    addMedal("bronze", bronzeCount);
-    addMedal("silver", silverCount);
-    addMedal("gold", goldCount);
-    addMedal("green", greenCount);
-    addMedal("cyan", cyanCount);
-    addMedal("blue", blueCount);
-    addMedal("violet", violetCount);
-    addMedal("pink", pinkCount);
-  }
-
-  section.appendChild(row);
-  trophyOverlayContentEl.appendChild(section);
-
-  // Gettoni Play legati a questa sessione
-  const tokens = (typeof session.tokens === "number") ? session.tokens : 0;
-  if (tokens > 0) {
-    const tokenSection = document.createElement("div");
-    tokenSection.className = "trophy-section";
-    const th2 = document.createElement("h2");
-    th2.textContent = "Gettoni Play";
-    tokenSection.appendChild(th2);
-
-    const trow = document.createElement("div");
-    trow.className = "trophy-medals-row";
-    for (let i = 0; i < tokens; i++) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "token-icon-btn";
-      btn.dataset.sessionId = String(session.id);
-      btn.dataset.midiLearnKey = `token-session:${session.id}`;
-      // SVG markup interno (controllato)
-      btn.innerHTML = getTokenSvgMarkup("token-svg");
-      btn.addEventListener("click", () => {
-        const sid = parseInt(btn.dataset.sessionId || "", 10);
-        if (!isNaN(sid)) spendTokenFromSession(sid);
-      });
-      trow.appendChild(btn);
-    }
-
-    tokenSection.appendChild(trow);
-    trophyOverlayContentEl.appendChild(tokenSection);
-  }
-
-  trophyOverlayEl.classList.add("active");
-}
-
-
-function renderChestGrid() {
-  if (!chestGridEl) return;
-  chestGridEl.innerHTML = "";
-  const maxSlots = 18;
-
-  // prendi solo le sessioni che hanno almeno una medaglia
-  const filled = sessions
-    .filter(s => ((s.bronze || 0) + (s.silver || 0) + (s.gold || 0) + (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0)) > 0)
-    .sort((a, b) => a.id - b.id);
-
-  for (let i = 0; i < maxSlots; i++) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-
-    if (i < filled.length) {
-      const session = filled[i];
-      const labelNumber = (typeof session.displayNumber === "number")
-        ? session.displayNumber
-        : session.id;
-      btn.className = "chest-btn chest-btn-filled";
-      btn.dataset.midiLearnKey = `chest:${session.id}`;
-      btn.innerHTML = `<div class="trophy-chest-icon" aria-hidden="true"><span class="trophy-chest-lid"></span><span class="trophy-chest-body"></span><span class="trophy-chest-lock"></span><span class="trophy-chest-number">${labelNumber}</span></div>`;
-      btn.addEventListener("click", () => {
-        showChestDetails(session);
-      });
-    } else {
-      btn.className = "chest-btn chest-btn-empty";
-      btn.disabled = true;
-      btn.innerHTML = "&nbsp;";
-    }
-
-
-if (trophyOverlayCloseBtn && trophyOverlayEl) {
-  trophyOverlayCloseBtn.addEventListener("click", () => {
-    trophyOverlayEl.classList.remove("active");
-  });
-}
-
-if (trophyOverlayEl) {
-  trophyOverlayEl.addEventListener("click", (ev) => {
-    if (ev.target === trophyOverlayEl) {
-      trophyOverlayEl.classList.remove("active");
-    }
-  });
-}
-    chestGridEl.appendChild(btn);
-  }
-}
-
-if (clearChestsBtn) {
-  clearChestsBtn.addEventListener("click", () => {
-    const conferma = window.confirm("Cancellare tutto?");
-    if (!conferma) return;
-
-    // Svuota tutte le sessioni esistenti
-    clearAllSessionChests();
-
-    // Crea subito una nuova sessione vuota per la stessa partita
-    startNewSessionChest();
-
-    if (trophyContentEl) {
-      trophyContentEl.style.display = "none";
-      trophyContentEl.innerHTML = "";
-    }
-    // Aggiorna la griglia degli scrigni e lo stato di Modalità Play
-    renderChestGrid();
-    updateTokensUIAll();
-    alert("Tutti gli scrigni sono stati cancellati.");
-  });
-}
 /* ===========================
-   HOME, MENU, TROFEI, SUGGERIMENTO
+   HOME, MENU, STANZA DI MÌMO, SUGGERIMENTO
    =========================== */
 
 let lastGamePageId = "level2Page";
@@ -17941,8 +17669,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (typeof updateSessionTopbarMedalsMR === "function") updateSessionTopbarMedalsMR();
   loadTeacherModeStateMR();
   loadLevelProgressMR();
-  renderChestGrid();
-  startNewSessionChest();
+  startNewSession();
   updateTokensUIAll();
   updateLevelUnlockUIMR();
   updateTeacherSettingsUIMR();
@@ -18615,8 +18342,7 @@ function hideAllPages() {
       trophyContentEl.style.display = "none";
       trophyContentEl.innerHTML = "";
     }
-    renderChestGrid();
-    updateTokensUIAll();
+      updateTokensUIAll();
   }
 
 
@@ -18828,17 +18554,16 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
         return;
       }
 
-      // Build 2.291 — consumo automatico: un solo gettone, dallo scrigno
-      // più vecchio (numero di scrigno più basso) che ne possiede ancora.
-      if (getTotalAvailableTokensAcrossChests() <= 0) {
+      // Consumo automatico: un solo gettone dalla sessione più vecchia che ne possiede ancora.
+      if (getTotalAvailableTokens() <= 0) {
         updateHomePlayButtonState();
         return;
       }
 
       playTokenActivationInProgress = true;
       try {
-        const sourceChest = consumeOldestChestToken();
-        if (!sourceChest) {
+        const sourceSession = consumeOldestSessionToken();
+        if (!sourceSession) {
           updateHomePlayButtonState();
           return;
         }
@@ -19307,7 +19032,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
   function mrBuildSessionMedal(type){
     const el = document.createElement('div');
-    el.className = 'session-medal-icon fruit-reward ' + type; el.textContent=({bronze:'🍎',silver:'🍌',gold:'🍓',green:'🍎',cyan:'🍌',blue:'🍓',violet:'🍇',pink:'🍇'})[type]||'🍎';
+    el.className = 'session-medal-icon fruit-reward ' + type; el.textContent='';
     el.setAttribute('aria-hidden', 'true');
     return el;
   }
@@ -19336,7 +19061,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   }
 
   window.updateSessionTopbarMedalsMR = function updateSessionTopbarMedalsMR(){
-    const session = (typeof getCurrentSessionChest === 'function') ? getCurrentSessionChest() : null;
+    const session = (typeof getCurrentSession === 'function') ? getCurrentSession() : null;
     const medals = mrSessionMedalArray(session);
     document.querySelectorAll('.session-medals-track').forEach(track => mrRenderSessionTrack(track, medals));
   };
@@ -19681,7 +19406,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   flex:0 0 30px!important;
 }
 
-/* Gettone approvato: stessa sagoma e stesso rilievo, cambia soltanto il colore del livello. */
+/* Ricompense visive 2.353: quattro frutti coerenti con il cestino di Mìmo. */
 .session-medal-icon,.medal-icon,.medal-circle{
   background-color:transparent!important;
   background-repeat:no-repeat!important;
@@ -19699,23 +19424,23 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 .medal-circle::before,.medal-circle::after{content:none!important;display:none!important;}
 .medal-icon span,.medal-circle span{display:none!important;}
 
-.medal-icon.bronze,.medal-circle.bronze,.session-medal-icon.bronze{background-image:url("Assets/medal-token-bronze.png?v=2.296")!important;}
-.medal-icon.silver,.medal-circle.silver,.session-medal-icon.silver{background-image:url("Assets/medal-token-silver.png?v=2.296")!important;}
-.medal-icon.gold,.medal-circle.gold,.session-medal-icon.gold{background-image:url("Assets/medal-token-gold.png?v=2.296")!important;}
-.medal-icon.green,.medal-circle.green,.session-medal-icon.green{background-image:url("Assets/medal-token-green.png?v=2.296")!important;}
-.medal-icon.cyan,.medal-circle.cyan,.session-medal-icon.cyan{background-image:url("Assets/medal-token-cyan.png?v=2.296")!important;}
-.medal-icon.blue,.medal-circle.blue,.session-medal-icon.blue{background-image:url("Assets/medal-token-blue.png?v=2.296")!important;}
-.medal-icon.violet,.medal-circle.violet,.session-medal-icon.violet{background-image:url("Assets/medal-token-violet.png?v=2.296")!important;}
-.medal-icon.pink,.medal-circle.pink,.session-medal-icon.pink{background-image:url("Assets/medal-token-pink.png?v=2.296")!important;}
+.medal-icon.bronze,.medal-circle.bronze,.session-medal-icon.bronze{background-image:url("Assets/room/fruit-apple.svg?v=2.353")!important;}
+.medal-icon.silver,.medal-circle.silver,.session-medal-icon.silver{background-image:url("Assets/room/fruit-banana.svg?v=2.353")!important;}
+.medal-icon.gold,.medal-circle.gold,.session-medal-icon.gold{background-image:url("Assets/room/fruit-strawberry.svg?v=2.353")!important;}
+.medal-icon.green,.medal-circle.green,.session-medal-icon.green{background-image:url("Assets/room/fruit-apple.svg?v=2.353")!important;}
+.medal-icon.cyan,.medal-circle.cyan,.session-medal-icon.cyan{background-image:url("Assets/room/fruit-banana.svg?v=2.353")!important;}
+.medal-icon.blue,.medal-circle.blue,.session-medal-icon.blue{background-image:url("Assets/room/fruit-strawberry.svg?v=2.353")!important;}
+.medal-icon.violet,.medal-circle.violet,.session-medal-icon.violet{background-image:url("Assets/room/fruit-grapes.svg?v=2.353")!important;}
+.medal-icon.pink,.medal-circle.pink,.session-medal-icon.pink{background-image:url("Assets/room/fruit-grapes.svg?v=2.353")!important;}
 
-#rainbowOverlayL1 .medal-circle,#finalOverlayL1 .medal-circle{background-image:url("Assets/medal-token-bronze.png?v=2.296")!important;}
-#rainbowOverlay .medal-circle,#finalOverlayL2 .medal-circle{background-image:url("Assets/medal-token-silver.png?v=2.296")!important;}
-#rainbowOverlayL3 .medal-circle,#finalOverlayL3 .medal-circle{background-image:url("Assets/medal-token-gold.png?v=2.296")!important;}
-#rainbowOverlayL4 .medal-circle{background-image:url("Assets/medal-token-green.png?v=2.296")!important;}
-#rainbowOverlayL5 .medal-circle{background-image:url("Assets/medal-token-cyan.png?v=2.296")!important;}
-#rainbowOverlayL6 .medal-circle{background-image:url("Assets/medal-token-blue.png?v=2.296")!important;}
-#rainbowOverlayL7 .medal-circle{background-image:url("Assets/medal-token-violet.png?v=2.296")!important;}
-#rainbowOverlayL8 .medal-circle{background-image:url("Assets/medal-token-pink.png?v=2.296")!important;}
+#rainbowOverlayL1 .medal-circle,#finalOverlayL1 .medal-circle{background-image:url("Assets/room/fruit-apple.svg?v=2.353")!important;}
+#rainbowOverlay .medal-circle,#finalOverlayL2 .medal-circle{background-image:url("Assets/room/fruit-banana.svg?v=2.353")!important;}
+#rainbowOverlayL3 .medal-circle,#finalOverlayL3 .medal-circle{background-image:url("Assets/room/fruit-strawberry.svg?v=2.353")!important;}
+#rainbowOverlayL4 .medal-circle{background-image:url("Assets/room/fruit-apple.svg?v=2.353")!important;}
+#rainbowOverlayL5 .medal-circle{background-image:url("Assets/room/fruit-banana.svg?v=2.353")!important;}
+#rainbowOverlayL6 .medal-circle{background-image:url("Assets/room/fruit-strawberry.svg?v=2.353")!important;}
+#rainbowOverlayL7 .medal-circle{background-image:url("Assets/room/fruit-grapes.svg?v=2.353")!important;}
+#rainbowOverlayL8 .medal-circle{background-image:url("Assets/room/fruit-grapes.svg?v=2.353")!important;}
 
 .session-medal-icon.medal-empty{
   background-image:none!important;
@@ -25373,141 +25098,94 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-341.js?v=344"></script>
-<style id="mr340-mimo-grid">
-#settingsPage #mimoSettingsSection .mimo-movements-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important;margin:10px 0!important;width:100%}
-#settingsPage #mimoSettingsSection .mimo-icon-button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;min-height:48px!important;padding:5px!important;font-size:24px!important;line-height:1!important;white-space:nowrap!important}
-#settingsPage #mimoSettingsSection .mimo-calibration{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-#settingsPage #mimoSettingsSection .mimo-calibration label{font-size:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-#settingsPage #mimoSettingsSection .mimo-calibration input[type=range]{max-width:145px;min-width:75px;flex:1}
-#settingsPage #mimoSettingsSection{height:auto!important;min-height:148px!important}
-</style>
+<script src="Assets/mimo-rigged-341.js?v=353"></script>
 
-<style id="mr344-room-style">
-#mr344Heart{border:0;background:transparent;font-size:26px;cursor:pointer;padding:4px 9px;color:#d34e72}#mr344Heart.mr-needs{animation:mr344Pulse 1.7s ease-in-out infinite}@keyframes mr344Pulse{50%{transform:scale(1.22);opacity:.65}}
-#mr344Room{display:flex;flex-direction:column;gap:9px;min-height:0;flex:1;padding:10px;overflow:auto}
-#mr344Scene{position:relative;min-height:220px;flex:1;max-height:48vh;overflow:hidden;border-radius:18px;background:linear-gradient(145deg,#f8e7cf,#e5c9ac 66%,#bf916a);perspective:650px}
-#mr344Scene:before{content:'';position:absolute;bottom:-12%;left:-15%;width:130%;height:53%;transform:rotateX(48deg);background:repeating-linear-gradient(90deg,#c68c60 0 36px,#b77d54 37px 40px);border-top:6px solid #ad7653}
-.mr344Object{position:absolute;z-index:2;border:2px solid #a77a5c;background:#fff8eddd;border-radius:16px;padding:10px;min-width:85px;font-size:26px;cursor:pointer;box-shadow:0 7px 12px #754f3540}.mr344Object small{display:block;font-size:12px;font-weight:700;color:#704f40}
-#mr344Bed{left:5%;bottom:13%}#mr344Bath{right:5%;top:12%}#mr344Fruit{right:5%;bottom:12%}#mr344SceneLabel{position:absolute;left:12px;top:12px;font-weight:800;color:#75452d}
-#mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px} .mr344Stat{border-radius:12px;background:#fff2df;padding:8px 3px;text-align:center;font-size:13px;color:#6b4537}.mr344Stat b{display:block;font-size:13px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:16px}
-#mr344Message{text-align:center;font-size:14px;font-weight:700;min-height:22px;color:#70472e}#mr344Fruits{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}#mr344Fruits button{border-radius:12px;padding:8px;border:1px solid #cfa98b;background:white;font-size:15px}
-@media(max-width:600px){#mr344Stats{grid-template-columns:repeat(2,1fr)}#mr344Scene{min-height:185px}.mr344Object{min-width:64px;font-size:22px;padding:7px}}
- .fruit-reward{background:none!important;border:none!important;box-shadow:none!important;font-size:23px!important;color:inherit!important} .fruit-reward:before,.fruit-reward:after{display:none!important}
+
+<style id="mr353-room-style">
+#mr344Heart{border:0;background:transparent;font-size:26px;cursor:pointer;padding:4px 9px;color:#d34e72}#mr344Heart.mr-needs{animation:mr353Pulse 1.7s ease-in-out infinite}@keyframes mr353Pulse{50%{transform:scale(1.22);opacity:.65}}
+#trophyPage .app{min-height:0!important;overflow:hidden!important}
+#trophyPage .trophy-main{display:flex!important;flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;padding:6px!important;box-sizing:border-box!important}
+#mr344Room{display:flex;flex-direction:column;gap:7px;min-height:0;min-width:0;flex:1;padding:0;overflow:hidden;background:transparent}
+#mr344Scene{display:block;position:relative;flex:1 1 auto;min-height:250px;max-height:calc(100dvh - 214px);aspect-ratio:3/2;overflow:hidden;border-radius:14px;background:#e9c5ac;isolation:isolate;box-shadow:0 8px 22px rgba(73,45,27,.16)}
+#mr344Scene .mr353Background{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:0;pointer-events:none;display:block}
+#mr344Scene .mr353PositionTag{position:absolute;z-index:20;display:flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:2px solid rgba(255,255,255,.98);border-radius:50%;background:rgba(45,43,70,.82);color:#fff;box-shadow:0 4px 13px rgba(0,0,0,.30);cursor:pointer;touch-action:manipulation;transform:translate(-50%,-50%);transition:transform .16s ease,background .16s ease}
+#mr344Scene .mr353PositionTag:active{transform:translate(-50%,-50%) scale(.90);background:#7250b8}
+#mr344Scene .mr353PositionTag:focus-visible{outline:4px solid #ffe27a;outline-offset:3px}
+#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:25px;line-height:1;display:block}
+#mr344Scene .mr353PositionTag img{width:29px;height:29px;object-fit:contain;display:block}
+/* Tag esattamente sopra gli oggetti; il terzo è il centro del tappeto. */
+#mr344Bed{left:20%;top:27%}
+#mr344Bath{left:86%;top:30%}
+#mr344Fruit{left:50%;top:61%}
+/* Il vero modello WebGL di Mìmo vive dentro la scena. Posizione iniziale = centro tappeto. */
+body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%!important;top:61%!important;right:auto!important;bottom:auto!important;width:clamp(120px,20%,290px)!important;height:47%!important;max-height:390px!important;z-index:8!important;display:block!important;visibility:visible!important;pointer-events:none!important;transform:translate(-50%,-55%)!important;transition:left .72s cubic-bezier(.2,.75,.25,1),top .72s cubic-bezier(.2,.75,.25,1),width .35s ease,height .35s ease!important}
+body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:100%!important;background:transparent!important}
+/* Inventario visibile DENTRO il cestino dell'illustrazione. Ogni tipo mostra la quantità reale. */
+#mr353BasketFruit{position:absolute;z-index:5;left:37.2%;bottom:12.8%;width:25.5%;height:13.5%;display:flex;align-items:flex-end;justify-content:center;gap:1.5%;pointer-events:none;padding:0 3%;box-sizing:border-box}
+.mr353FruitStack{position:relative;width:23%;height:92%;display:flex;align-items:flex-end;justify-content:center;transform-origin:50% 100%;animation:mr353FruitArrive .34s ease-out both}
+.mr353FruitStack img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px rgba(67,38,18,.28))}
+.mr353FruitCount{position:absolute;right:-4px;top:-2px;min-width:21px;height:21px;padding:0 5px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fff;color:#4b2e21;border:2px solid rgba(120,74,46,.28);font:800 11px/1 system-ui,sans-serif;box-sizing:border-box;box-shadow:0 2px 5px rgba(0,0,0,.15)}
+@keyframes mr353FruitArrive{from{transform:translateY(-16px) scale(.7);opacity:0}to{transform:none;opacity:1}}
+#mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;flex:0 0 auto}.mr344Stat{border-radius:12px;background:#fff2df;padding:7px 3px;text-align:center;font-size:12px;color:#6b4537}.mr344Stat b{display:block;font-size:12px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:15px}
+#mr344Message{text-align:center;font-size:13px;font-weight:750;min-height:20px;color:#70472e;flex:0 0 auto}
+#mr344Fruits{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;flex:0 0 auto}#mr344Fruits[hidden]{display:none!important}
+#mr344Fruits button{display:flex;align-items:center;gap:7px;min-height:47px;border-radius:14px;padding:5px 10px;border:1px solid #cfa98b;background:#fff;font-size:14px;font-weight:750;color:#5f3b2e;box-shadow:0 2px 7px rgba(70,42,26,.10)}
+#mr344Fruits button:disabled{opacity:.42}#mr344Fruits button img{width:36px;height:36px;object-fit:contain}
+@media(max-height:700px){#mr344Scene{min-height:205px;max-height:calc(100dvh - 170px)}body.mr353-room-open #mr344Scene #mimoBuddy{height:45%}#mr344Stats{gap:4px}.mr344Stat{padding:4px 2px}}
+@media(max-width:700px){#mr344Scene .mr353PositionTag{width:38px;height:38px}#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:20px}#mr344Scene .mr353PositionTag img{width:24px;height:24px}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){#mr344Scene .mr353PositionTag,body.mr353-room-open #mr344Scene #mimoBuddy{transition:none!important}.mr353FruitStack{animation:none!important}}
 </style>
-<script id="mr344-room-script">
-(function(){'use strict';
-const KEY='mr344_pet';const clamp=x=>Math.max(0,Math.min(4,x));let state={food:3,sleep:3,clean:3,happy:3,fruit:0,fruits:{apple:0,banana:0,strawberry:0,grapes:0},awards:{},last:Date.now()};try{const stored=JSON.parse(localStorage.getItem(KEY)||'null');if(stored&&typeof stored==='object')state={...state,...stored}}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
-// Un bisogno può aumentare lentamente tra le visite, ma senza punizioni o danni permanenti.
-function tick(){const now=Date.now(),hours=Math.max(0,Math.min(72,(now-state.last)/3600000));if(hours>=6){const n=Math.floor(hours/6);state.food=clamp(state.food-n);state.sleep=clamp(state.sleep-Math.floor(n/2));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
-state.fruits=state.fruits||{apple:0,banana:0,strawberry:0,grapes:0};state.awards=state.awards||{};if(state.fruit>0&&!state.fruitMigrated){state.fruits.apple+=state.fruit;state.fruit=0;state.fruitMigrated=true;save()}
-const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return;
-const room=document.createElement('div');room.id='mr344Room';room.innerHTML='<div id="mr344Scene"><span id="mr344SceneLabel">La stanzetta di Mìmo</span><button class="mr344Object" id="mr344Bed" aria-label="Metti Mìmo a dormire"><small>🌙 Dormi</small></button><button class="mr344Object" id="mr344Bath" aria-label="Fai il bagnetto a Mìmo"><small>🫧 Bagnetto</small></button><button class="mr344Object" id="mr344Fruit" aria-label="Apri il cestino della frutta"><small>🍎 Frutta</small></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden><button data-kind="apple">🍎 Mela</button><button data-kind="banana">🍌 Banana</button><button data-kind="strawberry">🍓 Fragola</button><button data-kind="grapes">🍇 Uva</button></div><details><summary>🍇 Frutta conquistata nelle sessioni</summary><div id="mr344OriginalTrophies"></div></details>';
-const old=document.createElement('div');old.id='mr344OriginalTrophiesHolder';while(main.firstChild)old.appendChild(main.firstChild);main.appendChild(room);room.querySelector('#mr344OriginalTrophies').appendChild(old);
-const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];const stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message');
-const heart=document.createElement('button');heart.id='mr344Heart';heart.textContent='♡';heart.title='Apri la stanzetta di Mìmo';heart.setAttribute('aria-label','Apri la stanzetta di Mìmo');heart.onclick=()=>{const home=document.getElementById('homeTrophyBtn');if(home)home.click()};
-function update(){tick();const need=state.food<=1||state.sleep<=1||state.clean<=1;heart.classList.toggle('mr-needs',need);heart.textContent=need?'♥':'♡';stats.innerHTML=labels.map(([k,ico,label])=>'<div class="mr344Stat">'+ico+' <b>'+label+'</b><div class="mr344Hearts">'+'♥'.repeat(clamp(state[k]))+'♡'.repeat(4-clamp(state[k]))+'</div></div>').join('');const mood=state.food<=1?'affamato':state.sleep<=1?'stanco':state.clean<=1?'sporco':state.happy<=1?'triste':'contento';window.MimoMood?.set(mood);save()}
-function message(text){msg.textContent=text;window.MimoCare.refresh()}
-room.querySelector('#mr344Bed').onclick=()=>{state.sleep=4;state.happy=clamp(state.happy+1);message('Mìmo ha riposato! 🌙')};
-room.querySelector('#mr344Bath').onclick=()=>{state.clean=4;state.happy=clamp(state.happy+1);message('Mìmo è pulitissimo! 🫧')};
-room.querySelector('#mr344Fruit').onclick=()=>{const fruits=room.querySelector('#mr344Fruits');fruits.hidden=!fruits.hidden;msg.textContent=Object.values(state.fruits).some(Boolean)?'Scegli un frutto dal cestino':'Il cestino è vuoto: completa una sessione musicale.';window.MimoCare.refresh()};
+<script id="mr353-room-script">
+(()=>{'use strict';
+const KEY='mr353_pet';const LEGACY_KEY='mr344_pet';
+const clamp=x=>Math.max(0,Math.min(4,Number(x)||0));
+const fruitKinds=['apple','banana','strawberry','grapes'];
+const fruitInfo={
+ apple:{name:'Mela',asset:'Assets/room/fruit-apple.svg'},
+ banana:{name:'Banana',asset:'Assets/room/fruit-banana.svg'},
+ strawberry:{name:'Fragola',asset:'Assets/room/fruit-strawberry.svg'},
+ grapes:{name:'Uva',asset:'Assets/room/fruit-grapes.svg'}
+};
 const rewardMap={bronze:'apple',silver:'banana',gold:'strawberry',green:'apple',cyan:'banana',blue:'strawberry',violet:'grapes',pink:'grapes'};
-const icons={apple:'🍎',banana:'🍌',strawberry:'🍓',grapes:'🍇'};
-const names={apple:'Mela',banana:'Banana',strawberry:'Fragola',grapes:'Uva'};
-room.querySelectorAll('[data-kind]').forEach(button=>button.onclick=()=>{const kind=button.dataset.kind;if(!state.fruits[kind]){message('Questo frutto non è ancora nel cestino.');return}state.fruits[kind]--;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);message('Mìmo ha mangiato '+names[kind].toLowerCase()+'! '+icons[kind])});
-window.MimoCare={awardReward:(type,sessionId)=>{const kind=rewardMap[type]||'apple';const key=String(sessionId)+':'+String(type);state.awards[key]=(state.awards[key]||0)+1;state.fruits[kind]=(state.fruits[kind]||0)+1;save();window.MimoCare.refresh()},awardFruit:(count=1)=>{state.fruits.apple+=Math.max(0,Math.floor(count));save();window.MimoCare.refresh()},get:()=>({...state}),refresh:()=>{update();room.querySelectorAll('[data-kind]').forEach(b=>{const k=b.dataset.kind;b.textContent=icons[k]+' '+names[k]+': '+(state.fruits[k]||0)})}};
-// Un solo cuore per barra superiore, con accesso alla stessa pagina della home.
-document.querySelectorAll('.top-row .top-right-controls').forEach(el=>{const b=heart.cloneNode(true);b.onclick=heart.onclick;b.id='';el.prepend(b)});
-function refreshHearts(){const need=state.food<=1||state.sleep<=1||state.clean<=1;document.querySelectorAll('#mr344Heart,.top-row .top-right-controls button[aria-label="Apri la stanzetta di Mìmo"]').forEach(b=>{b.classList.toggle('mr-needs',need);b.textContent=need?'♥':'♡'})}
-const baseRefresh=window.MimoCare.refresh;window.MimoCare.refresh=()=>{baseRefresh();refreshHearts()};
-
-window.MimoCare.refresh();const observe=new MutationObserver(()=>{if(page.style.display!=='none')window.MimoCare.refresh()});observe.observe(page,{attributes:true,attributeFilter:['style']});
+let state={food:3,sleep:3,clean:3,happy:3,fruits:{apple:0,banana:0,strawberry:0,grapes:0},awards:{},last:Date.now()};
+try{
+ let raw=localStorage.getItem(KEY);if(!raw)raw=localStorage.getItem(LEGACY_KEY);
+ const stored=raw?JSON.parse(raw):null;if(stored&&typeof stored==='object')state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}};
+}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));localStorage.removeItem(LEGACY_KEY)}catch(e){}}
+function tick(){const now=Date.now(),hours=Math.max(0,Math.min(72,(now-(Number(state.last)||now))/3600000));if(hours>=6){const n=Math.floor(hours/6);state.food=clamp(state.food-n);state.sleep=clamp(state.sleep-Math.floor(n/2));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
+function init(){
+ const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
+ const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><div id="mr353BasketFruit" aria-label="Frutta nel cestino"></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button><button class="mr353PositionTag" id="mr344Fruit" type="button" aria-label="Mangia al centro del tappeto"><img src="Assets/room/fruit-apple.svg" alt=""></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
+ main.replaceChildren(room);
+ const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit');
+ const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
+ const positions={food:{left:'50%',top:'61%'},bed:{left:'20%',top:'50%'},bath:{left:'86%',top:'53%'}};
+ function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==scene)scene.appendChild(host);if(animate)window.MimoMotion?.walk?.(900);host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');}
+ function setMessage(text){msg.textContent=text||''}
+ function updateMood(){const mood=state.food<=1?'affamato':state.sleep<=1?'stanco':state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'felice':'contento';window.MimoMood?.set?.(mood)}
+ function renderBasket(){basket.replaceChildren();for(const kind of fruitKinds){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count)continue;const wrap=document.createElement('div');wrap.className='mr353FruitStack';const img=document.createElement('img');img.src=fruitInfo[kind].asset;img.alt=fruitInfo[kind].name;wrap.appendChild(img);const badge=document.createElement('span');badge.className='mr353FruitCount';badge.textContent=String(count);wrap.appendChild(badge);basket.appendChild(wrap)}}
+ function renderPicker(){fruitPicker.replaceChildren();for(const kind of fruitKinds){const info=fruitInfo[kind],count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0)),button=document.createElement('button');button.type='button';button.dataset.kind=kind;button.disabled=count<=0;button.innerHTML=`<img src="${info.asset}" alt=""><span>${info.name}: ${count}</span>`;button.addEventListener('click',()=>eat(kind));fruitPicker.appendChild(button)}}
+ function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat">${ico}<b>${label}</b><div class="mr344Hearts">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</div></div>`).join('');renderBasket();renderPicker();updateMood();refreshHearts();save()}
+ function eat(kind){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}moveMimo('food');state.fruits[kind]=count-1;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);window.MimoMotion?.eat?.();setMessage(`Mìmo mangia ${fruitInfo[kind].name.toLowerCase()} sul tappeto.`);refresh()}
+ room.querySelector('#mr344Bed').addEventListener('click',()=>{moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{state.sleep=4;state.happy=clamp(state.happy+1);window.MimoMood?.set?.('riposo');refresh()},760)});
+ room.querySelector('#mr344Bath').addEventListener('click',()=>{moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{state.clean=4;state.happy=clamp(state.happy+1);window.MimoMotion?.celebrate?.();refresh()},760)});
+ room.querySelector('#mr344Fruit').addEventListener('click',()=>{moveMimo('food');fruitPicker.hidden=!fruitPicker.hidden;setMessage(Object.values(state.fruits||{}).some(Number)?'Scegli un frutto dal cestino.':'Il cestino è vuoto: conquista frutta suonando.')});
+ const heart=document.createElement('button');heart.id='mr344Heart';heart.textContent='♡';heart.title='Apri la stanza di Mìmo';heart.setAttribute('aria-label','Apri la stanza di Mìmo');heart.onclick=()=>document.getElementById('homeTrophyBtn')?.click();
+ document.querySelectorAll('.top-row .top-right-controls').forEach(el=>{if(el.querySelector('[data-mimo-heart="1"]'))return;const b=heart.cloneNode(true);b.id='';b.dataset.mimoHeart='1';b.onclick=heart.onclick;el.prepend(b)});
+ function refreshHearts(){const need=state.food<=1||state.sleep<=1||state.clean<=1;document.querySelectorAll('#mr344Heart,[data-mimo-heart="1"]').forEach(b=>{b.classList.toggle('mr-needs',need);b.textContent=need?'♥':'♡'})}
+ window.MimoCare={
+   awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: è nel cestino di Mìmo.`);return true},
+   awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
+   get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
+ };
+ function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform')}return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh()}
+ new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
+ const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
+ syncRoom();refresh();return true;
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
-<style id="mr346-perspective-room">
-#mr344Room{padding:8px!important;gap:7px!important;background:#fff8f1}
-#mr344Scene{position:relative!important;min-height:260px!important;max-height:58vh!important;aspect-ratio:1000/550;background:#e9c5ac!important;perspective:none!important;border-radius:16px!important;box-shadow:inset 0 0 0 2px #fdf1de,0 8px 22px #7b4e3230}
-#mr344Scene:before{display:none!important}.mrRoomArt{position:absolute;inset:0;width:100%;height:100%;display:block}
-#mr344SceneLabel{z-index:4;top:10px!important;left:50%!important;transform:translateX(-50%);white-space:nowrap;font-size:clamp(12px,2vw,19px);color:#744a37!important;text-shadow:0 1px #fff5e6}
-#mr344Scene .mr344Object{z-index:5!important;min-width:0!important;border:1px solid #fff3df!important;background:#fff9edec!important;padding:7px 12px!important;border-radius:24px!important;box-shadow:0 3px 12px #4c302e55!important;font-size:14px!important;transition:transform .2s ease,background .2s ease}
-#mr344Scene .mr344Object:active{transform:scale(.94)}#mr344Scene .mr344Object small{font-size:clamp(10px,1.6vw,14px)!important;white-space:nowrap}
-#mr344Bed{left:12%!important;bottom:9%!important;top:auto!important}#mr344Bath{right:8%!important;top:16%!important;bottom:auto!important}#mr344Fruit{right:12%!important;bottom:6%!important;top:auto!important}
-#mr344Stats{grid-template-columns:repeat(4,minmax(0,1fr))!important}#mr344Fruits[hidden]{display:none!important}
-@media(max-width:650px){#mr344Scene{min-height:205px!important}#mr344Scene .mr344Object{padding:5px 7px!important}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-</style>
-
-
-
-<style id="mr349-room-repair">
-#mr344Scene{background:#e9c5ac url("Assets/room/room-background.jpg") center center / 100% 100% no-repeat!important;overflow:hidden!important}
-#mr344Scene .mrRoomArt,#mr344Scene .mr347Furniture{display:none!important}
-#mr344SceneLabel{display:none!important}
-#mr344Bed{left:5%!important;bottom:31%!important;top:auto!important}
-#mr344Bath{right:5%!important;top:26%!important;bottom:auto!important}
-#mr344Fruit{left:41%!important;right:auto!important;bottom:7%!important}
-#mr344Scene .mr344Object{z-index:8!important}
-/* Render the existing original 3D WebGL Mimo in its own canvas. Never replace it with a static owl. */
-body.mr349-room-open #mimoBuddy{position:fixed!important;left:43%!important;top:32%!important;right:auto!important;bottom:auto!important;width:clamp(170px,24vw,310px)!important;height:clamp(225px,33vw,410px)!important;z-index:2147483000!important;display:block!important;visibility:visible!important;pointer-events:none!important;transform:none!important}
-body.mr349-room-open #mimoBuddy canvas{width:100%!important;height:100%!important}
-</style>
-<script id="mr349-room-repair-script">(()=>{'use strict';const page=document.getElementById('trophyPage');if(!page)return;function sync(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr349-room-open',open);const host=document.getElementById('mimoBuddy');if(host){const scene=document.getElementById('mr344Scene');const target=open&&scene?scene:document.body;if(host.parentNode!==target)target.appendChild(host);if(open)host.style.display='block'}}new MutationObserver(sync).observe(page,{attributes:true,attributeFilter:['style','class']});const mo=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){mo.disconnect();sync()}});mo.observe(document.body,{childList:true,subtree:true});sync()})();</script>
-<style id="mr350-final-room">
-#mr344Room{background:transparent!important}
-#mr344Scene{background-image:url("Assets/room/room-background.jpg")!important;background-position:center!important;background-size:100% 100%!important;aspect-ratio:1536/1024!important;max-height:min(65vh,760px)!important;min-height:320px!important;border-radius:12px!important}
-#mr344Scene::before,#mr344Scene .mrRoomArt,#mr344Scene .mr347Furniture{display:none!important}
-#mr344Bed{left:5%!important;top:43%!important;bottom:auto!important}
-#mr344Bath{right:4%!important;top:46%!important;bottom:auto!important}
-#mr344Fruit{left:43%!important;bottom:8%!important;top:auto!important;right:auto!important}
-#mr344Scene .mr344Object{background:#fff9edee!important;border:2px solid #fff!important;min-width:80px!important}
-#mr344Scene .mr350FruitItems{position:absolute;z-index:6;left:37%;width:27%;bottom:13%;height:17%;pointer-events:none;display:flex;align-items:end;justify-content:center;gap:0}
-.mr350FruitItems img{object-fit:contain;width:24%;height:80%;filter:drop-shadow(0 3px 2px #57351a55)}
-#mr344Fruits button{display:inline-flex;align-items:center;gap:5px}#mr344Fruits button img{width:38px;height:38px;object-fit:contain}
-body.mr349-room-open #mimoBuddy{left:39%!important;top:29%!important;width:clamp(190px,25vw,340px)!important;height:clamp(240px,35vw,450px)!important}
-@media(max-width:700px){#mr344Scene{min-height:220px!important}#mr344Scene .mr344Object{min-width:0!important;padding:4px 7px!important}}
-</style>
-<script id="mr350-room-dynamic">(()=>{'use strict';function init(){const scene=document.getElementById('mr344Scene');if(!scene||!window.MimoCare)return false;
-let layer=document.getElementById('mr350FruitItems');if(!layer){layer=document.createElement('div');layer.id='mr350FruitItems';layer.className='mr350FruitItems';scene.appendChild(layer)}
-const names={apple:'Mela',banana:'Banana',strawberry:'Fragola',grapes:'Uva'};
-const orig=window.MimoCare.refresh;window.MimoCare.refresh=function(){orig();const data=window.MimoCare.get();layer.replaceChildren();for(const k of Object.keys(names)){let n=Math.min(3,Math.max(0,Number(data.fruits?.[k]||0)));for(let i=0;i<n;i++){const img=document.createElement('img');img.src='Assets/room/fruit-'+k+'.png';img.alt=names[k];layer.appendChild(img)}}document.querySelectorAll('#mr344Fruits [data-kind]').forEach(b=>{const k=b.dataset.kind;b.innerHTML='<img src="Assets/room/fruit-'+k+'.png" alt="">'+names[k]+': '+(data.fruits?.[k]||0)})};
-const actions=[['mr344Bed','bed'],['mr344Bath','bath'],['mr344Fruit','basket']];for(const [id,tag] of actions){const b=document.getElementById(id);if(b)b.dataset.mimoTarget=tag}
-const positions={center:{left:'11%',top:'38%'},bed:{left:'7%',top:'39%'},bath:{left:'73%',top:'41%'},basket:{left:'39%',top:'47%'}};
-function move(tag){const host=document.getElementById('mimoBuddy');if(!host)return;const v=positions[tag]||positions.center;host.style.setProperty('left',v.left,'important');host.style.setProperty('top',v.top,'important');}
-for(const [id,tag] of actions){const b=document.getElementById(id);if(b)b.addEventListener('click',()=>{move(tag);window.MimoCare.refresh()})}
-const page=document.getElementById('trophyPage');if(page)new MutationObserver(()=>{if(getComputedStyle(page).display!=='none')move('bed')}).observe(page,{attributes:true,attributeFilter:['style','class']});
-window.MimoCare.refresh();return true}if(!init())document.addEventListener('DOMContentLoaded',init)})();</script>
-<style id="mr351-clean-interaction-tags">
-/* The furnished room is one unaltered background image. Controls are CSS/vector UI, never photo crops. */
-#mr344Scene .mr344Object{position:absolute!important;z-index:20!important;display:flex!important;align-items:center!important;justify-content:center!important;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:2px solid rgba(255,255,255,.96)!important;border-radius:50%!important;background:rgba(45,43,70,.77)!important;color:white!important;box-shadow:0 3px 12px rgba(0,0,0,.26)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:none!important;overflow:visible!important;cursor:pointer!important;touch-action:manipulation}
-#mr344Scene .mr344Object small{display:none!important}
-#mr344Scene .mr344Object::before{font-family:system-ui,sans-serif!important;font-size:23px!important;line-height:1!important;display:block!important}
-#mr344Bed::before{content:'☾'}#mr344Bath::before{content:'♨'}#mr344Fruit::before{content:'✦'}
-#mr344Scene .mr344Object:focus-visible{outline:4px solid #ffe27a!important;outline-offset:3px!important}
-#mr344Scene .mr344Object:active{transform:scale(.92)!important;background:#7250b8!important}
-/* Pin controls near objects, leaving the central character and the illustration unobstructed. */
-#mr344Bed{left:27%!important;top:49%!important;right:auto!important;bottom:auto!important}
-#mr344Bath{left:auto!important;right:17%!important;top:49%!important;bottom:auto!important}
-#mr344Fruit{left:61%!important;top:auto!important;right:auto!important;bottom:9%!important}
-@media(max-width:700px){#mr344Scene .mr344Object{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important}#mr344Scene .mr344Object::before{font-size:19px!important}}
-@media(prefers-reduced-motion:reduce){#mr344Scene .mr344Object{transition:none!important}}
-</style>
-
-<!-- 2.352: stanza visibile e Mìmo ancorato ALLA STANZA, mai al viewport -->
-<style id="mr352-room-visibility">
-#trophyPage .app{min-height:0!important;overflow:hidden!important}
-#trophyPage .trophy-main{display:flex!important;flex:1 1 auto!important;min-height:0!important;overflow:auto!important;padding:6px!important;box-sizing:border-box!important}
-#mr344Room{display:flex!important;flex:1 1 auto!important;min-width:0!important;width:100%!important;min-height:0!important;gap:6px!important;padding:0!important;box-sizing:border-box!important}
-#mr344Scene{display:block!important;position:relative!important;flex:1 1 auto!important;min-height:250px!important;height:auto!important;max-height:calc(100dvh - 220px)!important;aspect-ratio:3/2!important;background-color:#e9c5ac!important;background-image:none!important;isolation:isolate!important;overflow:hidden!important}
-#mr344Scene .mr352Background{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:0;pointer-events:none;display:block}
-#mr344Scene .mr350FruitItems{z-index:3!important}
-body.mr349-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:7%!important;top:39%!important;right:auto!important;bottom:auto!important;width:clamp(110px,22%,285px)!important;height:58%!important;max-height:390px!important;z-index:5!important;pointer-events:none!important;transform:none!important;transition:left .65s ease,top .65s ease!important}
-body.mr349-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:100%!important}
-#mr344Scene .mr344Object{z-index:12!important}
-#mr344Bed{left:22%!important;top:46%!important}
-#mr344Bath{right:11%!important;top:53%!important}
-#mr344Fruit{left:57%!important;bottom:10%!important}
-@media(max-height:700px){#mr344Scene{min-height:200px!important;max-height:calc(100dvh - 175px)!important}body.mr349-room-open #mr344Scene #mimoBuddy{height:55%!important}}
-</style>
-<script id="mr352-room-visibility-script">(()=>{'use strict';function init(){const scene=document.getElementById('mr344Scene');if(!scene)return; if(!scene.querySelector('.mr352Background')){const bg=document.createElement('img');bg.className='mr352Background';bg.src='Assets/room/room-background.jpg';bg.alt='Cameretta di Mìmo, con letto, vasca e cestino';bg.onerror=()=>{console.error('[MusicRainbow 2.352] Sfondo della stanza non caricato',bg.src);scene.style.setProperty('background-image','url("Assets/room/room-background.jpg")','important')};scene.prepend(bg)}const page=document.getElementById('trophyPage');function sync(){const open=getComputedStyle(page).display!=='none';if(!open)return;const host=document.getElementById('mimoBuddy');if(host&&host.parentNode!==scene)scene.appendChild(host);if(host&&!host.dataset.mr352Located){host.style.setProperty('left','7%','important');host.style.setProperty('top','39%','important');host.dataset.mr352Located='yes'}}new MutationObserver(sync).observe(page,{attributes:true,attributeFilter:['style','class']});sync();}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init()})();</script>
 </body>
 </html>

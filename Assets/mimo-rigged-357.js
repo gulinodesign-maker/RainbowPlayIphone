@@ -1,4 +1,4 @@
-/* Music Rainbow 2.357 — Ripiegamento ali dalla 2.340: animazione scheletrica autonoma e continua, WebGL */
+/* Music Rainbow 2.360 — Palpebre a texture + becco più naturale + animazione scheletrica autonoma e continua, WebGL */
 (()=>{'use strict';
 const KEY='mr_mimo_enabled',enabled=()=>{try{return localStorage.getItem(KEY)!=='0'}catch{return true}};
 function boot(){
@@ -81,7 +81,43 @@ const I=()=>[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],mul=(a,b)=>{const r=new Array(16).
 const fromTRS=(t,q,s)=>{const [x,y,z,w]=q,[sx,sy,sz]=s,xx=x*x,yy=y*y,zz=z*z,xy=x*y,xz=x*z,yz=y*z,wx=w*x,wy=w*y,wz=w*z;return [(1-2*(yy+zz))*sx,2*(xy+wz)*sx,2*(xz-wy)*sx,0,2*(xy-wz)*sy,(1-2*(xx+zz))*sy,2*(yz+wx)*sy,0,2*(xz+wy)*sz,2*(yz-wx)*sz,(1-2*(xx+yy))*sz,0,...t,1]};
 const invMat=m=>{const a=m[0],b=m[1],c=m[2],d=m[4],e=m[5],f=m[6],g=m[8],h=m[9],i=m[10];const A=e*i-f*h,B=f*g-d*i,C=d*h-e*g,det=a*A+b*B+c*C;if(Math.abs(det)<1e-10)return I();const q=1/det,r=[A*q,(c*h-b*i)*q,(b*f-c*e)*q,0,B*q,(a*i-c*g)*q,(c*d-a*f)*q,0,C*q,(b*g-a*h)*q,(a*e-b*d)*q,0,0,0,0,1];const x=m[12],y=m[13],z=m[14];r[12]=-(r[0]*x+r[4]*y+r[8]*z);r[13]=-(r[1]*x+r[5]*y+r[9]*z);r[14]=-(r[2]*x+r[6]*y+r[10]*z);return r};
 const quat=(a,b,t)=>{let dot=a.reduce((s,x,i)=>s+x*b[i],0);if(dot<0){b=b.map(x=>-x);dot=-dot}if(dot>.9995){const q=a.map((x,i)=>x+(b[i]-x)*t),l=Math.hypot(...q);return q.map(x=>x/l)}const th=Math.acos(Math.min(1,dot)),sn=Math.sin(th),u=Math.sin((1-t)*th)/sn,v=Math.sin(t*th)/sn;return a.map((x,i)=>x*u+b[i]*v)};
-let expression='standard',expressionUntil=0,blinkUntil=0,nextBlink=performance.now()+4300;window.MimoExpressions={set:(name,duration=0)=>{if(!['standard','mic','tired','sleepy','closed'].includes(name))return false;expression=name;expressionUntil=duration?performance.now()+duration:0;return true},get:()=>expression};let data,bin,mesh,anim=[],nodes,skin,ibm,texture,basePositions,baseNormals,jointData,weightData,posBuffer,normBuffer,animatedPositions,animatedNormals,lastSkin=0,mode='Mimi_Idle',until=0,started=performance.now();
+let expression='standard',expressionUntil=0,blinkUntil=0,nextBlink=performance.now()+4300;
+const expressionStates=['standard','mic','tired','sleepy','closed'];
+const eyeTextureURLs={
+ standard:'Assets/mimo-eyes-standard.png',
+ mic:'Assets/mimo-eyes-mic.png',
+ tired:'Assets/mimo-eyes-tired.png',
+ sleepy:'Assets/mimo-eyes-sleepy.png',
+ closed:'Assets/mimo-eyes-closed.png'
+};
+const textureVariants={};
+let currentTextureName='standard';
+let manualExpression=false;
+window.MimoExpressions={
+ set:(name,duration=0)=>{if(!expressionStates.includes(name))return false;expression=name;manualExpression=true;expressionUntil=duration?performance.now()+duration:0;return true},
+ clear:()=>{manualExpression=false;expression='standard';expressionUntil=0;return true},
+ get:()=>expression
+};
+let data,bin,mesh,anim=[],nodes,skin,ibm,texture,basePositions,baseNormals,jointData,weightData,posBuffer,normBuffer,animatedPositions,animatedNormals,lastSkin=0,mode='Mimi_Idle',until=0,started=performance.now();
+function makeTextureFromImage(image){const tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return tex}
+function chooseExpression(now){
+ if(expressionUntil&&now>expressionUntil){if(manualExpression){manualExpression=false;expression='standard'}expressionUntil=0}
+ const mood=activeEmotion();
+ if(manualExpression)return expression;
+ if(now<blinkUntil)return 'closed';
+ if(mode==='Mimi_Talk')return 'mic';
+ if(mode==='Mimi_Eat')return 'standard';
+ if(['assonnato','riposo','stanco'].includes(mood))return 'sleepy';
+ if(['rilassato','triste','sazio','coccolato'].includes(mood))return 'tired';
+ return 'standard';
+}
+function bindExpressionTexture(name){
+ const next=textureVariants[name]||textureVariants.standard||texture;
+ if(!next)return; currentTextureName=name;
+ gl.bindTexture(gl.TEXTURE_2D,next);
+}
+function loadExpressionTexture(name,url){return new Promise(resolve=>{const im=new Image();im.onload=()=>{try{textureVariants[name]=makeTextureFromImage(im);resolve(true)}catch(e){console.warn('[Mimo324] texture',name,e);resolve(false)}};im.onerror=()=>resolve(false);im.src=url;});}
+
 function play(name,duration){
  const allowed=new Set(['Mimi_Idle','Mimi_Greet','Mimi_Flap','Mimi_Celebrate','Mimi_Think','Mimi_Yes','Mimi_No','Mimi_Talk','Mimi_Walk','Mimi_Tail','Mimi_Eat']);
  if(!allowed.has(name))name='Mimi_Idle';
@@ -280,12 +316,12 @@ function procedural(poses,t){
  switch(mode){
  case 'Mimi_No':mouth(.95);rot(39,1,.14*wave(1.5));rot(5,1,.24*wave(1.5));break;
  case 'Mimi_Yes':mouth(.95);nod(.25*wave(1.1));break;
- case 'Mimi_Talk':talk(mimoSpeaking||performance.now()<demoTalkingUntil?(.14+.85*Math.pow(Math.abs(wave(4.2)),.75)):.95);nod(.035*wave(.8));break;
+ case 'Mimi_Talk':talk(mimoSpeaking||performance.now()<demoTalkingUntil?(.26+.54*Math.pow(Math.abs(wave(4.2)),.75)):.96);nod(.035*wave(.8));break;
  case 'Mimi_Greet':mouth(.95);if(wingCommand===null){rot(21,2,.24+.26*wave(1.4));rot(18,1,.16*wave(1.4));}break;
  case 'Mimi_Flap':mouth(.95);flap(.33*wave(1.5));tail(.07);break;
  case 'Mimi_Walk':mouth(.95);step(.28*wave(1.1));nod(.04*wave(2.2));flap(.035*wave(1.1));break;
  case 'Mimi_Tail':mouth(.95);tail(.3);break;
- case 'Mimi_Eat':{const chew=(1+wave(2.65))*.5;mouth(.08+.90*chew);nod(.075*wave(1.3));rot(44,0,.055*wave(.9));rot(49,0,-.055*wave(.9));tail(.09);break;}
+ case 'Mimi_Eat':{const chew=(1+wave(2.65))*.5;mouth(.28+.52*chew);nod(.075*wave(1.3));rot(44,0,.055*wave(.9));rot(49,0,-.055*wave(.9));tail(.09);break;}
  case 'Mimi_Celebrate':mouth(.95);flap(.42*wave(2.2));nod(.12*wave(1.2));tail(.18);break;
  case 'Mimi_Think':mouth(.95);nod(-.10+.06*wave(.4));if(wingCommand===null)rot(21,2,.08);break;
  default:{
@@ -300,10 +336,10 @@ function procedural(poses,t){
    tail(.040*energy);
    // La posa emotiva non e' una fotografia: ogni stato ha una propria coreografia.
    switch(mood){
-    case 'felice':nod(.090*Math.sin(slow*2.5));flap(.10*Math.sin(slow*2));tail(.20);mouth(.82+.12*Math.sin(slow*2.7));break;
-    case 'entusiasta':nod(.15*Math.sin(slow*3.2));step(.17*Math.sin(slow*3.9));flap(.18*Math.sin(slow*3));tail(.30);mouth(.48+.39*(1+fastW)*.5);break;
+    case 'felice':nod(.090*Math.sin(slow*2.5));flap(.10*Math.sin(slow*2));tail(.20);mouth(.88+.08*Math.sin(slow*2.7));break;
+    case 'entusiasta':nod(.15*Math.sin(slow*3.2));step(.17*Math.sin(slow*3.9));flap(.18*Math.sin(slow*3));tail(.30);mouth(.62+.24*(1+fastW)*.5);break;
     case 'triste':nod(-.17+.025*slowW);rot(5,2,.10*Math.sin(slow*.5));tail(.012);mouth(.99);break;
-    case 'affamato':nod(.08*Math.sin(slow*1.9));rot(39,1,.11*Math.sin(slow*1.3));mouth(.50+.46*Math.sin(slow*2.4)**2);step(.055*Math.sin(slow*1.7));break;
+    case 'affamato':nod(.08*Math.sin(slow*1.9));rot(39,1,.11*Math.sin(slow*1.3));mouth(.62+.24*Math.sin(slow*2.4)**2);step(.055*Math.sin(slow*1.7));break;
     case 'sazio':nod(.04*Math.sin(slow*.9));tail(.07);mouth(.98);break;
     case 'stressato':rot(39,1,.23*Math.sin(slow*3.7));rot(5,1,.13*Math.sin(slow*3.7+.4));step(.13*Math.sin(slow*3.4));tail(.19);mouth(.86);break;
     case 'rilassato':nod(-.09+.045*Math.sin(slow*.48));rot(5,2,.08*Math.sin(slow*.53));tail(.024);mouth(.99);break;
@@ -313,7 +349,7 @@ function procedural(poses,t){
     case 'coccolato':rot(5,2,.14*Math.sin(slow*.88));nod(.055*Math.sin(slow*1.3));tail(.16);flap(.045*Math.sin(slow*1.1));mouth(.91);break;
     case 'sporco':rot(5,2,.12*Math.sin(slow*2));step(.10*Math.sin(slow*2.2));flap(.055*Math.sin(slow*2.6));mouth(.97);break;
     case 'stanco':case 'riposo':nod(-.13+.03*Math.sin(slow*.54));tail(.012);mouth(.98);break;
-    default:{const beakPulse=Math.max(0,Math.sin(slow*.47)-.92)/.08;mouth(.95-.16*Math.min(1,beakPulse));}
+    default:{const beakPulse=Math.max(0,Math.sin(slow*.47)-.92)/.08;mouth(.97-.08*Math.min(1,beakPulse));}
    }
    break;
  }
@@ -366,10 +402,10 @@ const meshNode=nodes.findIndex(n=>n.mesh===0),invMesh=invMat(meshNode>=0?world[m
 let parents;function prepare(){nodes=data.nodes;skin=data.skins[0];parents=nodes.map(()=>-1);nodes.forEach((n,i)=>(n.children||[]).forEach(j=>parents[j]=i));ibm=Array.from(accessor(skin.inverseBindMatrices));anim=data.animations||[];const prim=data.meshes[0].primitives[0];mesh=prim;gl.useProgram(program);basePositions=accessor(prim.attributes.POSITION);baseNormals=accessor(prim.attributes.NORMAL);jointData=accessor(prim.attributes.JOINTS_0);weightData=accessor(prim.attributes.WEIGHTS_0);animatedPositions=new Float32Array(basePositions.length);animatedNormals=new Float32Array(baseNormals.length);
 for(const [key,name,size] of [['POSITION','p',3],['NORMAL','n',3],['TEXCOORD_0','uv',2]]){const loc=gl.getAttribLocation(program,name);if(loc<0)continue;const values=key==='POSITION'?animatedPositions:key==='NORMAL'?animatedNormals:accessor(prim.attributes[key]);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,values,key==='TEXCOORD_0'?gl.STATIC_DRAW:gl.DYNAMIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);if(key==='POSITION')posBuffer=buffer;if(key==='NORMAL')normBuffer=buffer;}
 const idx=accessor(prim.indices);mesh.count=idx.length;mesh.indexType=idx instanceof Uint32Array?gl.UNSIGNED_INT:idx instanceof Uint8Array?gl.UNSIGNED_BYTE:gl.UNSIGNED_SHORT;if(mesh.indexType===gl.UNSIGNED_INT&&!gl.getExtension('OES_element_index_uint'))throw Error('Indici 32-bit non supportati');const b=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,b);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,idx,gl.STATIC_DRAW);
-const imageIndex=data.textures[data.materials[prim.material].pbrMetallicRoughness.baseColorTexture.index].source,img=data.images[imageIndex],view=data.bufferViews[img.bufferView],blob=new Blob([bin.slice(view.byteOffset||0,(view.byteOffset||0)+view.byteLength)],{type:img.mimeType}),url=URL.createObjectURL(blob);texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([225,190,145,255]));const im=new Image();im.onload=()=>{gl.bindTexture(gl.TEXTURE_2D,texture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);URL.revokeObjectURL(url)};im.onerror=()=>error('Texture non caricata');im.src=url;
-const positions=accessor(prim.attributes.POSITION);let min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(let i=0;i<positions.length;i+=3)for(let k=0;k<3;k++){min[k]=Math.min(min[k],positions[i+k]);max[k]=Math.max(max[k],positions[i+k])}mesh.center=min.map((v,i)=>(v+max[i])/2);mesh.extent=Math.max(...max.map((v,i)=>v-min[i]));status.textContent='Mìmo 2.357: 57 ossa · movimenti ed emozioni · avvio grafica…';requestAnimationFrame(frame)}
+const imageIndex=data.textures[data.materials[prim.material].pbrMetallicRoughness.baseColorTexture.index].source,img=data.images[imageIndex],view=data.bufferViews[img.bufferView],blob=new Blob([bin.slice(view.byteOffset||0,(view.byteOffset||0)+view.byteLength)],{type:img.mimeType}),url=URL.createObjectURL(blob);texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([225,190,145,255]));const im=new Image();im.onload=()=>{try{texture=makeTextureFromImage(im);textureVariants.standard=texture;Promise.all(expressionStates.filter(name=>name!=='standard').map(name=>loadExpressionTexture(name,eyeTextureURLs[name]))).finally(()=>{status.textContent='Mìmo 2.360: 57 ossa · palpebre dinamiche · grafica pronta'});}finally{URL.revokeObjectURL(url)}};im.onerror=()=>error('Texture non caricata');im.src=url;
+const positions=accessor(prim.attributes.POSITION);let min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(let i=0;i<positions.length;i+=3)for(let k=0;k<3;k++){min[k]=Math.min(min[k],positions[i+k]);max[k]=Math.max(max[k],positions[i+k])}mesh.center=min.map((v,i)=>(v+max[i])/2);mesh.extent=Math.max(...max.map((v,i)=>v-min[i]));status.textContent='Mìmo 2.360: 57 ossa · palpebre dinamiche · avvio grafica…';requestAnimationFrame(frame)}
 function cpuSkin(matrices){const count=basePositions.length/3;for(let v=0;v<count;v++){const o=v*3,j=v*4,x=basePositions[o],y=basePositions[o+1],z=basePositions[o+2],nx=baseNormals[o],ny=baseNormals[o+1],nz=baseNormals[o+2];let px=0,py=0,pz=0,rx=0,ry=0,rz=0,total=0;for(let k=0;k<4;k++){const w=weightData[j+k];if(w<=0)continue;const off=jointData[j+k]*16;if(off<0||off+15>=matrices.length)continue;total+=w;px+=w*(matrices[off]*x+matrices[off+4]*y+matrices[off+8]*z+matrices[off+12]);py+=w*(matrices[off+1]*x+matrices[off+5]*y+matrices[off+9]*z+matrices[off+13]);pz+=w*(matrices[off+2]*x+matrices[off+6]*y+matrices[off+10]*z+matrices[off+14]);rx+=w*(matrices[off]*nx+matrices[off+4]*ny+matrices[off+8]*nz);ry+=w*(matrices[off+1]*nx+matrices[off+5]*ny+matrices[off+9]*nz);rz+=w*(matrices[off+2]*nx+matrices[off+6]*ny+matrices[off+10]*nz)}animatedPositions[o]=total?px/total:x;animatedPositions[o+1]=total?py/total:y;animatedPositions[o+2]=total?pz/total:z;const len=Math.hypot(rx,ry,rz)||1;animatedNormals[o]=rx/len;animatedNormals[o+1]=ry/len;animatedNormals[o+2]=rz/len}gl.bindBuffer(gl.ARRAY_BUFFER,posBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,animatedPositions);gl.bindBuffer(gl.ARRAY_BUFFER,normBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,animatedNormals)}
-function frame(now){requestAnimationFrame(frame);try{if(!toggle.checked||document.hidden)return;if(now>until)play('Mimi_Idle');if(expressionUntil&&now>expressionUntil){expression='standard';expressionUntil=0}if(now>nextBlink){blinkUntil=now+145;nextBlink=now+3600+Math.random()*2500}const wantedExpression=now<blinkUntil?'closed':expression;if(wantedExpression!==host.dataset.expression){host.dataset.expression=wantedExpression}const t=(now-started)/1000;const width=Math.max(1,host.clientWidth),height=Math.max(1,host.clientHeight),dpr=Math.min(1.5,devicePixelRatio||1);if(canvas.width!==Math.round(width*dpr)||canvas.height!==Math.round(height*dpr)){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr)}gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(program);const ratio=canvas.width/canvas.height,f=1/Math.tan(.45),proj=[f/ratio,0,0,0,0,f,0,0,0,0,-1.002,-1,0,0,-.2002,0];const s=3.05/mesh.extent;const yawDt=mimoLastYawFrame?Math.min(.06,(now-mimoLastYawFrame)/1000):0;mimoLastYawFrame=now;const yawDelta=mimoTargetYaw-mimoCurrentYaw;mimoCurrentYaw+=yawDelta*Math.min(1,yawDt*6);if(Math.abs(yawDelta)<.001)mimoCurrentYaw=mimoTargetYaw;const cy=Math.cos(mimoCurrentYaw),sy=Math.sin(mimoCurrentYaw);const view=[s*cy,0,-s*sy,0,0,s,0,0,s*sy,0,s*cy,0,-s*(cy*mesh.center[0]+sy*mesh.center[2]),-mesh.center[1]*s,s*(sy*mesh.center[0]-cy*mesh.center[2])-4.7,1];gl.uniformMatrix4fv(gl.getUniformLocation(program,'proj'),false,new Float32Array(proj));gl.uniformMatrix4fv(gl.getUniformLocation(program,'view'),false,new Float32Array(view));if(now-lastSkin>83){cpuSkin(matNodes(t));lastSkin=now;}gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.uniform1i(gl.getUniformLocation(program,'diffuse'),0);gl.drawElements(gl.TRIANGLES,mesh.count,mesh.indexType,0);if(!mesh.renderChecked){mesh.renderChecked=true;const e=gl.getError();status.textContent=e===gl.NO_ERROR?'Mìmo 2.357: 57 ossa · movimento vivo e continuo':'Mìmo 3D: errore GPU '+e;if(e!==gl.NO_ERROR)host.style.border='2px solid #dc2626'}}catch(e){if(!mesh.frameError){mesh.frameError=true;error('Rendering: '+e.message)}}}
+function frame(now){requestAnimationFrame(frame);try{if(!toggle.checked||document.hidden)return;if(now>until)play('Mimi_Idle');if(now>nextBlink){blinkUntil=now+145;nextBlink=now+3600+Math.random()*2500}const wantedExpression=chooseExpression(now);if(wantedExpression!==host.dataset.expression){host.dataset.expression=wantedExpression}const t=(now-started)/1000;const width=Math.max(1,host.clientWidth),height=Math.max(1,host.clientHeight),dpr=Math.min(1.5,devicePixelRatio||1);if(canvas.width!==Math.round(width*dpr)||canvas.height!==Math.round(height*dpr)){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr)}gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(program);const ratio=canvas.width/canvas.height,f=1/Math.tan(.45),proj=[f/ratio,0,0,0,0,f,0,0,0,0,-1.002,-1,0,0,-.2002,0];const s=3.05/mesh.extent;const yawDt=mimoLastYawFrame?Math.min(.06,(now-mimoLastYawFrame)/1000):0;mimoLastYawFrame=now;const yawDelta=mimoTargetYaw-mimoCurrentYaw;mimoCurrentYaw+=yawDelta*Math.min(1,yawDt*6);if(Math.abs(yawDelta)<.001)mimoCurrentYaw=mimoTargetYaw;const cy=Math.cos(mimoCurrentYaw),sy=Math.sin(mimoCurrentYaw);const view=[s*cy,0,-s*sy,0,0,s,0,0,s*sy,0,s*cy,0,-s*(cy*mesh.center[0]+sy*mesh.center[2]),-mesh.center[1]*s,s*(sy*mesh.center[0]-cy*mesh.center[2])-4.7,1];gl.uniformMatrix4fv(gl.getUniformLocation(program,'proj'),false,new Float32Array(proj));gl.uniformMatrix4fv(gl.getUniformLocation(program,'view'),false,new Float32Array(view));if(now-lastSkin>83){cpuSkin(matNodes(t));lastSkin=now;}gl.activeTexture(gl.TEXTURE0);bindExpressionTexture(wantedExpression);gl.uniform1i(gl.getUniformLocation(program,'diffuse'),0);gl.drawElements(gl.TRIANGLES,mesh.count,mesh.indexType,0);if(!mesh.renderChecked){mesh.renderChecked=true;const e=gl.getError();status.textContent=e===gl.NO_ERROR?'Mìmo 2.360: 57 ossa · texture occhi dinamiche':'Mìmo 3D: errore GPU '+e;if(e!==gl.NO_ERROR)host.style.border='2px solid #dc2626'}}catch(e){if(!mesh.frameError){mesh.frameError=true;error('Rendering: '+e.message)}}}
 fetch('Assets/mimo-meshy-324.glb').then(r=>{if(!r.ok && r.status!==0)throw Error('HTTP '+r.status);return r.arrayBuffer()}).then(buffer=>{const dv=new DataView(buffer);if(buffer.byteLength<20)throw Error('Modello vuoto: '+buffer.byteLength+' byte');if(dv.getUint32(0,true)!==0x46546c67)throw Error('File GLB non valido');let off=12;const len=dv.getUint32(off,true);off+=8;data=JSON.parse(new TextDecoder().decode(new Uint8Array(buffer,off,len)));off+=len;const blen=dv.getUint32(off,true);off+=8;bin=buffer.slice(off,off+blen);prepare()}).catch(e=>error(e.message));
 let last=0;for(const id of ['statusBarLearn','learnHandsStatus','statusBarHands']){const el=document.getElementById(id);if(!el)continue;new MutationObserver(()=>{const now=Date.now();if(now-last<1400)return;const t=(el.textContent||'').toLowerCase();if(/brav|corrett|compl|perfect|success|ottim|riuscit/.test(t)){last=now;play('Mimi_Celebrate')}else if(/erro|sbagli|wrong|retry|riprova/.test(t)){last=now;play('Mimi_Think')}}).observe(el,{subtree:true,childList:true,characterData:true})}
 }

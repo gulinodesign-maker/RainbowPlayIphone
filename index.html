@@ -6198,7 +6198,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.344</div>
+    <div class="intro-version-label">Build 2.346</div>
   </div>
 </div>
 
@@ -10388,7 +10388,7 @@ function incrementSessionMedal(type) {
   const hasMedalsNow =
     ((s.bronze || 0) + (s.silver || 0) + (s.gold || 0) + (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0)) > 0;
 
-  if (!hadMedalsBefore && hasMedalsNow) window.MimoCare?.awardFruit(1);
+  if (window.MimoCare?.awardReward) window.MimoCare.awardReward(type, s.id);
   if (!hadMedalsBefore && hasMedalsNow && typeof s.displayNumber !== "number") {
     lastChestNumber++;
     s.displayNumber = lastChestNumber;
@@ -17749,14 +17749,14 @@ function showChestDetails(session) {
   if (totalCoins === 0) {
     const empty = document.createElement("div");
     empty.className = "trophy-empty";
-    empty.textContent = "Nessuna medaglia in questa sessione.";
+    empty.textContent = "Nessun frutto in questa sessione.";
     row.appendChild(empty);
   } else {
     const addMedal = (cls, count) => {
       for (let i = 0; i < count; i++) {
         const d = document.createElement("div");
         d.className = `medal-icon ${cls}`;
-        d.textContent = "●";
+        d.textContent = ({bronze:"🍎",silver:"🍌",gold:"🍓",green:"🍎",cyan:"🍌",blue:"🍓",violet:"🍇",pink:"🍇"})[cls] || "🍎";
         row.appendChild(d);
       }
     };
@@ -19281,7 +19281,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
     if(!zone){
       zone = document.createElement('div');
       zone.className = 'session-medals-zone';
-      zone.innerHTML = '<div class="session-medals-track" aria-live="polite" aria-label="Medaglie sessione: 0"></div>';;
+      zone.innerHTML = '<div class="session-medals-track" aria-live="polite" aria-label="Frutta sessione: 0"></div>';;
       title.insertAdjacentElement('afterend', zone);
     }
   }
@@ -19298,7 +19298,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
   function mrBuildSessionMedal(type){
     const el = document.createElement('div');
-    el.className = 'session-medal-icon ' + type;
+    el.className = 'session-medal-icon fruit-reward ' + type; el.textContent=({bronze:'🍎',silver:'🍌',gold:'🍓',green:'🍎',cyan:'🍌',blue:'🍓',violet:'🍇',pink:'🍇'})[type]||'🍎';
     el.setAttribute('aria-hidden', 'true');
     return el;
   }
@@ -19311,7 +19311,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
       empty.className = 'session-medal-icon medal-empty';
       empty.setAttribute('aria-hidden','true');
       track.appendChild(empty);
-      track.setAttribute('aria-label', 'Medaglie sessione: 0');
+      track.setAttribute('aria-label', 'Frutta sessione: 0');
       return;
     }
     const visible = medals.slice(0, MR_MAX_VISIBLE_SESSION_MEDALS);
@@ -19323,7 +19323,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
       more.setAttribute('aria-hidden','true');
       track.appendChild(more);
     }
-    track.setAttribute('aria-label', 'Medaglie sessione: ' + medals.length);
+    track.setAttribute('aria-label', 'Frutta sessione: ' + medals.length);
   }
 
   window.updateSessionTopbarMedalsMR = function updateSessionTopbarMedalsMR(){
@@ -25384,15 +25384,17 @@ scorePhoneDrawerSyncMR();
 #mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px} .mr344Stat{border-radius:12px;background:#fff2df;padding:8px 3px;text-align:center;font-size:13px;color:#6b4537}.mr344Stat b{display:block;font-size:13px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:16px}
 #mr344Message{text-align:center;font-size:14px;font-weight:700;min-height:22px;color:#70472e}#mr344Fruits{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}#mr344Fruits button{border-radius:12px;padding:8px;border:1px solid #cfa98b;background:white;font-size:15px}
 @media(max-width:600px){#mr344Stats{grid-template-columns:repeat(2,1fr)}#mr344Scene{min-height:185px}.mr344Object{min-width:64px;font-size:22px;padding:7px}}
+ .fruit-reward{background:none!important;border:none!important;box-shadow:none!important;font-size:23px!important;color:inherit!important} .fruit-reward:before,.fruit-reward:after{display:none!important}
 </style>
 <script id="mr344-room-script">
 (function(){'use strict';
-const KEY='mr344_pet';const clamp=x=>Math.max(0,Math.min(4,x));let state={food:3,sleep:3,clean:3,happy:3,fruit:0,last:Date.now()};try{const stored=JSON.parse(localStorage.getItem(KEY)||'null');if(stored&&typeof stored==='object')state={...state,...stored}}catch(e){}
+const KEY='mr344_pet';const clamp=x=>Math.max(0,Math.min(4,x));let state={food:3,sleep:3,clean:3,happy:3,fruit:0,fruits:{apple:0,banana:0,strawberry:0,grapes:0},awards:{},last:Date.now()};try{const stored=JSON.parse(localStorage.getItem(KEY)||'null');if(stored&&typeof stored==='object')state={...state,...stored}}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
 // Un bisogno può aumentare lentamente tra le visite, ma senza punizioni o danni permanenti.
 function tick(){const now=Date.now(),hours=Math.max(0,Math.min(72,(now-state.last)/3600000));if(hours>=6){const n=Math.floor(hours/6);state.food=clamp(state.food-n);state.sleep=clamp(state.sleep-Math.floor(n/2));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
+state.fruits=state.fruits||{apple:0,banana:0,strawberry:0,grapes:0};state.awards=state.awards||{};if(state.fruit>0&&!state.fruitMigrated){state.fruits.apple+=state.fruit;state.fruit=0;state.fruitMigrated=true;save()}
 const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return;
-const room=document.createElement('div');room.id='mr344Room';room.innerHTML='<div id="mr344Scene"><span id="mr344SceneLabel">La stanzetta di Mìmo 🦉</span><button class="mr344Object" id="mr344Bed">🛏️<small>Dormi</small></button><button class="mr344Object" id="mr344Bath">🛁<small>Bagnetto</small></button><button class="mr344Object" id="mr344Fruit">🧺<small>Frutta</small></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden><button data-fruit="1">🍎 Dai una mela</button></div><details><summary>🏆 Trofei musicali conservati</summary><div id="mr344OriginalTrophies"></div></details>';
+const room=document.createElement('div');room.id='mr344Room';room.innerHTML='<div id="mr344Scene"><svg class="mrRoomArt" viewBox="0 0 1000 550" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="wallL"><stop stop-color="#f5dfc5"/><stop offset="1" stop-color="#e7bfa7"/></linearGradient><linearGradient id="wallR"><stop stop-color="#fff0da"/><stop offset="1" stop-color="#eac6b5"/></linearGradient><linearGradient id="floor"><stop stop-color="#dcb68e"/><stop offset="1" stop-color="#986b50"/></linearGradient><linearGradient id="wood"><stop stop-color="#ba7547"/><stop offset="1" stop-color="#6e3e30"/></linearGradient><radialGradient id="glow"><stop stop-color="#fff5d8"/><stop offset="1" stop-color="#fff5d8" stop-opacity="0"/></radialGradient></defs><path d="M0 0H1000V550H0Z" fill="#dfb7a2"/><path d="M0 0L500 110V322L0 550Z" fill="url(#wallL)"/><path d="M1000 0L500 110V322L1000 550Z" fill="url(#wallR)"/><path d="M0 550L500 322L1000 550Z" fill="url(#floor)"/><path d="M0 0L500 110L1000 0" stroke="#fff4e3" stroke-width="9" fill="none"/><path d="M0 550L500 322L1000 550" stroke="#946f58" stroke-width="8" fill="none"/><g stroke="#b78b6b" stroke-width="2" opacity=".55"><path d="M160 550L500 322M330 550L500 322M670 550L500 322M840 550L500 322M0 485L1000 485M0 420L1000 420M0 365L1000 365"/></g><ellipse cx="500" cy="275" rx="290" ry="210" fill="url(#glow)"/><path d="M422 154H578V280H422Z" fill="#b98973" stroke="#fff5e4" stroke-width="9"/><path d="M436 166H564V268H436Z" fill="#a9dce1"/><path d="M500 166V268M436 216H564" stroke="#fff6e8" stroke-width="9"/><circle cx="530" cy="190" r="22" fill="#fff2b8"/><path d="M450 244Q495 205 553 244" fill="none" stroke="#6eae90" stroke-width="16"/><path d="M418 151Q500 117 582 151" stroke="#fff5e4" stroke-width="12" fill="none"/><g transform="translate(70 265)"><ellipse cx="175" cy="212" rx="195" ry="34" fill="#694d44" opacity=".22"/><path d="M20 80L225 20L355 90L142 164Z" fill="#b7805f" stroke="#764a3b" stroke-width="9"/><path d="M20 80V185L142 249V164ZM142 164L355 90V191L142 249Z" fill="url(#wood)"/><path d="M35 79L225 31L333 91L142 152Z" fill="#f6eee5"/><path d="M45 87L226 44L318 95L142 140Z" fill="#9dcbd4"/><path d="M50 87L138 64L202 99L119 126Z" fill="#fff6e7"/><path d="M142 164V249" stroke="#e7b084" stroke-width="7"/></g><g transform="translate(700 165)"><ellipse cx="140" cy="280" rx="140" ry="30" fill="#694d44" opacity=".19"/><path d="M38 87L160 33L264 90L140 149Z" fill="#d5eff0" stroke="#6599a3" stroke-width="9"/><path d="M38 87V220Q140 285 264 220V90L140 149Z" fill="#a6d7dd" stroke="#6599a3" stroke-width="8"/><ellipse cx="152" cy="95" rx="92" ry="37" fill="#fffdf7" stroke="#6599a3" stroke-width="7"/><ellipse cx="152" cy="96" rx="68" ry="22" fill="#8fd1e1"/><path d="M205 49V-18H248V38" fill="none" stroke="#c6a16c" stroke-width="13" stroke-linecap="round"/><circle cx="226" cy="-20" r="11" fill="#edc17c"/><circle cx="85" cy="4" r="9" fill="#fff" opacity=".7"/><circle cx="107" cy="-18" r="13" fill="#fff" opacity=".7"/></g><g transform="translate(665 390)"><ellipse cx="135" cy="130" rx="175" ry="25" fill="#624638" opacity=".23"/><path d="M30 40L140 0L255 43L139 91Z" fill="#edc38a" stroke="#915b3b" stroke-width="8"/><path d="M30 40V106L139 154V91ZM139 91L255 43V109L139 154Z" fill="url(#wood)"/><path d="M95 35Q90 1 126 9Q145 -15 166 11Q197 1 206 39L175 59L116 58Z" fill="#b37b47" stroke="#81542f" stroke-width="6"/><circle cx="124" cy="20" r="19" fill="#e94b46"/><circle cx="161" cy="13" r="18" fill="#f4c542"/><circle cx="181" cy="36" r="16" fill="#8d5bb7"/><path d="M122 3L132 -8" stroke="#56834d" stroke-width="5"/></g><ellipse cx="500" cy="445" rx="118" ry="30" fill="#624638" opacity=".19"/></svg><span id="mr344SceneLabel">La stanzetta di Mìmo</span><button class="mr344Object" id="mr344Bed" aria-label="Metti Mìmo a dormire"><small>🌙 Dormi</small></button><button class="mr344Object" id="mr344Bath" aria-label="Fai il bagnetto a Mìmo"><small>🫧 Bagnetto</small></button><button class="mr344Object" id="mr344Fruit" aria-label="Apri il cestino della frutta"><small>🍎 Frutta</small></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden><button data-kind="apple">🍎 Mela</button><button data-kind="banana">🍌 Banana</button><button data-kind="strawberry">🍓 Fragola</button><button data-kind="grapes">🍇 Uva</button></div><details><summary>🍇 Frutta conquistata nelle sessioni</summary><div id="mr344OriginalTrophies"></div></details>';
 const old=document.createElement('div');old.id='mr344OriginalTrophiesHolder';while(main.firstChild)old.appendChild(main.firstChild);main.appendChild(room);room.querySelector('#mr344OriginalTrophies').appendChild(old);
 const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];const stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message');
 const heart=document.createElement('button');heart.id='mr344Heart';heart.textContent='♡';heart.title='Apri la stanzetta di Mìmo';heart.setAttribute('aria-label','Apri la stanzetta di Mìmo');heart.onclick=()=>{const home=document.getElementById('homeTrophyBtn');if(home)home.click()};
@@ -25400,18 +25402,30 @@ function update(){tick();const need=state.food<=1||state.sleep<=1||state.clean<=
 function message(text){msg.textContent=text;window.MimoCare.refresh()}
 room.querySelector('#mr344Bed').onclick=()=>{state.sleep=4;state.happy=clamp(state.happy+1);message('Mìmo ha riposato! 🌙')};
 room.querySelector('#mr344Bath').onclick=()=>{state.clean=4;state.happy=clamp(state.happy+1);message('Mìmo è pulitissimo! 🫧')};
-room.querySelector('#mr344Fruit').onclick=()=>{const fruits=room.querySelector('#mr344Fruits');fruits.hidden=!fruits.hidden;msg.textContent=state.fruit?'Scegli un frutto dal cestino':'Il cestino è vuoto: la frutta arriverà dalle sessioni musicali.';window.MimoCare.refresh()};
-room.querySelector('[data-fruit]').onclick=()=>{if(state.fruit<1){message('Non ci sono ancora mele nel cestino.');return}state.fruit--;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);message('Mìmo ha mangiato una mela! 🍎')};
-// API per assegnare frutta al completamento delle sessioni, senza inventare ricompense.
-window.MimoCare={awardFruit:(count=1)=>{state.fruit+=Math.max(0,Math.floor(count));save();update()},get:()=>({...state}),refresh:update};
-const fruitButton=room.querySelector('[data-fruit]');const oldUpdate=update;const refresh=()=>{oldUpdate();fruitButton.textContent='🍎 Mele: '+state.fruit+' · Dai una mela'};window.MimoCare.refresh=refresh;
+room.querySelector('#mr344Fruit').onclick=()=>{const fruits=room.querySelector('#mr344Fruits');fruits.hidden=!fruits.hidden;msg.textContent=Object.values(state.fruits).some(Boolean)?'Scegli un frutto dal cestino':'Il cestino è vuoto: completa una sessione musicale.';window.MimoCare.refresh()};
+const rewardMap={bronze:'apple',silver:'banana',gold:'strawberry',green:'apple',cyan:'banana',blue:'strawberry',violet:'grapes',pink:'grapes'};
+const icons={apple:'🍎',banana:'🍌',strawberry:'🍓',grapes:'🍇'};
+const names={apple:'Mela',banana:'Banana',strawberry:'Fragola',grapes:'Uva'};
+room.querySelectorAll('[data-kind]').forEach(button=>button.onclick=()=>{const kind=button.dataset.kind;if(!state.fruits[kind]){message('Questo frutto non è ancora nel cestino.');return}state.fruits[kind]--;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);message('Mìmo ha mangiato '+names[kind].toLowerCase()+'! '+icons[kind])});
+window.MimoCare={awardReward:(type,sessionId)=>{const kind=rewardMap[type]||'apple';const key=String(sessionId)+':'+String(type);state.awards[key]=(state.awards[key]||0)+1;state.fruits[kind]=(state.fruits[kind]||0)+1;save();window.MimoCare.refresh()},awardFruit:(count=1)=>{state.fruits.apple+=Math.max(0,Math.floor(count));save();window.MimoCare.refresh()},get:()=>({...state}),refresh:()=>{update();room.querySelectorAll('[data-kind]').forEach(b=>{const k=b.dataset.kind;b.textContent=icons[k]+' '+names[k]+': '+(state.fruits[k]||0)})}};
 // Un solo cuore per barra superiore, con accesso alla stessa pagina della home.
 document.querySelectorAll('.top-row .top-right-controls').forEach(el=>{const b=heart.cloneNode(true);b.onclick=heart.onclick;b.id='';el.prepend(b)});
 function refreshHearts(){const need=state.food<=1||state.sleep<=1||state.clean<=1;document.querySelectorAll('#mr344Heart,.top-row .top-right-controls button[aria-label="Apri la stanzetta di Mìmo"]').forEach(b=>{b.classList.toggle('mr-needs',need);b.textContent=need?'♥':'♡'})}
 const baseRefresh=window.MimoCare.refresh;window.MimoCare.refresh=()=>{baseRefresh();refreshHearts()};
-const originalUpdate=window.MimoCare.refresh;window.MimoCare.refresh=()=>{originalUpdate();fruitButton.textContent='🍎 Mele: '+state.fruit+' · Dai una mela'};
+
 window.MimoCare.refresh();const observe=new MutationObserver(()=>{if(page.style.display!=='none')window.MimoCare.refresh()});observe.observe(page,{attributes:true,attributeFilter:['style']});
 })();
 </script>
+<style id="mr346-perspective-room">
+#mr344Room{padding:8px!important;gap:7px!important;background:#fff8f1}
+#mr344Scene{position:relative!important;min-height:260px!important;max-height:58vh!important;aspect-ratio:1000/550;background:#e9c5ac!important;perspective:none!important;border-radius:16px!important;box-shadow:inset 0 0 0 2px #fdf1de,0 8px 22px #7b4e3230}
+#mr344Scene:before{display:none!important}.mrRoomArt{position:absolute;inset:0;width:100%;height:100%;display:block}
+#mr344SceneLabel{z-index:4;top:10px!important;left:50%!important;transform:translateX(-50%);white-space:nowrap;font-size:clamp(12px,2vw,19px);color:#744a37!important;text-shadow:0 1px #fff5e6}
+#mr344Scene .mr344Object{z-index:5!important;min-width:0!important;border:1px solid #fff3df!important;background:#fff9edec!important;padding:7px 12px!important;border-radius:24px!important;box-shadow:0 3px 12px #4c302e55!important;font-size:14px!important;transition:transform .2s ease,background .2s ease}
+#mr344Scene .mr344Object:active{transform:scale(.94)}#mr344Scene .mr344Object small{font-size:clamp(10px,1.6vw,14px)!important;white-space:nowrap}
+#mr344Bed{left:12%!important;bottom:9%!important;top:auto!important}#mr344Bath{right:8%!important;top:16%!important;bottom:auto!important}#mr344Fruit{right:12%!important;bottom:6%!important;top:auto!important}
+#mr344Stats{grid-template-columns:repeat(4,minmax(0,1fr))!important}#mr344Fruits[hidden]{display:none!important}
+@media(max-width:650px){#mr344Scene{min-height:205px!important}#mr344Scene .mr344Object{padding:5px 7px!important}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
 </body>
 </html>

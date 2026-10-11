@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Banana">
+  <defs>
+    <linearGradient id="banana" x1=".1" y1=".15" x2=".85" y2=".9"><stop stop-color="#fff59d"/><stop offset=".36" stop-color="#facc15"/><stop offset="1" stop-color="#e5a50a"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#72510b" flood-opacity=".25"/></filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M43 55c18 10 30 10 46 2 5 46 29 77 68 94 22 9 40 9 57 2-1 24-13 42-35 53-36 18-84 6-116-29-31-34-42-79-20-122z" fill="url(#banana)" stroke="#ca8a04" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M61 69c10 42 34 72 69 88 29 14 55 15 77 5" fill="none" stroke="#fff7b8" stroke-width="9" stroke-linecap="round" opacity=".72"/>
+    <path d="M41 50c7-10 19-12 28-5l-8 24c-9 2-18-5-20-19zM210 151c12-4 21 2 25 13-6 10-14 15-25 15-5-10-5-19 0-28z" fill="#8b6b17"/>
+  </g>
+</svg>

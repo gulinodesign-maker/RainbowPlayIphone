@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.356 */
-const BUILD = "2.356";
+/* Music Rainbow Service Worker - Build 2.359 */
+const BUILD = "2.359";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -20,8 +20,7 @@ const CORE_PRECACHE_URLS = [
   "./Assets/staff-base-bass.png",
   "./Assets/staff-base-treble.png",
   "./Assets/MusicRainbow-SMuFL.woff2",
-  "./Assets/tempo-drum-red-white.jpeg",
-  "./Assets/mimo-rigged-356.js",
+  "./Assets/mimo-rigged-357.js",
   "./Assets/mimo-meshy-324.glb",
   "./Assets/room/room-background.jpg",
   "./Assets/room/fruit-apple.svg",

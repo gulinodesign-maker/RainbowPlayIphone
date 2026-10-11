@@ -5741,7 +5741,7 @@ button.midi-learn-bound{box-shadow:0 0 0 4px rgba(34,197,94,.62),0 0 20px rgba(3
 #homeScoresBtn::before{background-image:url("Assets/home-icon-scores-2179.svg?v=2.296") !important;}
 #homePlayBtn::before{background-image:url("Assets/home-icon-play.svg?v=2.296") !important;}
 #homeLearnMainBtn::before{background-image:url("Assets/home-icon-learn.svg?v=2.296") !important;}
-#homeTrophyBtn::before{background-image:url("Assets/home-icon-mimo-room.svg?v=2.356") !important;}
+#homeTrophyBtn::before{background-image:url("Assets/home-icon-mimo-room.svg?v=2.359") !important;}
 #homeSettingsBtn::before{background-image:url("Assets/home-icon-settings.svg?v=2.296") !important;}
 #homeScreen .home-play-disabled{opacity:.62 !important;}
 #homeScreen .home-nav-label{
@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.356</div>
+    <div class="intro-version-label">Build 2.359</div>
   </div>
 </div>
 
@@ -18660,7 +18660,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.356";
+  const PAGE_BUILD = "2.359";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -25098,7 +25098,7 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-356.js?v=356"></script>
+<script src="Assets/mimo-rigged-357.js?v=359"></script>
 
 
 <style id="mr353-room-style">
@@ -25169,7 +25169,7 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(state));localStorage
 function tick(){const now=Date.now(),hours=Math.max(0,Math.min(72,(now-(Number(state.last)||now))/3600000));if(hours>=6){const n=Math.floor(hours/6);state.food=clamp(state.food-n);state.sleep=clamp(state.sleep-Math.floor(n/2));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
- const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><div id="mr353BasketFruit" aria-label="Frutta nel cestino"></div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali">🪽 Chiudi le ali</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali">🦋 Apri le ali</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button><button class="mr353PositionTag" id="mr344Fruit" type="button" aria-label="Mangia al centro del tappeto"><img src="Assets/room/fruit-apple.svg" alt=""></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
+ const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><div id="mr353BasketFruit" aria-label="Frutta nel cestino"></div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button><button class="mr353PositionTag" id="mr344Fruit" type="button" aria-label="Mangia al centro del tappeto" title="Scegli un frutto"><img src="Assets/room/fruit-apple.svg" alt=""></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
@@ -25180,9 +25180,15 @@ function init(){
  const positions={food:{left:'50%',top:'49%'},bed:{left:'20%',top:'31%'},bath:{left:'86%',top:'35%'}};
  function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==scene)scene.appendChild(host);if(animate)window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');}
  function setMessage(text){msg.textContent=text||''}
- function updateMood(){const mood=state.food<=1?'affamato':state.sleep<=1?'stanco':state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'felice':'contento';window.MimoMood?.set?.(mood)}
+ function updateMood(){
+  const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
+  const mood=needs>=3?'stressato':state.food<=1?'affamato':state.sleep<=1?'assonnato':
+   state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'entusiasta':
+   state.food>=4?'sazio':state.sleep>=4?'rilassato':state.happy>=3?'felice':'contento';
+  window.MimoMood?.set?.(mood)
+ }
  function renderBasket(){basket.replaceChildren();for(const kind of fruitKinds){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count)continue;const wrap=document.createElement('div');wrap.className='mr353FruitStack';const img=document.createElement('img');img.src=fruitInfo[kind].asset;img.alt=fruitInfo[kind].name;wrap.appendChild(img);const badge=document.createElement('span');badge.className='mr353FruitCount';badge.textContent=String(count);wrap.appendChild(badge);basket.appendChild(wrap)}}
- function renderPicker(){fruitPicker.replaceChildren();for(const kind of fruitKinds){const info=fruitInfo[kind],count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0)),button=document.createElement('button');button.type='button';button.dataset.kind=kind;button.disabled=count<=0;button.innerHTML=`<img src="${info.asset}" alt=""><span>${info.name}: ${count}</span>`;button.addEventListener('click',()=>eat(kind));fruitPicker.appendChild(button)}}
+ function renderPicker(){fruitPicker.replaceChildren();for(const kind of fruitKinds){const info=fruitInfo[kind],count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0)),button=document.createElement('button');button.type='button';button.dataset.kind=kind;button.disabled=count<=0;button.setAttribute('aria-label',`${info.name}, disponibili ${count}: fai mangiare Mìmo`);button.title=`${info.name} — disponibili ${count}`;button.innerHTML=`<img src="${info.asset}" alt="" aria-hidden="true"><span class="mr359FruitQuantity" aria-hidden="true">${count}</span>`;button.addEventListener('click',()=>eat(kind));fruitPicker.appendChild(button)}}
  function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat">${ico}<b>${label}</b><div class="mr344Hearts">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</div></div>`).join('');renderBasket();renderPicker();updateMood();refreshHearts();save()}
  function eat(kind){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}moveMimo('food');state.fruits[kind]=count-1;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);window.MimoMotion?.eat?.();setMessage(`Mìmo mangia ${fruitInfo[kind].name.toLowerCase()} sul tappeto.`);refresh()}
  const closeWing=room.querySelector('#mr354CloseWings'),openWing=room.querySelector('#mr354OpenWings');
@@ -25207,5 +25213,105 @@ function init(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
+
+<style id="mr357-full-room-and-lab">
+/* La stanza occupa TUTTO lo spazio disponibile tra la top bar e i controlli.
+   Lo sfondo usa fill per lasciare visibili simultaneamente letto, vasca e tappeto
+   anche su iPhone verticale: cover taglierebbe gli oggetti e romperebbe i tag. */
+#trophyPage{min-height:0!important;overflow:hidden!important;}
+#trophyPage .app{margin:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:100dvh!important;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)!important;border-radius:0!important;box-sizing:border-box!important;}
+#trophyPage .top-row{flex:0 0 auto!important;margin:0!important;}
+#trophyPage .trophy-main{flex:1 1 0!important;min-height:0!important;max-height:none!important;padding:3px!important;}
+#mr344Room{width:100%!important;height:100%!important;min-height:0!important;flex:1 1 0!important;gap:4px!important;}
+#mr344Scene{width:100%!important;height:auto!important;flex:1 1 0!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;border-radius:7px!important;}
+#mr344Scene .mr353Background{width:100%!important;height:100%!important;object-fit:fill!important;}
+#mr344Stats{flex:0 0 auto!important;}
+#mr344Message{flex:0 0 auto!important;min-height:16px!important;}
+#mr344Fruits:not([hidden]){max-height:min(20dvh,155px);overflow-y:auto;}
+@media(max-width:700px){
+ #trophyPage .top-row{padding:4px!important;min-height:0!important;}
+ #mr344Stats{gap:3px!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+ #mr344Stats .mr344Stat{min-width:0;padding:4px 1px!important;font-size:10px!important;}
+ #mr344Stats .mr344Stat b{font-size:10px!important;}
+ #mr344Stats .mr344Hearts{font-size:clamp(10px,2.8vw,15px)!important;letter-spacing:0!important;}
+ #mr344Message{font-size:11px!important;line-height:1.15!important;}
+ #mr354WingControls button{font-size:10px!important;padding:5px!important;min-height:34px!important;}
+}
+/* Finestra di prova: Mìmo WebGL autentico, non un'immagine separata. */
+#mr357Lab[hidden]{display:none!important;}
+#mr357Lab{position:fixed;inset:0;z-index:2147483100;background:rgba(14,20,39,.82);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top,12px) max(9px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,12px) max(9px,env(safe-area-inset-left,0px));box-sizing:border-box;}
+#mr357Lab .mr357LabDialog{box-sizing:border-box;display:flex;flex-direction:column;width:min(98vw,1100px);height:min(92dvh,830px);min-height:0;background:#fcf9ff;border-radius:19px;box-shadow:0 19px 70px #0008;overflow:hidden;color:#24203d;font:600 14px/1.4 system-ui,-apple-system,sans-serif;}
+#mr357Lab .mr357LabHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 17px;background:linear-gradient(100deg,#fff0d6,#e4e1ff);flex:0 0 auto;}
+#mr357Lab .mr357LabHeader h2{margin:0;font-size:clamp(18px,2vw,24px);}
+#mr357Lab .mr357LabHeader p{margin:3px 0 0;font-size:12px;font-weight:500;}
+#mr357Lab .mr357LabHeader button,#mr357Lab #mr357LabReset{border:0;border-radius:11px;padding:10px 13px;background:#fff;color:#42307b;font-size:13px;font-weight:800;cursor:pointer;min-height:42px;}
+#mr357Lab .mr357LabBody{display:grid;grid-template-columns:minmax(220px,40%) minmax(0,60%);gap:0;flex:1;min-height:0;}
+#mr357Lab .mr357LabStage{min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:radial-gradient(ellipse at 50% 45%,#fff9ef,#d8cffa);padding:10px;box-sizing:border-box;}
+#mr357LabPreview{position:relative;flex:1 1 auto;min-height:150px;width:100%;}
+body.mr357-lab-open #mr357LabPreview #mimoBuddy{position:absolute!important;display:block!important;left:0!important;right:0!important;top:0!important;bottom:0!important;width:100%!important;height:100%!important;max-height:none!important;z-index:1!important;transform:none!important;visibility:visible!important;pointer-events:none!important;}
+#mr357Lab #mr357LabMessage{text-align:center;margin:0;font-size:13px;min-height:32px;}
+#mr357Lab .mr357LabControls{padding:12px 14px;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0;}
+#mr357Lab .mr357LabControls h3{font-size:16px;margin:12px 0 8px;}
+#mr357Lab .mr357LabButtons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+#mr357Lab .mr357LabButtons button{background:#fff;border:1px solid #c7bde5;border-radius:11px;color:#34265e;font-size:13px;min-height:43px;padding:8px 9px;font-weight:750;text-align:left;cursor:pointer;touch-action:manipulation;}
+#mr357Lab button[aria-pressed="true"]{background:#6a48c9!important;color:#fff!important;border-color:#6a48c9!important;}
+#mr357Lab .mr357LabNote{font-size:12px;font-weight:500;color:#625976;}
+#mimoSettingsSection .mr357LabLaunch{display:block;width:100%;min-height:43px;margin:10px 0 4px;padding:8px 12px;border:2px solid #8063da;border-radius:11px;background:#f5efff;color:#432981;font:800 13px/1.2 system-ui,sans-serif;cursor:pointer;}
+@media(max-width:670px){
+ #mr357Lab .mr357LabDialog{width:100%;height:97dvh;border-radius:13px;}
+ #mr357Lab .mr357LabBody{grid-template-columns:1fr;grid-template-rows:minmax(125px,31%) minmax(0,1fr);}
+ #mr357Lab .mr357LabStage{display:grid;grid-template-columns:minmax(130px,38%) 1fr;grid-template-rows:1fr auto;gap:5px;padding:6px;}
+ #mr357LabPreview{grid-row:1/3;grid-column:1;min-height:120px;height:100%;}
+ #mr357Lab #mr357LabMessage{grid-column:2;grid-row:1;align-self:end;}
+ #mr357Lab #mr357LabReset{grid-column:2;grid-row:2;align-self:start;}
+ #mr357Lab .mr357LabControls{padding:6px 10px;}
+ #mr357Lab .mr357LabButtons{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+ #mr357Lab .mr357LabButtons button{font-size:12px;min-height:38px;padding:5px 7px;}
+ #mr357Lab .mr357LabHeader{padding:6px 10px;}
+ #mr357Lab .mr357LabHeader p{font-size:10px;}
+}
+</style>
+
+<style id="mr359-icon-only-controls">
+/* Tutti i comandi per Mìmo sono iconografici, con etichette accessibili. */
+#mr357Lab .mr357LabButtons{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;}
+#mr357Lab .mr357LabButtons button{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:100%;min-height:63px;padding:5px;border-radius:15px;
+  text-align:center;font-size:0;line-height:1;
+  background:linear-gradient(160deg,#fff,#f4efff);border:2px solid #cec5eb;
+  box-shadow:0 2px 4px #34265e18;transition:transform .12s ease,border-color .12s ease;
+}
+#mr357Lab .mr357LabButtons button:active{transform:scale(.94);}
+#mr357Lab .mr357LabButtons button .mr359ActionGlyph{display:block;font:normal 32px/1.25 system-ui,-apple-system,sans-serif;}
+#mr357Lab .mr357LabButtons button[aria-pressed="true"]{outline:3px solid #eed884;outline-offset:-5px;}
+#mr357Lab .mr357LabButtons button:focus-visible,
+#mr357Lab #mr357LabReset:focus-visible,#mr357Lab #mr357LabClose:focus-visible,
+#mr354WingControls button:focus-visible,#mimoSettingsSection .mr354WingSettings button:focus-visible,
+#mimoSettingsSection .mr357LabLaunch:focus-visible,#mr344Fruits button:focus-visible{
+ outline:3px solid #f5ba2f!important;outline-offset:3px;
+}
+#mr357Lab #mr357LabReset,#mr357Lab #mr357LabClose{display:inline-flex;align-items:center;justify-content:center;min-width:46px;min-height:46px;padding:7px!important;font-size:30px!important;line-height:1!important;}
+#mr354WingControls button,#mimoSettingsSection .mr354WingSettings button{
+ display:inline-flex;align-items:center;justify-content:center;
+ width:50px;height:50px;min-height:48px;min-width:48px;padding:0!important;
+ font:normal 28px/1 system-ui,-apple-system,sans-serif!important;
+}
+#mimoSettingsSection .mr357LabLaunch{
+ display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;
+ min-height:50px;padding:0!important;font:normal 30px/1 system-ui,-apple-system,sans-serif!important;
+}
+#mr344Fruits button{position:relative;display:inline-flex;align-items:center;justify-content:center;width:65px;height:65px;min-height:55px;padding:5px!important;}
+#mr344Fruits button img{width:48px;height:48px;object-fit:contain;}
+#mr344Fruits .mr359FruitQuantity{position:absolute;top:0;right:0;min-width:19px;height:19px;padding:0 3px;border-radius:10px;background:#6b48ac;color:#fff;font:800 11px/19px system-ui,sans-serif;text-align:center;}
+@media(max-width:670px){
+ #mr357Lab .mr357LabButtons{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
+ #mr357Lab .mr357LabButtons button{min-height:49px;padding:3px;}
+ #mr357Lab .mr357LabButtons button .mr359ActionGlyph{font-size:27px;}
+ #mr354WingControls button{width:43px;height:43px;min-width:43px;min-height:43px;font-size:25px!important;}
+}
+@media(max-width:360px){#mr357Lab .mr357LabButtons{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(prefers-reduced-motion:reduce){#mr357Lab .mr357LabButtons button{transition:none;}}
+</style>
 </body>
 </html>

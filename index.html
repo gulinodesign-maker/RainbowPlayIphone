@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.376</div>
+    <div class="intro-version-label">Build 2.377</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.376</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.377</div>
   </div>
 </div>
 
@@ -7845,7 +7845,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     <div class="top-panel">
       <div class="top-row">
         <div class="top-left-controls">
-          <button class="menu-btn" id="trophyHomeBtn">⌂</button>
+          <button class="menu-btn" id="trophyHomeBtn" aria-label="Torna alla Home" title="Home"></button>
         </div>
         <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls"></div>
@@ -18673,7 +18673,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.376";
+  const PAGE_BUILD = "2.377";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -25110,7 +25110,7 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-369.js?v=376"></script>
+<script src="Assets/mimo-rigged-369.js?v=377"></script>
 
 
 <style id="mr353-room-style">
@@ -25175,6 +25175,7 @@ const basketHotspots={
  grapes:{x:215,y:495,w:210,h:136},strawberry:{x:550,y:519,w:210,h:121},
  peach:{x:827,y:510,w:210,h:140},cherries:{x:1145,y:505,w:205,h:142}
 };
+// Da dietro in avanti, come nell'immagine di riferimento: frutti alti dietro, frutti bassi davanti.
 const basketRenderOrder=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
 let state={food:3,sleep:3,clean:3,happy:3,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
 const clamp=n=>Math.max(0,Math.min(4,Math.round(Number(n)||0)));
@@ -25188,7 +25189,7 @@ load();
 function tick(){const now=Date.now(),last=Math.max(0,Number(state.last)||0);if(!last){state.last=now;return}const d=now-last;if(d<180000)return;const n=Math.floor(d/180000);if(n>0){state.food=clamp(state.food-Math.floor((n+1)/2));state.sleep=clamp(state.sleep-Math.floor((n+2)/3));state.happy=clamp(state.happy-Math.floor(n/3));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
- const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><div id="mr373Basket" aria-label="Cestino di Mìmo">
+ const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><img class="mr377NestFront" src="Assets/room/nest-front-occlusion.png" alt="" draggable="false"><img class="mr377BathFront" src="Assets/room/bath-front-occlusion.png" alt="" draggable="false"><div id="mr373Basket" aria-label="Cestino di Mìmo">
 <img class="mr373BasketLayer" src="Assets/room/basket-back.png" alt="" draggable="false">
 <img class="mr373BasketLayer" src="Assets/room/basket-ghost.png" alt="" draggable="false">
 <div id="mr353BasketFruit" aria-hidden="true"></div>
@@ -25197,7 +25198,7 @@ function init(){
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
 </div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
- // Build 2.376: viewport panoramico, contenuto in coordinate originali 4:3.
+ // Build 2.377: viewport panoramico, contenuto in coordinate originali 4:3.
  // Non stirare né spostare indipendentemente i layer del cestino, Mìmo e i punti cliccabili.
  const sceneRoot=room.querySelector('#mr344Scene');
  const sceneCanvas=document.createElement('div');
@@ -25209,7 +25210,7 @@ function init(){
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
 
- // Build 2.376: riempimento orizzontale del display, inquadratura croppata verticalmente.
+ // Build 2.377: riempimento orizzontale del display, inquadratura croppata verticalmente.
  // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
  // usano lo stesso riferimento e rimangono allineati anche con un viewport largo.
  const topPanel=page.querySelector('.top-panel');
@@ -25253,7 +25254,7 @@ function init(){
  }
  window.addEventListener('resize',queueFit376,{passive:true});
  if(window.visualViewport)window.visualViewport.addEventListener('resize',queueFit376,{passive:true});
- const positions={food:{left:'50%',top:'60%'},bed:{left:'19%',top:'58%'},bath:{left:'86.1%',top:'57%'}};
+ const positions={food:{left:'50%',top:'60%'},bed:{left:'23.4%',top:'39%'},bath:{left:'83.8%',top:'39%'}};
  function clearPose(){window.MimoExpressions?.clear?.();window.MimoMood?.clearPreview?.();}
  function applyPose(target){
   if(target==='bed'){
@@ -25290,11 +25291,11 @@ function init(){
    }
    const slot=basketHotspots[kind];
    const button=document.createElement('button');button.type='button';button.className='mr373FruitTouch';button.dataset.kind=kind;
-   button.style.left=(slot.x/1448*100)+'%';button.style.top=(slot.y/1086*100)+'%';
+   button.style.left=(slot.x/1448*100)+'%';button.style.top=((slot.y+16)/1086*100)+'%';
    button.style.width=(slot.w/1448*100)+'%';button.style.height=(slot.h/1086*100)+'%';
    button.title=count?`${fruitInfo[kind].name}: ${count} disponibili`:`${fruitInfo[kind].name}: 0 disponibili`;
    button.setAttribute('aria-label',count?`${fruitInfo[kind].name}, ${count} disponibili. Dai un frutto a Mìmo`:`${fruitInfo[kind].name}: ancora da conquistare`);
-   {const label=document.createElement('span');label.className='mr373FruitCount'+(count?'':' mr373Empty');label.textContent=String(count);button.appendChild(label)}
+   if(count>0){const label=document.createElement('span');label.className='mr373FruitCount';label.textContent=String(count);button.appendChild(label)}
    button.addEventListener('click',()=>{
     if(count){eat(kind)}else setMessage(`${fruitInfo[kind].name}: conquista questo frutto suonando nel livello ${fruitInfo[kind].level}.`);
    });
@@ -25490,7 +25491,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 </style>
 
 <style id="mr375-room-layout-fixes">
-/* Build 2.376: all the room art, hotspots and overlays stay in a common 4:3 canvas.
+/* Build 2.377: all the room art, hotspots and overlays stay in a common 4:3 canvas.
    JavaScript sizes the canvas to the available height and applies identical width
    to the title bar and the four needs indicators. Never use object-fit:fill. */
 #trophyPage .app{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;}
@@ -25557,6 +25558,36 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
  #trophyPage #mr344Stats .mr344Stat b{font-size:9px!important;}
  #trophyPage #mr344Stats .mr344Hearts{font-size:10px!important;letter-spacing:0!important;}
 }
+</style>
+
+<style id="mr377-basket-mimo-fixes">
+/* 2.377: bordino superiore del cesto più basso rispetto ai frutti. Lo sfondo del cesto resta fermo. */
+#mr373Basket .mr373BasketLayer:nth-child(2),
+#mr373Basket #mr353BasketFruit .mr373ActiveFruit{transform:translateY(1.5%)!important;}
+#mr373Basket .mr373BasketFront{transform:translateY(4.5%)!important;}
+/* Gli 8 sticker restano su layer separati ordinati nel DOM; i contatori 0 non occupano il cestino. */
+#mr373Basket .mr373FruitTouch:not(:has(.mr373FruitCount)){cursor:default;}
+/* Mìmo viene inserito dentro il nido/vasca: la parte anteriore è un livello grafico opaco. */
+#mr376SceneCanvas .mr377NestFront,
+#mr376SceneCanvas .mr377BathFront{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:12!important;pointer-events:none!important;display:none!important;user-select:none!important;}
+#mr344Scene[data-location="bed"] .mr377NestFront{display:block!important;}
+#mr344Scene[data-location="bath"] .mr377BathFront{display:block!important;}
+body.mr353-room-open #mr344Scene[data-location="bed"] #mimoBuddy{
+ width:clamp(120px,18%,245px)!important;height:29%!important;max-height:none!important;
+ transform-origin:50% 50%!important;transform:translate(-50%,-50%) rotate(-90deg) scale(.94)!important;
+ clip-path:none!important;z-index:11!important;
+}
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{
+ width:clamp(120px,17%,240px)!important;height:30%!important;max-height:none!important;
+ transform-origin:50% 50%!important;transform:translate(-50%,-50%) scale(1)!important;
+ clip-path:none!important;z-index:11!important;
+}
+/* Pulsanti indipendenti dalle parti del letto e della vasca: sotto gli oggetti, sopra il tappeto. */
+#mr344Scene #mr344Bed{left:22%!important;top:53%!important;z-index:34!important;}
+#mr344Scene #mr344Bath{left:83%!important;top:56%!important;z-index:34!important;}
+/* Stesso controllo Home delle altre pagine: una sola casetta, nessun simbolo duplicato. */
+#trophyPage #trophyHomeBtn{font-size:0!important;line-height:0!important;}
+#trophyPage #trophyHomeBtn::before{content:"🏠"!important;font-size:24px!important;line-height:1!important;display:block!important;}
 </style>
 </body>
 </html>

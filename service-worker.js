@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.370; bypass large GLB; safe cache errors */
-const BUILD = "2.370";
+/* Music Rainbow Service Worker - Build 2.371; bypass large GLB; safe cache errors */
+const BUILD = "2.371";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -26,6 +26,10 @@ const CORE_PRECACHE_URLS = [
   "./Assets/room/fruit-banana.svg",
   "./Assets/room/fruit-strawberry.svg",
   "./Assets/room/fruit-grapes.svg",
+  "./Assets/room/fruit-pear.svg",
+  "./Assets/room/fruit-orange.svg",
+  "./Assets/room/fruit-peach.svg",
+  "./Assets/room/fruit-cherries.svg",
   "./Scores/library.json"
 ];
 

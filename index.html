@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.375</div>
+    <div class="intro-version-label">Build 2.376</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.375</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.376</div>
   </div>
 </div>
 
@@ -18658,7 +18658,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2158-orientation-bridge">
 (() => {
-  const landscapePageIds=["level1Page","level2Page","level3Page","level4Page","level5Page","level6Page","level7Page","level8Page","learnNotesPage","learnTempoPage","learnHandsPage","playPage","scorePlayerPage"];
+  const landscapePageIds=["level1Page","level2Page","level3Page","level4Page","level5Page","level6Page","level7Page","level8Page","learnNotesPage","learnTempoPage","learnHandsPage","playPage","scorePlayerPage","trophyPage"];
   let lastMode="",queued=false;
   function isVisibleMR(el){if(!el)return false;const cs=getComputedStyle(el);return cs.display!=="none"&&cs.visibility!=="hidden";}
   function postOrientationMR(mode){try{const h=window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.musicRainbowApp;if(h&&typeof h.postMessage==="function")h.postMessage({type:"orientation",mode});}catch(e){}}
@@ -18673,7 +18673,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.375";
+  const PAGE_BUILD = "2.376";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -25110,7 +25110,7 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-369.js?v=375"></script>
+<script src="Assets/mimo-rigged-369.js?v=376"></script>
 
 
 <style id="mr353-room-style">
@@ -25197,47 +25197,63 @@ function init(){
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
 </div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
+ // Build 2.376: viewport panoramico, contenuto in coordinate originali 4:3.
+ // Non stirare né spostare indipendentemente i layer del cestino, Mìmo e i punti cliccabili.
+ const sceneRoot=room.querySelector('#mr344Scene');
+ const sceneCanvas=document.createElement('div');
+ sceneCanvas.id='mr376SceneCanvas';
+ sceneRoot.insertBefore(sceneCanvas,sceneRoot.firstChild);
+ Array.from(sceneRoot.children).forEach(child=>{
+   if(child!==sceneCanvas && !['mr354WingControls','mr344Bed','mr344Bath'].includes(child.id))sceneCanvas.appendChild(child);
+ });
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
 
- // Music Rainbow 2.375: top bar, picture, stats share one centered width.
- // The scene is always rendered at its native 4:3 ratio, without stretching or cropping.
+ // Build 2.376: riempimento orizzontale del display, inquadratura croppata verticalmente.
+ // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
+ // usano lo stesso riferimento e rimangono allineati anche con un viewport largo.
  const topPanel=page.querySelector('.top-panel');
- let mr375LayoutQueued=false;
- function mr375FitRoom(){
-  mr375LayoutQueued=false;
+ let roomFitQueued=false;
+ function fitLandscapeRoom376(){
+  roomFitQueued=false;
   if(getComputedStyle(page).display==='none'||!room.getClientRects().length)return;
   const mainStyle=getComputedStyle(main),roomStyle=getComputedStyle(room);
-  const widthAvailable=main.clientWidth-(parseFloat(mainStyle.paddingLeft)||0)-(parseFloat(mainStyle.paddingRight)||0);
+  const availableWidth=main.clientWidth-(parseFloat(mainStyle.paddingLeft)||0)-(parseFloat(mainStyle.paddingRight)||0);
   const gap=parseFloat(roomStyle.rowGap)||parseFloat(roomStyle.gap)||0;
-  const heightAvailable=room.clientHeight-stats.offsetHeight-msg.offsetHeight-2*gap-2;
-  if(widthAvailable<=0||heightAvailable<=0)return;
-  const sceneWidth=Math.max(1,Math.floor(Math.min(widthAvailable,heightAvailable*4/3)));
-  const sceneHeight=sceneWidth*3/4;
-  const widthPx=sceneWidth+'px';
-  scene.style.setProperty('width',widthPx,'important');
+  const availableHeight=room.clientHeight-stats.offsetHeight-msg.offsetHeight-2*gap;
+  if(availableWidth<1||availableHeight<1)return;
+  const sceneWidth=Math.floor(availableWidth),sceneHeight=Math.max(1,Math.floor(availableHeight));
+  scene.style.setProperty('width',sceneWidth+'px','important');
   scene.style.setProperty('height',sceneHeight+'px','important');
   scene.style.setProperty('flex','0 0 auto','important');
-  topPanel.style.setProperty('width',widthPx,'important');
-  stats.style.setProperty('width',widthPx,'important');
-  msg.style.setProperty('width',widthPx,'important');
+  topPanel.style.setProperty('width',sceneWidth+'px','important');
+  stats.style.setProperty('width',sceneWidth+'px','important');
+  msg.style.setProperty('width',sceneWidth+'px','important');
+  // Fill horizontally; if necessary grow uniformly, never change the artwork aspect ratio.
+  const scale=Math.max(1,sceneHeight/(sceneWidth*.75));
+  const canvasWidth=sceneWidth*scale,canvasHeight=canvasWidth*.75;
+  const crop=Math.max(0,canvasHeight-sceneHeight);
+  const top=-crop*.72; // Nasconde soprattutto il tetto mantenendo visibile il cestino.
+  sceneCanvas.style.width=canvasWidth+'px';
+  sceneCanvas.style.height=canvasHeight+'px';
+  sceneCanvas.style.left=((sceneWidth-canvasWidth)/2)+'px';
+  sceneCanvas.style.top=top+'px';
  }
- function mr375QueueFit(){
-  if(mr375LayoutQueued)return;
-  mr375LayoutQueued=true;
-  requestAnimationFrame(mr375FitRoom);
+ function queueFit376(){
+  if(roomFitQueued)return;
+  roomFitQueued=true;
+  requestAnimationFrame(fitLandscapeRoom376);
  }
  if(typeof ResizeObserver==='function'){
-  const resizeWatcher=new ResizeObserver(mr375QueueFit);
+  const resizeWatcher=new ResizeObserver(queueFit376);
   resizeWatcher.observe(main);
   resizeWatcher.observe(room);
   resizeWatcher.observe(stats);
   resizeWatcher.observe(msg);
  }
- window.addEventListener('resize',mr375QueueFit,{passive:true});
- if(window.visualViewport)window.visualViewport.addEventListener('resize',mr375QueueFit,{passive:true});
-
- const positions={food:{left:'50%',top:'49%'},bed:{left:'19%',top:'40%'},bath:{left:'86.1%',top:'40.2%'}};
+ window.addEventListener('resize',queueFit376,{passive:true});
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',queueFit376,{passive:true});
+ const positions={food:{left:'50%',top:'60%'},bed:{left:'19%',top:'58%'},bath:{left:'86.1%',top:'57%'}};
  function clearPose(){window.MimoExpressions?.clear?.();window.MimoMood?.clearPreview?.();}
  function applyPose(target){
   if(target==='bed'){
@@ -25252,7 +25268,7 @@ function init(){
    clearPose();
   }
  }
- function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==scene)scene.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
+ function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
  function setMessage(text){msg.textContent=text||''}
  function updateMood(){
   const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
@@ -25317,7 +25333,7 @@ function init(){
    awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
- function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh();mr375QueueFit()}
+ function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh();queueFit376()}
  new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
  const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
  syncRoom();refresh();return true;
@@ -25474,7 +25490,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 </style>
 
 <style id="mr375-room-layout-fixes">
-/* Build 2.375: all the room art, hotspots and overlays stay in a common 4:3 canvas.
+/* Build 2.376: all the room art, hotspots and overlays stay in a common 4:3 canvas.
    JavaScript sizes the canvas to the available height and applies identical width
    to the title bar and the four needs indicators. Never use object-fit:fill. */
 #trophyPage .app{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;}
@@ -25498,6 +25514,48 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
  #trophyPage #mr344Stats .mr344Stat b{font-size:9px!important;}
  #trophyPage #mr344Stats .mr344Hearts{font-size:10px!important;}
  #trophyPage #mr344Message{font-size:10px!important;}
+}
+</style>
+
+<style id="mr376-room-wide-landscape">
+/* Stanza di Mìmo: finestra panoramica, tela 4:3 senza deformazioni, taglio del tetto. */
+#trophyPage .app{display:flex!important;flex-direction:column!important;overflow:hidden!important;min-height:0!important;}
+#trophyPage .top-panel{width:100%!important;max-width:none!important;flex:0 0 auto!important;padding:0!important;margin:0 auto 2px!important;box-sizing:border-box!important;}
+#trophyPage .top-row{width:100%!important;max-width:none!important;min-height:0!important;height:46px!important;padding:2px 7px!important;margin:0!important;box-sizing:border-box!important;border-radius:11px!important;}
+#trophyPage .top-row .rainbow-title{font-size:clamp(1.2rem,3.4vw,2.6rem)!important;line-height:1!important;}
+#trophyPage .top-row .top-left-controls,#trophyPage .top-row .top-right-controls{height:100%!important;align-items:center!important;}
+#trophyPage .top-row .menu-btn{width:39px!important;height:39px!important;min-width:39px!important;min-height:39px!important;font-size:23px!important;padding:0!important;}
+#trophyPage .trophy-main{padding:0 3px!important;min-height:0!important;max-height:none!important;flex:1 1 0!important;display:flex!important;justify-content:center!important;overflow:hidden!important;}
+#trophyPage #mr344Room{width:100%!important;height:100%!important;flex:1 1 0!important;min-height:0!important;gap:3px!important;align-items:center!important;justify-content:flex-start!important;}
+#trophyPage #mr344Scene{position:relative!important;box-sizing:border-box!important;align-self:center!important;min-height:0!important;max-height:none!important;max-width:none!important;aspect-ratio:auto!important;overflow:hidden!important;border-radius:8px!important;}
+#mr376SceneCanvas{position:absolute!important;display:block!important;overflow:visible!important;box-sizing:border-box!important;z-index:0!important;}
+#mr376SceneCanvas>.mr353Background{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;}
+#mr344Scene #mr344Bed{left:18%!important;top:24%!important;z-index:34!important;}
+#mr344Scene #mr344Bath{left:82%!important;top:24%!important;z-index:34!important;}
+#mr344Scene #mr354WingControls{position:absolute!important;top:6px!important;right:9px!important;z-index:35!important;}
+#mr344Scene #mr354WingControls button{width:43px!important;height:43px!important;min-height:0!important;min-width:0!important;padding:0!important;font-size:22px!important;}
+#trophyPage #mr344Stats{width:100%;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;flex:0 0 auto!important;}
+#trophyPage #mr344Stats .mr344Stat{min-width:0!important;box-sizing:border-box!important;min-height:0!important;padding:4px 2px!important;font-size:11px!important;line-height:1!important;border-radius:9px!important;}
+#trophyPage #mr344Stats .mr344Stat b{font-size:11px!important;line-height:1!important;margin:0!important;}
+#trophyPage #mr344Stats .mr344Hearts{font-size:13px!important;line-height:1!important;letter-spacing:1px!important;margin:0!important;}
+#trophyPage #mr344Message{width:100%;min-height:12px!important;line-height:1.05!important;font-size:10px!important;flex:0 0 auto!important;}
+/* La Home mantiene i tasti al centro, mentre il numero build è in basso sotto di essi. */
+#homeScreen .home-container{position:relative!important;}
+#homeScreen .mr373-home-build{display:block!important;position:absolute!important;left:50%!important;top:auto!important;bottom:max(8px,env(safe-area-inset-bottom,0px))!important;transform:translateX(-50%)!important;z-index:6!important;margin:0!important;text-align:center!important;white-space:nowrap!important;font-size:clamp(12px,1.8vh,15px)!important;font-weight:800!important;line-height:1.1!important;color:#4b365e!important;opacity:.84!important;pointer-events:none!important;}
+@media(max-height:730px){
+ #trophyPage .top-row{height:41px!important;}
+ #trophyPage .top-row .rainbow-title{font-size:clamp(1.1rem,3.2vw,2.25rem)!important;}
+ #trophyPage .top-row .menu-btn{width:35px!important;height:35px!important;min-width:35px!important;min-height:35px!important;}
+ #trophyPage #mr344Stats .mr344Stat{padding:2px 2px!important;}
+ #trophyPage #mr344Stats .mr344Hearts{font-size:11px!important;}
+ #trophyPage #mr344Message{min-height:11px!important;}
+}
+@media(max-width:700px){
+ #trophyPage .top-row{height:40px!important;}
+ #trophyPage #mr344Stats{gap:2px!important;}
+ #trophyPage #mr344Stats .mr344Stat{padding:2px 1px!important;font-size:9px!important;}
+ #trophyPage #mr344Stats .mr344Stat b{font-size:9px!important;}
+ #trophyPage #mr344Stats .mr344Hearts{font-size:10px!important;letter-spacing:0!important;}
 }
 </style>
 </body>

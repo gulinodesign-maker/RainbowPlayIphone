@@ -10268,6 +10268,7 @@ let currentSessionId = null;
 
 function normalizeSessionMR(value, fallbackId) {
   const src = value && typeof value === "object" ? value : {};
+  const spentSrc = src.spentRewards && typeof src.spentRewards === "object" ? src.spentRewards : {};
   const out = {
     id: Math.max(1, Math.floor(Number(src.id) || fallbackId || 1)),
     createdAt: Number(src.createdAt) || Date.now(),
@@ -10279,6 +10280,16 @@ function normalizeSessionMR(value, fallbackId) {
     blue: Math.max(0, Math.floor(Number(src.blue) || 0)),
     violet: Math.max(0, Math.floor(Number(src.violet) || 0)),
     pink: Math.max(0, Math.floor(Number(src.pink) || 0)),
+    spentRewards: {
+      bronze: Math.max(0, Math.floor(Number(spentSrc.bronze) || 0)),
+      silver: Math.max(0, Math.floor(Number(spentSrc.silver) || 0)),
+      gold: Math.max(0, Math.floor(Number(spentSrc.gold) || 0)),
+      green: Math.max(0, Math.floor(Number(spentSrc.green) || 0)),
+      cyan: Math.max(0, Math.floor(Number(spentSrc.cyan) || 0)),
+      blue: Math.max(0, Math.floor(Number(spentSrc.blue) || 0)),
+      violet: Math.max(0, Math.floor(Number(spentSrc.violet) || 0)),
+      pink: Math.max(0, Math.floor(Number(spentSrc.pink) || 0))
+    },
     tokens: Math.max(0, Math.floor(Number(src.tokens) || 0)),
     tokenMedalCount: Math.max(0, Math.floor(Number(src.tokenMedalCount) || 0)),
     levelProgressMarks: Array.isArray(src.levelProgressMarks) ? src.levelProgressMarks.slice() : []
@@ -19024,9 +19035,12 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   function mrSessionMedalArray(session){
     const out = [];
     if(!session) return out;
+    const spent = session.spentRewards && typeof session.spentRewards === 'object' ? session.spentRewards : {};
     MR_MEDAL_TYPES.forEach(type => {
-      const count = Math.max(0, Math.floor(Number(session[type]) || 0));
-      for(let i=0;i<count;i++) out.push(type);
+      const earned = Math.max(0, Math.floor(Number(session[type]) || 0));
+      const used = Math.max(0, Math.floor(Number(spent[type]) || 0));
+      const available = Math.max(0, earned - used);
+      for(let i=0;i<available;i++) out.push(type);
     });
     return out;
   }
@@ -25099,7 +25113,7 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-369.js?v=371"></script>
+<script src="Assets/mimo-rigged-369.js?v=372"></script>
 
 
 <style id="mr353-room-style">
@@ -25113,17 +25127,13 @@ scorePhoneDrawerSyncMR();
 #mr344Scene .mr353PositionTag:focus-visible{outline:4px solid #ffe27a;outline-offset:3px}
 #mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:25px;line-height:1;display:block}
 #mr344Scene .mr353PositionTag img{width:29px;height:29px;object-fit:contain;display:block}
-/* Target visivi: i tag rimangono sugli oggetti, non seguono Mìmo. */
 #mr344Bed{left:20%;top:27%}
 #mr344Bath{left:86%;top:30%}
 #mr344Fruit{left:50%;top:61%}
-/* Il vero modello WebGL di Mìmo vive dentro la scena. Posizione iniziale = centro tappeto. */
-body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%!important;top:49%!important;right:auto!important;bottom:auto!important;width:clamp(120px,20%,290px)!important;height:47%!important;max-height:390px!important;z-index:8!important;display:block!important;visibility:visible!important;pointer-events:none!important;transform:translate(-50%,-55%)!important;transition:left .82s cubic-bezier(.2,.75,.25,1),top .82s cubic-bezier(.2,.75,.25,1),width .45s ease,height .45s ease!important}
-/* Le coordinate sono calibrate sul punto d'appoggio delle zampe: non sul centro del canvas. */
-#mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(115px,18%,245px)!important;height:43%!important;z-index:11!important}
-#mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(118px,19%,255px)!important;height:43%!important;z-index:11!important}
+body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%!important;top:49%!important;right:auto!important;bottom:auto!important;width:clamp(120px,20%,290px)!important;height:47%!important;max-height:390px!important;z-index:8!important;display:block!important;visibility:visible!important;pointer-events:none!important;transform:translate(-50%,-55%)!important;transform-origin:50% 78%!important;transition:left .82s cubic-bezier(.2,.75,.25,1),top .82s cubic-bezier(.2,.75,.25,1),width .45s ease,height .45s ease,transform .45s ease,clip-path .45s ease!important;clip-path:none!important}
+#mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(135px,22%,280px)!important;height:34%!important;z-index:11!important;transform:translate(-50%,-49%) rotate(-89deg) scale(.96)!important}
+#mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(116px,18.7%,238px)!important;height:36%!important;z-index:11!important;transform:translate(-50%,-40%) scale(.97)!important;clip-path:inset(0 0 21% 0)!important}
 #mr344Scene[data-location="food"] #mimoBuddy{width:clamp(120px,20%,290px)!important;height:47%!important}
-/* Il tag del cibo resta cliccabile al centro del tappeto, ma non copre le zampe. */
 #mr344Scene[data-location="food"] #mr344Fruit{z-index:7;opacity:.82}
 #mr354WingControls{position:absolute;z-index:24;right:12px;top:12px;display:flex;align-items:center;gap:7px}
 #mr354WingControls button{border:1px solid rgba(255,255,255,.92);border-radius:11px;background:rgba(34,41,66,.88);color:#fff;font:750 12px/1.2 system-ui,sans-serif;min-height:42px;padding:8px 11px;box-shadow:0 3px 10px rgba(0,0,0,.23);cursor:pointer}
@@ -25133,94 +25143,129 @@ body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%
 #mimoSettingsSection .mr354WingSettings button{padding:9px 12px;border-radius:10px;border:1px solid #7d67b4;background:#eee6ff;color:#432769;font-weight:750}
 @media(max-width:700px){#mr354WingControls{right:7px;top:7px;gap:4px}#mr354WingControls button{font-size:11px;padding:6px;min-height:39px}}
 body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:100%!important;background:transparent!important}
-/* Inventario visibile DENTRO il cestino dell'illustrazione. Ogni tipo mostra la quantità reale. */
-#mr353BasketFruit{position:absolute;z-index:5;left:37.2%;bottom:12.8%;width:25.5%;height:13.5%;display:flex;align-items:flex-end;justify-content:center;gap:1.5%;pointer-events:none;padding:0 3%;box-sizing:border-box}
-.mr353FruitStack{position:relative;width:23%;height:92%;display:flex;align-items:flex-end;justify-content:center;transform-origin:50% 100%;animation:mr353FruitArrive .34s ease-out both}
-.mr353FruitStack img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px rgba(67,38,18,.28))}
-.mr353FruitCount{position:absolute;right:-4px;top:-2px;min-width:21px;height:21px;padding:0 5px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fff;color:#4b2e21;border:2px solid rgba(120,74,46,.28);font:800 11px/1 system-ui,sans-serif;box-sizing:border-box;box-shadow:0 2px 5px rgba(0,0,0,.15)}
-@keyframes mr353FruitArrive{from{transform:translateY(-16px) scale(.7);opacity:0}to{transform:none;opacity:1}}
+#mr353BasketFruit{position:absolute;z-index:16;left:37.4%;bottom:12.8%;width:25.2%;height:12.8%;pointer-events:none;box-sizing:border-box}
+.mr353FruitStack{position:absolute;left:var(--x,50%);bottom:var(--y,8%);width:calc(15% * var(--scale,1));height:calc(88% * var(--scale,1));display:flex;align-items:flex-end;justify-content:center;transform:translateX(-50%) rotate(var(--rot,0deg));transform-origin:50% 100%;pointer-events:auto;border:0;background:transparent;padding:0;margin:0;cursor:pointer;animation:mr353FruitArrive .34s ease-out both}
+.mr353FruitStack:disabled{cursor:default;opacity:.38}
+.mr353FruitStack img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(67,38,18,.28))}
+.mr353FruitCount{position:absolute;right:-4px;top:-2px;min-width:21px;height:21px;padding:0 5px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.96);color:#4b2e21;border:2px solid rgba(120,74,46,.28);font:800 11px/1 system-ui,sans-serif;box-sizing:border-box;box-shadow:0 2px 5px rgba(0,0,0,.15)}
+@keyframes mr353FruitArrive{from{transform:translateX(-50%) translateY(-16px) scale(.7) rotate(var(--rot,0deg));opacity:0}to{transform:translateX(-50%) rotate(var(--rot,0deg));opacity:1}}
 #mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;flex:0 0 auto}.mr344Stat{border-radius:12px;background:#fff2df;padding:7px 3px;text-align:center;font-size:12px;color:#6b4537}.mr344Stat b{display:block;font-size:12px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:15px}
 #mr344Message{text-align:center;font-size:13px;font-weight:750;min-height:20px;color:#70472e;flex:0 0 auto}
-#mr344Fruits{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;flex:0 0 auto}#mr344Fruits[hidden]{display:none!important}
-#mr344Fruits button{display:flex;align-items:center;gap:7px;min-height:47px;border-radius:14px;padding:5px 10px;border:1px solid #cfa98b;background:#fff;font-size:14px;font-weight:750;color:#5f3b2e;box-shadow:0 2px 7px rgba(70,42,26,.10)}
-#mr344Fruits button:disabled{opacity:.42}#mr344Fruits button img{width:36px;height:36px;object-fit:contain}
+#mr344Fruits,#mr344Fruits[hidden]{display:none!important}
 @media(max-height:700px){#mr344Scene{min-height:205px;max-height:calc(100dvh - 170px)}body.mr353-room-open #mr344Scene #mimoBuddy{height:45%}#mr344Stats{gap:4px}.mr344Stat{padding:4px 2px}}
-@media(max-width:700px){#mr344Scene .mr353PositionTag{width:38px;height:38px}#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:20px}#mr344Scene .mr353PositionTag img{width:24px;height:24px}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){#mr344Scene .mr353PositionTag{width:38px;height:38px}#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:20px}#mr344Scene .mr353PositionTag img{width:24px;height:24px}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}#mr353BasketFruit{left:36.8%;width:26.7%;height:13.2%}.mr353FruitStack{width:calc(16.5% * var(--scale,1))}}
 @media(prefers-reduced-motion:reduce){#mr344Scene .mr353PositionTag,body.mr353-room-open #mr344Scene #mimoBuddy{transition:none!important}.mr353FruitStack{animation:none!important}}
 </style>
 <script id="mr353-room-script">
-(()=>{'use strict';
-const KEY='mr353_pet';const LEGACY_KEY='mr344_pet';
-const clamp=x=>Math.max(0,Math.min(4,Number(x)||0));
-// Una ricompensa diversa per ciascuno degli otto livelli.
-// Le chiavi dei quattro frutti storici non cambiano: i progressi locali restano validi.
+(()=>{
+const key='musicRainbowMimoRoomV1';
 const fruitKinds=['apple','banana','strawberry','grapes','pear','orange','peach','cherries'];
 const fruitInfo={
- apple:{name:'Mela',asset:'Assets/room/fruit-apple.svg',level:1},
- banana:{name:'Banana',asset:'Assets/room/fruit-banana.svg',level:2},
- strawberry:{name:'Fragola',asset:'Assets/room/fruit-strawberry.svg',level:3},
- grapes:{name:'Uva',asset:'Assets/room/fruit-grapes.svg',level:4},
- pear:{name:'Pera',asset:'Assets/room/fruit-pear.svg',level:5},
- orange:{name:'Arancia',asset:'Assets/room/fruit-orange.svg',level:6},
- peach:{name:'Pesca',asset:'Assets/room/fruit-peach.svg',level:7},
- cherries:{name:'Ciliegie',asset:'Assets/room/fruit-cherries.svg',level:8}
+ apple:{name:'Mela',asset:'Assets/room/fruit-apple.svg',level:1,medal:'bronze'},
+ banana:{name:'Banana',asset:'Assets/room/fruit-banana.svg',level:2,medal:'silver'},
+ strawberry:{name:'Fragola',asset:'Assets/room/fruit-strawberry.svg',level:3,medal:'gold'},
+ grapes:{name:'Uva',asset:'Assets/room/fruit-grapes.svg',level:4,medal:'green'},
+ pear:{name:'Pera',asset:'Assets/room/fruit-pear.svg',level:5,medal:'cyan'},
+ orange:{name:'Arancia',asset:'Assets/room/fruit-orange.svg',level:6,medal:'blue'},
+ peach:{name:'Pesca',asset:'Assets/room/fruit-peach.svg',level:7,medal:'violet'},
+ cherries:{name:'Ciliegie',asset:'Assets/room/fruit-cherries.svg',level:8,medal:'pink'}
 };
 const rewardMap={bronze:'apple',silver:'banana',gold:'strawberry',green:'grapes',cyan:'pear',blue:'orange',violet:'peach',pink:'cherries'};
+const basketSlots={
+ apple:{x:'10%',y:'15%',scale:1.02,rot:'-8deg'},
+ banana:{x:'22%',y:'9%',scale:.92,rot:'-6deg'},
+ strawberry:{x:'33%',y:'6%',scale:.64,rot:'-9deg'},
+ grapes:{x:'43%',y:'5%',scale:.67,rot:'-3deg'},
+ pear:{x:'53%',y:'7%',scale:.70,rot:'2deg'},
+ orange:{x:'64%',y:'6%',scale:.79,rot:'5deg'},
+ peach:{x:'77%',y:'10%',scale:.96,rot:'6deg'},
+ cherries:{x:'89%',y:'13%',scale:.84,rot:'8deg'}
+};
 let state={food:3,sleep:3,clean:3,happy:3,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
-try{
- let raw=localStorage.getItem(KEY);if(!raw)raw=localStorage.getItem(LEGACY_KEY);
- const stored=raw?JSON.parse(raw):null;if(stored&&typeof stored==='object')state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}};
-}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));localStorage.removeItem(LEGACY_KEY)}catch(e){}}
-function tick(){const now=Date.now(),hours=Math.max(0,Math.min(72,(now-(Number(state.last)||now))/3600000));if(hours>=6){const n=Math.floor(hours/6);state.food=clamp(state.food-n);state.sleep=clamp(state.sleep-Math.floor(n/2));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
+const clamp=n=>Math.max(0,Math.min(4,Math.round(Number(n)||0)));
+function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
+function load(){try{
+ const raw=localStorage.getItem(key);
+ const stored=raw?JSON.parse(raw):null;
+ if(stored&&typeof stored==='object')state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}};
+}catch(e){}}
+load();
+function tick(){const now=Date.now(),last=Math.max(0,Number(state.last)||0);if(!last){state.last=now;return}const d=now-last;if(d<180000)return;const n=Math.floor(d/180000);if(n>0){state.food=clamp(state.food-Math.floor((n+1)/2));state.sleep=clamp(state.sleep-Math.floor((n+2)/3));state.happy=clamp(state.happy-Math.floor(n/3));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
  const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><div id="mr353BasketFruit" aria-label="Frutta nel cestino"></div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button><button class="mr353PositionTag" id="mr344Fruit" type="button" aria-label="Mangia al centro del tappeto" title="Scegli un frutto"><img src="Assets/room/fruit-apple.svg" alt=""></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
- // Coordinate nel rettangolo dell'immagine della stanza: top è il centro del canvas,
- // la posizione visibile delle zampe è circa 12 punti percentuali più in basso.
- // Letto = superficie del materasso; vasca = interno della vasca;
- // cibo = tappeto, LONTANO dal bordo del cestino sul tavolo in primo piano.
- const positions={food:{left:'50%',top:'49%'},bed:{left:'20%',top:'31%'},bath:{left:'86%',top:'35%'}};
- function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==scene)scene.appendChild(host);if(animate)window.MimoMotion?.walk?.(900);scene.dataset.location=target;window.MimoMotion?.sleep?.(target==='bed');host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');}
+ const positions={food:{left:'50%',top:'49%'},bed:{left:'20%',top:'32%'},bath:{left:'86.1%',top:'40.2%'}};
+ function clearPose(){window.MimoExpressions?.clear?.();window.MimoMood?.clearPreview?.();}
+ function applyPose(target){
+  if(target==='bed'){
+   window.MimoMood?.preview?.('assonnato',15000);
+   window.MimoExpressions?.set?.('closed');
+   window.MimoWings?.close?.(15000);
+  }else if(target==='bath'){
+   window.MimoMood?.preview?.('contento',7000);
+   window.MimoExpressions?.set?.('tired',7000);
+   window.MimoWings?.close?.(7500);
+  }else{
+   clearPose();
+  }
+ }
+ function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==scene)scene.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
  function setMessage(text){msg.textContent=text||''}
  function updateMood(){
   const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
   const mood=needs>=3?'stressato':state.food<=1?'affamato':state.sleep<=1?'assonnato':
    state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'entusiasta':
    state.food>=4?'sazio':state.sleep>=4?'rilassato':state.happy>=3?'felice':'contento';
-  window.MimoMood?.set?.(mood)
+  if(scene.dataset.location==='bed')window.MimoMood?.set?.('riposo');else window.MimoMood?.set?.(mood)
  }
  function renderBasket(){
   basket.replaceChildren();
-  const occupied=fruitKinds;
-  basket.classList.toggle('mr371TwoRows',occupied.length>4);
+  const occupied=fruitKinds.filter(kind=>Math.max(0,Math.floor(Number(state.fruits?.[kind])||0))>0);
+  basket.setAttribute('aria-label',occupied.length?'Frutta disponibile nel cestino':'Il cestino è vuoto');
   for(const kind of occupied){
    const count=Math.max(0,Math.floor(Number(state.fruits[kind])||0));
-   const wrap=document.createElement('div');wrap.className='mr353FruitStack'+(count?' is-owned':' is-empty');wrap.dataset.kind=kind;wrap.title=`${fruitInfo[kind].name}: ${count}`;
-   const img=document.createElement('img');img.src=fruitInfo[kind].asset;img.alt=fruitInfo[kind].name;
+   const slot=basketSlots[kind]||{x:'50%',y:'8%',scale:.8,rot:'0deg'};
+   const wrap=document.createElement('button');wrap.type='button';wrap.className='mr353FruitStack';wrap.dataset.kind=kind;
+   wrap.style.setProperty('--x',slot.x);wrap.style.setProperty('--y',slot.y);wrap.style.setProperty('--scale',String(slot.scale));wrap.style.setProperty('--rot',slot.rot);
+   wrap.setAttribute('aria-label',`${fruitInfo[kind].name}, disponibili ${count}: dai questo frutto a Mìmo`);
+   wrap.title=`${fruitInfo[kind].name} — disponibili ${count}`;
+   wrap.addEventListener('click',()=>{moveMimo('food');eat(kind)});
+   const img=document.createElement('img');img.src=fruitInfo[kind].asset;img.alt='';
    wrap.appendChild(img);
    const badge=document.createElement('span');badge.className='mr353FruitCount';badge.textContent=String(count);
    wrap.appendChild(badge);basket.appendChild(wrap)
   }
  }
- function renderPicker(){fruitPicker.replaceChildren();for(const kind of fruitKinds){const info=fruitInfo[kind],count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0)),button=document.createElement('button');button.type='button';button.dataset.kind=kind;button.disabled=count<=0;button.setAttribute('aria-label',`${info.name}, livello ${info.level}, disponibili ${count}: fai mangiare Mìmo`);button.title=`${info.name} (livello ${info.level}) — disponibili ${count}`;button.innerHTML=`<img src="${info.asset}" alt="" aria-hidden="true"><span class="mr359FruitQuantity" aria-hidden="true">${count}</span>`;button.addEventListener('click',()=>eat(kind));fruitPicker.appendChild(button)}}
- function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat">${ico}<b>${label}</b><div class="mr344Hearts">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</div></div>`).join('');renderBasket();renderPicker();updateMood();window.dispatchEvent(new CustomEvent('mr-fruit-inventory-changed',{detail:{fruits:{...state.fruits}}}));save()}
- function eat(kind){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}moveMimo('food');state.fruits[kind]=count-1;state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);window.MimoMotion?.eat?.();setMessage(`Mìmo mangia ${fruitInfo[kind].name.toLowerCase()} sul tappeto.`);refresh()}
+ function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
+ function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat">${ico}<b>${label}</b><div class="mr344Hearts">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</div></div>`).join('');renderBasket();renderPicker();updateMood();save()}
+ function markSessionFruitConsumed(kind){
+  const session=(typeof getCurrentSession==='function')?getCurrentSession():null;
+  const type=fruitInfo[kind]?.medal;
+  if(!session||!type)return;
+  const spent=session.spentRewards&&typeof session.spentRewards==='object'?session.spentRewards:(session.spentRewards={});
+  const earned=Math.max(0,Math.floor(Number(session[type])||0));
+  const used=Math.max(0,Math.floor(Number(spent[type])||0));
+  if(used>=earned)return;
+  spent[type]=used+1;
+  if(typeof saveSessionsToStorage==='function')saveSessionsToStorage();
+  if(typeof updateSessionTopbarMedalsMR==='function')updateSessionTopbarMedalsMR();
+ }
+ function eat(kind){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}moveMimo('food');state.fruits[kind]=count-1;markSessionFruitConsumed(kind);state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);window.MimoMotion?.eat?.();window.MimoExpressions?.set?.('standard',2400);setMessage(`Mìmo mangia ${fruitInfo[kind].name.toLowerCase()} vicino al cestino.`);refresh()}
  const closeWing=room.querySelector('#mr354CloseWings'),openWing=room.querySelector('#mr354OpenWings');
  closeWing.addEventListener('click',()=>{if(!window.MimoWings?.close?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}closeWing.setAttribute('aria-pressed','true');openWing.setAttribute('aria-pressed','false');setMessage('Mìmo ripiega le ali gradualmente. Continua a respirare e muoversi.')});
  openWing.addEventListener('click',()=>{if(!window.MimoWings?.open?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}openWing.setAttribute('aria-pressed','true');closeWing.setAttribute('aria-pressed','false');setMessage('Mìmo apre le ali gradualmente.')});
- room.querySelector('#mr344Bed').addEventListener('click',()=>{moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.sleep=4;state.happy=clamp(state.happy+1);window.MimoWings?.close?.(11000);refresh();setMessage('Mìmo riposa sul materasso, con le ali raccolte.')},900)});
- room.querySelector('#mr344Bath').addEventListener('click',()=>{moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=4;state.happy=clamp(state.happy+1);window.MimoWings?.close?.(7500);refresh();setMessage('Mìmo si lava nella vasca.')},900)});
- basket.style.pointerEvents='auto';basket.addEventListener('click',e=>{const item=e.target.closest('.mr353FruitStack');if(item?.dataset.kind)eat(item.dataset.kind)});room.querySelector('#mr344Fruit').addEventListener('click',()=>{moveMimo('food');setMessage('Tocca un frutto nel cestino per darlo a Mìmo.')});
+ room.querySelector('#mr344Bed').addEventListener('click',()=>{moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.sleep=4;state.happy=clamp(state.happy+1);applyPose('bed');refresh();setMessage('Mìmo dorme coricato sul materasso, con gli occhi chiusi.')},900)});
+ room.querySelector('#mr344Bath').addEventListener('click',()=>{moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=4;state.happy=clamp(state.happy+1);applyPose('bath');refresh();setMessage('Mìmo si lava dentro la vasca.')},900)});
+ room.querySelector('#mr344Fruit').addEventListener('click',()=>{moveMimo('food');fruitPicker.hidden=true;setMessage(Object.values(state.fruits||{}).some(Number)?'Tocca un frutto dentro il cestino.':'Il cestino è vuoto: conquista frutta suonando.')});
  window.MimoCare={
    awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: è nel cestino di Mìmo.`);return true},
    awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
- function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform')}return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh()}
+ function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh()}
  new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
  const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
  syncRoom();refresh();return true;
@@ -25345,45 +25390,6 @@ body.mr357-lab-open #mr357LabPreview #mimoBuddy{position:absolute!important;disp
 @media(max-width:670px){#mr357Lab .mr361EyeButtons{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;}#mr357Lab .mr361EyeButtons button{min-height:46px;}}
 </style>
 
-<style id="mr371-room-topbar-fruit-layout">
-/* Same horizontal edges for room header and illustrated scene (iPad and iPhone). */
-#trophyPage .app{--mr371-room-gutter:clamp(8px,1.05vw,16px);width:100%!important;max-width:none!important;box-sizing:border-box!important;padding-left:0!important;padding-right:0!important;}
-#trophyPage .top-panel{width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important;padding:0 var(--mr371-room-gutter)!important;margin:0!important;}
-#trophyPage .top-row{width:100%!important;max-width:none!important;box-sizing:border-box!important;margin:0 0 4px!important;min-width:0!important;}
-#trophyPage .trophy-main{width:100%!important;max-width:none!important;box-sizing:border-box!important;margin:0!important;padding:0 var(--mr371-room-gutter) 0!important;}
-#trophyPage #mr344Room{width:100%!important;box-sizing:border-box!important;}
-#trophyPage #mr344Scene{width:100%!important;box-sizing:border-box!important;}
-/* Eight distinct fruit varieties without overflowing the illustrated basket. */
-#mr353BasketFruit{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr;align-items:end;justify-items:center;column-gap:1px;row-gap:0;padding:0 4%!important;}
-#mr353BasketFruit.mr371TwoRows{grid-template-rows:repeat(2,minmax(0,1fr));}
-#mr353BasketFruit .mr353FruitStack{width:100%!important;max-width:100%!important;min-width:0;height:100%!important;align-items:end;}
-#mr353BasketFruit .mr353FruitStack img{max-height:100%;object-fit:contain;}
-#mr353BasketFruit .mr353FruitCount{right:-1px;top:-1px;min-width:16px;height:16px;padding:0 2px;font:800 10px/16px system-ui,sans-serif;}
-#mr344Fruits:not([hidden]){display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;justify-content:center;width:min(100%,680px);margin:0 auto;align-items:center;}
-#mr344Fruits button{min-width:0;width:100%!important;max-width:65px;height:clamp(38px,5.6vw,65px);min-height:38px!important;padding:3px!important;justify-self:center;}
-#mr344Fruits button img{width:100%;height:100%;max-height:48px;object-fit:contain;}
-@media(max-width:650px){
- #trophyPage .app{--mr371-room-gutter:8px;}
- #trophyPage .top-row{margin-bottom:3px!important;}
- #mr344Fruits:not([hidden]){grid-template-columns:repeat(4,minmax(0,1fr));max-width:320px;gap:4px;}
- #mr344Fruits button{width:58px!important;height:52px;}
-}
-/* Legacy heart button can never return from an older cached inline script. */
-#mr344Heart,button[data-mimo-heart="1"]{display:none!important;}
-</style>
-<style id="mr372-room-corrections">
-/* Inventario sempre all'interno del cesto: otto sagome, grigie quando vuote. */
-#mr353BasketFruit{left:38.1%!important;width:23.8%!important;bottom:16.7%!important;height:9.6%!important;z-index:9!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;grid-template-rows:1fr!important;gap:0!important;padding:0 1%!important;pointer-events:auto!important;align-items:end!important}
-#mr353BasketFruit .mr353FruitStack{height:100%!important;cursor:pointer;pointer-events:auto;overflow:visible}
-#mr353BasketFruit .mr353FruitStack img{width:100%;height:100%;object-fit:contain;opacity:.96;filter:drop-shadow(0 1px 2px #54331d)}
-#mr353BasketFruit .mr353FruitStack.is-empty img{opacity:.27;filter:grayscale(1)}
-#mr353BasketFruit .mr353FruitCount{top:-12px;right:0;min-width:14px;height:14px;font:800 9px/14px system-ui,sans-serif;background:#fff8e9;color:#59361f;border:1px solid #8b6042}
-#mr353BasketFruit .mr353FruitStack.is-empty .mr353FruitCount{opacity:.65}
-#mr344Fruits{display:none!important}
-/* Mimo riposa orizzontalmente sul letto, non in piedi. */
-#mr344Scene[data-location="bed"] #mimoBuddy{transform:translate(-50%,-55%) rotate(-72deg) scale(.78)!important;transform-origin:50% 65%!important}
-/* La sagoma si abbassa dentro la vasca; il bordo in primo piano nasconde le zampe. */
-#mr344Scene[data-location="bath"] #mimoBuddy{transform:translate(-50%,-35%) scale(.83)!important;clip-path:inset(0 0 19% 0)!important}
-</style>
+
 </body>
 </html>

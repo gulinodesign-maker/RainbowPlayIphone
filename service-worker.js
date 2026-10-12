@@ -1,4 +1,4 @@
-/* Music Rainbow Service Worker - Build 2.369 */
+/* Music Rainbow Service Worker - Build 2.369; bypass large GLB; safe cache errors */
 const BUILD = "2.369";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
@@ -21,7 +21,6 @@ const CORE_PRECACHE_URLS = [
   "./Assets/staff-base-treble.png",
   "./Assets/MusicRainbow-SMuFL.woff2",
   "./Assets/mimo-rigged-369.js",
-  "./Assets/mimo-orecchie-365.glb",
   "./Assets/room/room-background.jpg",
   "./Assets/room/fruit-apple.svg",
   "./Assets/room/fruit-banana.svg",
@@ -33,11 +32,14 @@ const CORE_PRECACHE_URLS = [
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
     const precache = await caches.open(PRECACHE);
-    await Promise.all(CORE_PRECACHE_URLS.map(async url => {
+    // I file di grandi dimensioni vengono richiesti direttamente dal renderer:
+    // un singolo errore GitHub/CDN non deve invalidare l'intero aggiornamento.
+    await Promise.allSettled(CORE_PRECACHE_URLS.map(async url => {
       const req = new Request(url, { cache: "reload" });
       const res = await fetch(req);
       if (!res || !res.ok) throw new Error(`Precache failed: ${url}`);
-      await precache.put(req, res.clone());
+      try { await precache.put(req, res.clone()); }
+      catch (e) { console.warn('[MR precache]', url, e); }
     }));
     await self.skipWaiting();
   })());
@@ -61,30 +63,45 @@ self.addEventListener("message", event => {
 });
 
 async function cacheFirst(request) {
-  const cached = await caches.match(request) || await caches.match(request, { ignoreSearch: true });
-  if (cached) return cached;
-  const res = await fetch(request);
-  if (res && res.ok) {
-    const cache = await caches.open(RUNTIME);
-    cache.put(request, res.clone());
+  try {
+    const cached = await caches.match(request) || await caches.match(request, { ignoreSearch: true });
+    if (cached) return cached;
+  } catch (e) { console.warn('[MR cache read]', e); }
+  try {
+    const res = await fetch(request);
+    if (res && res.ok) {
+      // Non aspettare che il salvataggio abbia successo prima di restituire la risposta.
+      try {
+        const cache = await caches.open(RUNTIME);
+        await cache.put(request, res.clone());
+      } catch (e) { console.warn('[MR cache write]', e); }
+    }
+    return res;
+  } catch (e) {
+    return new Response('Risorsa non disponibile; verifica la connessione o la pubblicazione su GitHub.',
+      { status: 503, statusText: 'Resource unavailable' });
   }
-  return res;
 }
 
 async function networkFirst(request) {
   try {
     const res = await fetch(request, { cache: "no-store" });
     if (res && res.ok) {
-      const cache = await caches.open(PRECACHE);
-      cache.put(request, res.clone());
+      try {
+        const cache = await caches.open(PRECACHE);
+        await cache.put(request, res.clone());
+      } catch (e) { console.warn('[MR navigation cache]', e); }
     }
     return res;
   } catch (e) {
-    const cached = await caches.match(request, { ignoreSearch: true });
-    if (cached) return cached;
-    const indexCached = await caches.match("./index.html", { ignoreSearch: true });
-    if (indexCached) return indexCached;
-    throw e;
+    try {
+      const cached = await caches.match(request, { ignoreSearch: true });
+      if (cached) return cached;
+      const indexCached = await caches.match("./index.html", { ignoreSearch: true });
+      if (indexCached) return indexCached;
+    } catch (cacheError) { console.warn('[MR offline cache]', cacheError); }
+    return new Response('Music Rainbow non disponibile: connessione o cache mancanti.',
+      { status: 503, statusText: 'Offline' });
   }
 }
 
@@ -102,6 +119,9 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  // iOS/WebKit può fallire salvando un GLB da 25 MB nel Cache API.
+  // Lasciamo le richieste GLB fuori dal service worker, anche nelle web app installate.
+  if (url.pathname.toLowerCase().endsWith('.glb')) return;
   if (req.mode === "navigate" || req.destination === "document") {
     event.respondWith(networkFirst(req));
     return;
@@ -118,5 +138,11 @@ self.addEventListener("fetch", event => {
     event.respondWith(cacheFirst(req));
     return;
   }
-  event.respondWith(fetch(req).catch(() => caches.match(req)));
+  event.respondWith((async () => {
+    try { return await fetch(req); }
+    catch (e) {
+      try { const cached = await caches.match(req); if (cached) return cached; } catch (_) {}
+      return new Response('Rete non disponibile', { status: 503, statusText: 'Offline' });
+    }
+  })());
 });

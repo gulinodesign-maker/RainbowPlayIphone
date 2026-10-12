@@ -6240,6 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.373</div>
   </div>
 </div>
 
@@ -19056,10 +19057,6 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
     if(!track) return;
     track.innerHTML = '';
     if(!Array.isArray(medals) || !medals.length){
-      const empty = document.createElement('div');
-      empty.className = 'session-medal-icon medal-empty';
-      empty.setAttribute('aria-hidden','true');
-      track.appendChild(empty);
       track.setAttribute('aria-label', 'Frutta sessione: 0');
       return;
     }
@@ -19439,23 +19436,23 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 .medal-circle::before,.medal-circle::after{content:none!important;display:none!important;}
 .medal-icon span,.medal-circle span{display:none!important;}
 
-.medal-icon.bronze,.medal-circle.bronze,.session-medal-icon.bronze{background-image:url("Assets/room/fruit-apple.svg?v=2.373")!important;}
-.medal-icon.silver,.medal-circle.silver,.session-medal-icon.silver{background-image:url("Assets/room/fruit-banana.svg?v=2.373")!important;}
-.medal-icon.gold,.medal-circle.gold,.session-medal-icon.gold{background-image:url("Assets/room/fruit-strawberry.svg?v=2.373")!important;}
-.medal-icon.green,.medal-circle.green,.session-medal-icon.green{background-image:url("Assets/room/fruit-grapes.svg?v=2.373")!important;}
-.medal-icon.cyan,.medal-circle.cyan,.session-medal-icon.cyan{background-image:url("Assets/room/fruit-pear.svg?v=2.373")!important;}
-.medal-icon.blue,.medal-circle.blue,.session-medal-icon.blue{background-image:url("Assets/room/fruit-orange.svg?v=2.373")!important;}
-.medal-icon.violet,.medal-circle.violet,.session-medal-icon.violet{background-image:url("Assets/room/fruit-peach.svg?v=2.373")!important;}
-.medal-icon.pink,.medal-circle.pink,.session-medal-icon.pink{background-image:url("Assets/room/fruit-cherries.svg?v=2.373")!important;}
+.medal-icon.bronze,.medal-circle.bronze,.session-medal-icon.bronze{background-image:url("Assets/room/fruit-apple.png?v=2.373")!important;}
+.medal-icon.silver,.medal-circle.silver,.session-medal-icon.silver{background-image:url("Assets/room/fruit-banana.png?v=2.373")!important;}
+.medal-icon.gold,.medal-circle.gold,.session-medal-icon.gold{background-image:url("Assets/room/fruit-strawberry.png?v=2.373")!important;}
+.medal-icon.green,.medal-circle.green,.session-medal-icon.green{background-image:url("Assets/room/fruit-grapes.png?v=2.373")!important;}
+.medal-icon.cyan,.medal-circle.cyan,.session-medal-icon.cyan{background-image:url("Assets/room/fruit-pear.png?v=2.373")!important;}
+.medal-icon.blue,.medal-circle.blue,.session-medal-icon.blue{background-image:url("Assets/room/fruit-orange.png?v=2.373")!important;}
+.medal-icon.violet,.medal-circle.violet,.session-medal-icon.violet{background-image:url("Assets/room/fruit-peach.png?v=2.373")!important;}
+.medal-icon.pink,.medal-circle.pink,.session-medal-icon.pink{background-image:url("Assets/room/fruit-cherries.png?v=2.373")!important;}
 
-#rainbowOverlayL1 .medal-circle,#finalOverlayL1 .medal-circle{background-image:url("Assets/room/fruit-apple.svg?v=2.373")!important;}
-#rainbowOverlay .medal-circle,#finalOverlayL2 .medal-circle{background-image:url("Assets/room/fruit-banana.svg?v=2.373")!important;}
-#rainbowOverlayL3 .medal-circle,#finalOverlayL3 .medal-circle{background-image:url("Assets/room/fruit-strawberry.svg?v=2.373")!important;}
-#rainbowOverlayL4 .medal-circle{background-image:url("Assets/room/fruit-grapes.svg?v=2.373")!important;}
-#rainbowOverlayL5 .medal-circle{background-image:url("Assets/room/fruit-pear.svg?v=2.373")!important;}
-#rainbowOverlayL6 .medal-circle{background-image:url("Assets/room/fruit-orange.svg?v=2.373")!important;}
-#rainbowOverlayL7 .medal-circle{background-image:url("Assets/room/fruit-peach.svg?v=2.373")!important;}
-#rainbowOverlayL8 .medal-circle{background-image:url("Assets/room/fruit-cherries.svg?v=2.373")!important;}
+#rainbowOverlayL1 .medal-circle,#finalOverlayL1 .medal-circle{background-image:url("Assets/room/fruit-apple.png?v=2.373")!important;}
+#rainbowOverlay .medal-circle,#finalOverlayL2 .medal-circle{background-image:url("Assets/room/fruit-banana.png?v=2.373")!important;}
+#rainbowOverlayL3 .medal-circle,#finalOverlayL3 .medal-circle{background-image:url("Assets/room/fruit-strawberry.png?v=2.373")!important;}
+#rainbowOverlayL4 .medal-circle{background-image:url("Assets/room/fruit-grapes.png?v=2.373")!important;}
+#rainbowOverlayL5 .medal-circle{background-image:url("Assets/room/fruit-pear.png?v=2.373")!important;}
+#rainbowOverlayL6 .medal-circle{background-image:url("Assets/room/fruit-orange.png?v=2.373")!important;}
+#rainbowOverlayL7 .medal-circle{background-image:url("Assets/room/fruit-peach.png?v=2.373")!important;}
+#rainbowOverlayL8 .medal-circle{background-image:url("Assets/room/fruit-cherries.png?v=2.373")!important;}
 
 .session-medal-icon.medal-empty{
   background-image:none!important;
@@ -25120,112 +25117,89 @@ scorePhoneDrawerSyncMR();
 #trophyPage .app{min-height:0!important;overflow:hidden!important}
 #trophyPage .trophy-main{display:flex!important;flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;padding:6px!important;box-sizing:border-box!important}
 #mr344Room{display:flex;flex-direction:column;gap:7px;min-height:0;min-width:0;flex:1;padding:0;overflow:hidden;background:transparent}
-#mr344Scene{display:block;position:relative;flex:1 1 auto;min-height:250px;max-height:calc(100dvh - 214px);aspect-ratio:3/2;overflow:hidden;border-radius:14px;background:#efd3b8;isolation:isolate;box-shadow:0 8px 22px rgba(73,45,27,.16)}
-#mr344Scene .mr373Background{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:0;pointer-events:none;display:block}
-#mr344Scene .mr373ObjectButton{position:absolute;display:block;border:0;background:transparent;padding:0;margin:0;cursor:pointer;touch-action:manipulation;z-index:4}
-#mr344Scene .mr373ObjectButton img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 8px 10px rgba(74,45,28,.20))}
-#mr344BedTarget{left:3.2%;bottom:10.8%;width:32%;aspect-ratio:1349/873}
-#mr344BathTarget{right:2.6%;bottom:10.2%;width:26%;aspect-ratio:1366/966}
-#mr353BasketObject{position:absolute;left:50%;bottom:7.4%;width:30%;aspect-ratio:1448/1086;transform:translateX(-50%);z-index:7}
-#mr353BasketObject .mr373BasketBase,#mr353BasketObject .mr373BasketFull{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;display:block}
-#mr353BasketObject .mr373BasketLayer{position:absolute;inset:0;z-index:2;pointer-events:none}
-#mr353BasketObject .mr373BasketLayer .mr373FruitVisual{position:absolute;inset:0;background:url("Assets/room/fruit-basket-full-2.373.png?v=2.373") center/100% 100% no-repeat;opacity:0;transition:opacity .18s ease;pointer-events:none}
-#mr353BasketObject .mr373FruitHotspots{position:absolute;inset:0;z-index:3}
-#mr353BasketObject .mr373FruitHit{position:absolute;border:0;background:transparent;padding:0;cursor:pointer;touch-action:manipulation;border-radius:18px}
-#mr353BasketObject .mr373FruitHit:disabled{cursor:default}
-#mr353BasketObject .mr373FruitHit:focus-visible{outline:3px solid #f5ba2f;outline-offset:2px}
-#mr353BasketObject .mr373FruitBadge{position:absolute;right:-3px;top:-5px;min-width:22px;height:22px;padding:0 5px;border-radius:12px;background:rgba(255,255,255,.96);color:#4b2e21;border:2px solid rgba(120,74,46,.28);font:800 12px/18px system-ui,sans-serif;display:flex;align-items:center;justify-content:center;box-sizing:border-box;box-shadow:0 2px 5px rgba(0,0,0,.14)}
+#mr344Scene{display:block;position:relative;flex:1 1 auto;min-height:250px;max-height:calc(100dvh - 214px);aspect-ratio:3/2;overflow:hidden;border-radius:14px;background:#e9c5ac;isolation:isolate;box-shadow:0 8px 22px rgba(73,45,27,.16)}
+#mr344Scene .mr353Background{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:0;pointer-events:none;display:block}
+#mr344Scene .mr353PositionTag{position:absolute;z-index:20;display:flex;align-items:center;justify-content:center;width:48px;height:48px;padding:0;border:2px solid rgba(255,255,255,.98);border-radius:50%;background:rgba(45,43,70,.82);color:#fff;box-shadow:0 4px 13px rgba(0,0,0,.30);cursor:pointer;touch-action:manipulation;transform:translate(-50%,-50%);transition:transform .16s ease,background .16s ease}
+#mr344Scene .mr353PositionTag:active{transform:translate(-50%,-50%) scale(.90);background:#7250b8}
+#mr344Scene .mr353PositionTag:focus-visible{outline:4px solid #ffe27a;outline-offset:3px}
+#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:25px;line-height:1;display:block}
+#mr344Scene .mr353PositionTag img{width:29px;height:29px;object-fit:contain;display:block}
+#mr344Bed{left:20%;top:27%}
+#mr344Bath{left:86%;top:30%}
+#mr344Fruit{left:50%;top:61%}
+body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%!important;top:49%!important;right:auto!important;bottom:auto!important;width:clamp(120px,20%,290px)!important;height:47%!important;max-height:390px!important;z-index:8!important;display:block!important;visibility:visible!important;pointer-events:none!important;transform:translate(-50%,-55%)!important;transform-origin:50% 78%!important;transition:left .82s cubic-bezier(.2,.75,.25,1),top .82s cubic-bezier(.2,.75,.25,1),width .45s ease,height .45s ease,transform .45s ease,clip-path .45s ease!important;clip-path:none!important}
+#mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(135px,22%,280px)!important;height:34%!important;z-index:11!important;transform:translate(-50%,-49%) rotate(-89deg) scale(.96)!important}
+#mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(116px,18.7%,238px)!important;height:36%!important;z-index:11!important;transform:translate(-50%,-40%) scale(.97)!important;clip-path:inset(0 0 21% 0)!important}
+#mr344Scene[data-location="food"] #mimoBuddy{width:clamp(120px,20%,290px)!important;height:47%!important}
+#mr344Scene[data-location="food"] #mr344Fruit{z-index:7;opacity:.82}
 #mr354WingControls{position:absolute;z-index:24;right:12px;top:12px;display:flex;align-items:center;gap:7px}
 #mr354WingControls button{border:1px solid rgba(255,255,255,.92);border-radius:11px;background:rgba(34,41,66,.88);color:#fff;font:750 12px/1.2 system-ui,sans-serif;min-height:42px;padding:8px 11px;box-shadow:0 3px 10px rgba(0,0,0,.23);cursor:pointer}
 #mr354WingControls button:focus-visible{outline:3px solid #fbd34b;outline-offset:2px}
 #mr354WingControls button[aria-pressed="true"]{background:#6e3fab}
 #mimoSettingsSection .mr354WingSettings{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
 #mimoSettingsSection .mr354WingSettings button{padding:9px 12px;border-radius:10px;border:1px solid #7d67b4;background:#eee6ff;color:#432769;font-weight:750}
-body.mr373-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%!important;top:48.5%!important;right:auto!important;bottom:auto!important;width:clamp(122px,19%,285px)!important;height:45%!important;max-height:390px!important;z-index:9!important;display:block!important;visibility:visible!important;pointer-events:none!important;transform:translate(-50%,-56%)!important;transform-origin:50% 78%!important;transition:left .82s cubic-bezier(.2,.75,.25,1),top .82s cubic-bezier(.2,.75,.25,1),width .45s ease,height .45s ease,transform .45s ease,clip-path .45s ease!important;clip-path:none!important}
-body.mr373-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:100%!important;background:transparent!important}
-#mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(118px,18.5%,245px)!important;height:27%!important;z-index:8!important;transform:translate(-50%,-46%) rotate(-92deg) scale(.92)!important;clip-path:inset(0 0 37% 0)!important}
-#mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(110px,17.5%,225px)!important;height:31%!important;z-index:8!important;transform:translate(-50%,-34%) scale(.94)!important;clip-path:inset(0 0 33% 0)!important}
-#mr344Scene[data-location="food"] #mimoBuddy{width:clamp(122px,19%,285px)!important;height:45%!important}
+@media(max-width:700px){#mr354WingControls{right:7px;top:7px;gap:4px}#mr354WingControls button{font-size:11px;padding:6px;min-height:39px}}
+body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:100%!important;background:transparent!important}
+#mr353BasketFruit{position:absolute;z-index:16;left:37.4%;bottom:12.8%;width:25.2%;height:12.8%;pointer-events:none;box-sizing:border-box}
+.mr353FruitStack{position:absolute;left:var(--x,50%);bottom:var(--y,8%);width:calc(15% * var(--scale,1));height:calc(88% * var(--scale,1));display:flex;align-items:flex-end;justify-content:center;transform:translateX(-50%) rotate(var(--rot,0deg));transform-origin:50% 100%;pointer-events:auto;border:0;background:transparent;padding:0;margin:0;cursor:pointer;animation:mr353FruitArrive .34s ease-out both}
+.mr353FruitStack:disabled{cursor:default;opacity:.38}
+.mr353FruitStack img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(67,38,18,.28))}
+.mr353FruitCount{position:absolute;right:-4px;top:-2px;min-width:21px;height:21px;padding:0 5px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.96);color:#4b2e21;border:2px solid rgba(120,74,46,.28);font:800 11px/1 system-ui,sans-serif;box-sizing:border-box;box-shadow:0 2px 5px rgba(0,0,0,.15)}
+@keyframes mr353FruitArrive{from{transform:translateX(-50%) translateY(-16px) scale(.7) rotate(var(--rot,0deg));opacity:0}to{transform:translateX(-50%) rotate(var(--rot,0deg));opacity:1}}
 #mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;flex:0 0 auto}.mr344Stat{border-radius:12px;background:#fff2df;padding:7px 3px;text-align:center;font-size:12px;color:#6b4537}.mr344Stat b{display:block;font-size:12px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:15px}
 #mr344Message{text-align:center;font-size:13px;font-weight:750;min-height:20px;color:#70472e;flex:0 0 auto}
 #mr344Fruits,#mr344Fruits[hidden]{display:none!important}
-@media(max-height:700px){#mr344Scene{min-height:205px;max-height:calc(100dvh - 170px)}body.mr373-room-open #mr344Scene #mimoBuddy{height:43%}#mr344Stats{gap:4px}.mr344Stat{padding:4px 2px}}
-@media(max-width:700px){#mr344Scene{border-radius:10px}#mr344BedTarget{width:34%;left:1.5%;bottom:11.5%}#mr344BathTarget{width:28%;right:1.6%;bottom:10.5%}#mr353BasketObject{width:35%;bottom:7.8%}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}#mr354WingControls{right:7px;top:7px;gap:4px}#mr354WingControls button{font-size:11px;padding:6px;min-height:39px}.mr344Stat{font-size:11px}.mr344Hearts{font-size:14px}}
-@media(prefers-reduced-motion:reduce){body.mr373-room-open #mr344Scene #mimoBuddy,.mr373ObjectButton,.mr373FruitVisual{transition:none!important}}
+@media(max-height:700px){#mr344Scene{min-height:205px;max-height:calc(100dvh - 170px)}body.mr353-room-open #mr344Scene #mimoBuddy{height:45%}#mr344Stats{gap:4px}.mr344Stat{padding:4px 2px}}
+@media(max-width:700px){#mr344Scene .mr353PositionTag{width:38px;height:38px}#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:20px}#mr344Scene .mr353PositionTag img{width:24px;height:24px}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}#mr353BasketFruit{left:36.8%;width:26.7%;height:13.2%}.mr353FruitStack{width:calc(16.5% * var(--scale,1))}}
+@media(prefers-reduced-motion:reduce){#mr344Scene .mr353PositionTag,body.mr353-room-open #mr344Scene #mimoBuddy{transition:none!important}.mr353FruitStack{animation:none!important}}
 </style>
 <script id="mr353-room-script">
 (()=>{
 const key='musicRainbowMimoRoomV1';
 const fruitKinds=['apple','banana','strawberry','grapes','pear','orange','peach','cherries'];
 const fruitInfo={
- apple:{name:'Mela',level:1,medal:'bronze'},
- banana:{name:'Banana',level:2,medal:'silver'},
- strawberry:{name:'Fragola',level:3,medal:'gold'},
- grapes:{name:'Uva',level:4,medal:'green'},
- pear:{name:'Pera',level:5,medal:'cyan'},
- orange:{name:'Arancia',level:6,medal:'blue'},
- peach:{name:'Pesca',level:7,medal:'violet'},
- cherries:{name:'Ciliegie',level:8,medal:'pink'}
+ apple:{name:'Mela',asset:'Assets/room/fruit-apple.png',level:1,medal:'bronze'},
+ banana:{name:'Banana',asset:'Assets/room/fruit-banana.png',level:2,medal:'silver'},
+ strawberry:{name:'Fragola',asset:'Assets/room/fruit-strawberry.png',level:3,medal:'gold'},
+ grapes:{name:'Uva',asset:'Assets/room/fruit-grapes.png',level:4,medal:'green'},
+ pear:{name:'Pera',asset:'Assets/room/fruit-pear.png',level:5,medal:'cyan'},
+ orange:{name:'Arancia',asset:'Assets/room/fruit-orange.png',level:6,medal:'blue'},
+ peach:{name:'Pesca',asset:'Assets/room/fruit-peach.png',level:7,medal:'violet'},
+ cherries:{name:'Ciliegie',asset:'Assets/room/fruit-cherries.png',level:8,medal:'pink'}
 };
 const rewardMap={bronze:'apple',silver:'banana',gold:'strawberry',green:'grapes',cyan:'pear',blue:'orange',violet:'peach',pink:'cherries'};
-const basketRects={
- banana:{x:2.2,y:3.5,w:18.5,h:36},
- grapes:{x:7.5,y:28,w:26.5,h:36},
- apple:{x:28.8,y:13,w:20.5,h:24},
- strawberry:{x:34.8,y:39,w:19.6,h:23.2},
- pear:{x:50,y:13,w:20.5,h:30},
- peach:{x:49,y:37,w:23.5,h:24},
- orange:{x:68.4,y:18,w:21.8,h:28},
- cherries:{x:72.3,y:42,w:20.8,h:18}
+// Position within the shared 1448 × 1086 basket coordinate system.
+const basketHotspots={
+ banana:{x:205,y:352,w:188,h:190}, apple:{x:492,y:360,w:211,h:188},
+ pear:{x:840,y:353,w:184,h:191},orange:{x:1131,y:402,w:206,h:170},
+ grapes:{x:215,y:495,w:210,h:136},strawberry:{x:550,y:519,w:210,h:121},
+ peach:{x:827,y:510,w:210,h:140},cherries:{x:1145,y:505,w:205,h:142}
 };
+const basketRenderOrder=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
 let state={food:3,sleep:3,clean:3,happy:3,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
 const clamp=n=>Math.max(0,Math.min(4,Math.round(Number(n)||0)));
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
-function load(){try{const raw=localStorage.getItem(key);const stored=raw?JSON.parse(raw):null;if(stored&&typeof stored==='object')state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}}}catch(e){}}
+function load(){try{
+ const raw=localStorage.getItem(key);
+ const stored=raw?JSON.parse(raw):null;
+ if(stored&&typeof stored==='object')state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}};
+}catch(e){}}
 load();
 function tick(){const now=Date.now(),last=Math.max(0,Number(state.last)||0);if(!last){state.last=now;return}const d=now-last;if(d<180000)return;const n=Math.floor(d/180000);if(n>0){state.food=clamp(state.food-Math.floor((n+1)/2));state.sleep=clamp(state.sleep-Math.floor((n+2)/3));state.happy=clamp(state.happy-Math.floor(n/3));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
- const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr373Background" src="Assets/room/room-background-2.373.jpg?v=2.373" alt="Stanza di Mìmo"><button class="mr373ObjectButton" id="mr344BedTarget" type="button" aria-label="Porta Mìmo a dormire nel letto" title="Letto di Mìmo"><img src="Assets/room/room-bed-2.373.png?v=2.373" alt=""></button><button class="mr373ObjectButton" id="mr344BathTarget" type="button" aria-label="Porta Mìmo a lavarsi nella vasca" title="Vasca di Mìmo"><img src="Assets/room/room-bath-2.373.png?v=2.373" alt=""></button><div id="mr353BasketObject" aria-label="Cestino della frutta di Mìmo"><img class="mr373BasketBase" src="Assets/room/fruit-basket-faded-2.373.png?v=2.373" alt=""><div class="mr373BasketLayer" id="mr373BasketLayer"></div><div class="mr373FruitHotspots" id="mr373FruitHotspots"></div></div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
+ const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><div id="mr373Basket" aria-label="Cestino di Mìmo">
+<img class="mr373BasketLayer" src="Assets/room/basket-back.png" alt="" draggable="false">
+<img class="mr373BasketLayer" src="Assets/room/basket-ghost.png" alt="" draggable="false">
+<div id="mr353BasketFruit" aria-hidden="true"></div>
+<img class="mr373BasketLayer mr373BasketFront" src="Assets/room/basket-front.png" alt="" draggable="false">
+<button type="button" id="mr373BasketTouch" aria-label="Avvicina Mìmo al cestino"></button>
+<div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
+</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
- const scene=room.querySelector('#mr344Scene');
- const stats=room.querySelector('#mr344Stats');
- const msg=room.querySelector('#mr344Message');
- const basketLayer=room.querySelector('#mr373BasketLayer');
- const basketHotspots=room.querySelector('#mr373FruitHotspots');
+ const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
- const positions={food:{left:'50%',top:'48.5%'},bed:{left:'18.5%',top:'70%'},bath:{left:'80.5%',top:'67.5%'}};
- const fruitVisuals={};
- const fruitButtons={};
- function buildBasketUi(){
-   basketLayer.replaceChildren();basketHotspots.replaceChildren();
-   fruitKinds.forEach(kind=>{
-     const rect=basketRects[kind];
-     const visual=document.createElement('div');
-     visual.className='mr373FruitVisual';
-     visual.dataset.kind=kind;
-     visual.style.clipPath=`inset(${rect.y}% ${100-(rect.x+rect.w)}% ${100-(rect.y+rect.h)}% ${rect.x}% round 14px)`;
-     basketLayer.appendChild(visual);
-     fruitVisuals[kind]=visual;
-     const hit=document.createElement('button');
-     hit.type='button';
-     hit.className='mr373FruitHit';
-     hit.dataset.kind=kind;
-     hit.style.left=`${rect.x}%`;
-     hit.style.top=`${rect.y}%`;
-     hit.style.width=`${rect.w}%`;
-     hit.style.height=`${rect.h}%`;
-     hit.addEventListener('click',()=>{moveMimo('food');eat(kind)});
-     const badge=document.createElement('span');
-     badge.className='mr373FruitBadge';
-     badge.hidden=true;
-     hit.appendChild(badge);
-     hit._badge=badge;
-     basketHotspots.appendChild(hit);
-     fruitButtons[kind]=hit;
-   });
- }
- buildBasketUi();
+ const positions={food:{left:'50%',top:'49%'},bed:{left:'19%',top:'40%'},bath:{left:'86.1%',top:'40.2%'}};
  function clearPose(){window.MimoExpressions?.clear?.();window.MimoMood?.clearPreview?.();}
  function applyPose(target){
   if(target==='bed'){
@@ -25240,87 +25214,72 @@ function init(){
    clearPose();
   }
  }
- function moveMimo(target,animate=true){
-   const host=document.getElementById('mimoBuddy');if(!host)return;
-   const pos=positions[target]||positions.food;
-   if(host.parentNode!==scene)scene.appendChild(host);
-   if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);
-   scene.dataset.location=target;
-   host.style.setProperty('left',pos.left,'important');
-   host.style.setProperty('top',pos.top,'important');
-   if(target!=='bed'&&target!=='bath')clearPose();
- }
+ function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==scene)scene.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
  function setMessage(text){msg.textContent=text||''}
  function updateMood(){
-   const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
-   const mood=needs>=3?'stressato':state.food<=1?'affamato':state.sleep<=1?'assonnato':state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'entusiasta':state.food>=4?'sazio':state.sleep>=4?'rilassato':state.happy>=3?'felice':'contento';
-   if(scene.dataset.location==='bed')window.MimoMood?.set?.('riposo');else window.MimoMood?.set?.(mood)
+  const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
+  const mood=needs>=3?'stressato':state.food<=1?'affamato':state.sleep<=1?'assonnato':
+   state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'entusiasta':
+   state.food>=4?'sazio':state.sleep>=4?'rilassato':state.happy>=3?'felice':'contento';
+  if(scene.dataset.location==='bed')window.MimoMood?.set?.('riposo');else window.MimoMood?.set?.(mood)
  }
  function renderBasket(){
-   fruitKinds.forEach(kind=>{
-     const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));
-     const visual=fruitVisuals[kind];
-     const button=fruitButtons[kind];
-     if(visual) visual.style.opacity=count>0?'1':'0';
-     if(button){
-       button.disabled=count<=0;
-       button.setAttribute('aria-label',count>0?`${fruitInfo[kind].name}, quantità ${count}: dai questo frutto a Mìmo`:`${fruitInfo[kind].name} non disponibile`);
-       button.title=count>0?`${fruitInfo[kind].name} — quantità ${count}`:`${fruitInfo[kind].name} non disponibile`;
-       if(button._badge){button._badge.hidden=count<=0;button._badge.textContent=String(count)}
-     }
-   });
- }
- function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat">${ico}<b>${label}</b><div class="mr344Hearts">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</div></div>`).join('');renderBasket();updateMood();save()}
- function markSessionFruitConsumed(kind){
-  const session=(typeof getCurrentSession==='function')?getCurrentSession():null;
-  const type=fruitInfo[kind]?.medal;
-  if(!session||!type)return;
-  const spent=session.spentRewards&&typeof session.spentRewards==='object'?session.spentRewards:(session.spentRewards={});
-  const earned=Math.max(0,Math.floor(Number(session[type])||0));
-  const used=Math.max(0,Math.floor(Number(spent[type])||0));
-  if(used>=earned)return;
-  spent[type]=used+1;
-  if(typeof saveSessionsToStorage==='function')saveSessionsToStorage();
-  if(typeof updateSessionTopbarMedalsMR==='function')updateSessionTopbarMedalsMR();
- }
- function eat(kind){
+  basket.replaceChildren();hitArea.replaceChildren();
+  const occupied=basketRenderOrder.filter(kind=>Math.max(0,Math.floor(Number(state.fruits?.[kind])||0))>0);
+  room.querySelector('#mr373Basket').setAttribute('aria-label',occupied.length?'Cestino con frutta disponibile':'Cestino vuoto: sagome della frutta al 10%');
+  for(const kind of basketRenderOrder){
    const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));
-   if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}
-   moveMimo('food');
-   state.fruits[kind]=count-1;
-   markSessionFruitConsumed(kind);
-   state.food=clamp(state.food+1);
-   state.happy=clamp(state.happy+1);
-   window.MimoMotion?.eat?.();
-   window.MimoExpressions?.set?.('standard',2400);
-   setMessage(`Mìmo mangia ${fruitInfo[kind].name.toLowerCase()} dal cestino.`);
-   refresh();
+   if(count){
+    const img=document.createElement('img');img.className='mr373ActiveFruit';
+    img.src=`Assets/room/basket-sticker-${kind}.png`;img.alt='';img.draggable=false;
+    basket.appendChild(img);
+   }
+   const slot=basketHotspots[kind];
+   const button=document.createElement('button');button.type='button';button.className='mr373FruitTouch';button.dataset.kind=kind;
+   button.style.left=(slot.x/1448*100)+'%';button.style.top=(slot.y/1086*100)+'%';
+   button.style.width=(slot.w/1448*100)+'%';button.style.height=(slot.h/1086*100)+'%';
+   button.title=count?`${fruitInfo[kind].name}: ${count} disponibili`:`${fruitInfo[kind].name}: 0 disponibili`;
+   button.setAttribute('aria-label',count?`${fruitInfo[kind].name}, ${count} disponibili. Dai un frutto a Mìmo`:`${fruitInfo[kind].name}: ancora da conquistare`);
+   {const label=document.createElement('span');label.className='mr373FruitCount'+(count?'':' mr373Empty');label.textContent=String(count);button.appendChild(label)}
+   button.addEventListener('click',()=>{
+    if(count){eat(kind)}else setMessage(`${fruitInfo[kind].name}: conquista questo frutto suonando nel livello ${fruitInfo[kind].level}.`);
+   });
+   hitArea.appendChild(button);
+  }
  }
+ function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
+ function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat">${ico}<b>${label}</b><div class="mr344Hearts">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</div></div>`).join('');renderBasket();renderPicker();updateMood();save()}
+ function markSessionFruitConsumed(kind){
+  const type=fruitInfo[kind]?.medal;if(!type)return false;
+  const current=typeof getCurrentSession==='function'?getCurrentSession():null;
+  const candidates=[current,...(Array.isArray(sessions)?sessions.slice().reverse():[])].filter((session,i,a)=>session&&a.findIndex(s=>s.id===session.id)===i);
+  for(const session of candidates){
+   const earned=Math.max(0,Math.floor(Number(session[type])||0));
+   const spent=session.spentRewards&&typeof session.spentRewards==='object'?session.spentRewards:(session.spentRewards={});
+   const used=Math.max(0,Math.floor(Number(spent[type])||0));
+   if(earned<=used)continue;
+   spent[type]=used+1;
+   if(typeof saveSessionsToStorage==='function')saveSessionsToStorage();
+   window.updateSessionTopbarMedalsMR?.();
+   return true;
+  }
+  // A legacy/manual fruit can exist without a session reward. Only inventory is reduced.
+  window.updateSessionTopbarMedalsMR?.();
+  return false;
+ }
+ function eat(kind){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}moveMimo('food');state.fruits[kind]=count-1;markSessionFruitConsumed(kind);state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);window.MimoMotion?.eat?.();window.MimoExpressions?.set?.('standard',2400);setMessage(`Mìmo mangia ${fruitInfo[kind].name.toLowerCase()} vicino al cestino.`);refresh()}
  const closeWing=room.querySelector('#mr354CloseWings'),openWing=room.querySelector('#mr354OpenWings');
  closeWing.addEventListener('click',()=>{if(!window.MimoWings?.close?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}closeWing.setAttribute('aria-pressed','true');openWing.setAttribute('aria-pressed','false');setMessage('Mìmo ripiega le ali gradualmente. Continua a respirare e muoversi.')});
  openWing.addEventListener('click',()=>{if(!window.MimoWings?.open?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}openWing.setAttribute('aria-pressed','true');closeWing.setAttribute('aria-pressed','false');setMessage('Mìmo apre le ali gradualmente.')});
- room.querySelector('#mr344BedTarget').addEventListener('click',()=>{moveMimo('bed');setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.sleep=4;state.happy=clamp(state.happy+1);applyPose('bed');refresh();setMessage('Mìmo dorme coricato nel letto, con gli occhi chiusi.')},900)});
- room.querySelector('#mr344BathTarget').addEventListener('click',()=>{moveMimo('bath');setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=4;state.happy=clamp(state.happy+1);applyPose('bath');refresh();setMessage('Mìmo si lava dentro la vasca.')},900)});
- room.querySelector('#mr353BasketObject').addEventListener('click',ev=>{if(ev.target.closest('.mr373FruitHit'))return;moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Tocca il frutto nel cestino per darlo a Mìmo.':'Il cestino mostra tutti i frutti: quelli guadagnati sono pieni, gli altri restano al 15%.')});
+ room.querySelector('#mr344Bed').addEventListener('click',()=>{moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.sleep=4;state.happy=clamp(state.happy+1);applyPose('bed');refresh();setMessage('Mìmo dorme coricato sul materasso, con gli occhi chiusi.')},900)});
+ room.querySelector('#mr344Bath').addEventListener('click',()=>{moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=4;state.happy=clamp(state.happy+1);applyPose('bath');refresh();setMessage('Mìmo si lava dentro la vasca.')},900)});
+ room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Tocca un frutto dentro il cestino per darlo a Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
  window.MimoCare={
-   awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: ora nel cestino compare pieno.`);return true},
+   awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: è nel cestino di Mìmo.`);return true},
    awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
- function syncRoom(){
-   const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;
-   document.body.classList.toggle('mr373-room-open',open);
-   const host=document.getElementById('mimoBuddy');
-   if(!open){
-     if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}
-     clearPose();
-     return;
-   }
-   if(host&&host.parentNode!==scene)scene.appendChild(host);
-   moveMimo('food',false);
-   setMessage('');
-   refresh();
- }
+ function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh()}
  new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
  const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
  syncRoom();refresh();return true;
@@ -25338,8 +25297,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #trophyPage .top-row{flex:0 0 auto!important;margin:0!important;}
 #trophyPage .trophy-main{flex:1 1 0!important;min-height:0!important;max-height:none!important;padding:3px!important;}
 #mr344Room{width:100%!important;height:100%!important;min-height:0!important;flex:1 1 0!important;gap:4px!important;}
-#mr344Scene{width:100%!important;height:auto!important;flex:1 1 0!important;min-height:250px!important;max-height:calc(100dvh - 214px)!important;aspect-ratio:3/2!important;border-radius:14px!important;overflow:hidden!important;position:relative!important;}
-#mr344Scene .mr353Background,#mr344Scene .mr373Background{width:100%!important;height:100%!important;object-fit:fill!important;}
+#mr344Scene{width:100%!important;height:auto!important;flex:1 1 0!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;border-radius:7px!important;}
+#mr344Scene .mr353Background{width:100%!important;height:100%!important;object-fit:fill!important;}
 #mr344Stats{flex:0 0 auto!important;}
 #mr344Message{flex:0 0 auto!important;min-height:16px!important;}
 #mr344Fruits:not([hidden]){max-height:min(20dvh,155px);overflow-y:auto;}
@@ -25446,5 +25405,34 @@ body.mr357-lab-open #mr357LabPreview #mimoBuddy{position:absolute!important;disp
 </style>
 
 
+
+<style id="mr373-basket-fruit-layers">
+/* Room v2.373. The 4:3 artwork and every fruit sticker use the same image coordinate system. */
+#trophyPage #mr344Scene{isolation:isolate!important}
+#mr373Basket{position:absolute;left:34.3%;top:57.5%;width:31.4%;height:31.4%;z-index:15;pointer-events:none;overflow:visible;box-sizing:border-box}
+#mr373Basket .mr373BasketLayer,#mr373Basket .mr373ActiveFruit{
+ position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;
+ user-select:none;-webkit-user-select:none;display:block;
+}
+#mr373Basket .mr373BasketLayer:first-child{z-index:0}
+#mr373Basket .mr373BasketLayer:nth-child(2){z-index:1}
+#mr373Basket #mr353BasketFruit{position:absolute;inset:0;width:100%;height:100%;display:block!important;background:transparent!important;pointer-events:none!important;z-index:2!important;}
+#mr373Basket .mr373BasketFront{z-index:3!important}
+#mr373Basket #mr373BasketTouch{position:absolute;inset:14% 2% 6%;width:96%;height:80%;z-index:4;pointer-events:auto;cursor:pointer;touch-action:manipulation;border:0;background:transparent;box-shadow:none;padding:0;border-radius:20px}
+#mr373Basket #mr373BasketTouches{position:absolute;inset:0;z-index:5;pointer-events:none}
+#mr373Basket .mr373FruitTouch{position:absolute;border:0;padding:0;margin:0;background:transparent!important;box-shadow:none!important;pointer-events:auto;touch-action:manipulation;cursor:pointer;transform:none!important;}
+#mr373Basket .mr373FruitTouch:focus-visible,#mr373Basket #mr373BasketTouch:focus-visible{outline:3px solid #ffd64b;outline-offset:2px;border-radius:8px}
+#mr373Basket .mr373FruitCount{position:absolute;top:0;left:50%;transform:translateX(-50%);min-width:21px;height:21px;line-height:21px;padding:0 5px;border:1.5px solid #fff;border-radius:12px;box-sizing:content-box;background:#7444af;color:#fff;font:800 13px/21px system-ui,-apple-system,sans-serif;text-align:center;text-shadow:0 1px 1px #0005;box-shadow:0 1px 5px #0006}
+#mr373Basket .mr373FruitCount.mr373Empty{background:rgba(245,243,255,.75);color:#715e78;text-shadow:none;border-color:rgba(131,109,148,.34);box-shadow:0 1px 3px #0002}
+#mr344Scene[data-location="food"] #mr373Basket{z-index:15}
+/* No detached food bar, no apple floating outside the basket. */
+#mr344Fruits,#mr344Fruits:not([hidden]),#mr344Fruit{display:none!important}
+/* Mìmo is lowered into the nest; the bath edge masks his feet. */
+body.mr353-room-open #mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(125px,21%,255px)!important;height:32%!important;transform:translate(-50%,-48%) rotate(-89deg) scale(.94)!important;z-index:11!important}
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inset(0 0 31% 0)!important;transform:translate(-50%,-36%) scale(.95)!important;z-index:5!important}
+#homeScreen .mr373-home-build{font-weight:700;font-size:.76rem;opacity:.66;text-align:center;color:#59406b;margin-top:8px;line-height:1.2}
+@media(max-width:700px){#mr373Basket .mr373FruitCount{min-width:17px;height:17px;font:800 11px/17px system-ui,-apple-system,sans-serif;line-height:17px;padding:0 3px}}
+@media(prefers-reduced-motion:reduce){#mr373Basket .mr373FruitCount{transition:none}}
+</style>
 </body>
 </html>

@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.373</div>
+    <div class="intro-version-label">Build 2.375</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.373</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.375</div>
   </div>
 </div>
 
@@ -18673,7 +18673,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.373";
+  const PAGE_BUILD = "2.375";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -25110,7 +25110,7 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-369.js?v=373"></script>
+<script src="Assets/mimo-rigged-369.js?v=375"></script>
 
 
 <style id="mr353-room-style">
@@ -25199,6 +25199,44 @@ function init(){
  main.replaceChildren(room);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
+
+ // Music Rainbow 2.375: top bar, picture, stats share one centered width.
+ // The scene is always rendered at its native 4:3 ratio, without stretching or cropping.
+ const topPanel=page.querySelector('.top-panel');
+ let mr375LayoutQueued=false;
+ function mr375FitRoom(){
+  mr375LayoutQueued=false;
+  if(getComputedStyle(page).display==='none'||!room.getClientRects().length)return;
+  const mainStyle=getComputedStyle(main),roomStyle=getComputedStyle(room);
+  const widthAvailable=main.clientWidth-(parseFloat(mainStyle.paddingLeft)||0)-(parseFloat(mainStyle.paddingRight)||0);
+  const gap=parseFloat(roomStyle.rowGap)||parseFloat(roomStyle.gap)||0;
+  const heightAvailable=room.clientHeight-stats.offsetHeight-msg.offsetHeight-2*gap-2;
+  if(widthAvailable<=0||heightAvailable<=0)return;
+  const sceneWidth=Math.max(1,Math.floor(Math.min(widthAvailable,heightAvailable*4/3)));
+  const sceneHeight=sceneWidth*3/4;
+  const widthPx=sceneWidth+'px';
+  scene.style.setProperty('width',widthPx,'important');
+  scene.style.setProperty('height',sceneHeight+'px','important');
+  scene.style.setProperty('flex','0 0 auto','important');
+  topPanel.style.setProperty('width',widthPx,'important');
+  stats.style.setProperty('width',widthPx,'important');
+  msg.style.setProperty('width',widthPx,'important');
+ }
+ function mr375QueueFit(){
+  if(mr375LayoutQueued)return;
+  mr375LayoutQueued=true;
+  requestAnimationFrame(mr375FitRoom);
+ }
+ if(typeof ResizeObserver==='function'){
+  const resizeWatcher=new ResizeObserver(mr375QueueFit);
+  resizeWatcher.observe(main);
+  resizeWatcher.observe(room);
+  resizeWatcher.observe(stats);
+  resizeWatcher.observe(msg);
+ }
+ window.addEventListener('resize',mr375QueueFit,{passive:true});
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',mr375QueueFit,{passive:true});
+
  const positions={food:{left:'50%',top:'49%'},bed:{left:'19%',top:'40%'},bath:{left:'86.1%',top:'40.2%'}};
  function clearPose(){window.MimoExpressions?.clear?.();window.MimoMood?.clearPreview?.();}
  function applyPose(target){
@@ -25279,7 +25317,7 @@ function init(){
    awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
- function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh()}
+ function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==scene)scene.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh();mr375QueueFit()}
  new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
  const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
  syncRoom();refresh();return true;
@@ -25433,6 +25471,34 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 #homeScreen .mr373-home-build{font-weight:700;font-size:.76rem;opacity:.66;text-align:center;color:#59406b;margin-top:8px;line-height:1.2}
 @media(max-width:700px){#mr373Basket .mr373FruitCount{min-width:17px;height:17px;font:800 11px/17px system-ui,-apple-system,sans-serif;line-height:17px;padding:0 3px}}
 @media(prefers-reduced-motion:reduce){#mr373Basket .mr373FruitCount{transition:none}}
+</style>
+
+<style id="mr375-room-layout-fixes">
+/* Build 2.375: all the room art, hotspots and overlays stay in a common 4:3 canvas.
+   JavaScript sizes the canvas to the available height and applies identical width
+   to the title bar and the four needs indicators. Never use object-fit:fill. */
+#trophyPage .app{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;}
+#trophyPage .top-panel{box-sizing:border-box!important;flex:0 0 auto!important;padding:0!important;margin:0 auto 3px!important;width:100%!important;max-width:100%!important;}
+#trophyPage .top-row{box-sizing:border-box!important;width:100%!important;margin:0!important;padding:5px 9px!important;min-height:60px!important;}
+#trophyPage .top-row .rainbow-title{font-size:clamp(1.7rem,4.0vw,3.6rem)!important;}
+#trophyPage .trophy-main{display:flex!important;justify-content:center!important;min-height:0!important;flex:1 1 0!important;box-sizing:border-box!important;padding:0 3px!important;overflow:hidden!important;}
+#trophyPage #mr344Room{width:100%!important;height:100%!important;min-height:0!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:3px!important;}
+#trophyPage #mr344Scene{box-sizing:border-box!important;flex:0 0 auto!important;aspect-ratio:4/3!important;width:100%;height:auto;max-width:100%!important;max-height:none!important;min-height:0!important;align-self:center!important;overflow:hidden!important;border-radius:7px!important;}
+#trophyPage #mr344Scene .mr353Background{width:100%!important;height:100%!important;object-fit:contain!important;}
+#trophyPage #mr344Stats{flex:0 0 auto!important;width:100%;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;max-height:none!important;}
+#trophyPage #mr344Stats .mr344Stat{min-width:0!important;box-sizing:border-box!important;padding:3px 1px!important;font-size:10px!important;line-height:1.06!important;}
+#trophyPage #mr344Stats .mr344Stat b{font-size:11px!important;line-height:1!important;}
+#trophyPage #mr344Stats .mr344Hearts{font-size:13px!important;line-height:1!important;letter-spacing:0!important;}
+#trophyPage #mr344Message{flex:0 0 auto!important;width:100%;min-height:14px!important;font-size:11px!important;line-height:1.1!important;}
+@media(max-width:700px){
+ #trophyPage .top-row{padding:4px 5px!important;min-height:47px!important;}
+ #trophyPage .top-row .rainbow-title{font-size:clamp(1.0rem,3.5vw,2.5rem)!important;}
+ #trophyPage #mr344Stats{gap:2px!important;}
+ #trophyPage #mr344Stats .mr344Stat{padding:2px 1px!important;font-size:9px!important;}
+ #trophyPage #mr344Stats .mr344Stat b{font-size:9px!important;}
+ #trophyPage #mr344Stats .mr344Hearts{font-size:10px!important;}
+ #trophyPage #mr344Message{font-size:10px!important;}
+}
 </style>
 </body>
 </html>

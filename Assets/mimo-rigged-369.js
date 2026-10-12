@@ -1,4 +1,4 @@
-/* Music Rainbow 2.369 — Correzione indice UInt32 per WebGL2 e diagnosi caricamento renderer. */
+/* Music Rainbow 2.369 — Caricamento GLB diagnosticabile e compatibile con WebKit/GitHub. */
 (()=>{'use strict';
 
 // Le nove lingue dell'app vengono lette direttamente dal selettore principale.
@@ -121,7 +121,7 @@ lab.querySelector('#mr357LabClose').addEventListener('click',closeLab);
 lab.querySelector('#mr357LabReset').addEventListener('click',resetLab);
 lab.addEventListener('click',e=>{if(e.target===lab)closeLab()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!lab.hidden)closeLab()});
-function error(message){status.textContent='Mìmo 3D: '+message;console.error('[Mimo369]',message);host.style.border='2px solid #d97706';host.style.background='rgba(255,245,220,.9)';host.title=message;host.setAttribute('data-mimo-error',message);host.style.pointerEvents='auto';let alert=host.querySelector('#mimoRenderError');if(!alert){alert=document.createElement('div');alert.id='mimoRenderError';alert.setAttribute('role','alert');alert.style.cssText='position:absolute;left:5%;right:5%;bottom:8%;z-index:5;background:#fff4de;color:#613e16;border:1px solid #d97706;border-radius:12px;padding:10px;font:600 12px/1.45 system-ui;text-align:center;box-shadow:0 4px 12px #0002';host.appendChild(alert)}alert.textContent='Mìmo 3D: '+message;}
+function error(message){status.textContent='Mìmo 3D: '+message;console.error('[Mimo366]',message);host.style.border='2px solid #d97706';host.style.background='rgba(255,245,220,.9)';host.title=message;host.setAttribute('data-mimo-error',message);host.style.pointerEvents='auto';let alert=host.querySelector('#mimoRenderError');if(!alert){alert=document.createElement('div');alert.id='mimoRenderError';alert.setAttribute('role','alert');alert.style.cssText='position:absolute;left:5%;right:5%;bottom:8%;z-index:5;background:#fff4de;color:#613e16;border:1px solid #d97706;border-radius:12px;padding:10px;font:600 12px/1.45 system-ui;text-align:center;box-shadow:0 4px 12px #0002';host.appendChild(alert)}alert.textContent='Mìmo 3D: '+message;}
 const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,premultipliedAlpha:false})||canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false})||canvas.getContext('experimental-webgl',{alpha:true});if(!gl){error('WebGL non disponibile');return}
 status.textContent=mimoT('loading');const V=`precision highp float;attribute vec3 p;attribute vec3 n;attribute vec2 uv;attribute float mouthMask;uniform mat4 proj;uniform mat4 view;varying vec2 tex;varying vec3 normal;varying float mouthRegion;void main(){gl_Position=proj*view*vec4(p,1.);normal=n;tex=uv;mouthRegion=mouthMask;}`;
 // Nel nuovo GLB il becco nasce molto aperto. Il morph ne chiude la geometria;
@@ -130,19 +130,8 @@ status.textContent=mimoT('loading');const V=`precision highp float;attribute vec
 const F=`precision mediump float;varying vec2 tex;varying vec3 normal;varying float mouthRegion;uniform sampler2D diffuse;uniform float mouthClosure;void main(){
  vec3 base=texture2D(diffuse,tex).rgb;
  float pink= smoothstep(.18,.38,base.r-base.g)*smoothstep(.015,.10,base.b-base.g)*(1.0-smoothstep(.72,.89,base.g));
- // The original mouth texture is pink. As the lower beak closes, blend only
- // the exposed interior into a shaded beak-colored surface, not a flat patch.
- float transition=smoothstep(.26,.98,mouthClosure);
- float regionFade=smoothstep(.035,.48,mouthRegion);
- float cover=transition*regionFade*pink;
- float fleck=.5+.5*sin(tex.x*1173.0)*sin(tex.y*847.0);
- vec3 beakShade=mix(vec3(.78,.37,.10),vec3(1.0,.68,.27),
-                    .55+.24*sin(tex.x*26.0+tex.y*17.0));
- beakShade+=vec3(.018,.013,.007)*(fleck-.5);
- base=mix(base,beakShade,cover);
- // Soft occlusion in the last part of closure reads as a natural seam.
- float seam=transition*pink*smoothstep(.10,.75,mouthRegion)*(1.0-smoothstep(.83,1.0,mouthRegion));
- base*=1.0-.10*seam;
+ float cover=smoothstep(.50,.92,mouthClosure)*smoothstep(.02,.25,mouthRegion)*pink;
+ base=mix(base,vec3(.94,.55,.18),cover);
  float light=.72+.28*max(dot(normalize(normal),normalize(vec3(-.4,.8,1.))),0.);
  gl_FragColor=vec4(base*light,1.);
 }`;
@@ -155,8 +144,7 @@ const quat=(a,b,t)=>{let dot=a.reduce((s,x,i)=>s+x*b[i],0);if(dot<0){b=b.map(x=>
 // Cinque stati comandati da due palpebre 2D indipendenti. Nessuna texture duplicata.
 let expression='standard',expressionUntil=0,blinkUntil=0,nextBlink=performance.now()+4300;
 const expressionStates=['standard','mic','tired','sleepy','closed'];
-// Keep a visible aperture for “almost closed”: never clamp it to the closed seam.
-const EYE_LEVELS={standard:[0,0],tired:[.47,.47],sleepy:[.81,.81],closed:[1,1],mic:[0,1]};
+const EYE_LEVELS={standard:[0,0],tired:[.52,.52],sleepy:[.83,.83],closed:[1,1],mic:[0,1]};
 let manualExpression=false;
 window.MimoExpressions={
  set:(name,duration=0)=>{if(!expressionStates.includes(name))return false;expression=name;manualExpression=true;expressionUntil=duration?performance.now()+duration:0;return true},
@@ -207,28 +195,21 @@ const EYE_ANCHORS=[
  {center:62602,left:65404,right:63077,top:66330,bottom:62584},
  {center:269,left:51,right:1169,top:237,bottom:2871}
 ];
-// Four independently drawn moving surfaces: upper/lower for each eye.
 const eyelidCurrent=[0,0];let eyelidFrameTime=0;
-let eyelidHeadAxis=null; // skin-relative node origins 10 and 12, recomputed each pose
 const EYE_TWEAKS=[
- {scaleU:.615,scaleV:.57,offsetU:-.004,offsetV:.045,centerX:0,centerY:0},
- {scaleU:.658,scaleV:.615,offsetU:.020,offsetV:.058,centerX:0,centerY:0}
+ {scaleU:.615,scaleV:.57,offsetU:-.004,offsetV:.045,browLift:.025,lowerBias:.84,centerX:0,centerY:0},
+ {scaleU:.658,scaleV:.615,offsetU:.020,offsetV:.058,browLift:.025,lowerBias:.84,centerX:0,centerY:0}
 ];
-function eyelidProjectPosition(p,view,proj,width,height){
- if(!p)return null;
- const x=p[0],y=p[1],z=p[2];
+function eyelidProject(vertexIndex,view,proj,width,height){
+ const off=vertexIndex*3;if(!animatedPositions||off+2>=animatedPositions.length)return null;
+ const x=animatedPositions[off],y=animatedPositions[off+1],z=animatedPositions[off+2];
  const vx=view[0]*x+view[4]*y+view[8]*z+view[12];
  const vy=view[1]*x+view[5]*y+view[9]*z+view[13];
  const vz=view[2]*x+view[6]*y+view[10]*z+view[14];
- const pw=proj[11]*vz+proj[15]; if(pw<.04)return null;
+ const pw=proj[11]*vz+proj[15];if(pw<.04)return null;
  return {x:(1+(proj[0]*vx+proj[8]*vz+proj[12])/pw)*width*.5,
          y:(1-(proj[5]*vy+proj[9]*vz+proj[13])/pw)*height*.5,
          depth:pw};
-}
-function eyelidProject(vertexIndex,view,proj,width,height){
- const off=vertexIndex*3;
- if(!animatedPositions||off+2>=animatedPositions.length)return null;
- return eyelidProjectPosition([animatedPositions[off],animatedPositions[off+1],animatedPositions[off+2]],view,proj,width,height);
 }
 function drawEyelids(now,wanted,view,proj,width,height,dpr){
  if(!lidCtx)return;
@@ -251,110 +232,109 @@ function drawEyelids(now,wanted,view,proj,width,height,dpr){
    if(!c||!l||!r||!t||!b)return;
    eyes.push({c,l,r,t,b});
  }
- // The user-designated head guide is the line between rig nodes 10 and 12.
- // Project both AFTER skeletal deformation: its rotation follows the head.
- const guideA=eyelidProjectPosition(eyelidHeadAxis?.a,view,proj,width,height);
- const guideB=eyelidProjectPosition(eyelidHeadAxis?.b,view,proj,width,height);
- let hx=(guideB?.x??0)-(guideA?.x??0),hy=(guideB?.y??0)-(guideA?.y??0);
- let hlen=Math.hypot(hx,hy);
- if(!guideA||!guideB||hlen<2){
-   hx=0;hy=0;
-   for(const e of eyes){hx+=e.r.x-e.l.x;hy+=e.r.y-e.l.y}
-   hlen=Math.hypot(hx,hy);
- }
- if(hlen<1)return;
- hx/=hlen;hy/=hlen;
- if(hx<0){hx=-hx;hy=-hy}
- let vx=-hy,vy=hx;
- if(vy<0){vx=-vx;vy=-vy}
+ let hx=0,hy=0,vx=0,vy=0;
+ for(const e of eyes){hx+=(e.r.x-e.l.x);hy+=(e.r.y-e.l.y);vx+=(e.b.x-e.t.x);vy+=(e.b.y-e.t.y)}
+ let hlen=Math.hypot(hx,hy); if(hlen<1)return; hx/=hlen; hy/=hlen;
+ let dot=vx*hx+vy*hy; vx-=dot*hx; vy-=dot*hy;
+ let vlen=Math.hypot(vx,vy);
+ if(vlen<1){vx=-hy; vy=hx; vlen=Math.hypot(vx,vy)||1}
+ vx/=vlen; vy/=vlen;
+ if(vy<0){vx*=-1;vy*=-1}
  for(let eye=0;eye<2;eye++){
    const closed=Math.max(0,Math.min(1,eyelidCurrent[eye]));
-   const e=eyes[eye], tweak=EYE_TWEAKS[eye];
-   const rawWidth=Math.hypot(e.r.x-e.l.x,e.r.y-e.l.y),rawHeight=Math.hypot(e.b.x-e.t.x,e.b.y-e.t.y);
-   const eyeWidth=rawWidth*tweak.scaleU,eyeHeight=rawHeight*tweak.scaleV;
-   if(eyeWidth<5||eyeHeight<5)continue;
-   const ux=hx*eyeWidth,uy=hy*eyeWidth, vxx=vx*eyeHeight,vyy=vy*eyeHeight;
-   const cx=e.c.x*.56+(e.l.x+e.r.x)*.22,cy=e.c.y*.56+(e.t.y+e.b.y)*.22;
-   const shiftX=ux*(tweak.offsetU+tweak.centerX)+vxx*(tweak.offsetV+tweak.centerY);
-   const shiftY=uy*(tweak.offsetU+tweak.centerX)+vyy*(tweak.offsetV+tweak.centerY);
+   if(closed<.012)continue;
+   const e=eyes[eye], tweak=EYE_TWEAKS[eye]||EYE_TWEAKS[0];
+   const rawWidth=Math.hypot(e.r.x-e.l.x,e.r.y-e.l.y), rawHeight=Math.hypot(e.b.x-e.t.x,e.b.y-e.t.y);
+   const eyeWidth=rawWidth*tweak.scaleU, eyeHeight=rawHeight*tweak.scaleV;
+   const ux=hx*eyeWidth, uy=hy*eyeWidth;
+   const vxx=vx*eyeHeight, vyy=vy*eyeHeight;
+   const cx=e.c.x*.56 + (e.l.x+e.r.x)*.22;
+   const cy=e.c.y*.56 + (e.t.y+e.b.y)*.22;
+   const shiftX=ux*tweak.offsetU + vxx*tweak.offsetV + ux*tweak.centerX + vxx*tweak.centerY;
+   const shiftY=uy*tweak.offsetU + vyy*tweak.offsetV + uy*tweak.centerX + vyy*tweak.centerY;
    lidCtx.save();
    lidCtx.globalAlpha=faceFactor;
    lidCtx.transform(ux,uy,vxx,vyy,cx+shiftX,cy+shiftY);
-   // Curved eye boundary. The paired lids share the SAME local x-axis.
    lidCtx.beginPath();lidCtx.ellipse(0,0,.988,.988,0,0,Math.PI*2);lidCtx.clip();
+   const skin=lidCtx.createLinearGradient(0,-1.25,0,1.25);
+   skin.addColorStop(0,'#f9edde');skin.addColorStop(.52,'#f0ddc6');skin.addColorStop(1,'#e2bea6');
+   lidCtx.fillStyle=skin;
+   const upperClosed=Math.min(1,0.045 + closed*0.925 + tweak.browLift);
+   const lowerClosed=Math.min(1,Math.max(0,(closed-0.10))*tweak.lowerBias);
+   let upperY=-1 + upperClosed*1.54;
+   let lowerY= 1 - lowerClosed*1.52;
+   if(upperY>lowerY-.085){ const mid=(upperY+lowerY)*.5; upperY=mid-.042; lowerY=mid+.042; }
 
-   // Opening is a continuous measurement. At .81, 38% of the diameter
-   // remains open; at 1 the two edges meet. Never force .81 == 1.
-   let upperY=-1+closed*.98,lowerY=1-closed*.98;
-   const meeting=closed>.995;
-   if(meeting){upperY=-.012;lowerY=.012}
+   // palpebra superiore
+   lidCtx.beginPath();
+   lidCtx.moveTo(-1.28,-1.34); lidCtx.lineTo(1.28,-1.34); lidCtx.lineTo(1.28,upperY);
+   lidCtx.bezierCurveTo(.76,upperY+.13,-.76,upperY+.13,-1.28,upperY);
+   lidCtx.closePath(); lidCtx.fill();
 
-   // Multi-stop gradients span the WHOLE lid, approximating rounded volume.
-   const topFill=lidCtx.createLinearGradient(-.18,-1.20,.24,upperY+.24);
-   topFill.addColorStop(0,'#fff8ec');
-   topFill.addColorStop(.22,'#faeddb');
-   topFill.addColorStop(.50,'#f4dfc6');
-   topFill.addColorStop(.76,'#ebcfb3');
-   topFill.addColorStop(1,'#cda889');
-   const bottomFill=lidCtx.createLinearGradient(-.24,lowerY-.20,.16,1.20);
-   bottomFill.addColorStop(0,'#cda98e');
-   bottomFill.addColorStop(.30,'#e8c8aa');
-   bottomFill.addColorStop(.62,'#f5e2ce');
-   bottomFill.addColorStop(1,'#fff4e5');
-
-   if(closed>.012){
-     lidCtx.fillStyle=topFill;
-     lidCtx.beginPath();lidCtx.moveTo(-1.3,-1.32);lidCtx.lineTo(1.3,-1.32);lidCtx.lineTo(1.3,upperY);
-     lidCtx.bezierCurveTo(.68,upperY+.075,-.68,upperY+.075,-1.3,upperY);lidCtx.closePath();lidCtx.fill();
-     lidCtx.fillStyle=bottomFill;
-     lidCtx.beginPath();lidCtx.moveTo(-1.3,1.32);lidCtx.lineTo(1.3,1.32);lidCtx.lineTo(1.3,lowerY);
-     lidCtx.bezierCurveTo(.68,lowerY-.07,-.68,lowerY-.07,-1.3,lowerY);lidCtx.closePath();lidCtx.fill();
-
-     // Soft shading near the two moving margins, never a hard flat stripe.
-     const upperShadow=lidCtx.createLinearGradient(0,upperY-.36,0,upperY+.13);
-     upperShadow.addColorStop(0,'rgba(108,73,52,0)');
-     upperShadow.addColorStop(.45,'rgba(108,73,52,.07)');
-     upperShadow.addColorStop(.82,'rgba(108,73,52,.23)');
-     upperShadow.addColorStop(1,'rgba(108,73,52,.04)');
-     lidCtx.fillStyle=upperShadow;lidCtx.fillRect(-1.3,upperY-.36,2.6,.49);
-     const lowerShadow=lidCtx.createLinearGradient(0,lowerY-.13,0,lowerY+.36);
-     lowerShadow.addColorStop(0,'rgba(108,73,52,.04)');
-     lowerShadow.addColorStop(.19,'rgba(108,73,52,.20)');
-     lowerShadow.addColorStop(.62,'rgba(108,73,52,.08)');
-     lowerShadow.addColorStop(1,'rgba(108,73,52,0)');
-     lidCtx.fillStyle=lowerShadow;lidCtx.fillRect(-1.3,lowerY-.13,2.6,.49);
+   // palpebra inferiore
+   if(lowerClosed>.012){
+     lidCtx.beginPath();
+     lidCtx.moveTo(-1.28,1.34); lidCtx.lineTo(1.28,1.34); lidCtx.lineTo(1.28,lowerY);
+     lidCtx.bezierCurveTo(.74,lowerY-.11,-.74,lowerY-.11,-1.28,lowerY);
+     lidCtx.closePath(); lidCtx.fill();
    }
 
-   // Parallel upper and lower closure edges, both in axis 10 -> 12.
-   lidCtx.lineCap='round';
-   lidCtx.strokeStyle='rgba(83,53,39,.72)';lidCtx.lineWidth=.052;
-   lidCtx.beginPath();lidCtx.moveTo(-.87,upperY);
-   lidCtx.bezierCurveTo(-.33,upperY+.065,.33,upperY+.065,.87,upperY);lidCtx.stroke();
-   lidCtx.strokeStyle='rgba(116,84,66,.55)';lidCtx.lineWidth=.038;
-   lidCtx.beginPath();lidCtx.moveTo(-.83,lowerY);
-   lidCtx.bezierCurveTo(-.33,lowerY-.058,.33,lowerY-.058,.83,lowerY);lidCtx.stroke();
-   lidCtx.strokeStyle='rgba(255,250,237,.60)';lidCtx.lineWidth=.028;
-   lidCtx.beginPath();lidCtx.moveTo(-.72,upperY-.11);
-   lidCtx.quadraticCurveTo(0,upperY-.065,.72,upperY-.11);lidCtx.stroke();
+   // ombre morbide delle palpebre
+   const upperShadow=lidCtx.createLinearGradient(0,upperY-.26,0,upperY+.18);
+   upperShadow.addColorStop(0,'rgba(104,73,55,0.00)');
+   upperShadow.addColorStop(.55,'rgba(104,73,55,0.18)');
+   upperShadow.addColorStop(1,'rgba(104,73,55,0.34)');
+   lidCtx.fillStyle=upperShadow;
+   lidCtx.beginPath();
+   lidCtx.moveTo(-1.06,upperY-.22);
+   lidCtx.bezierCurveTo(-.62,upperY-.02,.62,upperY-.02,1.06,upperY-.22);
+   lidCtx.lineTo(1.06,upperY+.20);
+   lidCtx.bezierCurveTo(.56,upperY+.35,-.56,upperY+.35,-1.06,upperY+.20);
+   lidCtx.closePath(); lidCtx.fill();
+   if(lowerClosed>.04){
+     const lowerShadow=lidCtx.createLinearGradient(0,lowerY-.15,0,lowerY+.22);
+     lowerShadow.addColorStop(0,'rgba(120,92,75,0.24)');
+     lowerShadow.addColorStop(.55,'rgba(120,92,75,0.08)');
+     lowerShadow.addColorStop(1,'rgba(120,92,75,0.00)');
+     lidCtx.fillStyle=lowerShadow;
+     lidCtx.beginPath();
+     lidCtx.moveTo(-.98,lowerY-.18);
+     lidCtx.bezierCurveTo(-.52,lowerY-.30,.52,lowerY-.30,.98,lowerY-.18);
+     lidCtx.lineTo(.98,lowerY+.12);
+     lidCtx.bezierCurveTo(.54,lowerY+.18,-.54,lowerY+.18,-.98,lowerY+.12);
+     lidCtx.closePath(); lidCtx.fill();
+   }
 
-   // Ten fine lashes per lid, twice the previous five, top AND bottom.
-   const lashes=[-.81,-.64,-.47,-.30,-.13,.05,.23,.40,.58,.76];
-   lidCtx.strokeStyle='rgba(69,47,42,.58)';lidCtx.lineWidth=.019;
-   for(let i=0;i<lashes.length;i++){
-     const x=lashes[i],outside=Math.abs(x);
-     const sway=(x<0?-1:1)*(.045+.035*outside);
-     const span=.095+.037*outside;
-     lidCtx.beginPath();lidCtx.moveTo(x,upperY-.015);
-     lidCtx.quadraticCurveTo(x+sway*.4,upperY-.06-span*.45,x+sway,upperY-.075-span);
-     lidCtx.stroke();
-     lidCtx.beginPath();lidCtx.moveTo(x,lowerY+.012);
-     lidCtx.quadraticCurveTo(x+sway*.4,lowerY+.06+span*.35,x+sway,lowerY+.075+span);
+   // rime palpebrali
+   lidCtx.lineCap='round';
+   lidCtx.strokeStyle=`rgba(79,50,35,${0.62+.14*closed})`; lidCtx.lineWidth=.078;
+   lidCtx.beginPath();
+   lidCtx.moveTo(-.88,upperY); lidCtx.bezierCurveTo(-.34,upperY+.12,.34,upperY+.12,.88,upperY); lidCtx.stroke();
+   if(lowerClosed>.05){
+     lidCtx.strokeStyle='rgba(118,94,79,.34)'; lidCtx.lineWidth=.045;
+     lidCtx.beginPath();
+     lidCtx.moveTo(-.83,lowerY); lidCtx.bezierCurveTo(-.32,lowerY-.08,.32,lowerY-.08,.83,lowerY); lidCtx.stroke();
+   }
+   lidCtx.strokeStyle='rgba(255,252,247,.56)'; lidCtx.lineWidth=.028;
+   lidCtx.beginPath();
+   lidCtx.moveTo(-.73,upperY-.11); lidCtx.quadraticCurveTo(0,upperY-.02,.73,upperY-.11); lidCtx.stroke();
+
+   // ciglia superiori
+   const lashPoints=[-.72,-.30,.08,.46,.78];
+   lidCtx.strokeStyle='rgba(74,46,35,.70)'; lidCtx.lineWidth=.038;
+   for(let i=0;i<lashPoints.length;i++){
+     const x=lashPoints[i];
+     const spread=Math.abs(x);
+     const len=.13 + spread*.04;
+     const sway=(x<0?-1:1)*(.07 + spread*.03);
+     lidCtx.beginPath();
+     lidCtx.moveTo(x,upperY-.01);
+     lidCtx.quadraticCurveTo(x+sway*.35,upperY-.08-len*.35,x+sway,upperY-.13-len);
      lidCtx.stroke();
    }
    lidCtx.restore();
  }
 }
-
 // Movimento visivo della lingua per il nuovo GLB: il ramo 8->7 non dispone
 // di pesi di skinning sulla punta, perciò non muove la geometria da solo.
 // Un piccolo elemento vettoriale ancorato a vertici animati del becco segue
@@ -680,11 +660,7 @@ const current=anim.find(a=>a.name===mode);
 if(current){for(const ch of current.channels){const sam=current.samplers[ch.sampler],times=accessor(sam.input),values=accessor(sam.output),target=ch.target.node,path=ch.target.path,width=path==='rotation'?4:3;if(!times.length||!poses[target]||!['translation','rotation','scale'].includes(path))continue;let idx=0;while(idx<times.length-2&&times[idx+1]<t)idx++;const next=Math.min(idx+1,times.length-1);const alpha=sam.interpolation==='STEP'?0:Math.max(0,Math.min(1,(t-times[idx])/(times[next]-times[idx]||1)));const a=Array.from(values.slice(idx*width,(idx+1)*width)),b=Array.from(values.slice(next*width,(next+1)*width));poses[target][path]=path==='rotation'?quat(a,b,alpha):a.map((x,i)=>x+(b[i]-x)*alpha)}}
 procedural(poses,t);const local=poses.map(n=>fromTRS(n.translation,n.rotation,n.scale));
 const world=[],visit=i=>{if(world[i])return world[i];const parent=parents[i];return world[i]=parent<0?local[i]:mul(visit(parent),local[i])};for(let i=0;i<nodes.length;i++)visit(i);
-const meshNode=nodes.findIndex(n=>n.mesh===0),invMesh=invMat(meshNode>=0?world[meshNode]:I());
-// The eyelid seam follows the actual animated 10->12 head-bone segment.
-const rigPoint=index=>{const m=mul(invMesh,world[index]);return [m[12],m[13],m[14]]};
-eyelidHeadAxis={a:rigPoint(10),b:rigPoint(12)};
-return skin.joints.flatMap((j,k)=>mul(mul(invMesh,world[j]),ibm.slice(k*16,k*16+16)))}
+const meshNode=nodes.findIndex(n=>n.mesh===0),invMesh=invMat(meshNode>=0?world[meshNode]:I());return skin.joints.flatMap((j,k)=>mul(mul(invMesh,world[j]),ibm.slice(k*16,k*16+16)))}
 let parents;function prepare(){nodes=data.nodes;skin=data.skins[0];if(nodes.length!==54||skin.joints.length!==52)throw Error('Ossatura Mìmo inattesa: '+skin.joints.length+' ossa');parents=nodes.map(()=>-1);nodes.forEach((n,i)=>(n.children||[]).forEach(j=>parents[j]=i));ibm=Array.from(accessor(skin.inverseBindMatrices));anim=data.animations||[];const prim=data.meshes[0].primitives[0];mesh=prim;gl.useProgram(program);basePositions=accessor(prim.attributes.POSITION);baseNormals=accessor(prim.attributes.NORMAL);jointData=accessor(prim.attributes.JOINTS_0);weightData=accessor(prim.attributes.WEIGHTS_0);animatedPositions=new Float32Array(basePositions.length);animatedNormals=new Float32Array(baseNormals.length);prepareBeakMorph();
 for(const [key,name,size] of [['POSITION','p',3],['NORMAL','n',3],['TEXCOORD_0','uv',2]]){const loc=gl.getAttribLocation(program,name);if(loc<0)continue;const values=key==='POSITION'?animatedPositions:key==='NORMAL'?animatedNormals:accessor(prim.attributes[key]);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,values,key==='TEXCOORD_0'?gl.STATIC_DRAW:gl.DYNAMIC_DRAW);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);if(key==='POSITION')posBuffer=buffer;if(key==='NORMAL')normBuffer=buffer;}
 const mouthLoc=gl.getAttribLocation(program,'mouthMask');if(mouthLoc>=0){const mouthBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,mouthBuffer);gl.bufferData(gl.ARRAY_BUFFER,beakRegion,gl.STATIC_DRAW);gl.enableVertexAttribArray(mouthLoc);gl.vertexAttribPointer(mouthLoc,1,gl.FLOAT,false,0,0)}
@@ -703,7 +679,39 @@ im.onerror=()=>error('Texture originale del GLB non caricata');im.src=url;
 const positions=accessor(prim.attributes.POSITION);let min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(let i=0;i<positions.length;i+=3)for(let k=0;k<3;k++){min[k]=Math.min(min[k],positions[i+k]);max[k]=Math.max(max[k],positions[i+k])}mesh.center=min.map((v,i)=>(v+max[i])/2);mesh.extent=Math.max(...max.map((v,i)=>v-min[i]));status.textContent=mimoT('loading');requestAnimationFrame(frame)}
 function cpuSkin(matrices){const count=basePositions.length/3;for(let v=0;v<count;v++){const o=v*3,j=v*4,x=basePositions[o],y=basePositions[o+1]+mouthClosureNow*beakMorphY[v],z=basePositions[o+2]+mouthClosureNow*beakMorphZ[v],nx=baseNormals[o],ny=baseNormals[o+1],nz=baseNormals[o+2];let px=0,py=0,pz=0,rx=0,ry=0,rz=0,total=0;for(let k=0;k<4;k++){const w=weightData[j+k];if(w<=0)continue;const off=jointData[j+k]*16;if(off<0||off+15>=matrices.length)continue;total+=w;px+=w*(matrices[off]*x+matrices[off+4]*y+matrices[off+8]*z+matrices[off+12]);py+=w*(matrices[off+1]*x+matrices[off+5]*y+matrices[off+9]*z+matrices[off+13]);pz+=w*(matrices[off+2]*x+matrices[off+6]*y+matrices[off+10]*z+matrices[off+14]);rx+=w*(matrices[off]*nx+matrices[off+4]*ny+matrices[off+8]*nz);ry+=w*(matrices[off+1]*nx+matrices[off+5]*ny+matrices[off+9]*nz);rz+=w*(matrices[off+2]*nx+matrices[off+6]*ny+matrices[off+10]*nz)}animatedPositions[o]=total?px/total:x;animatedPositions[o+1]=total?py/total:y;animatedPositions[o+2]=total?pz/total:z;const len=Math.hypot(rx,ry,rz)||1;animatedNormals[o]=rx/len;animatedNormals[o+1]=ry/len;animatedNormals[o+2]=rz/len}gl.bindBuffer(gl.ARRAY_BUFFER,posBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,animatedPositions);gl.bindBuffer(gl.ARRAY_BUFFER,normBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,animatedNormals)}
 function frame(now){requestAnimationFrame(frame);try{if(!toggle.checked||document.hidden)return;if(now>until)play('Mimi_Idle');if(now>nextBlink){blinkUntil=now+260;nextBlink=now+3600+Math.random()*2500}const wantedExpression=chooseExpression(now);if(wantedExpression!==host.dataset.expression){host.dataset.expression=wantedExpression}const t=(now-started)/1000;const width=Math.max(1,host.clientWidth),height=Math.max(1,host.clientHeight),dpr=Math.min(1.5,devicePixelRatio||1);if(canvas.width!==Math.round(width*dpr)||canvas.height!==Math.round(height*dpr)){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr)}gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(program);const ratio=canvas.width/canvas.height,f=1/Math.tan(.45),proj=[f/ratio,0,0,0,0,f,0,0,0,0,-1.002,-1,0,0,-.2002,0];const s=3.05/mesh.extent;const yawDt=mimoLastYawFrame?Math.min(.06,(now-mimoLastYawFrame)/1000):0;mimoLastYawFrame=now;const yawDelta=mimoTargetYaw-mimoCurrentYaw;mimoCurrentYaw+=yawDelta*Math.min(1,yawDt*6);if(Math.abs(yawDelta)<.001)mimoCurrentYaw=mimoTargetYaw;const cy=Math.cos(mimoCurrentYaw),sy=Math.sin(mimoCurrentYaw);const view=[s*cy,0,-s*sy,0,0,s,0,0,s*sy,0,s*cy,0,-s*(cy*mesh.center[0]+sy*mesh.center[2]),-mesh.center[1]*s,s*(sy*mesh.center[0]-cy*mesh.center[2])-4.7,1];gl.uniformMatrix4fv(gl.getUniformLocation(program,'proj'),false,new Float32Array(proj));gl.uniformMatrix4fv(gl.getUniformLocation(program,'view'),false,new Float32Array(view));if(now-lastSkin>83){cpuSkin(matNodes(t));lastSkin=now;}gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.uniform1i(gl.getUniformLocation(program,'diffuse'),0);gl.uniform1f(gl.getUniformLocation(program,'mouthClosure'),mouthClosureNow);gl.drawElements(gl.TRIANGLES,mesh.count,mesh.indexType,0);drawEyelids(now,wantedExpression,view,proj,width,height,dpr);drawMimoTongue(now,view,proj,width,height);if(!mesh.renderChecked){mesh.renderChecked=true;const e=gl.getError();status.textContent=e===gl.NO_ERROR?mimoT('ready'):'Mìmo 3D: errore GPU '+e;if(e!==gl.NO_ERROR)host.style.border='2px solid #dc2626'}}catch(e){if(!mesh.frameError){mesh.frameError=true;error('Rendering: '+e.message)}}}
-fetch('Assets/mimo-orecchie-365.glb').then(r=>{if(!r.ok && r.status!==0)throw Error('HTTP '+r.status);return r.arrayBuffer()}).then(buffer=>{const dv=new DataView(buffer);if(buffer.byteLength<20)throw Error('Modello vuoto: '+buffer.byteLength+' byte');if(dv.getUint32(0,true)!==0x46546c67)throw Error('File GLB non valido');let off=12;const len=dv.getUint32(off,true);off+=8;data=JSON.parse(new TextDecoder().decode(new Uint8Array(buffer,off,len)));off+=len;const blen=dv.getUint32(off,true);off+=8;bin=buffer.slice(off,off+blen);prepare()}).catch(e=>error(e.message));
+// File incorporato nell'app; per la versione web deve trovarsi nello stesso percorso
+// sul server (GitHub Pages compreso), non solo nella scheda del repository GitHub.
+const MIMO_GLB_URL='Assets/mimo-orecchie-365.glb';
+async function loadMimoGLB(){
+  let response;
+  const url=new URL(MIMO_GLB_URL,document.baseURI);
+  try { response=await fetch(url.href,{cache:'no-store'}); }
+  catch (e) {
+    throw new Error('Impossibile scaricare '+MIMO_GLB_URL+'. Controlla che il file sia pubblicato nella cartella Assets e che la connessione sia attiva. ('+(e?.message||e)+')');
+  }
+  if(!response.ok) {
+    throw new Error('Modello non disponibile: HTTP '+response.status+' ('+MIMO_GLB_URL+'). Verifica il percorso su GitHub.');
+  }
+  const buffer=await response.arrayBuffer();
+  if(buffer.byteLength<20)throw new Error('File modello vuoto o incompleto ('+buffer.byteLength+' byte).');
+  const dv=new DataView(buffer);
+  if(dv.getUint32(0,true)!==0x46546c67)throw new Error('Risposta non GLB (probabile pagina HTML, LFS pointer o percorso errato): '+MIMO_GLB_URL);
+  const length=dv.getUint32(8,true);
+  if(length!==buffer.byteLength)throw new Error('GLB troncato: '+buffer.byteLength+'/'+length+' byte.');
+  let off=12;
+  const jsonLength=dv.getUint32(off,true);
+  if(jsonLength<2||jsonLength+20>buffer.byteLength)throw new Error('GLB JSON non valido.');
+  if(dv.getUint32(off+4,true)!==0x4e4f534a)throw new Error('Chunk JSON mancante.');
+  off+=8;
+  data=JSON.parse(new TextDecoder().decode(new Uint8Array(buffer,off,jsonLength)));
+  off+=jsonLength;
+  if(off+8>buffer.byteLength)throw new Error('Chunk BIN mancante.');
+  const binLength=dv.getUint32(off,true), binType=dv.getUint32(off+4,true);
+  if(binType!==0x004e4942||off+8+binLength>buffer.byteLength)throw new Error('Chunk BIN incompleto.');
+  bin=buffer.slice(off+8,off+8+binLength);
+  prepare();
+}
+loadMimoGLB().catch(e=>error(e.message));
 let last=0;for(const id of ['statusBarLearn','learnHandsStatus','statusBarHands']){const el=document.getElementById(id);if(!el)continue;new MutationObserver(()=>{const now=Date.now();if(now-last<1400)return;const t=(el.textContent||'').toLowerCase();if(/brav|corrett|compl|perfect|success|ottim|riuscit/.test(t)){last=now;play('Mimi_Celebrate')}else if(/erro|sbagli|wrong|retry|riprova/.test(t)){last=now;play('Mimi_Think')}}).observe(el,{subtree:true,childList:true,characterData:true})}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();

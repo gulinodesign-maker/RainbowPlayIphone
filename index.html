@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.377</div>
+    <div class="intro-version-label">Build 2.380</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.377</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.380</div>
   </div>
 </div>
 
@@ -18673,7 +18673,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.377";
+  const PAGE_BUILD = "2.380";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -25110,7 +25110,7 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-369.js?v=377"></script>
+<script src="Assets/mimo-rigged-369.js?v=380"></script>
 
 
 <style id="mr353-room-style">
@@ -25198,7 +25198,7 @@ function init(){
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
 </div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
- // Build 2.377: viewport panoramico, contenuto in coordinate originali 4:3.
+ // Build 2.380: viewport panoramico, contenuto in coordinate originali 4:3.
  // Non stirare né spostare indipendentemente i layer del cestino, Mìmo e i punti cliccabili.
  const sceneRoot=room.querySelector('#mr344Scene');
  const sceneCanvas=document.createElement('div');
@@ -25207,10 +25207,34 @@ function init(){
  Array.from(sceneRoot.children).forEach(child=>{
    if(child!==sceneCanvas && !['mr354WingControls','mr344Bed','mr344Bath'].includes(child.id))sceneCanvas.appendChild(child);
  });
+  // Stato 3D leggibile anche se Mìmo non riesce a comparire nel simulatore.
+  // Il pannello resta nascosto quando il modello funziona normalmente.
+  const mimoDiagnostic=document.createElement('div');
+  mimoDiagnostic.id='mr379MimoDiagnostic';mimoDiagnostic.hidden=true;
+  mimoDiagnostic.setAttribute('role','status');mimoDiagnostic.setAttribute('aria-live','polite');
+  mimoDiagnostic.innerHTML='<span class="mr379MimoText"></span><button type="button" id="mr379MimoRetry" hidden>Riprova</button>';
+  sceneRoot.appendChild(mimoDiagnostic);
+  mimoDiagnostic.querySelector('#mr379MimoRetry').addEventListener('click',()=>window.location.reload());
+  const mimoLoadingSince=Date.now();
+  function updateMimoDiagnostic(){
+    const active=getComputedStyle(page).display!=='none';
+    const enabled=document.getElementById('mimoEnabled')?.checked!==false;
+    const state=window.MimoRenderStatus||{phase:'loading',message:'Caricamento di Mìmo…'};
+    const trouble=!enabled || state.phase==='error' || state.phase==='disabled';
+    const slow=state.phase==='loading' && Date.now()-mimoLoadingSince>9000;
+    mimoDiagnostic.hidden=!active||(!trouble&&!slow);
+    if(mimoDiagnostic.hidden)return;
+    const message=!enabled?'Mìmo è disattivato: apri Impostazioni e seleziona Mìmo attivo.':
+      (state.phase==='error'?'Mìmo 3D: '+state.message:state.message||'Caricamento di Mìmo…');
+    mimoDiagnostic.querySelector('.mr379MimoText').textContent=message;
+    mimoDiagnostic.querySelector('#mr379MimoRetry').hidden=!enabled||state.phase!=='error';
+  }
+  window.addEventListener('musicrainbow:mimo-render-status',updateMimoDiagnostic);
+  setTimeout(updateMimoDiagnostic,10000);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
 
- // Build 2.377: riempimento orizzontale del display, inquadratura croppata verticalmente.
+ // Build 2.380: riempimento orizzontale del display, inquadratura croppata verticalmente.
  // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
  // usano lo stesso riferimento e rimangono allineati anche con un viewport largo.
  const topPanel=page.querySelector('.top-panel');
@@ -25334,7 +25358,7 @@ function init(){
    awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
- function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh();queueFit376()}
+ function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh();queueFit376();updateMimoDiagnostic()}
  new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
  const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
  syncRoom();refresh();return true;
@@ -25491,7 +25515,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 </style>
 
 <style id="mr375-room-layout-fixes">
-/* Build 2.377: all the room art, hotspots and overlays stay in a common 4:3 canvas.
+/* Build 2.380: all the room art, hotspots and overlays stay in a common 4:3 canvas.
    JavaScript sizes the canvas to the available height and applies identical width
    to the title bar and the four needs indicators. Never use object-fit:fill. */
 #trophyPage .app{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;}
@@ -25560,11 +25584,11 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 }
 </style>
 
-<style id="mr377-basket-mimo-fixes">
-/* 2.377: bordino superiore del cesto più basso rispetto ai frutti. Lo sfondo del cesto resta fermo. */
-#mr373Basket .mr373BasketLayer:nth-child(2),
-#mr373Basket #mr353BasketFruit .mr373ActiveFruit{transform:translateY(1.5%)!important;}
-#mr373Basket .mr373BasketFront{transform:translateY(4.5%)!important;}
+<style id="mr378-basket-fruit-fixes">
+/* 2.378: i frutti restano interi e non vengono ritagliati; solo il bordo anteriore del cesto li copre otticamente. */
+#mr373Basket .mr373BasketLayer:nth-child(2){transform:none!important;}
+#mr373Basket #mr353BasketFruit .mr373ActiveFruit{transform:none!important;}
+#mr373Basket .mr373BasketFront{transform:translateY(8.4%)!important;}
 /* Gli 8 sticker restano su layer separati ordinati nel DOM; i contatori 0 non occupano il cestino. */
 #mr373Basket .mr373FruitTouch:not(:has(.mr373FruitCount)){cursor:default;}
 /* Mìmo viene inserito dentro il nido/vasca: la parte anteriore è un livello grafico opaco. */
@@ -25588,6 +25612,21 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{
 /* Stesso controllo Home delle altre pagine: una sola casetta, nessun simbolo duplicato. */
 #trophyPage #trophyHomeBtn{font-size:0!important;line-height:0!important;}
 #trophyPage #trophyHomeBtn::before{content:"🏠"!important;font-size:24px!important;line-height:1!important;display:block!important;}
+</style>
+
+<style id="mr379-mimo-simulator-diagnostics">
+/* Diagnostica visibile SOLO se il motore 3D è disattivato o non si avvia. */
+#mr344Scene #mr379MimoDiagnostic[hidden]{display:none!important;}
+#mr344Scene #mr379MimoDiagnostic{
+ position:absolute;left:50%;top:7%;transform:translateX(-50%);z-index:45;
+ max-width:min(90%,580px);width:max-content;padding:8px 12px;
+ background:rgba(255,250,233,.94);border:1px solid #cf9244;
+ box-shadow:0 3px 12px #311b1055;border-radius:12px;
+ color:#613c1f;font:700 12px/1.35 system-ui,-apple-system,sans-serif;
+ display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;
+}
+#mr344Scene #mr379MimoRetry[hidden]{display:none!important;}
+#mr344Scene #mr379MimoRetry{flex:0 0 auto;min-height:30px;padding:5px 9px;border:1px solid #8f6745;border-radius:7px;background:#fff3cc;color:#4d3121;font:700 12px/1 system-ui,sans-serif;cursor:pointer}
 </style>
 </body>
 </html>

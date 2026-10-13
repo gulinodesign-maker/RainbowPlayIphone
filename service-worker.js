@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.381; bypass large GLB; safe cache errors */
-const BUILD = "2.381";
+/* Music Rainbow Service Worker - Build 2.392; bypass large GLB; safe cache errors */
+const BUILD = "2.392";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 

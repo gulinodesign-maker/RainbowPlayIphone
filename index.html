@@ -5741,7 +5741,7 @@ button.midi-learn-bound{box-shadow:0 0 0 4px rgba(34,197,94,.62),0 0 20px rgba(3
 #homeScoresBtn::before{background-image:url("Assets/home-icon-scores-2179.svg?v=2.296") !important;}
 #homePlayBtn::before{background-image:url("Assets/home-icon-play.svg?v=2.296") !important;}
 #homeLearnMainBtn::before{background-image:url("Assets/home-icon-learn.svg?v=2.296") !important;}
-#homeTrophyBtn::before{background-image:url("Assets/home-icon-mimo-room.svg?v=2.373") !important;}
+#homeTrophyBtn::before{background-image:url("Assets/home-icon-mimo-room.svg?v=2.388") !important;}
 #homeSettingsBtn::before{background-image:url("Assets/home-icon-settings.svg?v=2.296") !important;}
 #homeScreen .home-play-disabled{opacity:.62 !important;}
 #homeScreen .home-nav-label{
@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.381</div>
+    <div class="intro-version-label">Build 2.392</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.381</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.392</div>
   </div>
 </div>
 
@@ -18673,7 +18673,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 (() => {
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.381";
+  const PAGE_BUILD = "2.392";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -23072,7 +23072,7 @@ function scoreCreatorNoteOnMR(midi,velocity,nativeTime,voiceOverride=null,source
   if(s.counting&&eventTime>=s.countStartedAt+s.countTicks*scoreCreatorPulseMsMR(s)-2)
     scoreCreatorFinishCountInMR(s);
   if(s.counting||s.paused)return true;
-  if(source!=="pc" && source!=="virtual"){
+  if(source!=="pc"){
     midi+=12*(Number(s.midiOctaveShift)||0);
     if(!isFullPianoMidiMR(midi)){
       scoreEditorAnnounceMR('Nota fuori dall’estensione dello spartito: riduci lo spostamento di ottava.');
@@ -25189,7 +25189,7 @@ load();
 function tick(){const now=Date.now(),last=Math.max(0,Number(state.last)||0);if(!last){state.last=now;return}const d=now-last;if(d<180000)return;const n=Math.floor(d/180000);if(n>0){state.food=clamp(state.food-Math.floor((n+1)/2));state.sleep=clamp(state.sleep-Math.floor((n+2)/3));state.happy=clamp(state.happy-Math.floor(n/3));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
- const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background.jpg" alt="Cameretta di Mìmo"><img class="mr377NestFront" src="Assets/room/nest-front-occlusion.png" alt="" draggable="false"><img class="mr377BathFront" src="Assets/room/bath-front-occlusion.png" alt="" draggable="false"><div id="mr373Basket" aria-label="Cestino di Mìmo">
+ const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background-ipad-notub.png" alt="Cameretta di Mìmo"><div id="mr384BathWrap" aria-hidden="true"><img id="mr384BathBack" src="Assets/room/bath-back-ipad-full.png" alt="" draggable="false"><img id="mr384BathWater" src="Assets/room/bath-water-ipad.png" alt="" draggable="false"><img id="mr384BathFront" src="Assets/room/bath-front-ipad.png" alt="" draggable="false"></div><img class="mr377NestFront" src="Assets/room/nest-front-occlusion.png" alt="" draggable="false"><div id="mr373Basket" aria-label="Cestino di Mìmo">
 <img class="mr373BasketLayer" src="Assets/room/basket-back.png" alt="" draggable="false">
 <img class="mr373BasketLayer" src="Assets/room/basket-ghost.png" alt="" draggable="false">
 <div id="mr353BasketFruit" aria-hidden="true"></div>
@@ -25198,7 +25198,7 @@ function init(){
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
 </div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
- // Build 2.381: viewport panoramico, contenuto in coordinate originali 4:3.
+ // Build 2.392: viewport panoramico, contenuto in coordinate originali 4:3.
  // Non stirare né spostare indipendentemente i layer del cestino, Mìmo e i punti cliccabili.
  const sceneRoot=room.querySelector('#mr344Scene');
  const sceneCanvas=document.createElement('div');
@@ -25232,44 +25232,72 @@ function init(){
   window.addEventListener('musicrainbow:mimo-render-status',updateMimoDiagnostic);
   setTimeout(updateMimoDiagnostic,10000);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
+ const backgroundImage=room.querySelector('.mr353Background');
+ const bathWrap=room.querySelector('#mr384BathWrap'),bathBackImage=room.querySelector('#mr384BathBack'),bathWaterImage=room.querySelector('#mr384BathWater'),bathFrontImage=room.querySelector('#mr384BathFront');
+ // Layer indipendenti: il fronte della vasca deve trovarsi sopra il renderer 3D.
+ if(bathFrontImage && bathFrontImage.parentElement!==sceneCanvas)sceneCanvas.appendChild(bathFrontImage);
  const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
 
- // Build 2.381: riempimento orizzontale del display, inquadratura croppata verticalmente.
+ // Build 2.392: riempimento orizzontale del display, inquadratura croppata verticalmente.
  // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
  // usano lo stesso riferimento e rimangono allineati anche con un viewport largo.
  const topPanel=page.querySelector('.top-panel');
  let roomFitQueued=false;
+ function usePhoneRoom384(){
+  const vw=Math.max(window.innerWidth||0,document.documentElement.clientWidth||0,window.visualViewport?.width||0);
+  const vh=Math.max(window.innerHeight||0,document.documentElement.clientHeight||0,window.visualViewport?.height||0);
+  const shortSide=Math.min(vw,vh), longSide=Math.max(vw,vh);
+  return shortSide<=500 && longSide/Math.max(1,shortSide)>=1.65;
+ }
+ function applyRoomBackground384(){
+  const usePhone=usePhoneRoom384();
+  const bgSrc=usePhone?'Assets/room/room-background-phone-notub.png':'Assets/room/room-background-ipad-notub.png';
+  const bathBackSrc=usePhone?'Assets/room/bath-back-phone-full.png':'Assets/room/bath-back-ipad-full.png';
+  const bathWaterSrc=usePhone?'Assets/room/bath-water-phone.png':'Assets/room/bath-water-ipad.png';
+  const bathFrontSrc=usePhone?'Assets/room/bath-front-phone.png':'Assets/room/bath-front-ipad.png';
+  if(backgroundImage.getAttribute('src')!==bgSrc)backgroundImage.setAttribute('src',bgSrc);
+  if(bathBackImage&&bathBackImage.getAttribute('src')!==bathBackSrc)bathBackImage.setAttribute('src',bathBackSrc);
+  if(bathWaterImage&&bathWaterImage.getAttribute('src')!==bathWaterSrc)bathWaterImage.setAttribute('src',bathWaterSrc);
+  if(bathFrontImage&&bathFrontImage.getAttribute('src')!==bathFrontSrc)bathFrontImage.setAttribute('src',bathFrontSrc);
+  // 2.392: su iPhone interno ed esterno hanno UN SOLO riferimento geometrico:
+  // i due PNG mantengono la stessa tela trasparente e sono figli dello stesso contenitore.
+  // Su iPad ripristiniamo il fronte come elemento esterno, senza modificare il layout esistente.
+  if(bathFrontImage){
+    const alignedParent=usePhone?bathWrap:sceneCanvas;
+    if(alignedParent&&bathFrontImage.parentElement!==alignedParent)alignedParent.appendChild(bathFrontImage);
+  }
+  scene.dataset.roomLayout=usePhone?'phone':'default';
+  return usePhone;
+ }
  function fitLandscapeRoom376(){
   roomFitQueued=false;
   if(getComputedStyle(page).display==='none'||!room.getClientRects().length)return;
   const mainStyle=getComputedStyle(main),roomStyle=getComputedStyle(room);
-  // La stanza occupa sempre l'intera larghezza utile, anche dopo la rotazione iPhone.
   const pageStyle=getComputedStyle(page);
-  const viewportWidth=Math.max(window.innerWidth||0, document.documentElement.clientWidth||0, window.visualViewport?.width||0, (window.innerWidth||0)>(window.innerHeight||0)?Math.max(screen.width||0,screen.height||0):0);
+  const viewportWidth=Math.max(window.innerWidth||0, document.documentElement.clientWidth||0, window.visualViewport?.width||0);
   const horizontalInsets=(parseFloat(pageStyle.paddingLeft)||0)+(parseFloat(pageStyle.paddingRight)||0);
   const mainInsets=(parseFloat(mainStyle.paddingLeft)||0)+(parseFloat(mainStyle.paddingRight)||0);
   const availableWidth=Math.max(1,viewportWidth-horizontalInsets-mainInsets);
-  const gap=parseFloat(roomStyle.rowGap)||parseFloat(roomStyle.gap)||0;
-  const availableHeight=room.clientHeight-stats.offsetHeight-msg.offsetHeight-2*gap;
-  if(availableWidth<1||availableHeight<1)return;
-  const sceneWidth=Math.floor(availableWidth),sceneHeight=Math.max(1,Math.floor(availableHeight));
+  const gap=0;
+  const availableHeight=Math.max(1,room.clientHeight);
+  const usePhone=applyRoomBackground384();
+  const artWidth=usePhone?1846:1448;
+  const artHeight=usePhone?852:1086;
+  const sceneWidth=Math.floor(availableWidth);
+  const sceneHeight=Math.floor(availableHeight);
   scene.style.setProperty('width',sceneWidth+'px','important');
   scene.style.setProperty('height',sceneHeight+'px','important');
-  scene.style.setProperty('flex','0 0 auto','important');
-  topPanel.style.setProperty('width',sceneWidth+'px','important');
+  scene.style.setProperty('flex','1 1 auto','important');
+  topPanel.style.setProperty('width','auto','important');
   stats.style.setProperty('width',sceneWidth+'px','important');
   msg.style.setProperty('width',sceneWidth+'px','important');
-  // Fill horizontally; if necessary grow uniformly, never change the artwork aspect ratio.
-  const scale=Math.max(1,sceneHeight/(sceneWidth*.75));
-  const canvasWidth=sceneWidth*scale,canvasHeight=canvasWidth*.75;
-  const crop=Math.max(0,canvasHeight-sceneHeight);
-  const top=-crop*.72; // Nasconde soprattutto il tetto mantenendo visibile il cestino.
+  const scale=Math.max(sceneWidth/artWidth,sceneHeight/artHeight);
+  const canvasWidth=Math.round(artWidth*scale),canvasHeight=Math.round(artHeight*scale);
   sceneCanvas.style.width=canvasWidth+'px';
   sceneCanvas.style.height=canvasHeight+'px';
   sceneCanvas.style.left=((sceneWidth-canvasWidth)/2)+'px';
-  sceneCanvas.style.top=top+'px';
- }
- function queueFit376(){
+  sceneCanvas.style.top=((sceneHeight-canvasHeight)/2)+'px';
+ } function queueFit376(){
   if(roomFitQueued)return;
   roomFitQueued=true;
   requestAnimationFrame(fitLandscapeRoom376);
@@ -25284,7 +25312,14 @@ function init(){
  window.addEventListener('resize',queueFit376,{passive:true});
  window.addEventListener('orientationchange',()=>{queueFit376();setTimeout(queueFit376,180);setTimeout(queueFit376,540);},{passive:true});
  if(window.visualViewport)window.visualViewport.addEventListener('resize',queueFit376,{passive:true});
- const positions={food:{left:'50%',top:'60%'},bed:{left:'23.4%',top:'39%'},bath:{left:'83.8%',top:'43.5%'}};
+ // Griglia 16×10: Mìmo dorme nel riquadro 51 su entrambi i dispositivi.
+ // In vasca: iPad al centro del riquadro 62; iPhone al centro del riquadro 78.
+ const positions={
+  default:{food:{left:'50%',top:'60%'},bed:{left:'15.625%',top:'35%'},bath:{left:'84.375%',top:'35%'}},
+  phone:{food:{left:'50%',top:'59%'},bed:{left:'15.625%',top:'45%'},bath:{left:'84.375%',top:'45%'}}
+ };
+ function activeRoomLayout384(){return scene.dataset.roomLayout==='phone'?'phone':'default';}
+ function getRoomPosition384(target){const layout=positions[activeRoomLayout384()]||positions.default;return layout[target]||positions.default[target]||positions.default.food;}
  function clearPose(){window.MimoExpressions?.clear?.();window.MimoMood?.clearPreview?.();}
  function applyPose(target){
   if(target==='bed'){
@@ -25299,7 +25334,7 @@ function init(){
    clearPose();
   }
  }
- function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=positions[target]||positions.food;if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
+ function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=getRoomPosition384(target);if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
  function setMessage(text){msg.textContent=text||''}
  function updateMood(){
   const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
@@ -25521,7 +25556,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 </style>
 
 <style id="mr375-room-layout-fixes">
-/* Build 2.381: all the room art, hotspots and overlays stay in a common 4:3 canvas.
+/* Build 2.392: all the room art, hotspots and overlays stay in a common 4:3 canvas.
    JavaScript sizes the canvas to the available height and applies identical width
    to the title bar and the four needs indicators. Never use object-fit:fill. */
 #trophyPage .app{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;}
@@ -25600,7 +25635,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 /* Mìmo viene inserito dentro il nido/vasca: la parte anteriore è un livello grafico opaco. */
 #mr376SceneCanvas .mr377NestFront,
 #mr376SceneCanvas .mr377BathFront{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:12!important;pointer-events:none!important;display:none!important;user-select:none!important;}
-#mr344Scene[data-location="bed"] .mr377NestFront{display:block!important;}
+#mr344Scene[data-location="bed"] .mr377NestFront{display:none!important;}
 #mr344Scene[data-location="bath"] .mr377BathFront{display:block!important;}
 body.mr353-room-open #mr344Scene[data-location="bed"] #mimoBuddy{
  width:clamp(120px,18%,245px)!important;height:29%!important;max-height:none!important;
@@ -25655,6 +25690,10 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{
 #trophyPage #mr344Message{display:none!important;}
 /* Mìmo scende nella vasca, dietro alla sua parte frontale. */
 body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{z-index:11!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bed{left:21%!important;top:57%!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bath{left:84%!important;top:58%!important;}
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bed"] #mimoBuddy{width:clamp(105px,17%,210px)!important;height:25%!important;transform:translate(-50%,-46%) rotate(-90deg) scale(.94)!important;}
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{width:clamp(102px,16.5%,205px)!important;height:27%!important;transform:translate(-50%,-24%) scale(.98)!important;clip-path:none!important;z-index:11!important;}
 @media(max-height:550px){
  #trophyPage .top-row{height:30px!important;}
  #trophyPage .top-row .menu-btn{width:27px!important;height:27px!important;min-width:27px!important;min-height:27px!important;}
@@ -25663,6 +25702,227 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{z-index:11!imp
  #trophyPage #mr344Stats .mr381NeedIcon{font-size:13px!important;}
  #trophyPage #mr344Stats .mr344Hearts{font-size:14px!important;}
 }
+</style>
+
+<style id="mr383-room-fullscreen-device-bg">
+/* Build 2.392: la stanza usa lo sfondo come fondale pieno del dispositivo. */
+#trophyPage{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;overflow:hidden!important;background:#000!important;}
+#trophyPage>.app{position:relative!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)!important;box-sizing:border-box!important;overflow:hidden!important;}
+#trophyPage .top-panel{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 10px)!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;left:auto!important;bottom:auto!important;width:auto!important;max-width:none!important;min-width:0!important;margin:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;pointer-events:none!important;z-index:140!important;}
+#trophyPage .top-row{display:block!important;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;border-radius:0!important;}
+#trophyPage .top-row .rainbow-title,#trophyPage .top-row .top-right-controls{display:none!important;}
+#trophyPage .top-row .top-left-controls{display:block!important;margin:0!important;padding:0!important;pointer-events:auto!important;}
+#trophyPage #trophyHomeBtn{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;border-radius:14px!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(37,34,61,.82)!important;border:2px solid rgba(255,255,255,.94)!important;box-shadow:0 6px 16px rgba(0,0,0,.28)!important;}
+#trophyPage #trophyHomeBtn::before{font-size:24px!important;}
+#trophyPage .trophy-main{position:relative!important;display:flex!important;flex:1 1 auto!important;min-height:0!important;width:100%!important;padding:0!important;overflow:hidden!important;}
+#trophyPage #mr344Room{position:relative!important;width:100%!important;height:100%!important;display:flex!important;flex-direction:column!important;gap:4px!important;align-items:stretch!important;justify-content:flex-start!important;box-sizing:border-box!important;}
+#trophyPage #mr344Scene{position:relative!important;flex:1 1 auto!important;min-height:0!important;width:100%!important;max-width:none!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important;background:#000!important;}
+#mr376SceneCanvas{position:absolute!important;overflow:visible!important;z-index:0!important;}
+#mr376SceneCanvas>.mr353Background{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;}
+#mr344Scene #mr354WingControls{position:absolute!important;top:calc(env(safe-area-inset-top,0px) + 10px)!important;left:calc(env(safe-area-inset-left,0px) + 10px)!important;right:auto!important;z-index:130!important;}
+#mr344Scene #mr354WingControls button{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;font-size:21px!important;}
+#mr344Scene #mr344Bed{left:22%!important;top:55%!important;z-index:134!important;}
+#mr344Scene #mr344Bath{left:84%!important;top:60%!important;z-index:134!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bed{left:22%!important;top:59%!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bath{left:84%!important;top:64%!important;}
+#mr344Scene #mr383BathWater{position:absolute!important;left:74.2%!important;top:38.3%!important;width:19.2%!important;height:13.4%!important;border-radius:48% 48% 46% 46% / 34% 34% 66% 66%!important;background:linear-gradient(180deg,rgba(255,255,255,.56) 0%,rgba(163,228,255,.82) 18%,rgba(106,202,246,.88) 58%,rgba(80,166,237,.78) 100%)!important;box-shadow:inset 0 1px 4px rgba(255,255,255,.45), inset 0 -5px 10px rgba(57,118,181,.24), 0 2px 6px rgba(48,87,133,.18)!important;opacity:.86!important;z-index:10!important;pointer-events:none!important;}
+#mr344Scene[data-room-layout="phone"] #mr383BathWater{left:74.2%!important;top:44.7%!important;width:19.5%!important;height:14.2%!important;}
+#mr376SceneCanvas .mr377NestFront,#mr376SceneCanvas .mr377BathFront{z-index:12!important;}
+body.mr353-room-open #mr344Scene #mimoBuddy{z-index:9!important;}
+body.mr353-room-open #mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(118px,18%,245px)!important;height:29%!important;transform:translate(-50%,-49%) rotate(-90deg) scale(.94)!important;clip-path:none!important;z-index:15!important;}
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(112px,16.5%,220px)!important;height:28%!important;transform:translate(-50%,-16%) scale(.94)!important;clip-path:none!important;z-index:9!important;}
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{width:clamp(100px,15.3%,192px)!important;height:27%!important;transform:translate(-50%,-10%) scale(.92)!important;z-index:9!important;}
+#trophyPage #mr344Stats{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;flex:0 0 24px!important;width:100%!important;padding:0 max(4px,env(safe-area-inset-left,0px)) max(3px,env(safe-area-inset-bottom,0px)) max(4px,env(safe-area-inset-right,0px))!important;box-sizing:border-box!important;background:transparent!important;z-index:141!important;}
+#trophyPage #mr344Stats .mr344Stat{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:4px!important;height:24px!important;min-height:24px!important;min-width:0!important;padding:0 1px!important;border-radius:8px!important;background:rgba(255,242,223,.95)!important;font-size:0!important;line-height:1!important;white-space:nowrap!important;box-shadow:0 1px 5px rgba(0,0,0,.08)!important;}
+#trophyPage #mr344Stats .mr381NeedIcon{font:normal 14px/1 system-ui,-apple-system,sans-serif!important;flex:0 0 auto!important;}
+#trophyPage #mr344Stats .mr344Hearts{display:inline-block!important;flex:0 1 auto!important;min-width:0!important;font:normal 15px/1 system-ui,-apple-system,sans-serif!important;letter-spacing:0!important;margin:0!important;white-space:nowrap!important;}
+#trophyPage #mr344Message{display:none!important;}
+@media(max-height:620px){
+ #trophyPage #trophyHomeBtn{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;}
+ #trophyPage #trophyHomeBtn::before{font-size:21px!important;}
+ #mr344Scene #mr354WingControls button{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;font-size:19px!important;}
+ #trophyPage #mr344Stats{flex-basis:21px!important;gap:2px!important;padding-bottom:max(2px,env(safe-area-inset-bottom,0px))!important;}
+ #trophyPage #mr344Stats .mr344Stat{height:21px!important;min-height:21px!important;gap:3px!important;}
+ #trophyPage #mr344Stats .mr381NeedIcon{font-size:12px!important;}
+ #trophyPage #mr344Stats .mr344Hearts{font-size:13px!important;}
+}
+</style>
+
+<style id="mr384-room-bath-stack">
+#trophyPage .top-panel{left:calc(env(safe-area-inset-left,0px) + 10px)!important;right:auto!important;}
+#trophyPage #mr344Scene #mr354WingControls{left:auto!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;}
+#mr376SceneCanvas #mr384BathWrap{position:absolute!important;left:72.0%!important;top:35.4%!important;width:28.9%!important;height:34.1%!important;z-index:7!important;pointer-events:none!important;}
+#mr376SceneCanvas #mr384BathWrap img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;display:block!important;pointer-events:none!important;}
+#mr376SceneCanvas #mr384BathBack{z-index:7!important;}
+#mr376SceneCanvas #mr384BathWater{z-index:10!important;opacity:.72!important;}
+#mr376SceneCanvas #mr384BathFront{z-index:12!important;}
+#mr344Scene[data-room-layout="phone"] #mr384BathWrap{left:74.4%!important;top:34.1%!important;width:27.0%!important;height:38.9%!important;}
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:none!important;width:clamp(100px,15.8%,192px)!important;height:26%!important;transform:translate(-50%,-3%) scale(.93)!important;z-index:11!important;}
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{clip-path:none!important;width:clamp(94px,14.6%,176px)!important;height:25.5%!important;transform:translate(-50%,1%) scale(.91)!important;z-index:11!important;}
+</style>
+<script id="mr384-pc-keyboard-levels">
+(function(){
+  if(typeof pcKeyboardEnabledMR!=='function')return;
+  function pcKeyboardPlayablePage384(){
+    return isPageVisibleMR('scorePlayerPage')||isPageVisibleMR('playPage')||isPageVisibleMR('learnNotesPage')||isPageVisibleMR('learnTempoPage')||isPageVisibleMR('level1Page')||isPageVisibleMR('level2Page')||isPageVisibleMR('level3Page')||isPageVisibleMR('level4Page')||isPageVisibleMR('level5Page')||isPageVisibleMR('level6Page')||isPageVisibleMR('level7Page')||isPageVisibleMR('level8Page');
+  }
+  document.removeEventListener('keydown',pcKeyboardKeyDownMR,true);
+  document.removeEventListener('keyup',pcKeyboardKeyUpMR,true);
+  const originalMapped=pcKeyboardMappedNoteMR;
+  pcKeyboardMappedNoteMR=function(code){
+    if(isPageVisibleMR('scorePlayerPage')&&activeScore)return originalMapped(code);
+    const offset=PC_DEFAULT_UPPER_MR.indexOf(code);
+    if(offset<0)return null;
+    const midi=60+offset;
+    if(!isFullPianoMidiMR(midi))return null;
+    return {midi,voice:'treble'};
+  };
+  pcKeyboardKeyDownMR=function(ev){
+    if(!pcKeyboardEnabledMR()||pcKeyboardIsTypingMR(ev)||ev.isComposing||ev.metaKey||ev.ctrlKey||ev.altKey)return;
+    const code=pcKeyboardEventCodeMR(ev);
+    if(midiLearnTargetMR&&midiLearnTargetMR.type==='button'){
+      ev.preventDefault();ev.stopImmediatePropagation();if(!ev.repeat)pcKeyboardAssignCommandMR(code);return;
+    }
+    if(!pcKeyboardModeMR||!pcKeyboardPlayablePage384())return;
+    if(isPageVisibleMR('scorePlayerPage')&&!(scoreCreatorCanUseMR()||!scoreEditorActiveMR))return;
+    const command=pcKeyboardCommandsMR[code];
+    if(command){
+      ev.preventDefault();ev.stopImmediatePropagation();
+      if(!ev.repeat&&!pcKeyboardPressedMR.has(code)){pcKeyboardPressedMR.set(code,{command:true});triggerGlobalMidiFunctionMR(command);}
+      return;
+    }
+    const note=pcKeyboardMappedNoteMR(code);if(!note)return;
+    ev.preventDefault();ev.stopImmediatePropagation();
+    if(ev.repeat||pcKeyboardPressedMR.has(code))return;
+    pcKeyboardPressedMR.set(code,note);
+    pcKeyboardSoundOnMR(code,note.midi);
+    routeMidiNoteOnMR(note.midi,90,'pc',undefined,note.voice,code);
+  };
+  pcKeyboardKeyUpMR=function(ev){
+    const code=pcKeyboardEventCodeMR(ev),held=pcKeyboardPressedMR.get(code);if(!held)return;
+    ev.preventDefault();ev.stopImmediatePropagation();pcKeyboardPressedMR.delete(code);
+    pcKeyboardSoundOffMR(code);
+    if(!held.command)routeMidiNoteOffMR(held.midi,0,'pc',undefined,code);
+  };
+  document.addEventListener('keydown',pcKeyboardKeyDownMR,true);
+  document.addEventListener('keyup',pcKeyboardKeyUpMR,true);
+})();
+</script>
+
+<style id="mr385-room-fullscreen-final">
+/* Build 2.392 — stanza full screen reale: sfondo pieno, controlli sopra l'immagine. */
+#trophyPage{background:transparent!important;overflow:hidden!important;}
+#trophyPage .app{position:relative!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;border-radius:0!important;overflow:hidden!important;background:transparent!important;}
+#trophyPage .top-panel{position:absolute!important;top:0!important;left:0!important;width:0!important;height:0!important;margin:0!important;padding:0!important;pointer-events:none!important;z-index:220!important;background:transparent!important;}
+#trophyPage .top-row{min-height:0!important;padding:0!important;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}
+#trophyPage .top-row .rainbow-title,
+#trophyPage .top-row .top-right-controls{display:none!important;}
+#trophyPage .top-left-controls{position:absolute!important;left:calc(env(safe-area-inset-left,0px) + 10px)!important;top:calc(env(safe-area-inset-top,0px) + 10px)!important;display:block!important;pointer-events:auto!important;z-index:230!important;}
+#trophyPage #trophyHomeBtn{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border-radius:14px!important;background:rgba(255,247,237,.96)!important;border:2px solid #fdba74!important;box-shadow:0 2px 10px rgba(0,0,0,.14)!important;}
+#trophyPage .trophy-main{position:relative!important;flex:1 1 auto!important;min-height:0!important;height:100%!important;padding:0!important;margin:0!important;overflow:hidden!important;}
+#trophyPage #trophyContent{width:100%!important;height:100%!important;display:block!important;}
+#trophyPage #mr344Room{position:relative!important;width:100%!important;height:100%!important;min-height:0!important;display:block!important;overflow:hidden!important;background:transparent!important;}
+#trophyPage #mr344Scene{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;overflow:hidden!important;isolation:isolate!important;}
+#trophyPage #mr344Scene .mr353Background{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center top!important;}
+#trophyPage #mr344Message{display:none!important;}
+#trophyPage #mr344Fruits{display:none!important;}
+#trophyPage #mr344Stats{position:absolute!important;left:0!important;right:0!important;bottom:0!important;width:auto!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;z-index:210!important;flex:none!important;padding:0 max(5px,env(safe-area-inset-left,0px)) max(5px,env(safe-area-inset-bottom,0px)) max(5px,env(safe-area-inset-right,0px))!important;box-sizing:border-box!important;background:transparent!important;}
+#trophyPage #mr344Stats .mr344Stat{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;height:24px!important;min-height:24px!important;padding:0 2px!important;gap:4px!important;font-size:0!important;line-height:1!important;border-radius:9px!important;background:rgba(255,242,223,.95)!important;box-shadow:0 1px 4px rgba(0,0,0,.08)!important;white-space:nowrap!important;}
+#trophyPage #mr344Stats .mr381NeedIcon{font:normal 14px/1 system-ui,-apple-system,sans-serif!important;}
+#trophyPage #mr344Stats .mr344Hearts{font:normal 15px/1 system-ui,-apple-system,sans-serif!important;letter-spacing:0!important;white-space:nowrap!important;}
+#mr376SceneCanvas #mr384BathWrap{left:77.0%!important;top:51.0%!important;width:24.0%!important;height:25.0%!important;z-index:7!important;}
+#mr344Scene[data-room-layout="phone"] #mr384BathWrap{left:75.4%!important;top:47.0%!important;width:24.8%!important;height:29.0%!important;}
+#mr376SceneCanvas #mr384BathWater{display:none!important;}
+#mr344Scene #mr344Bed{left:18.0%!important;top:66.5%!important;z-index:214!important;}
+#mr344Scene #mr344Bath{left:85.0%!important;top:69.0%!important;z-index:214!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bed{left:20.3%!important;top:73.0%!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bath{left:86.0%!important;top:74.0%!important;}
+#mr344Scene #mr354WingControls{top:calc(env(safe-area-inset-top,0px) + 10px)!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;left:auto!important;z-index:214!important;}
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(118px,17.6%,214px)!important;height:26.8%!important;transform:translate(-50%,7%) scale(.93)!important;clip-path:none!important;z-index:11!important;}
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{width:clamp(108px,16.6%,200px)!important;height:27.2%!important;transform:translate(-50%,10%) scale(.92)!important;clip-path:none!important;z-index:11!important;}
+@media (max-width: 700px){
+  #trophyPage #trophyHomeBtn{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;border-radius:12px!important;}
+  #trophyPage #mr344Stats{gap:2px!important;padding-bottom:max(3px,env(safe-area-inset-bottom,0px))!important;}
+  #trophyPage #mr344Stats .mr344Stat{height:21px!important;min-height:21px!important;gap:3px!important;border-radius:7px!important;}
+  #trophyPage #mr344Stats .mr381NeedIcon{font-size:12px!important;}
+  #trophyPage #mr344Stats .mr344Hearts{font-size:13px!important;}
+  #mr344Scene #mr354WingControls button{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;}
+}
+</style>
+
+
+<style id="mr388-grid-positions">
+/* Music Rainbow 2.391 — griglia 16 x 10, esterno vasca su layer superiore. */
+#mr376SceneCanvas{--mr388-tub-left:71.5%;--mr388-tub-top:30.7%;--mr388-tub-width:23.5%;--mr388-tub-height:22%;}
+/* iPhone: ripristinata geometria della vasca della build 2.387, mantenendo fronte e retro indipendenti. */
+/* Build 2.392 — vasca iPhone: interna ed esterna condividono lo stesso riquadro e la stessa scala.
+   Il centro rimane nella zona 77–79 / 93–95; il bordo esterno copre Mìmo senza uscire dallo schermo. */
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas{--mr388-tub-left:69.5%;--mr388-tub-top:37.0%;--mr388-tub-width:29.0%;--mr388-tub-height:29.0%;}
+#mr376SceneCanvas #mr384BathWrap,
+#mr376SceneCanvas > #mr384BathFront{
+ left:var(--mr388-tub-left)!important;
+ top:var(--mr388-tub-top)!important;
+ width:var(--mr388-tub-width)!important;
+ height:var(--mr388-tub-height)!important;
+ position:absolute!important;
+ margin:0!important;
+ padding:0!important;
+ pointer-events:none!important;
+}
+#mr376SceneCanvas #mr384BathWrap{z-index:7!important;overflow:visible!important;}
+#mr376SceneCanvas #mr384BathBack{z-index:7!important;}
+#mr376SceneCanvas #mr384BathWater{z-index:10!important;}
+#mr376SceneCanvas > #mr384BathFront{
+ display:block!important;
+ z-index:13!important;
+ object-fit:fill!important;
+}
+/* 2.392: registrazione dei due layer sul medesimo riferimento, SENZA traslazioni autonome. */
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr384BathWrap{
+  z-index:auto!important; /* evita di isolare i figli sotto Mìmo: sfondo 7, Mìmo 11, fronte 13 */
+  overflow:visible!important;
+  transform:none!important;
+}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr384BathWrap > img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr384BathWrap > #mr384BathBack{z-index:7!important;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr384BathWrap > #mr384BathWater{z-index:10!important;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr384BathWrap > #mr384BathFront{z-index:13!important;}
+/* Posizione di Mìmo in piedi al centro della cella 51 del nido. */
+body.mr353-room-open #mr344Scene[data-location="bed"] #mimoBuddy,
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bed"] #mimoBuddy{
+ width:clamp(105px,15.5%,205px)!important;
+ height:25%!important;
+ transform:translate(-50%,-50%) scale(.90)!important;
+ clip-path:none!important;
+ z-index:11!important;
+}
+/* Mìmo nella vasca: iPad cella 62, iPhone cella 78; piedi coperti dal fronte vasca. */
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy,
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{
+ width:clamp(105px,15.5%,195px)!important;
+ height:26%!important;
+ transform:translate(-50%,-50%) scale(.94)!important;
+ clip-path:none!important;
+ z-index:11!important;
+}
+/* Il nido non occlude Mìmo quando dorme. */
+#mr344Scene[data-location="bed"] .mr377NestFront{display:none!important;}
+/* Punti azione sotto i rispettivi oggetti, non sopra Mìmo. */
+#mr344Scene #mr344Bath{left:84.375%!important;top:57%!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bath{left:84.375%!important;top:65%!important;}
+#mr344Scene #mr344Bed{left:15.625%!important;top:64%!important;}
+#mr344Scene[data-room-layout="phone"] #mr344Bed{left:15.625%!important;top:66%!important;}
 </style>
 </body>
 </html>

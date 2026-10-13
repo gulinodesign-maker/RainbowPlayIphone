@@ -27,7 +27,15 @@ const lidCanvas=document.createElement('canvas');lidCanvas.id='mimoEyelidOverlay
 lidCanvas.setAttribute('aria-hidden','true');lidCanvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;background:transparent';
 host.appendChild(lidCanvas);document.body.appendChild(host);
 const lidCtx=lidCanvas.getContext('2d');
-const toggle=document.getElementById('mimoEnabled'),status=document.getElementById('mimoStatus');toggle.checked=enabled();const sync=()=>{host.style.display=toggle.checked?'block':'none'};toggle.onchange=()=>{try{localStorage.setItem(KEY,toggle.checked?'1':'0')}catch{}sync()};sync();
+// Build 2.379: stato verificabile anche sulla simulazione iOS (senza nascondere
+// eventuali errori WebGL/GLB nel solo pannello Impostazioni).
+const MIMO_SIMULATOR = window.MusicRainbowIsSimulator === true;
+function mimoReport(phase,message){
+  window.MimoRenderStatus={phase,message:String(message||''),simulator:MIMO_SIMULATOR,updatedAt:Date.now()};
+  window.dispatchEvent(new CustomEvent('musicrainbow:mimo-render-status',{detail:window.MimoRenderStatus}));
+}
+mimoReport('loading','Caricamento del modello 3D…');
+const toggle=document.getElementById('mimoEnabled'),status=document.getElementById('mimoStatus');toggle.checked=enabled();const sync=()=>{host.style.display=toggle.checked?'block':'none';if(!toggle.checked)mimoReport('disabled','Mìmo disattivato nelle Impostazioni');else if(window.MimoRenderStatus?.phase==='disabled')mimoReport('loading','Mìmo attivato: caricamento in corso…')};toggle.onchange=()=>{try{localStorage.setItem(KEY,toggle.checked?'1':'0')}catch{}sync()};sync();
 const lab=document.createElement('div');lab.id='mr357Lab';lab.hidden=true;
 lab.innerHTML=`<div class="mr357LabDialog" role="dialog" aria-modal="true" aria-labelledby="mr357LabTitle" tabindex="-1">
  <header class="mr357LabHeader"><div><h2 id="mr357LabTitle">🎭 Laboratorio di Mìmo</h2><p id="mr361LabIntro">Prova emozioni, gesti e palpebre sul modello 3D.</p></div><button type="button" id="mr357LabClose" aria-label="Chiudi laboratorio" title="Chiudi laboratorio">✕</button></header>
@@ -121,8 +129,13 @@ lab.querySelector('#mr357LabClose').addEventListener('click',closeLab);
 lab.querySelector('#mr357LabReset').addEventListener('click',resetLab);
 lab.addEventListener('click',e=>{if(e.target===lab)closeLab()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!lab.hidden)closeLab()});
-function error(message){status.textContent='Mìmo 3D: '+message;console.error('[Mimo366]',message);host.style.border='2px solid #d97706';host.style.background='rgba(255,245,220,.9)';host.title=message;host.setAttribute('data-mimo-error',message);host.style.pointerEvents='auto';let alert=host.querySelector('#mimoRenderError');if(!alert){alert=document.createElement('div');alert.id='mimoRenderError';alert.setAttribute('role','alert');alert.style.cssText='position:absolute;left:5%;right:5%;bottom:8%;z-index:5;background:#fff4de;color:#613e16;border:1px solid #d97706;border-radius:12px;padding:10px;font:600 12px/1.45 system-ui;text-align:center;box-shadow:0 4px 12px #0002';host.appendChild(alert)}alert.textContent='Mìmo 3D: '+message;}
-const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,premultipliedAlpha:false})||canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false})||canvas.getContext('experimental-webgl',{alpha:true});if(!gl){error('WebGL non disponibile');return}
+function error(message){mimoReport('error',message);status.textContent='Mìmo 3D: '+message;console.error('[Mimo380]',message);host.style.border='2px solid #d97706';host.style.background='rgba(255,245,220,.9)';host.title=message;host.setAttribute('data-mimo-error',message);host.style.pointerEvents='auto';let alert=host.querySelector('#mimoRenderError');if(!alert){alert=document.createElement('div');alert.id='mimoRenderError';alert.setAttribute('role','alert');alert.style.cssText='position:absolute;left:5%;right:5%;bottom:8%;z-index:5;background:#fff4de;color:#613e16;border:1px solid #d97706;border-radius:12px;padding:10px;font:600 12px/1.45 system-ui;text-align:center;box-shadow:0 4px 12px #0002';host.appendChild(alert)}alert.textContent='Mìmo 3D: '+message;}
+const glOptions={alpha:true,antialias:!MIMO_SIMULATOR,premultipliedAlpha:false,depth:true,stencil:false,failIfMajorPerformanceCaveat:false};
+const gl=canvas.getContext('webgl2',glOptions)||canvas.getContext('webgl',glOptions)||canvas.getContext('experimental-webgl',glOptions);
+if(!gl){error('WebGL non disponibile in questa simulazione');return}
+canvas.addEventListener('webglcontextlost',event=>{
+ event.preventDefault();error('Contesto grafico WebGL perso: riavvia Mìmo');
+},{passive:false});
 status.textContent=mimoT('loading');const V=`precision highp float;attribute vec3 p;attribute vec3 n;attribute vec2 uv;attribute float mouthMask;uniform mat4 proj;uniform mat4 view;varying vec2 tex;varying vec3 normal;varying float mouthRegion;void main(){gl_Position=proj*view*vec4(p,1.);normal=n;tex=uv;mouthRegion=mouthMask;}`;
 // Nel nuovo GLB il becco nasce molto aperto. Il morph ne chiude la geometria;
 // solo quando si chiude, attenuiamo il rosa rimasto sul fondo della bocca.
@@ -151,7 +164,7 @@ window.MimoExpressions={
  clear:()=>{manualExpression=false;expression='standard';expressionUntil=0;return true},
  get:()=>expression
 };
-let data,bin,mesh,anim=[],nodes,skin,ibm,texture,basePositions,baseNormals,jointData,weightData,posBuffer,normBuffer,animatedPositions,animatedNormals,lastSkin=0,mode='Mimi_Idle',until=0,started=performance.now();
+let textureReady=false;let data,bin,mesh,anim=[],nodes,skin,ibm,texture,basePositions,baseNormals,jointData,weightData,posBuffer,normBuffer,animatedPositions,animatedNormals,lastSkin=0,mode='Mimi_Idle',until=0,started=performance.now();
 // Nuovo Mìmo: le ossa del becco muovono solo una piccola parte delle labbra.
 // Aggiungiamo un morph geometrico locale, calcolato dalla mesh ORIGINALE e
 // applicato prima dello skinning, così segue testa, rotazioni e orecchie.
@@ -674,25 +687,97 @@ const imageIndex=data.textures[data.materials[prim.material].pbrMetallicRoughnes
  blob=new Blob([bin.slice(view.byteOffset||0,(view.byteOffset||0)+view.byteLength)],{type:img.mimeType}),url=URL.createObjectURL(blob);
 texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);
 gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([225,190,145,255]));
-const im=new Image();im.onload=()=>{try{texture=makeTextureFromImage(im);status.textContent=mimoT('ready')}finally{URL.revokeObjectURL(url)}};
-im.onerror=()=>error('Texture originale del GLB non caricata');im.src=url;
+const im=new Image();im.onload=()=>{
+ try{texture=makeTextureFromImage(im);textureReady=true;status.textContent=mimoT('loading');}
+ catch(e){error('Texture 3D: '+e.message)}
+ finally{URL.revokeObjectURL(url)}
+};
+im.onerror=()=>{URL.revokeObjectURL(url);error('Texture originale del GLB non caricata')};im.src=url;
 const positions=accessor(prim.attributes.POSITION);let min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(let i=0;i<positions.length;i+=3)for(let k=0;k<3;k++){min[k]=Math.min(min[k],positions[i+k]);max[k]=Math.max(max[k],positions[i+k])}mesh.center=min.map((v,i)=>(v+max[i])/2);mesh.extent=Math.max(...max.map((v,i)=>v-min[i]));status.textContent=mimoT('loading');requestAnimationFrame(frame)}
 function cpuSkin(matrices){const count=basePositions.length/3;for(let v=0;v<count;v++){const o=v*3,j=v*4,x=basePositions[o],y=basePositions[o+1]+mouthClosureNow*beakMorphY[v],z=basePositions[o+2]+mouthClosureNow*beakMorphZ[v],nx=baseNormals[o],ny=baseNormals[o+1],nz=baseNormals[o+2];let px=0,py=0,pz=0,rx=0,ry=0,rz=0,total=0;for(let k=0;k<4;k++){const w=weightData[j+k];if(w<=0)continue;const off=jointData[j+k]*16;if(off<0||off+15>=matrices.length)continue;total+=w;px+=w*(matrices[off]*x+matrices[off+4]*y+matrices[off+8]*z+matrices[off+12]);py+=w*(matrices[off+1]*x+matrices[off+5]*y+matrices[off+9]*z+matrices[off+13]);pz+=w*(matrices[off+2]*x+matrices[off+6]*y+matrices[off+10]*z+matrices[off+14]);rx+=w*(matrices[off]*nx+matrices[off+4]*ny+matrices[off+8]*nz);ry+=w*(matrices[off+1]*nx+matrices[off+5]*ny+matrices[off+9]*nz);rz+=w*(matrices[off+2]*nx+matrices[off+6]*ny+matrices[off+10]*nz)}animatedPositions[o]=total?px/total:x;animatedPositions[o+1]=total?py/total:y;animatedPositions[o+2]=total?pz/total:z;const len=Math.hypot(rx,ry,rz)||1;animatedNormals[o]=rx/len;animatedNormals[o+1]=ry/len;animatedNormals[o+2]=rz/len}gl.bindBuffer(gl.ARRAY_BUFFER,posBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,animatedPositions);gl.bindBuffer(gl.ARRAY_BUFFER,normBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,animatedNormals)}
-function frame(now){requestAnimationFrame(frame);try{if(!toggle.checked||document.hidden)return;if(now>until)play('Mimi_Idle');if(now>nextBlink){blinkUntil=now+260;nextBlink=now+3600+Math.random()*2500}const wantedExpression=chooseExpression(now);if(wantedExpression!==host.dataset.expression){host.dataset.expression=wantedExpression}const t=(now-started)/1000;const width=Math.max(1,host.clientWidth),height=Math.max(1,host.clientHeight),dpr=Math.min(1.5,devicePixelRatio||1);if(canvas.width!==Math.round(width*dpr)||canvas.height!==Math.round(height*dpr)){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr)}gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(program);const ratio=canvas.width/canvas.height,f=1/Math.tan(.45),proj=[f/ratio,0,0,0,0,f,0,0,0,0,-1.002,-1,0,0,-.2002,0];const s=3.05/mesh.extent;const yawDt=mimoLastYawFrame?Math.min(.06,(now-mimoLastYawFrame)/1000):0;mimoLastYawFrame=now;const yawDelta=mimoTargetYaw-mimoCurrentYaw;mimoCurrentYaw+=yawDelta*Math.min(1,yawDt*6);if(Math.abs(yawDelta)<.001)mimoCurrentYaw=mimoTargetYaw;const cy=Math.cos(mimoCurrentYaw),sy=Math.sin(mimoCurrentYaw);const view=[s*cy,0,-s*sy,0,0,s,0,0,s*sy,0,s*cy,0,-s*(cy*mesh.center[0]+sy*mesh.center[2]),-mesh.center[1]*s,s*(sy*mesh.center[0]-cy*mesh.center[2])-4.7,1];gl.uniformMatrix4fv(gl.getUniformLocation(program,'proj'),false,new Float32Array(proj));gl.uniformMatrix4fv(gl.getUniformLocation(program,'view'),false,new Float32Array(view));if(now-lastSkin>83){cpuSkin(matNodes(t));lastSkin=now;}gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.uniform1i(gl.getUniformLocation(program,'diffuse'),0);gl.uniform1f(gl.getUniformLocation(program,'mouthClosure'),mouthClosureNow);gl.drawElements(gl.TRIANGLES,mesh.count,mesh.indexType,0);drawEyelids(now,wantedExpression,view,proj,width,height,dpr);drawMimoTongue(now,view,proj,width,height);if(!mesh.renderChecked){mesh.renderChecked=true;const e=gl.getError();status.textContent=e===gl.NO_ERROR?mimoT('ready'):'Mìmo 3D: errore GPU '+e;if(e!==gl.NO_ERROR)host.style.border='2px solid #dc2626'}}catch(e){if(!mesh.frameError){mesh.frameError=true;error('Rendering: '+e.message)}}}
+function frame(now){requestAnimationFrame(frame);try{if(!toggle.checked||document.hidden)return;if(now>until)play('Mimi_Idle');if(now>nextBlink){blinkUntil=now+260;nextBlink=now+3600+Math.random()*2500}const wantedExpression=chooseExpression(now);if(wantedExpression!==host.dataset.expression){host.dataset.expression=wantedExpression}const t=(now-started)/1000;const width=Math.max(1,host.clientWidth),height=Math.max(1,host.clientHeight),dpr=MIMO_SIMULATOR?1:Math.min(1.5,devicePixelRatio||1);if(canvas.width!==Math.round(width*dpr)||canvas.height!==Math.round(height*dpr)){canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr)}gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(program);const ratio=canvas.width/canvas.height,f=1/Math.tan(.45),proj=[f/ratio,0,0,0,0,f,0,0,0,0,-1.002,-1,0,0,-.2002,0];const s=3.05/mesh.extent;const yawDt=mimoLastYawFrame?Math.min(.06,(now-mimoLastYawFrame)/1000):0;mimoLastYawFrame=now;const yawDelta=mimoTargetYaw-mimoCurrentYaw;mimoCurrentYaw+=yawDelta*Math.min(1,yawDt*6);if(Math.abs(yawDelta)<.001)mimoCurrentYaw=mimoTargetYaw;const cy=Math.cos(mimoCurrentYaw),sy=Math.sin(mimoCurrentYaw);const view=[s*cy,0,-s*sy,0,0,s,0,0,s*sy,0,s*cy,0,-s*(cy*mesh.center[0]+sy*mesh.center[2]),-mesh.center[1]*s,s*(sy*mesh.center[0]-cy*mesh.center[2])-4.7,1];gl.uniformMatrix4fv(gl.getUniformLocation(program,'proj'),false,new Float32Array(proj));gl.uniformMatrix4fv(gl.getUniformLocation(program,'view'),false,new Float32Array(view));if(now-lastSkin>(MIMO_SIMULATOR?145:83)){cpuSkin(matNodes(t));lastSkin=now;}gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.uniform1i(gl.getUniformLocation(program,'diffuse'),0);gl.uniform1f(gl.getUniformLocation(program,'mouthClosure'),mouthClosureNow);gl.drawElements(gl.TRIANGLES,mesh.count,mesh.indexType,0);drawEyelids(now,wantedExpression,view,proj,width,height,dpr);drawMimoTongue(now,view,proj,width,height);if(!mesh.renderChecked && textureReady){mesh.renderChecked=true;const e=gl.getError();status.textContent=e===gl.NO_ERROR?mimoT('ready'):'Mìmo 3D: errore GPU '+e;if(e===gl.NO_ERROR)mimoReport('ready','Mìmo 3D pronto');else error('Errore GPU WebGL: '+e)}}catch(e){if(!mesh.frameError){mesh.frameError=true;error('Rendering: '+e.message)}}}
 // File incorporato nell'app; per la versione web deve trovarsi nello stesso percorso
 // sul server (GitHub Pages compreso), non solo nella scheda del repository GitHub.
 const MIMO_GLB_URL='Assets/mimo-orecchie-365.glb';
+// I WKURLSchemeHandler servono musicrainbow:// senza uno stato HTTP reale:
+// in WebKit una RISPOSTA RIUSCITA puo' avere status=0 / ok=false.
+// Verifichiamo sempre la firma e la lunghezza dei dati, non solo lo stato.
+function isMimoGLBBuffer(candidate){
+  if(!(candidate instanceof ArrayBuffer)||candidate.byteLength<20)return false;
+  const header=new DataView(candidate);
+  return header.getUint32(0,true)===0x46546c67 &&
+         header.getUint32(4,true)===2 &&
+         header.getUint32(8,true)===candidate.byteLength;
+}
+async function readMimoGLBByXHR(url){
+  return await new Promise((resolve,reject)=>{
+    const request=new XMLHttpRequest();
+    request.open('GET',url,true);
+    request.responseType='arraybuffer';
+    request.timeout=45000;
+    request.onload=()=>{
+      const bytes=request.response;
+      if((request.status===0||request.status===200)&&isMimoGLBBuffer(bytes))resolve(bytes);
+      else reject(new Error('XHR '+request.status+': dati GLB non validi ('+(bytes?.byteLength||0)+' byte)'));
+    };
+    request.onerror=()=>reject(new Error('XHR: impossibile leggere il file'));
+    request.ontimeout=()=>reject(new Error('Timeout XHR'));
+    request.send();
+  });
+}
+// Ultimo recupero, SOLO nella app nativa: i dati GLB vengono letti dal bundle
+// in blocchi tramite WKScriptMessageHandlerWithReply, senza rete né data URL giganti.
+async function readMimoGLBByNativeBridge(){
+  const handler=window.webkit?.messageHandlers?.musicRainbowMimoAsset;
+  if(!handler||typeof handler.postMessage!=='function')throw new Error('Bridge 3D nativo non disponibile');
+  const parts=[];
+  let offset=0,total=0;
+  do{
+    const chunk=await handler.postMessage({asset:'mimo-orecchie-365.glb',offset,length:196608});
+    if(!chunk||!Number.isSafeInteger(chunk.total)||chunk.total<20||chunk.total>128*1048576||
+       !Number.isSafeInteger(chunk.offset)||chunk.offset!==offset||typeof chunk.base64!=='string'){
+      throw new Error('Blocco GLB nativo non valido');
+    }
+    if(total&&chunk.total!==total)throw new Error('Dimensione GLB cambiata durante la lettura');
+    total=chunk.total;
+    const raw=atob(chunk.base64),bytes=new Uint8Array(raw.length);
+    for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+    if(bytes.byteLength===0||offset+bytes.byteLength>total)throw new Error('Blocco GLB nativo vuoto o oltre il limite');
+    parts.push(bytes);
+    offset+=bytes.byteLength;
+  }while(offset<total);
+  const data=new Uint8Array(total);
+  let position=0;
+  for(const part of parts){data.set(part,position);position+=part.byteLength;}
+  return data.buffer;
+}
 async function loadMimoGLB(){
-  let response;
+  mimoReport('loading','Lettura del modello 3D…');
   const url=new URL(MIMO_GLB_URL,document.baseURI);
-  try { response=await fetch(url.href,{cache:'no-store'}); }
-  catch (e) {
-    throw new Error('Impossibile scaricare '+MIMO_GLB_URL+'. Controlla che il file sia pubblicato nella cartella Assets e che la connessione sia attiva. ('+(e?.message||e)+')');
+  const nativeScheme=url.protocol==='musicrainbow:';
+  const failures=[];
+  let buffer=null;
+  try{
+    const response=await fetch(url.href,{cache:'no-store'});
+    if(!response.ok && !(nativeScheme&&response.status===0)){
+      throw new Error('HTTP '+response.status);
+    }
+    const bytes=await response.arrayBuffer();
+    if(!isMimoGLBBuffer(bytes))throw new Error('Risposta priva di GLB valido ('+bytes.byteLength+' byte, HTTP '+response.status+')');
+    buffer=bytes;
+  }catch(err){failures.push('fetch: '+(err?.message||err));}
+  if(!buffer&&nativeScheme){
+    mimoReport('loading','Verifica caricamento alternativo di Mìmo…');
+    try{buffer=await readMimoGLBByXHR(url.href);}
+    catch(err){failures.push('XHR: '+(err?.message||err));}
   }
-  if(!response.ok) {
-    throw new Error('Modello non disponibile: HTTP '+response.status+' ('+MIMO_GLB_URL+'). Verifica il percorso su GitHub.');
+  if(!buffer&&nativeScheme){
+    mimoReport('loading','Lettura diretta del modello 3D dall’app…');
+    try{buffer=await readMimoGLBByNativeBridge();}
+    catch(err){failures.push('nativo: '+(err?.message||err));}
   }
-  const buffer=await response.arrayBuffer();
+  if(!buffer)throw new Error('Impossibile leggere Mìmo 3D: '+failures.join(' · '));
+  mimoReport('loading','Preparazione del modello 3D ('+Math.round(buffer.byteLength/1048576)+' MB)…');
   if(buffer.byteLength<20)throw new Error('File modello vuoto o incompleto ('+buffer.byteLength+' byte).');
   const dv=new DataView(buffer);
   if(dv.getUint32(0,true)!==0x46546c67)throw new Error('Risposta non GLB (probabile pagina HTML, LFS pointer o percorso errato): '+MIMO_GLB_URL);

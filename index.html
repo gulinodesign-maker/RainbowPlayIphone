@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.417</div>
+    <div class="intro-version-label">Build 2.427</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.417</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.427</div>
   </div>
 </div>
 
@@ -18853,7 +18853,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.417";
+  const PAGE_BUILD = "2.427";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   if (!("serviceWorker" in navigator)) return;
 
@@ -25610,7 +25610,7 @@ function init(){
 <img class="mr373BasketLayer mr373BasketFront" src="Assets/room/basket-front.png" alt="" draggable="false">
 <button type="button" id="mr373BasketTouch" aria-label="Avvicina Mìmo al cestino"></button>
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
-</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr400RoomTokens" role="status" aria-live="polite" aria-label="Gettoni Play disponibili: 0"><svg class="mr402TokenArt" viewBox="0 0 220 145" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div></div><div id="mr400RoomTokens" role="status" aria-live="polite" aria-label="Gettoni Play disponibili: 0"><svg class="mr402TokenArt" viewBox="0 0 220 145" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
 <defs>
  <linearGradient id="mr402BackGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b56634"/><stop offset=".32" stop-color="#f8c975"/><stop offset=".78" stop-color="#ce8042"/><stop offset="1" stop-color="#7f3c27"/></linearGradient>
  <linearGradient id="mr402FrontGold" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#ffe9ad"/><stop offset=".22" stop-color="#f5c16d"/><stop offset=".65" stop-color="#c7783e"/><stop offset="1" stop-color="#9b4727"/></linearGradient>
@@ -25636,7 +25636,7 @@ function init(){
  sceneCanvas.id='mr376SceneCanvas';
  sceneRoot.insertBefore(sceneCanvas,sceneRoot.firstChild);
  Array.from(sceneRoot.children).forEach(child=>{
-   if(child!==sceneCanvas && !['mr354WingControls','mr344Bed','mr344Bath'].includes(child.id))sceneCanvas.appendChild(child);
+   if(child!==sceneCanvas && child.id!=='mr354WingControls')sceneCanvas.appendChild(child);
  });
  // Posiziona i gettoni nella stessa tela della stanza, sopra i libri accanto alla vasca.
  // L'ancoraggio è identico nelle due versioni giorno/notte di ogni dispositivo.
@@ -25972,8 +25972,129 @@ function init(){
  const closeWing=room.querySelector('#mr354CloseWings'),openWing=room.querySelector('#mr354OpenWings');
  closeWing.addEventListener('click',()=>{if(!window.MimoWings?.close?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}window.MimoHaptics?.play?.('wing');closeWing.setAttribute('aria-pressed','true');openWing.setAttribute('aria-pressed','false');setMessage('Mìmo ripiega le ali gradualmente. Continua a respirare e muoversi.')});
  openWing.addEventListener('click',()=>{if(!window.MimoWings?.open?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}window.MimoHaptics?.play?.('wing');openWing.setAttribute('aria-pressed','true');closeWing.setAttribute('aria-pressed','false');setMessage('Mìmo apre le ali gradualmente.')});
- room.querySelector('#mr344Bed').addEventListener('click',()=>{window.MimoHaptics?.play?.('sleep');setResting396(true);moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.happy=clamp(state.happy+2);applyPose('bed');refresh();setMessage('Mìmo riposa nel nido; recupera sonno durante la notte.')},900)});
- room.querySelector('#mr344Bath').addEventListener('click',()=>{window.MimoHaptics?.play?.('bath');setResting396(false);moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=8;state.happy=clamp(state.happy+2);applyPose('bath');refresh();setMessage('Mìmo si lava dentro la vasca.')},900)});
+ // Build 2.418: il corpo del volatile, non due pulsanti, è la maniglia del drag-and-drop.
+ // Coordinate delle aree di rilascio nello stesso sfondo scalato per iPad e iPhone.
+ const mimoDropAreas418={
+  default:{bed:{x:16.5,y:41,rx:18.5,ry:15},bath:{x:88.5,y:43,rx:13.5,ry:14}},
+  phone:{bed:{x:16.5,y:49,rx:17.5,ry:18},bath:{x:89,y:55,rx:13.5,ry:17}}
+ };
+ const dropMarks418={};
+ for(const target of ['bed','bath']){
+  const mark=document.createElement('div');
+  mark.className='mr418RoomDropZone';mark.setAttribute('aria-hidden','true');
+  mark.dataset.target=target;sceneCanvas.appendChild(mark);dropMarks418[target]=mark;
+ }
+ let mimoDrag418=null,suppressMimoClickUntil418=0;
+ function areas418(){return mimoDropAreas418[activeRoomLayout384()];}
+ function updateDropMarks418(activeTarget=''){
+  for(const target of ['bed','bath']){
+   const area=areas418()[target],mark=dropMarks418[target];
+   mark.style.left=area.x+'%';mark.style.top=area.y+'%';
+   mark.style.width=(area.rx*2)+'%';mark.style.height=(area.ry*2)+'%';
+   mark.classList.toggle('mr418RoomDropActive',target===activeTarget);
+  }
+ }
+ function hitDrop418(clientX,clientY){
+  const box=sceneCanvas.getBoundingClientRect();if(!box.width||!box.height)return '';
+  const x=(clientX-box.left)/box.width*100,y=(clientY-box.top)/box.height*100;
+  for(const target of ['bed','bath']){
+   const a=areas418()[target];
+   if(((x-a.x)/a.rx)**2+((y-a.y)/a.ry)**2<=1)return target;
+  }
+  return '';
+ }
+ function placeDraggedMimo418(clientX,clientY){
+  const drag=mimoDrag418;if(!drag)return;
+  const box=sceneCanvas.getBoundingClientRect();if(!box.width||!box.height)return;
+  const x=Math.max(3,Math.min(97,(clientX-drag.offsetX-box.left)/box.width*100));
+  const y=Math.max(8,Math.min(94,(clientY-drag.offsetY-box.top)/box.height*100));
+  drag.host.style.setProperty('left',x+'%','important');
+  drag.host.style.setProperty('top',y+'%','important');
+ }
+ function updateMimoDrag418(ev){
+  const drag=mimoDrag418;if(!drag||ev.pointerId!==drag.id)return;
+  const dx=ev.clientX-drag.startX,dy=ev.clientY-drag.startY;
+  if(!drag.moved && Math.hypot(dx,dy)>8){
+   drag.moved=true;
+   // Durante lo spostamento Mìmo si raddrizza; la posa precedente si ripristina
+   // se viene lasciato sul tappeto, senza modificare sonno o pulizia.
+   scene.dataset.location='food';clearPose();
+   scene.classList.add('mr418RoomDragging');
+   updateDropMarks418();
+  }
+  if(!drag.moved)return;
+  ev.preventDefault();
+  placeDraggedMimo418(ev.clientX,ev.clientY);
+  const r=drag.host.getBoundingClientRect();
+  drag.target=hitDrop418(ev.clientX,ev.clientY)||hitDrop418(r.left+r.width/2,r.top+r.height/2);
+  updateDropMarks418(drag.target);
+ }
+ function finishMimoDrag418(accept,ev){
+  const drag=mimoDrag418;if(!drag)return;
+  if(ev&&ev.pointerId!==drag.id)return;
+  if(accept&&ev)updateMimoDrag418(ev);
+  mimoDrag418=null;
+  scene.classList.remove('mr418RoomDragging');
+  updateDropMarks418();
+  if(drag.host.hasPointerCapture?.(drag.id)){
+   try{drag.host.releasePointerCapture(drag.id)}catch(_e){}
+  }
+  if(!drag.moved)return; // Il semplice tocco continua a fare le coccole a Mìmo.
+  suppressMimoClickUntil418=Date.now()+750;
+  const destination=accept?drag.target:'';
+  if(destination==='bed'){
+   window.MimoHaptics?.play?.('sleep');setResting396(true);moveMimo('bed');
+   fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');
+   setTimeout(()=>{if(scene.dataset.location!=='bed')return;
+    state.happy=clamp(state.happy+2);applyPose('bed');refresh();
+    setMessage('Mìmo riposa nel nido; recupera sonno durante la notte.');},900);
+  }else if(destination==='bath'){
+   window.MimoHaptics?.play?.('bath');setResting396(false);moveMimo('bath');
+   fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');
+   setTimeout(()=>{if(scene.dataset.location!=='bath')return;
+    state.clean=8;state.happy=clamp(state.happy+2);applyPose('bath');refresh();
+    setMessage('Mìmo si lava dentro la vasca.');},900);
+  }else{
+   // Drop fuori bersaglio: Mìmo ritorna esattamente dove si trovava.
+   moveMimo(drag.from,false);
+   if(drag.from==='bed'||drag.from==='bath')applyPose(drag.from);
+   setMessage('Trascina Mìmo sul letto o dentro la vasca e lascialo lì.');
+  }
+ }
+ function installMimoDrag418(host){
+  if(host.dataset.mr418RoomDragReady==='1')return;
+  host.dataset.mr418RoomDragReady='1';
+  host.addEventListener('pointerdown',ev=>{
+   if(ev.button!==0||ev.isPrimary===false||mimoDrag418||fruitDrag415||popPuffing414||
+      !document.body.classList.contains('mr353-room-open')||
+      document.body.classList.contains('mr357-lab-open')||
+      document.body.classList.contains('mr410-mimo-hidden')||
+      getComputedStyle(page).display==='none')return;
+   const r=host.getBoundingClientRect();
+   if(r.width<20||r.height<20)return;
+   // La maniglia segue il corpicino del modello, non un controllo esterno.
+   const nx=(ev.clientX-r.left)/r.width,ny=(ev.clientY-r.top)/r.height;
+   if(((nx-.5)/.49)**2+((ny-.51)/.49)**2>1)return;
+   const centerX=r.left+r.width/2,centerY=r.top+r.height/2;
+   mimoDrag418={host,id:ev.pointerId,startX:ev.clientX,startY:ev.clientY,
+     offsetX:ev.clientX-centerX,offsetY:ev.clientY-centerY,
+     from:scene.dataset.location||'food',moved:false,target:''};
+   // Lascia intatto il normale tap/coccola: il gesto viene consumato solo muovendo Mìmo.
+   try{host.setPointerCapture(ev.pointerId)}catch(_e){}
+  });
+  host.addEventListener('pointermove',updateMimoDrag418);
+  host.addEventListener('pointerup',ev=>finishMimoDrag418(true,ev));
+  host.addEventListener('pointercancel',ev=>finishMimoDrag418(false,ev));
+  host.addEventListener('lostpointercapture',ev=>finishMimoDrag418(false,ev));
+  host.addEventListener('click',ev=>{
+   if(Date.now()<suppressMimoClickUntil418&&ev.detail!==0){
+    ev.preventDefault();ev.stopImmediatePropagation();
+   }
+  },true);
+ }
+ window.addEventListener('blur',()=>finishMimoDrag418(false));
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)finishMimoDrag418(false)});
+ document.addEventListener('keydown',ev=>{if(ev.key==='Escape')finishMimoDrag418(false)});
  room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');setResting396(false);moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Trascina un frutto dal cestino alla testa di Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
  window.MimoCare={
    awardFullBasket:(rewardId)=>{
@@ -25997,12 +26118,14 @@ function init(){
   document.body.classList.toggle('mr353-room-open',open);
   const host=document.getElementById('mimoBuddy');
   if(!open){
+   finishMimoDrag418(false);
    if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}
    clearPose();return;
   }
   window.MusicRainbowSolar?.requestLocation?.();
   tick();
   if(host&&host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);
+  if(host)installMimoDrag418(host);
   const bed=!!state.restingAtNight;
   moveMimo(bed?'bed':'food',false);
   if(bed)applyPose('bed');
@@ -27438,6 +27561,32 @@ html body.mr412-reward-active #mimoBuddy canvas{width:100%!important;height:100%
  #trophyPage #mr344Stats .mr344Stat{gap:2px!important;}
  #trophyPage #mr344Stats .mr381NeedIcon{font-size:12px!important;}
 }
+</style>
+
+<style id="mr418-mimo-room-drag-drop">
+/* 2.418: diretto trascinamento del corpo di Mìmo (dito, Pencil, mouse). */
+body.mr353-room-open:not(.mr357-lab-open) #mr344Scene #mimoBuddy{
+ pointer-events:auto!important;touch-action:none!important;
+ -webkit-user-select:none!important;user-select:none!important;cursor:grab!important;
+}
+body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
+ width:clamp(120px,20%,290px)!important;height:47%!important;
+ transform:translate(-50%,-50%)!important;clip-path:none!important;
+ transition:none!important;z-index:60!important;cursor:grabbing!important;
+}
+#mr376SceneCanvas .mr418RoomDropZone{
+ position:absolute;box-sizing:border-box;z-index:35;pointer-events:none;
+ transform:translate(-50%,-50%);border-radius:50%;
+ border:3px dashed rgba(255,251,190,.95);
+ background:rgba(255,246,167,.16);box-shadow:0 0 0 3px rgba(81,50,35,.2);
+ opacity:0;transition:opacity .12s ease,background .12s ease;
+}
+#mr344Scene.mr418RoomDragging .mr418RoomDropZone{opacity:.55;}
+#mr344Scene.mr418RoomDragging .mr418RoomDropZone.mr418RoomDropActive{
+ opacity:1;background:rgba(113,230,150,.29);border-color:#e8ffcf;
+ box-shadow:0 0 0 4px rgba(45,153,86,.38),0 0 18px 8px rgba(88,219,128,.30);
+}
+@media(prefers-reduced-motion:reduce){#mr376SceneCanvas .mr418RoomDropZone{transition:none!important;}}
 </style>
 </body>
 </html>

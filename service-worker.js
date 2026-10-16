@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.431; bypass large GLB; safe cache errors */
-const BUILD = "2.431";
+/* Music Rainbow Service Worker - Build 2.432; bypass large GLB; safe cache errors */
+const BUILD = "2.432";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -155,7 +155,12 @@ self.addEventListener("fetch", event => {
     return;
   }
   if (url.origin === self.location.origin) {
-    event.respondWith(cacheFirst(req));
+    // A cached old JS with ignoreSearch=true would otherwise override the new UI.
+    if (url.pathname.toLowerCase().endsWith('.js')) {
+      event.respondWith(networkFirst(req));
+    } else {
+      event.respondWith(cacheFirst(req));
+    }
     return;
   }
   event.respondWith((async () => {

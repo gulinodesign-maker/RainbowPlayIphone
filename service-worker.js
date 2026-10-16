@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.392; bypass large GLB; safe cache errors */
-const BUILD = "2.392";
+/* Music Rainbow Service Worker - Build 2.417; bypass large GLB; safe cache errors */
+const BUILD = "2.417";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -21,9 +21,12 @@ const CORE_PRECACHE_URLS = [
   "./Assets/staff-base-treble.png",
   "./Assets/MusicRainbow-SMuFL.woff2",
   "./Assets/mimo-rigged-369.js",
-  "./Assets/room/room-background.jpg",
-  "./Assets/room/nest-front-occlusion.png",
-  "./Assets/room/bath-front-occlusion.png",
+  "./Assets/mimo-haptics-414.js",
+  "./Assets/room/solar-cycle-396.js",
+  "./Assets/room/room-fixedbath-ipad-day.png",
+  "./Assets/room/room-fixedbath-ipad-night.png",
+  "./Assets/room/room-fixedbath-phone-day.png",
+  "./Assets/room/room-fixedbath-phone-night.png",
   "./Assets/room/basket-back.png",
   "./Assets/room/basket-ghost.png",
   "./Assets/room/basket-front.png",

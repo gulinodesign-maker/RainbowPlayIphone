@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.392</div>
+    <div class="intro-version-label">Build 2.417</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.392</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.417</div>
   </div>
 </div>
 
@@ -6835,7 +6835,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20h4l11.4-11.4a2.1 2.1 0 0 0-3-3L5 17l-1 3ZM14.7 6.3l3 3M4 4l16 16"/></svg>
       </button>
       <button id="scoreEditorDeleteMR" class="score-editor-btn-mr" type="button" aria-label="Elimina la nota selezionata" title="Elimina"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></svg></button>
-      <button id="scoreEditorMeterMR" class="score-editor-btn-mr" type="button" aria-label="Indicazione del tempo" title="Tempo musicale" aria-expanded="false" data-midi-learn="off"><span class="score-meter-icon-mr" aria-hidden="true"><span>4</span><span>4</span></span></button>
+      <button id="scoreEditorMeterMR" class="score-editor-btn-mr" type="button" aria-label="Indicazione del tempo" title="Tempo musicale" aria-expanded="false"><span class="score-meter-icon-mr" aria-hidden="true"><span>4</span><span>4</span></span></button>
       <button id="scoreEditorDurationMR" class="score-editor-btn-mr" type="button" aria-label="Nota: modifica la nota selezionata o inserisci una nuova nota" title="Nota"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="8" cy="18" rx="5.5" ry="3" transform="rotate(-22 8 18)"/><path d="M13 17V3M13 3c5 1 6 4 6 7"/></svg></button>
       <button id="scoreEditorRestMR" class="score-editor-btn-mr" type="button" aria-label="Pausa: modifica la pausa selezionata o inserisci una nuova pausa" title="Pausa"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><text x="12" y="19" font-family="MusicRainbow SMuFL" font-size="23" text-anchor="middle" stroke="none" fill="currentColor">&#xE4E5;</text></svg></button>
       <button id="scoreEditorMoveMR" class="score-editor-btn-mr" type="button" aria-label="Sposta nota: trascinala sul pentagramma" title="Sposta" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20M8 6l4-4 4 4M8 18l4 4 4-4M6 8l-4 4 4 4M18 8l4 4-4 4"/></svg></button>
@@ -6913,10 +6913,19 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <div class="score-creator-clear-card-mr">
         <h2 id="scoreCreatorClearHeadingMR">Che cosa vuoi cancellare?</h2>
         <p id="scoreCreatorClearHelpMR">Scegli l'operazione. Puoi recuperarla con Annulla nell'editor.</p>
-        <div class="score-creator-clear-choice-mr"><button type="button" id="scoreCreatorClearBarChoiceMR" data-midi-learn="off" aria-label="Svuota le note e le pause della battuta corrente, senza rimuovere la battuta" title="Svuota battuta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></svg></button></div>
-        <div class="score-creator-clear-choice-mr"><button type="button" id="scoreCreatorRemoveBarChoiceMR" data-midi-learn="off" aria-label="Elimina l’intera battuta corrente e rinumera le successive" title="Elimina battuta e sposta le successive"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M8 8v8M12 8v8M16 8v8M5 12h14M2 2l20 20"/></svg></button></div>
-        <div class="score-creator-clear-choice-mr"><button type="button" id="scoreCreatorClearAllChoiceMR" data-midi-learn="off" aria-label="Cancella tutte le note del brano" title="Cancella tutto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M7 6l1 15h8l1-15M9 6V3h6v3M11 10v8M14 10v8"/><path d="M2 3h2M20 3h2"/></svg></button></div>
-        <div class="score-creator-clear-cancel-mr"><button type="button" id="scoreCreatorClearCancelMR" data-midi-learn="off" aria-label="Annulla e chiudi" title="Annulla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+        <div class="score-creator-clear-choice-mr"><button type="button" id="scoreCreatorClearBarChoiceMR" data-midi-learn-key="scoreCreatorClearBarChoiceMR" aria-label="Svuota le note e le pause della battuta corrente, senza rimuovere la battuta" title="Svuota battuta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></svg></button></div>
+        <div class="score-creator-clear-choice-mr"><button type="button" id="scoreCreatorRemoveBarChoiceMR" data-midi-learn-key="scoreCreatorRemoveBarChoiceMR" aria-label="Elimina l’intera battuta corrente e rinumera le successive" title="Elimina battuta e sposta le successive"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M8 8v8M12 8v8M16 8v8M5 12h14M2 2l20 20"/></svg></button></div>
+        <div class="score-creator-clear-choice-mr"><button type="button" id="scoreCreatorClearAllChoiceMR" data-midi-learn-key="scoreCreatorClearAllChoiceMR" aria-label="Cancella tutte le note del brano" title="Cancella tutto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M7 6l1 15h8l1-15M9 6V3h6v3M11 10v8M14 10v8"/><path d="M2 3h2M20 3h2"/></svg></button></div>
+        <div class="score-creator-clear-cancel-mr"><button type="button" id="scoreCreatorClearCancelMR" data-midi-learn-key="scoreCreatorClearCancelMR" aria-label="Annulla e chiudi" title="Annulla"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      </div>
+    </div>
+    <div id="mr410ConfirmDialog" class="mr410-confirm-overlay" hidden role="dialog" aria-modal="true" aria-label="Conferma cancellazione">
+      <div class="mr410-confirm-card">
+        <div id="mr410ConfirmPrompt" role="status">Confermare?</div>
+        <div class="mr410-confirm-actions">
+          <button type="button" id="mr410ConfirmCancel" data-midi-learn-key="mr410-confirm-cancel" title="Annulla" aria-label="Annulla cancellazione"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+          <button type="button" id="mr410ConfirmOK" data-midi-learn-key="mr410-confirm-ok" title="Conferma" aria-label="Conferma cancellazione"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></button>
+        </div>
       </div>
     </div>
     <div id="scoreEditorModalMR" class="score-editor-modal-mr" hidden aria-hidden="true">
@@ -7590,12 +7599,12 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     <div class="status-bar" id="statusBarTempo" role="status" aria-live="polite"></div>
 
     <div class="tempo-action-container">
+      <button id="tempoStepBackBtn" class="tempo-step-back-btn mr397-arrow mr397-arrow-back" type="button" aria-label="Pagina precedente di Impara Tempo" title="Pagina precedente"><span aria-hidden="true">❮</span></button>
       <button id="tempoActionBtn" class="tempo-action-btn" type="button" aria-label="Tamburo per battere il tempo">
         <img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.299" alt="" aria-hidden="true" draggable="false" />
       </button>
+      <button id="tempoStepToggleBtn" class="tempo-step-toggle-btn mr397-arrow mr397-arrow-next" type="button" aria-label="Pagina successiva di Impara Tempo" title="Pagina successiva"><span aria-hidden="true">❯</span></button>
     </div>
-
-    <button id="tempoStepToggleBtn" class="tempo-step-toggle-btn" type="button" aria-label="Passo successivo di Impara Tempo">→</button>
   </div>
 </div>
 
@@ -7603,10 +7612,10 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 <!-- Coordinazione ritmica: un solo schermo, due tamburi originali -->
 <div id="learnHandsPage" class="page-container" style="display:none">
  <div class="app hands-app">
-  <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><h1 class="rainbow-title rainbow-title-level">Impara le due mani</h1><div class="top-right-controls"><div class="metronome-audio-pill" id="metronomeAudioPillHands"><button class="metronome-bpm-tab" id="bpmTabHands" type="button" aria-label="Imposta tempo"><span class="bpm-value" id="bpmValueHands">80</span></button><button class="metronome-dot metronome-toggle-btn" id="metronomeDotHands" type="button" aria-label="Metronomo: disattivato" aria-pressed="false"><span class="metronome-toggle-label">MET</span></button><button class="audio-tab" id="audioTabHands" type="button" aria-label="Attiva audio"><span class="audio-icon">♪</span></button></div><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div></div></div>
+  <div class="top-panel"><div class="top-row"><div class="top-left-controls"><button type="button" class="menu-btn" id="handsHome" aria-label="Torna alla home">⌂</button><button type="button" class="reset-btn" id="handsReset" aria-label="Ricomincia esercizio">↺</button></div><div class="top-right-controls"><div class="metronome-audio-pill" id="metronomeAudioPillHands"><button class="metronome-bpm-tab" id="bpmTabHands" type="button" aria-label="Imposta tempo"><span class="bpm-value" id="bpmValueHands">80</span></button><button class="metronome-dot metronome-toggle-btn" id="metronomeDotHands" type="button" aria-label="Metronomo: disattivato" aria-pressed="false"><span class="metronome-toggle-label">MET</span></button><button class="audio-tab" id="audioTabHands" type="button" aria-label="Attiva audio"><span class="audio-icon">♪</span></button></div><button type="button" class="reset-btn" id="handsGuide" aria-label="Mostra o nascondi collegamenti">✎</button><button id="handsDemo" class="reset-btn" type="button" aria-label="Ascolta dimostrazione" title="Ascolta dimostrazione">♫</button></div></div></div>
   <div class="hands-info" aria-hidden="true"><span id="handsProgress"></span><span id="handsFeedback" role="status" aria-live="polite"></span></div>
   <div class="hands-staff-wrap staff-stage-l8"><img class="staff-bg-l8" src="Assets/grand-staff-l6.png?v=2.296" alt="" aria-hidden="true"><svg id="handsStaff" class="staff-overlay-l8" viewBox="0 42 1000 244" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ritmi delle due mani con chiave di violino e basso"></svg></div>
-  <div class="hands-drums"><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div></div>
+  <div class="hands-drums"><button id="handsPrev" class="mr397-arrow mr397-arrow-back" type="button" aria-label="Esercizio precedente" title="Esercizio precedente"><span aria-hidden="true">❮</span></button><div><span>MANO SINISTRA</span><button id="handsLeft" class="tempo-action-btn hands-drum" aria-label="Tamburo mano sinistra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><div><span>MANO DESTRA</span><button id="handsRight" class="tempo-action-btn hands-drum" aria-label="Tamburo mano destra"><img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.297" alt="" draggable="false"></button></div><button id="handsNext" class="mr397-arrow mr397-arrow-next" type="button" aria-label="Esercizio successivo" title="Esercizio successivo"><span aria-hidden="true">❯</span></button></div>
   
  </div>
 </div>
@@ -8436,9 +8445,21 @@ function isMidiLearnEligibleButtonMR(btn){
 function canonicalMidiLearnKeyMR(key){
   key=String(key||"");
   if(!key)return "";
+  if(key==='key:mr410-mimo-toggle'||key==='global:mimo-toggle')return 'global:mimo-visibility';
+  if(key==='key:mr410-confirm-ok'||key==='id:mr410ConfirmOK')return 'global:confirm-ok';
+  if(key==='key:mr410-confirm-cancel'||key==='id:mr410ConfirmCancel')return 'global:confirm-cancel';
   if(key==="global:clef-treble"||key==="global:clef-bass")return "global:clef-toggle";
-  // Build 2.291: obsolete MIDI-dock Pause/Stop keys now invoke unified top Stop.
-  if(key==="id:scoreCreatorPauseMR"||key==="id:scoreCreatorStopMR")return "id:scoreAutoStopBtn";
+  // Salva e' lo stesso comando in registrazione MIDI e in modifica note.
+  // Migra le vecchie associazioni senza richiedere un nuovo MIDI Learn.
+  if(["id:scoreEditorSaveMR","id:scoreCreatorSaveMR","key:score-save",
+      "key:score-editor-save","key:score-creator-save","key:score-midi-save",
+      "global:save-score"].includes(key))return "global:score-save";
+  // 2.411: Stop e' UNA funzione MIDI, indipendente da Play, Editor o dock.
+  // Migra automaticamente le associazioni gia' salvate dalle build precedenti.
+  if(["id:scoreAutoStopBtn","id:scoreCreatorStopMR","id:scoreCreatorPauseMR",
+      "key:score-stop","key:score-midi-stop","key:score-creator-stop",
+      "key:score-editor-stop","global:stop-score","global:score-stop"].includes(key))
+    return "global:score-stop";
   const id=key.startsWith("id:")?key.slice(3):"";
   if(/^menuBtn(?:Learn|Play|Tempo|L[1-8])$/.test(id)||["settingsHomeBtn","trophyHomeBtn","scoreLibraryHomeBtn"].includes(id))return "global:home";
   if(id==="resetBtn"||/^resetBtn(?:Play|Tempo|L[1-8])$/.test(id))return "global:reset";
@@ -8451,6 +8472,12 @@ function canonicalMidiLearnKeyMR(key){
 function midiLearnGlobalKeyForButtonMR(btn){
   if(!btn)return "";
   const id=btn.id||"";
+  if(btn.classList.contains('mr409-mimo-toggle'))return 'global:mimo-visibility';
+  if(id==='mr410ConfirmOK')return 'global:confirm-ok';
+  if(id==='mr410ConfirmCancel')return 'global:confirm-cancel';
+  if(id==="scoreEditorSaveMR"||id==="scoreCreatorSaveMR")return "global:score-save";
+  if(id==="scoreAutoStopBtn"||id==="scoreCreatorStopMR"||id==="scoreCreatorPauseMR")
+    return "global:score-stop";
   if(/^menuBtn(?:Learn|Play|Tempo|L[1-8])$/.test(id)||["settingsHomeBtn","trophyHomeBtn","scoreLibraryHomeBtn"].includes(id))return "global:home";
   if(btn.classList.contains("reset-btn"))return "global:reset";
   if(btn.classList.contains("clef-treble-btn")||btn.classList.contains("clef-bass-btn"))return "global:clef-toggle";
@@ -8630,7 +8657,68 @@ function bindMidiControlToTargetMR(info){
   }
   return true;
 }
+// Build 2.414: MIDI learn multipick -- the same assigned key controls a popup
+// and advances its options one at a time; the chosen option commits and closes.
+const mr410MidiChoiceCursorMR=new Map();
+function mr410MidiChoiceMR(buttonKey){
+  const match={
+    'id:scoreCreatorQuantMR':['scoreCreatorQuantMR','scoreCreatorQuantPickerMR','[data-creator-quant]'],
+    'id:scoreEditorDurationMR':['scoreEditorDurationMR','scoreEditorDurationsMR','[data-score-duration]'],
+    'id:scoreEditorRestMR':['scoreEditorRestMR','scoreEditorDurationsMR','[data-score-duration]'],
+    'id:scoreEditorMoveMR':['scoreEditorMoveMR','scoreEditorMovesMR','[data-score-move]'],
+    'id:scoreEditorMeterMR':['scoreEditorMeterMR','scoreEditorMeterPickerMR','button:not([disabled])']
+  }[buttonKey];
+  if(buttonKey==='id:scoreCreatorClearMR'){
+    const opener=document.getElementById('scoreCreatorClearMR');
+    const dialog=document.getElementById('scoreCreatorClearDialogMR');
+    const confirmation=document.getElementById('mr410ConfirmDialog');
+    if(!opener||!dialog)return false;
+    if(confirmation&&!confirmation.hidden)return true; // attend dedicated OK / Cancel
+    if(dialog.hidden){opener.click();return true;}
+    const choices=['scoreCreatorClearBarChoiceMR','scoreCreatorRemoveBarChoiceMR','scoreCreatorClearAllChoiceMR']
+      .map(id=>document.getElementById(id)).filter(b=>b&&!b.disabled);
+    if(!choices.length)return true;
+    const index=mr410MidiChoiceCursorMR.get(buttonKey)||0;
+    mr410MidiChoiceCursorMR.set(buttonKey,(index+1)%choices.length);
+    choices[index%choices.length].click(); // opens separate confirm; never deletes yet
+    return true;
+  }
+  if(!match)return false;
+  const [openerId,pickerId,selector]=match;
+  const opener=document.getElementById(openerId),picker=document.getElementById(pickerId);
+  if(!opener||!picker||opener.disabled||!isMidiLearnButtonVisibleMR(opener))return false;
+  if(picker.hidden){
+    const used=mr410MidiChoiceCursorMR.has(buttonKey);
+    opener.click();
+    if(!used||picker.hidden)return true;
+    // From the third activation onward cycle immediately to the next option.
+  }
+  const choices=Array.from(picker.querySelectorAll(selector)).filter(b=>!b.disabled&&!b.hidden);
+  if(!choices.length)return true;
+  const index=mr410MidiChoiceCursorMR.get(buttonKey)||0;
+  mr410MidiChoiceCursorMR.set(buttonKey,(index+1)%choices.length);
+  choices[index%choices.length].click();
+  return true;
+}
 function triggerGlobalMidiFunctionMR(buttonKey){
+  buttonKey=canonicalMidiLearnKeyMR(buttonKey);
+  // Stop non dipende da quale barra sia visibile, ne' dallo stato disabled
+  // del singolo pulsante: un tasto MIDI associato ferma entrambi i player.
+  if(buttonKey==="global:score-stop"){
+    // Il tasto assegnato resta riservato al trasporto; fuori dallo spartito
+    // non viene trasformato accidentalmente in una nota musicale.
+    if(isPageVisibleMR("scorePlayerPage"))scoreTopBarStopMR();
+    return true;
+  }
+  // Salva usa sempre il pulsante REALE: preserva le verifiche Admin/User,
+  // il consolidamento REC e il wrapper della Home Play anche se il dock cambia.
+  if(buttonKey==="global:score-save"){
+    const saveBtn=document.getElementById("scoreEditorSaveMR");
+    if(!saveBtn||!scoreEditorCanUseMR()||!scoreEditorActiveMR||
+       !isPageVisibleMR("scorePlayerPage")||scoreEditorSavingMR)return false;
+    saveBtn.click();
+    return true;
+  }
   // Figure/alterazioni/spostamenti sono funzioni anche quando il relativo
   // selettore non e' aperto: i tasti MIDI e Logitech restano davvero utilizzabili.
   if(typeof scoreEditorCanUseMR==="function"&&scoreEditorCanUseMR()&&scoreEditorActiveMR){
@@ -8644,12 +8732,22 @@ function triggerGlobalMidiFunctionMR(buttonKey){
       scoreEditorMoveDirectionMR(buttonKey.slice("key:score-move-".length));return true;
     }
   }
+  if(buttonKey==='global:mimo-visibility'){
+    const toggle=document.querySelector('.mr409-mimo-toggle:not([hidden])');
+    if(toggle){toggle.click();return true;}
+  }
+  if(buttonKey==='global:confirm-ok'||buttonKey==='global:confirm-cancel'){
+    const confirmButton=document.getElementById(buttonKey==='global:confirm-ok'?'mr410ConfirmOK':'mr410ConfirmCancel');
+    if(confirmButton&&!confirmButton.hidden&&document.getElementById('mr410ConfirmDialog')?.hidden===false){confirmButton.click();return true;}
+    return false;
+  }
   if(buttonKey==="global:home"){
     if(typeof window.MusicRainbowGoHomeMR==="function"){window.MusicRainbowGoHomeMR();return true;}
   }
   if(buttonKey==="global:audio-toggle"){
     if(typeof toggleAudio==="function"){toggleAudio();return true;}
   }
+  if(mr410MidiChoiceMR(buttonKey))return true;
   const btn=findMidiLearnButtonByKeyMR(buttonKey);
   if(isMidiLearnButtonVisibleMR(btn)){btn.click();return true;}
   return false;
@@ -9114,16 +9212,18 @@ function playPianoFallback(freq, durationMs) {
   });
 }
 
-function playPianoFrequency(freq, durationMs) {
-  if (!audioEnabled || !(freq > 0)) return;
+function playPianoFrequency(freq, durationMs, shouldStart=null) {
+  if (!audioEnabled || !(freq > 0) || (shouldStart && !shouldStart())) return;
   const ctx = getAudioCtx();
   if (!ctx) return;
 
   const start = () => {
+    if(shouldStart && !shouldStart())return;
     if (!pianoSampleBuffers.length) {
-      // Non riprodurre un timbro sintetico provvisorio: attendi il banco di piano approvato.
+      // La riproduzione puo' essere stata fermata mentre i campioni caricavano.
       ensurePianoSamplesLoaded().then(buffers => {
-        if (buffers && buffers.length) playPianoFrequency(freq, durationMs);
+        if (buffers && buffers.length && (!shouldStart || shouldStart()))
+          playPianoFrequency(freq, durationMs, shouldStart);
       }).catch(() => {});
       return;
     }
@@ -9443,9 +9543,9 @@ function playTone(freq, durationMs) {
 }
 
 /* Build 2.291 — Livello 8: riproduzione del pitch MIDI assoluto senza trasposizione di chiave. */
-function playToneExactMR(freq, durationMs) {
+function playToneExactMR(freq, durationMs, shouldStart=null) {
   if (!audioEnabled) return;
-  playPianoFrequency(freq, durationMs);
+  playPianoFrequency(freq, durationMs, shouldStart);
 }
 
 function playHomeJingle() {
@@ -10542,7 +10642,19 @@ function renderTokensPanel(panelId) {
   }
 }
 
-function renderTokensInTrophyPage() { /* La stanza non mostra gettoni o scrigni. */ }
+function renderTokensInTrophyPage(){
+  const badge=document.getElementById('mr400RoomTokens');
+  const countEl=document.getElementById('mr400RoomTokenCount');
+  if(!badge||!countEl)return;
+  const count=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
+  countEl.textContent=String(count);
+  badge.setAttribute('aria-label',`Gettoni Play disponibili: ${count}`);
+  // Come per la frutta: le sagome restano al 10% e quelle possedute si colorano.
+  // Il numero è reale anche quando supera la capienza visiva dei sei alloggiamenti.
+  badge.querySelectorAll('.mr402TokenFilled').forEach((coin,index)=>{
+    coin.setAttribute('opacity',index<count?'1':'0');
+  });
+}
 
 function updateTokensUIAll() {
   renderTokensPanel("tokensPanelL1");
@@ -10553,6 +10665,7 @@ function updateTokensUIAll() {
   renderTokensPanel("tokensPanelL6");
   renderTokensPanel("tokensPanelL7");
   renderTokensPanel("tokensPanelL8");
+  renderTokensInTrophyPage();
   if (typeof updateHomePlayButtonState === "function") {
     updateHomePlayButtonState();
   }
@@ -13207,8 +13320,8 @@ function drawRhythmNoteMR(s,cx,cy,p,kind,duration){
 }
 
 
-/* Build 2.291 — travi per crome consecutive nei livelli 5–8.
-   La logica ritmica resta invariata: cambiamo soltanto la grafica delle crome adiacenti. */
+/* Build 2.408 — crome e semicrome in gruppi di quattro nei livelli 5–8.
+   La logica ritmica resta invariata: cambiano solo le travi disegnate. */
 const MR_RHYTHM_BEAM_METRICS=Object.freeze({
   noteheadSize:60,
   noteheadX:-11.91,
@@ -13218,6 +13331,7 @@ const MR_RHYTHM_BEAM_METRICS=Object.freeze({
   stemWidth:1.56,
   stemHeadInset:3.2,
   beamThickness:8.6,
+  secondaryBeamOffset:12.5,
   stemLift:56,
   stemBeamInset:1.2
 });
@@ -13226,13 +13340,20 @@ function rhythmEighthBeamRunsMR(notes){
   const runs=[];let run=[];
   const flush=()=>{if(run.length>=2)runs.push(run.slice());run=[];};
   sorted.forEach(note=>{
-    const isEighth=note&&!note.isRest&&note.durationName==="croma"&&note.element;
-    if(!isEighth){flush();return;}
+    const unit=note?.durationName==='semicroma'?.25:note?.durationName==='croma'?.5:0;
+    if(note?.isRest||!unit||!note.element){flush();return;}
     if(!run.length){run=[note];return;}
     const prev=run[run.length-1];
-    const sameMeasure=Math.floor((Number(prev.onsetBeat)||0)/4)===Math.floor((Number(note.onsetBeat)||0)/4);
-    const adjacent=Math.abs((Number(note.onsetBeat)||0)-((Number(prev.onsetBeat)||0)+.5))<.0001;
-    if(sameMeasure&&adjacent)run.push(note);else{flush();run=[note];}
+    const measure=Math.floor((Number(note.onsetBeat)+.00001)/4);
+    const prevMeasure=Math.floor((Number(prev.onsetBeat)+.00001)/4);
+    const localBeat=Number(note.onsetBeat)-measure*4;
+    const prevBeat=Number(prev.onsetBeat)-measure*4;
+    const beatGroup=unit===.25?1:2;
+    const sameGroup=measure===prevMeasure&&
+      Math.floor((localBeat+.00001)/beatGroup)===Math.floor((prevBeat+.00001)/beatGroup);
+    const adjacent=Math.abs((Number(note.onsetBeat)||0)-((Number(prev.onsetBeat)||0)+unit))<.0001;
+    if(sameGroup&&adjacent&&note.durationName===prev.durationName&&run.length<4)run.push(note);
+    else{flush();run=[note];}
   });
   flush();return runs;
 }
@@ -13309,13 +13430,19 @@ function applyRhythmEighthBeamsMR(notes,parent,staffCenterY=123.08){
         stem.setAttribute("height",String(Math.max(.1,localBottom-localTop)));
       }
     });
-    const beam=document.createElementNS("http://www.w3.org/2000/svg","polygon");
     const leftX=Number(first.cx)+stemLeft;
     const rightX=Number(last.cx)+stemLeft+MR_RHYTHM_BEAM_METRICS.stemWidth;
-    const leftTop=beamTopYAt(leftX),rightTop=beamTopYAt(rightX);
-    beam.setAttribute("points",`${leftX},${leftTop} ${rightX},${rightTop} ${rightX},${rightTop+MR_RHYTHM_BEAM_METRICS.beamThickness} ${leftX},${leftTop+MR_RHYTHM_BEAM_METRICS.beamThickness}`);
-    beam.classList.add("rhythm-note-beam");beam.setAttribute("aria-hidden","true");
-    parent.insertBefore(beam,first.element);
+    const addBeam=(offset,extraClass)=>{
+      const beam=document.createElementNS("http://www.w3.org/2000/svg","polygon");
+      const leftTop=beamTopYAt(leftX)+offset,rightTop=beamTopYAt(rightX)+offset;
+      beam.setAttribute("points",`${leftX},${leftTop} ${rightX},${rightTop} ${rightX},${rightTop+MR_RHYTHM_BEAM_METRICS.beamThickness} ${leftX},${leftTop+MR_RHYTHM_BEAM_METRICS.beamThickness}`);
+      beam.classList.add("rhythm-note-beam");if(extraClass)beam.classList.add(extraClass);
+      beam.setAttribute("aria-hidden","true");
+      parent.insertBefore(beam,first.element);
+    };
+    addBeam(0);
+    if(first.durationName==='semicroma')
+      addBeam((direction==='down'?-1:1)*MR_RHYTHM_BEAM_METRICS.secondaryBeamOffset,'rhythm-note-beam-secondary');
   });
 }
 
@@ -14115,6 +14242,7 @@ let scorePlayMode="both";
 let scorePlaybackLockedMR=false;
 let scoreMidiLockAlertAt=0;
 let scoreAutoPlaybackActiveMR=false;
+let scorePlayerStopEpochMR=0; // invalida anche l'avvio audio asincrono in guida
 let scoreAutoPlaybackTokenMR=0;
 let scoreAutoPlaybackTimersMR=[];
 let scoreAutoScrollFrameMR=null;
@@ -14148,6 +14276,7 @@ const scoreProgressFill=document.getElementById("scoreProgressFill");
 const scoreTitleDisplay=document.getElementById("scoreTitleDisplay");
 const scoreCountInDisplay=document.getElementById("scoreCountInDisplay");
 const scoreCompleteOverlay=document.getElementById("scoreCompleteOverlay");
+let scoreCompletionSettled417=false; // Una sola ricompensa per ogni esecuzione terminata.
 const scoreCompleteMedal=document.getElementById("scoreCompleteMedal");
 const scoreCompleteMedalName=document.getElementById("scoreCompleteMedalName");
 const scoreCompleteTitle=document.getElementById("scoreCompleteTitle");
@@ -14255,16 +14384,16 @@ function hasScoreAwardMR(scoreId){
   const awards=readScoreAwardsMR();
   return !!awards[scoreId];
 }
-function grantScoreAwardMR(score){
-  if(!score||!score.id)return {newAward:false,tokenAwarded:false};
+function grantScoreAwardMR(score, awardSpecialMedal=false, completionSequence=0){
+  if(!score||!score.id)return {newAward:false,tokenAwarded:false,fruitsAwarded:false};
+  // La medaglia speciale si conquista una volta, soltanto suonando Insieme.
+  // Il gettone e il cestino completo, invece, spettano ad OGNI brano davvero terminato.
   const awards=readScoreAwardsMR();
-  if(awards[score.id])return {newAward:false,tokenAwarded:false};
-  awards[score.id]={title:score.title||"Spartito",earnedAt:Date.now()};
-  saveScoreAwardsMR(awards);
-
-  // Un brano completato per la prima volta a due mani assegna esattamente un gettone
-  // nella sessione corrente usata dalla Modalità Play. Non passa dalla regola
-  // generale "1 gettone ogni 5 medaglie", quindi non può creare un premio doppio.
+  const newAward=!!awardSpecialMedal&&!awards[score.id];
+  if(newAward){
+    awards[score.id]={title:score.title||"Spartito",earnedAt:Date.now()};
+    saveScoreAwardsMR(awards);
+  }
   let session=getCurrentSession();
   if(!session){
     startNewSession();
@@ -14272,13 +14401,16 @@ function grantScoreAwardMR(score){
   }
   let tokenAwarded=false;
   if(session){
-    session.tokens=(Number(session.tokens)||0)+1;
+    session.tokens=Math.max(0,Math.floor(Number(session.tokens)||0))+1;
     saveSessionsToStorage();
     updateTokensUIAll();
     showTokenWonPopup();
     tokenAwarded=true;
   }
-  return {newAward:true,tokenAwarded};
+  const prizeKey=`score:${score.id}:${completionSequence}`;
+  // L'API del cestino salva l'assegnazione in blocco ed evita doppioni sullo stesso evento.
+  const fruitsAwarded=window.MimoCare?.awardFullBasket?.(prizeKey)===true;
+  return {newAward,tokenAwarded,fruitsAwarded};
 }
 function scoreDurationMR(name){
   if(typeof name!=="string")return null;
@@ -14463,7 +14595,7 @@ function updateScoreAutoPlayerUIMR(){
     scoreAutoPlayBtn.disabled=!activeScore;
   }
   if(scoreAutoStopBtn){
-    scoreAutoStopBtn.disabled=!activeScore;
+    scoreAutoStopBtn.disabled=!activeScore && !scoreAutoPlaybackActiveMR;
     const creator=typeof scoreCreatorStateMR!=="undefined"?scoreCreatorStateMR:null;
     const taking=!!creator&&typeof scoreCreatorCanUseMR==="function"&&scoreCreatorCanUseMR()&&
       (creator.recording||creator.counting||creator.armed||creator.paused);
@@ -14692,7 +14824,8 @@ function scoreAutoInstallPlaybackScheduleMR(clock,token){
     const timer=setTimeout(()=>{
       if(!scoreAutoPlaybackActiveMR||token!==scoreAutoPlaybackTokenMR||clock!==scoreAutoPlaybackClockMR)return;
       setScoreAutoEventHighlightMR(ev,true);
-      ev.midis.forEach(midi=>{try{playToneExactMR(midiToFreqL8(midi),durationMs);}catch(e){}});
+      const stillPlaying=()=>scoreAutoPlaybackActiveMR&&token===scoreAutoPlaybackTokenMR&&clock===scoreAutoPlaybackClockMR;
+      ev.midis.forEach(midi=>{try{playToneExactMR(midiToFreqL8(midi),durationMs,stillPlaying);}catch(e){}});
       const offTimer=setTimeout(()=>{
         if(token!==scoreAutoPlaybackTokenMR||clock!==scoreAutoPlaybackClockMR)return;
         setScoreAutoEventHighlightMR(ev,false);
@@ -14956,9 +15089,8 @@ function appendScoreRestVisualMR(cx,voice,durationName){
   return rest;
 }
 
-/* Build 2.291 — crome unite con trave reversibile. La trave e i gambi vengono
-   disegnati sul lato opposto alla legatura quando il file ne fissa il lato; in
-   assenza di indicazioni si usa la direzione convenzionale del gruppo. */
+/* Build 2.408 — crome (una trave) e semicrome (due travi) in gruppi metrici
+   di massimo quattro. Non cambiano figure, durate, attacchi o dati MIDI. */
 const MR_SCORE_BEAMED_EIGHTH_METRICS=Object.freeze({
   noteheadSize:60,
   noteheadX:-11.91,
@@ -14968,6 +15100,7 @@ const MR_SCORE_BEAMED_EIGHTH_METRICS=Object.freeze({
   stemWidth:1.56,
   stemHeadInset:3.2,
   beamThickness:8.6,
+  secondaryBeamOffset:12.5,
   stemLift:56,
   stemBeamInset:1.2,
   headTop:-10.5,
@@ -15004,23 +15137,24 @@ function appendScoreBeamedNoteVisualMR(cx,pitch,stemDirection="up"){
   return {midi:pitch.midi,noteName:pitch.noteName,displayNoteName:pitch.displayNoteName,element:group,stem,stemDirection:direction};
 }
 function beamRunsForVoiceMR(entries,timeSignature=activeScore?.timeSignature||'4/4'){
-  // Il limite di quattro crome vale anche quando una battuta contiene
-  // otto crome consecutive; non cambiano onset, durata o eventi MIDI.
-  // In 6/8 si rispettano le due pulsazioni composte di tre crome.
-  const groupBeats=timeSignature==='6/8'?1.5:
+  // Travi omogenee: max 4 crome o 4 semicrome, senza attraversare pause,
+  // cambi di durata o confini del gruppo metrico.
+  const meterGroupBeats=timeSignature==='6/8'?1.5:
     timeSignature==='4/4'||timeSignature==='2/4'?2:1;
-  const groupIndex=onset=>Math.floor((Number(onset)+.00001)/groupBeats);
+  const groupIndex=(onset,unit)=>Math.floor((Number(onset)+.00001)/(unit===.25?1:meterGroupBeats));
   const runs=[];
   let current=[];
   const flush=()=>{if(current.length>=2)runs.push(current.slice());current=[];};
   entries.forEach(entry=>{
-    const mids=entry&&entry.ev&&!entry.ev.rest?normalizeScoreMidiMR(entry.ev.midi):[];
-    const isBeamable=!entry.ev.rest&&entry.duration&&entry.duration.name==="croma"&&mids.length===1;
-    if(!isBeamable){flush();return;}
+    const durationName=entry?.duration?.name;
+    const unit=durationName==='semicroma'?.25:durationName==='croma'?.5:0;
+    const mids=entry?.ev&&!entry.ev.rest?normalizeScoreMidiMR(entry.ev.midi):[];
+    if(!unit||mids.length!==1){flush();return;}
     if(!current.length){current=[entry];return;}
-    const prev=current[current.length-1];
-    if(Math.abs(entry.start-(prev.start+.5))<.0001&&
-       current.length<4&&groupIndex(entry.start)===groupIndex(prev.start))current.push(entry);
+    const prev=current[current.length-1], prevName=prev.duration?.name;
+    if(prevName===durationName&&
+       Math.abs(entry.start-(prev.start+unit))<.0001&&
+       current.length<4&&groupIndex(entry.start,unit)===groupIndex(prev.start,unit))current.push(entry);
     else{flush();current=[entry];}
   });
   flush();
@@ -15095,13 +15229,20 @@ function renderBeamedRunScoreMR(run,measureIndex,xMap,anchorMap){
       });
     }
   });
-  const beam=document.createElementNS("http://www.w3.org/2000/svg","polygon");
   const leftX=first.cx+stemLeft;
   const rightX=last.cx+stemLeft+MR_SCORE_BEAMED_EIGHTH_METRICS.stemWidth;
-  const leftTop=beamTopYAt(leftX),rightTop=beamTopYAt(rightX);
-  beam.setAttribute("points",`${leftX},${leftTop} ${rightX},${rightTop} ${rightX},${rightTop+MR_SCORE_BEAMED_EIGHTH_METRICS.beamThickness} ${leftX},${leftTop+MR_SCORE_BEAMED_EIGHTH_METRICS.beamThickness}`);
-  beam.classList.add("score-note-beam");
-  scoreStaffGroup.insertBefore(beam,first.visual.element);
+  const addBeam=(offset,extraClass)=>{
+    const beam=document.createElementNS("http://www.w3.org/2000/svg","polygon");
+    const leftTop=beamTopYAt(leftX)+offset,rightTop=beamTopYAt(rightX)+offset;
+    beam.setAttribute("points",`${leftX},${leftTop} ${rightX},${rightTop} ${rightX},${rightTop+MR_SCORE_BEAMED_EIGHTH_METRICS.beamThickness} ${leftX},${leftTop+MR_SCORE_BEAMED_EIGHTH_METRICS.beamThickness}`);
+    beam.classList.add("score-note-beam");
+    if(extraClass)beam.classList.add(extraClass);
+    scoreStaffGroup.insertBefore(beam,first.visual.element);
+  };
+  addBeam(0);
+  // La seconda trave e' verso le teste, non verso l'esterno dei gambi.
+  if(run[0].duration?.name==='semicroma')
+    addBeam((stemDirection==='down'?-1:1)*MR_SCORE_BEAMED_EIGHTH_METRICS.secondaryBeamOffset,'score-note-beam-secondary');
 }
 function scoreEventForOnsetMR(globalOnset){
   return scoreTimeline.find(ev=>Math.abs(ev.onsetBeat-globalOnset)<.0001)||null;
@@ -15836,6 +15977,7 @@ function scoreGuidedSelectMeasureMR(measureIndex){
 }
 function restartScoreMR(fromError=false,requireNewCountIn=false){
   if(!activeScore)return;
+  scoreCompletionSettled417=false;
   cancelScoreMeasureScrollMR();
   stopScoreAutoPlaybackMR({stopVoices:true,restoreProgress:false});
   const countInInterrupted=scoreCountInActiveMR;
@@ -15862,25 +16004,24 @@ function restartScoreMR(fromError=false,requireNewCountIn=false){
 function failScoreMR(){playError();restartScoreMR(true);}
 function completeScoreMR(){
   if(metronomeAutoOwner==="SCORE")releaseMetronomeForExercise("SCORE");
+  // Mai regalare più di una volta lo stesso premio per il medesimo fine-brano.
+  if(scoreCompletionSettled417)return;
+  scoreCompletionSettled417=true;
   const title=(activeScore&&activeScore.title)||"Spartito";
-  addScoreCompletionMR(activeScore&&activeScore.id);
-
-  if(scorePlayMode==="both"){
-    const reward=grantScoreAwardMR(activeScore);
+  const completionSequence=addScoreCompletionMR(activeScore&&activeScore.id);
+  const playedTogether=scorePlayMode==="both";
+  const reward=grantScoreAwardMR(activeScore,playedTogether,completionSequence);
+  if(playedTogether){
     if(scoreCompleteMedal)scoreCompleteMedal.hidden=false;
     if(scoreCompleteMedalName)scoreCompleteMedalName.textContent=title;
     if(scoreCompleteTitle)scoreCompleteTitle.textContent=reward.newAward?"Medaglia speciale conquistata!":"Brano completato!";
-    if(scoreCompleteSubtitle){
-      scoreCompleteSubtitle.textContent=reward.newAward
-        ? `${title} · Hai vinto 1 gettone!`
-        : `${title} · Medaglia già conquistata`;
-    }
+    if(scoreCompleteSubtitle)scoreCompleteSubtitle.textContent=`${title} · +1 gettone Play e 8 frutti (uno per tipo) nel cestino di Mìmo!`;
   }else{
     if(scoreCompleteMedal)scoreCompleteMedal.hidden=true;
     if(scoreCompleteMedalName)scoreCompleteMedalName.textContent="";
     if(scoreCompleteTitle)scoreCompleteTitle.textContent="Brano completato!";
     const part=scorePartDescriptionMR(scorePlayMode);
-    if(scoreCompleteSubtitle)scoreCompleteSubtitle.textContent=`${title} · ${part}. La medaglia speciale si conquista suonando Insieme.`;
+    if(scoreCompleteSubtitle)scoreCompleteSubtitle.textContent=`${title} · ${part} · +1 gettone e 8 frutti! La medaglia speciale si conquista suonando Insieme.`;
   }
   if(scoreCompleteOverlay)scoreCompleteOverlay.classList.add("active");
   renderScoreLibraryMR();
@@ -15918,7 +16059,9 @@ function handleScoreAnswerMR(midi){
   }
   const note=target.notes.find(n=>n.midi===midi);
   if(!note){failScoreMR();return;}
-  playToneExactMR(midiToFreqL8(midi),(note.beats||1)*(60000/metronomeBpm));
+  const epoch=scorePlayerStopEpochMR;
+  playToneExactMR(midiToFreqL8(midi),(note.beats||1)*(60000/metronomeBpm),
+    ()=>scorePlayerStopEpochMR===epoch&&!scoreAutoPlaybackActiveMR);
   scorePendingMidis.add(midi);
   if(note.visual&&note.visual.element)note.visual.element.classList.add("score-note-pending");
   if(scorePendingMidis.size>=required.length){
@@ -15940,11 +16083,30 @@ function bindScorePianoKeyMR(key,midi){
     if(!scoreCreatorCanUseMR()||ev.button!==0)return;
     ev.preventDefault();ev.stopPropagation();try{key.setPointerCapture?.(ev.pointerId);}catch(_e){}
     if(key.dataset.playComposerHeld==='1')return;
-    key.dataset.playComposerHeld='1';animateKeyPress(key);
-    routeMidiNoteOnMR(midi,95,'pc',undefined,null,`touch-${midi}`);
-    scoreEditorAudioPreviewMR(midi,.2);
+    // La tastiera virtuale usa il trasporto MIDI dell'editor, ma fino alla 2.396
+    // inviava la nota originale come "pc", quindi i pulsanti +/- erano ignorati.
+    // Calcoliamo l'ottava al Note On e salviamo il pitch: il Note Off resta
+    // corretto anche se l'ottava cambia mentre il dito tiene premuto il tasto.
+    const octave=Number(scoreCreatorStateMR?.midiOctaveShift)||0;
+    const playedMidi=midi+12*octave;
+    if(!isFullPianoMidiMR(playedMidi)){
+      scoreEditorAnnounceMR('Nota fuori dall’estensione: cambia ottava con + o −.');
+      return;
+    }
+    key.dataset.playComposerHeld='1';
+    key.dataset.playComposerPitch=String(playedMidi);
+    animateKeyPress(key);
+    routeMidiNoteOnMR(playedMidi,95,'pc',undefined,null,`touch-${midi}`);
+    scoreEditorAudioPreviewMR(playedMidi,.2);
   });
-  const release=ev=>{if(key.dataset.playComposerHeld!=='1')return;ev.preventDefault();ev.stopPropagation();delete key.dataset.playComposerHeld;routeMidiNoteOffMR(midi,0,'pc',undefined,`touch-${midi}`);};
+  const release=ev=>{
+    if(key.dataset.playComposerHeld!=='1')return;
+    ev.preventDefault();ev.stopPropagation();
+    const playedMidi=Number(key.dataset.playComposerPitch);
+    delete key.dataset.playComposerHeld;
+    delete key.dataset.playComposerPitch;
+    routeMidiNoteOffMR(isFullPianoMidiMR(playedMidi)?playedMidi:midi,0,'pc',undefined,`touch-${midi}`);
+  };
   key.addEventListener('pointerup',release);key.addEventListener('pointercancel',release);
   key.addEventListener('lostpointercapture',release);
 }
@@ -16554,6 +16716,7 @@ async function openScoreFromLibraryMR(entry){
     const personalDraft=score.createdInPlay===true&&entry.imported===true&&entry.cloud!==true&&entry.published!==true&&!mrAdminActive;
     activeScoreSourceEntryMR=(mrAdminActive||personalDraft)?entry:null;
     activeScore=(mrAdminActive||personalDraft)?JSON.parse(JSON.stringify(score)):score;
+    scoreCompletionSettled417=false;
     scoreGuidedStartMeasureMR=0;
     scorePlayMode="both";scoreTimeline=buildScoreTimelineMR(activeScore,scorePlayMode);
     if(!scoreTimeline.length&&!score.createdInAdmin&&!score.createdInPlay)throw new Error("empty");
@@ -16608,14 +16771,33 @@ if(scoreAutoPlayBtn)scoreAutoPlayBtn.addEventListener("click",()=>{
   startScoreAutoPlaybackMR();
 });
 function scoreTopBarStopMR(){
-  // One Stop for Admin recording, public Play writing, and automatic listening.
-  // In editing mode Stop finalizes any held MIDI notes before silencing voices;
-  // during count-in it cancels without replacing the notes of an existing bar.
+  // 2.411: il medesimo Stop viene usato da Play, Editor e MIDI Learn.
+  // Ferma PRIMA l'ascolto automatico (timer, cursore, audio), poi la ripresa:
+  // eventuali messaggi di validazione non possono lasciar suonare il brano.
+  ++scorePlayerStopEpochMR;
   const creator=typeof scoreCreatorStateMR!=="undefined"?scoreCreatorStateMR:null;
   const inTake=!!creator&&(creator.recording||creator.counting||creator.armed||creator.paused);
-  if(inTake&&typeof scoreCreatorCanUseMR==="function"&&scoreCreatorCanUseMR())
-    scoreCreatorStopMR();
+  const hadAutomatic=scoreAutoPlaybackActiveMR;
   stopScoreAutoPlaybackMR({stopVoices:true,restoreProgress:true});
+  cancelScoreCountInMR(true);
+  clearScorePendingMR();
+  cancelScoreMeasureScrollMR();
+  scoreInputArmedMR=false;
+  scoreCountInUsedMR=false;
+  // Il click non deve proseguire dando l'impressione che Stop non funzioni.
+  // Il tasto MET lo riattiva quando il bambino desidera il click indipendente.
+  if(metronomeOn)setMetronomeOn(false);
+  if(inTake&&typeof scoreCreatorCanUseMR==="function"&&scoreCreatorCanUseMR()){
+    scoreCreatorStopMR();  // finalizza le note senza cancellare il contenuto
+  }else if(!scoreEditorActiveMR&&!hadAutomatic&&activeScore){
+    // Ferma anche l'esecuzione guidata del bambino; il successivo ingresso
+    // avvia una nuova preparazione invece di interpretare la nota come seguito.
+    scoreLastHitTime=null;
+    scoreCurrentIndex=scoreGuidedTimelineStartIndexMR();
+    updateScoreProgressMR();
+  }
+  try{stopAllPianoVoices();}catch(e){}
+  updateScoreAutoPlayerUIMR();
 }
 if(scoreAutoStopBtn)scoreAutoStopBtn.addEventListener("click",scoreTopBarStopMR);
 updateScoreAutoPlayerUIMR();
@@ -18671,9 +18853,10 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
+  const PAGE_BUILD = "2.417";
+  document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   if (!("serviceWorker" in navigator)) return;
 
-  const PAGE_BUILD = "2.392";
   const UPDATE_MIN_INTERVAL_MS = 60000;
   let registrationMR = null;
   let lastUpdateCheckMR = 0;
@@ -19328,8 +19511,8 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
   if(tempoStepToggleBtn){
     tempoStepToggleBtn.addEventListener('click', (ev)=>{
       ev.preventDefault(); ev.stopImmediatePropagation();
-      const next = tempoStepMR===0 ? 1 : (tempoStepMR===1 ? 2 : 1);
-      setTempoStepMR(next, true);
+      if(tempoStepMR>=2)return;
+      setTempoStepMR(tempoStepMR+1, true);
     }, true);
   }
 
@@ -19575,26 +19758,24 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
     back.textContent='←';
     back.setAttribute('aria-label','Torna alla prima pagina di Impara Tempo');
     forward.insertAdjacentElement('beforebegin',back);
-    back.addEventListener('click',ev=>{
-      ev.preventDefault();ev.stopPropagation();
-      if(typeof tempoStepMR!=='undefined'&&tempoStepMR===1)setTempoStepMR(0,true);
-    });
   }
+  back.addEventListener('click',ev=>{
+    ev.preventDefault();ev.stopPropagation();
+    if(typeof tempoStepMR!=='undefined'&&tempoStepMR>0)setTempoStepMR(tempoStepMR-1,true);
+  });
   const baseSetTempoStepMR=setTempoStepMR;
   setTempoStepMR=function(step,force=false){
     baseSetTempoStepMR(step,force);
     const current=Number(typeof tempoStepMR!=='undefined'?tempoStepMR:step);
     page.classList.toggle('tempo-step-one',current===1);
-    back.setAttribute('aria-hidden',current===1?'false':'true');
-    if(current===2){
-      forward.textContent='←';
-      forward.setAttribute('aria-label','Torna alla seconda pagina di Impara Tempo');
-    }else{
-      forward.textContent='→';
-      forward.setAttribute('aria-label','Pagina successiva di Impara Tempo');
-    }
+    back.disabled=current<=0;
+    forward.disabled=current>=2;
+    back.setAttribute('aria-label','Pagina precedente di Impara Tempo');
+    forward.setAttribute('aria-label','Pagina successiva di Impara Tempo');
+    back.innerHTML='<span aria-hidden="true">❮</span>';
+    forward.innerHTML='<span aria-hidden="true">❯</span>';
   };
-  page.classList.toggle('tempo-step-one',Number(typeof tempoStepMR!=='undefined'?tempoStepMR:0)===1);
+  setTempoStepMR(tempoStepMR,true);
 })();
 </script>
 
@@ -21850,8 +22031,46 @@ function scoreEditorCloseOtherPopupsMR(keep=''){
   const tolButton=document.getElementById('scoreCreatorToleranceMR');
   if(tolButton&&keep!=='tolerance')tolButton.setAttribute('aria-expanded','false');
 }
+/* Build 2.407 — selected note -> rest, in the SAME rhythmic slot.
+ * No new insertion point, and no drift in notes after this event. */
+function scoreEditorReplaceSelectedNoteWithRest405(){
+  if(!scoreEditorCanUseMR()||!scoreEditorActiveMR||scoreEditorSavingMR||
+      !scoreEditorSelectionValidMR())return false;
+  const ref=scoreEditorSelectedMR;
+  const selected=scoreEditorEventMR();
+  if(!selected||selected.rest)return false;
+  const voice=activeScore?.measures?.[ref.measureIndex]?.[ref.voice];
+  if(!Array.isArray(voice))return false;
+  const onset=Number(selected.onset);
+  // In an actual chord several note events may have the same onset; a rest
+  // cannot coexist with the remaining pitches in the same voice. Ask before
+  // replacing the whole chord, rather than silently erasing other notes.
+  const chordEvents=voice.filter(ev=>!ev.rest&&Math.abs(Number(ev.onset)-onset)<.00001);
+  if(chordEvents.length>1&&!confirm('La nota selezionata appartiene a un accordo. Sostituire tutto l’accordo con una pausa?'))return false;
+  const longest=chordEvents.reduce((best,ev)=>(scoreDurationMR(ev.duration)?.beats||0)>(scoreDurationMR(best.duration)?.beats||0)?ev:best,selected);
+  const rest={onset,duration:longest.duration,rest:true};
+  const revised=voice.filter(ev=>ev.rest||Math.abs(Number(ev.onset)-onset)>=.00001);
+  revised.push(rest);
+  revised.sort((a,b)=>Number(a.onset)-Number(b.onset));
+  if(!scoreEditorRhythmValidMR(revised,scoreEditorMeasureBeatsMR())){
+    scoreEditorRejectMR('Non è possibile inserire la pausa: controlla le durate della battuta.');
+    return false;
+  }
+  scoreEditorPushUndoMR();
+  activeScore.measures[ref.measureIndex][ref.voice]=revised;
+  scoreEditorSelectedMR={measureIndex:ref.measureIndex,voice:ref.voice,
+    eventIndex:revised.indexOf(rest),rest:true};
+  scoreEditorInsertionMR=null;scoreEditorHideMoveMR();
+  scoreEditorChangedMR('Nota sostituita dalla pausa della stessa durata.',false);
+  return true;
+}
 function scoreEditorOpenRhythmPickerMR(kind){
   if(!scoreEditorCanUseMR()||!scoreEditorActiveMR||scoreEditorSavingMR)return;
+  // Un tocco su Pausa mentre una NOTA è selezionata sostituisce quella nota
+  // immediatamente; il secondo tocco apre la scelta della durata della pausa.
+  if(kind==='rest'&&scoreEditorSelectionValidMR()&&!scoreEditorEventMR()?.rest){
+    scoreEditorReplaceSelectedNoteWithRest405();return;
+  }
   // Secondo tocco sul medesimo pulsante: chiudi senza perdere la selezione.
   if(scoreEditorDurationPickerMR&&!scoreEditorDurationPickerMR.hidden&&scoreEditorPickerKindMR===kind){
     scoreEditorHideDurationMR();scoreEditorUpdateToolbarMR();return;
@@ -22733,9 +22952,9 @@ function scoreCreatorUiMR(){
   }
   if(scoreCreatorCountInBtnMR){
     scoreCreatorCountInBtnMR.disabled=!!s.counting;
-    scoreCreatorCountInBtnMR.setAttribute('aria-pressed',String(s.countIn));
-    scoreCreatorCountInBtnMR.setAttribute('aria-label',s.countIn?'Disattiva il preconteggio di una battuta':'Attiva il preconteggio di una battuta');
-    scoreCreatorCountInBtnMR.title=s.countIn?'Preconteggio attivo':'Preconteggio disattivato';
+    scoreCreatorCountInBtnMR.setAttribute('aria-pressed','true');
+    scoreCreatorCountInBtnMR.setAttribute('aria-label','Preconteggio obbligatorio prima di ogni registrazione');
+    scoreCreatorCountInBtnMR.title='Preconteggio sempre attivo';
   }
   if(scoreCreatorNoRestsBtnMR){
     scoreCreatorNoRestsBtnMR.disabled=!!(s.recording||s.counting||s.armed);
@@ -22768,21 +22987,46 @@ function scoreCreatorUiMR(){
 }
 // Registrazione 2.291: preconteggio obbligatorio VISIBILE nella top bar.
 // Riusa i pallini gia' presenti nel player, senza una seconda sovrapposizione.
+window.addEventListener('resize',()=>mr410PlaceScoreDotsMR(),{passive:true});
+function mr410PlaceScoreDotsMR(){
+  const top=document.querySelector('#scorePlayerPage .top-panel')?.getBoundingClientRect();
+  if(top)document.documentElement.style.setProperty('--mr410-dots-y',Math.ceil(top.bottom+8)+'px');
+}
+function scoreCreatorShowMeasureDotsMR(visual,s){
+  if(!scoreCountInDisplay||!s?.recording)return;
+  const beats=activeScore?.timeSignature==='6/8'?6:Math.max(1,Math.round(scoreEditorMeasureBeatsMR()));
+  const inBar=((visual%beats)+beats)%beats;
+  const count=Math.min(4,Math.max(1,Math.ceil((inBar+1)*4/beats)));
+  const dots=Array.from(scoreCountInDisplay.querySelectorAll('.score-count-in-dot'));
+  dots.forEach((dot,i)=>{dot.hidden=i>=4;dot.classList.toggle('shown',i<count);});
+  scoreCountInDisplay.hidden=false;
+  scoreCountInDisplay.classList.add('mr410-dots-record');
+  scoreCountInDisplay.classList.remove('mr410-dots-count');
+  scoreCountInDisplay.setAttribute('aria-label',`Battuta in registrazione: pulsazione ${inBar+1} di ${beats}`);
+  mr410PlaceScoreDotsMR();
+}
 function scoreCreatorShowCountDotsMR(count,total){
   if(!scoreCountInDisplay||!scoreTitleDisplay)return;
-  while(scoreCountInDisplay.children.length<total){
+  mr410PlaceScoreDotsMR();
+  scoreCountInDisplay.classList.add('mr410-dots-count');
+  scoreCountInDisplay.classList.remove('mr410-dots-record');
+  const visibleDots=4;
+  const activeDots=Math.min(4,Math.ceil(count*4/Math.max(1,total)));
+  while(scoreCountInDisplay.children.length<visibleDots){
     const dot=document.createElement('span');dot.className='score-count-in-dot';dot.setAttribute('aria-hidden','true');
     scoreCountInDisplay.appendChild(dot);
   }
   const dots=scoreCountInDisplay.querySelectorAll('.score-count-in-dot');
-  dots.forEach((dot,i)=>{dot.hidden=i>=total;dot.classList.toggle('shown',i<count&&i<total);});
+  dots.forEach((dot,i)=>{dot.hidden=i>=visibleDots;dot.classList.toggle('shown',i<activeDots);});
   scoreCountInDisplay.hidden=false;
   scoreCountInDisplay.setAttribute('aria-label',`Preparazione: ${count} di ${total}`);
-  scoreTitleDisplay.hidden=true;scoreTitleDisplay.classList.add('score-count-in-hidden');
+  // Do not hide the title; dots live below the top bar, not in the title zone.
 }
 function scoreCreatorHideCountDotsMR(){
   if(!scoreCountInDisplay||!scoreTitleDisplay||scoreCountInActiveMR)return;
+  if(scoreCreatorStateMR?.recording){scoreCreatorShowMeasureDotsMR(0,scoreCreatorStateMR);return;}
   scoreCountInDisplay.hidden=true;
+  scoreCountInDisplay.classList.remove('mr410-dots-count','mr410-dots-record');
   scoreCountInDisplay.querySelectorAll('.score-count-in-dot').forEach((dot,i)=>{
     dot.classList.remove('shown');dot.hidden=i>=4;
   });
@@ -22808,15 +23052,39 @@ function scoreCreatorStopScheduledClicksMR(s){
 function scoreCreatorPulseMsMR(s){
   return activeScore?.timeSignature==='6/8' ? 60000/(s.bpm*2) : 60000/s.bpm;
 }
+// Un attacco leggermente anticipato al primo battere (timestamp MIDI nativo)
+// deve andare sul battere ZERO, non essere scartato come un click di preparazione.
+function scoreCreatorFirstDownbeatGraceMR(s){
+  // La stessa finestra d'attacco del cursore vale anche nei millisecondi
+  // immediatamente precedenti allo zero dopo i quattro pallini.
+  return Math.min(scoreCreatorClampToleranceMR(s.toleranceMs)+20,
+    s.quant*(60000/s.bpm)*.90);
+}
 function scoreCreatorFinishCountInMR(s){
-  if(!s?.counting)return;
-  // Preserve the actual countdown endpoint even if JavaScript wakes late.
+  if(!s?.counting||!Number.isFinite(s.countStartedAt))return;
+  // 2.411: il countdown termina alla stessa scadenza per Play e REC.
+  // Solo in Play libero si attende il PRIMO Note On dopo il countdown:
+  // nessuna pausa automatica ne' battuta vengono create durante l'attesa.
+  // REC (Admin/User) conserva invece lo zero musicale continuo stabilito
+  // dal preconteggio, per registrare anche le pause e gli attacchi in battere.
   const readyAt=s.countStartedAt+s.countTicks*scoreCreatorPulseMsMR(s);
-  s.counting=false;s.armed=true;s.readyAt=readyAt;
-  scoreCreatorStopScheduledClicksMR(s);
-  scoreCreatorHideCountDotsMR();
-  scoreCreatorUiMR();
-  scoreEditorAnnounceMR('Preparazione conclusa. Premi la prima nota per iniziare.');
+  s.readyAt=readyAt;
+  if(scorePlayInstantHomeMR){
+    s.counting=false;
+    s.armed=true;
+    s.recording=false;
+    scoreCreatorStopScheduledClicksMR(s);
+    // Non lasciare un metronomo in corsa durante l'attesa della prima nota.
+    // Il primo Note On ripartira' da beat zero con il tempo gia' selezionato.
+    stopMetronome();
+    scoreCreatorHideCountDotsMR();
+    scoreCreatorUiMR();
+    scorePlayHomeAppearanceMR();
+    scoreEditorAnnounceMR('Play pronto: premi il primo tasto della tastiera per iniziare il brano.');
+    return;
+  }
+  scoreCreatorStartClockMR(s,readyAt);
+  scoreEditorAnnounceMR('Registrazione in corso: suona anche sul primo battere, oppure lascia scorrere le pause.');
 }
 function scoreCreatorDriveAudioMR(s){
   if(!s||!scoreCreatorCanUseMR())return;
@@ -22834,6 +23102,7 @@ function scoreCreatorDriveAudioMR(s){
     if(visual!==s.metroVisualTick){
       s.metroVisualTick=visual;
       pulseVisibleDots();
+      scoreCreatorShowMeasureDotsMR(visual,s);
       scoreCreatorUpdateBarHeadingMR(s);
       if(visual%2===0)scoreCreatorUiMR();
     }
@@ -22894,29 +23163,50 @@ function scoreCreatorReplaceThroughMR(s,target){
   }
 }
 function scoreCreatorStartClockMR(s,origin=performance.now()){
-  if(!s||!scoreCreatorCanUseMR())return;
-  scoreCreatorStopScheduledClicksMR(s);
-  // Nessun secondo MET: si mantiene ON/OFF della top bar e si sospende
-  // solo il suo timer libero; i click ora seguono il clock MIDI.
+  if(!s||!scoreCreatorCanUseMR()||s.recording)return;
+  // Passaggio SENZA interrompere l'audio: gli ultimi click del preconteggio
+  // e il primo battere inciso sono gia' programmati sulla stessa timeline.
+  const seamless=s.counting&&s.metroPhase==='count'&&Number.isFinite(s.countStartedAt);
+  const nextRecordTick=seamless?Math.max(0,s.metroNextTick-s.countTicks):0;
+  if(!seamless)scoreCreatorStopScheduledClicksMR(s);
+  // Ferma soltanto il metronomo libero; non toccare i click del countdown.
   stopMetronome();
   s.counting=false;s.armed=false;s.recording=true;s.paused=false;
   scoreCreatorHideCountDotsMR();
+  s.readyAt=origin;
   s.startAt=origin-s.beatOffset*(60000/s.bpm);
   // Un solo snapshot Undo dell'intera ripresa, anche quando sono sostituite più battute.
   if(!s.undoTaken){scoreEditorPushUndoMR();s.undoTaken=true;}
-  // Il BPM inciso viene memorizzato SOLO quando arriva il primo Note On.
+  // Il BPM inciso viene memorizzato all'avvio REALE del tempo, anche
+  // quando la battuta inizia con una pausa o con un attacco sul battere.
   // Un REC annullato durante il countdown non altera il brano.
   if(activeScore.bpm!==s.bpm){activeScore.bpm=s.bpm;scoreEditorDirtyMR=true;}
   s.takeStartBar=s.barIndex;
   s.replacedThrough=s.barIndex-1;
   scoreCreatorReplaceThroughMR(s,s.barIndex);
-  scoreCreatorRenderSoonMR(s,true);
+  // Non bloccare la ricezione della prima nota con un ridisegno SVG completo.
+  // WKWebView puo' avere in coda il Note On del nuovo battere: lasciagli
+  // almeno 180 ms prima di renderizzare l'intera partitura.
+  if(seamless){
+    if(!s.renderTimer)s.renderTimer=setTimeout(()=>{
+      s.renderTimer=null;
+      if(s.recording)scoreCreatorRenderSoonMR(s);
+    },Math.max(180,Math.min(350,scoreCreatorPulseMsMR(s)*.35)));
+  }else scoreCreatorRenderSoonMR(s,true);
   s.rhythmBlockIndex=Math.floor(Math.max(0,s.beatOffset)/(8*scoreEditorMeasureBeatsMR()));
   if(!s.barMode){
     s.nextCheckBar=Math.max(s.lastCheckedBar+1,Math.floor(s.beatOffset/scoreEditorMeasureBeatsMR()));
     scoreCreatorScheduleContinuousCheckMR(s);
   }
-  scoreCreatorStartAudioMetronomeMR(s,'record',s.startAt);
+  if(seamless){
+    // Prosegui con gli stessi sorgenti WebAudio gia' pianificati.
+    s.metroPhase='record';
+    s.metroEpochPerf=origin;
+    s.metroTotalTicks=Infinity;
+    s.metroNextTick=nextRecordTick;
+    s.metroVisualTick=-1;
+    if(!s.tickTimer)s.tickTimer=setInterval(()=>scoreCreatorDriveAudioMR(s),SCORE_METRO_WAKE_MS_MR);
+  }else scoreCreatorStartAudioMetronomeMR(s,'record',origin);
   if(s.barMode){
     const end=s.startAt+(s.barIndex+1)*scoreEditorMeasureBeatsMR()*60000/s.bpm;
     s.barTimer=setTimeout(()=>scoreCreatorFinishBarMR(s),Math.max(0,end+Math.max(90,s.toleranceMs+25)-performance.now()));
@@ -22924,23 +23214,37 @@ function scoreCreatorStartClockMR(s,origin=performance.now()){
   scoreCreatorUiMR();
 }
 function scoreCreatorQuantMR(beats,s){return Math.max(0,Math.round(beats/s.quant)*s.quant);}
-// Only Note On uses the player-adjustable onset window. Note Off retains the
-// selected rhythmic grid, and native timestamps are never shifted for playback.
-// An early attack within tolerance of a downbeat goes into the NEW measure:
-// the old Math.min(..., measureEnd-s.quant) wrongly forced it into the old one.
-function scoreCreatorQuantizeOnsetMR(beat,s){
-  const rounded=scoreCreatorQuantMR(beat,s);
-  const measure=scoreEditorMeasureBeatsMR();
-  const boundary=Math.round(beat/measure)*measure;
+// Build 2.407: the selected MIDI onset tolerance applies to the REAL downbeat
+// after count-in and to each later measure, not just to an already-rounded note.
+// With fine grids the nearest subdivision may otherwise become a false rest.
+// The small source-dependent allowance absorbs delivery/input latency; it does
+// NOT postpone the metronome, add fake rests, or delay any Note On.
+function scoreCreatorInputLatencyAllowanceMR(source){
+  return source==='pc'?12:20; // bounded margin, not a claim of measured latency
+}
+function scoreCreatorQuantizeOnsetMR(beat,s,source='midi'){
   const msPerBeat=60000/s.bpm;
-  // The tolerance is NOT a second, coarser quantizer: snapping every event
-  // within 200ms of a quarter note used to merge eighths and sixteenths.
-  // A boundary is eligible only when it is already the closest grid point.
-  const safeWindow=Math.min(scoreCreatorClampToleranceMR(s.toleranceMs),s.quant*msPerBeat*.49);
-  if(boundary>0&&Math.abs(rounded-boundary)<.00001&&
-     Math.abs(beat-boundary)*msPerBeat<=safeWindow+1e-6){
+  const quantumMs=s.quant*msPerBeat;
+  const latencyMs=scoreCreatorInputLatencyAllowanceMR(source);
+  const adjustedBeat=Math.max(0,beat-latencyMs/msPerBeat);
+  const rounded=scoreCreatorQuantMR(adjustedBeat,s);
+  const measure=scoreEditorMeasureBeatsMR();
+  // Always inspect the *actual* timestamp: the nearest sixteenth/eighth may
+  // not be the downbeat that the performer intended within MIDI tolerance.
+  const boundary=Math.max(0,Math.round(beat/measure)*measure);
+  const distanceMs=(beat-boundary)*msPerBeat;
+  const toleranceMs=scoreCreatorClampToleranceMR(s.toleranceMs);
+  // Leave a guard before the next genuine subdivision. Even with a 300 ms
+  // slider, a note on the NEXT grid point must never be pulled backwards.
+  const guardMs=Math.max(0,quantumMs*.90);
+  const earlyWindow=Math.min(guardMs,toleranceMs);
+  const lateWindow=Math.min(guardMs,toleranceMs+latencyMs);
+  if(toleranceMs>0 && distanceMs>=-earlyWindow-1e-6 &&
+     distanceMs<=lateWindow+1e-6){
     return Number(boundary.toFixed(5));
   }
+  // 0 ms = standard subdivision rounding, with only the bounded latency
+  // allowance applied to the event time (never to note durations or the clock).
   return rounded;
 }
 function scoreCreatorAllowedDurationsMR(){
@@ -23067,11 +23371,16 @@ function scoreCreatorNoteOnMR(midi,velocity,nativeTime,voiceOverride=null,source
   // Il tasto MIDI fisico rimane l'identificatore: si trasporta SOLO la nota da
   // scrivere/ascoltare. MIDI Learn ha gia' letto il tasto non trasposto in routeMidiNoteOnMR.
   const heldKey=source==="pc"?`pc:${inputId||midi}`:midi;
-  // A MIDI event may have occurred after the real countdown endpoint but
-  // reached WKWebView before the delayed UI timer: do not discard it.
-  if(s.counting&&eventTime>=s.countStartedAt+s.countTicks*scoreCreatorPulseMsMR(s)-2)
+  // 2.407: la stessa tolleranza MIDI utilizzata all'inizio di ogni battuta
+  // vale anche attraverso il confine countdown/REC. Un Note On (con timestamp
+  // originale) non deve essere scartato per la latenza del callback JS.
+  if(s.counting&&Number.isFinite(s.countStartedAt)&&
+     eventTime>=s.countStartedAt+s.countTicks*scoreCreatorPulseMsMR(s)-scoreCreatorFirstDownbeatGraceMR(s))
     scoreCreatorFinishCountInMR(s);
   if(s.counting||s.paused)return true;
+  // Escludi i vecchi eventi nativi del preconteggio, anche se consegnati
+  // dopo il cambio di stato. Conserva gli attacchi vicini al nuovo beat 1.
+  if(s.recording&&s.readyAt&&eventTime<s.readyAt-scoreCreatorFirstDownbeatGraceMR(s)-2)return true;
   if(source!=="pc"){
     midi+=12*(Number(s.midiOctaveShift)||0);
     if(!isFullPianoMidiMR(midi)){
@@ -23117,7 +23426,9 @@ function scoreCreatorNoteOnMR(midi,velocity,nativeTime,voiceOverride=null,source
         if(last.onset<boundaryBeat-.25)s.lastOnsetByVoice.delete(voice);
       s.rhythmBlockIndex=blockIndex;
     }
-    if(elapsedBeat<-.1)return true; // genuinely stale event from a prior take
+    // Pre-count e registrazione condividono la stessa finestra temporale:
+    // la nota sul battere viene quantizzata a zero, non a una pausa.
+    if(eventTime<s.readyAt-scoreCreatorFirstDownbeatGraceMR(s)-2)return true;
     // Per la battuta singola, accetta anche un Note On leggermente TARDIVO
     // entro la tolleranza scelta: si colloca nell'ultimo slot utile.
     const singleBarEnd=(s.barIndex+1)*meter;
@@ -23126,7 +23437,7 @@ function scoreCreatorNoteOnMR(midi,velocity,nativeTime,voiceOverride=null,source
       // Su quantizzazione tollerante, un attacco anticipato vicino alla
       // stanghetta appartiene alla NUOVA battuta (mai forzato a quella vecchia).
       // Solo la modalita' di una battuta impedisce il salto in avanti.
-      const rawOnset=scoreCreatorQuantizeOnsetMR(beat,s);
+      const rawOnset=scoreCreatorQuantizeOnsetMR(beat,s,source);
       // Timestamp per VOCE: due note a pochi millisecondi sono un accordo;
       // due attacchi chiaramente distinti non diventano lo stesso accordo a
       // causa di una finestra di tolleranza troppo larga.
@@ -23211,11 +23522,11 @@ function scoreCreatorStopMR(silent=false){
     }
   }
   scoreCreatorClearTimersMR(s);
-  scoreCreatorHideCountDotsMR();
   // A recording may have been drawn with the small nearby-measure window.
   // Stop must restore ALL saved measures for normal navigation and playback.
   if(s.renderTimer){clearTimeout(s.renderTimer);s.renderTimer=null;}
   s.armed=false;s.recording=false;s.counting=false;s.paused=false;s.readyAt=0;
+  scoreCreatorHideCountDotsMR();
   if(wasRecording||scoreCreatorRenderedWindowMR)scoreCreatorRenderSoonMR(s,true);
   if(wasRecording&&!s.barMode){
     const meter=scoreEditorMeasureBeatsMR();
@@ -23266,9 +23577,9 @@ function scoreCreatorArmMR(){
   if(!scorePlayInstantHomeMR&&!isMidiConnectedMR()&&!(typeof pcKeyboardRecordingReadyMR==='function'&&pcKeyboardRecordingReadyMR())){
     alert('Nessuna sorgente musicale attiva. Collega una tastiera MIDI oppure seleziona la tastiera fisica nelle Impostazioni e attiva l’icona tastiera nella barra.');return;
   }
-  // REC riparte dalla battuta scelta con le frecce della testata,
-  // anche in modalità continua. Nessuna nota viene cancellata prima del
-  // primo attacco: un countdown annullato non modifica il brano.
+  // REC riparte dalla battuta selezionata anche in modalità continua.
+  // Il tempo e' continuo fin dal primo battere e le pause nascono SOLO
+  // dagli spazi senza note, senza alcun evento obbligatorio di avvio.
   if(s.barIndex>=s.maxMeasures)return;
   try{ensureAudioReadyMR();unlockAudioOnce();}catch(e){}
   // Ogni nuova incisione usa l'attuale BPM della top bar; il tempo rimane
@@ -23281,21 +23592,24 @@ function scoreCreatorArmMR(){
   s.lastOnsetByVoice.clear();
   s.rhythmBlockIndex=0;
   s.overflowMeasures.clear();
-  s.rawMeasures?.clear(); // nuova ripresa: le battute già scritte rimangono fino al Note On
+  s.rawMeasures?.clear(); // la bozza resta intatta finché non termina il countdown
   s.armed=true;s.paused=false;
   // REC accende sempre MET. Con s.armed=true, startMetronome() interrompe
   // solo l'eventuale timer libero: NON avvia un secondo click. Il countdown
   // e poi il primo Note On usano lo scheduler assoluto della registrazione.
   setMetronomeOn(true);
-  // Se il preconteggio e' spento, armare senza consumare tempo musicale:
-  // il primo Note On MIDI avviera' il clock, come dopo i pallini.
+  // Il REC esplicito e' sempre continuo; solo l'eccezione Home Play,
+  // se l'utente sceglie il countdown, attende il primo tasto al termine.
+  if(!scorePlayInstantHomeMR)s.countIn=true;
   if(!s.countIn){
-    s.counting=false;s.armed=true;s.readyAt=performance.now();s.tickIndex=0;
-    scoreCreatorHideCountDotsMR();
-    scoreCreatorUiMR();
-    scoreEditorAnnounceMR('Registrazione pronta. Premi la prima nota MIDI per iniziare.');
+    const now=performance.now();
+    s.counting=false;s.armed=true;s.tickIndex=0;
+    scoreCreatorStartClockMR(s,now);
+    scoreEditorAnnounceMR('Registrazione iniziata subito: note e pause sono entrambe registrate.');
     return;
   }
+  // 2.410: un REC esplicito conserva sempre il preconteggio visualizzato.
+  s.countIn=true;
   s.counting=true;s.armed=false;s.readyAt=0;s.tickIndex=0;
   s.countTicks=activeScore.timeSignature==='6/8'?6:Math.round(scoreEditorMeasureBeatsMR());
   // Wait for Web Audio to resume BEFORE defining beat zero. On iPad, resume()
@@ -23308,10 +23622,12 @@ function scoreCreatorArmMR(){
     if(s!==scoreCreatorStateMR||!scoreCreatorCanUseMR()||!s.counting||Number.isFinite(s.countStartedAt))return;
     s.countStartedAt=performance.now();
     // Pre-count and recording use the same absolute-time audio scheduler.
-    // The first Note On after the countdown establishes the score's zero.
-    scoreCreatorStartAudioMetronomeMR(s,'count',s.countStartedAt,s.countTicks);
+    // The countdown endpoint establishes the score's zero, even with initial silence.
+    // Precarica ANCHE il primo battere della registrazione sullo stesso clock
+    // audio: il click non puo' saltare durante la transizione countdown/REC.
+    scoreCreatorStartAudioMetronomeMR(s,'count',s.countStartedAt,s.countTicks+1);
     scoreCreatorUiMR();
-    scoreEditorAnnounceMR(`Preparati: ${s.countTicks} battiti, poi suona la prima nota per iniziare.`);
+    scoreEditorAnnounceMR(`Preparati: ${s.countTicks} battiti, poi parte la registrazione anche se inizi con una pausa.`);
   };
   const ctx=getAudioCtx();
   if(audioEnabled&&ctx&&ctx.state!=='running'){
@@ -23541,11 +23857,10 @@ if(scoreCreatorCountInBtnMR)scoreCreatorCountInBtnMR.addEventListener('click',()
   if(scorePlayInstantHomeMR){scorePlayHomeStartCountInMR();return;}
   const s=scoreCreatorStateMR;
   if(!scoreCreatorCanUseMR()||!s||s.counting)return;
-  s.countIn=!s.countIn;
-  activeScore.compositionSettings={...(activeScore.compositionSettings||{}),countIn:s.countIn};
-  scoreEditorDirtyMR=true;
+  s.countIn=true;
+  activeScore.compositionSettings={...(activeScore.compositionSettings||{}),countIn:true};
   scoreCreatorUiMR();
-  scoreEditorAnnounceMR(s.countIn?'Preconteggio attivato per la prossima registrazione.':'Preconteggio disattivato: la prossima registrazione inizierà al primo tasto MIDI.');
+  scoreEditorAnnounceMR('Preconteggio obbligatorio: quattro pallini rossi prima del tempo verde in registrazione.');
 });
 if(scoreCreatorNoRestsBtnMR)scoreCreatorNoRestsBtnMR.addEventListener('click',()=>{
   const s=scoreCreatorStateMR;
@@ -23879,7 +24194,7 @@ function pcKeyboardWriteSettingsMR(){
     const nextMidi=(Number(s?.midiOctaveShift)||0)+direction;
     const midiCan=nextMidi>=-3&&nextMidi<=3;
     btn.disabled=!s||(!pcCan&&!midiCan);
-    btn.title=`${direction>0?'Ottava sopra':'Ottava sotto'} · Logitech ${Number(s?.pcOctaveShift)>0?'+':''}${Number(s?.pcOctaveShift)||0} · MIDI ${Number(s?.midiOctaveShift)||0}`;
+    btn.title=`${direction>0?'Ottava sopra':'Ottava sotto'} · Logitech ${Number(s?.pcOctaveShift)>0?'+':''}${Number(s?.pcOctaveShift)||0} · virtuale/MIDI ${Number(s?.midiOctaveShift)||0}`;
   }
   if(pcKeyboardPitchButtonMR){
     // Lo spartiacque è un'impostazione del BRANO, non un accessorio Logitech.
@@ -24047,7 +24362,7 @@ for(const [btn,direction] of [[pcKeyboardOctaveDownMR,-1],[pcKeyboardOctaveUpMR,
   pcKeyboardSaveCompositionMR(fields);pcKeyboardDrawGuideMR();
   const parts=[];
   if('pcOctaveShift' in fields)parts.push(`Logitech ${fields.pcOctaveShift>0?'+':''}${fields.pcOctaveShift}`);
-  if('midiOctaveShift' in fields)parts.push(`MIDI ${fields.midiOctaveShift>0?'+':''}${fields.midiOctaveShift}`);
+  if('midiOctaveShift' in fields)parts.push(`Virtuale/MIDI ${fields.midiOctaveShift>0?'+':''}${fields.midiOctaveShift}`);
   pcKeyboardAnnounceMR(`Ottava: ${parts.join(' · ')}. Le note già scritte restano invariate.`);
 });
 if(pcKeyboardPitchButtonMR)pcKeyboardPitchButtonMR.addEventListener('click',()=>{
@@ -24179,11 +24494,11 @@ function scorePlayHomeNewScoreMR(){
   return {id,title:score.title,composer:score.composer,imported:true,importedScore:score,productId:'',
     fileName:`${id}.mrscore`,cover:importedScoreCoverMR(score)};
 }
-/* Home Play 2.291: il pulsante del preconteggio avvia la stessa preparazione
- * dell'editor strutturato, senza pulsante Registra e senza connessione MIDI obbligatoria.
- * Solo la prima nota DOPO la preparazione avvia il clock e la scrittura.
- * Tutti gli ingressi (controller MIDI, Logitech, tastiera virtuale) passano
- * attraverso scoreCreatorNoteOnMR e rispettano s.readyAt.
+/* Home Play 2.411: il preconteggio prepara la battuta, ma soltanto in Play
+ * il primo Note On DOPO i quattro battiti avvia la scrittura sul battere zero.
+ * Il registratore esplicito REC (Admin/User) non utilizza questa attesa:
+ * continua a registrare anche i silenzi, con la stessa linea temporale.
+ * Tutti gli ingressi MIDI/Logitech/virtuali rispettano s.readyAt.
  */
 function scorePlayHomeStartCountInMR(){
   const s=scoreCreatorStateMR;
@@ -24922,7 +25237,7 @@ scorePhoneDrawerSyncMR();
  function rhythm(raw){let t=0,a=[];for(let i=0;i<raw.length;i++){const d=raw[i];if(d===0){t+=raw[++i]||0;}else{a.push({t,d});t+=d;}}return a;}
  function spec(){return patterns[index].map(rhythm);}
  function node(tag,attrs){const el=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);svg.appendChild(el);return el;}
- function render(){svg.replaceChildren();const [right,left]=spec();progress.textContent=`Esercizio ${index+1} / ${patterns.length} · Gruppo ${Math.floor(index/3)+1}`;
+ function render(){svg.replaceChildren();syncHandsNavigation397();const [right,left]=spec();progress.textContent=`Esercizio ${index+1} / ${patterns.length} · Gruppo ${Math.floor(index/3)+1}`;
   const x=t=>190+t*44,yy=[126.75,246.25];
   if(guide){for(const a of right){const active=left.find(b=>b.t<=a.t&&a.t<b.t+b.d);if(active)node('line',{x1:x(a.t),y1:154,x2:x(active.t),y2:218,class:'hands-guide'});}}
   [right,left].forEach((arr,hand)=>arr.forEach((n,j)=>{const px=x(n.t),y=yy[hand],glyph=n.d===16?'noteWhole':n.d===8?'noteHalfUp':n.d===4?'noteQuarterUp':'note8thUp',metrics=typeof MR_SMUFL_NOTE_METRICS!=='undefined'?MR_SMUFL_NOTE_METRICS:null,m=metrics&&metrics[n.d===16?'semibreve':n.d===8?'minima':n.d===4?'semiminima':'croma'],code=typeof MR_SMUFL_GLYPHS!=='undefined'?MR_SMUFL_GLYPHS[glyph]:String.fromCodePoint(n.d===16?0xE1D2:n.d===8?0xE1D3:n.d===4?0xE1D5:0xE1D7),el=node('text',{x:px+(m?m.x:-12),y:y+(m?m.y:8),'font-size':m?m.size:60,class:'hands-note'+(done[hand].has(j)?' hands-hit':''),'data-hand':hand,'data-note':j});el.textContent=code;}));
@@ -24941,9 +25256,20 @@ scorePhoneDrawerSyncMR();
   if(metro){if(metroAnchor===null)metroAnchor=now-ev.t*sixteenthMs();const expected=metroAnchor+ev.t*sixteenthMs(),tol=Math.max(85,sixteenthMs()*.72);if(Math.abs(now-expected)>tol){failSequence('Fuori tempo col metronomo: ricomincia da capo');return;}}
   pendingHands.add(hand);ev.hits.filter(h=>h.hand===hand).forEach(h=>{done[hand].add(h.j);const el=svg.querySelector(`[data-hand="${hand}"][data-note="${h.j}"]`);if(el)el.classList.add('hands-hit');});
   if(requiredHands.length>1&&pendingHands.size<requiredHands.length){feedback.textContent='Completa il colpo con l’altra mano';if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=setTimeout(()=>failSequence('Le due mani devono suonare insieme: riprova'),metro?Math.max(120,sixteenthMs()*.9):650);return;}
-  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();eventIndex++;feedback.textContent='Bravo! Continua con la sequenza';if(eventIndex>=events.length){running=true;feedback.textContent='Ottimo! Passiamo al prossimo esercizio';advance=setTimeout(next,850);}
+  if(pendingOverlapTimer)clearTimeout(pendingOverlapTimer);pendingOverlapTimer=null;pendingHands.clear();eventIndex++;feedback.textContent='Bravo! Continua con la sequenza';if(eventIndex>=events.length){running=true;feedback.textContent='Ottimo! Esercizio completato. Usa la freccia per continuare.';}
  }
- function next(){stop();index=(index+1)%patterns.length;render();}
+ function navigateHands397(delta){
+  const nextIndex=Math.max(0,Math.min(patterns.length-1,index+delta));
+  if(nextIndex===index)return;
+  stop();index=nextIndex;render();
+ }
+ const handsPrev=document.getElementById('handsPrev'),handsNext=document.getElementById('handsNext');
+ function syncHandsNavigation397(){
+  handsPrev.disabled=index<=0;
+  handsNext.disabled=index>=patterns.length-1;
+ }
+ handsPrev.addEventListener('click',()=>navigateHands397(-1));
+ handsNext.addEventListener('click',()=>navigateHands397(1));
  document.getElementById('handsReset').addEventListener('click',()=>{stop();render();});document.getElementById('handsGuide').addEventListener('click',()=>{guide=!guide;render();});
  for(const [id,hand] of [['handsLeft',1],['handsRight',0]]){const b=document.getElementById(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture(e.pointerId);strike(hand);});b.addEventListener('contextmenu',e=>e.preventDefault());}
  document.getElementById('handsDemo').addEventListener('click',()=>{stop();render();running=true;feedback.textContent='Ascolta i due ritmi';const events=exerciseEvents(),unit=sixteenthMs();events.forEach(ev=>{demoTimers.push(setTimeout(()=>{colorEvent(ev,true);ev.hits.forEach(h=>strike(h.hand,false));},ev.t*unit));});const end=Math.max(...events.map(e=>e.t),0)*unit+Math.max(500,unit*3);demoTimers.push(setTimeout(()=>{running=false;done=[new Set(),new Set()];render();feedback.textContent='Ora prova tu';},end));});
@@ -25089,6 +25415,12 @@ scorePhoneDrawerSyncMR();
 #mimoSettingsSection .mimo-options{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px}
 #mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:8px;font-weight:800}
 #mimoSettingsSection input{width:24px;height:24px;accent-color:#7c3aed}
+#mimoSettingsSection .mr399-cycle-settings{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;align-items:center!important;margin-top:8px!important}
+#mimoSettingsSection .mr399-cycle-settings .mimo-option{min-width:0!important}
+#mimoSettingsSection .mr399CycleButtons{display:flex;align-items:center;gap:8px}
+#mimoSettingsSection .mr399CycleButtons button{min-width:48px!important;min-height:38px!important;padding:6px 10px!important;border-radius:10px!important;border:1px solid #7d67b4;background:#eee6ff;color:#432769;font-weight:800;cursor:pointer}
+#mimoSettingsSection .mr399CycleButtons button[aria-pressed="true"]{background:#6a48c9!important;color:#fff!important;border-color:#6a48c9!important}
+#mimoSettingsSection .mr399CycleButtons button:disabled{opacity:.45!important;cursor:default!important}
 #mimoBuddy{position:fixed;right:8px;bottom:14px;width:clamp(210px,24vw,340px);height:clamp(250px,29vw,390px);z-index:2147483000;pointer-events:none;overflow:visible}
 #mimoBuddy canvas{display:block;width:100%;height:100%;background:transparent}
 #mimoBuddy[data-mimo-error]::after{content:attr(data-mimo-error);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px;background:#fff3dc;color:#78350f;font-size:12px;font-weight:800;overflow-wrap:anywhere;box-sizing:border-box;border-radius:12px} #mimoBuddy{visibility:visible!important;opacity:1!important}
@@ -25110,7 +25442,8 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-rigged-369.js?v=381"></script>
+<script src="Assets/mimo-haptics-414.js?v=416"></script>
+<script src="Assets/mimo-rigged-369.js?v=416"></script>
 
 
 <style id="mr353-room-style">
@@ -25153,6 +25486,7 @@ body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:1
 @media(max-width:700px){#mr344Scene .mr353PositionTag{width:38px;height:38px}#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:20px}#mr344Scene .mr353PositionTag img{width:24px;height:24px}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}#mr353BasketFruit{left:36.8%;width:26.7%;height:13.2%}.mr353FruitStack{width:calc(16.5% * var(--scale,1))}}
 @media(prefers-reduced-motion:reduce){#mr344Scene .mr353PositionTag,body.mr353-room-open #mr344Scene #mimoBuddy{transition:none!important}.mr353FruitStack{animation:none!important}}
 </style>
+<script src="Assets/room/solar-cycle-396.js?v=399"></script>
 <script id="mr353-room-script">
 (()=>{
 const key='musicRainbowMimoRoomV1';
@@ -25177,28 +25511,125 @@ const basketHotspots={
 };
 // Da dietro in avanti, come nell'immagine di riferimento: frutti alti dietro, frutti bassi davanti.
 const basketRenderOrder=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
-let state={food:3,sleep:3,clean:3,happy:3,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
-const clamp=n=>Math.max(0,Math.min(4,Math.round(Number(n)||0)));
+let state={food:6,sleep:6,clean:6,happy:6,heartScale417:8,overfed:0,fruitStreak414:0,lastFruitAt414:0,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
+const clamp=n=>Math.max(0,Math.min(8,Math.round(Number(n)||0)));
+let needsHeartMigration417=false;
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
 function load(){try{
  const raw=localStorage.getItem(key);
  const stored=raw?JSON.parse(raw):null;
- if(stored&&typeof stored==='object')state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}};
+ if(stored&&typeof stored==='object'){
+  needsHeartMigration417=stored.heartScale417!==8;
+  state={...state,...stored,fruits:{...state.fruits,...(stored.fruits||{})},awards:{...(stored.awards||{})}};
+ }
 }catch(e){}}
 load();
-function tick(){const now=Date.now(),last=Math.max(0,Number(state.last)||0);if(!last){state.last=now;return}const d=now-last;if(d<180000)return;const n=Math.floor(d/180000);if(n>0){state.food=clamp(state.food-Math.floor((n+1)/2));state.sleep=clamp(state.sleep-Math.floor((n+2)/3));state.happy=clamp(state.happy-Math.floor(n/3));state.clean=clamp(state.clean-Math.floor(n/3));state.last=now;save()}}
+// Aggiornamento non distruttivo dei vecchi salvataggi: 0..4 -> 0..8.
+if(needsHeartMigration417){
+ for(const k of ['food','sleep','clean','happy'])state[k]=clamp((Number(state[k])||0)*2);
+ state.heartScale417=8;
+ save();
+}
+// 2.413/2.417: il conteggio dei cuori è 0..8; la pancia rotonda ha un contatore
+// indipendente e limitato. Il dato è persistente e compatibile con i salvataggi precedenti.
+const overfedLimit413=5;
+const consecutiveFruitWindow414=120000; // 2 minuti senza mangiare resettano la serie.
+let popPuffing414=false;
+state.fruitStreak414=Math.max(0,Math.min(7,Math.floor(Number(state.fruitStreak414)||0)));
+state.lastFruitAt414=Math.max(0,Number(state.lastFruitAt414)||0);
+state.overfed=Math.max(0,Math.min(overfedLimit413,Math.floor(Number(state.overfed)||0)));
+function bodyTarget413(){
+ if(popPuffing414)return 1; // pancino al massimo durante il POP.
+ const hunger=clamp(state.food);
+ if(hunger===0)return -.82;
+ if(hunger<=2)return -.52;
+ if(hunger<=4)return -.16;
+ // A otto cuori ogni frutto aggiuntivo arrotonda il pancino.
+ // L'eccesso residuo sfuma gradualmente dopo che la sazietà comincia a calare.
+ return Math.min(1,state.overfed/overfedLimit413)*(hunger<=6?.65:1);
+}
+function syncMimoBody413(){window.MimoBody?.set?.(bodyTarget413())}
+// 2.396: il riposo è legato esclusivamente alle ore tra tramonto e alba locali.
+// La posizione viene elaborata offline dal modulo solare; non si salva la geolocalizzazione.
+function updateNightRest396(now){
+ const solar=window.MusicRainbowSolar;
+ if(!state.nightRestModel396){
+  state.nightRestModel396=true;state.sleep=8;state.nightRestCheckedAt=now;
+  state.nightRestDebtMs=0;state.nightRestGainMs=0;state.restingAtNight=false;
+  return;
+ }
+ const last=Number(state.nightRestCheckedAt)||now;
+ if(now>last){
+  const nightMs=solar?.nightMilliseconds?.(last,now)||0;
+  if(state.restingAtNight){
+   const credit=(Number(state.nightRestGainMs)||0)+nightMs;
+   const hearts=Math.floor(credit/(90*60000));
+   state.nightRestGainMs=credit%(90*60000);
+   if(hearts){state.sleep=clamp(state.sleep+hearts*2);state.nightRestDebtMs=0;}
+  }else{
+   const debt=(Number(state.nightRestDebtMs)||0)+nightMs;
+   const hearts=Math.floor(debt/(2*3600000));
+   state.nightRestDebtMs=debt%(2*3600000);
+   if(hearts){state.sleep=clamp(state.sleep-hearts*2);state.nightRestGainMs=0;}
+  }
+ }
+ state.nightRestCheckedAt=now;
+ // All'alba Mìmo si sveglia automaticamente, con il riposo recuperato durante la notte.
+ if(state.restingAtNight && solar && !solar.isNight(new Date(now)))state.restingAtNight=false;
+}
+function setResting396(sleeping){
+ tick();state.restingAtNight=!!sleeping;
+ if(sleeping)state.nightRestDebtMs=0;
+ else state.nightRestGainMs=0;
+ save();
+}
+function tick(){
+ const now=Date.now(),last=Math.max(0,Number(state.last)||0);
+ updateNightRest396(now);
+ if(!last){state.last=now;save();return;}
+ const d=now-last;
+ if(d>=180000){
+  const n=Math.floor(d/180000);
+  const foodLost=2*Math.floor((n+1)/2);
+  state.food=clamp(state.food-foodLost);
+  // Dopo qualche tempo l'eccesso di sazietà si riassorbe spontaneamente.
+  state.overfed=Math.max(0,Math.floor(Number(state.overfed)||0)-foodLost);
+  state.happy=clamp(state.happy-2*Math.floor(n/3));
+  state.clean=clamp(state.clean-2*Math.floor(n/3));
+  state.last=now;
+ }
+ syncMimoBody413();
+ save();
+}
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
- const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-background-ipad-notub.png" alt="Cameretta di Mìmo"><div id="mr384BathWrap" aria-hidden="true"><img id="mr384BathBack" src="Assets/room/bath-back-ipad-full.png" alt="" draggable="false"><img id="mr384BathWater" src="Assets/room/bath-water-ipad.png" alt="" draggable="false"><img id="mr384BathFront" src="Assets/room/bath-front-ipad.png" alt="" draggable="false"></div><img class="mr377NestFront" src="Assets/room/nest-front-occlusion.png" alt="" draggable="false"><div id="mr373Basket" aria-label="Cestino di Mìmo">
+ const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-fixedbath-ipad-day.png" alt="Cameretta di Mìmo"><div id="mr373Basket" aria-label="Cestino di Mìmo">
 <img class="mr373BasketLayer" src="Assets/room/basket-back.png" alt="" draggable="false">
 <img class="mr373BasketLayer" src="Assets/room/basket-ghost.png" alt="" draggable="false">
 <div id="mr353BasketFruit" aria-hidden="true"></div>
 <img class="mr373BasketLayer mr373BasketFront" src="Assets/room/basket-front.png" alt="" draggable="false">
 <button type="button" id="mr373BasketTouch" aria-label="Avvicina Mìmo al cestino"></button>
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
-</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
+</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div><button class="mr353PositionTag" id="mr344Bed" type="button" aria-label="Vai al letto" title="Vai al letto"><span class="mr353TagGlyph">☾</span></button><button class="mr353PositionTag" id="mr344Bath" type="button" aria-label="Vai alla vasca" title="Vai alla vasca"><span class="mr353TagGlyph">♨</span></button></div><div id="mr400RoomTokens" role="status" aria-live="polite" aria-label="Gettoni Play disponibili: 0"><svg class="mr402TokenArt" viewBox="0 0 220 145" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <linearGradient id="mr402BackGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b56634"/><stop offset=".32" stop-color="#f8c975"/><stop offset=".78" stop-color="#ce8042"/><stop offset="1" stop-color="#7f3c27"/></linearGradient>
+ <linearGradient id="mr402FrontGold" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#ffe9ad"/><stop offset=".22" stop-color="#f5c16d"/><stop offset=".65" stop-color="#c7783e"/><stop offset="1" stop-color="#9b4727"/></linearGradient>
+ <radialGradient id="mr402CoinGold" cx="35%" cy="25%" r="78%"><stop stop-color="#fffcca"/><stop offset=".42" stop-color="#ffd448"/><stop offset=".85" stop-color="#e8a31c"/><stop offset="1" stop-color="#ad6f17"/></radialGradient>
+ <filter id="mr402Drop" x="-25%" y="-50%" width="150%" height="190%"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<ellipse cx="110" cy="129" rx="90" ry="10" fill="#2d1729" opacity=".33" filter="url(#mr402Drop)"/>
+<!-- Fondo interno, prima dei gettoni -->
+<path d="M17 76 Q20 60 39 57 Q110 37 181 57 Q200 62 203 77 L195 112 Q174 131 110 133 Q46 130 24 112Z" fill="url(#mr402BackGold)" stroke="#794222" stroke-width="4"/>
+<ellipse cx="110" cy="77" rx="89" ry="31" fill="#774326" stroke="#ffdc97" stroke-width="5"/>
+<ellipse cx="110" cy="75" rx="79" ry="24" fill="#5b3225" stroke="#a8663d" stroke-width="3"/>
+<!-- Sagome al 10%, anche con zero gettoni --><g transform="translate(54 78) rotate(-14)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="0" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(81 67) rotate(-8)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="1" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(109 65) rotate(0)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="2" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(137 68) rotate(8)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="3" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(163 79) rotate(15)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="4" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(108 88) rotate(0)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="5" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><!-- Bordo anteriore fisicamente sopra ai gettoni: nessun gettone esce dal contenitore -->
+<path d="M21 84 Q33 108 110 112 Q186 108 199 84 L194 111 Q166 139 110 138 Q54 138 26 111Z" fill="url(#mr402FrontGold)" stroke="#854328" stroke-width="3"/>
+<path d="M23 84 Q45 107 110 109 Q175 106 197 84" fill="none" stroke="#ffe6a4" stroke-width="6" stroke-linecap="round"/>
+<path d="M39 113 Q107 141 181 113" fill="none" stroke="#fff0bc" stroke-width="2.3" opacity=".7"/>
+<path d="M55 125 Q108 137 164 125" fill="none" stroke="#8f512b" stroke-width="2" opacity=".5"/>
+</svg><span id="mr400RoomTokenCount">0</span></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
- // Build 2.392: viewport panoramico, contenuto in coordinate originali 4:3.
+ // Build 2.400: viewport panoramico, contenuto in coordinate originali 4:3.
  // Non stirare né spostare indipendentemente i layer del cestino, Mìmo e i punti cliccabili.
  const sceneRoot=room.querySelector('#mr344Scene');
  const sceneCanvas=document.createElement('div');
@@ -25207,6 +25638,10 @@ function init(){
  Array.from(sceneRoot.children).forEach(child=>{
    if(child!==sceneCanvas && !['mr354WingControls','mr344Bed','mr344Bath'].includes(child.id))sceneCanvas.appendChild(child);
  });
+ // Posiziona i gettoni nella stessa tela della stanza, sopra i libri accanto alla vasca.
+ // L'ancoraggio è identico nelle due versioni giorno/notte di ogni dispositivo.
+ const coinTray=room.querySelector('#mr400RoomTokens');
+ if(coinTray)sceneCanvas.appendChild(coinTray);
   // Stato 3D leggibile anche se Mìmo non riesce a comparire nel simulatore.
   // Il pannello resta nascosto quando il modello funziona normalmente.
   const mimoDiagnostic=document.createElement('div');
@@ -25233,12 +25668,9 @@ function init(){
   setTimeout(updateMimoDiagnostic,10000);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const backgroundImage=room.querySelector('.mr353Background');
- const bathWrap=room.querySelector('#mr384BathWrap'),bathBackImage=room.querySelector('#mr384BathBack'),bathWaterImage=room.querySelector('#mr384BathWater'),bathFrontImage=room.querySelector('#mr384BathFront');
- // Layer indipendenti: il fronte della vasca deve trovarsi sopra il renderer 3D.
- if(bathFrontImage && bathFrontImage.parentElement!==sceneCanvas)sceneCanvas.appendChild(bathFrontImage);
- const labels=[['food','🍎','Sazietà'],['sleep','🌙','Riposo'],['clean','🫧','Pulizia'],['happy','💗','Umore']];
+ const labels=[['food','🍎','Fame','#e83b51'],['sleep','🌙','Sonno','#399edb'],['clean','🫧','Pulizia','#1aa77a'],['happy','💗','Felicità','#945de0']];
 
- // Build 2.392: riempimento orizzontale del display, inquadratura croppata verticalmente.
+ // Build 2.400: riempimento orizzontale del display, inquadratura croppata verticalmente.
  // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
  // usano lo stesso riferimento e rimangono allineati anche con un viewport largo.
  const topPanel=page.querySelector('.top-panel');
@@ -25251,22 +25683,14 @@ function init(){
  }
  function applyRoomBackground384(){
   const usePhone=usePhoneRoom384();
-  const bgSrc=usePhone?'Assets/room/room-background-phone-notub.png':'Assets/room/room-background-ipad-notub.png';
-  const bathBackSrc=usePhone?'Assets/room/bath-back-phone-full.png':'Assets/room/bath-back-ipad-full.png';
-  const bathWaterSrc=usePhone?'Assets/room/bath-water-phone.png':'Assets/room/bath-water-ipad.png';
-  const bathFrontSrc=usePhone?'Assets/room/bath-front-phone.png':'Assets/room/bath-front-ipad.png';
-  if(backgroundImage.getAttribute('src')!==bgSrc)backgroundImage.setAttribute('src',bgSrc);
-  if(bathBackImage&&bathBackImage.getAttribute('src')!==bathBackSrc)bathBackImage.setAttribute('src',bathBackSrc);
-  if(bathWaterImage&&bathWaterImage.getAttribute('src')!==bathWaterSrc)bathWaterImage.setAttribute('src',bathWaterSrc);
-  if(bathFrontImage&&bathFrontImage.getAttribute('src')!==bathFrontSrc)bathFrontImage.setAttribute('src',bathFrontSrc);
-  // 2.392: su iPhone interno ed esterno hanno UN SOLO riferimento geometrico:
-  // i due PNG mantengono la stessa tela trasparente e sono figli dello stesso contenitore.
-  // Su iPad ripristiniamo il fronte come elemento esterno, senza modificare il layout esistente.
-  if(bathFrontImage){
-    const alignedParent=usePhone?bathWrap:sceneCanvas;
-    if(alignedParent&&bathFrontImage.parentElement!==alignedParent)alignedParent.appendChild(bathFrontImage);
-  }
+  const isNight=(window.MusicRainbowSolar?.isVisualNight?.(new Date()) ?? window.MusicRainbowSolar?.isNight?.(new Date()))===true;
+  const bgSrc=usePhone
+   ? (isNight?'Assets/room/room-fixedbath-phone-night.png':'Assets/room/room-fixedbath-phone-day.png')
+   : (isNight?'Assets/room/room-fixedbath-ipad-night.png':'Assets/room/room-fixedbath-ipad-day.png');
+  scene.dataset.dayphase=isNight?'night':'day';
   scene.dataset.roomLayout=usePhone?'phone':'default';
+  if(backgroundImage.getAttribute('src')!==bgSrc)backgroundImage.setAttribute('src',bgSrc);
+  // Nella build 2.400 la vasca è incorporata nello sfondo: nessun layer aggiuntivo.
   return usePhone;
  }
  function fitLandscapeRoom376(){
@@ -25281,8 +25705,9 @@ function init(){
   const gap=0;
   const availableHeight=Math.max(1,room.clientHeight);
   const usePhone=applyRoomBackground384();
-  const artWidth=usePhone?1846:1448;
-  const artHeight=usePhone?852:1086;
+  // Stesse proporzioni dei PNG generati; riempimento cover SENZA distorsioni.
+  const artWidth=usePhone?1672:1448;
+  const artHeight=usePhone?941:1086;
   const sceneWidth=Math.floor(availableWidth);
   const sceneHeight=Math.floor(availableHeight);
   scene.style.setProperty('width',sceneWidth+'px','important');
@@ -25334,13 +25759,31 @@ function init(){
    clearPose();
   }
  }
- function moveMimo(target,animate=true){const host=document.getElementById('mimoBuddy');if(!host)return;const pos=getRoomPosition384(target);if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);scene.dataset.location=target;host.style.setProperty('left',pos.left,'important');host.style.setProperty('top',pos.top,'important');if(target!=='bed'&&target!=='bath')clearPose();}
+ // Le coordinate di Mìmo si riferiscono direttamente allo sfondo con vasca fissa.
+ // Il PNG del giorno e della notte condividono il layout di ogni formato.
+ function fixedBathMimoPosition400(){
+  // iPhone mantenuto invariato perché il centraggio attuale è corretto.
+  // iPad spostato più verso il muro destro e leggermente più arretrato,
+  // così Mìmo resta dentro la vasca con la stessa prospettiva giorno/notte.
+  if(scene.dataset.roomLayout==='phone')return {left:'90.0%',top:'43.7%'};
+  return {left:'89.1%',top:'38.2%'};
+ }
+ function moveMimo(target,animate=true){
+  const host=document.getElementById('mimoBuddy');if(!host)return;
+  const pos=(target==='bath'?fixedBathMimoPosition400():null)||getRoomPosition384(target);
+  if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);
+  if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);
+  scene.dataset.location=target;
+  host.style.setProperty('left',pos.left,'important');
+  host.style.setProperty('top',pos.top,'important');
+  if(target!=='bed'&&target!=='bath')clearPose();
+ }
  function setMessage(text){msg.textContent=text||''}
  function updateMood(){
-  const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=1).length;
-  const mood=needs>=3?'stressato':state.food<=1?'affamato':state.sleep<=1?'assonnato':
-   state.clean<=1?'sporco':state.happy<=1?'triste':state.happy>=4?'entusiasta':
-   state.food>=4?'sazio':state.sleep>=4?'rilassato':state.happy>=3?'felice':'contento';
+  const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=2).length;
+  const mood=needs>=3?'stressato':state.food<=2?'affamato':state.sleep<=2?'assonnato':
+   state.clean<=2?'sporco':state.happy<=2?'triste':state.happy>=8?'entusiasta':
+   state.food>=8?'sazio':state.sleep>=8?'rilassato':state.happy>=6?'felice':'contento';
   if(scene.dataset.location==='bed')window.MimoMood?.set?.('riposo');else window.MimoMood?.set?.(mood)
  }
  function renderBasket(){
@@ -25362,13 +25805,116 @@ function init(){
    button.setAttribute('aria-label',count?`${fruitInfo[kind].name}, ${count} disponibili. Dai un frutto a Mìmo`:`${fruitInfo[kind].name}: ancora da conquistare`);
    if(count>0){const label=document.createElement('span');label.className='mr373FruitCount';label.textContent=String(count);button.appendChild(label)}
    button.addEventListener('click',()=>{
-    if(count){eat(kind)}else setMessage(`${fruitInfo[kind].name}: conquista questo frutto suonando nel livello ${fruitInfo[kind].level}.`);
+    // Un semplice tap non nutre Mìmo: l'alimentazione richiede il rilascio sulla testa.
+    if(!count)setMessage(`${fruitInfo[kind].name}: conquista questo frutto suonando nel livello ${fruitInfo[kind].level}.`);
    });
+   if(count)installFruitDrag415(button,kind);
    hitArea.appendChild(button);
   }
  }
+ // 2.416: I frutti si offrono trascinandoli sulla testa di Mìmo.
+ // Pointer Events funzionano con dito, Apple Pencil e mouse. Nessun tap consuma frutti.
+ let fruitDrag415=null;
+ const fruitDragIcon415=document.createElement('img');
+ fruitDragIcon415.id='mr415FruitInHand';fruitDragIcon415.alt='';fruitDragIcon415.draggable=false;
+ fruitDragIcon415.setAttribute('aria-hidden','true');fruitDragIcon415.hidden=true;
+ const fruitHeadHalo415=document.createElement('div');
+ fruitHeadHalo415.id='mr415HeadHalo';fruitHeadHalo415.hidden=true;
+ fruitHeadHalo415.setAttribute('aria-hidden','true');
+ document.body.append(fruitDragIcon415,fruitHeadHalo415);
+ function mimoHeadZone415(){
+  const host=document.getElementById('mimoBuddy');
+  if(!host||!page.getClientRects().length||getComputedStyle(page).display==='none'||
+     getComputedStyle(host).display==='none'||getComputedStyle(host).visibility==='hidden'||
+     document.body.classList.contains('mr410-mimo-hidden'))return null;
+  const b=host.getBoundingClientRect();
+  if(b.width<20||b.height<20)return null;
+  const x=b.left+b.width*.50,y=b.top+b.height*.29;
+  // Una zona un po' più ampia della testa aiuta i bambini senza attivare tocchi casuali.
+  const rx=Math.max(38,Math.min(95,b.width*.51));
+  const ry=Math.max(37,Math.min(86,b.height*.30));
+  return {x,y,rx,ry};
+ }
+ function onHead415(x,y,zone){
+  if(!zone)return false;
+  return ((x-zone.x)/zone.rx)**2+((y-zone.y)/zone.ry)**2<=1;
+ }
+ function updateFruitDrag415(x,y){
+  const drag=fruitDrag415;if(!drag)return;
+  drag.x=x;drag.y=y;
+  fruitDragIcon415.style.left=x+'px';fruitDragIcon415.style.top=y+'px';
+  const zone=mimoHeadZone415();drag.onHead=onHead415(x,y,zone);
+  fruitDragIcon415.classList.toggle('mr415FruitNearHead',drag.onHead);
+  fruitHeadHalo415.classList.toggle('mr415CanFeed',drag.onHead);
+  if(zone){
+   fruitHeadHalo415.hidden=false;
+   fruitHeadHalo415.style.left=zone.x+'px';fruitHeadHalo415.style.top=zone.y+'px';
+   fruitHeadHalo415.style.width=zone.rx*2+'px';fruitHeadHalo415.style.height=zone.ry*2+'px';
+  }else{fruitHeadHalo415.hidden=true;drag.onHead=false;}
+ }
+ function endFruitDrag415(shouldEat){
+  const drag=fruitDrag415;if(!drag)return;
+  fruitDrag415=null;
+  if(drag.button.hasPointerCapture?.(drag.id)){
+   try{drag.button.releasePointerCapture(drag.id)}catch(_e){}
+  }
+  drag.button.classList.remove('mr415FruitDragging');
+  fruitDragIcon415.hidden=true;fruitHeadHalo415.hidden=true;
+  fruitDragIcon415.classList.remove('mr415FruitNearHead');
+  fruitHeadHalo415.classList.remove('mr415CanFeed');
+  if(shouldEat && drag.onHead && mimoHeadZone415() && Math.hypot(drag.x-drag.startX,drag.y-drag.startY)>24){
+   // È l'unico punto in cui il gesto touch può consumare un frutto.
+   eat(drag.kind);
+  }else if(shouldEat){
+   setMessage('Trascina e rilascia il frutto sulla testa di Mìmo per darglielo.');
+  }
+ }
+ function installFruitDrag415(button,kind){
+  button.style.touchAction='none';
+  button.title=`Trascina ${fruitInfo[kind].name.toLowerCase()} sulla testa di Mìmo`;
+  button.setAttribute('aria-label',`${fruitInfo[kind].name}, ${state.fruits[kind]} disponibili. Trascina sulla testa di Mìmo per nutrirlo`);
+  button.addEventListener('pointerdown',ev=>{
+   if(ev.button!==0||fruitDrag415||popPuffing414)return;
+   if((Number(state.fruits?.[kind])||0)<1)return;
+   const host=document.getElementById('mimoBuddy');
+   if(!host||getComputedStyle(host).display==='none'||
+      document.body.classList.contains('mr410-mimo-hidden')){
+    setMessage('Mostra Mìmo con il pulsante dell’occhio prima di dargli il frutto.');return;
+   }
+   ev.preventDefault();
+   // Se era a letto o nella vasca, viene ad accogliere il frutto vicino al cestino.
+   if(scene.dataset.location!=='food'){setResting396(false);moveMimo('food',false);}
+   const drag={id:ev.pointerId,button,kind,x:ev.clientX,y:ev.clientY,
+     startX:ev.clientX,startY:ev.clientY,onHead:false};
+   fruitDrag415=drag;
+   fruitDragIcon415.src=fruitInfo[kind].asset;
+   fruitDragIcon415.hidden=false;
+   button.classList.add('mr415FruitDragging');
+   try{button.setPointerCapture(ev.pointerId)}catch(_e){}
+   updateFruitDrag415(ev.clientX,ev.clientY);
+   setMessage('Porta il frutto sulla testa di Mìmo e lascia il dito!');
+   window.MimoHaptics?.play?.('touch');
+  });
+  button.addEventListener('pointermove',ev=>{
+   if(fruitDrag415?.id!==ev.pointerId||fruitDrag415.button!==button)return;
+   ev.preventDefault();updateFruitDrag415(ev.clientX,ev.clientY);
+  });
+  button.addEventListener('pointerup',ev=>{
+   if(fruitDrag415?.id!==ev.pointerId||fruitDrag415.button!==button)return;
+   ev.preventDefault();updateFruitDrag415(ev.clientX,ev.clientY);endFruitDrag415(true);
+  });
+  button.addEventListener('pointercancel',ev=>{
+   if(fruitDrag415?.id===ev.pointerId&&fruitDrag415.button===button)endFruitDrag415(false);
+  });
+  button.addEventListener('lostpointercapture',ev=>{
+   if(fruitDrag415?.id===ev.pointerId&&fruitDrag415.button===button)endFruitDrag415(false);
+  });
+ }
+ window.addEventListener('blur',()=>endFruitDrag415(false));
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)endFruitDrag415(false)});
+ document.addEventListener('keydown',ev=>{if(ev.key==='Escape')endFruitDrag415(false)});
  function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
- function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label])=>`<div class="mr344Stat" role="group" aria-label="${label}: ${clamp(state[k])} su 4"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><span class="mr344Hearts" aria-hidden="true">${'♥'.repeat(clamp(state[k]))}${'♡'.repeat(4-clamp(state[k]))}</span></div>`).join('');renderBasket();renderPicker();updateMood();save()}
+ function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>`<div class="mr344Stat" role="group" aria-label="${label}: ${clamp(state[k])} su 8" title="${label}: ${clamp(state[k])}/8" style="--mr417-heart-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><span class="mr344Hearts" aria-hidden="true"><span class="mr417FilledHearts">${'♥'.repeat(clamp(state[k]))}</span><span class="mr417EmptyHearts">${'♡'.repeat(8-clamp(state[k]))}</span></span></div>`).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
  function markSessionFruitConsumed(kind){
   const type=fruitInfo[kind]?.medal;if(!type)return false;
   const current=typeof getCurrentSession==='function'?getCurrentSession():null;
@@ -25387,19 +25933,95 @@ function init(){
   window.updateSessionTopbarMedalsMR?.();
   return false;
  }
- function eat(kind){const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}moveMimo('food');state.fruits[kind]=count-1;markSessionFruitConsumed(kind);state.food=clamp(state.food+1);state.happy=clamp(state.happy+1);window.MimoMotion?.eat?.();window.MimoExpressions?.set?.('standard',2400);setMessage('');refresh()}
+ function eat(kind){
+  const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));
+  if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}
+  if(popPuffing414)return; // durante il POP non consumare altri frutti.
+  setResting396(false);moveMimo('food');
+  state.fruits[kind]=count-1;markSessionFruitConsumed(kind);
+  const wasFull=clamp(state.food)===8;
+  if(wasFull){state.overfed=Math.min(overfedLimit413,state.overfed+1)}
+  else{state.food=clamp(state.food+2);state.overfed=Math.max(0,state.overfed-1)}
+  state.happy=clamp(state.happy+2);
+  // Otto frutti in successione, non otto cuori. Il timer si resetta dopo 2 minuti.
+  const now=Date.now();
+  const continued=state.lastFruitAt414>0&&now-state.lastFruitAt414<=consecutiveFruitWindow414&&now>=state.lastFruitAt414;
+  state.fruitStreak414=(continued?state.fruitStreak414:0)+1;
+  state.lastFruitAt414=now;
+  const pop=state.fruitStreak414>=8;
+  if(pop){
+   state.fruitStreak414=0;state.lastFruitAt414=0;
+   popPuffing414=true;
+   state.overfed=0;state.food=8; // nessun danno; pancino normale dopo l'effetto.
+  }
+  syncMimoBody413();
+  if(pop){
+   // Il frutto dà un piccolo tocco; un secondo pattern segue il POP.
+   window.MimoHaptics?.play?.('eat');
+   // Il suono POP e i coriandoli sono sincronizzati all'esultanza 3D.
+   window.MimoMotion?.superPancia?.();
+   setTimeout(()=>{popPuffing414=false;syncMimoBody413();refresh()},3600);
+   setMessage('POP! Superpancia! Mìmo sparisce tra le stelline e torna tutto felice!');
+  }else{
+   window.MimoMotion?.eat?.();window.MimoExpressions?.set?.('standard',2400);
+   setMessage(wasFull?'Mìmo è già sazio! Il suo pancino diventa più rotondo.':
+     state.food<=4?'Mìmo si è rifocillato: il pancino tornerà piano piano normale.':'');
+  }
+  refresh();
+ }
  const closeWing=room.querySelector('#mr354CloseWings'),openWing=room.querySelector('#mr354OpenWings');
- closeWing.addEventListener('click',()=>{if(!window.MimoWings?.close?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}closeWing.setAttribute('aria-pressed','true');openWing.setAttribute('aria-pressed','false');setMessage('Mìmo ripiega le ali gradualmente. Continua a respirare e muoversi.')});
- openWing.addEventListener('click',()=>{if(!window.MimoWings?.open?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}openWing.setAttribute('aria-pressed','true');closeWing.setAttribute('aria-pressed','false');setMessage('Mìmo apre le ali gradualmente.')});
- room.querySelector('#mr344Bed').addEventListener('click',()=>{moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.sleep=4;state.happy=clamp(state.happy+1);applyPose('bed');refresh();setMessage('Mìmo dorme coricato sul materasso, con gli occhi chiusi.')},900)});
- room.querySelector('#mr344Bath').addEventListener('click',()=>{moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=4;state.happy=clamp(state.happy+1);applyPose('bath');refresh();setMessage('Mìmo si lava dentro la vasca.')},900)});
- room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Tocca un frutto dentro il cestino per darlo a Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
+ closeWing.addEventListener('click',()=>{if(!window.MimoWings?.close?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}window.MimoHaptics?.play?.('wing');closeWing.setAttribute('aria-pressed','true');openWing.setAttribute('aria-pressed','false');setMessage('Mìmo ripiega le ali gradualmente. Continua a respirare e muoversi.')});
+ openWing.addEventListener('click',()=>{if(!window.MimoWings?.open?.()){setMessage('Comando ali non disponibile: riapri la stanza.');return}window.MimoHaptics?.play?.('wing');openWing.setAttribute('aria-pressed','true');closeWing.setAttribute('aria-pressed','false');setMessage('Mìmo apre le ali gradualmente.')});
+ room.querySelector('#mr344Bed').addEventListener('click',()=>{window.MimoHaptics?.play?.('sleep');setResting396(true);moveMimo('bed');fruitPicker.hidden=true;setMessage('Mìmo va verso il letto.');setTimeout(()=>{if(scene.dataset.location!=='bed')return;state.happy=clamp(state.happy+2);applyPose('bed');refresh();setMessage('Mìmo riposa nel nido; recupera sonno durante la notte.')},900)});
+ room.querySelector('#mr344Bath').addEventListener('click',()=>{window.MimoHaptics?.play?.('bath');setResting396(false);moveMimo('bath');fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');setTimeout(()=>{if(scene.dataset.location!=='bath')return;state.clean=8;state.happy=clamp(state.happy+2);applyPose('bath');refresh();setMessage('Mìmo si lava dentro la vasca.')},900)});
+ room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');setResting396(false);moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Trascina un frutto dal cestino alla testa di Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
  window.MimoCare={
-   awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: è nel cestino di Mìmo.`);return true},
-   awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+Math.max(0,Math.floor(Number(count)||0)));save();refresh();return true},
+   awardFullBasket:(rewardId)=>{
+    const key='full-basket:'+String(rewardId||'');
+    if(!rewardId||state.awards[key])return false;
+    state.awards[key]=1;
+    for(const kind of fruitKinds){
+     state.fruits[kind]=Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1;
+    }
+    save();refresh();
+    setMessage('Brano completato! Otto frutti diversi sono arrivati nel cestino di Mìmo.');
+    window.MimoMotion?.celebrate?.();
+    return true;
+   },
+   awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: è nel cestino di Mìmo.`);window.MimoMotion?.celebrate?.();return true},
+   awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';const gained=Math.max(0,Math.floor(Number(count)||0));state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+gained);save();refresh();if(gained>0)window.MimoMotion?.celebrate?.();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
- function syncRoom(){const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;document.body.classList.toggle('mr353-room-open',open);const host=document.getElementById('mimoBuddy');if(!open){if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}clearPose();return}if(host&&host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);moveMimo('food',false);fruitPicker.hidden=true;setMessage('');refresh();queueFit376();updateMimoDiagnostic()}
+ function syncRoom(){
+  const open=getComputedStyle(page).display!=='none'&&page.getClientRects().length>0;
+  document.body.classList.toggle('mr353-room-open',open);
+  const host=document.getElementById('mimoBuddy');
+  if(!open){
+   if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}
+   clearPose();return;
+  }
+  window.MusicRainbowSolar?.requestLocation?.();
+  tick();
+  if(host&&host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);
+  const bed=!!state.restingAtNight;
+  moveMimo(bed?'bed':'food',false);
+  if(bed)applyPose('bed');
+  fruitPicker.hidden=true;setMessage('');refresh();
+  applyRoomBackground384();queueFit376();updateMimoDiagnostic();
+ }
+ // Ricalcola luce e riposo al ritorno in app e ai cambi di alba/tramonto.
+ const updateRoomCycle396=()=>{
+  if(getComputedStyle(page).display==='none')return;
+  const wasResting=!!state.restingAtNight;
+  tick();
+  applyRoomBackground384();
+  if(wasResting && !state.restingAtNight){moveMimo('food',false);clearPose();}
+  refresh();
+ };
+ window.MusicRainbowSolar?.subscribe?.(updateRoomCycle396);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateRoomCycle396()});
+ window.addEventListener('pageshow',updateRoomCycle396);
+ setInterval(updateRoomCycle396,60000);
  new MutationObserver(syncRoom).observe(page,{attributes:true,attributeFilter:['style','class']});
  const hostObserver=new MutationObserver(()=>{if(document.getElementById('mimoBuddy')){syncRoom();hostObserver.disconnect()}});hostObserver.observe(document.body,{childList:true,subtree:true});
  syncRoom();refresh();return true;
@@ -25556,7 +26178,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 </style>
 
 <style id="mr375-room-layout-fixes">
-/* Build 2.392: all the room art, hotspots and overlays stay in a common 4:3 canvas.
+/* Build 2.400: all the room art, hotspots and overlays stay in a common 4:3 canvas.
    JavaScript sizes the canvas to the available height and applies identical width
    to the title bar and the four needs indicators. Never use object-fit:fill. */
 #trophyPage .app{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;}
@@ -25705,7 +26327,7 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"]
 </style>
 
 <style id="mr383-room-fullscreen-device-bg">
-/* Build 2.392: la stanza usa lo sfondo come fondale pieno del dispositivo. */
+/* Build 2.400: la stanza usa lo sfondo come fondale pieno del dispositivo. */
 #trophyPage{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;overflow:hidden!important;background:#000!important;}
 #trophyPage>.app{position:relative!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)!important;box-sizing:border-box!important;overflow:hidden!important;}
 #trophyPage .top-panel{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 10px)!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;left:auto!important;bottom:auto!important;width:auto!important;max-width:none!important;min-width:0!important;margin:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;pointer-events:none!important;z-index:140!important;}
@@ -25810,7 +26432,7 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"]
 </script>
 
 <style id="mr385-room-fullscreen-final">
-/* Build 2.392 — stanza full screen reale: sfondo pieno, controlli sopra l'immagine. */
+/* Build 2.400 — stanza full screen reale: sfondo pieno, controlli sopra l'immagine. */
 #trophyPage{background:transparent!important;overflow:hidden!important;}
 #trophyPage .app{position:relative!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;border-radius:0!important;overflow:hidden!important;background:transparent!important;}
 #trophyPage .top-panel{position:absolute!important;top:0!important;left:0!important;width:0!important;height:0!important;margin:0!important;padding:0!important;pointer-events:none!important;z-index:220!important;background:transparent!important;}
@@ -25852,12 +26474,28 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"]
 
 
 <style id="mr388-grid-positions">
-/* Music Rainbow 2.391 — griglia 16 x 10, esterno vasca su layer superiore. */
-#mr376SceneCanvas{--mr388-tub-left:71.5%;--mr388-tub-top:30.7%;--mr388-tub-width:23.5%;--mr388-tub-height:22%;}
-/* iPhone: ripristinata geometria della vasca della build 2.387, mantenendo fronte e retro indipendenti. */
-/* Build 2.392 — vasca iPhone: interna ed esterna condividono lo stesso riquadro e la stessa scala.
-   Il centro rimane nella zona 77–79 / 93–95; il bordo esterno copre Mìmo senza uscire dallo schermo. */
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas{--mr388-tub-left:69.5%;--mr388-tub-top:37.0%;--mr388-tub-width:29.0%;--mr388-tub-height:29.0%;}
+/* Music Rainbow 2.399 — vasca con riferimento centrale unico, identico di giorno e di notte. */
+#mr376SceneCanvas{
+ --mr399-tub-center-x:83.25%;
+ --mr399-tub-center-y:41.70%;
+ --mr399-tub-width:23.5%;
+ --mr399-tub-height:22%;
+ --mr388-tub-left:calc(var(--mr399-tub-center-x) - (var(--mr399-tub-width) / 2));
+ --mr388-tub-top:calc(var(--mr399-tub-center-y) - (var(--mr399-tub-height) / 2));
+ --mr388-tub-width:var(--mr399-tub-width);
+ --mr388-tub-height:var(--mr399-tub-height);
+}
+/* iPhone: stesse coordinate centrali della build 2.394, riusate per giorno e notte. */
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas{
+ --mr399-tub-center-x:84.0%;
+ --mr399-tub-center-y:51.5%;
+ --mr399-tub-width:29.0%;
+ --mr399-tub-height:29.0%;
+ --mr388-tub-left:calc(var(--mr399-tub-center-x) - (var(--mr399-tub-width) / 2));
+ --mr388-tub-top:calc(var(--mr399-tub-center-y) - (var(--mr399-tub-height) / 2));
+ --mr388-tub-width:var(--mr399-tub-width);
+ --mr388-tub-height:var(--mr399-tub-height);
+}
 #mr376SceneCanvas #mr384BathWrap,
 #mr376SceneCanvas > #mr384BathFront{
  left:var(--mr388-tub-left)!important;
@@ -25877,9 +26515,8 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"]
  z-index:13!important;
  object-fit:fill!important;
 }
-/* 2.392: registrazione dei due layer sul medesimo riferimento, SENZA traslazioni autonome. */
 #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr384BathWrap{
-  z-index:auto!important; /* evita di isolare i figli sotto Mìmo: sfondo 7, Mìmo 11, fronte 13 */
+  z-index:auto!important;
   overflow:visible!important;
   transform:none!important;
 }
@@ -25907,7 +26544,7 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bed"] 
  clip-path:none!important;
  z-index:11!important;
 }
-/* Mìmo nella vasca: iPad cella 62, iPhone cella 78; piedi coperti dal fronte vasca. */
+/* Mìmo nella vasca: stesso riferimento centrale su iPad e iPhone; piedi coperti dal fronte vasca. */
 body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy,
 body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{
  width:clamp(105px,15.5%,195px)!important;
@@ -25916,13 +26553,891 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"]
  clip-path:none!important;
  z-index:11!important;
 }
-/* Il nido non occlude Mìmo quando dorme. */
 #mr344Scene[data-location="bed"] .mr377NestFront{display:none!important;}
-/* Punti azione sotto i rispettivi oggetti, non sopra Mìmo. */
 #mr344Scene #mr344Bath{left:84.375%!important;top:57%!important;}
 #mr344Scene[data-room-layout="phone"] #mr344Bath{left:84.375%!important;top:65%!important;}
 #mr344Scene #mr344Bed{left:15.625%!important;top:64%!important;}
 #mr344Scene[data-room-layout="phone"] #mr344Bed{left:15.625%!important;top:66%!important;}
+</style>
+
+<style id="mr397-manual-learning-navigation">
+/* 2.397 — navigazione manuale, accessibile e coerente tra due mani e tempo. */
+#learnHandsPage .top-row{justify-content:space-between!important;}
+#learnHandsPage .hands-drums{
+  display:grid!important;
+  grid-template-columns:minmax(48px,1fr) minmax(96px,184px) minmax(96px,184px) minmax(48px,1fr)!important;
+  align-items:center!important;
+  justify-items:center!important;
+  column-gap:clamp(5px,2.5vw,36px)!important;
+  width:min(calc(100% - 24px),850px)!important;
+  margin-left:auto!important;margin-right:auto!important;
+}
+#learnHandsPage .hands-drums>div{min-width:0!important;width:100%!important;align-items:center!important;}
+#learnHandsPage .hands-drums>div .hands-drum{max-width:100%!important;}
+/* I pulsanti restano ai lati esterni dei tamburi e non al di sopra del pentagramma. */
+#learnHandsPage .hands-drums>.mr397-arrow{align-self:center!important;}
+#learnHandsPage .hands-drums>.mr397-arrow:first-child{justify-self:end!important;}
+#learnHandsPage .hands-drums>.mr397-arrow:last-child{justify-self:start!important;}
+#learnTempoPage .tempo-action-container{
+  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;
+  column-gap:clamp(15px,3vw,42px)!important;
+}
+#learnTempoPage .tempo-action-container #tempoActionBtn{flex:0 0 auto!important;margin:0!important;}
+#learnTempoPage .tempo-action-container .mr397-arrow{
+  position:relative!important;left:auto!important;right:auto!important;top:0!important;bottom:auto!important;
+  flex:0 0 auto!important;margin:0!important;display:inline-flex!important;
+}
+/* Allegre frecce coerenti con lo stile arcobaleno della app. */
+#learnHandsPage .mr397-arrow,#learnTempoPage .mr397-arrow{
+  appearance:none!important;-webkit-appearance:none!important;
+  box-sizing:border-box!important;
+  width:clamp(52px,6vw,72px)!important;height:clamp(52px,6vw,72px)!important;
+  min-width:52px!important;min-height:52px!important;
+  border-radius:24px!important;
+  border:3px solid rgba(255,255,255,.97)!important;
+  color:white!important;
+  font:900 clamp(27px,3.7vw,41px)/1 system-ui,-apple-system,sans-serif!important;
+  text-shadow:0 2px 1px rgba(0,0,0,.16)!important;
+  box-shadow:0 5px 0 rgba(76,52,122,.24),0 9px 20px rgba(63,43,99,.18),inset 0 2px 4px rgba(255,255,255,.38)!important;
+  cursor:pointer!important;touch-action:manipulation!important;
+  align-items:center!important;justify-content:center!important;
+  transition:transform .13s ease,filter .13s ease!important;
+}
+#learnHandsPage .mr397-arrow-back,#learnTempoPage .mr397-arrow-back{background:linear-gradient(145deg,#f9a8d4,#f472b6 42%,#b85cf6)!important;}
+#learnHandsPage .mr397-arrow-next,#learnTempoPage .mr397-arrow-next{background:linear-gradient(145deg,#86efac,#26c9b5 47%,#3b82f6)!important;}
+#learnHandsPage .mr397-arrow span,#learnTempoPage .mr397-arrow span{pointer-events:none!important;}
+#learnHandsPage .mr397-arrow:active:not(:disabled),#learnTempoPage .mr397-arrow:active:not(:disabled){transform:translateY(3px) scale(.94)!important;filter:brightness(1.12)!important;}
+#learnHandsPage .mr397-arrow:focus-visible,#learnTempoPage .mr397-arrow:focus-visible{outline:3px solid #1d4ed8!important;outline-offset:4px!important;}
+#learnHandsPage .mr397-arrow:disabled,#learnTempoPage .mr397-arrow:disabled{
+  opacity:.32!important;filter:grayscale(.65)!important;cursor:default!important;box-shadow:none!important;
+}
+@media (orientation:landscape) and (max-height:620px){
+  #learnHandsPage .hands-drums{grid-template-columns:minmax(44px,1fr) minmax(86px,155px) minmax(86px,155px) minmax(44px,1fr)!important;column-gap:clamp(4px,2vw,22px)!important;}
+  #learnHandsPage .mr397-arrow,#learnTempoPage .mr397-arrow{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important;font-size:27px!important;border-radius:17px!important;}
+}
+</style>
+
+
+<style id="mr400-baked-bath-and-tokens">
+/* 2.400: vasca disegnata nei 4 sfondi, MAI in layer indipendenti. */
+#mr344Scene #mr384BathWrap,
+#mr344Scene #mr384BathBack,
+#mr344Scene #mr384BathWater,
+#mr344Scene #mr384BathFront{display:none!important;}
+/* Le immagini mantengono proporzioni originali: la tela è scalata uniformemente
+   (cover) e ritagliata solo dal viewport, senza stiramenti su iPhone Pro Max. */
+#trophyPage #mr344Scene .mr353Background{
+ position:absolute!important;
+ inset:0!important;
+ width:100%!important;
+ height:100%!important;
+ object-fit:contain!important;
+ object-position:center center!important;
+}
+/* Quando Mìmo è nella vasca incorporata nello sfondo, nascondi le zampe al di sotto
+   del livello dell'acqua; non interferire con sonno, cestino o spostamenti. */
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{
+ clip-path:inset(0 0 46% 0)!important;
+ transform:translate(-50%,-50%) scale(.91)!important;
+ z-index:11!important;
+}
+body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"] #mimoBuddy{
+ clip-path:inset(0 0 46% 0)!important;
+ transform:translate(-50%,-50%) scale(.90)!important;
+ z-index:11!important;
+}
+/* 2.402: portagettoni illustrato sopra i libri accanto alla vasca.
+   Posizione espressa in percentuali della TELA DELLO SFONDO, non del display. */
+#trophyPage #mr376SceneCanvas > #mr400RoomTokens{
+ position:absolute!important;
+ left:71.7%!important;
+ top:24.1%!important;
+ width:9.8%!important;
+ height:auto!important;
+ aspect-ratio:220 / 145;
+ transform:translateX(-50%)!important;
+ display:block!important;
+ min-width:0!important;
+ padding:0!important;
+ margin:0!important;
+ border:0!important;
+ border-radius:0!important;
+ background:none!important;
+ box-shadow:none!important;
+ overflow:visible!important;
+ z-index:231!important;
+ pointer-events:none;
+}
+#trophyPage #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas > #mr400RoomTokens{
+ left:72.2%!important;
+ top:27.4%!important;
+ width:9.8%!important;
+}
+#trophyPage #mr400RoomTokens > svg.mr402TokenArt{
+ display:block!important;
+ width:100%!important;
+ height:auto!important;
+ overflow:visible!important;
+ filter:drop-shadow(0 3px 2px rgba(0,0,0,.35));
+}
+#trophyPage #mr400RoomTokenCount{
+ position:absolute!important;
+ left:50%!important;
+ top:80%!important;
+ transform:translate(-50%,-50%)!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ min-width:26px!important;
+ padding:3px 7px!important;
+ border:1.4px solid #fff2c5!important;
+ border-radius:14px!important;
+ box-sizing:border-box!important;
+ background:#6746a9!important;
+ color:#fff!important;
+ text-shadow:0 1px 2px #39245a!important;
+ font:900 clamp(10px,1.6vw,18px)/1 system-ui,-apple-system,sans-serif!important;
+ font-variant-numeric:tabular-nums;
+ box-shadow:0 2px 5px rgba(0,0,0,.34)!important;
+ white-space:nowrap;
+}
+#trophyPage #mr344Scene[data-dayphase="night"] #mr400RoomTokens > svg.mr402TokenArt{
+ filter:brightness(.84) drop-shadow(0 2px 3px rgba(0,0,0,.48));
+}
+</style>
+
+
+<style id="mr403-room-final-alignment">
+/* 2.403 — rifinitura finale: gettoni in prospettiva e Mìmo centrato nella vasca su iPad. */
+#trophyPage #mr376SceneCanvas > #mr400RoomTokens{
+ left:72.15%!important;
+ top:24.6%!important;
+ width:10.6%!important;
+ transform:translateX(-50%) rotate(-6deg) skewX(-10deg) scale(.98,.94)!important;
+ transform-origin:50% 100%!important;
+}
+#trophyPage #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas > #mr400RoomTokens{
+ left:72.6%!important;
+ top:27.5%!important;
+ width:10.2%!important;
+ transform:translateX(-50%) rotate(-5deg) skewX(-8deg) scale(.98,.95)!important;
+}
+#trophyPage #mr400RoomTokenCount{
+ top:82%!important;
+ transform:translate(-50%,-50%) rotate(6deg) skewX(10deg)!important;
+}
+/* Solo iPad: Mìmo più piccolo, più in alto e più arretrato dentro la vasca. */
+body.mr353-room-open #mr344Scene:not([data-room-layout="phone"])[data-location="bath"] #mimoBuddy{
+ width:clamp(94px,14.1%,176px)!important;
+ height:24.4%!important;
+ clip-path:inset(0 0 52% 0)!important;
+ transform:translate(-50%,-56%) scale(.87)!important;
+ z-index:11!important;
+}
+</style>
+
+
+<style id="mr404-interactive-mimo">
+/* Build 2.407: tocchi su Mìmo senza variare dimensioni, coordinate o clip in vasca/letto.
+   Il canvas grafico non cattura i tocchi: li riceve il contenitore del modello. */
+body:not(.mr357-lab-open) #mimoBuddy{
+ pointer-events:auto!important;
+ cursor:pointer!important;
+ touch-action:manipulation!important;
+ -webkit-tap-highlight-color:transparent;
+}
+body:not(.mr357-lab-open) #mimoBuddy > canvas{pointer-events:none!important;}
+body:not(.mr357-lab-open) #mimoBuddy:focus-visible{
+ outline:2px solid rgba(255,239,149,.85)!important;
+ outline-offset:2px!important;
+}
+</style>
+
+<style id="mr405-recording-editing-patches">
+/* Save remains visible in the real note-editing toolbar on both Admin and User. */
+#scoreEditorToolbarMR.editor-armed:not(.score-creator-record-mode) > #scoreEditorSaveMR{
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ gap:4px!important;
+ flex:0 0 70px!important;
+ width:70px!important;
+ min-width:70px!important;
+ max-width:70px!important;
+ background:#dcfce7!important;
+ color:#166534!important;
+ border:2px solid #22c55e!important;
+ box-shadow:0 2px 6px rgba(21,128,61,.20)!important;
+}
+#scoreEditorToolbarMR.editor-armed:not(.score-creator-record-mode) > #scoreEditorSaveMR::after{
+ content:"Salva";
+ font:800 12px/1 system-ui,-apple-system,sans-serif;
+ white-space:nowrap;
+}
+#scoreEditorToolbarMR.editor-armed:not(.score-creator-record-mode){
+ width:min(730px,calc(100% - 14px))!important;
+ max-width:calc(100% - 14px)!important;
+}
+@media(max-width:600px){
+ #scoreEditorToolbarMR.editor-armed:not(.score-creator-record-mode) > #scoreEditorSaveMR{
+  flex-basis:57px!important;width:57px!important;min-width:57px!important;max-width:57px!important;
+  gap:2px!important;
+ }
+ #scoreEditorToolbarMR.editor-armed:not(.score-creator-record-mode) > #scoreEditorSaveMR::after{font-size:10px;}
+}
+</style>
+
+<!-- Build 2.414 — Mìmo libero dalla tastiera negli otto livelli: toggle persistente nella barra. -->
+<style id="mr409-mimo-levels">
+/* La posizione usa coordinate misurate del bordo superiore dello spartito:
+   non dipende dall'altezza della tastiera, dall'orientamento o dalla pagina. */
+body.mr409-level-active:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
+  position:fixed!important;
+  left:var(--mr409-mimo-x,50vw)!important;
+  top:var(--mr409-mimo-y,120px)!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:var(--mr409-mimo-width,164px)!important;
+  height:var(--mr409-mimo-height,204px)!important;
+  max-height:none!important;
+  transform:translateX(-50%)!important;
+  transform-origin:center bottom!important;
+  clip-path:none!important;
+  z-index:1000!important;
+  overflow:visible!important;
+  pointer-events:auto!important;
+  transition:top .16s ease,left .16s ease,width .16s ease,height .16s ease!important;
+}
+body.mr409-level-active:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy canvas{
+  width:100%!important;
+  height:100%!important;
+  pointer-events:none!important;
+}
+/* Il tasto di livello non disattiva mai Mìmo nelle Impostazioni né nella cameretta. */
+body.mr409-level-active.mr409-level-mimo-hidden #mimoBuddy{
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+#level1Page .mr409-mimo-toggle,#level2Page .mr409-mimo-toggle,
+#level3Page .mr409-mimo-toggle,#level4Page .mr409-mimo-toggle,
+#level5Page .mr409-mimo-toggle,#level6Page .mr409-mimo-toggle,
+#level7Page .mr409-mimo-toggle,#level8Page .mr409-mimo-toggle{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 var(--mr-topbar-control-h,48px)!important;
+  width:var(--mr-topbar-control-h,48px)!important;
+  height:var(--mr-topbar-control-h,48px)!important;
+  min-width:var(--mr-topbar-control-h,48px)!important;
+  min-height:var(--mr-topbar-control-h,48px)!important;
+  padding:0!important;
+  border:2px solid #a78bfa!important;
+  border-radius:12px!important;
+  background:#f5f0ff!important;
+  color:#6845ad!important;
+  box-shadow:0 2px 5px rgba(60,39,100,.12)!important;
+  cursor:pointer!important;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.mr409-mimo-toggle svg{width:25px;height:25px;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mr409-mimo-toggle[aria-pressed="false"]{background:#e5e7eb!important;border-color:#9ca3af!important;color:#4b5563!important}
+.mr409-mimo-toggle[aria-pressed="true"] .mr409-eye-off{display:none}
+.mr409-mimo-toggle[aria-pressed="false"] .mr409-eye-on{display:none}
+.mr409-mimo-toggle:focus-visible{outline:3px solid #4f46e5!important;outline-offset:2px}
+</style>
+<script id="mr409-mimo-level-switch">
+(()=>{
+  'use strict';
+  const STORAGE_KEY='musicRainbowMimoVisibleLevels';
+  const pages=Array.from({length:8},(_,i)=>document.getElementById('level'+(i+1)+'Page'));
+  let isVisible=true;
+  try{isVisible=localStorage.getItem(STORAGE_KEY)!=='0'}catch(_){/* Memoria non disponibile: visibile */}
+  const buttons=[];
+  const eye='<svg class="mr409-eye-on" aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const eyeOff='<svg class="mr409-eye-off" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 3l18 18M10.5 5.1A11 11 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.4 4.1M6.7 6.7C3.7 8.5 2 12 2 12s3.6 7 10 7c1.5 0 2.9-.4 4.1-1M10.8 10.8a2 2 0 0 0 2.4 2.4"/></svg>';
+  // Build 2.414: the shared controller installs eye buttons on every page,
+  // replacing the former eight-level-only buttons.
+  function syncButtons(){
+    for(const button of buttons){
+      button.setAttribute('aria-pressed',isVisible?'true':'false');
+      button.setAttribute('aria-label',isVisible?'Nascondi Mìmo':'Mostra Mìmo');
+      button.title=isVisible?'Nascondi Mìmo':'Mostra Mìmo';
+    }
+    // Shared visibility controlled by build 2.410.
+  }
+  function activePage(){
+    return pages.find(page=>page && page.getClientRects().length && getComputedStyle(page).display!=='none')||null;
+  }
+  let queued=false;
+  function scheduleLayout(){
+    if(queued)return;
+    queued=true;
+    requestAnimationFrame(()=>{queued=false;layoutMimo();});
+  }
+  function layoutMimo(){
+    const page=activePage();
+    document.body.classList.toggle('mr409-level-active',!!page);
+    if(!page)return;
+    if(document.body.classList.contains('mr353-room-open')||document.body.classList.contains('mr357-lab-open'))return;
+    const staff=page.querySelector('.staff-stage-single,.staff-stage-l8');
+    const panel=page.querySelector('.top-panel');
+    if(!staff||!panel)return;
+    const stageRect=staff.getBoundingClientRect();
+    const panelRect=panel.getBoundingClientRect();
+    if(!stageRect.width||!stageRect.height)return;
+    // Ritaglia la figura nel corridoio tra top bar e primo bordo della carta.
+    // L'ancora è il centro dello spartito, NON il centro della tastiera.
+    const corridor=Math.max(0,stageRect.top-panelRect.bottom);
+    const height=Math.min(210,Math.max(64,corridor-16));
+    const width=Math.min(180,height*.83);
+    const top=Math.max(panelRect.bottom+3,stageRect.top-height-6);
+    const x=stageRect.left+stageRect.width/2;
+    const root=document.documentElement.style;
+    root.setProperty('--mr409-mimo-x',x.toFixed(2)+'px');
+    root.setProperty('--mr409-mimo-y',top.toFixed(2)+'px');
+    root.setProperty('--mr409-mimo-width',width.toFixed(2)+'px');
+    root.setProperty('--mr409-mimo-height',height.toFixed(2)+'px');
+    // Al rientro dalla cameretta, il modello può essere ancora nella tela di stanza.
+    const host=document.getElementById('mimoBuddy');
+    if(host && host.parentNode!==document.body)document.body.appendChild(host);
+  }
+  syncButtons();
+  for(const page of pages){if(page)new MutationObserver(scheduleLayout).observe(page,{attributes:true,attributeFilter:['style','class','hidden']});}
+  if(typeof ResizeObserver==='function'){
+    const ro=new ResizeObserver(scheduleLayout);
+    for(const page of pages){
+      if(!page)continue;
+      const staff=page.querySelector('.staff-stage-single,.staff-stage-l8');
+      const panel=page.querySelector('.top-panel');
+      if(staff)ro.observe(staff);
+      if(panel)ro.observe(panel);
+    }
+  }
+  window.addEventListener('resize',scheduleLayout,{passive:true});
+  window.addEventListener('orientationchange',scheduleLayout,{passive:true});
+  window.visualViewport?.addEventListener('resize',scheduleLayout,{passive:true});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleLayout()});
+  window.addEventListener('pageshow',scheduleLayout);
+  // Mantieni sincronizzati anche i cambi pagina gestiti da classi antenate.
+  setInterval(scheduleLayout,950);
+  scheduleLayout();
+})();
+</script>
+
+<style id="mr410-controls-css">
+/* Shared visibility of Mìmo, including Impara and the user's compositions. */
+html body.mr410-mimo-hidden #mimoBuddy,
+html body.mr410-mimo-no-space #mimoBuddy{visibility:hidden!important;opacity:0!important;pointer-events:none!important;}
+body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
+ position:fixed!important;left:var(--mr410-mimo-x,50vw)!important;
+ top:var(--mr410-mimo-y,105px)!important;right:auto!important;bottom:auto!important;
+ width:var(--mr410-mimo-w,110px)!important;height:var(--mr410-mimo-h,135px)!important;
+ max-height:none!important;transform:translateX(-50%)!important;z-index:150!important;
+ clip-path:none!important;pointer-events:auto!important;
+}
+/* The trophy Home is a full-size flex button; keep the eye beside it. */
+#trophyPage .top-row .top-left-controls{display:flex!important;align-items:center!important;gap:5px!important;}
+/* All page toggles use the existing 2.409 eye visual and remain next to Home. */
+.page-container .mr409-mimo-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:var(--mr-topbar-control-h,44px)!important;height:var(--mr-topbar-control-h,44px)!important;
+ flex:0 0 var(--mr-topbar-control-h,44px)!important;min-width:36px!important;min-height:36px!important;
+ padding:0!important;border:2px solid #a78bfa!important;border-radius:12px!important;
+ background:#f5f0ff!important;color:#6845ad!important;cursor:pointer!important;
+}
+.page-container .mr409-mimo-toggle svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;}
+.page-container .mr409-mimo-toggle[aria-pressed="false"]{background:#e5e7eb!important;color:#4b5563!important;}
+/* Recording dots: fixed in the content area BELOW the top bar, never in its title. */
+#scorePlayerPage #scoreCountInDisplay:not([hidden]){
+ display:flex!important;position:fixed!important;z-index:2100!important;
+ left:50vw!important;top:var(--mr410-dots-y,102px)!important;
+ transform:translateX(-50%)!important;width:max-content!important;height:29px!important;
+ min-width:0!important;align-items:center!important;justify-content:center!important;gap:10px!important;
+ margin:0!important;padding:4px 12px!important;background:rgba(255,255,255,.9)!important;
+ border-radius:19px!important;border:1px solid rgba(71,85,105,.18)!important;
+ box-shadow:0 2px 8px rgba(42,36,69,.12)!important;
+}
+#scorePlayerPage #scoreCountInDisplay .score-count-in-dot{width:19px!important;height:19px!important;flex:0 0 19px!important;
+ opacity:.25!important;transform:none!important;border-width:2px!important;box-sizing:border-box!important;
+ transition:opacity .10s ease,background .10s ease!important;}
+#scorePlayerPage #scoreCountInDisplay.mr410-dots-count .score-count-in-dot{background:#ff5570!important;border-color:#e11d48!important;}
+#scorePlayerPage #scoreCountInDisplay.mr410-dots-record .score-count-in-dot{background:#36d46c!important;border-color:#169e4c!important;}
+#scorePlayerPage #scoreCountInDisplay .score-count-in-dot.shown{opacity:1!important;}
+.mr410-confirm-overlay[hidden]{display:none!important;}
+.mr410-confirm-overlay{position:fixed!important;inset:0!important;z-index:2147483200!important;
+ display:flex;align-items:center;justify-content:center;background:rgba(19,25,45,.48);}
+.mr410-confirm-card{background:#fffdf7;border:3px solid #a78bfa;border-radius:22px;
+ box-shadow:0 14px 36px rgba(20,20,40,.3);padding:22px;min-width:min(280px,75vw);
+ display:flex;flex-direction:column;align-items:center;gap:18px;}
+#mr410ConfirmPrompt{font:800 18px/1.35 system-ui,sans-serif;color:#43306b;text-align:center;}
+.mr410-confirm-actions{display:flex;justify-content:center;gap:22px;}
+.mr410-confirm-actions button{height:62px;width:72px;border-radius:15px;border:2px solid #a78bfa;
+ background:#ede9fe;color:#5b21b6;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.mr410-confirm-actions #mr410ConfirmOK{background:#dcfce7;color:#15803d;border-color:#4ade80;}
+.mr410-confirm-actions button svg{width:35px;height:35px;fill:none;stroke:currentColor;stroke-width:3.3;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<script id="mr410-global-mimo-and-confirm">
+(()=>{
+'use strict';
+const STORAGE_KEY='musicRainbowMimoVisibleLevels';
+let enabled=true;
+try{enabled=localStorage.getItem(STORAGE_KEY)!=='0';}catch(e){}
+const eye='<svg class="mr409-eye-on" aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+const eyeOff='<svg class="mr409-eye-off" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 3l18 18M10.5 5.1A11 11 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.4 4.1M6.7 6.7C3.7 8.5 2 12 2 12s3.6 7 10 7c1.5 0 2.9-.4 4.1-1M10.8 10.8a2 2 0 0 0 2.4 2.4"/></svg>';
+const allButtons=[];
+function syncButtons(){
+ document.body.classList.toggle('mr410-mimo-hidden',!enabled);
+ // Keep the older eight-level switches in sync with the shared preference.
+ document.body.classList.toggle('mr409-level-mimo-hidden',!enabled);
+ allButtons.forEach(b=>{b.setAttribute('aria-pressed',String(enabled));b.setAttribute('aria-label',enabled?'Nascondi Mìmo':'Mostra Mìmo');b.title=enabled?'Nascondi Mìmo':'Mostra Mìmo';});
+}
+for(const page of document.querySelectorAll('.page-container')){
+ const controls=page.querySelector('.top-row .top-left-controls');
+ if(!controls)continue;
+ const home=controls.querySelector('.menu-btn,#scoreLibraryHomeBtn,#handsHome,#settingsHomeBtn,#trophyHomeBtn,[aria-label="Torna alla home"]');
+ if(!home)continue;
+ const old=controls.querySelector('.mr409-mimo-toggle');
+ if(old)old.remove(); // replace the 2.409 level-only listener with the global handler
+ const button=document.createElement('button');
+ button.type='button';button.className='mr409-mimo-toggle';button.setAttribute('data-midi-learn-key','mr410-mimo-toggle');
+ button.innerHTML=eye+eyeOff;home.insertAdjacentElement('afterend',button);
+ button.addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');enabled=!enabled;try{localStorage.setItem(STORAGE_KEY,enabled?'1':'0');}catch(e){}syncButtons();schedule();});
+ allButtons.push(button);
+}
+syncButtons();
+let scheduled=false;
+function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;position();});}
+function position(){
+ const page=Array.from(document.querySelectorAll('.page-container')).find(p=>p.getClientRects().length>0&&getComputedStyle(p).display!=='none');
+ const body=document.body;
+ const room=body.classList.contains('mr353-room-open'),lab=body.classList.contains('mr357-lab-open');
+ if(!page||room||lab){body.classList.remove('mr410-mimo-safe','mr410-mimo-no-space');return;}
+ const keyboard=page.querySelector('.keyboard-container,.note-buttons-container,.piano,.hands-drums,.tempo-action-container');
+ const staff=page.querySelector('.staff-stage-single,.staff-stage-l8,.activity-display-zone,.staff-container,.hands-staff-wrap,.middle-area');
+ const panel=page.querySelector('.top-panel');
+ if(!panel||(!keyboard&&!staff)){body.classList.remove('mr410-mimo-safe','mr410-mimo-no-space');return;}
+ const topBar=panel.getBoundingClientRect();
+ const kb=keyboard?.getBoundingClientRect();
+ const st=staff?.getBoundingClientRect();
+ const pageBox=page.getBoundingClientRect();
+ const bottom=kb&&keyboard.getClientRects().length?kb.top-12:pageBox.bottom-16;
+ const available=bottom-topBar.bottom-10;
+ // In Impara tempo/due mani Mìmo deve restare TUTTO sopra la carta,
+ // anche dopo che lo spartito è stato abbassato: non sovrapporre mai il pentagramma.
+ const training=page.id==='learnHandsPage'||page.id==='learnTempoPage';
+ const paperGap=st?st.top-topBar.bottom-17:available;
+ const h=training?Math.min(122,paperGap):Math.max(64,Math.min(145,available*.42));
+ if(available<68 || (training&&h<56)){
+  body.classList.add('mr410-mimo-no-space');body.classList.remove('mr410-mimo-safe');return;
+ }
+ body.classList.remove('mr410-mimo-no-space');body.classList.add('mr410-mimo-safe');
+ const w=Math.max(49,Math.min(122,h*.85));
+ const desired=st&&st.top>topBar.bottom?st.top-h-(training?9:4):topBar.bottom+8;
+ const y=Math.max(topBar.bottom+5,Math.min(desired,bottom-h));
+ const x=st&&st.width>0?st.left+st.width*.50:pageBox.left+pageBox.width/2;
+ const css=document.documentElement.style;
+ css.setProperty('--mr410-mimo-x',x.toFixed(1)+'px');css.setProperty('--mr410-mimo-y',y.toFixed(1)+'px');
+ css.setProperty('--mr410-mimo-w',w.toFixed(1)+'px');css.setProperty('--mr410-mimo-h',h.toFixed(1)+'px');
+ const host=document.getElementById('mimoBuddy');
+ if(host&&host.parentNode!==document.body)document.body.appendChild(host);
+}
+for(const page of document.querySelectorAll('.page-container'))new MutationObserver(schedule).observe(page,{attributes:true,attributeFilter:['style','hidden','class']});
+window.addEventListener('resize',schedule,{passive:true});
+window.addEventListener('orientationchange',schedule,{passive:true});
+window.addEventListener('pageshow',schedule,{passive:true});
+window.visualViewport?.addEventListener('resize',schedule,{passive:true});
+setInterval(schedule,800);schedule();
+// Destructive selections now require a second, iconographic confirmation.
+const confirmPanel=document.getElementById('mr410ConfirmDialog');
+const existingPanel=document.getElementById('scoreCreatorClearDialogMR');
+let pendingScope=null;
+function closeConfirm(){pendingScope=null;if(confirmPanel)confirmPanel.hidden=true;}
+const cases=[['scoreCreatorClearBarChoiceMR','bar','Svuotare la battuta?'],['scoreCreatorRemoveBarChoiceMR','remove','Eliminare questa battuta?'],['scoreCreatorClearAllChoiceMR','all','Cancellare tutte le battute?']];
+for(const [id,scope,caption] of cases){
+ const button=document.getElementById(id);
+ if(!button)continue;
+ button.addEventListener('click',e=>{
+   e.preventDefault();e.stopImmediatePropagation();
+   if(button.disabled)return;
+   pendingScope=scope;
+   existingPanel.hidden=true;
+   document.getElementById('mr410ConfirmPrompt').textContent=caption;
+   confirmPanel.hidden=false;
+   document.getElementById('mr410ConfirmOK')?.focus();
+ },true);
+}
+document.getElementById('mr410ConfirmCancel')?.addEventListener('click',()=>{closeConfirm();});
+document.getElementById('mr410ConfirmOK')?.addEventListener('click',()=>{
+ const confirmed=pendingScope;closeConfirm();
+ if(confirmed&&typeof scoreCreatorConfirmClearMR==='function')scoreCreatorConfirmClearMR(confirmed);
+});
+confirmPanel?.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeConfirm();}});
+confirmPanel?.addEventListener('click',e=>{if(e.target===confirmPanel)closeConfirm();});
+})();
+</script>
+
+
+<!-- Build 2.414 — ricompensa frutto senza arcobaleno, Mìmo protagonista dell'esultanza. -->
+<style id="mr412-fruit-victory">
+/* Le vecchie medaglie contengono già l'immagine reale del frutto.
+   Nascondiamo SOLO il logo degli overlay di vittoria, non quello della Home. */
+.rainbow-overlay .rainbow-graphic > .rainbow-prize-logo{display:none!important;}
+.rainbow-overlay .rainbow-box{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
+  grid-template-rows:clamp(156px,30vh,310px) auto auto!important;
+  align-items:center!important;
+  justify-items:center!important;
+  column-gap:clamp(4px,1.5vw,16px)!important;
+  row-gap:6px!important;
+  box-sizing:border-box!important;
+  width:min(710px,calc(100vw - 34px))!important;
+  max-width:min(710px,calc(100vw - 34px))!important;
+  padding:clamp(12px,2vw,25px)!important;
+  max-height:calc(100dvh - max(24px,env(safe-area-inset-top,0px)) - max(22px,env(safe-area-inset-bottom,0px)))!important;
+  overflow:visible!important;
+}
+.rainbow-overlay .mr412-mimo-stage{
+  grid-row:1!important;grid-column:1!important;
+  align-self:stretch!important;justify-self:stretch!important;
+  width:100%!important;min-width:0!important;min-height:0!important;
+  position:relative;
+  background:radial-gradient(ellipse at 50% 67%,rgba(255,229,137,.42),rgba(255,251,229,0) 64%);
+  pointer-events:none;
+}
+.rainbow-overlay .mr412-mimo-stage::before,
+.rainbow-overlay .mr412-mimo-stage::after{
+  position:absolute;content:'✦';color:#f2b73f;text-shadow:0 2px 6px rgba(249,188,52,.24);
+  font-size:clamp(17px,3vw,29px);pointer-events:none;
+  animation:mr412-sparkle 1.2s ease-in-out infinite alternate;
+}
+.rainbow-overlay .mr412-mimo-stage::before{top:13%;left:5%;}
+.rainbow-overlay .mr412-mimo-stage::after{top:25%;right:6%;animation-delay:.47s;}
+@keyframes mr412-sparkle{from{opacity:.4;transform:scale(.7) rotate(-15deg)}to{opacity:1;transform:scale(1.2) rotate(10deg)}}
+.rainbow-overlay .rainbow-graphic{
+  grid-column:2!important;grid-row:1!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;height:100%!important;min-width:0!important;
+  margin:0!important;padding:0!important;
+}
+.rainbow-overlay .medal-in-arc{
+  position:static!important;left:auto!important;top:auto!important;
+  transform:none!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+.rainbow-overlay .medal-circle,
+.rainbow-overlay .medal-in-arc .medal-circle{
+  width:clamp(108px,17vw,210px)!important;
+  height:clamp(108px,17vw,210px)!important;
+  max-width:min(100%,30vh)!important;
+  max-height:min(100%,30vh)!important;
+  background-position:center!important;background-size:contain!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  filter:drop-shadow(0 7px 6px rgba(42,30,17,.18))!important;
+}
+.rainbow-overlay .rainbow-message-main,
+.rainbow-overlay .rainbow-message-sub{
+  grid-column:1/-1!important;text-align:center!important;
+  max-width:100%!important;
+}
+.rainbow-overlay .rainbow-message-main{
+  grid-row:2!important;margin:0!important;
+  font-size:clamp(17px,2.2vw,24px)!important;line-height:1.2!important;
+}
+.rainbow-overlay .rainbow-message-sub{
+  grid-row:3!important;margin:0!important;
+  font-size:clamp(12px,1.4vw,16px)!important;line-height:1.35!important;
+}
+/* Il modello è un solo canvas WebGL: rimane nel body, ma viene posizionato
+   sulla cella libera del popup, SOPRA il backdrop-filter (non più sfocato).
+   Specificità superiore ai vincoli di posizione e visibilità dei livelli. */
+html body.mr412-reward-active.mr412-reward-active.mr412-reward-active.mr412-reward-active #mimoBuddy{
+  display:block!important;position:fixed!important;
+  left:var(--mr412-mimo-x,34vw)!important;
+  top:var(--mr412-mimo-y,25vh)!important;
+  width:var(--mr412-mimo-w,240px)!important;
+  height:var(--mr412-mimo-h,260px)!important;
+  right:auto!important;bottom:auto!important;max-height:none!important;
+  z-index:2147483001!important;
+  visibility:visible!important;opacity:1!important;
+  transform:translateX(-50%)!important;transform-origin:50% 75%!important;
+  clip-path:none!important;overflow:visible!important;
+  pointer-events:none!important;transition:none!important;
+}
+html body.mr412-reward-active #mimoBuddy canvas{width:100%!important;height:100%!important;pointer-events:none!important;}
+@media(orientation:landscape) and (max-height:520px){
+ .rainbow-overlay .rainbow-box{
+   grid-template-rows:clamp(114px,38vh,175px) auto auto!important;
+   padding:9px 17px!important;row-gap:3px!important;
+ }
+ .rainbow-overlay .medal-circle,.rainbow-overlay .medal-in-arc .medal-circle{
+   width:clamp(82px,19vh,142px)!important;height:clamp(82px,19vh,142px)!important;
+ }
+ .rainbow-overlay .rainbow-message-main{font-size:clamp(15px,2.7vh,19px)!important;}
+ .rainbow-overlay .rainbow-message-sub{font-size:clamp(11px,2.2vh,13px)!important;}
+}
+@media(prefers-reduced-motion:reduce){.rainbow-overlay .mr412-mimo-stage::before,.rainbow-overlay .mr412-mimo-stage::after{animation:none;}}
+</style>
+<script id="mr412-fruit-victory-script">
+(()=>{
+ 'use strict';
+ const overlays=Array.from(document.querySelectorAll('.rainbow-overlay'));
+ for(const overlay of overlays){
+   const box=overlay.querySelector('.rainbow-box');
+   if(!box||box.querySelector('.mr412-mimo-stage'))continue;
+   const stage=document.createElement('div');
+   stage.className='mr412-mimo-stage';
+   stage.setAttribute('aria-hidden','true');
+   box.insertBefore(stage,box.firstElementChild);
+ }
+ let active=null;
+ let scheduled=false;
+ let retry=null;
+ const host=()=>document.getElementById('mimoBuddy');
+ const isOpen=overlay=>overlay.classList.contains('active')&&getComputedStyle(overlay).display!=='none';
+ function layout(){
+   scheduled=false;
+   if(!active||!isOpen(active))return;
+   const stage=active.querySelector('.mr412-mimo-stage');
+   const r=stage?.getBoundingClientRect();
+   if(!r||r.width<4||r.height<4)return;
+   // Scala in base allo spazio del popup, senza coprire frutto o testo.
+   const width=Math.min(365,Math.max(142,r.width*1.09));
+   const height=Math.min(375,Math.max(150,r.height*1.12));
+   const x=r.left+r.width/2;
+   const y=r.top+(r.height-height)/2;
+   const css=document.documentElement.style;
+   css.setProperty('--mr412-mimo-x',x.toFixed(1)+'px');
+   css.setProperty('--mr412-mimo-y',y.toFixed(1)+'px');
+   css.setProperty('--mr412-mimo-w',width.toFixed(1)+'px');
+   css.setProperty('--mr412-mimo-h',height.toFixed(1)+'px');
+   // Il Mìmo del laboratorio e della cameretta non viene duplicato.
+   const el=host();
+   if(el&&el.parentNode!==document.body)document.body.appendChild(el);
+ }
+ function queueLayout(){if(scheduled)return;scheduled=true;requestAnimationFrame(layout);}
+ function cheer(){
+   if(!active)return;
+   if(window.MimoMotion?.celebrate){window.MimoMotion.celebrate();return true;}
+   return false;
+ }
+ function sync(){
+   const next=overlays.find(isOpen)||null;
+   if(next!==active){
+     active=next;
+     document.body.classList.toggle('mr412-reward-active',!!active);
+     if(retry){clearTimeout(retry);retry=null;}
+     if(active){
+       queueLayout();
+       requestAnimationFrame(()=>{
+         if(!active)return;
+         queueLayout();
+         if(!cheer())retry=setTimeout(()=>{if(active)cheer();retry=null;},500);
+       });
+     }
+   }else if(active){queueLayout();}
+ }
+ for(const overlay of overlays){
+   new MutationObserver(sync).observe(overlay,{attributes:true,attributeFilter:['class','style','hidden']});
+ }
+ window.addEventListener('resize',queueLayout,{passive:true});
+ window.addEventListener('orientationchange',queueLayout,{passive:true});
+ window.visualViewport?.addEventListener('resize',queueLayout,{passive:true});
+ window.addEventListener('musicrainbow:mimo-render-status',()=>{if(active&&!window.MimoMotion?.get?.()?.celebrating)cheer();});
+ // All'uscita dal premio il loop di layout esistente ripristina Mìmo nel suo posto.
+ sync();
+})();
+</script>
+
+
+<style id="mr414-mimo-pop-style">
+/* Cartoon effect: only the canvas scales, never Mìmo's room anchor. */
+#mimoBuddy.mr414-pop-playing > canvas{
+ animation:mr414MimoPuff 2.85s cubic-bezier(.25,.6,.25,1) both!important;
+ transform-origin:50% 68%!important;
+}
+@keyframes mr414MimoPuff{
+ 0%{transform:scale(1);opacity:1}
+ 24%{transform:scale(1.23,1.12);opacity:1}
+ 34%{transform:scale(1.53,1.35);opacity:1}
+ 37%{transform:scale(1.65);opacity:0}
+ 52%{transform:scale(.55);opacity:0}
+ 61%{transform:scale(.77);opacity:1}
+ 73%{transform:scale(1.10);opacity:1}
+ 83%{transform:scale(.96);opacity:1}
+ 100%{transform:scale(1);opacity:1}
+}
+.mr414-pop-burst{position:fixed;z-index:2147483006;pointer-events:none;width:0;height:0;overflow:visible;isolation:isolate}
+.mr414-pop-spark{position:absolute;left:0;top:0;font:900 clamp(14px,2vw,29px)/1 system-ui;
+ text-shadow:0 1px 2px rgba(55,39,93,.15);opacity:0;user-select:none;
+ animation:mr414Confetti 1.35s ease-out forwards}
+@keyframes mr414Confetti{
+ 0%{transform:translate(-50%,-50%) scale(.25) rotate(0);opacity:0}
+ 12%{opacity:1}
+ 72%{opacity:1}
+ 100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.55) rotate(var(--spin));opacity:0}
+}
+/* Disable extra motion if requested, leaving the confetti and temporary appearance change. */
+@media(prefers-reduced-motion:reduce){
+ #mimoBuddy.mr414-pop-playing > canvas{animation:mr414MimoReduced 2.85s linear both!important}
+ @keyframes mr414MimoReduced{0%,33%{opacity:1}38%,51%{opacity:0}62%,100%{opacity:1}}
+ .mr414-pop-spark{animation-duration:.5s}
+}
+</style>
+
+
+<style id="mr415-hands-fruit-settings">
+/* 2.415: Impara le due mani usa lo stesso criterio di centratura verticale di Impara tempo.
+   Foglio + spazio + tamburi sono un blocco continuo, con margini flessibili sopra e sotto. */
+#learnHandsPage .hands-app{justify-content:flex-start!important;gap:0!important;overflow:hidden!important;}
+#learnHandsPage .hands-staff-wrap{
+ flex:0 0 clamp(190px,27vh,275px)!important;
+ height:clamp(190px,27vh,275px)!important;
+ min-height:0!important;
+ margin-top:auto!important;margin-bottom:0!important;
+ transform:none!important;
+}
+#learnHandsPage .hands-drums{
+ flex:0 0 auto!important;
+ margin-top:clamp(32px,4.6vh,55px)!important;
+ margin-bottom:auto!important;
+ transform:none!important;
+}
+@media(max-height:650px){
+ #learnHandsPage .hands-staff-wrap{flex-basis:clamp(165px,30vh,205px)!important;height:clamp(165px,30vh,205px)!important;}
+ #learnHandsPage .hands-drums{margin-top:clamp(14px,2.4vh,24px)!important;}
+ #learnHandsPage .hands-drum{height:min(18vh,124px)!important;width:min(18vh,124px)!important;}
+}
+/* Drag-and-drop frutti: nessun click sullo sticker può più mangiare un frutto. */
+#mr373Basket .mr373FruitTouch{touch-action:none!important;-webkit-user-select:none!important;user-select:none!important;}
+#mr373Basket .mr373FruitTouch.mr415FruitDragging{outline:3px dashed #f59e0b!important;outline-offset:1px;}
+#mr415FruitInHand[hidden],#mr415HeadHalo[hidden]{display:none!important;}
+#mr415FruitInHand{
+ position:fixed!important;left:0;top:0;z-index:2147482900!important;
+ transform:translate(-50%,-50%) scale(1.0);
+ width:clamp(50px,8vw,102px);height:clamp(50px,8vw,102px);
+ object-fit:contain;filter:drop-shadow(0 5px 5px #2918258a);
+ pointer-events:none!important;user-select:none!important;-webkit-user-select:none!important;
+ will-change:left,top;
+}
+#mr415FruitInHand.mr415FruitNearHead{transform:translate(-50%,-50%) scale(.82);filter:drop-shadow(0 0 10px #ffe355);}
+#mr415HeadHalo{
+ position:fixed!important;z-index:2147482800!important;left:0;top:0;
+ transform:translate(-50%,-50%);border:3px dashed #facc15;
+ border-radius:50%;box-sizing:border-box;
+ background:rgba(255,225,99,.10);box-shadow:0 0 0 4px #ffffff99,0 0 17px #7c3aed55;
+ pointer-events:none!important;
+}
+#mr415HeadHalo.mr415CanFeed{border:5px solid #22c55e;background:rgba(100,255,137,.22);box-shadow:0 0 0 5px #d9f99d88,0 0 22px #22c55eaa;}
+/* Impostazioni Mìmo: comando ben visibile e disattivabile anche senza supporto aptico. */
+#mimoSettingsSection .mr414-haptic-preference{margin:10px 0 2px!important;display:block!important;}
+#mimoSettingsSection #mr414MimoHaptics{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:45px;padding:9px 13px;border-radius:11px;
+ border:2px solid #7c3aed;background:#eee6ff;color:#4c1d95;
+ font:800 13px/1.2 system-ui,-apple-system,sans-serif;cursor:pointer;
+}
+#mimoSettingsSection #mr414MimoHaptics[aria-pressed="false"]{background:#eceff3;color:#475569;border-color:#94a3b8;}
+#mimoSettingsSection #mr414MimoHaptics:focus-visible{outline:3px solid #fbbf24;outline-offset:2px;}
+</style>
+
+
+<style id="mr416-hands-safe-space">
+/* Uno spazio netto fra i comandi superiori e il foglio, come in Impara tempo. */
+#learnHandsPage .hands-staff-wrap{margin-top:auto!important;margin-bottom:0!important;}
+#learnHandsPage .hands-drums{margin-top:clamp(25px,4vh,46px)!important;margin-bottom:auto!important;}
+/* La quota del foglio coincide con Impara tempo sui tre formati iOS principali. */
+#learnHandsPage .hands-staff-wrap,#learnHandsPage .hands-drums{position:relative!important;top:38px!important;}
+@media(max-height:900px){#learnHandsPage .hands-staff-wrap,#learnHandsPage .hands-drums{top:18px!important;}}
+@media(max-height:650px){
+ #learnHandsPage .hands-drums{margin-top:clamp(11px,2.2vh,24px)!important;}
+ #learnHandsPage .hands-staff-wrap,#learnHandsPage .hands-drums{top:4px!important;}
+}
+</style>
+
+
+<style id="mr416-superpancia-explosion">
+/* 2.416: baloon pop spettacolare, leggibile anche sul piccolo schermo. */
+#mimoBuddy.mr414-pop-playing > canvas{
+ animation:mr416HugePop 3.60s cubic-bezier(.21,.7,.3,1) both!important;
+ transform-origin:50% 70%!important;
+}
+@keyframes mr416HugePop{
+ 0%{transform:translateY(0) scale(1);opacity:1;filter:brightness(1)}
+ 16%{transform:translateY(-13px) scale(1.26,1.10);opacity:1}
+ 28%{transform:translateY(-23px) scale(1.63,1.40);opacity:1}
+ 33%{transform:translateY(-31px) scale(2.03,1.72);opacity:1;filter:brightness(1.2)}
+ 35%{transform:translateY(-35px) scale(2.28);opacity:0;filter:brightness(2)}
+ 47%{transform:scale(.3);opacity:0}
+ 58%{transform:translateY(-18px) scale(.68);opacity:1;filter:brightness(1.5)}
+ 67%{transform:translateY(10px) scale(1.34,.84);opacity:1;filter:brightness(1)}
+ 77%{transform:translateY(-13px) scale(.88,1.18);opacity:1}
+ 89%{transform:translateY(0) scale(1.08,.98);opacity:1}
+ 100%{transform:translateY(0) scale(1);opacity:1}
+}
+.mr416-pop-effects{position:fixed!important;width:0;height:0;z-index:2147483015;pointer-events:none!important;overflow:visible;isolation:isolate}
+.mr416-pop-word{position:absolute;left:0;top:0;display:block;font:1000 clamp(54px,9vw,118px)/1 system-ui,sans-serif;
+ letter-spacing:-.09em;color:#fff;white-space:nowrap;-webkit-text-stroke:3px #b93380;
+ text-shadow:0 5px #ffbd33,0 9px #9b36c7,0 15px 28px #361b6b99;
+ animation:mr416PopWord 1.45s cubic-bezier(.12,.9,.19,1) both}
+.mr416-pop-cloud{position:absolute;left:0;top:0;color:#fff9df;font:900 clamp(130px,20vw,290px)/1 system-ui;
+ text-shadow:0 0 24px #ffd45ddd,0 5px 20px #a157ea88;
+ animation:mr416PopCloud 1.2s ease-out both}
+.mr416-pop-wave{position:absolute;left:0;top:0;width:clamp(35px,8vw,85px);height:clamp(35px,8vw,85px);
+ border:clamp(4px,.8vw,9px) solid #ffe757;border-radius:50%;box-shadow:0 0 0 3px #fff;
+ transform:translate(-50%,-50%) scale(.15);animation:mr416PopWave 1.5s ease-out both;
+ animation-delay:calc(var(--ring)*.14s)}
+.mr416-pop-wave:nth-of-type(3){border-color:#fa77bc}
+.mr416-pop-wave:nth-of-type(4){border-color:#76e2ff}
+.mr416-pop-piece{position:absolute;left:0;top:0;display:block;font:900 var(--sz)/1 system-ui,sans-serif;
+ text-shadow:0 2px 4px #3a257988;opacity:0;white-space:nowrap;
+ animation:mr416PopPiece 1.85s cubic-bezier(.16,.63,.37,.99) var(--delay) forwards}
+@keyframes mr416PopWord{0%{transform:translate(-50%,-50%) rotate(-14deg) scale(.2);opacity:0}
+ 14%{opacity:1;transform:translate(-50%,-50%) rotate(10deg) scale(1.5)}
+ 38%{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1.15)}
+ 74%{opacity:.95;transform:translate(-50%,-115%) scale(1.07)}
+ 100%{opacity:0;transform:translate(-50%,-145%) rotate(5deg) scale(.7)}}
+@keyframes mr416PopCloud{0%{opacity:0;transform:translate(-50%,-50%) scale(.1)}
+ 20%{opacity:1;transform:translate(-50%,-50%) scale(1.35)}
+ 75%{opacity:.75;transform:translate(-50%,-50%) scale(1.7)}
+ 100%{opacity:0;transform:translate(-50%,-60%) scale(1.9)}}
+@keyframes mr416PopWave{0%{opacity:.9;transform:translate(-50%,-50%) scale(.18)}
+ 100%{opacity:0;transform:translate(-50%,-50%) scale(6.2)}}
+@keyframes mr416PopPiece{0%{opacity:0;transform:translate(-50%,-50%) rotate(0deg) scale(.25)}
+ 12%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--spin)) scale(.7)}}
+@media(prefers-reduced-motion:reduce){
+ #mimoBuddy.mr414-pop-playing > canvas{animation:mr414MimoReduced 3.6s linear both!important}
+ .mr416-pop-piece{animation-duration:.5s!important}.mr416-pop-word{animation-duration:.8s!important}
+ .mr416-pop-cloud,.mr416-pop-wave{animation-duration:.7s!important}
+}
+</style>
+
+
+<style id="mr417-eight-needs-hearts">
+/* 2.417: quattro esigenze con 8 cuori; la larghezza è adattiva su iPhone e iPad. */
+#trophyPage #mr344Stats .mr344Stat{
+ background:rgba(255,252,246,.97)!important;
+ border:1px solid color-mix(in srgb,var(--mr417-heart-color) 25%,transparent)!important;
+ min-width:0!important;
+}
+#trophyPage #mr344Stats .mr344Hearts{
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ flex:0 1 auto!important;
+ min-width:0!important;
+ white-space:nowrap!important;
+ font:700 clamp(10px,1.4vw,16px)/1 system-ui,-apple-system,sans-serif!important;
+ letter-spacing:-.4px!important;
+}
+#trophyPage #mr344Stats .mr417FilledHearts{color:var(--mr417-heart-color)!important;white-space:nowrap!important;}
+#trophyPage #mr344Stats .mr417EmptyHearts{color:#abb4c4!important;white-space:nowrap!important;}
+@media(max-width:740px), (max-height:440px){
+ #trophyPage #mr344Stats .mr344Hearts{font-size:clamp(9px,2.1vw,13px)!important;letter-spacing:-.6px!important;}
+ #trophyPage #mr344Stats .mr344Stat{gap:2px!important;}
+ #trophyPage #mr344Stats .mr381NeedIcon{font-size:12px!important;}
+}
 </style>
 </body>
 </html>

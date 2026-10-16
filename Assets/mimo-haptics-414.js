@@ -25,19 +25,30 @@
  function installToggle(){
   const settings=document.getElementById('mimoSettingsSection');
   if(!settings)return false;
-  if(settings.querySelector('#mr414MimoHaptics'))return true;
-  const actions=settings.querySelector('.mr361SettingsActions');
-  const wrap=document.createElement('div');wrap.className='mr414-haptic-preference';
-  const button=document.createElement('button');button.type='button';button.id='mr414MimoHaptics';
+  const grid=settings.querySelector('#mr361MimoIconGrid');
+  if(!grid)return false;
+  settings.querySelectorAll('.mr414-haptic-preference').forEach(el=>el.remove());
+  let button=settings.querySelector('#mr414MimoHaptics');
+  if(!button){
+   button=document.createElement('button');
+   button.type='button';button.id='mr414MimoHaptics';button.className='mr361IconButton mr414HapticIcon';
+   grid.appendChild(button);
+  }
+  if(button.parentElement!==grid)grid.appendChild(button);
+  const ordered=['mr399ForceDay','mr399ForceNight','mimoRest','mimoOpen','mr357OpenLab','mr414MimoHaptics']
+   .map(id=>settings.querySelector('#'+id)).filter(Boolean);
+  if(ordered.length)grid.replaceChildren(...ordered);
   function sync(){
    button.setAttribute('aria-pressed',String(enabled));
-   button.innerHTML=enabled?'📳 <span>Vibrazione di Mìmo: attiva</span>':'🔕 <span>Vibrazione di Mìmo: disattivata</span>';
+   button.innerHTML=`<span class="mr361ButtonGlyph" aria-hidden="true">${enabled?'📳':'🔕'}</span>`;
+   button.setAttribute('aria-label',enabled?'Vibrazione di Mìmo attiva':'Vibrazione di Mìmo disattivata');
    button.title=enabled?'Disattiva le vibrazioni di Mìmo':'Attiva le vibrazioni di Mìmo';
   }
-  button.addEventListener('click',()=>{api.setEnabled(!enabled);sync();});
-  sync();wrap.appendChild(button);
-  if(actions)actions.insertAdjacentElement('afterend',wrap);
-  else settings.appendChild(wrap);
+  if(button.dataset.mr414Ready!=='1'){
+   button.dataset.mr414Ready='1';
+   button.addEventListener('click',()=>{api.setEnabled(!enabled);sync();});
+  }
+  sync();
   return true;
  }
  window.addEventListener('musicrainbow:mimo-render-status',installToggle);

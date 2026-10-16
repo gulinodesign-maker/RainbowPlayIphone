@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.433</div>
+    <div class="intro-version-label">Build 2.435</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.433</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.435</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.433";
+  const PAGE_BUILD = "2.435";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -25615,7 +25615,7 @@ scorePhoneDrawerSyncMR();
 })();
 </script>
 <script id="mr432-inline-mimo-haptics">
-window.MusicRainbowMimoUIBuild = "2.433";
+window.MusicRainbowMimoUIBuild = "2.434";
 /* Music Rainbow 2.414 — Native iPhone Taptic Engine bridge for Mìmo. */
 (()=>{'use strict';
  const key='musicRainbowMimoHaptics414';
@@ -27033,7 +27033,7 @@ function init(){
   host.style.setProperty('top',pos.top,'important');
   if(target!=='bed'&&target!=='bath')clearPose();
  }
- function setMessage(text){msg.textContent=text||''}
+ function setMessage(text){msg.textContent=text||'';if(text)window.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:String(text)}}));}
  function updateMood(){
   const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=2).length;
   const mood=needs>=3?'stressato':state.food<=2?'affamato':state.sleep<=2?'assonnato':
@@ -28936,5 +28936,8 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
  #settingsPage #mimoSettingsSection #mr361MimoIconGrid > button > .mr361ButtonGlyph {font-size:26px!important;}
 }
 </style>
+<!-- 2.435: fumetti di Mìmo, primo tutorial e aiuto didattico su richiesta. -->
+<link rel="stylesheet" href="Assets/mimo-bubbles-435.css?v=435">
+<script src="Assets/mimo-bubbles-435.js?v=435"></script>
 </body>
 </html>

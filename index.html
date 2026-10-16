@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.432</div>
+    <div class="intro-version-label">Build 2.433</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.432</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.433</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.432";
+  const PAGE_BUILD = "2.433";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -25449,10 +25449,173 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<!-- Build 2.432: i comandi Mìmo fanno parte dello stesso HTML della Home.
+<!-- Build 2.433: i comandi Mìmo fanno parte dello stesso HTML della Home.
      Una cache non può più mescolare pagina nuova e vecchi script impostazioni. -->
+<script id="mr433-mimo-sounds">
+/* Music Rainbow 2.433 — Voce e piccoli effetti interattivi di Mìmo.
+   Web Audio locale, stesso AudioContext/master dell'app: niente rete o campioni esterni.
+   La preferenza "Suoni" silenzia anche Mìmo; "Vibrazione" agisce solo sull'aptica. */
+(()=>{
+ 'use strict';
+ const supported=new Set(['touch','ears','play','eat','win','wing','sleep','bath','pop','drag','food','coin']);
+ const lastByKind=new Map();
+ const counts=new Map();
+ let previous=-Infinity,noiseContext=null,noiseBuffer=null;
+ const mute=()=>document.hidden||(typeof uiSoundEnabled!=='undefined'&&!uiSoundEnabled);
+ const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+ function tone(ctx,dest,start,from,to,duration,volume,style='voice'){
+  const d=clamp(duration,.045,1.5),at=Math.max(ctx.currentTime+.002,start);
+  const base=Math.max(65,from),end=Math.max(65,to);
+  const envelope=ctx.createGain();
+  envelope.gain.setValueAtTime(.0001,at);
+  envelope.gain.linearRampToValueAtTime(volume,at+Math.min(.032,d*.2));
+  envelope.gain.setValueAtTime(volume*.86,at+d*.52);
+  envelope.gain.exponentialRampToValueAtTime(.0001,at+d);
+  envelope.connect(dest);
+  const main=ctx.createOscillator();
+  main.type=style==='bell'?'sine':style==='soft'?'sine':'triangle';
+  main.frequency.setValueAtTime(base,at);
+  main.frequency.exponentialRampToValueAtTime(end,at+d*.93);
+  const primary=ctx.createGain();primary.gain.value=style==='bell'?.78:.82;
+  main.connect(primary);primary.connect(envelope);
+  const harmonic=ctx.createOscillator();
+  harmonic.type='sine';
+  harmonic.frequency.setValueAtTime(base*(style==='bell'?2.01:2.02),at);
+  harmonic.frequency.exponentialRampToValueAtTime(end*(style==='bell'?2.01:2.02),at+d*.91);
+  const partial=ctx.createGain();partial.gain.value=style==='bell'?.28:.18;
+  harmonic.connect(partial);partial.connect(envelope);
+  if(style==='voice'){
+   const vibrato=ctx.createOscillator(),depth=ctx.createGain();
+   vibrato.type='sine';vibrato.frequency.value=14;
+   depth.gain.value=base*.011;
+   vibrato.connect(depth);depth.connect(main.frequency);
+   vibrato.start(at);vibrato.stop(at+d+.015);
+  }
+  main.start(at);main.stop(at+d+.015);
+  harmonic.start(at);harmonic.stop(at+d+.015);
+ }
+ function getNoise(ctx){
+  if(noiseBuffer&&noiseContext===ctx)return noiseBuffer;
+  noiseContext=ctx;
+  const frames=Math.round(ctx.sampleRate*.65);
+  noiseBuffer=ctx.createBuffer(1,frames,ctx.sampleRate);
+  const data=noiseBuffer.getChannelData(0);
+  for(let i=0;i<frames;i++)data[i]=(Math.random()*2-1)*.86;
+  return noiseBuffer;
+ }
+ function rush(ctx,dest,start,duration,volume,frequency=1600,type='bandpass'){
+  const at=Math.max(ctx.currentTime+.002,start),dur=clamp(duration,.06,.58);
+  const source=ctx.createBufferSource();source.buffer=getNoise(ctx);
+  const filter=ctx.createBiquadFilter();filter.type=type;
+  filter.frequency.setValueAtTime(Math.max(120,frequency*.68),at);
+  filter.frequency.exponentialRampToValueAtTime(frequency*1.35,at+dur);
+  filter.Q.value=type==='bandpass'?.7:.42;
+  const gain=ctx.createGain();
+  gain.gain.setValueAtTime(.0001,at);
+  gain.gain.linearRampToValueAtTime(volume,at+dur*.23);
+  gain.gain.exponentialRampToValueAtTime(.0001,at+dur);
+  source.connect(filter);filter.connect(gain);gain.connect(dest);
+  source.start(at);source.stop(at+dur+.008);
+ }
+ function chirp(ctx,bus,t,base,accent=1){
+  tone(ctx,bus,t,base*1.12*accent,base*.84*accent,.19,.092,'voice');
+ }
+ function hoot(ctx,bus,t,base=500,length=.29,level=.10){
+  tone(ctx,bus,t,base*1.06,base*.78,length,level,'voice');
+ }
+ function bell(ctx,bus,t,hz=910,volume=.035,length=.33){
+  tone(ctx,bus,t,hz,hz*.97,length,volume,'bell');
+ }
+ function arrange(ctx,bus,kind,n){
+  const t=ctx.currentTime+.008,variation=[1,1.09,.94,1.035][n%4];
+  switch(kind){
+   case 'touch':
+    hoot(ctx,bus,t,555*variation,.24,.115);
+    hoot(ctx,bus,t+.20,700*variation,.16,.068);
+    bell(ctx,bus,t+.05,1220*variation,.02,.21);
+    break;
+   case 'ears':
+    hoot(ctx,bus,t,565*variation,.19,.092);
+    chirp(ctx,bus,t+.19,720,variation);
+    bell(ctx,bus,t+.29,1450,.022,.25);
+    break;
+   case 'play':
+    chirp(ctx,bus,t,570,variation);
+    chirp(ctx,bus,t+.16,790,variation);
+    bell(ctx,bus,t+.29,1180,.022,.30);
+    break;
+   case 'drag':
+    chirp(ctx,bus,t,640,variation);
+    rush(ctx,bus,t+.06,.19,.034,1200);
+    break;
+   case 'food':
+    hoot(ctx,bus,t,530*variation,.23,.105);
+    bell(ctx,bus,t+.11,720,.035,.25);
+    bell(ctx,bus,t+.24,980,.025,.32);
+    break;
+   case 'eat':
+    // Due piccole masticate e un verso soddisfatto.
+    tone(ctx,bus,t,275,165,.115,.104,'soft');
+    rush(ctx,bus,t+.01,.078,.026,750,'lowpass');
+    tone(ctx,bus,t+.20,315,190,.11,.106,'soft');
+    rush(ctx,bus,t+.22,.072,.024,850,'lowpass');
+    hoot(ctx,bus,t+.34,610*variation,.30,.079);
+    break;
+   case 'wing':
+    rush(ctx,bus,t,.32,.063,1800);
+    hoot(ctx,bus,t+.08,590*variation,.27,.077);
+    bell(ctx,bus,t+.23,1540,.020,.23);
+    break;
+   case 'sleep':
+    hoot(ctx,bus,t,490*variation,.44,.091);
+    hoot(ctx,bus,t+.40,380*variation,.46,.069);
+    bell(ctx,bus,t+.16,690,.018,.48);
+    break;
+   case 'bath':
+    rush(ctx,bus,t,.39,.075,1420);
+    bell(ctx,bus,t+.08,880,.026,.26);
+    bell(ctx,bus,t+.21,1170,.025,.31);
+    chirp(ctx,bus,t+.37,695,variation);
+    break;
+   case 'coin':
+    [830,1046,1318].forEach((hz,i)=>bell(ctx,bus,t+i*.11,hz,.035,.42));
+    hoot(ctx,bus,t+.24,690*variation,.25,.067);
+    break;
+   case 'win':
+    chirp(ctx,bus,t,590,variation);
+    chirp(ctx,bus,t+.14,745,variation);
+    hoot(ctx,bus,t+.28,930*variation,.26,.084);
+    [800,1010,1250,1660].forEach((hz,i)=>bell(ctx,bus,t+.2+i*.12,hz,.032,.42));
+    break;
+   case 'pop':
+    tone(ctx,bus,t,260,96,.29,.15,'soft');
+    rush(ctx,bus,t+.03,.21,.078,1280);
+    [780,1040,1390].forEach((hz,i)=>bell(ctx,bus,t+.16+i*.12,hz,.033,.36));
+    break;
+  }
+ }
+ function play(kind){
+  if(!supported.has(kind)||mute())return false;
+  const now=performance.now();
+  const cooldown=kind==='win'?900:kind==='pop'?420:kind==='eat'?400:kind==='coin'?300:250;
+  if(now-(lastByKind.get(kind)??-Infinity)<cooldown||now-previous<85)return false;
+  try{
+   if(typeof getAudioCtx!=='function'||typeof getAppMasterNode!=='function')return false;
+   const ctx=getAudioCtx();if(!ctx||ctx.state==='closed')return false;
+   if(ctx.state!=='running'&&typeof ctx.resume==='function')void ctx.resume().catch(()=>{});
+   const bus=ctx.createGain();bus.gain.value=.83;
+   bus.connect(getAppMasterNode(ctx));
+   const count=counts.get(kind)||0;counts.set(kind,count+1);
+   arrange(ctx,bus,kind,count);
+   lastByKind.set(kind,now);previous=now;
+   return true;
+  }catch(e){console.warn('[MimoSounds433] audio non disponibile',e);return false;}
+ }
+ window.MimoSounds={play};
+})();
+</script>
 <script id="mr432-inline-mimo-haptics">
-window.MusicRainbowMimoUIBuild = "2.432";
+window.MusicRainbowMimoUIBuild = "2.433";
 /* Music Rainbow 2.414 — Native iPhone Taptic Engine bridge for Mìmo. */
 (()=>{'use strict';
  const key='musicRainbowMimoHaptics414';
@@ -25464,6 +25627,8 @@ window.MusicRainbowMimoUIBuild = "2.432";
   get enabled(){return enabled},
   setEnabled(value){enabled=!!value;try{localStorage.setItem(key,enabled?'on':'off')}catch{};return enabled},
   play(kind){
+   // 2.433: i versi sono indipendenti dalla preferenza di vibrazione.
+   window.MimoSounds?.play?.(kind);
    if(!enabled||!kinds.has(kind)||document.hidden)return false;
    const now=performance.now();
    if(kind!=='pop'&&now-last<85)return false;
@@ -26036,11 +26201,13 @@ function superPancia414(){
  play('Mimi_Celebrate',duration);
  host.classList.add('mr414-pop-playing');
  // Fanfara scherzosa: preparazione ascendente, POP e piccole note brillanti.
- // Gli oscillatori partono nel gesto di rilascio, come richiesto da iOS.
+ // 2.433: fanfara sul motore audio condiviso, con volume e preferenza Suoni.
  try{
-  const Audio=window.AudioContext||window.webkitAudioContext;
-  if(Audio){
-   const ctx=new Audio();void ctx.resume();
+  const ctx=(typeof uiSoundEnabled==='undefined'||uiSoundEnabled)&&
+   typeof getAudioCtx==='function'?getAudioCtx():null;
+  if(ctx){
+   if(ctx.state!=='running'&&typeof ctx.resume==='function')void ctx.resume().catch(()=>{});
+   const destination=typeof getAppMasterNode==='function'?getAppMasterNode(ctx):ctx.destination;
    const now=ctx.currentTime;
    const chirp=(delay,frequency,length,volume,type='triangle')=>{
     const osc=ctx.createOscillator(),gain=ctx.createGain();
@@ -26049,13 +26216,13 @@ function superPancia414(){
     gain.gain.setValueAtTime(.0001,now+delay);
     gain.gain.exponentialRampToValueAtTime(volume,now+delay+.012);
     gain.gain.exponentialRampToValueAtTime(.0001,now+delay+length);
-    osc.connect(gain);gain.connect(ctx.destination);
+    osc.connect(gain);gain.connect(destination);
     osc.start(now+delay);osc.stop(now+delay+length+.02);
    };
    [390,470,565,710,920].forEach((hz,i)=>chirp(.20+i*.17,hz,.15,.033));
    [240,620,970].forEach((hz,i)=>chirp(1.22+i*.025,hz,.32,i? .050:.075,i===0?'sawtooth':'sine'));
    [785,990,1175,1495].forEach((hz,i)=>chirp(1.57+i*.145,hz,.22,.030,'sine'));
-   setTimeout(()=>{void ctx.close().catch(()=>{})},3550);
+   // Il contesto audio appartiene all'app: non chiuderlo dopo il POP.
   }
  }catch{}
  setTimeout(()=>{
@@ -27105,6 +27272,7 @@ function init(){
   const dx=ev.clientX-drag.startX,dy=ev.clientY-drag.startY;
   if(!drag.moved && Math.hypot(dx,dy)>8){
    drag.moved=true;
+   window.MimoSounds?.play?.('drag');
    // Durante lo spostamento Mìmo si raddrizza; la posa precedente si ripristina
    // se viene lasciato sul tappeto, senza modificare sonno o pulizia.
    scene.dataset.location='food';clearPose();
@@ -27144,7 +27312,7 @@ function init(){
     state.clean=8;state.happy=clamp(state.happy+2);applyPose('bath');refresh();
     setMessage('Mìmo si lava dentro la vasca.');},900);
   }else if(destination==='food'){
-   window.MimoHaptics?.play?.('eat');setResting396(false);moveMimo('food');
+   window.MimoSounds?.play?.('food');setResting396(false);moveMimo('food');
    fruitPicker.hidden=true;clearPose();
    setMessage(Object.values(state.fruits||{}).some(Number)?'Mìmo è sul tappeto: trascina un frutto dal cestino alla sua testa per farlo mangiare.':'Mìmo è sul tappeto: il cestino è vuoto, conquista frutta suonando.');
   }else if(destination==='tokens'){
@@ -27202,6 +27370,7 @@ function init(){
   if(!ok){setMessage('Va bene: il gettone resta nel cesto.');return;}
   const spent=consumeOldestSessionToken();
   if(!spent){setMessage('Non riesco a usare il gettone adesso.');return;}
+  window.MimoSounds?.play?.('coin');
   window.MimoHaptics?.play?.('play');
   setMessage('Mìmo usa un gettone per suonare il piano liberamente!');
   if(typeof openPlayPageFromToken==='function')openPlayPageFromToken();

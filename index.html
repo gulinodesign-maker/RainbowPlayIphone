@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.430</div>
+    <div class="intro-version-label">Build 2.431</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.430</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.431</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.430";
+  const PAGE_BUILD = "2.431";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   if (!("serviceWorker" in navigator)) return;
 
@@ -25446,8 +25446,8 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-haptics-414.js?v=430"></script>
-<script src="Assets/mimo-rigged-369.js?v=430"></script>
+<script src="Assets/mimo-haptics-414.js?v=431"></script>
+<script src="Assets/mimo-rigged-369.js?v=431"></script>
 
 
 <style id="mr353-room-style">
@@ -27682,6 +27682,38 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
  #settingsPage #mimoSettingsSection #mimoOpen,
  #settingsPage #mimoSettingsSection #mr357OpenLab,
  #settingsPage #mimoSettingsSection #mr414MimoHaptics{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;max-width:48px!important;max-height:48px!important;font-size:24px!important;}
+}
+</style>
+
+<style id="mr431-mimo-grid-final">
+/* 2.431: griglia Mìmo 3×2 definitiva, più aria tra i tasti, solo icone. */
+#settingsPage #mimoSettingsSection .mr361SettingsActions{margin-top:10px!important;}
+#settingsPage #mimoSettingsSection .mr361ControlGrid{
+ display:grid!important;
+ grid-template-columns:repeat(3,56px)!important;
+ grid-template-rows:repeat(2,56px)!important;
+ grid-auto-rows:56px!important;
+ gap:14px!important;
+ justify-content:start!important;
+ align-content:start!important;
+ width:max-content!important;
+ max-width:100%!important;
+ margin:12px 0 4px!important;
+}
+#settingsPage #mimoSettingsSection .mr361ControlGrid > .mr414-haptic-preference,
+#settingsPage #mimoSettingsSection .mr361ControlGrid > .mr354WingSettings{display:contents!important;}
+#settingsPage #mimoSettingsSection .mr361ControlGrid > button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:56px!important;height:56px!important;min-width:56px!important;min-height:56px!important;max-width:56px!important;max-height:56px!important;
+ margin:0!important;padding:0!important;aspect-ratio:1/1!important;box-sizing:border-box!important;
+ border-radius:14px!important;overflow:hidden!important;font-size:0!important;line-height:1!important;
+}
+#settingsPage #mimoSettingsSection .mr361ControlGrid > button > .mr361ButtonGlyph{display:block!important;font:normal 28px/1 system-ui,-apple-system,sans-serif!important;}
+#settingsPage #mimoSettingsSection .mr361ControlGrid > button > span:not(.mr361ButtonGlyph){display:none!important;}
+@media(max-width:760px){
+ #settingsPage #mimoSettingsSection .mr361ControlGrid{grid-template-columns:repeat(3,52px)!important;grid-template-rows:repeat(2,52px)!important;grid-auto-rows:52px!important;gap:12px!important;}
+ #settingsPage #mimoSettingsSection .mr361ControlGrid > button{width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;max-width:52px!important;max-height:52px!important;}
+ #settingsPage #mimoSettingsSection .mr361ControlGrid > button > .mr361ButtonGlyph{font-size:26px!important;}
 }
 </style>
 </body>

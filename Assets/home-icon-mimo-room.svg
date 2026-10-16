@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+<defs>
+  <linearGradient id="bg" x1="36" y1="36" x2="476" y2="476" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#fff6a4"/>
+    <stop offset="0.55" stop-color="#ffe04e"/>
+    <stop offset="1" stop-color="#ffc400"/>
+  </linearGradient>
+  <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.38"/>
+    <stop offset="0.35" stop-color="#ffffff" stop-opacity="0.12"/>
+    <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.20"/>
+  </filter>
+  <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.18"/>
+  </filter>
+  <linearGradient id="houseWall" x1="150" y1="176" x2="350" y2="340" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#fff9ed"/>
+    <stop offset="1" stop-color="#ffe6bb"/>
+  </linearGradient>
+  <linearGradient id="roof" x1="166" y1="138" x2="344" y2="242" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#ff847d"/>
+    <stop offset="1" stop-color="#e45752"/>
+  </linearGradient>
+  <linearGradient id="door" x1="218" y1="250" x2="218" y2="336" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#9c7bf3"/>
+    <stop offset="1" stop-color="#7c5ad6"/>
+  </linearGradient>
+</defs>
+<rect x="36" y="36" width="440" height="440" rx="92" fill="url(#bg)" filter="url(#shadow)"/>
+<rect x="36" y="36" width="440" height="440" rx="92" fill="url(#shine)"/>
+<g filter="url(#softShadow)" transform="translate(0 18)">
+  <path d="M142 240 L256 148 L370 240" fill="none" stroke="#b45309" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M165 236 L256 164 L347 236 V343 C347 356 336 366 323 366 H189 C176 366 165 356 165 343 Z" fill="url(#houseWall)"/>
+  <path d="M149 241 L256 155 L363 241 C371 247 372 260 365 268 C358 276 346 278 338 271 L256 204 L174 271 C166 278 154 276 147 268 C140 260 141 247 149 241 Z" fill="url(#roof)"/>
+  <rect x="226" y="266" width="60" height="100" rx="22" fill="url(#door)"/>
+  <rect x="184" y="258" width="34" height="34" rx="9" fill="#90dcff" stroke="#ffffff" stroke-width="8"/>
+  <rect x="294" y="258" width="34" height="34" rx="9" fill="#90dcff" stroke="#ffffff" stroke-width="8"/>
+  <path d="M194 326 C194 296 318 296 318 326" fill="none" stroke="#ff6ca8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M203 326 C221 304 239 292 256 292 C273 292 291 304 309 326" fill="none" stroke="#8b5cf6" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+  <circle cx="165" cy="342" r="14" fill="#7bdc65"/>
+  <circle cx="347" cy="342" r="14" fill="#7bdc65"/>
+</g>
+</svg>

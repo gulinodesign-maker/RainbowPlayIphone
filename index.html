@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.428</div>
+    <div class="intro-version-label">Build 2.429</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.428</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.429</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.428";
+  const PAGE_BUILD = "2.429";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   if (!("serviceWorker" in navigator)) return;
 
@@ -25446,8 +25446,8 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-haptics-414.js?v=428"></script>
-<script src="Assets/mimo-rigged-369.js?v=428"></script>
+<script src="Assets/mimo-haptics-414.js?v=429"></script>
+<script src="Assets/mimo-rigged-369.js?v=429"></script>
 
 
 <style id="mr353-room-style">
@@ -25468,7 +25468,7 @@ body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%
 #mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(135px,22%,280px)!important;height:34%!important;z-index:11!important;transform:translate(-50%,-49%) rotate(-89deg) scale(.96)!important}
 #mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(116px,18.7%,238px)!important;height:36%!important;z-index:11!important;transform:translate(-50%,-40%) scale(.97)!important;clip-path:inset(0 0 21% 0)!important}
 #mr344Scene[data-location="food"] #mimoBuddy{width:clamp(120px,20%,290px)!important;height:47%!important}
-#mr344Scene[data-location="tokens"] #mimoBuddy{width:clamp(102px,16.5%,212px)!important;height:31%!important;z-index:11!important;transform:translate(-50%,-47%) scale(.90)!important}
+#mr344Scene[data-location="tokens"] #mimoBuddy{width:clamp(98px,15.2%,198px)!important;height:28.8%!important;z-index:11!important;transform:translate(-50%,-50%) scale(.88)!important}
 #mr344Scene[data-location="food"] #mr344Fruit{z-index:7;opacity:.82}
 #mr354WingControls{position:absolute;z-index:24;right:12px;top:12px;display:flex;align-items:center;gap:7px}
 #mr354WingControls button{border:1px solid rgba(255,255,255,.92);border-radius:11px;background:rgba(34,41,66,.88);color:#fff;font:750 12px/1.2 system-ui,sans-serif;min-height:42px;padding:8px 11px;box-shadow:0 3px 10px rgba(0,0,0,.23);cursor:pointer}
@@ -25745,8 +25745,8 @@ function init(){
  // Griglia 16×10: Mìmo dorme nel riquadro 51 su entrambi i dispositivi.
  // In vasca: iPad al centro del riquadro 62; iPhone al centro del riquadro 78.
  const positions={
-  default:{food:{left:'50%',top:'60%'},bed:{left:'15.625%',top:'35%'},bath:{left:'84.375%',top:'35%'},tokens:{left:'72.2%',top:'31.5%'}},
-  phone:{food:{left:'50%',top:'59%'},bed:{left:'15.625%',top:'45%'},bath:{left:'84.375%',top:'45%'},tokens:{left:'72.6%',top:'35.2%'}}
+  default:{food:{left:'50%',top:'60%'},bed:{left:'15.625%',top:'35%'},bath:{left:'84.375%',top:'35%'},tokens:{left:'66.1%',top:'37.2%'}},
+  phone:{food:{left:'50%',top:'59%'},bed:{left:'15.625%',top:'45%'},bath:{left:'84.375%',top:'45%'},tokens:{left:'66.4%',top:'39.2%'}}
  };
  function activeRoomLayout384(){return scene.dataset.roomLayout==='phone'?'phone':'default';}
  function getRoomPosition384(target){const layout=positions[activeRoomLayout384()]||positions.default;return layout[target]||positions.default[target]||positions.default.food;}
@@ -25980,8 +25980,8 @@ function init(){
  // Build 2.418: il corpo del volatile, non due pulsanti, è la maniglia del drag-and-drop.
  // Coordinate delle aree di rilascio nello stesso sfondo scalato per iPad e iPhone.
  const mimoDropAreas418={
-  default:{bed:{x:16.5,y:41,rx:18.5,ry:15},bath:{x:88.5,y:43,rx:13.5,ry:14},food:{x:50,y:63.5,rx:14,ry:12},tokens:{x:72.2,y:29.8,rx:8.4,ry:7.8}},
-  phone:{bed:{x:16.5,y:49,rx:17.5,ry:18},bath:{x:89,y:55,rx:13.5,ry:17},food:{x:50,y:63.2,rx:14.5,ry:12.2},tokens:{x:72.6,y:33.3,rx:8.7,ry:8.1}}
+  default:{bed:{x:16.5,y:41,rx:18.5,ry:15},bath:{x:88.5,y:43,rx:13.5,ry:14},food:{x:50,y:63.5,rx:14,ry:12},tokens:{x:66.1,y:37.2,rx:10.2,ry:10.8}},
+  phone:{bed:{x:16.5,y:49,rx:17.5,ry:18},bath:{x:89,y:55,rx:13.5,ry:17},food:{x:50,y:63.2,rx:14.5,ry:12.2},tokens:{x:66.4,y:39.2,rx:10.6,ry:11.0}}
  };
  const dropTargets418=['bed','bath','food','tokens'];
  const dropMarks418={};
@@ -27621,6 +27621,46 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
 #trophyPage #mr376SceneCanvas > #mr400RoomTokens:focus-visible{outline:3px solid #ffe27a!important;outline-offset:3px!important;border-radius:16px!important;}
 #mr376SceneCanvas .mr418RoomDropZone[data-drop-target="food"]{border-style:solid;background:rgba(255,226,138,.14);}
 #mr376SceneCanvas .mr418RoomDropZone[data-drop-target="tokens"]{border-style:dotted;background:rgba(255,235,166,.18);}
+</style>
+
+<style id="mr429-mimo-settings-compact-grid">
+/* 2.429: comandi di Mìmo compatti nella card impostazioni, in vera griglia 3×2. */
+#settingsPage #mimoSettingsSection{overflow:hidden!important;}
+#settingsPage #mimoSettingsSection .mr361SettingsActions{margin-top:8px!important;}
+#settingsPage #mimoSettingsSection .mr361ControlGrid{
+ display:grid!important;
+ grid-template-columns:repeat(3,54px)!important;
+ grid-auto-rows:54px!important;
+ gap:10px!important;
+ justify-content:start!important;
+ align-content:start!important;
+ width:max-content!important;
+ max-width:100%!important;
+ margin:10px 0 2px!important;
+}
+#settingsPage #mimoSettingsSection .mr414-haptic-preference,
+#settingsPage #mimoSettingsSection .mr354WingSettings{display:contents!important;}
+#settingsPage #mimoSettingsSection .mr361IconButton,
+#settingsPage #mimoSettingsSection .mr357LabLaunch,
+#settingsPage #mimoSettingsSection #mr414MimoHaptics,
+#settingsPage #mimoSettingsSection .mr354WingSettings button{
+ width:54px!important;height:54px!important;
+ min-width:54px!important;min-height:54px!important;
+ max-width:54px!important;max-height:54px!important;
+ aspect-ratio:auto!important;
+ margin:0!important;padding:0!important;
+ border-radius:14px!important;
+ font-size:28px!important;line-height:1!important;
+ box-sizing:border-box!important;
+}
+#settingsPage #mimoSettingsSection #mr414MimoHaptics{font-size:26px!important;}
+@media(max-width:760px){
+ #settingsPage #mimoSettingsSection .mr361ControlGrid{grid-template-columns:repeat(3,50px)!important;grid-auto-rows:50px!important;gap:8px!important;}
+ #settingsPage #mimoSettingsSection .mr361IconButton,
+ #settingsPage #mimoSettingsSection .mr357LabLaunch,
+ #settingsPage #mimoSettingsSection #mr414MimoHaptics,
+ #settingsPage #mimoSettingsSection .mr354WingSettings button{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important;max-width:50px!important;max-height:50px!important;font-size:25px!important;}
+}
 </style>
 </body>
 </html>

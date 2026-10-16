@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.427</div>
+    <div class="intro-version-label">Build 2.428</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.427</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.428</div>
   </div>
 </div>
 
@@ -10648,7 +10648,8 @@ function renderTokensInTrophyPage(){
   if(!badge||!countEl)return;
   const count=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
   countEl.textContent=String(count);
-  badge.setAttribute('aria-label',`Gettoni Play disponibili: ${count}`);
+  badge.setAttribute('aria-label',count?`Cesto dei gettoni Play: ${count} disponibili. Tocca per usare un gettone e suonare il piano liberamente.`:'Cesto dei gettoni Play vuoto.');
+  badge.title=count?`Usa un gettone per suonare il piano liberamente (${count} disponibili)`:'Cesto dei gettoni Play vuoto';
   // Come per la frutta: le sagome restano al 10% e quelle possedute si colorano.
   // Il numero è reale anche quando supera la capienza visiva dei sei alloggiamenti.
   badge.querySelectorAll('.mr402TokenFilled').forEach((coin,index)=>{
@@ -18853,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.427";
+  const PAGE_BUILD = "2.428";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   if (!("serviceWorker" in navigator)) return;
 
@@ -25412,15 +25413,17 @@ scorePhoneDrawerSyncMR();
 
 <!-- Build 2.323 — Mìmo 3D: geometria articolata WebGL, render in tempo reale -->
 <style id="mimo-2315-css">
-#mimoSettingsSection .mimo-options{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px}
-#mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:8px;font-weight:800}
+#mimoSettingsSection .mimo-options{display:flex;flex-direction:column;align-items:stretch;gap:10px;flex-wrap:nowrap;margin-top:12px}
+#mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:10px;font-weight:800}
 #mimoSettingsSection input{width:24px;height:24px;accent-color:#7c3aed}
-#mimoSettingsSection .mr399-cycle-settings{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;align-items:center!important;margin-top:8px!important}
-#mimoSettingsSection .mr399-cycle-settings .mimo-option{min-width:0!important}
-#mimoSettingsSection .mr399CycleButtons{display:flex;align-items:center;gap:8px}
-#mimoSettingsSection .mr399CycleButtons button{min-width:48px!important;min-height:38px!important;padding:6px 10px!important;border-radius:10px!important;border:1px solid #7d67b4;background:#eee6ff;color:#432769;font-weight:800;cursor:pointer}
-#mimoSettingsSection .mr399CycleButtons button[aria-pressed="true"]{background:#6a48c9!important;color:#fff!important;border-color:#6a48c9!important}
-#mimoSettingsSection .mr399CycleButtons button:disabled{opacity:.45!important;cursor:default!important}
+#mimoSettingsSection .mr399-cycle-settings{display:block!important;margin-top:2px!important}
+#mimoSettingsSection .mr361ControlGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 6px}
+#mimoSettingsSection .mr361IconButton,#mimoSettingsSection .mr399CycleButtons button,#mimoSettingsSection .mr354WingSettings button,#mimoSettingsSection .mr357LabLaunch,#mimoSettingsSection #mr414MimoHaptics{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;aspect-ratio:1/1;min-width:0!important;min-height:56px!important;height:auto!important;padding:0!important;border-radius:16px!important;border:2px solid #8b6bde!important;background:#efe7ff!important;color:#4d2c91!important;font:900 clamp(24px,3.2vw,34px)/1 system-ui,-apple-system,sans-serif!important;box-shadow:0 4px 10px rgba(76,29,149,.10)!important;cursor:pointer!important;transition:transform .14s ease,background .14s ease,box-shadow .14s ease,opacity .14s ease}
+#mimoSettingsSection .mr361IconButton:hover,#mimoSettingsSection .mr399CycleButtons button:hover,#mimoSettingsSection .mr354WingSettings button:hover,#mimoSettingsSection .mr357LabLaunch:hover,#mimoSettingsSection #mr414MimoHaptics:hover{transform:translateY(-1px)}
+#mimoSettingsSection .mr361IconButton:active,#mimoSettingsSection .mr399CycleButtons button:active,#mimoSettingsSection .mr354WingSettings button:active,#mimoSettingsSection .mr357LabLaunch:active,#mimoSettingsSection #mr414MimoHaptics:active{transform:scale(.97)}
+#mimoSettingsSection .mr361IconButton[aria-pressed="true"],#mimoSettingsSection .mr399CycleButtons button[aria-pressed="true"],#mimoSettingsSection #mr414MimoHaptics[aria-pressed="true"]{background:#7c3aed!important;color:#fff!important;border-color:#7c3aed!important;box-shadow:0 6px 14px rgba(91,33,182,.18)!important}
+#mimoSettingsSection .mr361IconButton:disabled,#mimoSettingsSection .mr399CycleButtons button:disabled{opacity:.42!important;cursor:default!important;transform:none!important}
+#mimoSettingsSection .mr361IconButton:focus-visible,#mimoSettingsSection .mr399CycleButtons button:focus-visible,#mimoSettingsSection .mr354WingSettings button:focus-visible,#mimoSettingsSection .mr357LabLaunch:focus-visible,#mimoSettingsSection #mr414MimoHaptics:focus-visible{outline:3px solid #fbbf24!important;outline-offset:2px!important}
 #mimoBuddy{position:fixed;right:8px;bottom:14px;width:clamp(210px,24vw,340px);height:clamp(250px,29vw,390px);z-index:2147483000;pointer-events:none;overflow:visible}
 #mimoBuddy canvas{display:block;width:100%;height:100%;background:transparent}
 #mimoBuddy[data-mimo-error]::after{content:attr(data-mimo-error);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:9px;background:#fff3dc;color:#78350f;font-size:12px;font-weight:800;overflow-wrap:anywhere;box-sizing:border-box;border-radius:12px} #mimoBuddy{visibility:visible!important;opacity:1!important}
@@ -25430,9 +25433,10 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-card{width:min(96vw,1040px)!important;max-width:1040px!important}
 #settingsPage .settings-stack{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-rows:minmax(148px,auto)!important;gap:12px!important;align-items:stretch!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;min-width:0!important;min-height:148px!important;height:100%!important;box-sizing:border-box!important;overflow:visible}
-#settingsPage #mimoSettingsSection .mimo-options{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px!important;margin-top:5px!important}
-#settingsPage #mimoSettingsSection .mimo-options label{grid-column:1/-1}
-#settingsPage #mimoSettingsSection .mimo-options button{min-width:0!important;min-height:36px!important;padding:6px!important}
+#settingsPage #mimoSettingsSection .mimo-options{display:flex!important;flex-direction:column!important;gap:8px!important;margin-top:4px!important}
+#settingsPage #mimoSettingsSection .mimo-options label{grid-column:auto!important}
+#settingsPage #mimoSettingsSection .mr361ControlGrid{gap:8px!important}
+#settingsPage #mimoSettingsSection .mr361ControlGrid button{min-width:0!important;min-height:54px!important;padding:0!important}
 #settingsPage #mimoStatus{font-size:11px!important;overflow-wrap:anywhere;line-height:1.2!important;margin-top:5px}
 @media(max-width:650px){#settingsPage .settings-stack{gap:7px!important;grid-auto-rows:minmax(130px,auto)!important}#settingsPage .settings-stack>.settings-panel{min-height:130px!important;padding:8px!important}}
 #settingsPage #adminSettingsSection{grid-column:auto!important;grid-row:auto!important;min-height:148px!important;max-width:100%!important;width:auto!important;align-self:stretch!important}
@@ -25442,8 +25446,8 @@ scorePhoneDrawerSyncMR();
 #settingsPage .settings-stack{grid-template-rows:repeat(4,minmax(148px,auto))!important;grid-auto-flow:row!important}
 #settingsPage .settings-stack>.settings-panel{grid-column:auto!important;grid-row:auto!important}
 </style>
-<script src="Assets/mimo-haptics-414.js?v=416"></script>
-<script src="Assets/mimo-rigged-369.js?v=416"></script>
+<script src="Assets/mimo-haptics-414.js?v=428"></script>
+<script src="Assets/mimo-rigged-369.js?v=428"></script>
 
 
 <style id="mr353-room-style">
@@ -25464,13 +25468,14 @@ body.mr353-room-open #mr344Scene #mimoBuddy{position:absolute!important;left:50%
 #mr344Scene[data-location="bed"] #mimoBuddy{width:clamp(135px,22%,280px)!important;height:34%!important;z-index:11!important;transform:translate(-50%,-49%) rotate(-89deg) scale(.96)!important}
 #mr344Scene[data-location="bath"] #mimoBuddy{width:clamp(116px,18.7%,238px)!important;height:36%!important;z-index:11!important;transform:translate(-50%,-40%) scale(.97)!important;clip-path:inset(0 0 21% 0)!important}
 #mr344Scene[data-location="food"] #mimoBuddy{width:clamp(120px,20%,290px)!important;height:47%!important}
+#mr344Scene[data-location="tokens"] #mimoBuddy{width:clamp(102px,16.5%,212px)!important;height:31%!important;z-index:11!important;transform:translate(-50%,-47%) scale(.90)!important}
 #mr344Scene[data-location="food"] #mr344Fruit{z-index:7;opacity:.82}
 #mr354WingControls{position:absolute;z-index:24;right:12px;top:12px;display:flex;align-items:center;gap:7px}
 #mr354WingControls button{border:1px solid rgba(255,255,255,.92);border-radius:11px;background:rgba(34,41,66,.88);color:#fff;font:750 12px/1.2 system-ui,sans-serif;min-height:42px;padding:8px 11px;box-shadow:0 3px 10px rgba(0,0,0,.23);cursor:pointer}
 #mr354WingControls button:focus-visible{outline:3px solid #fbd34b;outline-offset:2px}
 #mr354WingControls button[aria-pressed="true"]{background:#6e3fab}
-#mimoSettingsSection .mr354WingSettings{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-#mimoSettingsSection .mr354WingSettings button{padding:9px 12px;border-radius:10px;border:1px solid #7d67b4;background:#eee6ff;color:#432769;font-weight:750}
+#mimoSettingsSection .mr354WingSettings{display:contents!important;margin:0!important;padding:0!important}
+#mimoSettingsSection .mr354WingSettings button{padding:0!important;border-radius:16px!important;border:2px solid #8b6bde!important;background:#efe7ff!important;color:#4d2c91!important;font-weight:900!important}
 @media(max-width:700px){#mr354WingControls{right:7px;top:7px;gap:4px}#mr354WingControls button{font-size:11px;padding:6px;min-height:39px}}
 body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:100%!important;background:transparent!important}
 #mr353BasketFruit{position:absolute;z-index:16;left:37.4%;bottom:12.8%;width:25.2%;height:12.8%;pointer-events:none;box-sizing:border-box}
@@ -25610,7 +25615,7 @@ function init(){
 <img class="mr373BasketLayer mr373BasketFront" src="Assets/room/basket-front.png" alt="" draggable="false">
 <button type="button" id="mr373BasketTouch" aria-label="Avvicina Mìmo al cestino"></button>
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
-</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div></div><div id="mr400RoomTokens" role="status" aria-live="polite" aria-label="Gettoni Play disponibili: 0"><svg class="mr402TokenArt" viewBox="0 0 220 145" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div></div><div id="mr400RoomTokens" role="button" tabindex="0" aria-live="polite" aria-label="Cesto dei gettoni Play"><svg class="mr402TokenArt" viewBox="0 0 220 145" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
 <defs>
  <linearGradient id="mr402BackGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b56634"/><stop offset=".32" stop-color="#f8c975"/><stop offset=".78" stop-color="#ce8042"/><stop offset="1" stop-color="#7f3c27"/></linearGradient>
  <linearGradient id="mr402FrontGold" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#ffe9ad"/><stop offset=".22" stop-color="#f5c16d"/><stop offset=".65" stop-color="#c7783e"/><stop offset="1" stop-color="#9b4727"/></linearGradient>
@@ -25740,8 +25745,8 @@ function init(){
  // Griglia 16×10: Mìmo dorme nel riquadro 51 su entrambi i dispositivi.
  // In vasca: iPad al centro del riquadro 62; iPhone al centro del riquadro 78.
  const positions={
-  default:{food:{left:'50%',top:'60%'},bed:{left:'15.625%',top:'35%'},bath:{left:'84.375%',top:'35%'}},
-  phone:{food:{left:'50%',top:'59%'},bed:{left:'15.625%',top:'45%'},bath:{left:'84.375%',top:'45%'}}
+  default:{food:{left:'50%',top:'60%'},bed:{left:'15.625%',top:'35%'},bath:{left:'84.375%',top:'35%'},tokens:{left:'72.2%',top:'31.5%'}},
+  phone:{food:{left:'50%',top:'59%'},bed:{left:'15.625%',top:'45%'},bath:{left:'84.375%',top:'45%'},tokens:{left:'72.6%',top:'35.2%'}}
  };
  function activeRoomLayout384(){return scene.dataset.roomLayout==='phone'?'phone':'default';}
  function getRoomPosition384(target){const layout=positions[activeRoomLayout384()]||positions.default;return layout[target]||positions.default[target]||positions.default.food;}
@@ -25975,19 +25980,20 @@ function init(){
  // Build 2.418: il corpo del volatile, non due pulsanti, è la maniglia del drag-and-drop.
  // Coordinate delle aree di rilascio nello stesso sfondo scalato per iPad e iPhone.
  const mimoDropAreas418={
-  default:{bed:{x:16.5,y:41,rx:18.5,ry:15},bath:{x:88.5,y:43,rx:13.5,ry:14}},
-  phone:{bed:{x:16.5,y:49,rx:17.5,ry:18},bath:{x:89,y:55,rx:13.5,ry:17}}
+  default:{bed:{x:16.5,y:41,rx:18.5,ry:15},bath:{x:88.5,y:43,rx:13.5,ry:14},food:{x:50,y:63.5,rx:14,ry:12},tokens:{x:72.2,y:29.8,rx:8.4,ry:7.8}},
+  phone:{bed:{x:16.5,y:49,rx:17.5,ry:18},bath:{x:89,y:55,rx:13.5,ry:17},food:{x:50,y:63.2,rx:14.5,ry:12.2},tokens:{x:72.6,y:33.3,rx:8.7,ry:8.1}}
  };
+ const dropTargets418=['bed','bath','food','tokens'];
  const dropMarks418={};
- for(const target of ['bed','bath']){
+ for(const target of dropTargets418){
   const mark=document.createElement('div');
-  mark.className='mr418RoomDropZone';mark.setAttribute('aria-hidden','true');
+  mark.className='mr418RoomDropZone';mark.setAttribute('aria-hidden','true');mark.dataset.dropTarget=target;
   mark.dataset.target=target;sceneCanvas.appendChild(mark);dropMarks418[target]=mark;
  }
  let mimoDrag418=null,suppressMimoClickUntil418=0;
  function areas418(){return mimoDropAreas418[activeRoomLayout384()];}
  function updateDropMarks418(activeTarget=''){
-  for(const target of ['bed','bath']){
+  for(const target of dropTargets418){
    const area=areas418()[target],mark=dropMarks418[target];
    mark.style.left=area.x+'%';mark.style.top=area.y+'%';
    mark.style.width=(area.rx*2)+'%';mark.style.height=(area.ry*2)+'%';
@@ -25997,7 +26003,7 @@ function init(){
  function hitDrop418(clientX,clientY){
   const box=sceneCanvas.getBoundingClientRect();if(!box.width||!box.height)return '';
   const x=(clientX-box.left)/box.width*100,y=(clientY-box.top)/box.height*100;
-  for(const target of ['bed','bath']){
+  for(const target of dropTargets418){
    const a=areas418()[target];
    if(((x-a.x)/a.rx)**2+((y-a.y)/a.ry)**2<=1)return target;
   }
@@ -26054,11 +26060,20 @@ function init(){
    setTimeout(()=>{if(scene.dataset.location!=='bath')return;
     state.clean=8;state.happy=clamp(state.happy+2);applyPose('bath');refresh();
     setMessage('Mìmo si lava dentro la vasca.');},900);
+  }else if(destination==='food'){
+   window.MimoHaptics?.play?.('eat');setResting396(false);moveMimo('food');
+   fruitPicker.hidden=true;clearPose();
+   setMessage(Object.values(state.fruits||{}).some(Number)?'Mìmo è sul tappeto: trascina un frutto dal cestino alla sua testa per farlo mangiare.':'Mìmo è sul tappeto: il cestino è vuoto, conquista frutta suonando.');
+  }else if(destination==='tokens'){
+   window.MimoHaptics?.play?.('play');setResting396(false);moveMimo('tokens');
+   fruitPicker.hidden=true;clearPose();
+   const totalTokens=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
+   setMessage(totalTokens>0?'Mìmo è vicino al cesto dei gettoni: tocca il cesto per chiedergli di suonare il piano liberamente.':'Mìmo è vicino al cesto dei gettoni, ma ora il cesto è vuoto.');
   }else{
    // Drop fuori bersaglio: Mìmo ritorna esattamente dove si trovava.
    moveMimo(drag.from,false);
    if(drag.from==='bed'||drag.from==='bath')applyPose(drag.from);
-   setMessage('Trascina Mìmo sul letto o dentro la vasca e lascialo lì.');
+   setMessage('Trascina Mìmo sul letto, nella vasca, sul tappeto oppure verso il cesto dei gettoni.');
   }
  }
  function installMimoDrag418(host){
@@ -26096,6 +26111,23 @@ function init(){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)finishMimoDrag418(false)});
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')finishMimoDrag418(false)});
  room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');setResting396(false);moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Trascina un frutto dal cestino alla testa di Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
+ const useTokenBasket428=()=>{
+  const total=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
+  if(playSessionActive){setMessage('Hai già una sessione Play attiva.');return;}
+  if(total<1){window.MimoHaptics?.play?.('touch');setMessage('Il cesto dei gettoni è vuoto: conquista gettoni suonando.');return;}
+  const ok=window.confirm(total===1?"Vuoi usare l'unico gettone per suonare il piano liberamente?":`Vuoi usare 1 dei ${total} gettoni per suonare il piano liberamente?`);
+  if(!ok){setMessage('Va bene: il gettone resta nel cesto.');return;}
+  const spent=consumeOldestSessionToken();
+  if(!spent){setMessage('Non riesco a usare il gettone adesso.');return;}
+  window.MimoHaptics?.play?.('play');
+  setMessage('Mìmo usa un gettone per suonare il piano liberamente!');
+  if(typeof openPlayPageFromToken==='function')openPlayPageFromToken();
+ };
+ if(coinTray){
+  coinTray.addEventListener('click',useTokenBasket428);
+  coinTray.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();useTokenBasket428();}});
+ }
+
  window.MimoCare={
    awardFullBasket:(rewardId)=>{
     const key='full-basket:'+String(rewardId||'');
@@ -26255,10 +26287,10 @@ body.mr357-lab-open #mr357LabPreview #mimoBuddy{position:absolute!important;disp
 
 <style id="mr361-mimo-ui">
 /* Tre pulsanti di Mìmo sempre sulla medesima riga, su iPad e iPhone. */
-#mimoSettingsSection .mr361SettingsActions{display:flex;align-items:center;justify-content:flex-start;gap:9px;flex-wrap:nowrap;margin:12px 0 4px;max-width:100%;}
-#mimoSettingsSection .mr361SettingsActions .mr354WingSettings{display:flex;align-items:center;flex-wrap:nowrap;gap:9px;margin:0!important;padding:0!important;}
-#mimoSettingsSection .mr361SettingsActions .mr357LabLaunch{display:inline-flex!important;align-items:center;justify-content:center;width:50px!important;min-width:50px!important;height:50px!important;min-height:50px!important;margin:0!important;padding:0!important;border-radius:11px;}
-#mimoSettingsSection .mr361SettingsActions button{flex:0 0 50px;}
+#mimoSettingsSection .mr361SettingsActions{display:block!important;margin:0!important;max-width:100%!important;}
+#mimoSettingsSection .mr361SettingsActions .mr354WingSettings{display:contents!important;}
+#mimoSettingsSection .mr361SettingsActions .mr357LabLaunch{display:inline-flex!important;}
+#mimoSettingsSection .mr361SettingsActions button{flex:0 0 auto!important;}
 #mimoSettingsSection .settings-panel-head{margin-bottom:8px;}
 #mimoSettingsSection .mimo-option{display:flex;align-items:center;gap:8px;margin:0;}
 /* Messaggio tecnico mantenuto solo per VoiceOver e diagnostica. */
@@ -27454,15 +27486,10 @@ html body.mr412-reward-active #mimoBuddy canvas{width:100%!important;height:100%
 }
 #mr415HeadHalo.mr415CanFeed{border:5px solid #22c55e;background:rgba(100,255,137,.22);box-shadow:0 0 0 5px #d9f99d88,0 0 22px #22c55eaa;}
 /* Impostazioni Mìmo: comando ben visibile e disattivabile anche senza supporto aptico. */
-#mimoSettingsSection .mr414-haptic-preference{margin:10px 0 2px!important;display:block!important;}
-#mimoSettingsSection #mr414MimoHaptics{
- display:inline-flex;align-items:center;justify-content:center;gap:8px;
- min-height:45px;padding:9px 13px;border-radius:11px;
- border:2px solid #7c3aed;background:#eee6ff;color:#4c1d95;
- font:800 13px/1.2 system-ui,-apple-system,sans-serif;cursor:pointer;
-}
-#mimoSettingsSection #mr414MimoHaptics[aria-pressed="false"]{background:#eceff3;color:#475569;border-color:#94a3b8;}
-#mimoSettingsSection #mr414MimoHaptics:focus-visible{outline:3px solid #fbbf24;outline-offset:2px;}
+#mimoSettingsSection .mr414-haptic-preference{margin:0!important;display:contents!important;}
+#mimoSettingsSection #mr414MimoHaptics{font-size:clamp(23px,3vw,32px)!important;}
+#mimoSettingsSection #mr414MimoHaptics[aria-pressed="false"]{background:#eceff3!important;color:#475569!important;border-color:#94a3b8!important;}
+#mimoSettingsSection #mr414MimoHaptics:focus-visible{outline:3px solid #fbbf24!important;outline-offset:2px!important;}
 </style>
 
 
@@ -27587,6 +27614,13 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
  box-shadow:0 0 0 4px rgba(45,153,86,.38),0 0 18px 8px rgba(88,219,128,.30);
 }
 @media(prefers-reduced-motion:reduce){#mr376SceneCanvas .mr418RoomDropZone{transition:none!important;}}
+</style>
+
+<style id="mr428-room-token-basket-interaction">
+#trophyPage #mr376SceneCanvas > #mr400RoomTokens{pointer-events:auto!important;cursor:pointer!important;}
+#trophyPage #mr376SceneCanvas > #mr400RoomTokens:focus-visible{outline:3px solid #ffe27a!important;outline-offset:3px!important;border-radius:16px!important;}
+#mr376SceneCanvas .mr418RoomDropZone[data-drop-target="food"]{border-style:solid;background:rgba(255,226,138,.14);}
+#mr376SceneCanvas .mr418RoomDropZone[data-drop-target="tokens"]{border-style:dotted;background:rgba(255,235,166,.18);}
 </style>
 </body>
 </html>

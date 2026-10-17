@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.440</div>
+    <div class="intro-version-label">Build 2.441</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.440</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.441</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.440";
+  const PAGE_BUILD = "2.441";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -26925,11 +26925,14 @@ function init(){
  const backgroundImage=room.querySelector('.mr353Background');
  const labels=[['food','🍎','Fame','#e83b51'],['sleep','🌙','Sonno','#399edb'],['clean','🫧','Pulizia','#1aa77a'],['happy','💗','Felicità','#945de0']];
  const washState439={drag:null,soapy:false,lastSoap:''};
+ // Hotspot invisibili sulle bottiglie GIA' DISEGNATE nei PNG.
+ // Le coordinate cambiano con il layout, non aggiungiamo nuovi flaconi.
  const shampooKinds439=[
-  {kind:'sky',label:'Shampoo azzurro',left:87.5,top:23.9,color1:'#69c6ff',color2:'#2f89df'},
-  {kind:'gold',label:'Shampoo dorato',left:90.0,top:24.1,color1:'#ffd86a',color2:'#f39a2f'},
-  {kind:'peach',label:'Shampoo pesca',left:92.3,top:24.0,color1:'#ffbf9e',color2:'#ff83a6'},
-  {kind:'violet',label:'Shampoo viola',left:94.7,top:23.8,color1:'#b581ff',color2:'#8d4cd9'}
+  {kind:'sky',label:'Shampoo azzurro',ipad:[90.1,22.7],phone:[89.9,27.0]},
+  {kind:'gold',label:'Shampoo dorato',ipad:[92.2,22.7],phone:[91.7,27.0]},
+  {kind:'peach',label:'Shampoo pesca',ipad:[94.0,22.7],phone:[93.7,27.0]},
+  {kind:'violet',label:'Shampoo viola',ipad:[96.5,22.7],phone:[96.5,27.0]},
+  {kind:'extra',label:'Shampoo arcobaleno',ipad:[98.5,22.7],phone:[98.8,27.0]}
  ];
  const shampooShelf439=document.createElement('div');
  shampooShelf439.id='mr439ShampooShelf';
@@ -26948,7 +26951,7 @@ function init(){
  bubbleField439.setAttribute('aria-hidden','true');
  bubbleField439.innerHTML='<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>';
  sceneCanvas.append(shampooShelf439,faucetTouch439,bubbleField439);
- document.body.append(soapDragIcon439,soapHalo439);
+ document.body.append(soapHalo439);
  function ensureBathFoam439(){
   const host=document.getElementById('mimoBuddy');if(!host)return null;
   let foam=host.querySelector('#mr439BathFoam');
@@ -27008,10 +27011,10 @@ function init(){
  function updateSoapDrag439(x,y){
   const drag=washState439.drag;if(!drag)return;
   drag.x=x;drag.y=y;
-  soapDragIcon439.style.left=x+'px';soapDragIcon439.style.top=y+'px';
+  // Non coprire lo sfondo con bottigliette sintetiche durante il trascinamento.
   const onTarget=scene.dataset.location==='bath'&&pointOnMimoForSoap439(x,y);
   drag.onTarget=onTarget;
-  soapDragIcon439.classList.toggle('mr439SoapReady',onTarget);
+  // Il bersaglio Mìmo si illumina soltanto quando la bottiglia è sopra di lui.
   if(onTarget){
    const zone=washTargetRect439();
    soapHalo439.hidden=false;
@@ -27024,23 +27027,22 @@ function init(){
   washState439.drag=null;
   if(drag.button.hasPointerCapture?.(drag.id)){try{drag.button.releasePointerCapture(drag.id);}catch(_e){}}
   drag.button.classList.remove('mr439ShampooDragging');
-  soapDragIcon439.hidden=true;soapHalo439.hidden=true;soapDragIcon439.classList.remove('mr439SoapReady');
+  soapHalo439.hidden=true;
   if(apply&&drag.onTarget)applySoap439(drag.kind);
  }
  function buildSoapBottle439(cfg){
   const button=document.createElement('button');
   button.type='button';button.className='mr439ShampooTouch';button.dataset.kind=cfg.kind;
   button.title=cfg.label+' · trascina sopra Mìmo';button.setAttribute('aria-label',cfg.label+' · trascina sopra Mìmo per fare la schiuma');
-  button.style.setProperty('--mr439-left',cfg.left+'%');button.style.setProperty('--mr439-top',cfg.top+'%');
-  button.style.setProperty('--mr439-c1',cfg.color1);button.style.setProperty('--mr439-c2',cfg.color2);
+  button.style.setProperty('--mr439-x-ipad',cfg.ipad[0]+'%');button.style.setProperty('--mr439-y-ipad',cfg.ipad[1]+'%');
+  button.style.setProperty('--mr439-x-phone',cfg.phone[0]+'%');button.style.setProperty('--mr439-y-phone',cfg.phone[1]+'%');
   button.addEventListener('pointerdown',ev=>{
    if(ev.button!==0||washState439.drag)return;
    ev.preventDefault();
    const activeKind=cfg.kind;
    washState439.drag={id:ev.pointerId,button,kind:activeKind,onTarget:false,x:ev.clientX,y:ev.clientY};
    button.classList.add('mr439ShampooDragging');
-   soapDragIcon439.style.setProperty('--mr439-c1',cfg.color1);soapDragIcon439.style.setProperty('--mr439-c2',cfg.color2);
-   soapDragIcon439.hidden=false;
+   // Nessuna copia/artefatto grafico sovrapposto alle bottiglie originali.
    try{button.setPointerCapture(ev.pointerId);}catch(_e){}
    updateSoapDrag439(ev.clientX,ev.clientY);
    if(scene.dataset.location!=='bath')setMessage('Porta Mìmo nella vasca, poi trascina lo shampoo sopra di lui.');
@@ -27073,10 +27075,18 @@ function init(){
  const topPanel=page.querySelector('.top-panel');
  let roomFitQueued=false;
  function usePhoneRoom384(){
-  const vw=Math.max(window.innerWidth||0,document.documentElement.clientWidth||0,window.visualViewport?.width||0);
-  const vh=Math.max(window.innerHeight||0,document.documentElement.clientHeight||0,window.visualViewport?.height||0);
-  const shortSide=Math.min(vw,vh), longSide=Math.max(vw,vh);
-  return shortSide<=500 && longSide/Math.max(1,shortSide)>=1.65;
+  // 2.441: identifica il dispositivo, NON le dimensioni della finestra.
+  // Su iPhone portrait la viewport non e' necessariamente la stessa in landscape;
+  // su iPad in Split View può essere molto stretta senza diventare un iPhone.
+  const ua=String(navigator.userAgent||'');
+  const platform=String(navigator.platform||'');
+  if(/iPhone|iPod/i.test(ua+' '+platform))return true;
+  if(/iPad/i.test(ua+' '+platform))return false;
+  const sw=Math.max(1,Number(window.screen?.width)||0);
+  const sh=Math.max(1,Number(window.screen?.height)||0);
+  const short=Math.min(sw,sh),long=Math.max(sw,sh);
+  // Fallback solo per anteprime mobili senza identificativo del dispositivo.
+  return short>0&&short<=520&&long/short>=1.65;
  }
  function applyRoomBackground384(){
   const usePhone=usePhoneRoom384();
@@ -27174,7 +27184,7 @@ function init(){
   host.style.setProperty('left',pos.left,'important');
   host.style.setProperty('top',pos.top,'important');
   if(target!=='bed'&&target!=='bath')clearPose();
-  if(target!=='bath'&&washState439.soapy)washState439.soapy=false;
+  if(target!=='bath'&&washState439.soapy)washState439.soapy=false; // Nessun cuoricino senza risciacquo.
   updateWashVisuals439();
  }
  function setMessage(text){msg.textContent=text||'';if(text)window.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:String(text)}}));}
@@ -28490,7 +28500,7 @@ body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
  max-height:none!important;transform:translateX(-50%)!important;z-index:1200!important;
  clip-path:none!important;pointer-events:auto!important;
 }
-/* Build 2.440: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
+/* Build 2.441: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
    subito a destra del tasto Home, quando quella pagina lo prevede. */
 #mr410MimoFloatingToggle{
  position:relative!important;
@@ -29067,54 +29077,60 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
 
 
 <style id="mr439-room-wash-interaction">
-#mr439ShampooShelf{position:absolute;inset:0;z-index:40;pointer-events:none!important;}
+#mr439ShampooShelf{position:absolute;inset:0;z-index:122;pointer-events:none!important;}
+/* Hotspot sui flaconi gia' stampati nel PNG. Nessun disegno aggiuntivo. */
 #mr439ShampooShelf .mr439ShampooTouch{
- position:absolute;left:var(--mr439-left);top:var(--mr439-top);transform:translate(-50%,-50%);
- width:3.0%;height:8.8%;min-width:22px;min-height:38px;pointer-events:auto!important;cursor:grab;
- border:0;background:transparent;padding:0;border-radius:12px;touch-action:none;-webkit-tap-highlight-color:transparent!important;
+ position:absolute;left:var(--mr439-x-ipad);top:var(--mr439-y-ipad);
+ width:3.0%;height:8.0%;min-width:26px;min-height:40px;
+ transform:translate(-50%,-50%);pointer-events:auto!important;
+ cursor:grab!important;touch-action:none!important;-webkit-tap-highlight-color:transparent!important;
+ border:0!important;background:transparent!important;padding:0!important;
+ box-shadow:none!important;border-radius:0!important;
+ /* Ritaglio approssimato sulla sagoma, il filtro illumina i PIXEL ORIGINALI. */
+ -webkit-clip-path:polygon(25% 20%,75% 20%,81% 35%,85% 91%,15% 91%,19% 35%);
+ clip-path:polygon(25% 20%,75% 20%,81% 35%,85% 91%,15% 91%,19% 35%);
 }
-#mr439ShampooShelf .mr439ShampooTouch::before,#mr439SoapInHand::before{
- content:'';position:absolute;left:18%;right:18%;top:16%;height:64%;border-radius:11px 11px 15px 15px;
- background:linear-gradient(180deg,var(--mr439-c1,#7dd3fc) 0%,var(--mr439-c2,#2563eb) 100%);
- border:2px solid rgba(255,255,255,.82);box-shadow:0 2px 8px rgba(0,0,0,.18);
+#mr344Scene[data-room-layout="phone"] #mr439ShampooShelf .mr439ShampooTouch{
+ left:var(--mr439-x-phone);top:var(--mr439-y-phone);
+ height:10%;width:3.1%;
 }
-#mr439ShampooShelf .mr439ShampooTouch::after,#mr439SoapInHand::after{
- content:'';position:absolute;left:33%;right:33%;top:3%;height:22%;border-radius:8px 8px 4px 4px;
- background:linear-gradient(180deg,#ffffff 0%,#dbeafe 100%);border:1px solid rgba(120,120,150,.55);
+#mr344Scene[data-location="bath"] #mr439ShampooShelf .mr439ShampooTouch:not(.mr439ShampooDragging){
+ animation:mr441OriginalBlink 1.5s ease-in-out infinite;
 }
-#mr439ShampooShelf .mr439ShampooTouch.mr439ShampooDragging{cursor:grabbing;filter:drop-shadow(0 0 7px rgba(255,243,122,.9));}
-#mr439SoapInHand[hidden],#mr439SoapTargetHalo[hidden],#mr439BathBubbleField[hidden],#mr439BathFoam[hidden],#mr439FaucetTouch[hidden]{display:none!important;}
-#mr439SoapInHand{
- position:fixed;left:0;top:0;z-index:2147482000;width:40px;height:64px;transform:translate(-50%,-50%) rotate(-10deg);
- pointer-events:none!important;filter:drop-shadow(0 8px 12px rgba(0,0,0,.26));
+#mr439ShampooShelf .mr439ShampooTouch.mr439ShampooDragging{
+ cursor:grabbing!important;
+ -webkit-backdrop-filter:brightness(1.35) saturate(1.2)!important;
+ backdrop-filter:brightness(1.35) saturate(1.2)!important;
 }
-#mr439SoapInHand.mr439SoapReady{transform:translate(-50%,-50%) rotate(-10deg) scale(1.08);filter:drop-shadow(0 0 10px #fff79a) drop-shadow(0 8px 12px rgba(0,0,0,.28));}
+#mr439ShampooShelf .mr439ShampooTouch::before,
+#mr439ShampooShelf .mr439ShampooTouch::after,
+#mr439SoapInHand{display:none!important;content:none!important;}
+#mr439SoapTargetHalo[hidden],#mr439BathBubbleField[hidden],#mr439BathFoam[hidden],#mr439FaucetTouch[hidden]{display:none!important;}
 #mr439SoapTargetHalo{position:fixed;left:0;top:0;transform:translate(-50%,-50%);z-index:2147481900;pointer-events:none!important;border-radius:50%;border:4px dashed rgba(255,255,255,.96);background:rgba(120,226,255,.18);box-shadow:0 0 0 4px rgba(255,240,150,.35),0 0 18px rgba(130,214,255,.38);}
-/* 2.440: hotspot ANCORATO AL RUBINETTO nel PNG di sfondo, non alla parte bassa della vasca.
-   Sopra i bersagli della stanza (z=214) e con superficie ampia per dita/Pencil.
-   La stessa posizione vale per giorno/notte del rispettivo formato. */
+/* Rubinetto ORIGINALE. Il bottone e' trasparente, non disegna nuovi oggetti. */
 #trophyPage #mr344Scene #mr376SceneCanvas > #mr439FaucetTouch{
- position:absolute!important;left:90.5%!important;top:32.1%!important;
- transform:translate(-50%,-50%)!important;width:10.4%!important;height:10.0%!important;
- min-width:52px!important;min-height:52px!important;
- z-index:265!important;display:block!important;pointer-events:auto!important;
+ position:absolute!important;left:93.0%!important;top:32.1%!important;
+ transform:translate(-50%,-50%)!important;width:8.7%!important;height:7.2%!important;
+ min-width:44px!important;min-height:34px!important;
+ z-index:123!important;display:block!important;pointer-events:auto!important;
  border:0!important;background:transparent!important;box-shadow:none!important;
  padding:0!important;cursor:pointer!important;touch-action:manipulation!important;
- -webkit-tap-highlight-color:transparent!important;border-radius:18px!important;
+ -webkit-tap-highlight-color:transparent!important;border-radius:0!important;
+ -webkit-clip-path:polygon(8% 50%,15% 23%,65% 23%,65% 7%,90% 17%,92% 65%,57% 65%,57% 92%,8% 90%);
+ clip-path:polygon(8% 50%,15% 23%,65% 23%,65% 7%,90% 17%,92% 65%,57% 65%,57% 92%,8% 90%);
 }
 #trophyPage #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas > #mr439FaucetTouch{
- left:94.0%!important;top:39.0%!important;width:11.5%!important;height:12.6%!important;
+ left:96.2%!important;top:40.0%!important;width:8.2%!important;height:10.0%!important;
 }
 #trophyPage #mr344Scene #mr376SceneCanvas > #mr439FaucetTouch[hidden]{display:none!important;}
-#mr439FaucetTouch:focus-visible{outline:3px solid #ffe27a!important;outline-offset:2px;}
-/* L'effetto appare soltanto quando esiste schiuma da risciacquare. */
-#mr439FaucetTouch.mr440FaucetReady::after{
- content:"";position:absolute;inset:12%;border:3px solid rgba(220,250,255,.9);
- border-radius:45%;box-shadow:0 0 0 6px rgba(96,201,255,.25),0 0 18px 8px rgba(147,225,255,.75);
- pointer-events:none!important;animation:mr440FaucetGlow 1.35s ease-in-out infinite alternate;
+#mr439FaucetTouch:focus-visible,#mr439ShampooShelf .mr439ShampooTouch:focus-visible{outline:3px solid #ffe27a!important;outline-offset:2px;}
+#mr439FaucetTouch.mr440FaucetReady{
+ animation:mr441OriginalBlink 1.4s ease-in-out infinite;
 }
-@keyframes mr440FaucetGlow{to{opacity:.45;transform:scale(.87)}}
-@media(prefers-reduced-motion:reduce){#mr439FaucetTouch.mr440FaucetReady::after{animation:none!important;}}
+@keyframes mr441OriginalBlink{
+ 0%,100%{-webkit-backdrop-filter:brightness(1) saturate(1);backdrop-filter:brightness(1) saturate(1);}
+ 50%{-webkit-backdrop-filter:brightness(1.47) saturate(1.55);backdrop-filter:brightness(1.47) saturate(1.55);}
+}
 #mr439BathBubbleField{position:absolute;left:80.4%;top:30.0%;width:18%;height:29%;z-index:13;pointer-events:none!important;}
 #mr344Scene[data-room-layout="phone"] #mr439BathBubbleField{left:79.8%;top:35.6%;width:19%;height:31%;}
 #mr439BathBubbleField span{position:absolute;display:block;border-radius:50%;border:2px solid rgba(255,255,255,.92);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.92) 0%,rgba(209,246,255,.58) 30%,rgba(140,210,255,.15) 62%,rgba(140,210,255,0) 68%);opacity:.92;animation:mr439BubbleFloat 2.2s ease-in-out infinite;}
@@ -29135,7 +29151,19 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
 #mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamD{left:18%;top:37%;width:24%;height:16%;}
 #mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamE{left:45%;top:35%;width:22%;height:15%;}
 #mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamF{left:34%;top:50%;width:18%;height:12%;opacity:.88;}
-@media(prefers-reduced-motion:reduce){#mr439BathBubbleField span{animation:none!important;}}
+/* La sagoma rimane trascinabile per intero anche in vasca:
+   taglia solo i pixel immersi del canvas, NON il contenitore che riceve il tocco. */
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{
+ clip-path:none!important;pointer-events:auto!important;z-index:105!important;
+}
+body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy > canvas{
+ -webkit-clip-path:inset(0 0 46% 0)!important;
+ clip-path:inset(0 0 46% 0)!important;
+}
+body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
+ -webkit-clip-path:none!important;clip-path:none!important;
+}
+@media(prefers-reduced-motion:reduce){#mr439BathBubbleField span{animation:none!important;}#mr439FaucetTouch.mr440FaucetReady,#mr344Scene[data-location="bath"] #mr439ShampooShelf .mr439ShampooTouch{animation:none!important;-webkit-backdrop-filter:brightness(1.18)!important;backdrop-filter:brightness(1.18)!important;}}
 </style>
 
 <style id="mr438-settings-responsive-controls">

@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.447; bypass large GLB; safe cache errors */
-const BUILD = "2.447";
+/* Music Rainbow Service Worker - Build 2.446; bypass large GLB; safe cache errors */
+const BUILD = "2.446";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -42,22 +42,14 @@ const CORE_PRECACHE_URLS = [
   "./Assets/room/fruit-orange.png",
   "./Assets/room/fruit-peach.png",
   "./Assets/room/fruit-cherries.png",
-  "./Assets/room/basket-fruit-apple.png",
-  "./Assets/room/basket-fruit-banana.png",
-  "./Assets/room/basket-fruit-strawberry.png",
-  "./Assets/room/basket-fruit-grapes.png",
-  "./Assets/room/basket-fruit-pear.png",
-  "./Assets/room/basket-fruit-orange.png",
-  "./Assets/room/basket-fruit-peach.png",
-  "./Assets/room/basket-fruit-cherries.png",
-  "./Assets/room/basket-fruit-pineapple.png",
-  "./Assets/room/basket-fruit-kiwi.png",
-  "./Assets/room/basket-fruit-mango.png",
-  "./Assets/room/basket-fruit-watermelon.png",
-  "./Assets/room/basket-fruit-lemon.png",
-  "./Assets/room/basket-fruit-blueberries.png",
-  "./Assets/room/basket-fruit-coconut.png",
-  "./Assets/room/basket-fruit-melon.png",
+  "./Assets/room/basket-sticker-apple.png",
+  "./Assets/room/basket-sticker-banana.png",
+  "./Assets/room/basket-sticker-strawberry.png",
+  "./Assets/room/basket-sticker-grapes.png",
+  "./Assets/room/basket-sticker-pear.png",
+  "./Assets/room/basket-sticker-orange.png",
+  "./Assets/room/basket-sticker-peach.png",
+  "./Assets/room/basket-sticker-cherries.png",
   "./Scores/library.json"
 ];
 

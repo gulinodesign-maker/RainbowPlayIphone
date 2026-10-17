@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.442</div>
+    <div class="intro-version-label">Build 2.443</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.442</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.443</div>
   </div>
 </div>
 
@@ -7527,9 +7527,14 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div class="top-left-controls">
           <button type="button" class="menu-btn" id="mr442TreeHome" aria-label="Torna alla Home" title="Home">⌂</button>
         </div>
-        <div class="mr442TopSelection" id="mr442SelectedName" role="status" aria-live="polite" aria-atomic="true"></div>
+        <div class="mr442TopSelection" id="mr442SelectedName" role="status" aria-live="polite" aria-atomic="true">
+          <span id="mr443ParentName" class="mr443DurationName"></span>
+          <span id="mr443ChildName" class="mr443DurationName"></span>
+        </div>
         <div class="top-right-controls mr442TopActions">
-          <button type="button" class="mr442NextButton" id="mr442TreeNext" aria-label="Passa agli esercizi di Impara il tempo" title="Vai agli esercizi">❯</button>
+          <button type="button" class="reset-btn mr443TreeControl" id="mr443TreeReset" aria-label="Ricomincia l'albero dalla semibreve" title="Ricomincia dalla semibreve">↺</button>
+          <button type="button" class="reset-btn mr443TreeControl" id="mr443TreeRests" aria-label="Mostra le pause musicali" aria-pressed="false" title="Alterna figure e pause"><span class="mr443SwitchNote" aria-hidden="true">&#xe1d5;</span><span class="mr443SwitchArrow" aria-hidden="true">⇄</span><span class="mr443SwitchRest" aria-hidden="true">&#xe4e5;</span></button>
+          <button type="button" class="mr442NextButton mr443TreeControl" id="mr442TreeNext" aria-label="Passa agli esercizi di Impara il tempo" title="Vai agli esercizi">❯</button>
         </div>
       </div>
     </div>
@@ -18894,7 +18899,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.442";
+  const PAGE_BUILD = "2.443";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -28540,7 +28545,7 @@ body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
  max-height:none!important;transform:translateX(-50%)!important;z-index:1200!important;
  clip-path:none!important;pointer-events:auto!important;
 }
-/* Build 2.442: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
+/* Build 2.443: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
    subito a destra del tasto Home, quando quella pagina lo prevede. */
 #mr410MimoFloatingToggle{
  position:relative!important;
@@ -28566,6 +28571,15 @@ body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
 }
 .page-container .top-row > .top-left-controls > #mr410MimoFloatingToggle,
 #homeScreen .top-row > .top-left-controls > #mr410MimoFloatingToggle{order:2!important;}
+
+/* 2.443 — Home 2x3: il vero pulsante Mìmo torna in basso a sinistra. */
+#homeScreen .home-container > #mr410MimoFloatingToggle.mr410-home-toggle{
+ position:absolute!important;left:max(12px,env(safe-area-inset-left,0px))!important;
+ right:auto!important;top:auto!important;
+ bottom:max(12px,env(safe-area-inset-bottom,0px))!important;
+ z-index:33!important;display:inline-flex!important;visibility:visible!important;
+ width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;
+}
 /* Recording dots: fixed in the content area BELOW the top bar, never in its title. */
 #scorePlayerPage #scoreCountInDisplay:not([hidden]){
  display:flex!important;position:fixed!important;z-index:2100!important;
@@ -28611,7 +28625,7 @@ function topBarForToggle(){
  const body=document.body;
  if(body.classList.contains('mr353-room-open')||body.classList.contains('mr357-lab-open'))return null;
  if(isShown(document.getElementById('introScreen')))return null;
- const surface=homeVisible()||activePage();
+ const surface=activePage();
  return surface?.querySelector('.top-row .top-left-controls')||null;
 }
 function placeFloatingToggle(){
@@ -28620,12 +28634,20 @@ function placeFloatingToggle(){
  document.querySelectorAll('.top-row .top-left-controls.mr410-has-mimo-toggle').forEach(el=>{if(el!==floating.parentNode)el.classList.remove('mr410-has-mimo-toggle');});
  const host=topBarForToggle();
  if(!host){
-  host?.classList.remove?.('mr410-has-mimo-toggle');
-  if(floating.parentNode!==document.body)document.body.appendChild(floating);
-  floating.hidden=true;
-  floating.classList.remove('mr410-toggle-visible');
+  const home=homeVisible();
+  const homeContainer=home?.querySelector('.home-container');
+  if(homeContainer){
+   if(floating.parentNode!==homeContainer)homeContainer.appendChild(floating);
+   floating.classList.add('mr410-home-toggle','mr410-toggle-visible');
+   floating.hidden=false;
+  }else{
+   if(floating.parentNode!==document.body)document.body.appendChild(floating);
+   floating.hidden=true;
+   floating.classList.remove('mr410-toggle-visible','mr410-home-toggle');
+  }
   return;
  }
+ floating.classList.remove('mr410-home-toggle');
  host.classList.add('mr410-has-mimo-toggle');
  const homeButton=Array.from(host.querySelectorAll('button')).find(btn=>btn!==floating&&(
   btn.classList.contains('menu-btn')||/home/i.test(btn.id||'')||/(torna alla home|home)/i.test(btn.getAttribute('aria-label')||'')
@@ -29293,30 +29315,44 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 #tempoTreePage .mr442TreeApp{display:flex!important;flex-direction:column!important;min-width:0!important;
   width:100%!important;max-width:none!important;height:100%!important;min-height:0!important;
   padding:0!important;margin:0!important;background:linear-gradient(155deg,#f9fcff 0%,#fff7f3 60%,#f6f0ff 100%)!important;}
+/* 2.443: stessa top bar degli altri livelli, stessi pulsanti e icone. */
 #tempoTreePage .mr442TopPanel{position:relative!important;flex:0 0 auto!important;margin:0!important;
   padding:0!important;width:100%!important;height:auto!important;min-height:0!important;z-index:4!important;}
-#tempoTreePage .mr442TopRow{display:grid!important;grid-template-columns:minmax(100px,1fr) minmax(90px,2fr) minmax(60px,1fr)!important;
-  gap:8px!important;align-items:center!important;min-height:66px!important;height:auto!important;
-  padding:max(9px,env(safe-area-inset-top,0px)) max(14px,env(safe-area-inset-right,0px)) 8px max(14px,env(safe-area-inset-left,0px))!important;
-  box-sizing:border-box!important;background:rgba(255,255,255,.90)!important;border-bottom:2px solid #e5d4f7!important;
-  box-shadow:0 3px 12px #6e51a01a!important;}
+#tempoTreePage .mr442TopRow{display:grid!important;grid-template-columns:max-content minmax(0,1fr) max-content!important;
+  gap:clamp(5px,1vw,14px)!important;align-items:center!important;min-height:66px!important;height:auto!important;
+  padding:max(8px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px))!important;
+  box-sizing:border-box!important;background:rgba(255,255,255,.95)!important;border-bottom:2px solid #e5d4f7!important;
+  box-shadow:0 3px 12px #6e51a01a!important;--mr-topbar-control-h:48px;}
 #tempoTreePage .mr442TopRow .top-left-controls{display:flex!important;align-items:center!important;
-  flex-wrap:nowrap!important;gap:7px!important;min-width:0!important;max-width:none!important;overflow:visible!important;}
-#tempoTreePage .mr442TopActions{display:flex!important;justify-content:flex-end!important;align-items:center!important;min-width:0!important;}
-#tempoTreePage .mr442TopSelection{min-width:0!important;width:100%!important;text-align:center!important;
-  font:900 clamp(17px,2.7vw,30px)/1.13 system-ui,-apple-system,sans-serif!important;
-  letter-spacing:.035em;color:#6740aa;overflow-wrap:break-word;}
-#tempoTreePage .mr442TopSelection:not(:empty){animation:mr442Label .2s ease-out;}
-#tempoTreePage #mr442TreeHome,#tempoTreePage #mr442TreeNext,#learnTempoPage #mr442ReturnTree{
+  flex-wrap:nowrap!important;gap:6px!important;min-width:0!important;max-width:none!important;overflow:visible!important;}
+#tempoTreePage .mr442TopActions{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:6px!important;min-width:0!important;}
+#tempoTreePage .mr442TopSelection{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-items:center!important;
+  gap:3px clamp(5px,1.3vw,15px)!important;min-width:0!important;width:100%!important;text-align:center!important;
+  font:900 clamp(13px,1.6vw,23px)/1.1 system-ui,-apple-system,sans-serif!important;letter-spacing:.015em!important;overflow-wrap:break-word;}
+#tempoTreePage .mr443DurationName:empty{display:none!important;}
+#tempoTreePage .mr443DurationName{min-width:0;max-width:100%;font-weight:900;overflow-wrap:anywhere;}
+#tempoTreePage .mr442TopSelection:has(.mr443DurationName:not(:empty)){animation:mr442Label .2s ease-out;}
+#tempoTreePage #mr442TreeHome,#tempoTreePage #mr442TreeNext,#tempoTreePage .mr443TreeControl,#learnTempoPage #mr442ReturnTree{
   position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
   flex:0 0 var(--mr-topbar-control-h,48px)!important;
   width:var(--mr-topbar-control-h,48px)!important;height:var(--mr-topbar-control-h,48px)!important;
   min-width:var(--mr-topbar-control-h,48px)!important;min-height:var(--mr-topbar-control-h,48px)!important;
-  padding:0!important;margin:0!important;border-radius:12px!important;border:2px solid #a78bfa!important;
+  padding:0!important;margin:0!important;border-radius:13px!important;border:2px solid #a78bfa!important;
   background:#f4ecff!important;color:#6342a6!important;box-shadow:0 2px 5px #4f328a22!important;
   font:800 24px/1 system-ui,-apple-system,sans-serif!important;cursor:pointer;touch-action:manipulation;}
 #tempoTreePage #mr442TreeHome::before,#tempoTreePage #mr442TreeHome::after{content:none!important;}
 #tempoTreePage #mr442TreeNext{background:#e9fce9!important;border-color:#69c798!important;color:#168660!important;}
+#tempoTreePage #mr443TreeRests{font-size:0!important;gap:0!important;}
+#tempoTreePage #mr443TreeRests .mr443SwitchNote{font:400 25px/1 "MusicRainbow SMuFL",sans-serif;color:#6342a6;}
+#tempoTreePage #mr443TreeRests .mr443SwitchArrow{font:800 13px/1 system-ui,sans-serif;color:#6342a6;}
+#tempoTreePage #mr443TreeRests .mr443SwitchRest{font:400 26px/1 "MusicRainbow SMuFL",sans-serif;color:#6342a6;}
+#tempoTreePage #mr443TreeRests[aria-pressed="true"]{background:#e8f6ef!important;border-color:#5abf89!important;}
+@media(max-width:680px){
+ #tempoTreePage .mr442TopRow{grid-template-columns:minmax(0,1fr) max-content!important;grid-template-rows:auto auto!important;gap:4px!important;padding-left:8px!important;padding-right:8px!important;}
+ #tempoTreePage .mr442TopRow .top-left-controls{grid-column:1!important;grid-row:1!important;}
+ #tempoTreePage .mr442TopActions{grid-column:2!important;grid-row:1!important;}
+ #tempoTreePage .mr442TopSelection{grid-column:1 / -1!important;grid-row:2!important;min-height:23px!important;font-size:clamp(14px,4vw,20px)!important;}
+}
 #tempoTreePage .mr442TreeScroller{position:relative!important;flex:1 1 auto!important;min-height:0!important;width:100%!important;
   overflow:auto!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch;
   touch-action:pan-x pan-y!important;background:transparent!important;}
@@ -29327,11 +29363,12 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 #tempoTreePage #mr442TreeSvg .mr442NoteNode{cursor:pointer;outline:none;}
 #tempoTreePage #mr442TreeSvg .mr442NoteHit{fill:transparent;stroke:none;pointer-events:all;}
 #tempoTreePage #mr442TreeSvg .mr442NoteGlyph{font-family:'MusicRainbow SMuFL',sans-serif;
-  font-style:normal;font-weight:400;font-size:60px;fill:#25324b;stroke:none;pointer-events:none;}
-#tempoTreePage #mr442TreeSvg .mr442NoteNode.mr442Selected .mr442SelectionRing{opacity:1;}
-#tempoTreePage #mr442TreeSvg .mr442SelectionRing{fill:rgba(167,139,250,.15);stroke:#9862e1;
+  font-style:normal;font-weight:400;font-size:60px;fill:#101010!important;stroke:none;pointer-events:none;}
+#tempoTreePage #mr442TreeSvg .mr442NoteNode.mr442Selected .mr442SelectionRing,
+#tempoTreePage #mr442TreeSvg .mr442NoteNode.mr443Generated .mr442SelectionRing{opacity:1;}
+#tempoTreePage #mr442TreeSvg .mr442SelectionRing{fill:var(--mr443-ring-fill,rgba(167,139,250,.15));stroke:var(--mr443-ring-color,#9862e1);
   stroke-width:2.6;stroke-dasharray:4 4;opacity:0;pointer-events:none;}
-#tempoTreePage #mr442TreeSvg .mr442NoteNode:focus-visible .mr442SelectionRing{opacity:1;stroke:#216dce;stroke-width:3.8;}
+#tempoTreePage #mr442TreeSvg .mr442NoteNode:focus-visible .mr442SelectionRing{opacity:1;stroke:var(--mr443-ring-color,#216dce);stroke-width:3.8;}
 #tempoTreePage #mr442TreeSvg .mr442NoteGlyphWrap{pointer-events:none;transform-origin:0 0;}
 #tempoTreePage #mr442TreeSvg .mr442Born .mr442NoteGlyphWrap{animation:mr442Born .56s cubic-bezier(.14,1.3,.31,1) backwards;}
 #tempoTreePage #mr442TreeSvg .mr442BurstParticle{pointer-events:none;animation:mr442Burst .65s ease-out forwards;}
@@ -29339,9 +29376,6 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 @keyframes mr442Born{from{opacity:0;transform:translateY(-36px) scale(.65);}to{opacity:1;transform:translateY(0) scale(1);}}
 @keyframes mr442Burst{0%{opacity:1;transform:translate(0,0) scale(.5);}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2);}}
 @keyframes mr442Label{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:660px){#tempoTreePage .mr442TopRow{grid-template-columns:minmax(102px,1fr) minmax(72px,1.3fr) minmax(52px,1fr)!important;
- gap:4px!important;padding-left:8px!important;padding-right:8px!important;}
- #tempoTreePage .mr442TopSelection{font-size:clamp(15px,4vw,22px)!important;letter-spacing:0!important;}}
 @media(prefers-reduced-motion:reduce){#tempoTreePage .mr442Born .mr442NoteGlyphWrap,
  #tempoTreePage .mr442BurstParticle,#tempoTreePage .mr442TopSelection:not(:empty){animation:none!important;}}
 </style>
@@ -29351,7 +29385,11 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  const scroller=document.getElementById('mr442TreeScroller');
  const svg=document.getElementById('mr442TreeSvg');
  const title=document.getElementById('mr442SelectedName');
- if(!page||!scroller||!svg||!title)return;
+ const parentName=document.getElementById('mr443ParentName');
+ const childName=document.getElementById('mr443ChildName');
+ const resetBtn=document.getElementById('mr443TreeReset');
+ const restBtn=document.getElementById('mr443TreeRests');
+ if(!page||!scroller||!svg||!title||!parentName||!childName||!resetBtn||!restBtn)return;
  const NS='http://www.w3.org/2000/svg';
  const namesByLanguage={
   it:['SEMIBREVE','MINIMA','SEMIMINIMA','CROMA','SEMICROMA','BISCROMA','SEMIBISCROMA'],
@@ -29372,15 +29410,32 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  const flag8=String.fromCodePoint(0xE240);
  const note8=String.fromCodePoint(0xE1D7);
  const noteOffsets=[[-15.42,8.04],[-11.91,8.04],[-12.03,8.40],[-11.91,8.40]];
- const colors=['#fb7185','#f59e0b','#38bdf8','#a78bfa','#34d399','#f9a8d4','#facc15'];
- const nodes=new Map();let currentId='r',births=new Set(),layoutW=700,layoutH=1080,serial=0;
+ // Music Rainbow: durations from red (semibreve) to violet (semibiscroma).
+ const colors=['#e74455','#ec892a','#c5a100','#159962','#258fd3','#5954c9','#9750ca'];
+ const restGlyphs=[0xE4E3,0xE4E4,0xE4E5,0xE4E6,0xE4E7,0xE4E8,0xE4E9];
+ const restOffsets=[[-10,12],[-10,12],[-11,12],[-10,11],[-12,12],[-16,11],[-17,9]];
+ let showRests=false;
+ const nodes=new Map();let currentId='',births=new Set(),layoutW=700,layoutH=1080,serial=0;
+ function showNames(node){
+  const i=node?.level;
+  const caption=(level)=>showRests?(String(document.documentElement.lang||'it').slice(0,2)==='it'?'PAUSA DI ':'REST: ')+names()[level]:names()[level];
+  parentName.textContent=i===undefined?'':caption(i);
+  parentName.style.color=i===undefined?'':colors[i];
+  childName.textContent=i===undefined||i>=6?'':caption(i+1);
+  childName.style.color=i===undefined||i>=6?'':colors[i+1];
+ }
+ function updateRestsButton(){
+  restBtn.setAttribute('aria-pressed',String(showRests));
+  restBtn.setAttribute('aria-label',showRests?'Mostra le figure musicali':'Mostra le pause musicali');
+  restBtn.title=showRests?'Passa alle note':'Passa alle pause';
+ }
  function E(tag,attrs={},text=''){
   const e=document.createElementNS(NS,tag);
   for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));
   if(text)e.textContent=text;
   return e;
  }
- function init(){nodes.clear();serial=0;currentId='';births.clear();nodes.set('r',{id:'r',level:0,children:null,x:0,y:0});title.textContent='';}
+ function init(){nodes.clear();serial=0;currentId='';births.clear();nodes.set('r',{id:'r',level:0,children:null,x:0,y:0});showNames(null);}
  function calcLayout(){
   let leaves=0;
   function width(n){if(!n.children){n.leafCount=1;return 1;}n.leafCount=width(nodes.get(n.children[0]))+width(nodes.get(n.children[1]));return n.leafCount;}
@@ -29400,13 +29455,20 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  }
  function addDuration(g,level){
   const wrap=E('g',{'class':'mr442NoteGlyphWrap'});
-  const code=level<=3?String.fromCodePoint(glyphs[level]):note8;
-  const [dx,dy]=level<=3?noteOffsets[level]:noteOffsets[3];
-  wrap.appendChild(E('text',{x:dx,y:dy,'class':'mr442NoteGlyph','aria-hidden':'true'},code));
-  if(level>=4){
-   // Additional SMuFL flag8thUp glyphs make 2, 3, or 4-flag figures.
-   for(let i=1;i<=level-3;i++){
-    wrap.appendChild(E('text',{x:9.1,y:8.4+i*10.2,'class':'mr442NoteGlyph','aria-hidden':'true'},flag8));
+  if(showRests){
+   // Complete SMuFL U+E4E3…U+E4E9 rest glyphs from original Noto Music
+   // outlines (same source as existing app font). No hand-drawn approximations.
+   const code=String.fromCodePoint(restGlyphs[level]);
+   const [dx,dy]=restOffsets[level];
+   wrap.appendChild(E('text',{x:dx,y:dy,'class':'mr442NoteGlyph','aria-hidden':'true'},code));
+  }else{
+   const code=level<=3?String.fromCodePoint(glyphs[level]):note8;
+   const [dx,dy]=level<=3?noteOffsets[level]:noteOffsets[3];
+   wrap.appendChild(E('text',{x:dx,y:dy,'class':'mr442NoteGlyph','aria-hidden':'true'},code));
+   if(level>=4){
+    for(let i=1;i<=level-3;i++){
+     wrap.appendChild(E('text',{x:9.1,y:8.4+i*10.2,'class':'mr442NoteGlyph','aria-hidden':'true'},flag8));
+    }
    }
   }
   g.appendChild(wrap);
@@ -29429,11 +29491,16 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    }
   }
   for(const node of nodes.values()){
+   const selected=nodes.get(currentId);
+   const recentlyGenerated=!!(selected?.children&&selected.children.includes(node.id));
    const g=E('g',{transform:`translate(${node.x},${node.y})`,
-    'class':'mr442NoteNode'+(node.id===currentId?' mr442Selected':'')+(animateIds.includes(node.id)?' mr442Born':''),
+    'class':'mr442NoteNode'+(node.id===currentId?' mr442Selected':'')+(recentlyGenerated?' mr443Generated':'')+(animateIds.includes(node.id)?' mr442Born':''),
     'role':'button','tabindex':'0','data-node-id':node.id,
-    'aria-label':names()[node.level]+(node.level<6?' — tocca per generare due '+names()[node.level+1].toLowerCase():' — figura finale'),
+    'aria-label':(showRests?'Pausa: ':'')+names()[node.level]+(node.level<6?' — tocca per generare due '+names()[node.level+1].toLowerCase():' — figura finale'),
     'aria-pressed':node.id===currentId?'true':'false'});
+   g.style.setProperty('--mr443-ring-color',colors[node.level]);
+   // Colored backgrounds are restricted to the selection, never the SMuFL glyph.
+   g.style.setProperty('--mr443-ring-fill',colors[node.level]+'19');
    g.appendChild(E('rect',{x:-37,y:-63,width:74,height:90,rx:15,'class':'mr442SelectionRing'}));
    addDuration(g,node.level);
    g.appendChild(E('rect',{x:-37,y:-64,width:74,height:90,rx:14,'class':'mr442NoteHit'}));
@@ -29466,7 +29533,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  }
  function select(id){
   const node=nodes.get(id);if(!node)return;
-  currentId=id;title.textContent=names()[node.level];
+  currentId=id;showNames(node);
   // An already expanded parent is just selected again; nothing is removed or duplicated.
   if(node.children||node.level===6){render();return;}
   const a=`${id}L`,b=`${id}R`;
@@ -29485,13 +29552,18 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  }
  let raf=false;
  function fit(){if(raf)return;raf=true;requestAnimationFrame(()=>{raf=false;if(page.getClientRects().length&&getComputedStyle(page).display!=='none')render();});}
+ resetBtn.addEventListener('click',()=>open(true));
+ restBtn.addEventListener('click',()=>{showRests=!showRests;updateRestsButton();showNames(nodes.get(currentId));render();});
+ updateRestsButton();
  window.addEventListener('resize',fit,{passive:true});
  window.addEventListener('orientationchange',()=>{fit();setTimeout(fit,200);},{passive:true});
  window.visualViewport?.addEventListener('resize',fit,{passive:true});
  init();
- window.MRTempoTree442={open,select,inspect:()=>({nodeCount:nodes.size,selected:currentId,
-  levels:Array.from(nodes.values()).reduce((a,n)=>(a[n.level]=(a[n.level]||0)+1,a),{}),
-  allLabelsInTopbar:!svg.querySelector('.mr442NodeText')})};
+ window.MRTempoTree442={open,select,reset:()=>open(true),toggleRests:()=>restBtn.click(),
+  inspect:()=>({nodeCount:nodes.size,selected:currentId,rests:showRests,
+   parent:parentName.textContent,child:childName.textContent,
+   levels:Array.from(nodes.values()).reduce((a,n)=>(a[n.level]=(a[n.level]||0)+1,a),{}),
+   allLabelsInTopbar:!svg.querySelector('.mr442NodeText')})};
 })();
 </script>
 </body>

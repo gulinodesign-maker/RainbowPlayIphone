@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.443</div>
+    <div class="intro-version-label">Build 2.444</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.443</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.444</div>
   </div>
 </div>
 
@@ -6292,6 +6292,10 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <button type="button" id="homeLearnTempoBtn" class="learn-select-choice learn-select-tempo learn-select-orange">
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
         <span class="learn-select-choice-text">Impara il tempo</span>
+      </button>
+      <button type="button" id="homeLearnDurationsBtn" class="learn-select-choice learn-select-durations learn-select-green" aria-label="L'albero delle durate: pizza e note">
+        <span class="learn-select-choice-icon" aria-hidden="true">🍕</span>
+        <span class="learn-select-choice-text">Le durate musicali</span>
       </button>
       <button type="button" id="homeLearnHandsBtn" class="learn-select-choice learn-select-hands learn-select-yellow" aria-label="Impara le due mani">
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
@@ -7517,6 +7521,50 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
+<!-- Build 2.444 — le durate musicali: due pizze interattive, prima dell'albero. -->
+<div id="mr444Pizza8Page" class="page-container mr444DurationPage" style="display:none" aria-label="Le durate musicali, pizza in otto parti">
+ <div class="app mr444DurationApp">
+  <div class="top-panel"><div class="top-row mr444DurationTopRow">
+   <div class="top-left-controls"><button type="button" class="menu-btn" id="mr444Pizza8Home" aria-label="Torna alla Home">🏠</button></div>
+   <div class="mr444DurationBarResult" id="mr444Pizza8BarResult" role="status" aria-live="polite">LA PIZZA DEGLI OTTAVI</div>
+   <div class="top-right-controls">
+    <button type="button" class="reset-btn mr444StandardControl" id="mr444Pizza8Reset" aria-label="Azzera gli spicchi selezionati" title="Reset">↺</button>
+    <button type="button" class="reset-btn mr444StandardControl mr444Next" id="mr444Pizza8Next" aria-label="Passa alla pizza in 64 parti" title="Pizza in 64 parti">❯</button>
+   </div>
+  </div></div>
+  <main class="mr444PizzaStage">
+   <div class="mr444PizzaArea"><div class="mr444PizzaBoard">
+    <div class="mr444PizzaWheel" id="mr444PizzaWheel8" role="group" aria-label="Pizza suddivisa in otto spicchi selezionabili" data-parts="8">
+     <img src="Assets/pizza-durates-444.png" alt="Pizza vista dall'alto" draggable="false" />
+     <svg viewBox="0 0 1000 1000" class="mr444PizzaSlices" id="mr444PizzaSlices8" aria-hidden="true"></svg>
+    </div>
+   </div></div>
+   <div class="mr444PizzaReading" id="mr444PizzaReading8"><div class="mr444PizzaCount" id="mr444PizzaCount8">0 / 8</div><div class="mr444PizzaNotes" id="mr444PizzaNotes8" aria-live="polite"></div><p class="mr444PizzaInstruction">Tocca gli spicchi della pizza per scoprire le durate.</p></div>
+  </main>
+ </div>
+</div>
+<div id="mr444Pizza64Page" class="page-container mr444DurationPage" style="display:none" aria-label="Le durate musicali, pizza in sessantaquattro parti">
+ <div class="app mr444DurationApp">
+  <div class="top-panel"><div class="top-row mr444DurationTopRow">
+   <div class="top-left-controls"><button type="button" class="menu-btn" id="mr444Pizza64Home" aria-label="Torna alla Home">🏠</button></div>
+   <div class="mr444DurationBarResult" id="mr444Pizza64BarResult" role="status" aria-live="polite">LA PIZZA DEI SESSANTAQUATTRESIMI</div>
+   <div class="top-right-controls">
+    <button type="button" class="reset-btn mr444StandardControl mr444Prev" id="mr444Pizza64Prev" aria-label="Torna alla pizza in otto parti" title="Pizza in otto parti">❮</button>
+    <button type="button" class="reset-btn mr444StandardControl" id="mr444Pizza64Reset" aria-label="Azzera gli spicchi selezionati" title="Reset">↺</button>
+    <button type="button" class="reset-btn mr444StandardControl mr444Next" id="mr444Pizza64Next" aria-label="Passa all'albero delle durate" title="Albero delle durate">❯</button>
+   </div>
+  </div></div>
+  <main class="mr444PizzaStage">
+   <div class="mr444PizzaArea"><div class="mr444PizzaBoard">
+    <div class="mr444PizzaWheel" id="mr444PizzaWheel64" role="group" aria-label="Pizza suddivisa in 64 spicchi selezionabili" data-parts="64">
+     <img src="Assets/pizza-durates-444.png" alt="Pizza vista dall'alto" draggable="false" />
+     <svg viewBox="0 0 1000 1000" class="mr444PizzaSlices" id="mr444PizzaSlices64" aria-hidden="true"></svg>
+    </div>
+   </div></div>
+   <div class="mr444PizzaReading" id="mr444PizzaReading64"><div class="mr444PizzaCount" id="mr444PizzaCount64">0 / 64</div><div class="mr444PizzaNotes" id="mr444PizzaNotes64" aria-live="polite"></div><p class="mr444PizzaInstruction">Uno spicchio vale una semibiscroma. Somma gli spicchi per formare le figure puntate.</p></div>
+  </main>
+ </div>
+</div>
 <!-- ===========================
      IMPARA IL TEMPO — ALBERO DELLE FIGURE (2.442)
      =========================== -->
@@ -7525,16 +7573,17 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     <div class="top-panel mr442TopPanel">
       <div class="top-row mr442TopRow">
         <div class="top-left-controls">
-          <button type="button" class="menu-btn" id="mr442TreeHome" aria-label="Torna alla Home" title="Home">⌂</button>
+          <button type="button" class="menu-btn" id="mr442TreeHome" aria-label="Torna alla Home" title="Home">🏠</button>
         </div>
         <div class="mr442TopSelection" id="mr442SelectedName" role="status" aria-live="polite" aria-atomic="true">
-          <span id="mr443ParentName" class="mr443DurationName"></span>
-          <span id="mr443ChildName" class="mr443DurationName"></span>
+          <span class="mr444TreeNameLine"><span id="mr443ParentName" class="mr443DurationName"></span><span id="mr444ParentFraction" class="mr444DurationFraction"></span></span>
+          <span class="mr444TreeNameLine"><span id="mr443ChildName" class="mr443DurationName"></span><span id="mr444ChildFraction" class="mr444DurationFraction"></span></span>
         </div>
         <div class="top-right-controls mr442TopActions">
+          <button type="button" class="reset-btn mr443TreeControl mr444Prev" id="mr444TreePrev" aria-label="Torna alla pizza in 64 parti" title="Pizza in 64 parti">❮</button>
           <button type="button" class="reset-btn mr443TreeControl" id="mr443TreeReset" aria-label="Ricomincia l'albero dalla semibreve" title="Ricomincia dalla semibreve">↺</button>
           <button type="button" class="reset-btn mr443TreeControl" id="mr443TreeRests" aria-label="Mostra le pause musicali" aria-pressed="false" title="Alterna figure e pause"><span class="mr443SwitchNote" aria-hidden="true">&#xe1d5;</span><span class="mr443SwitchArrow" aria-hidden="true">⇄</span><span class="mr443SwitchRest" aria-hidden="true">&#xe4e5;</span></button>
-          <button type="button" class="mr442NextButton mr443TreeControl" id="mr442TreeNext" aria-label="Passa agli esercizi di Impara il tempo" title="Vai agli esercizi">❯</button>
+
         </div>
       </div>
     </div>
@@ -7553,7 +7602,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <div class="top-row">
         <div class="top-left-controls">
           <button class="menu-btn" id="menuBtnTempo" aria-label="Menu">⌂</button>
-          <button type="button" class="mr442BackButton" id="mr442ReturnTree" aria-label="Torna all'albero delle figure" title="Torna all'albero">🌳</button>
+
           <button class="reset-btn" id="resetBtnTempo" aria-label="Reset">↺</button>
           
         
@@ -18440,6 +18489,10 @@ function hideAllPages() {
     if (learnTempoPage) learnTempoPage.style.display = "none";
     const tempoTreePage=document.getElementById('tempoTreePage');
     if(tempoTreePage) tempoTreePage.style.display = "none";
+    for(const id of ['mr444Pizza8Page','mr444Pizza64Page']){
+      const durationPage=document.getElementById(id);
+      if(durationPage)durationPage.style.display='none';
+    }
     if(window.MRHands)window.MRHands.close();
   }
 
@@ -18544,12 +18597,26 @@ function hideAllPages() {
     const tree=document.getElementById('tempoTreePage');
     if(tree){tree.style.display='flex'; window.MRTempoTree442?.open(reset);}
   }
-  function showLearnTempo() {showLearnTempoTree(true);}
+  function showLearnDurationPizza(parts=8){
+    hideAllPages();homeScreen.style.display='none';
+    const id=parts===64?'mr444Pizza64Page':'mr444Pizza8Page';
+    const pie=document.getElementById(id);
+    if(pie){pie.style.display='flex';window.MRPizza444?.open(parts);}
+  }
+  function showLearnTempo(){showLearnTempoExercises();}
   window.MusicRainbowOpenTempoExercisesMR=showLearnTempoExercises;
   window.MusicRainbowOpenTempoTreeMR=showLearnTempoTree;
+  window.MusicRainbowOpenDurationsMR=showLearnDurationPizza;
   document.getElementById('mr442TreeHome')?.addEventListener('click',showHome);
-  document.getElementById('mr442TreeNext')?.addEventListener('click',showLearnTempoExercises);
-  document.getElementById('mr442ReturnTree')?.addEventListener('click',()=>showLearnTempoTree(false));
+  document.getElementById('mr444TreePrev')?.addEventListener('click',()=>showLearnDurationPizza(64));
+  document.getElementById('mr444Pizza8Home')?.addEventListener('click',showHome);
+  document.getElementById('mr444Pizza64Home')?.addEventListener('click',showHome);
+  document.getElementById('mr444Pizza8Next')?.addEventListener('click',()=>showLearnDurationPizza(64));
+  document.getElementById('mr444Pizza64Prev')?.addEventListener('click',()=>showLearnDurationPizza(8));
+  document.getElementById('mr444Pizza64Next')?.addEventListener('click',()=>showLearnTempoTree(false));
+  document.getElementById('homeLearnDurationsBtn')?.addEventListener('click',()=>{
+    document.getElementById('learnSelectOverlay')?.classList.remove('active');showLearnDurationPizza(8);
+  });
 
   function showSettingsPage() {
     hideAllPages();
@@ -18578,6 +18645,10 @@ function hideAllPages() {
     if (learnTempoPage) learnTempoPage.style.display = "none";
     const tempoTreePage=document.getElementById('tempoTreePage');
     if(tempoTreePage) tempoTreePage.style.display = "none";
+    for(const id of ['mr444Pizza8Page','mr444Pizza64Page']){
+      const durationPage=document.getElementById(id);
+      if(durationPage)durationPage.style.display='none';
+    }
     trophyPageEl.style.display = "flex";
     if (trophyContentEl) {
       trophyContentEl.style.display = "none";
@@ -18899,7 +18970,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.443";
+  const PAGE_BUILD = "2.444";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -29423,6 +29494,9 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   parentName.style.color=i===undefined?'':colors[i];
   childName.textContent=i===undefined||i>=6?'':caption(i+1);
   childName.style.color=i===undefined||i>=6?'':colors[i+1];
+  const pf=document.getElementById('mr444ParentFraction'),cf=document.getElementById('mr444ChildFraction');
+  if(pf){pf.textContent=i===undefined?'':(['4/4','2/4','1/4','1/8','1/16','1/32','1/64'][i]);pf.style.color=i===undefined?'':colors[i];}
+  if(cf){cf.textContent=i===undefined||i>=6?'':(['4/4','2/4','1/4','1/8','1/16','1/32','1/64'][i+1]);cf.style.color=i===undefined||i>=6?'':colors[i+1];}
  }
  function updateRestsButton(){
   restBtn.setAttribute('aria-pressed',String(showRests));
@@ -29565,6 +29639,282 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    levels:Array.from(nodes.values()).reduce((a,n)=>(a[n.level]=(a[n.level]||0)+1,a),{}),
    allLabelsInTopbar:!svg.querySelector('.mr442NodeText')})};
 })();
+</script>
+
+<style id="mr444-duration-layout-css">
+/* Build 2.444: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
+#tempoTreePage .mr442TopPanel,.mr444DurationPage .top-panel{
+  position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;
+  min-height:0!important;margin:0!important;padding:6px 14px 0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;z-index:40!important;
+  box-sizing:border-box!important;
+}
+#tempoTreePage .mr442TopRow,.mr444DurationPage .top-row{
+  position:relative!important;display:grid!important;
+  grid-template-columns:max-content minmax(0,1fr) max-content!important;
+  grid-template-rows:auto!important;
+  align-items:center!important;column-gap:8px!important;row-gap:3px!important;
+  width:calc(100% - 20px)!important;max-width:none!important;
+  height:auto!important;min-height:0!important;
+  margin:10px auto 10px!important;padding:10px 12px!important;
+  border:0!important;border-radius:14px!important;
+  background:rgba(255,255,255,.86)!important;
+  box-shadow:0 3px 10px rgba(15,23,42,.08)!important;
+  box-sizing:border-box!important;
+  --mr-topbar-control-h:48px!important;
+}
+#tempoTreePage .mr442TopRow .top-left-controls,.mr444DurationPage .top-row .top-left-controls{
+  display:flex!important;grid-row:auto!important;grid-column:auto!important;
+  align-items:center!important;justify-self:start!important;gap:6px!important;
+  width:auto!important;max-width:none!important;margin:0!important;overflow:visible!important;
+}
+#tempoTreePage .mr442TopActions,.mr444DurationPage .top-right-controls{
+  display:flex!important;grid-row:auto!important;grid-column:auto!important;
+  align-items:center!important;justify-self:end!important;gap:6px!important;
+  width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;overflow:visible!important;
+}
+#tempoTreePage .mr442TopSelection,.mr444DurationPage .mr444DurationBarResult{
+  animation:none!important;
+  grid-row:auto!important;grid-column:auto!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;gap:3px!important;
+  text-align:center!important;min-width:0!important;margin:0!important;padding:0!important;
+  font:850 clamp(12px,1.5vw,19px)/1.16 system-ui,-apple-system,sans-serif!important;
+  letter-spacing:.01em!important;overflow-wrap:normal!important;
+}
+#tempoTreePage .mr444TreeNameLine{display:flex!important;align-items:center!important;justify-content:center!important;
+  flex-wrap:nowrap!important;gap:9px!important;min-width:0!important;min-height:18px!important;white-space:nowrap!important;}
+#tempoTreePage .mr444TreeNameLine:has(.mr443DurationName:empty){display:none!important;}
+#tempoTreePage .mr443DurationName{font-weight:850!important;overflow-wrap:normal!important;white-space:nowrap!important;}
+#tempoTreePage .mr444DurationFraction{font-weight:850!important;white-space:nowrap!important;opacity:.96!important;}
+#tempoTreePage .mr442TreeApp{background:linear-gradient(155deg,#f9fcff 0%,#fff7f3 60%,#f6f0ff 100%)!important;}
+#tempoTreePage,#mr444Pizza8Page,#mr444Pizza64Page{background:transparent!important;}
+#tempoTreePage #mr442TreeHome,#tempoTreePage .mr443TreeControl,
+.mr444DurationPage .mr444StandardControl,.mr444DurationPage .top-row .menu-btn{
+  position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 var(--mr-topbar-control-h,48px)!important;
+  width:var(--mr-topbar-control-h,48px)!important;min-width:var(--mr-topbar-control-h,48px)!important;
+  max-width:var(--mr-topbar-control-h,48px)!important;
+  height:var(--mr-topbar-control-h,48px)!important;min-height:var(--mr-topbar-control-h,48px)!important;
+  max-height:var(--mr-topbar-control-h,48px)!important;
+  border:2px solid #a78bfa!important;border-radius:13px!important;
+  padding:0!important;margin:0!important;box-sizing:border-box!important;
+  background:#f4ecff!important;color:#6342a6!important;
+  font:800 24px/1 system-ui,-apple-system,sans-serif!important;
+  box-shadow:0 2px 5px #4f328a22!important;cursor:pointer!important;
+}
+#tempoTreePage .mr444Prev,.mr444DurationPage .mr444Prev{color:#9d4d90!important;border-color:#e39ac4!important;background:#fff0f6!important;}
+.mr444DurationPage .mr444Next{color:#168660!important;border-color:#69c798!important;background:#e9fce9!important;}
+#tempoTreePage .mr442TopRow .top-left-controls #mr410MimoFloatingToggle,
+.mr444DurationPage .top-row .top-left-controls #mr410MimoFloatingToggle{
+  margin:0!important;order:0!important;
+}
+#tempoTreePage #mr442TreeHome::before,#tempoTreePage #mr442TreeHome::after{content:none!important;}
+.mr444DurationPage{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;overflow:hidden!important;box-sizing:border-box!important;}
+.mr444DurationPage .mr444DurationApp{display:flex!important;flex-direction:column!important;width:100%!important;max-width:none!important;
+  height:100%!important;min-height:0!important;padding:0!important;margin:0!important;
+  background:linear-gradient(155deg,#f9fcff 0%,#fff7f3 60%,#f6f0ff 100%)!important;}
+.mr444DurationPage .mr444DurationBarResult{font-size:clamp(11px,1.45vw,19px)!important;font-weight:900!important;white-space:nowrap!important;}
+.mr444DurationPage .mr444PizzaStage{
+  flex:1 1 0!important;min-height:0!important;min-width:0!important;
+  width:100%!important;display:flex!important;flex-direction:row!important;
+  align-items:center!important;justify-content:center!important;gap:clamp(10px,2vw,36px)!important;
+  padding:clamp(8px,2vmin,24px)!important;box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.mr444PizzaArea{display:flex;align-items:center;justify-content:center;flex:1 1 auto;min-width:0;min-height:0;height:100%;}
+.mr444PizzaBoard{position:relative;display:flex;align-items:center;justify-content:center;
+  width:min(100%,calc(100dvh - 160px),760px)!important;max-height:100%;aspect-ratio:1!important;
+  background:radial-gradient(ellipse at 50% 43%,#fff8e9 0%,#ecd4aa 59%,#c6935f 79%,#86583b 100%);
+  border:clamp(6px,1.3vmin,14px) solid #bd8358;border-radius:50%;
+  box-shadow:inset 0 0 0 6px #e6b884,inset 0 0 18px #fff5d9,
+             0 7px 0 #8a5536,0 18px 28px #72472945;
+  padding:clamp(5px,1vw,13px);box-sizing:border-box!important;
+}
+.mr444PizzaWheel{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:#e99e46;box-shadow:0 3px 7px rgba(86,35,11,.5);
+  touch-action:manipulation;-webkit-user-select:none;user-select:none;cursor:pointer;
+}
+.mr444PizzaWheel img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;-webkit-user-drag:none;}
+.mr444PizzaSlices{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;}
+.mr444PizzaSlices .mr444SliceTint{stroke:rgba(251,246,221,.37);stroke-width:1.1;transition:fill .18s ease;}
+.mr444PizzaSlices .mr444SliceTint.is-on{stroke:#fff8cc;stroke-width:2.8;filter:drop-shadow(0 0 7px rgba(255,252,177,.65));}
+.mr444PizzaSlices .mr444CutLine{stroke:#713c22;stroke-width:3;opacity:.31;pointer-events:none;}
+.mr444PizzaSlices[data-parts="64"] .mr444SliceTint{stroke-width:.35;}
+.mr444PizzaSlices[data-parts="64"] .mr444CutLine{stroke-width:1.1;opacity:.18;}
+.mr444PizzaReading{flex:0 1 clamp(190px,25vw,360px);min-width:0;max-height:100%;overflow:auto;
+  text-align:center;padding:clamp(12px,2vmin,28px);border-radius:22px;
+  background:rgba(255,255,255,.87);border:2px solid #ead8f4;
+  box-shadow:0 6px 24px rgba(113,83,149,.13);box-sizing:border-box;}
+.mr444PizzaCount{font:850 clamp(22px,3.3vw,42px)/1.2 system-ui,sans-serif;color:#554172;white-space:nowrap;}
+.mr444PizzaNotes{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 10px;
+  min-height:106px;padding:6px 0;}
+.mr444PizzaNotation{display:flex;flex-direction:column;align-items:center;gap:2px;max-width:160px;}
+.mr444PizzaNotation svg{width:clamp(50px,7vw,92px);height:clamp(65px,10vw,110px);display:block;overflow:visible;}
+.mr444PizzaNotation text.mr444SMuFLGlyph{font:400 63px/1 'MusicRainbow SMuFL',sans-serif;fill:#080808!important;stroke:none!important;}
+.mr444PizzaNotation .mr444Dot{fill:#080808!important;}
+.mr444PizzaNotation .mr444NoteLabel{font:800 clamp(10px,1.3vw,14px)/1.2 system-ui,sans-serif;white-space:normal;}
+.mr444PizzaInstruction{font:650 clamp(12px,1.5vw,17px)/1.4 system-ui,sans-serif;color:#665579;margin:3px 0 0;}
+.mr444DurationPage .mr444PizzaNotes:empty:before{content:'♪';font:400 56px/1 'MusicRainbow SMuFL',sans-serif;color:#d3c6de;}
+@media(max-width:740px),(orientation:portrait){
+ #tempoTreePage .mr442TopRow,.mr444DurationPage .top-row{
+  grid-template-columns:minmax(0,1fr) max-content!important;grid-template-rows:auto auto!important;
+  padding:7px 8px!important;margin:7px auto 7px!important;column-gap:5px!important;row-gap:3px!important;
+  --mr-topbar-control-h:clamp(35px,9vw,44px)!important;
+ }
+ #tempoTreePage .mr442TopRow .top-left-controls,.mr444DurationPage .top-row .top-left-controls{grid-column:1!important;grid-row:1!important;}
+ #tempoTreePage .mr442TopActions,.mr444DurationPage .top-right-controls{grid-column:2!important;grid-row:1!important;gap:4px!important;}
+ #tempoTreePage .mr442TopSelection,.mr444DurationPage .mr444DurationBarResult{
+  grid-column:1/-1!important;grid-row:2!important;min-height:21px!important;
+  font-size:clamp(12px,3.4vw,18px)!important;}
+ #tempoTreePage .mr444TreeNameLine{min-height:17px!important;}
+ .mr444DurationPage .mr444PizzaStage{flex-direction:column!important;justify-content:center!important;gap:clamp(8px,2vh,22px)!important;padding:9px!important;}
+ .mr444PizzaArea{flex:0 1 auto;width:100%;height:auto;}
+ .mr444PizzaBoard{width:min(100%,calc(100dvh - 300px),520px)!important;height:auto;}
+ .mr444PizzaReading{flex:0 1 auto;width:min(100%,540px);max-height:33%;padding:7px 10px;border-radius:16px;}
+ .mr444PizzaNotes{min-height:72px;padding:3px 0;gap:2px 8px;}
+ .mr444PizzaNotation svg{width:45px;height:62px;}
+ .mr444PizzaNotation .mr444NoteLabel{font-size:10px;}
+ .mr444PizzaCount{font-size:clamp(18px,4.4vw,29px);}
+ .mr444PizzaInstruction{font-size:12px;}
+}
+@media(orientation:landscape) and (max-height:540px){
+ #tempoTreePage .mr442TopRow,.mr444DurationPage .top-row{--mr-topbar-control-h:38px!important;
+  margin:3px auto 4px!important;padding:4px 6px!important;}
+ #tempoTreePage .mr442TopSelection{font-size:12px!important;gap:1px!important;}
+ .mr444DurationPage .mr444PizzaStage{padding:3px 9px!important;}
+ .mr444PizzaBoard{width:min(100%,calc(100dvh - 105px),560px)!important;}
+ .mr444PizzaReading{padding:5px 10px!important;}
+}
+
+</style>
+<script id="mr444-duration-pizza-js">
+(()=>{'use strict';
+ // The pizza wheels are a separate lesson: original rhythm/tamburo page remains untouched.
+ const colors=['#e74455','#ec892a','#c5a100','#159962','#258fd3','#5954c9','#9750ca'];
+ const values=[64,32,16,8,4,2,1];
+ const fractions=['4/4','2/4','1/4','1/8','1/16','1/32','1/64'];
+ const names=['SEMIBREVE','MINIMA','SEMIMINIMA','CROMA','SEMICROMA','BISCROMA','SEMIBISCROMA'];
+ const glyphs=[0xE1D2,0xE1D3,0xE1D5,0xE1D7];
+ const flags=String.fromCodePoint(0xE240);
+ const off=[[-15.42,8.04],[-11.91,8.04],[-12.03,8.40],[-11.91,8.40]];
+ const selections=new Map([[8,new Set()],[64,new Set()]]);
+ const panels=new Map();
+ const NS='http://www.w3.org/2000/svg';
+ const make=(tag,attrs={},val)=>{const el=document.createElementNS(NS,tag);
+  for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));
+  if(val!==undefined)el.textContent=val;return el;};
+ function solution(units){
+  // One symbol where possible; otherwise the smallest exact combination of normal/dotted symbols.
+  const opts=[];
+  for(let level=0;level<7;level++){
+   opts.push({amount:values[level],level,dotted:false});
+   if(level>0)opts.push({amount:values[level]*1.5,level,dotted:true});
+  }
+  opts.sort((a,b)=>b.amount-a.amount||(a.dotted?-1:1));
+  const dp=Array(units+1).fill(null);dp[0]=[];
+  for(let n=1;n<=units;n++){
+   for(const option of opts){if(option.amount>n||!dp[n-option.amount])continue;
+    const trial=[...dp[n-option.amount],option].sort((a,b)=>b.amount-a.amount);
+    if(!dp[n]||trial.length<dp[n].length)dp[n]=trial;
+   }
+  }
+  return dp[units]||[];
+ }
+ function drawNote(el,option){
+  const svg=make('svg',{viewBox:'-40 -68 100 115','aria-hidden':'true'});
+  const [dx,dy]=option.level<=3?off[option.level]:off[3];
+  const cp=option.level<=3?glyphs[option.level]:glyphs[3];
+  svg.appendChild(make('text',{x:dx,y:dy,'class':'mr444SMuFLGlyph'},String.fromCodePoint(cp)));
+  if(option.level>=4){for(let n=1;n<=option.level-3;n++)svg.appendChild(
+   make('text',{x:9.1,y:8.4+n*10.2,'class':'mr444SMuFLGlyph'},flags));}
+  if(option.dotted)svg.appendChild(make('circle',{cx:30,cy:12,r:3.2,'class':'mr444Dot'}));
+  el.appendChild(svg);
+  const label=document.createElement('span');label.className='mr444NoteLabel';
+  label.style.color=colors[option.level];
+  label.textContent=names[option.level]+(option.dotted?' PUNTATA':'');
+  el.appendChild(label);
+ }
+ function piePath(index,count){
+  const start=-Math.PI/2+Math.PI*2*index/count,end=-Math.PI/2+Math.PI*2*(index+1)/count;
+  const x1=500+480*Math.cos(start),y1=500+480*Math.sin(start);
+  const x2=500+480*Math.cos(end),y2=500+480*Math.sin(end);
+  return `M500 500 L${x1.toFixed(3)} ${y1.toFixed(3)} A480 480 0 0 1 ${x2.toFixed(3)} ${y2.toFixed(3)} Z`;
+ }
+ function drawSlices(count){
+  const target=document.getElementById('mr444PizzaSlices'+count),wheel=document.getElementById('mr444PizzaWheel'+count);
+  const parts=[];if(!target||!wheel)return;
+  target.dataset.parts=count;
+  for(let i=0;i<count;i++){
+   const p=make('path',{d:piePath(i,count),'class':'mr444SliceTint','data-part':i});
+   parts.push(p);target.appendChild(p);
+  }
+  for(let i=0;i<count;i++){
+   const angle=-Math.PI/2+Math.PI*2*i/count;
+   target.appendChild(make('line',{x1:500,y1:500,x2:500+462*Math.cos(angle),y2:500+462*Math.sin(angle),'class':'mr444CutLine'}));
+  }
+  wheel.addEventListener('pointerup',e=>{
+   if(e.pointerType==='mouse'&&e.button!==0)return;
+   const box=wheel.getBoundingClientRect();
+   const rx=(e.clientX-box.left)/box.width-.5,ry=(e.clientY-box.top)/box.height-.5;
+   if(Math.hypot(rx,ry)>.475)return;
+   const angle=(Math.atan2(ry,rx)+Math.PI/2+2*Math.PI)%(2*Math.PI);
+   let index=Math.min(count-1,Math.floor(angle/(Math.PI*2)*count));
+   const selected=selections.get(count);
+   if(selected.has(index))selected.delete(index);else selected.add(index);
+   repaint(count);
+   if(typeof window.MimoSounds?.play==='function')window.MimoSounds.play('touch');
+  });
+  wheel.addEventListener('keydown',e=>{ // Keyboard alternative: select the next non-selected slice.
+   if(e.key!=='Enter'&&e.key!==' ')return;e.preventDefault();
+   const sel=selections.get(count);const free=Array.from({length:count},(_,i)=>i).find(i=>!sel.has(i));
+   if(free!==undefined){sel.add(free);repaint(count);}
+  });
+  wheel.tabIndex=0;
+  panels.set(count,{target,parts});
+  repaint(count);
+ }
+ function repaint(count){
+  const sel=selections.get(count),units=sel.size*(64/count),parts=solution(units);
+  const figure=parts[0],color=figure?colors[figure.level]:'#8c79a5';
+  const glyphNodes=document.getElementById('mr444PizzaNotes'+count),countNode=document.getElementById('mr444PizzaCount'+count);
+  const bar=document.getElementById('mr444Pizza'+count+'BarResult');
+  if(!glyphNodes||!countNode||!bar)return;
+  countNode.textContent=sel.size+' / '+count;
+  countNode.style.color=color;
+  bar.textContent='';bar.style.color=color;
+  if(!parts.length){bar.textContent=count===8?'LA PIZZA DEGLI OTTAVI':'LA PIZZA DEI SESSANTAQUATTRESIMI';}
+  else{
+   const one=parts.length===1;
+   const title=one?names[figure.level]+(figure.dotted?' PUNTATA':''):parts.map(p=>names[p.level]+(p.dotted?' PUNTATA':'')).join(' + ');
+   bar.textContent=title+'  ·  '+sel.size+'/'+count;
+  }
+  glyphNodes.replaceChildren();
+  for(const part of parts){
+   const row=document.createElement('div');row.className='mr444PizzaNotation';
+   drawNote(row,part);glyphNodes.appendChild(row);
+  }
+  panels.get(count)?.parts.forEach((p,i)=>{
+   const on=sel.has(i);p.classList.toggle('is-on',on);
+   p.setAttribute('fill',on?color+'99':'transparent');
+  });
+  document.getElementById('mr444PizzaWheel'+count)?.setAttribute('aria-label',`Pizza con ${count} spicchi. Selezionati ${sel.size}. ${parts.map(p=>names[p.level]).join(', ')||'Tocca uno spicchio'}`);
+ }
+ for(const count of [8,64]){
+  drawSlices(count);
+  document.getElementById('mr444Pizza'+count+'Reset')?.addEventListener('click',()=>{
+   selections.get(count).clear();repaint(count);
+  });
+ }
+ window.MRPizza444={
+  open:count=>{if(count!==8&&count!==64)return;repaint(count);},
+  reset:count=>document.getElementById('mr444Pizza'+count+'Reset')?.click(),
+  select:(count,index)=>{if(!selections.has(count)||index<0||index>=count)return;const s=selections.get(count);s.has(index)?s.delete(index):s.add(index);repaint(count);},
+  inspect:count=>({selected:selections.get(count)?.size||0,
+   notes:solution((selections.get(count)?.size||0)*(64/count)).map(({level,dotted})=>names[level]+(dotted?' PUNTATA':'')),
+   bar:document.getElementById('mr444Pizza'+count+'BarResult')?.textContent||''})
+ };
+})();
+
 </script>
 </body>
 </html>

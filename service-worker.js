@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.443; bypass large GLB; safe cache errors */
-const BUILD = "2.443";
+/* Music Rainbow Service Worker - Build 2.444; bypass large GLB; safe cache errors */
+const BUILD = "2.444";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -8,6 +8,7 @@ const CORE_PRECACHE_URLS = [
   "./index.html",
   "./manifest.webmanifest",
   "./Assets/Home-rainbow-main.png",
+  "./Assets/pizza-durates-444.png",
   "./Assets/home-icon-level.svg",
   "./Assets/home-icon-scores-2179.svg",
   "./Assets/home-icon-play.svg",

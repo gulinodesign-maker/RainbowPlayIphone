@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.441</div>
+    <div class="intro-version-label">Build 2.442</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.441</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.442</div>
   </div>
 </div>
 
@@ -7518,7 +7518,29 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
 </div>
 
 <!-- ===========================
-     IMPARA IL TEMPO
+     IMPARA IL TEMPO — ALBERO DELLE FIGURE (2.442)
+     =========================== -->
+<div id="tempoTreePage" class="page-container" style="display:none" aria-label="Impara il tempo: albero delle figure musicali">
+  <div class="app mr442TreeApp">
+    <div class="top-panel mr442TopPanel">
+      <div class="top-row mr442TopRow">
+        <div class="top-left-controls">
+          <button type="button" class="menu-btn" id="mr442TreeHome" aria-label="Torna alla Home" title="Home">⌂</button>
+        </div>
+        <div class="mr442TopSelection" id="mr442SelectedName" role="status" aria-live="polite" aria-atomic="true"></div>
+        <div class="top-right-controls mr442TopActions">
+          <button type="button" class="mr442NextButton" id="mr442TreeNext" aria-label="Passa agli esercizi di Impara il tempo" title="Vai agli esercizi">❯</button>
+        </div>
+      </div>
+    </div>
+    <main class="mr442TreeScroller" id="mr442TreeScroller" aria-label="Albero delle durate musicali, scorri per esplorare">
+      <svg xmlns="http://www.w3.org/2000/svg" id="mr442TreeSvg" role="group" aria-label="Le figure musicali si dividono in due e rimangono nell'albero"></svg>
+    </main>
+  </div>
+</div>
+
+<!-- ===========================
+     IMPARA IL TEMPO — ESERCIZI ORIGINALI
      =========================== -->
 <div id="learnTempoPage" class="page-container" style="display:none">
   <div class="app">
@@ -7526,6 +7548,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <div class="top-row">
         <div class="top-left-controls">
           <button class="menu-btn" id="menuBtnTempo" aria-label="Menu">⌂</button>
+          <button type="button" class="mr442BackButton" id="mr442ReturnTree" aria-label="Torna all'albero delle figure" title="Torna all'albero">🌳</button>
           <button class="reset-btn" id="resetBtnTempo" aria-label="Reset">↺</button>
           
         
@@ -18410,6 +18433,8 @@ function hideAllPages() {
     if (settingsPage) settingsPage.style.display = "none";
     if (learnNotesPage) learnNotesPage.style.display = "none";
     if (learnTempoPage) learnTempoPage.style.display = "none";
+    const tempoTreePage=document.getElementById('tempoTreePage');
+    if(tempoTreePage) tempoTreePage.style.display = "none";
     if(window.MRHands)window.MRHands.close();
   }
 
@@ -18497,7 +18522,7 @@ function hideAllPages() {
     }
   }
 
-  function showLearnTempo() {
+  function showLearnTempoExercises() {
     hideAllPages();
     homeScreen.style.display = "none";
     try { if (typeof setMetronomeOn === "function" && typeof metronomeOn !== "undefined" && metronomeOn) setMetronomeOn(false); } catch(e) {}
@@ -18507,6 +18532,19 @@ function hideAllPages() {
       requestAnimationFrame(() => fitVisibleLevelTitles());
     }
   }
+  // Nuova prima pagina: l'albero si apre al posto degli esercizi con i tamburi.
+  function showLearnTempoTree(reset=true) {
+    hideAllPages();
+    homeScreen.style.display = "none";
+    const tree=document.getElementById('tempoTreePage');
+    if(tree){tree.style.display='flex'; window.MRTempoTree442?.open(reset);}
+  }
+  function showLearnTempo() {showLearnTempoTree(true);}
+  window.MusicRainbowOpenTempoExercisesMR=showLearnTempoExercises;
+  window.MusicRainbowOpenTempoTreeMR=showLearnTempoTree;
+  document.getElementById('mr442TreeHome')?.addEventListener('click',showHome);
+  document.getElementById('mr442TreeNext')?.addEventListener('click',showLearnTempoExercises);
+  document.getElementById('mr442ReturnTree')?.addEventListener('click',()=>showLearnTempoTree(false));
 
   function showSettingsPage() {
     hideAllPages();
@@ -18533,6 +18571,8 @@ function hideAllPages() {
     playPage.style.display   = "none";
     if (learnNotesPage) learnNotesPage.style.display = "none";
     if (learnTempoPage) learnTempoPage.style.display = "none";
+    const tempoTreePage=document.getElementById('tempoTreePage');
+    if(tempoTreePage) tempoTreePage.style.display = "none";
     trophyPageEl.style.display = "flex";
     if (trophyContentEl) {
       trophyContentEl.style.display = "none";
@@ -18854,7 +18894,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.441";
+  const PAGE_BUILD = "2.442";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -28500,7 +28540,7 @@ body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
  max-height:none!important;transform:translateX(-50%)!important;z-index:1200!important;
  clip-path:none!important;pointer-events:auto!important;
 }
-/* Build 2.441: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
+/* Build 2.442: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
    subito a destra del tasto Home, quando quella pagina lo prevede. */
 #mr410MimoFloatingToggle{
  position:relative!important;
@@ -29246,5 +29286,213 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 <!-- 2.435: fumetti di Mìmo, primo tutorial e aiuto didattico su richiesta. -->
 <link rel="stylesheet" href="Assets/mimo-bubbles-435.css?v=435">
 <script src="Assets/mimo-bubbles-435.js?v=435"></script>
+<style id="mr442-tempo-tree-style">
+/* Impara il tempo: una nuova prima pagina senza tamburi. */
+#tempoTreePage{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;
+  overflow:hidden!important;box-sizing:border-box!important;}
+#tempoTreePage .mr442TreeApp{display:flex!important;flex-direction:column!important;min-width:0!important;
+  width:100%!important;max-width:none!important;height:100%!important;min-height:0!important;
+  padding:0!important;margin:0!important;background:linear-gradient(155deg,#f9fcff 0%,#fff7f3 60%,#f6f0ff 100%)!important;}
+#tempoTreePage .mr442TopPanel{position:relative!important;flex:0 0 auto!important;margin:0!important;
+  padding:0!important;width:100%!important;height:auto!important;min-height:0!important;z-index:4!important;}
+#tempoTreePage .mr442TopRow{display:grid!important;grid-template-columns:minmax(100px,1fr) minmax(90px,2fr) minmax(60px,1fr)!important;
+  gap:8px!important;align-items:center!important;min-height:66px!important;height:auto!important;
+  padding:max(9px,env(safe-area-inset-top,0px)) max(14px,env(safe-area-inset-right,0px)) 8px max(14px,env(safe-area-inset-left,0px))!important;
+  box-sizing:border-box!important;background:rgba(255,255,255,.90)!important;border-bottom:2px solid #e5d4f7!important;
+  box-shadow:0 3px 12px #6e51a01a!important;}
+#tempoTreePage .mr442TopRow .top-left-controls{display:flex!important;align-items:center!important;
+  flex-wrap:nowrap!important;gap:7px!important;min-width:0!important;max-width:none!important;overflow:visible!important;}
+#tempoTreePage .mr442TopActions{display:flex!important;justify-content:flex-end!important;align-items:center!important;min-width:0!important;}
+#tempoTreePage .mr442TopSelection{min-width:0!important;width:100%!important;text-align:center!important;
+  font:900 clamp(17px,2.7vw,30px)/1.13 system-ui,-apple-system,sans-serif!important;
+  letter-spacing:.035em;color:#6740aa;overflow-wrap:break-word;}
+#tempoTreePage .mr442TopSelection:not(:empty){animation:mr442Label .2s ease-out;}
+#tempoTreePage #mr442TreeHome,#tempoTreePage #mr442TreeNext,#learnTempoPage #mr442ReturnTree{
+  position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 var(--mr-topbar-control-h,48px)!important;
+  width:var(--mr-topbar-control-h,48px)!important;height:var(--mr-topbar-control-h,48px)!important;
+  min-width:var(--mr-topbar-control-h,48px)!important;min-height:var(--mr-topbar-control-h,48px)!important;
+  padding:0!important;margin:0!important;border-radius:12px!important;border:2px solid #a78bfa!important;
+  background:#f4ecff!important;color:#6342a6!important;box-shadow:0 2px 5px #4f328a22!important;
+  font:800 24px/1 system-ui,-apple-system,sans-serif!important;cursor:pointer;touch-action:manipulation;}
+#tempoTreePage #mr442TreeHome::before,#tempoTreePage #mr442TreeHome::after{content:none!important;}
+#tempoTreePage #mr442TreeNext{background:#e9fce9!important;border-color:#69c798!important;color:#168660!important;}
+#tempoTreePage .mr442TreeScroller{position:relative!important;flex:1 1 auto!important;min-height:0!important;width:100%!important;
+  overflow:auto!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch;
+  touch-action:pan-x pan-y!important;background:transparent!important;}
+#tempoTreePage #mr442TreeSvg{display:block;min-width:100%;max-width:none!important;overflow:visible;
+  font-family:'MusicRainbow SMuFL',sans-serif;touch-action:pan-x pan-y;user-select:none;}
+#tempoTreePage #mr442TreeSvg .mr442StaffLine{stroke:#94a3b8;stroke-width:1.35;opacity:.47;}
+#tempoTreePage #mr442TreeSvg .mr442TreeConnector{fill:none;stroke:#ad8de0;stroke-width:2.5;stroke-linecap:round;opacity:.85;}
+#tempoTreePage #mr442TreeSvg .mr442NoteNode{cursor:pointer;outline:none;}
+#tempoTreePage #mr442TreeSvg .mr442NoteHit{fill:transparent;stroke:none;pointer-events:all;}
+#tempoTreePage #mr442TreeSvg .mr442NoteGlyph{font-family:'MusicRainbow SMuFL',sans-serif;
+  font-style:normal;font-weight:400;font-size:60px;fill:#25324b;stroke:none;pointer-events:none;}
+#tempoTreePage #mr442TreeSvg .mr442NoteNode.mr442Selected .mr442SelectionRing{opacity:1;}
+#tempoTreePage #mr442TreeSvg .mr442SelectionRing{fill:rgba(167,139,250,.15);stroke:#9862e1;
+  stroke-width:2.6;stroke-dasharray:4 4;opacity:0;pointer-events:none;}
+#tempoTreePage #mr442TreeSvg .mr442NoteNode:focus-visible .mr442SelectionRing{opacity:1;stroke:#216dce;stroke-width:3.8;}
+#tempoTreePage #mr442TreeSvg .mr442NoteGlyphWrap{pointer-events:none;transform-origin:0 0;}
+#tempoTreePage #mr442TreeSvg .mr442Born .mr442NoteGlyphWrap{animation:mr442Born .56s cubic-bezier(.14,1.3,.31,1) backwards;}
+#tempoTreePage #mr442TreeSvg .mr442BurstParticle{pointer-events:none;animation:mr442Burst .65s ease-out forwards;}
+#tempoTreePage #mr442TreeSvg .mr442LeafHint{fill:#a17ddd;opacity:.8;pointer-events:none;}
+@keyframes mr442Born{from{opacity:0;transform:translateY(-36px) scale(.65);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes mr442Burst{0%{opacity:1;transform:translate(0,0) scale(.5);}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2);}}
+@keyframes mr442Label{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:660px){#tempoTreePage .mr442TopRow{grid-template-columns:minmax(102px,1fr) minmax(72px,1.3fr) minmax(52px,1fr)!important;
+ gap:4px!important;padding-left:8px!important;padding-right:8px!important;}
+ #tempoTreePage .mr442TopSelection{font-size:clamp(15px,4vw,22px)!important;letter-spacing:0!important;}}
+@media(prefers-reduced-motion:reduce){#tempoTreePage .mr442Born .mr442NoteGlyphWrap,
+ #tempoTreePage .mr442BurstParticle,#tempoTreePage .mr442TopSelection:not(:empty){animation:none!important;}}
+</style>
+<script id="mr442-tempo-tree-logic">
+(()=>{'use strict';
+ const page=document.getElementById('tempoTreePage');
+ const scroller=document.getElementById('mr442TreeScroller');
+ const svg=document.getElementById('mr442TreeSvg');
+ const title=document.getElementById('mr442SelectedName');
+ if(!page||!scroller||!svg||!title)return;
+ const NS='http://www.w3.org/2000/svg';
+ const namesByLanguage={
+  it:['SEMIBREVE','MINIMA','SEMIMINIMA','CROMA','SEMICROMA','BISCROMA','SEMIBISCROMA'],
+  en:['WHOLE NOTE','HALF NOTE','QUARTER NOTE','EIGHTH NOTE','SIXTEENTH NOTE','THIRTY-SECOND NOTE','SIXTY-FOURTH NOTE'],
+  es:['REDONDA','BLANCA','NEGRA','CORCHEA','SEMICORCHEA','FUSA','SEMIFUSA'],
+  fr:['RONDE','BLANCHE','NOIRE','CROCHE','DOUBLE CROCHE','TRIPLE CROCHE','QUADRUPLE CROCHE'],
+  de:['GANZE NOTE','HALBE NOTE','VIERTELNOTE','ACHTELNOTE','SECHZEHNTELNOTE','ZWEIUNDDREISSIGSTELNOTE','VIERUNDSECHZIGSTELNOTE'],
+  pt:['SEMIBREVE','MÍNIMA','SEMÍNIMA','COLCHEIA','SEMICOLCHEIA','FUSA','SEMIFUSA'],
+  ru:['ЦЕЛАЯ','ПОЛОВИННАЯ','ЧЕТВЕРТНАЯ','ВОСЬМАЯ','ШЕСТНАДЦАТАЯ','ТРИДЦАТЬ ВТОРАЯ','ШЕСТЬДЕСЯТ ЧЕТВЁРТАЯ'],
+  zh:['全音符','二分音符','四分音符','八分音符','十六分音符','三十二分音符','六十四分音符'],
+  ja:['全音符','2分音符','4分音符','8分音符','16分音符','32分音符','64分音符']
+ };
+ function names(){const lang=String(document.documentElement.lang||'it').slice(0,2);return namesByLanguage[lang]||namesByLanguage.it;}
+ // Precomposed SMuFL full notes already present in MusicRainbow SMuFL.
+ const glyphs=[0xE1D2,0xE1D3,0xE1D5,0xE1D7];
+ // Subsequent durations are assembled exclusively from original SMuFL flags/noteheads:
+ // the bundled subset lacks precomposed U+E1D9/U+E1DB/U+E1DD.
+ const flag8=String.fromCodePoint(0xE240);
+ const note8=String.fromCodePoint(0xE1D7);
+ const noteOffsets=[[-15.42,8.04],[-11.91,8.04],[-12.03,8.40],[-11.91,8.40]];
+ const colors=['#fb7185','#f59e0b','#38bdf8','#a78bfa','#34d399','#f9a8d4','#facc15'];
+ const nodes=new Map();let currentId='r',births=new Set(),layoutW=700,layoutH=1080,serial=0;
+ function E(tag,attrs={},text=''){
+  const e=document.createElementNS(NS,tag);
+  for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));
+  if(text)e.textContent=text;
+  return e;
+ }
+ function init(){nodes.clear();serial=0;currentId='';births.clear();nodes.set('r',{id:'r',level:0,children:null,x:0,y:0});title.textContent='';}
+ function calcLayout(){
+  let leaves=0;
+  function width(n){if(!n.children){n.leafCount=1;return 1;}n.leafCount=width(nodes.get(n.children[0]))+width(nodes.get(n.children[1]));return n.leafCount;}
+  width(nodes.get('r'));
+  leaves=nodes.get('r').leafCount;
+  const interval=116;const minWidth=Math.max(420,scroller.clientWidth-8);
+  layoutW=Math.max(minWidth, 104+(leaves-1)*interval);
+  const offset=(layoutW-(leaves-1)*interval)/2;
+  let leafIndex=0;
+  function locate(n){
+   if(!n.children){n.x=offset+leafIndex*interval;leafIndex++;}
+   else{const a=nodes.get(n.children[0]),b=nodes.get(n.children[1]);locate(a);locate(b);n.x=(a.x+b.x)/2;}
+   n.y=113+n.level*150;
+  }
+  locate(nodes.get('r'));
+  layoutH=1140;
+ }
+ function addDuration(g,level){
+  const wrap=E('g',{'class':'mr442NoteGlyphWrap'});
+  const code=level<=3?String.fromCodePoint(glyphs[level]):note8;
+  const [dx,dy]=level<=3?noteOffsets[level]:noteOffsets[3];
+  wrap.appendChild(E('text',{x:dx,y:dy,'class':'mr442NoteGlyph','aria-hidden':'true'},code));
+  if(level>=4){
+   // Additional SMuFL flag8thUp glyphs make 2, 3, or 4-flag figures.
+   for(let i=1;i<=level-3;i++){
+    wrap.appendChild(E('text',{x:9.1,y:8.4+i*10.2,'class':'mr442NoteGlyph','aria-hidden':'true'},flag8));
+   }
+  }
+  g.appendChild(wrap);
+ }
+ function render(animateIds=[]){
+  calcLayout();svg.setAttribute('width',layoutW);svg.setAttribute('height',layoutH);
+  svg.setAttribute('viewBox',`0 0 ${layoutW} ${layoutH}`);
+  const frag=document.createDocumentFragment();
+  for(let depth=0;depth<7;depth++){
+   const center=113+depth*150;
+   for(const d of [-18,-9,0,9,18]){
+    frag.appendChild(E('line',{x1:16,y1:center+d,x2:layoutW-16,y2:center+d,'class':'mr442StaffLine'}));
+   }
+  }
+  for(const node of nodes.values()){
+   if(!node.children)continue;
+   for(const cid of node.children){
+    const child=nodes.get(cid);
+    frag.appendChild(E('path',{d:`M ${node.x} ${node.y+33} C ${node.x} ${node.y+72}, ${child.x} ${child.y-78}, ${child.x} ${child.y-49}`,'class':'mr442TreeConnector'}));
+   }
+  }
+  for(const node of nodes.values()){
+   const g=E('g',{transform:`translate(${node.x},${node.y})`,
+    'class':'mr442NoteNode'+(node.id===currentId?' mr442Selected':'')+(animateIds.includes(node.id)?' mr442Born':''),
+    'role':'button','tabindex':'0','data-node-id':node.id,
+    'aria-label':names()[node.level]+(node.level<6?' — tocca per generare due '+names()[node.level+1].toLowerCase():' — figura finale'),
+    'aria-pressed':node.id===currentId?'true':'false'});
+   g.appendChild(E('rect',{x:-37,y:-63,width:74,height:90,rx:15,'class':'mr442SelectionRing'}));
+   addDuration(g,node.level);
+   g.appendChild(E('rect',{x:-37,y:-64,width:74,height:90,rx:14,'class':'mr442NoteHit'}));
+   g.addEventListener('click',()=>select(node.id));
+   g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();select(node.id);}});
+   frag.appendChild(g);
+  }
+  svg.replaceChildren(frag);
+ }
+ function sparkle(x,y){
+  const group=E('g',{transform:`translate(${x},${y})`,'aria-hidden':'true'});
+  for(let i=0;i<14;i++){
+   const rad=i*Math.PI*2/14,dist=28+(i%4)*12;
+   const particle=E('circle',{cx:0,cy:0,r:i%3===0?5:3,fill:colors[i%colors.length],
+    'class':'mr442BurstParticle'});
+   particle.style.setProperty('--dx',(Math.cos(rad)*dist).toFixed(1)+'px');
+   particle.style.setProperty('--dy',(Math.sin(rad)*dist).toFixed(1)+'px');
+   group.appendChild(particle);
+  }
+  svg.appendChild(group);setTimeout(()=>group.remove(),730);
+ }
+ function revealChildren(parent){
+  const n=nodes.get(parent);if(!n||!n.children)return;
+  const kids=n.children.map(id=>nodes.get(id));
+  const first=kids[0],last=kids[1];
+  const targetX=(first.x+last.x)/2-scroller.clientWidth/2;
+  const targetY=Math.max(0,first.y-scroller.clientHeight*.54);
+  const scroll={left:Math.max(0,targetX),top:Math.max(0,targetY),behavior:'smooth'};
+  try{scroller.scrollTo(scroll);}catch(e){scroller.scrollLeft=scroll.left;scroller.scrollTop=scroll.top;}
+ }
+ function select(id){
+  const node=nodes.get(id);if(!node)return;
+  currentId=id;title.textContent=names()[node.level];
+  // An already expanded parent is just selected again; nothing is removed or duplicated.
+  if(node.children||node.level===6){render();return;}
+  const a=`${id}L`,b=`${id}R`;
+  nodes.set(a,{id:a,level:node.level+1,children:null});
+  nodes.set(b,{id:b,level:node.level+1,children:null});
+  node.children=[a,b];
+  render([a,b]);sparkle(node.x,node.y);revealChildren(id);
+ }
+ function open(reset=true){
+  if(reset||!nodes.size)init();
+  // Newly opened tree starts with only the semibreve; the previously generated
+  // branches remain in memory when returning from the original exercises.
+  render();
+  requestAnimationFrame(()=>{scroller.scrollLeft=Math.max(0,nodes.get('r').x-scroller.clientWidth/2);
+   if(reset)scroller.scrollTop=0;});
+ }
+ let raf=false;
+ function fit(){if(raf)return;raf=true;requestAnimationFrame(()=>{raf=false;if(page.getClientRects().length&&getComputedStyle(page).display!=='none')render();});}
+ window.addEventListener('resize',fit,{passive:true});
+ window.addEventListener('orientationchange',()=>{fit();setTimeout(fit,200);},{passive:true});
+ window.visualViewport?.addEventListener('resize',fit,{passive:true});
+ init();
+ window.MRTempoTree442={open,select,inspect:()=>({nodeCount:nodes.size,selected:currentId,
+  levels:Array.from(nodes.values()).reduce((a,n)=>(a[n.level]=(a[n.level]||0)+1,a),{}),
+  allLabelsInTopbar:!svg.querySelector('.mr442NodeText')})};
+})();
+</script>
 </body>
 </html>

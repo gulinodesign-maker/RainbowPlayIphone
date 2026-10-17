@@ -27,12 +27,24 @@ const KEY='mr_mimo_enabled',enabled=()=>{try{return localStorage.getItem(KEY)!==
 function boot(){
 const panel=document.createElement('div');panel.id='mimoSettingsSection';panel.className='settings-panel settings-section';
 panel.innerHTML=`<div class="settings-panel-head"><div class="settings-panel-icon">🦉</div><div class="settings-panel-title-wrap"><div class="settings-section-label">Mìmo</div></div></div>
-<label class="mimo-option"><input type="checkbox" id="mimoEnabled"><span id="mr361MimoActive"></span></label>
-<div class="mimo-options mr399-cycle-settings"><label class="mimo-option"><input type="checkbox" id="mr399AutoCycle"><span id="mr399AutoCycleLabel"></span></label><div class="mr399CycleButtons" role="group" aria-label="Anteprima giorno e notte"><button type="button" id="mr399ForceDay">🌞</button><button type="button" id="mr399ForceNight">🌙</button></div></div>
-<div class="mr361SettingsActions"><div class="mr354WingSettings"><button type="button" id="mimoRest">🪽</button><button type="button" id="mimoOpen">🦋</button></div><button type="button" id="mr357OpenLab" class="mr357LabLaunch" aria-haspopup="dialog">🎭</button></div>
+<div class="mimo-options">
+ <label class="mimo-option"><input type="checkbox" id="mimoEnabled"><span id="mr361MimoActive"></span></label>
+ <div class="mr399-cycle-settings"><label class="mimo-option"><input type="checkbox" id="mr399AutoCycle"><span id="mr399AutoCycleLabel"></span></label></div>
+</div>
+<div class="mr361SettingsActions"><div class="mr361ControlGrid" id="mr361MimoIconGrid" role="group" aria-label="Comandi di Mìmo"><button type="button" id="mr399ForceDay" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🌞</span></button><button type="button" id="mr399ForceNight" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🌙</span></button><button type="button" id="mimoRest" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🪽</span></button><button type="button" id="mimoOpen" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🦋</span></button><button type="button" id="mr357OpenLab" class="mr357LabLaunch mr361IconButton" aria-haspopup="dialog"><span class="mr361ButtonGlyph" aria-hidden="true">🎭</span></button><button type="button" id="mr414MimoHaptics" class="mr361IconButton mr414HapticIcon"><span class="mr361ButtonGlyph" aria-hidden="true">📳</span></button></div></div>
 <p class="mr361SrOnly" id="mimoStatus" role="status" aria-live="polite"></p>`;
 
 const stack=document.querySelector('#settingsPage .settings-stack')||document.querySelector('#settingsPage')||document.body;stack.insertBefore(panel,stack.firstChild);
+const normalizeSettingsGrid=()=>{
+ const settings=document.getElementById('mimoSettingsSection');
+ const grid=settings?.querySelector('#mr361MimoIconGrid');
+ if(!grid)return;
+ settings.querySelectorAll('.mr414-haptic-preference').forEach(el=>el.remove());
+ const ordered=['mr399ForceDay','mr399ForceNight','mimoRest','mimoOpen','mr357OpenLab','mr414MimoHaptics']
+  .map(id=>settings.querySelector('#'+id)).filter(Boolean);
+ if(ordered.length)grid.replaceChildren(...ordered);
+};
+normalizeSettingsGrid();
 const host=document.createElement('div');host.id='mimoBuddy';host.setAttribute('aria-label',mimoT('stage'));
 const canvas=document.createElement('canvas');host.appendChild(canvas);
 // Overlay 2D tracciato nello stesso riferimento prospettico del GLB: segue la testa,

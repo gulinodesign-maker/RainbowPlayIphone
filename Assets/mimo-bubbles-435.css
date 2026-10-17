@@ -29,13 +29,13 @@
 #mr435MimoBubble .mr435BubbleClose:focus-visible,.mr435HelpButton:focus-visible{outline:3px solid #ffc94c;outline-offset:2px;}
 .page-container .top-row .top-left-controls .mr435HelpButton{
  display:inline-flex!important;align-items:center!important;justify-content:center!important;
- width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;
- padding:0!important;margin:0 1px!important;flex:0 0 38px!important;
- border:2px solid #986cdd!important;border-radius:11px!important;
+ width:var(--mr-topbar-control-h,44px)!important;height:var(--mr-topbar-control-h,44px)!important;min-width:var(--mr-topbar-control-h,44px)!important;min-height:var(--mr-topbar-control-h,44px)!important;
+ padding:0!important;margin:0 1px!important;flex:0 0 var(--mr-topbar-control-h,44px)!important;
+ border:2px solid #986cdd!important;border-radius:12px!important;
  background:#f1eaff!important;color:#7043b6!important;
- font:800 21px/1 system-ui,-apple-system,sans-serif!important;
+ font:800 22px/1 system-ui,-apple-system,sans-serif!important;
  cursor:pointer!important;touch-action:manipulation;
 }
 @keyframes mr435Pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
-@media(max-width:600px){#mr435MimoBubble{max-width:min(250px,calc(100vw - 22px));font-size:13px;padding:10px 32px 11px 12px;}.page-container .top-row .top-left-controls .mr435HelpButton{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;flex-basis:34px!important;}}
+@media(max-width:600px){#mr435MimoBubble{max-width:min(250px,calc(100vw - 22px));font-size:13px;padding:10px 32px 11px 12px;}.page-container .top-row .top-left-controls .mr435HelpButton{width:var(--mr-topbar-control-h,44px)!important;height:var(--mr-topbar-control-h,44px)!important;min-width:var(--mr-topbar-control-h,44px)!important;min-height:var(--mr-topbar-control-h,44px)!important;flex-basis:var(--mr-topbar-control-h,44px)!important;}}
 @media(prefers-reduced-motion:reduce){#mr435MimoBubble{animation:none!important;}}

@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.445</div>
+    <div class="intro-version-label">Build 2.447</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.445</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.447</div>
   </div>
 </div>
 
@@ -7521,7 +7521,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
-<!-- Build 2.445 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
+<!-- Build 2.447 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
 <div id="mr444Pizza8Page" class="page-container mr444DurationPage mr445DynamicPizza" style="display:none" aria-label="Le durate musicali: pizza interattiva">
  <div class="app mr444DurationApp">
   <div class="top-panel"><div class="top-row mr444DurationTopRow">
@@ -7922,6 +7922,9 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <div class="top-row">
         <div class="top-left-controls">
           <button class="menu-btn" id="trophyHomeBtn" aria-label="Torna alla Home" title="Home"></button>
+          <button type="button" id="mr446RoomBubblesToggle" class="mr446RoomBubblesToggle" aria-label="Nascondi i fumetti di Mìmo" title="Nascondi i fumetti di Mìmo" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11.5a7.5 7.5 0 0 1-7.6 7.5c-1.6 0-3.1-.4-4.3-1.2L3 19l1.4-4.2a7.5 7.5 0 0 1-.9-3.3 8.3 8.3 0 0 1 8.6-8A7.8 7.8 0 0 1 20 11.5Z"/><path d="M8.5 11.5h7"/><path class="mr446MuteSlash" d="M3.2 3.2 21 21"/></svg>
+          </button>
         </div>
         <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls"></div>
@@ -10437,6 +10440,9 @@ let currentSessionId = null;
 function normalizeSessionMR(value, fallbackId) {
   const src = value && typeof value === "object" ? value : {};
   const spentSrc = src.spentRewards && typeof src.spentRewards === "object" ? src.spentRewards : {};
+  const bassSrc447 = src.bassFruitMedals447 && typeof src.bassFruitMedals447 === "object" ? src.bassFruitMedals447 : {};
+  const medals447=['bronze','silver','gold','green','cyan','blue','violet','pink'];
+  const nonNegative447=value=>Math.max(0,Math.floor(Number(value)||0));
   const out = {
     id: Math.max(1, Math.floor(Number(src.id) || fallbackId || 1)),
     createdAt: Number(src.createdAt) || Date.now(),
@@ -10456,8 +10462,11 @@ function normalizeSessionMR(value, fallbackId) {
       cyan: Math.max(0, Math.floor(Number(spentSrc.cyan) || 0)),
       blue: Math.max(0, Math.floor(Number(spentSrc.blue) || 0)),
       violet: Math.max(0, Math.floor(Number(spentSrc.violet) || 0)),
-      pink: Math.max(0, Math.floor(Number(spentSrc.pink) || 0))
+      pink: Math.max(0, Math.floor(Number(spentSrc.pink) || 0)),
+      ...Object.fromEntries(medals447.map(type=>['bass:'+type,nonNegative447(spentSrc['bass:'+type])]))
     },
+    // Separate bass inventory awards from historical treble session medals.
+    bassFruitMedals447: Object.fromEntries(medals447.map(type=>[type,nonNegative447(bassSrc447[type])])),
     tokens: Math.max(0, Math.floor(Number(src.tokens) || 0)),
     tokenMedalCount: Math.max(0, Math.floor(Number(src.tokenMedalCount) || 0)),
     levelProgressMarks: Array.isArray(src.levelProgressMarks) ? src.levelProgressMarks.slice() : []
@@ -10511,9 +10520,17 @@ function incrementSessionMedal(type) {
   if (!valid.includes(type)) return;
 
   s[type] = Math.max(0, Math.floor(Number(s[type]) || 0)) + 1;
+  const desiredClef=(typeof currentClef!=='undefined'&&currentClef===CLEF_BASS)?'bass':'treble';
+  // The eighth exercise uses bass and treble together: alternate the species.
+  const awardedClef=window.MimoCare?.nextRewardClef?.(type,desiredClef)||desiredClef;
+  if(awardedClef==='bass'){
+   if(!s.bassFruitMedals447||typeof s.bassFruitMedals447!=='object')s.bassFruitMedals447={};
+   s.bassFruitMedals447[type]=Math.max(0,Math.floor(Number(s.bassFruitMedals447[type])||0))+1;
+  }
   const rewardId = `${s.id}:${type}:${s[type]}`;
-  // Una vittoria = un frutto persistente nel cestino. rewardId rende l'evento idempotente.
-  if (window.MimoCare?.awardReward) window.MimoCare.awardReward(type, rewardId);
+  // The original medal and educational progress stay unchanged. The fruit type
+  // depends on clef; the eighth fruit alternates, across launches.
+  if (window.MimoCare?.awardReward) window.MimoCare.awardReward(type,rewardId,{clef:awardedClef});
 
   // Una sessione vale una sola volta per ciascun livello ai fini dello sblocco didattico.
   recordLevelSessionProgressMR(s,type);
@@ -14477,7 +14494,7 @@ function grantScoreAwardMR(score, awardSpecialMedal=false, completionSequence=0)
   }
   const prizeKey=`score:${score.id}:${completionSequence}`;
   // L'API del cestino salva l'assegnazione in blocco ed evita doppioni sullo stesso evento.
-  const fruitsAwarded=window.MimoCare?.awardFullBasket?.(prizeKey)===true;
+  const fruitsAwarded=window.MimoCare?.awardFullBasket?.(prizeKey,(typeof currentClef!=='undefined'&&currentClef===CLEF_BASS)?'bass':'treble')===true;
   return {newAward,tokenAwarded,fruitsAwarded};
 }
 function scoreDurationMR(name){
@@ -18957,7 +18974,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.445";
+  const PAGE_BUILD = "2.447";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -26845,30 +26862,62 @@ body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:1
 @media(prefers-reduced-motion:reduce){#mr344Scene .mr353PositionTag,body.mr353-room-open #mr344Scene #mimoBuddy{transition:none!important}.mr353FruitStack{animation:none!important}}
 </style>
 <script src="Assets/room/solar-cycle-396.js?v=399"></script>
+<style id="mr447-sixteen-fruits-basket">
+/* Basket layout: layered photographic treble fruits at the rear, eight bass
+   fruits at the front; the original woven front edge remains untouched. */
+#mr373Basket #mr353BasketFruit .mr373ActiveFruit.mr447BasketFruit{
+ position:absolute!important;right:auto!important;bottom:auto!important;display:block!important;
+ transform:translate(-50%,-50%)!important;object-fit:contain!important;
+ pointer-events:none!important;user-select:none!important;
+ filter:drop-shadow(0 3px 3px rgba(60,39,15,.28))!important;
+}
+#mr373Basket .mr373BasketLayer:nth-child(2){transition:opacity .15s ease!important;}
+#mr373Basket.mr447-basket-has-fruit .mr373BasketLayer:nth-child(2){opacity:0!important;}
+#mr373Basket .mr373FruitTouch{touch-action:none!important;}
+#mr373Basket .mr373FruitTouch .mr373FruitCount{left:50%!important;top:0!important;}
+</style>
 <script id="mr353-room-script">
 (()=>{
 const key='musicRainbowMimoRoomV1';
-const fruitKinds=['apple','banana','strawberry','grapes','pear','orange','peach','cherries'];
+// Build 2.447: sixteen fruit species, in two layers inside the same woven basket.
+// Keys and assets of the original treble fruits never change, preserving local saves.
+const trebleFruitKinds447=['apple','banana','strawberry','grapes','pear','orange','peach','cherries'];
+const bassFruitKinds447=['pineapple','kiwi','mango','watermelon','lemon','blueberries','coconut','melon'];
+const fruitKinds=[...trebleFruitKinds447,...bassFruitKinds447];
 const fruitInfo={
- apple:{name:'Mela',asset:'Assets/room/fruit-apple.png',level:1,medal:'bronze'},
- banana:{name:'Banana',asset:'Assets/room/fruit-banana.png',level:2,medal:'silver'},
- strawberry:{name:'Fragola',asset:'Assets/room/fruit-strawberry.png',level:3,medal:'gold'},
- grapes:{name:'Uva',asset:'Assets/room/fruit-grapes.png',level:4,medal:'green'},
- pear:{name:'Pera',asset:'Assets/room/fruit-pear.png',level:5,medal:'cyan'},
- orange:{name:'Arancia',asset:'Assets/room/fruit-orange.png',level:6,medal:'blue'},
- peach:{name:'Pesca',asset:'Assets/room/fruit-peach.png',level:7,medal:'violet'},
- cherries:{name:'Ciliegie',asset:'Assets/room/fruit-cherries.png',level:8,medal:'pink'}
+ apple:{name:'Mela',asset:'Assets/room/fruit-apple.png',level:1,medal:'bronze',clef:'treble'},
+ banana:{name:'Banana',asset:'Assets/room/fruit-banana.png',level:2,medal:'silver',clef:'treble'},
+ strawberry:{name:'Fragola',asset:'Assets/room/fruit-strawberry.png',level:3,medal:'gold',clef:'treble'},
+ grapes:{name:'Uva',asset:'Assets/room/fruit-grapes.png',level:4,medal:'green',clef:'treble'},
+ pear:{name:'Pera',asset:'Assets/room/fruit-pear.png',level:5,medal:'cyan',clef:'treble'},
+ orange:{name:'Arancia',asset:'Assets/room/fruit-orange.png',level:6,medal:'blue',clef:'treble'},
+ peach:{name:'Pesca',asset:'Assets/room/fruit-peach.png',level:7,medal:'violet',clef:'treble'},
+ cherries:{name:'Ciliegie',asset:'Assets/room/fruit-cherries.png',level:8,medal:'pink',clef:'treble'},
+ pineapple:{name:'Ananas',asset:'Assets/room/basket-fruit-pineapple.png',level:1,medal:'bronze',clef:'bass'},
+ kiwi:{name:'Kiwi',asset:'Assets/room/basket-fruit-kiwi.png',level:2,medal:'silver',clef:'bass'},
+ mango:{name:'Mango',asset:'Assets/room/basket-fruit-mango.png',level:3,medal:'gold',clef:'bass'},
+ watermelon:{name:'Anguria',asset:'Assets/room/basket-fruit-watermelon.png',level:4,medal:'green',clef:'bass'},
+ lemon:{name:'Limone',asset:'Assets/room/basket-fruit-lemon.png',level:5,medal:'cyan',clef:'bass'},
+ blueberries:{name:'Mirtilli',asset:'Assets/room/basket-fruit-blueberries.png',level:6,medal:'blue',clef:'bass'},
+ coconut:{name:'Cocco',asset:'Assets/room/basket-fruit-coconut.png',level:7,medal:'violet',clef:'bass'},
+ melon:{name:'Melone',asset:'Assets/room/basket-fruit-melon.png',level:8,medal:'pink',clef:'bass'}
 };
 const rewardMap={bronze:'apple',silver:'banana',gold:'strawberry',green:'grapes',cyan:'pear',blue:'orange',violet:'peach',pink:'cherries'};
-// Position within the shared 1448 × 1086 basket coordinate system.
-const basketHotspots={
- banana:{x:205,y:352,w:188,h:190}, apple:{x:492,y:360,w:211,h:188},
- pear:{x:840,y:353,w:184,h:191},orange:{x:1131,y:402,w:206,h:170},
- grapes:{x:215,y:495,w:210,h:136},strawberry:{x:550,y:519,w:210,h:121},
- peach:{x:827,y:510,w:210,h:140},cherries:{x:1145,y:505,w:205,h:142}
-};
-// Da dietro in avanti, come nell'immagine di riferimento: frutti alti dietro, frutti bassi davanti.
-const basketRenderOrder=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
+const bassRewardMap447={bronze:'pineapple',silver:'kiwi',gold:'mango',green:'watermelon',cyan:'lemon',blue:'blueberries',violet:'coconut',pink:'melon'};
+// Shared reference 1448×1086: front row is beneath the older rear row,
+// both above the original transparent foreground of the wicker basket.
+const basketLayout447={};
+const basketBackOrder447=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
+const basketFrontOrder447=['pineapple','kiwi','mango','watermelon','lemon','blueberries','coconut','melon'];
+const xs447=[170,325,480,640,800,960,1115,1270];
+const backYs447=[325,315,330,335,315,335,325,330];
+const frontYs447=[470,480,470,460,460,470,465,470];
+for(let i=0;i<8;i++){
+ const old=basketBackOrder447[i],fresh=basketFrontOrder447[i];
+ basketLayout447[old]={x:xs447[i],y:backYs447[i],size:(old==='banana'||old==='pear'?188:174),row:0};
+ basketLayout447[fresh]={x:xs447[i],y:frontYs447[i],size:(fresh==='pineapple'||fresh==='watermelon'?192:175),row:1};
+}
+const basketRenderOrder=[...basketBackOrder447,...basketFrontOrder447];
 let state={food:6,sleep:6,clean:6,happy:6,heartScale417:8,overfed:0,fruitStreak414:0,lastFruitAt414:0,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
 const clamp=n=>Math.max(0,Math.min(8,Math.round(Number(n)||0)));
 let needsHeartMigration417=false;
@@ -26890,6 +26939,9 @@ if(needsHeartMigration417){
 }
 // 2.413/2.417: il conteggio dei cuori è 0..8; la pancia rotonda ha un contatore
 // indipendente e limitato. Il dato è persistente e compatibile con i salvataggi precedenti.
+// Alternate the Level-8 reward between the two clefs after each real completion.
+// This lives in the existing care storage object, not in exercise progress.
+state.nextL8FruitClef447=state.nextL8FruitClef447==='bass'?'bass':'treble';
 const overfedLimit413=5;
 const consecutiveFruitWindow414=120000; // 2 minuti senza mangiare resettano la serie.
 let popPuffing414=false;
@@ -27301,24 +27353,31 @@ function init(){
  function renderBasket(){
   basket.replaceChildren();hitArea.replaceChildren();
   const occupied=basketRenderOrder.filter(kind=>Math.max(0,Math.floor(Number(state.fruits?.[kind])||0))>0);
+  room.querySelector('#mr373Basket').classList.toggle('mr447-basket-has-fruit',occupied.length>0);
   room.querySelector('#mr373Basket').setAttribute('aria-label',occupied.length?'Cestino con frutta disponibile':'Cestino vuoto: sagome della frutta al 10%');
   for(const kind of basketRenderOrder){
    const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));
+   const slot=basketLayout447[kind];
    if(count){
-    const img=document.createElement('img');img.className='mr373ActiveFruit';
-    img.src=`Assets/room/basket-sticker-${kind}.png`;img.alt='';img.draggable=false;
+    const img=document.createElement('img');img.className='mr373ActiveFruit mr447BasketFruit';
+    img.src=`Assets/room/basket-fruit-${kind}.png`;img.alt='';img.draggable=false;
+    img.style.left=(slot.x/1448*100)+'%';img.style.top=(slot.y/1086*100)+'%';
+    img.style.width=(slot.size/1448*100)+'%';img.style.height=(slot.size/1086*100)+'%';
+    img.style.zIndex=String(slot.row+1);
     basket.appendChild(img);
    }
-   const slot=basketHotspots[kind];
    const button=document.createElement('button');button.type='button';button.className='mr373FruitTouch';button.dataset.kind=kind;
-   button.style.left=(slot.x/1448*100)+'%';button.style.top=((slot.y+16)/1086*100)+'%';
-   button.style.width=(slot.w/1448*100)+'%';button.style.height=(slot.h/1086*100)+'%';
+   // Buttons follow the center of their illustration exactly, and never overlap
+   // another row. Labels remain within the transparent basket hit layer.
+   button.style.left=((slot.x-73)/1448*100)+'%';button.style.top=((slot.y-78)/1086*100)+'%';
+   button.style.width=(146/1448*100)+'%';button.style.height=(156/1086*100)+'%';
+   button.style.zIndex=String(slot.row+1);
    button.title=count?`${fruitInfo[kind].name}: ${count} disponibili`:`${fruitInfo[kind].name}: 0 disponibili`;
    button.setAttribute('aria-label',count?`${fruitInfo[kind].name}, ${count} disponibili. Dai un frutto a Mìmo`:`${fruitInfo[kind].name}: ancora da conquistare`);
    if(count>0){const label=document.createElement('span');label.className='mr373FruitCount';label.textContent=String(count);button.appendChild(label)}
    button.addEventListener('click',()=>{
     // Un semplice tap non nutre Mìmo: l'alimentazione richiede il rilascio sulla testa.
-    if(!count)setMessage(`${fruitInfo[kind].name}: conquista questo frutto suonando nel livello ${fruitInfo[kind].level}.`);
+    if(!count)setMessage(`${fruitInfo[kind].name}: conquista questo frutto suonando il livello ${fruitInfo[kind].level} in chiave di ${fruitInfo[kind].clef==='bass'?'basso':'violino'}.`);
    });
    if(count)installFruitDrag415(button,kind);
    hitArea.appendChild(button);
@@ -27429,14 +27488,18 @@ function init(){
  function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>`<div class="mr344Stat" role="group" aria-label="${label}: ${clamp(state[k])} su 8" title="${label}: ${clamp(state[k])}/8" style="--mr417-heart-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><span class="mr344Hearts" aria-hidden="true"><span class="mr417FilledHearts">${'♥'.repeat(clamp(state[k]))}</span><span class="mr417EmptyHearts">${'♡'.repeat(8-clamp(state[k]))}</span></span></div>`).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
  function markSessionFruitConsumed(kind){
   const type=fruitInfo[kind]?.medal;if(!type)return false;
+  const bass=fruitInfo[kind].clef==='bass';
+  const rewardKey=bass?`bass:${type}`:type;
   const current=typeof getCurrentSession==='function'?getCurrentSession():null;
   const candidates=[current,...(Array.isArray(sessions)?sessions.slice().reverse():[])].filter((session,i,a)=>session&&a.findIndex(s=>s.id===session.id)===i);
   for(const session of candidates){
-   const earned=Math.max(0,Math.floor(Number(session[type])||0));
+   const total=Math.max(0,Math.floor(Number(session[type])||0));
+   const earnedBass=Math.max(0,Math.floor(Number(session.bassFruitMedals447?.[type])||0));
+   const earned=bass?earnedBass:Math.max(0,total-earnedBass);
    const spent=session.spentRewards&&typeof session.spentRewards==='object'?session.spentRewards:(session.spentRewards={});
-   const used=Math.max(0,Math.floor(Number(spent[type])||0));
+   const used=Math.max(0,Math.floor(Number(spent[rewardKey])||0));
    if(earned<=used)continue;
-   spent[type]=used+1;
+   spent[rewardKey]=used+1;
    if(typeof saveSessionsToStorage==='function')saveSessionsToStorage();
    window.updateSessionTopbarMedalsMR?.();
    return true;
@@ -27637,20 +27700,47 @@ function init(){
   coinTray.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();useTokenBasket428();}});
  }
 
+ function currentRewardClef447(type,requested){
+  // Level 8 has two simultaneous staves; alternate even if the global setting
+  // happens to be treble. Do not advance until a truly new reward is awarded.
+  if(type==='pink')return state.nextL8FruitClef447==='bass'?'bass':'treble';
+  return requested==='bass'?'bass':'treble';
+ }
+ function rewardFruitIllustration447(type,kind){
+  const level=['bronze','silver','gold','green','cyan','blue','violet','pink'].indexOf(type)+1;
+  if(level<1||!kind)return;
+  // The win popup reflects the actual fruit awarded without changing the
+  // existing medal counters, unlocks or the persistent original fruit artwork.
+  const overlay=document.getElementById(level===2?'rainbowOverlay':`rainbowOverlayL${level}`);
+  const medal=overlay?.querySelector('.medal-circle');
+  if(medal)medal.style.setProperty('background-image',`url("${fruitInfo[kind].asset}")`,'important');
+ }
  window.MimoCare={
-   awardFullBasket:(rewardId)=>{
+   nextRewardClef:(type,requested)=>currentRewardClef447(type,requested),
+   awardFullBasket:(rewardId,requestedClef)=>{
     const key='full-basket:'+String(rewardId||'');
     if(!rewardId||state.awards[key])return false;
     state.awards[key]=1;
-    for(const kind of fruitKinds){
-     state.fruits[kind]=Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1;
-    }
+    const clef=requestedClef==='bass'?'bass':'treble';
+    const types=clef==='bass'?bassFruitKinds447:trebleFruitKinds447;
+    for(const kind of types)state.fruits[kind]=Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1;
     save();refresh();
-    setMessage('Brano completato! Otto frutti diversi sono arrivati nel cestino di Mìmo.');
+    setMessage(`Brano completato! Otto frutti in chiave di ${clef==='bass'?'basso':'violino'} sono arrivati nel cestino di Mìmo.`);
     window.MimoMotion?.celebrate?.();
     return true;
    },
-   awardReward:(type,rewardId)=>{const kind=rewardMap[type]||'apple',key=String(rewardId||`${type}:${Date.now()}`);if(state.awards[key])return false;state.awards[key]=1;state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1);save();refresh();setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()}: è nel cestino di Mìmo.`);window.MimoMotion?.celebrate?.();return true},
+   awardReward:(type,rewardId,options)=>{
+    const key=String(rewardId||`${type}:${Date.now()}`);
+    if(state.awards[key])return false;
+    const clef=currentRewardClef447(type,options?.clef);
+    const kind=(clef==='bass'?bassRewardMap447:rewardMap)[type]||'apple';
+    state.awards[key]=1;
+    state.fruits[kind]=Math.max(0,Math.floor(Number(state.fruits[kind])||0))+1;
+    if(type==='pink')state.nextL8FruitClef447=clef==='bass'?'treble':'bass';
+    save();refresh();rewardFruitIllustration447(type,kind);
+    setMessage(`Hai conquistato ${fruitInfo[kind].name.toLowerCase()} per la chiave di ${clef==='bass'?'basso':'violino'}: è nel cestino di Mìmo.`);
+    window.MimoMotion?.celebrate?.();return true;
+   },
    awardFruit:(kind='apple',count=1)=>{if(typeof kind==='number'){count=kind;kind='apple'}if(!fruitInfo[kind])kind='apple';const gained=Math.max(0,Math.floor(Number(count)||0));state.fruits[kind]=(Math.max(0,Math.floor(Number(state.fruits[kind])||0))+gained);save();refresh();if(gained>0)window.MimoMotion?.celebrate?.();return true},
    get:()=>JSON.parse(JSON.stringify(state)),refresh,move:moveMimo
  };
@@ -29364,8 +29454,8 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 }
 </style>
 <!-- 2.435: fumetti di Mìmo, primo tutorial e aiuto didattico su richiesta. -->
-<link rel="stylesheet" href="Assets/mimo-bubbles-435.css?v=435">
-<script src="Assets/mimo-bubbles-435.js?v=435"></script>
+<link rel="stylesheet" href="Assets/mimo-bubbles-446.css?v=446">
+<script src="Assets/mimo-bubbles-446.js?v=446"></script>
 <style id="mr442-tempo-tree-style">
 /* Impara il tempo: una nuova prima pagina senza tamburi. */
 #tempoTreePage{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;
@@ -29629,7 +29719,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 </script>
 
 <style id="mr444-duration-layout-css">
-/* Build 2.445: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
+/* Build 2.447: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
 #tempoTreePage .mr442TopPanel,.mr444DurationPage .top-panel{
   position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;
   min-height:0!important;margin:0!important;padding:6px 14px 0!important;

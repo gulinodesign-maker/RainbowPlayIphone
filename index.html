@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.439</div>
+    <div class="intro-version-label">Build 2.440</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.439</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.440</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.439";
+  const PAGE_BUILD = "2.440";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -26924,16 +26924,148 @@ function init(){
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const backgroundImage=room.querySelector('.mr353Background');
  const labels=[['food','🍎','Fame','#e83b51'],['sleep','🌙','Sonno','#399edb'],['clean','🫧','Pulizia','#1aa77a'],['happy','💗','Felicità','#945de0']];
- const bathCare439=document.createElement('div');
- bathCare439.id='mr439BathCare';
- bathCare439.setAttribute('aria-label','Shampoo e rubinetto per lavare Mìmo');
- bathCare439.innerHTML=`<button type="button" class="mr439ShampooTouch" data-bottle="sun" aria-label="Shampoo lilla di Mìmo"></button>
- <button type="button" class="mr439ShampooTouch" data-bottle="heart" aria-label="Shampoo azzurro di Mìmo"></button>
- <button type="button" class="mr439ShampooTouch" data-bottle="paw" aria-label="Shampoo rosa di Mìmo"></button>
- <button type="button" class="mr439ShampooTouch" data-bottle="star" aria-label="Shampoo viola di Mìmo"></button>
- <button type="button" id="mr439TapTouch" aria-label="Rubinetto della vasca: risciacqua Mìmo"></button>
- <div id="mr439RinseStream" aria-hidden="true" hidden></div>`;
- sceneCanvas.appendChild(bathCare439);
+ const washState439={drag:null,soapy:false,lastSoap:''};
+ const shampooKinds439=[
+  {kind:'sky',label:'Shampoo azzurro',left:87.5,top:23.9,color1:'#69c6ff',color2:'#2f89df'},
+  {kind:'gold',label:'Shampoo dorato',left:90.0,top:24.1,color1:'#ffd86a',color2:'#f39a2f'},
+  {kind:'peach',label:'Shampoo pesca',left:92.3,top:24.0,color1:'#ffbf9e',color2:'#ff83a6'},
+  {kind:'violet',label:'Shampoo viola',left:94.7,top:23.8,color1:'#b581ff',color2:'#8d4cd9'}
+ ];
+ const shampooShelf439=document.createElement('div');
+ shampooShelf439.id='mr439ShampooShelf';
+ const soapDragIcon439=document.createElement('div');
+ soapDragIcon439.id='mr439SoapInHand';
+ soapDragIcon439.hidden=true;soapDragIcon439.setAttribute('aria-hidden','true');
+ const soapHalo439=document.createElement('div');
+ soapHalo439.id='mr439SoapTargetHalo';
+ soapHalo439.hidden=true;soapHalo439.setAttribute('aria-hidden','true');
+ const faucetTouch439=document.createElement('button');
+ faucetTouch439.type='button';faucetTouch439.id='mr439FaucetTouch';
+ faucetTouch439.setAttribute('aria-label','Risciacqua Mìmo');
+ faucetTouch439.title='Risciacqua Mìmo';
+ const bubbleField439=document.createElement('div');
+ bubbleField439.id='mr439BathBubbleField';bubbleField439.hidden=true;
+ bubbleField439.setAttribute('aria-hidden','true');
+ bubbleField439.innerHTML='<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>';
+ sceneCanvas.append(shampooShelf439,faucetTouch439,bubbleField439);
+ document.body.append(soapDragIcon439,soapHalo439);
+ function ensureBathFoam439(){
+  const host=document.getElementById('mimoBuddy');if(!host)return null;
+  let foam=host.querySelector('#mr439BathFoam');
+  if(!foam){
+   foam=document.createElement('div');foam.id='mr439BathFoam';foam.hidden=true;
+   foam.setAttribute('aria-hidden','true');
+   foam.innerHTML='<span class="mr439Foam mr439FoamA"></span><span class="mr439Foam mr439FoamB"></span><span class="mr439Foam mr439FoamC"></span><span class="mr439Foam mr439FoamD"></span><span class="mr439Foam mr439FoamE"></span><span class="mr439Foam mr439FoamF"></span>';
+   host.appendChild(foam);
+  }
+  return foam;
+ }
+ function washTargetRect439(){
+  const host=document.getElementById('mimoBuddy');if(!host)return null;
+  const r=host.getBoundingClientRect();if(!r.width||!r.height)return null;
+  return {left:r.left-r.width*.08,right:r.right+r.width*.08,top:r.top+r.height*.04,bottom:r.bottom-r.height*.12,cx:r.left+r.width/2,cy:r.top+r.height*.45,w:r.width*1.10,h:r.height*.72};
+ }
+ function pointOnMimoForSoap439(x,y){
+  const z=washTargetRect439();if(!z)return false;
+  return x>=z.left&&x<=z.right&&y>=z.top&&y<=z.bottom;
+ }
+ function updateWashVisuals439(){
+  const foam=ensureBathFoam439();
+  const inBath=scene.dataset.location==='bath';
+  if(foam)foam.hidden=!(inBath&&washState439.soapy);
+  bubbleField439.hidden=!(inBath&&washState439.soapy);
+  faucetTouch439.hidden=!inBath;
+  faucetTouch439.classList.toggle('mr440FaucetReady',inBath&&washState439.soapy);
+  faucetTouch439.setAttribute('aria-label',inBath&&washState439.soapy?'Rubinetto: risciacqua Mìmo e aggiungi un cuore di pulizia':'Rubinetto: risciacqua Mìmo');
+  faucetTouch439.title=inBath&&washState439.soapy?'Tocca per risciacquare Mìmo':'Rubinetto';
+  shampooShelf439.hidden=false;
+ }
+ function applySoap439(kind){
+  if(scene.dataset.location!=='bath'){
+   setMessage('Porta Mìmo nella vasca, poi trascina lo shampoo sopra di lui.');
+   return;
+  }
+  // Uno o più shampoo prima del risciacquo costituiscono un SOLO lavaggio.
+  washState439.soapy=true;washState439.lastSoap=kind||'sky';
+  updateWashVisuals439();applyPose('bath');
+  window.MimoHaptics?.play?.('bath');
+  setMessage('Mìmo è pieno di schiuma e bollicine! Tocca il rubinetto illuminato per risciacquarlo e guadagnare un cuore di pulizia.');
+ }
+ function rinseMimo439(){
+  if(scene.dataset.location!=='bath'){setMessage('Per risciacquare Mìmo, portalo prima nella vasca.');return;}
+  if(!washState439.soapy){setMessage('Prima trascina uno shampoo sopra Mìmo.');window.MimoHaptics?.play?.('touch');return;}
+  // Il cuore è assegnato SOLO qui, dopo un lavaggio effettivo, una sola volta per ciclo.
+  washState439.soapy=false;updateWashVisuals439();
+  tick(); // Applica l'eventuale passaggio del tempo PRIMA di assegnare il nuovo cuore.
+  const wasClean=clamp(state.clean);
+  state.clean=clamp(wasClean+1);
+  applyPose('bath');refresh();
+  window.MimoHaptics?.play?.('bath');
+  setMessage(state.clean>wasClean
+    ?'Mìmo è risciacquato: la schiuma scompare e guadagna un cuoricino di pulizia!'
+    :'Mìmo è risciacquato: la schiuma scompare. La pulizia è già al massimo!');
+ }
+ function updateSoapDrag439(x,y){
+  const drag=washState439.drag;if(!drag)return;
+  drag.x=x;drag.y=y;
+  soapDragIcon439.style.left=x+'px';soapDragIcon439.style.top=y+'px';
+  const onTarget=scene.dataset.location==='bath'&&pointOnMimoForSoap439(x,y);
+  drag.onTarget=onTarget;
+  soapDragIcon439.classList.toggle('mr439SoapReady',onTarget);
+  if(onTarget){
+   const zone=washTargetRect439();
+   soapHalo439.hidden=false;
+   soapHalo439.style.left=zone.cx+'px';soapHalo439.style.top=zone.cy+'px';
+   soapHalo439.style.width=zone.w+'px';soapHalo439.style.height=zone.h+'px';
+  }else soapHalo439.hidden=true;
+ }
+ function endSoapDrag439(apply){
+  const drag=washState439.drag;if(!drag)return;
+  washState439.drag=null;
+  if(drag.button.hasPointerCapture?.(drag.id)){try{drag.button.releasePointerCapture(drag.id);}catch(_e){}}
+  drag.button.classList.remove('mr439ShampooDragging');
+  soapDragIcon439.hidden=true;soapHalo439.hidden=true;soapDragIcon439.classList.remove('mr439SoapReady');
+  if(apply&&drag.onTarget)applySoap439(drag.kind);
+ }
+ function buildSoapBottle439(cfg){
+  const button=document.createElement('button');
+  button.type='button';button.className='mr439ShampooTouch';button.dataset.kind=cfg.kind;
+  button.title=cfg.label+' · trascina sopra Mìmo';button.setAttribute('aria-label',cfg.label+' · trascina sopra Mìmo per fare la schiuma');
+  button.style.setProperty('--mr439-left',cfg.left+'%');button.style.setProperty('--mr439-top',cfg.top+'%');
+  button.style.setProperty('--mr439-c1',cfg.color1);button.style.setProperty('--mr439-c2',cfg.color2);
+  button.addEventListener('pointerdown',ev=>{
+   if(ev.button!==0||washState439.drag)return;
+   ev.preventDefault();
+   const activeKind=cfg.kind;
+   washState439.drag={id:ev.pointerId,button,kind:activeKind,onTarget:false,x:ev.clientX,y:ev.clientY};
+   button.classList.add('mr439ShampooDragging');
+   soapDragIcon439.style.setProperty('--mr439-c1',cfg.color1);soapDragIcon439.style.setProperty('--mr439-c2',cfg.color2);
+   soapDragIcon439.hidden=false;
+   try{button.setPointerCapture(ev.pointerId);}catch(_e){}
+   updateSoapDrag439(ev.clientX,ev.clientY);
+   if(scene.dataset.location!=='bath')setMessage('Porta Mìmo nella vasca, poi trascina lo shampoo sopra di lui.');
+  });
+  button.addEventListener('pointermove',ev=>{if(washState439.drag?.id===ev.pointerId&&washState439.drag.button===button)updateSoapDrag439(ev.clientX,ev.clientY);});
+  button.addEventListener('pointerup',ev=>{if(washState439.drag?.id===ev.pointerId&&washState439.drag.button===button)endSoapDrag439(true);});
+  button.addEventListener('pointercancel',ev=>{if(washState439.drag?.id===ev.pointerId&&washState439.drag.button===button)endSoapDrag439(false);});
+  button.addEventListener('lostpointercapture',ev=>{if(washState439.drag?.id===ev.pointerId&&washState439.drag.button===button)endSoapDrag439(false);});
+  return button;
+ }
+ shampooKinds439.forEach(cfg=>shampooShelf439.appendChild(buildSoapBottle439(cfg)));
+ // iPad Safari/WKWebView: pointerup è affidabile anche dopo interazioni drag-and-drop.
+ // Evita che il click sintetico successivo sovrascriva il messaggio del risciacquo.
+ let lastRinsePointerAt439=0;
+ faucetTouch439.addEventListener('pointerup',ev=>{
+  if(ev.isPrimary===false)return;
+  if(ev.pointerType==='touch'||ev.pointerType==='pen'){
+   ev.stopPropagation();lastRinsePointerAt439=performance.now();rinseMimo439();
+  }
+ });
+ faucetTouch439.addEventListener('click',ev=>{
+  ev.stopPropagation();
+  if(performance.now()-lastRinsePointerAt439<700)return;
+  rinseMimo439();
+ });
 
  // Build 2.400: riempimento orizzontale del display, inquadratura croppata verticalmente.
  // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
@@ -27039,10 +27171,11 @@ function init(){
   if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);
   if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);
   scene.dataset.location=target;
-  if(target!=='bath')setBathFoam439(false,false);
   host.style.setProperty('left',pos.left,'important');
   host.style.setProperty('top',pos.top,'important');
   if(target!=='bed'&&target!=='bath')clearPose();
+  if(target!=='bath'&&washState439.soapy)washState439.soapy=false;
+  updateWashVisuals439();
  }
  function setMessage(text){msg.textContent=text||'';if(text)window.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:String(text)}}));}
  function updateMood(){
@@ -27179,120 +27312,6 @@ function init(){
  window.addEventListener('blur',()=>endFruitDrag415(false));
  document.addEventListener('visibilitychange',()=>{if(document.hidden)endFruitDrag415(false)});
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')endFruitDrag415(false)});
- let shampooDrag439=null,foamActive439=false,rinseTimer439=0;
- const shampooDragIcon439=document.createElement('div');
- shampooDragIcon439.id='mr439ShampooInHand';shampooDragIcon439.hidden=true;
- shampooDragIcon439.setAttribute('aria-hidden','true');
- shampooDragIcon439.innerHTML='<span class="mr439BottleEmoji" aria-hidden="true">🧴</span>';
- const shampooHalo439=document.createElement('div');
- shampooHalo439.id='mr439WashHalo';shampooHalo439.hidden=true;
- shampooHalo439.setAttribute('aria-hidden','true');
- document.body.append(shampooDragIcon439,shampooHalo439);
- function ensureBathFoam439(){
-  const host=document.getElementById('mimoBuddy');if(!host)return null;
-  let fx=host.querySelector('#mr439FoamFx');
-  if(fx)return fx;
-  fx=document.createElement('div');fx.id='mr439FoamFx';fx.hidden=true;fx.setAttribute('aria-hidden','true');
-  fx.innerHTML='<span class="mr439FoamBlob b1"></span><span class="mr439FoamBlob b2"></span><span class="mr439FoamBlob b3"></span><span class="mr439FoamBlob b4"></span><span class="mr439FoamBlob b5"></span><span class="mr439FoamBlob b6"></span><span class="mr439Bubble q1"></span><span class="mr439Bubble q2"></span><span class="mr439Bubble q3"></span><span class="mr439Bubble q4"></span><span class="mr439Bubble q5"></span>';
-  host.appendChild(fx);
-  return fx;
- }
- function canUseBathCare439(){
-  return document.body.classList.contains('mr353-room-open') && getComputedStyle(page).display!=='none' && scene.dataset.location==='bath';
- }
- function bathMimoZone439(){
-  const host=document.getElementById('mimoBuddy');
-  if(!host||scene.dataset.location!=='bath'||!host.getClientRects().length)return null;
-  const r=host.getBoundingClientRect();
-  return {x:r.left+r.width*.52,y:r.top+r.height*.46,rx:Math.max(26,r.width*.33),ry:Math.max(30,r.height*.42)};
- }
- function pointInEllipse439(x,y,zone){
-  if(!zone)return false;
-  return (((x-zone.x)/zone.rx)**2 + ((y-zone.y)/zone.ry)**2) <= 1;
- }
- function setBathFoam439(active,announce=true){
-  foamActive439=!!active;
-  const fx=ensureBathFoam439();
-  if(fx)fx.hidden=!foamActive439;
-  const host=document.getElementById('mimoBuddy');
-  if(host)host.classList.toggle('mr439Soapy',foamActive439);
-  bathCare439.classList.toggle('mr439FoamActive',foamActive439);
-  if(!foamActive439){
-   shampooHalo439.hidden=true;shampooHalo439.classList.remove('mr439WashReady');
-  }else if(announce){
-   setMessage('Mìmo è pieno di schiuma: ora tocca il rubinetto per risciacquarlo.');
-  }
- }
- function updateShampooHalo439(zone,onTarget){
-  if(!zone||!canUseBathCare439()){shampooHalo439.hidden=true;shampooHalo439.classList.remove('mr439WashReady');return;}
-  shampooHalo439.hidden=false;
-  shampooHalo439.style.left=zone.x+'px';shampooHalo439.style.top=zone.y+'px';
-  shampooHalo439.style.width=zone.rx*2+'px';shampooHalo439.style.height=zone.ry*2+'px';
-  shampooHalo439.classList.toggle('mr439WashReady',!!onTarget);
- }
- function updateShampooDrag439(x,y){
-  const drag=shampooDrag439;if(!drag)return;
-  drag.x=x;drag.y=y;
-  shampooDragIcon439.style.left=x+'px';shampooDragIcon439.style.top=y+'px';
-  const zone=bathMimoZone439();drag.onTarget=canUseBathCare439() && pointInEllipse439(x,y,zone);
-  updateShampooHalo439(zone,drag.onTarget);
-  shampooDragIcon439.classList.toggle('mr439OnTarget',drag.onTarget);
- }
- function endShampooDrag439(shouldApply){
-  const drag=shampooDrag439;if(!drag)return;
-  shampooDrag439=null;
-  if(drag.button.hasPointerCapture?.(drag.id)){
-   try{drag.button.releasePointerCapture(drag.id)}catch(_e){}
-  }
-  drag.button.classList.remove('mr439Dragging');
-  shampooDragIcon439.hidden=true;
-  shampooDragIcon439.classList.remove('mr439OnTarget');
-  updateShampooHalo439(null,false);
-  const moved=Math.hypot(drag.x-drag.startX,drag.y-drag.startY);
-  if(shouldApply && drag.onTarget && moved>18 && canUseBathCare439()){
-   window.MimoSounds?.play?.('bath');window.MimoHaptics?.play?.('bath');
-   setBathFoam439(true,true);
-  }
- }
- function rinseMimo439(){
-  if(scene.dataset.location!=='bath'){window.MimoHaptics?.play?.('touch');setMessage('Porta Mìmo nella vasca, poi usa shampoo e rubinetto.');return;}
-  if(!foamActive439){window.MimoHaptics?.play?.('touch');setMessage('Prima trascina uno shampoo sopra Mìmo.');return;}
-  clearTimeout(rinseTimer439);
-  bathCare439.classList.add('mr439Rinsing');
-  const stream=bathCare439.querySelector('#mr439RinseStream');
-  if(stream)stream.hidden=false;
-  window.MimoSounds?.play?.('bath');window.MimoHaptics?.play?.('bath');
-  setTimeout(()=>{
-   state.clean=8;state.happy=clamp(state.happy+2);
-   setBathFoam439(false,false);refresh();applyPose('bath');
-   setMessage('Mìmo è stato risciacquato: ora è pulito e profuma di buono.');
-  },240);
-  rinseTimer439=setTimeout(()=>{bathCare439.classList.remove('mr439Rinsing');if(stream)stream.hidden=true;},980);
- }
- bathCare439.querySelectorAll('.mr439ShampooTouch').forEach(button=>{
-  button.addEventListener('pointerdown',ev=>{
-   if(ev.button!==0||shampooDrag439||fruitDrag415||mimoDrag418||popPuffing414)return;
-   if(!canUseBathCare439()){window.MimoHaptics?.play?.('touch');setMessage('Porta Mìmo nella vasca, poi trascina uno shampoo su di lui.');return;}
-   ev.preventDefault();
-   shampooDrag439={id:ev.pointerId,button,x:ev.clientX,y:ev.clientY,startX:ev.clientX,startY:ev.clientY,onTarget:false};
-   button.classList.add('mr439Dragging');
-   try{button.setPointerCapture(ev.pointerId)}catch(_e){}
-   shampooDragIcon439.hidden=false;
-   updateShampooDrag439(ev.clientX,ev.clientY);
-  });
-  button.addEventListener('pointermove',ev=>{
-   if(shampooDrag439?.id!==ev.pointerId||shampooDrag439.button!==button)return;
-   ev.preventDefault();updateShampooDrag439(ev.clientX,ev.clientY);
-  });
-  button.addEventListener('pointerup',ev=>{
-   if(shampooDrag439?.id!==ev.pointerId||shampooDrag439.button!==button)return;
-   ev.preventDefault();updateShampooDrag439(ev.clientX,ev.clientY);endShampooDrag439(true);
-  });
-  button.addEventListener('pointercancel',ev=>{if(shampooDrag439?.id===ev.pointerId&&shampooDrag439.button===button)endShampooDrag439(false)});
-  button.addEventListener('lostpointercapture',ev=>{if(shampooDrag439?.id===ev.pointerId&&shampooDrag439.button===button)endShampooDrag439(false)});
-  button.addEventListener('click',ev=>{ev.preventDefault();});
- });
- bathCare439.querySelector('#mr439TapTouch')?.addEventListener('click',ev=>{ev.preventDefault();rinseMimo439();});
  function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
  function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>`<div class="mr344Stat" role="group" aria-label="${label}: ${clamp(state[k])} su 8" title="${label}: ${clamp(state[k])}/8" style="--mr417-heart-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><span class="mr344Hearts" aria-hidden="true"><span class="mr417FilledHearts">${'♥'.repeat(clamp(state[k]))}</span><span class="mr417EmptyHearts">${'♡'.repeat(8-clamp(state[k]))}</span></span></div>`).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
  function markSessionFruitConsumed(kind){
@@ -27432,10 +27451,10 @@ function init(){
     setMessage('Mìmo riposa nel nido; recupera sonno durante la notte.');},900);
   }else if(destination==='bath'){
    window.MimoHaptics?.play?.('bath');setResting396(false);moveMimo('bath');
-   fruitPicker.hidden=true;setBathFoam439(false,false);setMessage('Mìmo va verso la vasca.');
+   fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');
    setTimeout(()=>{if(scene.dataset.location!=='bath')return;
-    applyPose('bath');refresh();
-    setMessage('Mìmo è nella vasca: trascina uno shampoo su di lui, poi tocca il rubinetto per risciacquarlo.');},900);
+    applyPose('bath');refresh();updateWashVisuals439();
+    setMessage('Per lavare Mìmo, trascina uno degli shampoo sopra di lui e poi tocca il rubinetto.');},900);
   }else if(destination==='food'){
    window.MimoSounds?.play?.('food');setResting396(false);moveMimo('food');
    fruitPicker.hidden=true;clearPose();
@@ -27483,9 +27502,9 @@ function init(){
    }
   },true);
  }
- window.addEventListener('blur',()=>{finishMimoDrag418(false);endShampooDrag439(false);});
- document.addEventListener('visibilitychange',()=>{if(document.hidden){finishMimoDrag418(false);endShampooDrag439(false);}});
- document.addEventListener('keydown',ev=>{if(ev.key==='Escape'){finishMimoDrag418(false);endShampooDrag439(false);}});
+ window.addEventListener('blur',()=>finishMimoDrag418(false));
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)finishMimoDrag418(false)});
+ document.addEventListener('keydown',ev=>{if(ev.key==='Escape')finishMimoDrag418(false)});
  room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');setResting396(false);moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Trascina un frutto dal cestino alla testa di Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
  const useTokenBasket428=()=>{
   const total=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
@@ -27527,7 +27546,7 @@ function init(){
   document.body.classList.toggle('mr353-room-open',open);
   const host=document.getElementById('mimoBuddy');
   if(!open){
-   finishMimoDrag418(false);endShampooDrag439(false);setBathFoam439(false,false);
+   finishMimoDrag418(false);
    if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}
    clearPose();return;
   }
@@ -27537,9 +27556,9 @@ function init(){
   if(host)installMimoDrag418(host);
   const bed=!!state.restingAtNight;
   moveMimo(bed?'bed':'food',false);
-  setBathFoam439(false,false);
   if(bed)applyPose('bed');
   fruitPicker.hidden=true;setMessage('');refresh();
+  updateWashVisuals439();
   applyRoomBackground384();queueFit376();updateMimoDiagnostic();
  }
  // Ricalcola luce e riposo al ritorno in app e ai cambi di alba/tramonto.
@@ -28471,21 +28490,32 @@ body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
  max-height:none!important;transform:translateX(-50%)!important;z-index:1200!important;
  clip-path:none!important;pointer-events:auto!important;
 }
-/* Floating global toggle: in basso a sinistra, fuori da titoli e toolbar. */
+/* Build 2.440: il tasto mostra/nascondi Mìmo vive sempre nella top bar,
+   subito a destra del tasto Home, quando quella pagina lo prevede. */
 #mr410MimoFloatingToggle{
- position:fixed!important;left:max(12px,env(safe-area-inset-left,0px))!important;
- bottom:calc(max(12px,env(safe-area-inset-bottom,0px)) + var(--mr410-toggle-extra-bottom,0px))!important;
- z-index:2100!important;display:none!important;
- width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;
+ position:relative!important;
+ z-index:auto!important;display:none!important;
+ flex:0 0 var(--mr-topbar-control-h,48px)!important;
+ width:var(--mr-topbar-control-h,48px)!important;height:var(--mr-topbar-control-h,48px)!important;
+ min-width:var(--mr-topbar-control-h,48px)!important;min-height:var(--mr-topbar-control-h,48px)!important;
  padding:0!important;border:2px solid #a78bfa!important;border-radius:12px!important;
- background:#f5f0ff!important;color:#6845ad!important;box-shadow:0 3px 12px rgba(38,24,75,.18)!important;
+ background:#f5f0ff!important;color:#6845ad!important;box-shadow:0 2px 5px rgba(60,39,100,.12)!important;
  align-items:center!important;justify-content:center!important;cursor:pointer!important;
+ touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;
+ margin:0!important;
 }
 #mr410MimoFloatingToggle.mr410-toggle-visible{display:inline-flex!important;}
+#mr410MimoFloatingToggle[hidden]{display:none!important;}
 #mr410MimoFloatingToggle svg{width:23px!important;height:23px!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important;}
 #mr410MimoFloatingToggle[aria-pressed="false"]{background:#e5e7eb!important;color:#4b5563!important;}
-/* The trophy page no longer shows the Mìmo visibility toggle. */
-#trophyPage .top-row .top-left-controls{display:flex!important;align-items:center!important;gap:5px!important;}
+.page-container .top-row > .top-left-controls.mr410-has-mimo-toggle,
+#homeScreen .top-row > .top-left-controls.mr410-has-mimo-toggle,
+#trophyPage .top-row .top-left-controls{
+ display:flex!important;align-items:center!important;gap:5px!important;
+ width:auto!important;min-width:0!important;overflow:visible!important;
+}
+.page-container .top-row > .top-left-controls > #mr410MimoFloatingToggle,
+#homeScreen .top-row > .top-left-controls > #mr410MimoFloatingToggle{order:2!important;}
 /* Recording dots: fixed in the content area BELOW the top bar, never in its title. */
 #scorePlayerPage #scoreCountInDisplay:not([hidden]){
  display:flex!important;position:fixed!important;z-index:2100!important;
@@ -28527,19 +28557,43 @@ const allButtons=[];
 function isShown(el){return !!(el&&el.getClientRects().length&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden');}
 function activePage(){return Array.from(document.querySelectorAll('.page-container')).find(p=>isShown(p))||null;}
 function homeVisible(){const home=document.getElementById('homeScreen');return isShown(home)?home:null;}
-function toggleButtonVisible(){
+function topBarForToggle(){
  const body=document.body;
- if(body.classList.contains('mr353-room-open')||body.classList.contains('mr357-lab-open'))return false;
- if(isShown(document.getElementById('introScreen')))return false;
- return !!(homeVisible()||activePage());
+ if(body.classList.contains('mr353-room-open')||body.classList.contains('mr357-lab-open'))return null;
+ if(isShown(document.getElementById('introScreen')))return null;
+ const surface=homeVisible()||activePage();
+ return surface?.querySelector('.top-row .top-left-controls')||null;
 }
+function placeFloatingToggle(){
+ const floating=document.getElementById('mr410MimoFloatingToggle');
+ if(!floating)return;
+ document.querySelectorAll('.top-row .top-left-controls.mr410-has-mimo-toggle').forEach(el=>{if(el!==floating.parentNode)el.classList.remove('mr410-has-mimo-toggle');});
+ const host=topBarForToggle();
+ if(!host){
+  host?.classList.remove?.('mr410-has-mimo-toggle');
+  if(floating.parentNode!==document.body)document.body.appendChild(floating);
+  floating.hidden=true;
+  floating.classList.remove('mr410-toggle-visible');
+  return;
+ }
+ host.classList.add('mr410-has-mimo-toggle');
+ const homeButton=Array.from(host.querySelectorAll('button')).find(btn=>btn!==floating&&(
+  btn.classList.contains('menu-btn')||/home/i.test(btn.id||'')||/(torna alla home|home)/i.test(btn.getAttribute('aria-label')||'')
+  ));
+ const reference=homeButton?homeButton.nextSibling:host.firstChild;
+ if(floating.parentNode!==host)host.insertBefore(floating,reference);
+ else if(homeButton&&floating.previousElementSibling!==homeButton)host.insertBefore(floating,homeButton.nextSibling);
+ else if(!homeButton&&host.firstChild!==floating)host.insertBefore(floating,host.firstChild);
+ floating.hidden=false;
+ floating.classList.add('mr410-toggle-visible');
+}
+function toggleButtonVisible(){return !!topBarForToggle();}
 function syncButtons(){
  document.body.classList.toggle('mr410-mimo-hidden',!enabled);
  // Keep the older eight-level switches in sync with the shared preference.
  document.body.classList.toggle('mr409-level-mimo-hidden',!enabled);
  allButtons.forEach(b=>{b.setAttribute('aria-pressed',String(enabled));b.setAttribute('aria-label',enabled?'Nascondi Mìmo':'Mostra Mìmo');b.title=enabled?'Nascondi Mìmo':'Mostra Mìmo';});
- const floating=document.getElementById('mr410MimoFloatingToggle');
- if(floating)floating.classList.toggle('mr410-toggle-visible',toggleButtonVisible());
+ placeFloatingToggle();
 }
 // Remove any old inline Mìmo-toggle buttons from top bars or Home.
 document.querySelectorAll('.page-container .mr409-mimo-toggle,#homeScreen .mr409-mimo-toggle').forEach(btn=>btn.remove());
@@ -28557,26 +28611,7 @@ function position(){
  const body=document.body;
  const room=body.classList.contains('mr353-room-open'),lab=body.classList.contains('mr357-lab-open');
  const css=document.documentElement.style;
- // Compute the floating toggle offset so it stays bottom-left without covering bottom controls.
- const surface=page||homeVisible();
- let extraBottom=0;
- if(surface){
-  const viewportBottom=(window.visualViewport&&window.visualViewport.height?window.visualViewport.height:window.innerHeight);
-  const blockers=surface.querySelectorAll('.keyboard-container,.note-buttons-container,.piano,.piano-keys,.hands-drums,.tempo-action-container,.hands-actions,.score-creator-bottom,.score-player-controls,.virtual-keyboard,#mr344Stats');
-  let blockerTop=Infinity;
-  blockers.forEach(el=>{
-   if(!isShown(el))return;
-   const r=el.getBoundingClientRect();
-   if(r.height<20||r.width<20)return;
-   if(r.bottom>viewportBottom-8 && r.left<150)blockerTop=Math.min(blockerTop,r.top);
-   else if(r.bottom>viewportBottom-56 && r.left<150)blockerTop=Math.min(blockerTop,r.top);
-   else if(r.left<=20 && r.width>window.innerWidth*0.75 && r.bottom>viewportBottom-110)blockerTop=Math.min(blockerTop,r.top);
-  });
-  if(Number.isFinite(blockerTop))extraBottom=Math.max(0,Math.round(viewportBottom-blockerTop+12));
- }
- css.setProperty('--mr410-toggle-extra-bottom',extraBottom+'px');
- const floating=document.getElementById('mr410MimoFloatingToggle');
- if(floating)floating.classList.toggle('mr410-toggle-visible',toggleButtonVisible());
+ placeFloatingToggle();
  if(!page||room||lab){body.classList.remove('mr410-mimo-safe','mr410-mimo-no-space');return;}
  const keyboard=page.querySelector('.keyboard-container,.note-buttons-container,.piano,.hands-drums,.tempo-action-container');
  const staff=page.querySelector('.staff-stage-single,.staff-stage-l8,.activity-display-zone,.staff-container,.hands-staff-wrap,.middle-area');
@@ -29031,84 +29066,80 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
 </style>
 
 
-<style id="mr439-mimo-bath-shampoo">
-/* 2.439 — Lavaggio di Mìmo: shampoo drag&drop e risciacquo dal rubinetto. */
-#mr376SceneCanvas #mr439BathCare{position:absolute;inset:0;z-index:26;pointer-events:none;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch,
-#mr376SceneCanvas #mr439BathCare #mr439TapTouch{
- position:absolute;pointer-events:auto;touch-action:none;cursor:grab;border:0;background:transparent;
- box-shadow:none;padding:0;border-radius:14px;
+<style id="mr439-room-wash-interaction">
+#mr439ShampooShelf{position:absolute;inset:0;z-index:40;pointer-events:none!important;}
+#mr439ShampooShelf .mr439ShampooTouch{
+ position:absolute;left:var(--mr439-left);top:var(--mr439-top);transform:translate(-50%,-50%);
+ width:3.0%;height:8.8%;min-width:22px;min-height:38px;pointer-events:auto!important;cursor:grab;
+ border:0;background:transparent;padding:0;border-radius:12px;touch-action:none;-webkit-tap-highlight-color:transparent!important;
 }
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch{width:4.6%;height:10.5%;top:19.7%;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="sun"]{left:88.0%;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="heart"]{left:91.1%;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="paw"]{left:94.0%;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="star"]{left:96.7%;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch:focus-visible,
-#mr376SceneCanvas #mr439BathCare #mr439TapTouch:focus-visible{outline:3px solid #ffe27a;outline-offset:2px;}
-#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch.mr439Dragging{cursor:grabbing;}
-#mr376SceneCanvas #mr439BathCare #mr439TapTouch{left:84.8%;top:47.8%;width:13.2%;height:9.5%;cursor:pointer;touch-action:manipulation;}
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch{width:6.0%;height:11.4%;top:24.3%;}
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="sun"]{left:86.8%;}
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="heart"]{left:90.2%;}
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="paw"]{left:93.4%;}
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="star"]{left:96.0%;}
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare #mr439TapTouch{left:84.0%;top:55.0%;width:13.8%;height:10.6%;}
-#mr439ShampooInHand[hidden],#mr439WashHalo[hidden],#mr439FoamFx[hidden],#mr439RinseStream[hidden]{display:none!important;}
-#mr439ShampooInHand{
- position:fixed;left:0;top:0;transform:translate(-50%,-50%);z-index:9999;pointer-events:none;
- width:58px;height:58px;border-radius:18px;background:linear-gradient(180deg,#fff8d7,#f8dbff 58%,#dba6ff);
- display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(56,35,78,.28), inset 0 0 0 2px rgba(255,255,255,.86);
+#mr439ShampooShelf .mr439ShampooTouch::before,#mr439SoapInHand::before{
+ content:'';position:absolute;left:18%;right:18%;top:16%;height:64%;border-radius:11px 11px 15px 15px;
+ background:linear-gradient(180deg,var(--mr439-c1,#7dd3fc) 0%,var(--mr439-c2,#2563eb) 100%);
+ border:2px solid rgba(255,255,255,.82);box-shadow:0 2px 8px rgba(0,0,0,.18);
 }
-#mr439ShampooInHand .mr439BottleEmoji{font-size:32px;line-height:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.16));}
-#mr439ShampooInHand.mr439OnTarget{transform:translate(-50%,-50%) scale(.92);box-shadow:0 0 0 4px rgba(175,246,196,.72),0 8px 20px rgba(34,197,94,.32);}
-#mr439WashHalo{
- position:fixed;left:0;top:0;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:9998;
- border:4px dashed rgba(253,246,167,.92);background:rgba(255,246,167,.18);box-shadow:0 0 0 4px rgba(76,48,31,.14);
+#mr439ShampooShelf .mr439ShampooTouch::after,#mr439SoapInHand::after{
+ content:'';position:absolute;left:33%;right:33%;top:3%;height:22%;border-radius:8px 8px 4px 4px;
+ background:linear-gradient(180deg,#ffffff 0%,#dbeafe 100%);border:1px solid rgba(120,120,150,.55);
 }
-#mr439WashHalo.mr439WashReady{border-color:#d9f99d;background:rgba(100,255,137,.20);box-shadow:0 0 0 5px rgba(69,215,103,.22),0 0 20px rgba(69,215,103,.38);}
-#mr344Scene #mimoBuddy #mr439FoamFx{
- position:absolute;left:7%;top:13%;width:86%;height:66%;pointer-events:none;z-index:16;
- filter:drop-shadow(0 1px 3px rgba(106,141,171,.26));
+#mr439ShampooShelf .mr439ShampooTouch.mr439ShampooDragging{cursor:grabbing;filter:drop-shadow(0 0 7px rgba(255,243,122,.9));}
+#mr439SoapInHand[hidden],#mr439SoapTargetHalo[hidden],#mr439BathBubbleField[hidden],#mr439BathFoam[hidden],#mr439FaucetTouch[hidden]{display:none!important;}
+#mr439SoapInHand{
+ position:fixed;left:0;top:0;z-index:2147482000;width:40px;height:64px;transform:translate(-50%,-50%) rotate(-10deg);
+ pointer-events:none!important;filter:drop-shadow(0 8px 12px rgba(0,0,0,.26));
 }
-#mr344Scene #mimoBuddy #mr439FoamFx .mr439FoamBlob{
- position:absolute;display:block;border-radius:50%;
- background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.98) 0 26%,rgba(234,248,255,.96) 32%,rgba(213,235,245,.92) 60%,rgba(187,219,231,.78) 100%);
- box-shadow:inset 0 3px 7px rgba(255,255,255,.65),0 1px 2px rgba(149,182,196,.42);
+#mr439SoapInHand.mr439SoapReady{transform:translate(-50%,-50%) rotate(-10deg) scale(1.08);filter:drop-shadow(0 0 10px #fff79a) drop-shadow(0 8px 12px rgba(0,0,0,.28));}
+#mr439SoapTargetHalo{position:fixed;left:0;top:0;transform:translate(-50%,-50%);z-index:2147481900;pointer-events:none!important;border-radius:50%;border:4px dashed rgba(255,255,255,.96);background:rgba(120,226,255,.18);box-shadow:0 0 0 4px rgba(255,240,150,.35),0 0 18px rgba(130,214,255,.38);}
+/* 2.440: hotspot ANCORATO AL RUBINETTO nel PNG di sfondo, non alla parte bassa della vasca.
+   Sopra i bersagli della stanza (z=214) e con superficie ampia per dita/Pencil.
+   La stessa posizione vale per giorno/notte del rispettivo formato. */
+#trophyPage #mr344Scene #mr376SceneCanvas > #mr439FaucetTouch{
+ position:absolute!important;left:90.5%!important;top:32.1%!important;
+ transform:translate(-50%,-50%)!important;width:10.4%!important;height:10.0%!important;
+ min-width:52px!important;min-height:52px!important;
+ z-index:265!important;display:block!important;pointer-events:auto!important;
+ border:0!important;background:transparent!important;box-shadow:none!important;
+ padding:0!important;cursor:pointer!important;touch-action:manipulation!important;
+ -webkit-tap-highlight-color:transparent!important;border-radius:18px!important;
 }
-#mr344Scene #mimoBuddy #mr439FoamFx .b1{left:14%;top:34%;width:28%;height:24%;}
-#mr344Scene #mimoBuddy #mr439FoamFx .b2{left:34%;top:20%;width:31%;height:28%;}
-#mr344Scene #mimoBuddy #mr439FoamFx .b3{left:55%;top:32%;width:24%;height:22%;}
-#mr344Scene #mimoBuddy #mr439FoamFx .b4{left:28%;top:49%;width:25%;height:18%;}
-#mr344Scene #mimoBuddy #mr439FoamFx .b5{left:48%;top:46%;width:26%;height:20%;}
-#mr344Scene #mimoBuddy #mr439FoamFx .b6{left:8%;top:52%;width:18%;height:15%;}
-#mr344Scene #mimoBuddy #mr439FoamFx .mr439Bubble{
- position:absolute;display:block;border-radius:50%;border:2px solid rgba(203,242,255,.95);
- background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9) 0 20%,rgba(214,248,255,.18) 45%,rgba(214,248,255,0) 70%);
- box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);animation:mr439BubbleFloat 2.6s ease-in-out infinite;
+#trophyPage #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas > #mr439FaucetTouch{
+ left:94.0%!important;top:39.0%!important;width:11.5%!important;height:12.6%!important;
 }
-#mr344Scene #mimoBuddy #mr439FoamFx .q1{left:18%;top:4%;width:13%;height:13%;animation-delay:-.2s;}
-#mr344Scene #mimoBuddy #mr439FoamFx .q2{left:60%;top:2%;width:15%;height:15%;animation-delay:-1.1s;}
-#mr344Scene #mimoBuddy #mr439FoamFx .q3{left:75%;top:22%;width:11%;height:11%;animation-delay:-.7s;}
-#mr344Scene #mimoBuddy #mr439FoamFx .q4{left:8%;top:19%;width:9%;height:9%;animation-delay:-1.7s;}
-#mr344Scene #mimoBuddy #mr439FoamFx .q5{left:43%;top:0%;width:10%;height:10%;animation-delay:-1.3s;}
-#mr376SceneCanvas #mr439BathCare #mr439RinseStream{
- position:absolute;left:89.1%;top:34.5%;width:6.5%;height:25%;pointer-events:none;z-index:28;
- border-radius:45% 45% 58% 58% / 10% 10% 90% 90%;
- background:linear-gradient(180deg,rgba(255,255,255,.74) 0%,rgba(189,234,255,.82) 25%,rgba(114,203,255,.54) 70%,rgba(114,203,255,0) 100%);
- filter:drop-shadow(0 2px 5px rgba(84,161,221,.30));opacity:0;
+#trophyPage #mr344Scene #mr376SceneCanvas > #mr439FaucetTouch[hidden]{display:none!important;}
+#mr439FaucetTouch:focus-visible{outline:3px solid #ffe27a!important;outline-offset:2px;}
+/* L'effetto appare soltanto quando esiste schiuma da risciacquare. */
+#mr439FaucetTouch.mr440FaucetReady::after{
+ content:"";position:absolute;inset:12%;border:3px solid rgba(220,250,255,.9);
+ border-radius:45%;box-shadow:0 0 0 6px rgba(96,201,255,.25),0 0 18px 8px rgba(147,225,255,.75);
+ pointer-events:none!important;animation:mr440FaucetGlow 1.35s ease-in-out infinite alternate;
 }
-#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare #mr439RinseStream{left:88.2%;top:42.3%;width:7.2%;height:23%;}
-#mr376SceneCanvas #mr439BathCare.mr439Rinsing #mr439RinseStream{opacity:.95;animation:mr439RinsePulse .92s ease-out 1;}
-@keyframes mr439BubbleFloat{0%,100%{transform:translateY(0) scale(1);opacity:.9}50%{transform:translateY(-9%) scale(1.08);opacity:1}}
-@keyframes mr439RinsePulse{0%{transform:translateY(-3%) scaleY(.72);opacity:0}22%{opacity:.96}100%{transform:translateY(1%) scaleY(1);opacity:0}}
-@media(prefers-reduced-motion:reduce){
- #mr344Scene #mimoBuddy #mr439FoamFx .mr439Bubble,#mr376SceneCanvas #mr439BathCare.mr439Rinsing #mr439RinseStream{animation:none!important;}
-}
+@keyframes mr440FaucetGlow{to{opacity:.45;transform:scale(.87)}}
+@media(prefers-reduced-motion:reduce){#mr439FaucetTouch.mr440FaucetReady::after{animation:none!important;}}
+#mr439BathBubbleField{position:absolute;left:80.4%;top:30.0%;width:18%;height:29%;z-index:13;pointer-events:none!important;}
+#mr344Scene[data-room-layout="phone"] #mr439BathBubbleField{left:79.8%;top:35.6%;width:19%;height:31%;}
+#mr439BathBubbleField span{position:absolute;display:block;border-radius:50%;border:2px solid rgba(255,255,255,.92);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.92) 0%,rgba(209,246,255,.58) 30%,rgba(140,210,255,.15) 62%,rgba(140,210,255,0) 68%);opacity:.92;animation:mr439BubbleFloat 2.2s ease-in-out infinite;}
+#mr439BathBubbleField span:nth-child(1){left:8%;top:62%;width:15px;height:15px;animation-delay:0s;}
+#mr439BathBubbleField span:nth-child(2){left:23%;top:40%;width:11px;height:11px;animation-delay:.2s;}
+#mr439BathBubbleField span:nth-child(3){left:40%;top:68%;width:18px;height:18px;animation-delay:.6s;}
+#mr439BathBubbleField span:nth-child(4){left:52%;top:27%;width:13px;height:13px;animation-delay:1s;}
+#mr439BathBubbleField span:nth-child(5){left:63%;top:52%;width:9px;height:9px;animation-delay:1.25s;}
+#mr439BathBubbleField span:nth-child(6){left:76%;top:33%;width:16px;height:16px;animation-delay:1.45s;}
+#mr439BathBubbleField span:nth-child(7){left:70%;top:70%;width:12px;height:12px;animation-delay:.9s;}
+#mr439BathBubbleField span:nth-child(8){left:87%;top:50%;width:10px;height:10px;animation-delay:1.65s;}
+@keyframes mr439BubbleFloat{0%,100%{transform:translateY(0) scale(1);opacity:.78;}50%{transform:translateY(-16px) scale(1.12);opacity:1;}}
+#mr344Scene #mimoBuddy #mr439BathFoam{position:absolute;inset:0;z-index:14;pointer-events:none!important;overflow:visible!important;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439Foam{position:absolute;display:block;border-radius:999px;background:radial-gradient(circle at 38% 34%,rgba(255,255,255,.98) 0%,rgba(255,255,255,.98) 38%,rgba(233,248,255,.95) 58%,rgba(201,233,246,.82) 76%,rgba(185,214,232,.42) 100%);box-shadow:0 3px 8px rgba(130,180,205,.24);opacity:.95;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamA{left:12%;top:18%;width:34%;height:21%;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamB{left:33%;top:8%;width:27%;height:18%;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamC{left:53%;top:18%;width:30%;height:20%;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamD{left:18%;top:37%;width:24%;height:16%;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamE{left:45%;top:35%;width:22%;height:15%;}
+#mr344Scene #mimoBuddy #mr439BathFoam .mr439FoamF{left:34%;top:50%;width:18%;height:12%;opacity:.88;}
+@media(prefers-reduced-motion:reduce){#mr439BathBubbleField span{animation:none!important;}}
 </style>
 
 <style id="mr438-settings-responsive-controls">
-/* 2.438 — Impostazioni: i controlli restano sempre nella propria card.
+/* 2.439 — Impostazioni: i controlli restano sempre nella propria card.
    Il layout segue lo spazio disponibile, non una dimensione assoluta in pixel. */
 #settingsPage .settings-stack > .settings-panel{
   min-width:0!important;max-width:100%!important;box-sizing:border-box!important;

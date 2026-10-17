@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.435</div>
+    <div class="intro-version-label">Build 2.439</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.435</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.439</div>
   </div>
 </div>
 
@@ -18854,7 +18854,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.435";
+  const PAGE_BUILD = "2.439";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -26924,6 +26924,16 @@ function init(){
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const backgroundImage=room.querySelector('.mr353Background');
  const labels=[['food','🍎','Fame','#e83b51'],['sleep','🌙','Sonno','#399edb'],['clean','🫧','Pulizia','#1aa77a'],['happy','💗','Felicità','#945de0']];
+ const bathCare439=document.createElement('div');
+ bathCare439.id='mr439BathCare';
+ bathCare439.setAttribute('aria-label','Shampoo e rubinetto per lavare Mìmo');
+ bathCare439.innerHTML=`<button type="button" class="mr439ShampooTouch" data-bottle="sun" aria-label="Shampoo lilla di Mìmo"></button>
+ <button type="button" class="mr439ShampooTouch" data-bottle="heart" aria-label="Shampoo azzurro di Mìmo"></button>
+ <button type="button" class="mr439ShampooTouch" data-bottle="paw" aria-label="Shampoo rosa di Mìmo"></button>
+ <button type="button" class="mr439ShampooTouch" data-bottle="star" aria-label="Shampoo viola di Mìmo"></button>
+ <button type="button" id="mr439TapTouch" aria-label="Rubinetto della vasca: risciacqua Mìmo"></button>
+ <div id="mr439RinseStream" aria-hidden="true" hidden></div>`;
+ sceneCanvas.appendChild(bathCare439);
 
  // Build 2.400: riempimento orizzontale del display, inquadratura croppata verticalmente.
  // La tela interna ha SEMPRE geometria 4:3: sfondo, frutta, cestino, Mìmo e comandi
@@ -27029,6 +27039,7 @@ function init(){
   if(host.parentNode!==sceneCanvas)sceneCanvas.appendChild(host);
   if(animate&&target!=='bed')window.MimoMotion?.walk?.(900);
   scene.dataset.location=target;
+  if(target!=='bath')setBathFoam439(false,false);
   host.style.setProperty('left',pos.left,'important');
   host.style.setProperty('top',pos.top,'important');
   if(target!=='bed'&&target!=='bath')clearPose();
@@ -27168,6 +27179,120 @@ function init(){
  window.addEventListener('blur',()=>endFruitDrag415(false));
  document.addEventListener('visibilitychange',()=>{if(document.hidden)endFruitDrag415(false)});
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')endFruitDrag415(false)});
+ let shampooDrag439=null,foamActive439=false,rinseTimer439=0;
+ const shampooDragIcon439=document.createElement('div');
+ shampooDragIcon439.id='mr439ShampooInHand';shampooDragIcon439.hidden=true;
+ shampooDragIcon439.setAttribute('aria-hidden','true');
+ shampooDragIcon439.innerHTML='<span class="mr439BottleEmoji" aria-hidden="true">🧴</span>';
+ const shampooHalo439=document.createElement('div');
+ shampooHalo439.id='mr439WashHalo';shampooHalo439.hidden=true;
+ shampooHalo439.setAttribute('aria-hidden','true');
+ document.body.append(shampooDragIcon439,shampooHalo439);
+ function ensureBathFoam439(){
+  const host=document.getElementById('mimoBuddy');if(!host)return null;
+  let fx=host.querySelector('#mr439FoamFx');
+  if(fx)return fx;
+  fx=document.createElement('div');fx.id='mr439FoamFx';fx.hidden=true;fx.setAttribute('aria-hidden','true');
+  fx.innerHTML='<span class="mr439FoamBlob b1"></span><span class="mr439FoamBlob b2"></span><span class="mr439FoamBlob b3"></span><span class="mr439FoamBlob b4"></span><span class="mr439FoamBlob b5"></span><span class="mr439FoamBlob b6"></span><span class="mr439Bubble q1"></span><span class="mr439Bubble q2"></span><span class="mr439Bubble q3"></span><span class="mr439Bubble q4"></span><span class="mr439Bubble q5"></span>';
+  host.appendChild(fx);
+  return fx;
+ }
+ function canUseBathCare439(){
+  return document.body.classList.contains('mr353-room-open') && getComputedStyle(page).display!=='none' && scene.dataset.location==='bath';
+ }
+ function bathMimoZone439(){
+  const host=document.getElementById('mimoBuddy');
+  if(!host||scene.dataset.location!=='bath'||!host.getClientRects().length)return null;
+  const r=host.getBoundingClientRect();
+  return {x:r.left+r.width*.52,y:r.top+r.height*.46,rx:Math.max(26,r.width*.33),ry:Math.max(30,r.height*.42)};
+ }
+ function pointInEllipse439(x,y,zone){
+  if(!zone)return false;
+  return (((x-zone.x)/zone.rx)**2 + ((y-zone.y)/zone.ry)**2) <= 1;
+ }
+ function setBathFoam439(active,announce=true){
+  foamActive439=!!active;
+  const fx=ensureBathFoam439();
+  if(fx)fx.hidden=!foamActive439;
+  const host=document.getElementById('mimoBuddy');
+  if(host)host.classList.toggle('mr439Soapy',foamActive439);
+  bathCare439.classList.toggle('mr439FoamActive',foamActive439);
+  if(!foamActive439){
+   shampooHalo439.hidden=true;shampooHalo439.classList.remove('mr439WashReady');
+  }else if(announce){
+   setMessage('Mìmo è pieno di schiuma: ora tocca il rubinetto per risciacquarlo.');
+  }
+ }
+ function updateShampooHalo439(zone,onTarget){
+  if(!zone||!canUseBathCare439()){shampooHalo439.hidden=true;shampooHalo439.classList.remove('mr439WashReady');return;}
+  shampooHalo439.hidden=false;
+  shampooHalo439.style.left=zone.x+'px';shampooHalo439.style.top=zone.y+'px';
+  shampooHalo439.style.width=zone.rx*2+'px';shampooHalo439.style.height=zone.ry*2+'px';
+  shampooHalo439.classList.toggle('mr439WashReady',!!onTarget);
+ }
+ function updateShampooDrag439(x,y){
+  const drag=shampooDrag439;if(!drag)return;
+  drag.x=x;drag.y=y;
+  shampooDragIcon439.style.left=x+'px';shampooDragIcon439.style.top=y+'px';
+  const zone=bathMimoZone439();drag.onTarget=canUseBathCare439() && pointInEllipse439(x,y,zone);
+  updateShampooHalo439(zone,drag.onTarget);
+  shampooDragIcon439.classList.toggle('mr439OnTarget',drag.onTarget);
+ }
+ function endShampooDrag439(shouldApply){
+  const drag=shampooDrag439;if(!drag)return;
+  shampooDrag439=null;
+  if(drag.button.hasPointerCapture?.(drag.id)){
+   try{drag.button.releasePointerCapture(drag.id)}catch(_e){}
+  }
+  drag.button.classList.remove('mr439Dragging');
+  shampooDragIcon439.hidden=true;
+  shampooDragIcon439.classList.remove('mr439OnTarget');
+  updateShampooHalo439(null,false);
+  const moved=Math.hypot(drag.x-drag.startX,drag.y-drag.startY);
+  if(shouldApply && drag.onTarget && moved>18 && canUseBathCare439()){
+   window.MimoSounds?.play?.('bath');window.MimoHaptics?.play?.('bath');
+   setBathFoam439(true,true);
+  }
+ }
+ function rinseMimo439(){
+  if(scene.dataset.location!=='bath'){window.MimoHaptics?.play?.('touch');setMessage('Porta Mìmo nella vasca, poi usa shampoo e rubinetto.');return;}
+  if(!foamActive439){window.MimoHaptics?.play?.('touch');setMessage('Prima trascina uno shampoo sopra Mìmo.');return;}
+  clearTimeout(rinseTimer439);
+  bathCare439.classList.add('mr439Rinsing');
+  const stream=bathCare439.querySelector('#mr439RinseStream');
+  if(stream)stream.hidden=false;
+  window.MimoSounds?.play?.('bath');window.MimoHaptics?.play?.('bath');
+  setTimeout(()=>{
+   state.clean=8;state.happy=clamp(state.happy+2);
+   setBathFoam439(false,false);refresh();applyPose('bath');
+   setMessage('Mìmo è stato risciacquato: ora è pulito e profuma di buono.');
+  },240);
+  rinseTimer439=setTimeout(()=>{bathCare439.classList.remove('mr439Rinsing');if(stream)stream.hidden=true;},980);
+ }
+ bathCare439.querySelectorAll('.mr439ShampooTouch').forEach(button=>{
+  button.addEventListener('pointerdown',ev=>{
+   if(ev.button!==0||shampooDrag439||fruitDrag415||mimoDrag418||popPuffing414)return;
+   if(!canUseBathCare439()){window.MimoHaptics?.play?.('touch');setMessage('Porta Mìmo nella vasca, poi trascina uno shampoo su di lui.');return;}
+   ev.preventDefault();
+   shampooDrag439={id:ev.pointerId,button,x:ev.clientX,y:ev.clientY,startX:ev.clientX,startY:ev.clientY,onTarget:false};
+   button.classList.add('mr439Dragging');
+   try{button.setPointerCapture(ev.pointerId)}catch(_e){}
+   shampooDragIcon439.hidden=false;
+   updateShampooDrag439(ev.clientX,ev.clientY);
+  });
+  button.addEventListener('pointermove',ev=>{
+   if(shampooDrag439?.id!==ev.pointerId||shampooDrag439.button!==button)return;
+   ev.preventDefault();updateShampooDrag439(ev.clientX,ev.clientY);
+  });
+  button.addEventListener('pointerup',ev=>{
+   if(shampooDrag439?.id!==ev.pointerId||shampooDrag439.button!==button)return;
+   ev.preventDefault();updateShampooDrag439(ev.clientX,ev.clientY);endShampooDrag439(true);
+  });
+  button.addEventListener('pointercancel',ev=>{if(shampooDrag439?.id===ev.pointerId&&shampooDrag439.button===button)endShampooDrag439(false)});
+  button.addEventListener('lostpointercapture',ev=>{if(shampooDrag439?.id===ev.pointerId&&shampooDrag439.button===button)endShampooDrag439(false)});
+  button.addEventListener('click',ev=>{ev.preventDefault();});
+ });
+ bathCare439.querySelector('#mr439TapTouch')?.addEventListener('click',ev=>{ev.preventDefault();rinseMimo439();});
  function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
  function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>`<div class="mr344Stat" role="group" aria-label="${label}: ${clamp(state[k])} su 8" title="${label}: ${clamp(state[k])}/8" style="--mr417-heart-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><span class="mr344Hearts" aria-hidden="true"><span class="mr417FilledHearts">${'♥'.repeat(clamp(state[k]))}</span><span class="mr417EmptyHearts">${'♡'.repeat(8-clamp(state[k]))}</span></span></div>`).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
  function markSessionFruitConsumed(kind){
@@ -27307,10 +27432,10 @@ function init(){
     setMessage('Mìmo riposa nel nido; recupera sonno durante la notte.');},900);
   }else if(destination==='bath'){
    window.MimoHaptics?.play?.('bath');setResting396(false);moveMimo('bath');
-   fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');
+   fruitPicker.hidden=true;setBathFoam439(false,false);setMessage('Mìmo va verso la vasca.');
    setTimeout(()=>{if(scene.dataset.location!=='bath')return;
-    state.clean=8;state.happy=clamp(state.happy+2);applyPose('bath');refresh();
-    setMessage('Mìmo si lava dentro la vasca.');},900);
+    applyPose('bath');refresh();
+    setMessage('Mìmo è nella vasca: trascina uno shampoo su di lui, poi tocca il rubinetto per risciacquarlo.');},900);
   }else if(destination==='food'){
    window.MimoSounds?.play?.('food');setResting396(false);moveMimo('food');
    fruitPicker.hidden=true;clearPose();
@@ -27358,9 +27483,9 @@ function init(){
    }
   },true);
  }
- window.addEventListener('blur',()=>finishMimoDrag418(false));
- document.addEventListener('visibilitychange',()=>{if(document.hidden)finishMimoDrag418(false)});
- document.addEventListener('keydown',ev=>{if(ev.key==='Escape')finishMimoDrag418(false)});
+ window.addEventListener('blur',()=>{finishMimoDrag418(false);endShampooDrag439(false);});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){finishMimoDrag418(false);endShampooDrag439(false);}});
+ document.addEventListener('keydown',ev=>{if(ev.key==='Escape'){finishMimoDrag418(false);endShampooDrag439(false);}});
  room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');setResting396(false);moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Trascina un frutto dal cestino alla testa di Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
  const useTokenBasket428=()=>{
   const total=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
@@ -27402,7 +27527,7 @@ function init(){
   document.body.classList.toggle('mr353-room-open',open);
   const host=document.getElementById('mimoBuddy');
   if(!open){
-   finishMimoDrag418(false);
+   finishMimoDrag418(false);endShampooDrag439(false);setBathFoam439(false,false);
    if(host){if(host.parentNode!==document.body)document.body.appendChild(host);host.style.removeProperty('left');host.style.removeProperty('top');host.style.removeProperty('right');host.style.removeProperty('bottom');host.style.removeProperty('transform');host.style.removeProperty('clip-path')}
    clearPose();return;
   }
@@ -27412,6 +27537,7 @@ function init(){
   if(host)installMimoDrag418(host);
   const bed=!!state.restingAtNight;
   moveMimo(bed?'bed':'food',false);
+  setBathFoam439(false,false);
   if(bed)applyPose('bed');
   fruitPicker.hidden=true;setMessage('');refresh();
   applyRoomBackground384();queueFit376();updateMimoDiagnostic();
@@ -27636,6 +27762,7 @@ body.mr353-room-open #mr344Scene[data-location="bath"] #mimoBuddy{clip-path:inse
 #trophyPage #mr344Message{width:100%;min-height:12px!important;line-height:1.05!important;font-size:10px!important;flex:0 0 auto!important;}
 /* La Home mantiene i tasti al centro, mentre il numero build è in basso sotto di essi. */
 #homeScreen .home-container{position:relative!important;}
+#homeScreen .home-mimo-toggle{position:absolute!important;top:max(12px,env(safe-area-inset-top,0px))!important;right:max(12px,env(safe-area-inset-right,0px))!important;z-index:8!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:14px!important;box-shadow:0 2px 10px rgba(0,0,0,.12)!important;}
 #homeScreen .mr373-home-build{display:block!important;position:absolute!important;left:50%!important;top:auto!important;bottom:max(8px,env(safe-area-inset-bottom,0px))!important;transform:translateX(-50%)!important;z-index:6!important;margin:0!important;text-align:center!important;white-space:nowrap!important;font-size:clamp(12px,1.8vh,15px)!important;font-weight:800!important;line-height:1.1!important;color:#4b365e!important;opacity:.84!important;pointer-events:none!important;}
 @media(max-height:730px){
  #trophyPage .top-row{height:41px!important;}
@@ -27846,7 +27973,7 @@ body.mr353-room-open #mr344Scene[data-room-layout="phone"][data-location="bath"]
 #trophyPage .top-row{min-height:0!important;padding:0!important;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}
 #trophyPage .top-row .rainbow-title,
 #trophyPage .top-row .top-right-controls{display:none!important;}
-#trophyPage .top-left-controls{position:absolute!important;left:calc(env(safe-area-inset-left,0px) + 10px)!important;top:calc(env(safe-area-inset-top,0px) + 10px)!important;display:block!important;pointer-events:auto!important;z-index:230!important;}
+#trophyPage .top-left-controls{position:absolute!important;left:calc(env(safe-area-inset-left,0px) + 10px)!important;top:calc(env(safe-area-inset-top,0px) + 22px)!important;display:block!important;pointer-events:auto!important;z-index:230!important;}
 #trophyPage #trophyHomeBtn{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border-radius:14px!important;background:rgba(255,247,237,.96)!important;border:2px solid #fdba74!important;box-shadow:0 2px 10px rgba(0,0,0,.14)!important;}
 #trophyPage .trophy-main{position:relative!important;flex:1 1 auto!important;min-height:0!important;height:100%!important;padding:0!important;margin:0!important;overflow:hidden!important;}
 #trophyPage #trophyContent{width:100%!important;height:100%!important;display:block!important;}
@@ -28341,20 +28468,24 @@ body.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
  position:fixed!important;left:var(--mr410-mimo-x,50vw)!important;
  top:var(--mr410-mimo-y,105px)!important;right:auto!important;bottom:auto!important;
  width:var(--mr410-mimo-w,110px)!important;height:var(--mr410-mimo-h,135px)!important;
- max-height:none!important;transform:translateX(-50%)!important;z-index:150!important;
+ max-height:none!important;transform:translateX(-50%)!important;z-index:1200!important;
  clip-path:none!important;pointer-events:auto!important;
 }
-/* The trophy Home is a full-size flex button; keep the eye beside it. */
-#trophyPage .top-row .top-left-controls{display:flex!important;align-items:center!important;gap:5px!important;}
-/* All page toggles use the existing 2.409 eye visual and remain next to Home. */
-.page-container .mr409-mimo-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;
- width:var(--mr-topbar-control-h,44px)!important;height:var(--mr-topbar-control-h,44px)!important;
- flex:0 0 var(--mr-topbar-control-h,44px)!important;min-width:36px!important;min-height:36px!important;
+/* Floating global toggle: in basso a sinistra, fuori da titoli e toolbar. */
+#mr410MimoFloatingToggle{
+ position:fixed!important;left:max(12px,env(safe-area-inset-left,0px))!important;
+ bottom:calc(max(12px,env(safe-area-inset-bottom,0px)) + var(--mr410-toggle-extra-bottom,0px))!important;
+ z-index:2100!important;display:none!important;
+ width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;
  padding:0!important;border:2px solid #a78bfa!important;border-radius:12px!important;
- background:#f5f0ff!important;color:#6845ad!important;cursor:pointer!important;
+ background:#f5f0ff!important;color:#6845ad!important;box-shadow:0 3px 12px rgba(38,24,75,.18)!important;
+ align-items:center!important;justify-content:center!important;cursor:pointer!important;
 }
-.page-container .mr409-mimo-toggle svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;}
-.page-container .mr409-mimo-toggle[aria-pressed="false"]{background:#e5e7eb!important;color:#4b5563!important;}
+#mr410MimoFloatingToggle.mr410-toggle-visible{display:inline-flex!important;}
+#mr410MimoFloatingToggle svg{width:23px!important;height:23px!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important;}
+#mr410MimoFloatingToggle[aria-pressed="false"]{background:#e5e7eb!important;color:#4b5563!important;}
+/* The trophy page no longer shows the Mìmo visibility toggle. */
+#trophyPage .top-row .top-left-controls{display:flex!important;align-items:center!important;gap:5px!important;}
 /* Recording dots: fixed in the content area BELOW the top bar, never in its title. */
 #scorePlayerPage #scoreCountInDisplay:not([hidden]){
  display:flex!important;position:fixed!important;z-index:2100!important;
@@ -28393,32 +28524,59 @@ try{enabled=localStorage.getItem(STORAGE_KEY)!=='0';}catch(e){}
 const eye='<svg class="mr409-eye-on" aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
 const eyeOff='<svg class="mr409-eye-off" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 3l18 18M10.5 5.1A11 11 0 0 1 12 5c6.4 0 10 7 10 7a14 14 0 0 1-3.4 4.1M6.7 6.7C3.7 8.5 2 12 2 12s3.6 7 10 7c1.5 0 2.9-.4 4.1-1M10.8 10.8a2 2 0 0 0 2.4 2.4"/></svg>';
 const allButtons=[];
+function isShown(el){return !!(el&&el.getClientRects().length&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden');}
+function activePage(){return Array.from(document.querySelectorAll('.page-container')).find(p=>isShown(p))||null;}
+function homeVisible(){const home=document.getElementById('homeScreen');return isShown(home)?home:null;}
+function toggleButtonVisible(){
+ const body=document.body;
+ if(body.classList.contains('mr353-room-open')||body.classList.contains('mr357-lab-open'))return false;
+ if(isShown(document.getElementById('introScreen')))return false;
+ return !!(homeVisible()||activePage());
+}
 function syncButtons(){
  document.body.classList.toggle('mr410-mimo-hidden',!enabled);
  // Keep the older eight-level switches in sync with the shared preference.
  document.body.classList.toggle('mr409-level-mimo-hidden',!enabled);
  allButtons.forEach(b=>{b.setAttribute('aria-pressed',String(enabled));b.setAttribute('aria-label',enabled?'Nascondi Mìmo':'Mostra Mìmo');b.title=enabled?'Nascondi Mìmo':'Mostra Mìmo';});
+ const floating=document.getElementById('mr410MimoFloatingToggle');
+ if(floating)floating.classList.toggle('mr410-toggle-visible',toggleButtonVisible());
 }
-for(const page of document.querySelectorAll('.page-container')){
- const controls=page.querySelector('.top-row .top-left-controls');
- if(!controls)continue;
- const home=controls.querySelector('.menu-btn,#scoreLibraryHomeBtn,#handsHome,#settingsHomeBtn,#trophyHomeBtn,[aria-label="Torna alla home"]');
- if(!home)continue;
- const old=controls.querySelector('.mr409-mimo-toggle');
- if(old)old.remove(); // replace the 2.409 level-only listener with the global handler
- const button=document.createElement('button');
- button.type='button';button.className='mr409-mimo-toggle';button.setAttribute('data-midi-learn-key','mr410-mimo-toggle');
- button.innerHTML=eye+eyeOff;home.insertAdjacentElement('afterend',button);
- button.addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');enabled=!enabled;try{localStorage.setItem(STORAGE_KEY,enabled?'1':'0');}catch(e){}syncButtons();schedule();});
- allButtons.push(button);
-}
+// Remove any old inline Mìmo-toggle buttons from top bars or Home.
+document.querySelectorAll('.page-container .mr409-mimo-toggle,#homeScreen .mr409-mimo-toggle').forEach(btn=>btn.remove());
+const floatingToggle=document.createElement('button');
+floatingToggle.type='button';floatingToggle.id='mr410MimoFloatingToggle';floatingToggle.className='mr409-mimo-toggle mr410-floating-toggle';
+floatingToggle.setAttribute('data-midi-learn-key','mr410-mimo-toggle-floating');
+floatingToggle.innerHTML=eye+eyeOff;
+floatingToggle.addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');enabled=!enabled;try{localStorage.setItem(STORAGE_KEY,enabled?'1':'0');}catch(e){}syncButtons();schedule();});
+document.body.appendChild(floatingToggle);allButtons.push(floatingToggle);
 syncButtons();
 let scheduled=false;
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;position();});}
 function position(){
- const page=Array.from(document.querySelectorAll('.page-container')).find(p=>p.getClientRects().length>0&&getComputedStyle(p).display!=='none');
+ const page=activePage();
  const body=document.body;
  const room=body.classList.contains('mr353-room-open'),lab=body.classList.contains('mr357-lab-open');
+ const css=document.documentElement.style;
+ // Compute the floating toggle offset so it stays bottom-left without covering bottom controls.
+ const surface=page||homeVisible();
+ let extraBottom=0;
+ if(surface){
+  const viewportBottom=(window.visualViewport&&window.visualViewport.height?window.visualViewport.height:window.innerHeight);
+  const blockers=surface.querySelectorAll('.keyboard-container,.note-buttons-container,.piano,.piano-keys,.hands-drums,.tempo-action-container,.hands-actions,.score-creator-bottom,.score-player-controls,.virtual-keyboard,#mr344Stats');
+  let blockerTop=Infinity;
+  blockers.forEach(el=>{
+   if(!isShown(el))return;
+   const r=el.getBoundingClientRect();
+   if(r.height<20||r.width<20)return;
+   if(r.bottom>viewportBottom-8 && r.left<150)blockerTop=Math.min(blockerTop,r.top);
+   else if(r.bottom>viewportBottom-56 && r.left<150)blockerTop=Math.min(blockerTop,r.top);
+   else if(r.left<=20 && r.width>window.innerWidth*0.75 && r.bottom>viewportBottom-110)blockerTop=Math.min(blockerTop,r.top);
+  });
+  if(Number.isFinite(blockerTop))extraBottom=Math.max(0,Math.round(viewportBottom-blockerTop+12));
+ }
+ css.setProperty('--mr410-toggle-extra-bottom',extraBottom+'px');
+ const floating=document.getElementById('mr410MimoFloatingToggle');
+ if(floating)floating.classList.toggle('mr410-toggle-visible',toggleButtonVisible());
  if(!page||room||lab){body.classList.remove('mr410-mimo-safe','mr410-mimo-no-space');return;}
  const keyboard=page.querySelector('.keyboard-container,.note-buttons-container,.piano,.hands-drums,.tempo-action-container');
  const staff=page.querySelector('.staff-stage-single,.staff-stage-l8,.activity-display-zone,.staff-container,.hands-staff-wrap,.middle-area');
@@ -28430,11 +28588,9 @@ function position(){
  const pageBox=page.getBoundingClientRect();
  const bottom=kb&&keyboard.getClientRects().length?kb.top-12:pageBox.bottom-16;
  const available=bottom-topBar.bottom-10;
- // In Impara tempo/due mani Mìmo deve restare TUTTO sopra la carta,
- // anche dopo che lo spartito è stato abbassato: non sovrapporre mai il pentagramma.
  const training=page.id==='learnHandsPage'||page.id==='learnTempoPage';
  const paperGap=st?st.top-topBar.bottom-17:available;
- const h=training?Math.min(122,paperGap):Math.max(64,Math.min(145,available*.42));
+ let h=training?Math.min(122,Math.max(82,paperGap)):Math.max(64,Math.min(145,available*.42));
  if(available<68 || (training&&h<56)){
   body.classList.add('mr410-mimo-no-space');body.classList.remove('mr410-mimo-safe');return;
  }
@@ -28443,7 +28599,6 @@ function position(){
  const desired=st&&st.top>topBar.bottom?st.top-h-(training?9:4):topBar.bottom+8;
  const y=Math.max(topBar.bottom+5,Math.min(desired,bottom-h));
  const x=st&&st.width>0?st.left+st.width*.50:pageBox.left+pageBox.width/2;
- const css=document.documentElement.style;
  css.setProperty('--mr410-mimo-x',x.toFixed(1)+'px');css.setProperty('--mr410-mimo-y',y.toFixed(1)+'px');
  css.setProperty('--mr410-mimo-w',w.toFixed(1)+'px');css.setProperty('--mr410-mimo-h',h.toFixed(1)+'px');
  const host=document.getElementById('mimoBuddy');
@@ -28875,65 +29030,158 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
 #mr376SceneCanvas .mr418RoomDropZone[data-drop-target="tokens"]{border-style:dotted;background:rgba(255,235,166,.18);}
 </style>
 
-<style id="mr432-mimo-controls-single-grid">
-/* Xcode 2.432: six compact icon-only controls, all within one 3 x 2 grid.
-   A single final rule replaces the conflicting 2.429–2.431 overrides. */
-#settingsPage #mimoSettingsSection {overflow:hidden!important;}
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid {
- display:grid!important;
- grid-template-columns:repeat(3,56px)!important;
- grid-template-rows:repeat(2,56px)!important;
- grid-auto-rows:56px!important;
- gap:14px!important;
- justify-content:start!important;
- align-content:start!important;
- width:max-content!important;
- max-width:100%!important;
- margin:12px 0 4px!important;
+
+<style id="mr439-mimo-bath-shampoo">
+/* 2.439 — Lavaggio di Mìmo: shampoo drag&drop e risciacquo dal rubinetto. */
+#mr376SceneCanvas #mr439BathCare{position:absolute;inset:0;z-index:26;pointer-events:none;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch,
+#mr376SceneCanvas #mr439BathCare #mr439TapTouch{
+ position:absolute;pointer-events:auto;touch-action:none;cursor:grab;border:0;background:transparent;
+ box-shadow:none;padding:0;border-radius:14px;
 }
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button {
- display:inline-flex!important;
- align-items:center!important;
- justify-content:center!important;
- box-sizing:border-box!important;
- flex:none!important;
- width:56px!important;height:56px!important;
- min-width:56px!important;min-height:56px!important;
- max-width:56px!important;max-height:56px!important;
- padding:0!important;margin:0!important;
- aspect-ratio:1/1!important;
- border:2px solid #8b6bde!important;
- border-radius:14px!important;
- background:#efe7ff!important;
- color:#4d2c91!important;
- font-size:0!important;line-height:1!important;
- overflow:hidden!important;
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch{width:4.6%;height:10.5%;top:19.7%;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="sun"]{left:88.0%;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="heart"]{left:91.1%;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="paw"]{left:94.0%;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="star"]{left:96.7%;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch:focus-visible,
+#mr376SceneCanvas #mr439BathCare #mr439TapTouch:focus-visible{outline:3px solid #ffe27a;outline-offset:2px;}
+#mr376SceneCanvas #mr439BathCare .mr439ShampooTouch.mr439Dragging{cursor:grabbing;}
+#mr376SceneCanvas #mr439BathCare #mr439TapTouch{left:84.8%;top:47.8%;width:13.2%;height:9.5%;cursor:pointer;touch-action:manipulation;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch{width:6.0%;height:11.4%;top:24.3%;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="sun"]{left:86.8%;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="heart"]{left:90.2%;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="paw"]{left:93.4%;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare .mr439ShampooTouch[data-bottle="star"]{left:96.0%;}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare #mr439TapTouch{left:84.0%;top:55.0%;width:13.8%;height:10.6%;}
+#mr439ShampooInHand[hidden],#mr439WashHalo[hidden],#mr439FoamFx[hidden],#mr439RinseStream[hidden]{display:none!important;}
+#mr439ShampooInHand{
+ position:fixed;left:0;top:0;transform:translate(-50%,-50%);z-index:9999;pointer-events:none;
+ width:58px;height:58px;border-radius:18px;background:linear-gradient(180deg,#fff8d7,#f8dbff 58%,#dba6ff);
+ display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(56,35,78,.28), inset 0 0 0 2px rgba(255,255,255,.86);
 }
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button > .mr361ButtonGlyph {
- display:block!important;
- font:normal 28px/1 system-ui,-apple-system,sans-serif!important;
+#mr439ShampooInHand .mr439BottleEmoji{font-size:32px;line-height:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.16));}
+#mr439ShampooInHand.mr439OnTarget{transform:translate(-50%,-50%) scale(.92);box-shadow:0 0 0 4px rgba(175,246,196,.72),0 8px 20px rgba(34,197,94,.32);}
+#mr439WashHalo{
+ position:fixed;left:0;top:0;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:9998;
+ border:4px dashed rgba(253,246,167,.92);background:rgba(255,246,167,.18);box-shadow:0 0 0 4px rgba(76,48,31,.14);
 }
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid > #mr414MimoHaptics[aria-pressed="true"] {
- background:#7c3aed!important;color:#fff!important;border-color:#7c3aed!important;
+#mr439WashHalo.mr439WashReady{border-color:#d9f99d;background:rgba(100,255,137,.20);box-shadow:0 0 0 5px rgba(69,215,103,.22),0 0 20px rgba(69,215,103,.38);}
+#mr344Scene #mimoBuddy #mr439FoamFx{
+ position:absolute;left:7%;top:13%;width:86%;height:66%;pointer-events:none;z-index:16;
+ filter:drop-shadow(0 1px 3px rgba(106,141,171,.26));
 }
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid > #mr414MimoHaptics[aria-pressed="false"] {
- background:#eceff3!important;color:#475569!important;border-color:#94a3b8!important;
+#mr344Scene #mimoBuddy #mr439FoamFx .mr439FoamBlob{
+ position:absolute;display:block;border-radius:50%;
+ background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.98) 0 26%,rgba(234,248,255,.96) 32%,rgba(213,235,245,.92) 60%,rgba(187,219,231,.78) 100%);
+ box-shadow:inset 0 3px 7px rgba(255,255,255,.65),0 1px 2px rgba(149,182,196,.42);
 }
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button:disabled {opacity:.45!important;cursor:default!important;}
-#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button:focus-visible {outline:3px solid #fbbf24!important;outline-offset:2px!important;}
-@media(max-width:760px){
- #settingsPage #mimoSettingsSection #mr361MimoIconGrid {
-  grid-template-columns:repeat(3,52px)!important;
-  grid-template-rows:repeat(2,52px)!important;
-  grid-auto-rows:52px!important;
-  gap:12px!important;
- }
- #settingsPage #mimoSettingsSection #mr361MimoIconGrid > button {
-  width:52px!important;height:52px!important;
-  min-width:52px!important;min-height:52px!important;
-  max-width:52px!important;max-height:52px!important;
- }
- #settingsPage #mimoSettingsSection #mr361MimoIconGrid > button > .mr361ButtonGlyph {font-size:26px!important;}
+#mr344Scene #mimoBuddy #mr439FoamFx .b1{left:14%;top:34%;width:28%;height:24%;}
+#mr344Scene #mimoBuddy #mr439FoamFx .b2{left:34%;top:20%;width:31%;height:28%;}
+#mr344Scene #mimoBuddy #mr439FoamFx .b3{left:55%;top:32%;width:24%;height:22%;}
+#mr344Scene #mimoBuddy #mr439FoamFx .b4{left:28%;top:49%;width:25%;height:18%;}
+#mr344Scene #mimoBuddy #mr439FoamFx .b5{left:48%;top:46%;width:26%;height:20%;}
+#mr344Scene #mimoBuddy #mr439FoamFx .b6{left:8%;top:52%;width:18%;height:15%;}
+#mr344Scene #mimoBuddy #mr439FoamFx .mr439Bubble{
+ position:absolute;display:block;border-radius:50%;border:2px solid rgba(203,242,255,.95);
+ background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9) 0 20%,rgba(214,248,255,.18) 45%,rgba(214,248,255,0) 70%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);animation:mr439BubbleFloat 2.6s ease-in-out infinite;
+}
+#mr344Scene #mimoBuddy #mr439FoamFx .q1{left:18%;top:4%;width:13%;height:13%;animation-delay:-.2s;}
+#mr344Scene #mimoBuddy #mr439FoamFx .q2{left:60%;top:2%;width:15%;height:15%;animation-delay:-1.1s;}
+#mr344Scene #mimoBuddy #mr439FoamFx .q3{left:75%;top:22%;width:11%;height:11%;animation-delay:-.7s;}
+#mr344Scene #mimoBuddy #mr439FoamFx .q4{left:8%;top:19%;width:9%;height:9%;animation-delay:-1.7s;}
+#mr344Scene #mimoBuddy #mr439FoamFx .q5{left:43%;top:0%;width:10%;height:10%;animation-delay:-1.3s;}
+#mr376SceneCanvas #mr439BathCare #mr439RinseStream{
+ position:absolute;left:89.1%;top:34.5%;width:6.5%;height:25%;pointer-events:none;z-index:28;
+ border-radius:45% 45% 58% 58% / 10% 10% 90% 90%;
+ background:linear-gradient(180deg,rgba(255,255,255,.74) 0%,rgba(189,234,255,.82) 25%,rgba(114,203,255,.54) 70%,rgba(114,203,255,0) 100%);
+ filter:drop-shadow(0 2px 5px rgba(84,161,221,.30));opacity:0;
+}
+#mr344Scene[data-room-layout="phone"] #mr376SceneCanvas #mr439BathCare #mr439RinseStream{left:88.2%;top:42.3%;width:7.2%;height:23%;}
+#mr376SceneCanvas #mr439BathCare.mr439Rinsing #mr439RinseStream{opacity:.95;animation:mr439RinsePulse .92s ease-out 1;}
+@keyframes mr439BubbleFloat{0%,100%{transform:translateY(0) scale(1);opacity:.9}50%{transform:translateY(-9%) scale(1.08);opacity:1}}
+@keyframes mr439RinsePulse{0%{transform:translateY(-3%) scaleY(.72);opacity:0}22%{opacity:.96}100%{transform:translateY(1%) scaleY(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){
+ #mr344Scene #mimoBuddy #mr439FoamFx .mr439Bubble,#mr376SceneCanvas #mr439BathCare.mr439Rinsing #mr439RinseStream{animation:none!important;}
+}
+</style>
+
+<style id="mr438-settings-responsive-controls">
+/* 2.438 — Impostazioni: i controlli restano sempre nella propria card.
+   Il layout segue lo spazio disponibile, non una dimensione assoluta in pixel. */
+#settingsPage .settings-stack > .settings-panel{
+  min-width:0!important;max-width:100%!important;box-sizing:border-box!important;
+}
+#settingsPage .settings-stack > .settings-panel button,
+#settingsPage .settings-stack > .settings-panel select{
+  max-width:100%!important;box-sizing:border-box!important;
+}
+#settingsPage #mimoSettingsSection{
+  overflow:visible!important;
+  min-width:0!important;
+}
+#settingsPage #mimoSettingsSection .mr361SettingsActions{
+  display:block!important;min-width:0!important;width:100%!important;
+  max-width:100%!important;box-sizing:border-box!important;
+  container-type:inline-size;
+  container-name:mimo-controls;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:none!important;
+  grid-auto-rows:auto!important;
+  gap:clamp(5px,1vw,10px)!important;
+  justify-content:stretch!important;
+  align-content:start!important;
+  width:min(100%,208px)!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:10px 0 4px!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  flex:none!important;
+  width:100%!important;height:auto!important;
+  min-width:0!important;min-height:0!important;
+  max-width:100%!important;max-height:none!important;
+  padding:0!important;margin:0!important;
+  aspect-ratio:1/1!important;
+  border:2px solid #8b6bde!important;
+  border-radius:clamp(9px,1.5vw,14px)!important;
+  background:#efe7ff!important;
+  color:#4d2c91!important;
+  font-size:0!important;line-height:1!important;
+  overflow:hidden!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button > .mr361ButtonGlyph{
+  display:block!important;
+  font:normal clamp(22px,3vw,29px)/1 system-ui,-apple-system,sans-serif!important;
+  max-width:100%!important;overflow:hidden!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button[aria-pressed="true"]{
+  background:#7c3aed!important;color:#fff!important;border-color:#7c3aed!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid > #mr414MimoHaptics[aria-pressed="false"]{
+  background:#eceff3!important;color:#475569!important;border-color:#94a3b8!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button:disabled{
+  opacity:.45!important;cursor:default!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid > button:focus-visible{
+  outline:3px solid #fbbf24!important;outline-offset:2px!important;
+}
+/* Larghezze davvero piccole: due colonne per preservare leggibilità e tocco. */
+@container mimo-controls (max-width:155px){
+  #settingsPage #mimoSettingsSection #mr361MimoIconGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
 }
 </style>
 <!-- 2.435: fumetti di Mìmo, primo tutorial e aiuto didattico su richiesta. -->

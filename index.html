@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.444</div>
+    <div class="intro-version-label">Build 2.445</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.444</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.445</div>
   </div>
 </div>
 
@@ -7521,48 +7521,33 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
-<!-- Build 2.444 — le durate musicali: due pizze interattive, prima dell'albero. -->
-<div id="mr444Pizza8Page" class="page-container mr444DurationPage" style="display:none" aria-label="Le durate musicali, pizza in otto parti">
+<!-- Build 2.445 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
+<div id="mr444Pizza8Page" class="page-container mr444DurationPage mr445DynamicPizza" style="display:none" aria-label="Le durate musicali: pizza interattiva">
  <div class="app mr444DurationApp">
   <div class="top-panel"><div class="top-row mr444DurationTopRow">
    <div class="top-left-controls"><button type="button" class="menu-btn" id="mr444Pizza8Home" aria-label="Torna alla Home">🏠</button></div>
-   <div class="mr444DurationBarResult" id="mr444Pizza8BarResult" role="status" aria-live="polite">LA PIZZA DEGLI OTTAVI</div>
-   <div class="top-right-controls">
-    <button type="button" class="reset-btn mr444StandardControl" id="mr444Pizza8Reset" aria-label="Azzera gli spicchi selezionati" title="Reset">↺</button>
-    <button type="button" class="reset-btn mr444StandardControl mr444Next" id="mr444Pizza8Next" aria-label="Passa alla pizza in 64 parti" title="Pizza in 64 parti">❯</button>
-   </div>
+   <div class="mr444DurationBarResult" id="mr444Pizza8BarResult" role="status" aria-live="polite">LE DURATE MUSICALI</div>
+   <div class="top-right-controls"><button type="button" class="reset-btn mr444StandardControl" id="mr444Pizza8Reset" aria-label="Azzera la selezione della pizza" title="Reset">↺</button></div>
   </div></div>
   <main class="mr444PizzaStage">
    <div class="mr444PizzaArea"><div class="mr444PizzaBoard">
-    <div class="mr444PizzaWheel" id="mr444PizzaWheel8" role="group" aria-label="Pizza suddivisa in otto spicchi selezionabili" data-parts="8">
-     <img src="Assets/pizza-durates-444.png" alt="Pizza vista dall'alto" draggable="false" />
+    <div class="mr444PizzaWheel" id="mr444PizzaWheel8" role="group" tabindex="0" aria-label="Pizza con spicchi selezionabili" data-parts="8">
+     <img src="Assets/pizza-durates-445.png" alt="Pizza illustrata dall'alto, con crosta e formaggio" draggable="false" />
      <svg viewBox="0 0 1000 1000" class="mr444PizzaSlices" id="mr444PizzaSlices8" aria-hidden="true"></svg>
     </div>
    </div></div>
-   <div class="mr444PizzaReading" id="mr444PizzaReading8"><div class="mr444PizzaCount" id="mr444PizzaCount8">0 / 8</div><div class="mr444PizzaNotes" id="mr444PizzaNotes8" aria-live="polite"></div><p class="mr444PizzaInstruction">Tocca gli spicchi della pizza per scoprire le durate.</p></div>
+   <div class="mr444PizzaReading" id="mr444PizzaReading8"><div class="mr444PizzaCount" id="mr444PizzaCount8">0 / 8</div><div class="mr444PizzaNotes" id="mr444PizzaNotes8" aria-live="polite"></div><p class="mr444PizzaInstruction">Tocca gli spicchi: ogni figura dura una parte della semibreve.</p></div>
   </main>
- </div>
-</div>
-<div id="mr444Pizza64Page" class="page-container mr444DurationPage" style="display:none" aria-label="Le durate musicali, pizza in sessantaquattro parti">
- <div class="app mr444DurationApp">
-  <div class="top-panel"><div class="top-row mr444DurationTopRow">
-   <div class="top-left-controls"><button type="button" class="menu-btn" id="mr444Pizza64Home" aria-label="Torna alla Home">🏠</button></div>
-   <div class="mr444DurationBarResult" id="mr444Pizza64BarResult" role="status" aria-live="polite">LA PIZZA DEI SESSANTAQUATTRESIMI</div>
-   <div class="top-right-controls">
-    <button type="button" class="reset-btn mr444StandardControl mr444Prev" id="mr444Pizza64Prev" aria-label="Torna alla pizza in otto parti" title="Pizza in otto parti">❮</button>
-    <button type="button" class="reset-btn mr444StandardControl" id="mr444Pizza64Reset" aria-label="Azzera gli spicchi selezionati" title="Reset">↺</button>
-    <button type="button" class="reset-btn mr444StandardControl mr444Next" id="mr444Pizza64Next" aria-label="Passa all'albero delle durate" title="Albero delle durate">❯</button>
+  <nav class="mr445PageFooter mr445PizzaFooter" aria-label="Risoluzione della pizza e pagina successiva">
+   <span class="mr445FooterSpacer" aria-hidden="true"></span>
+   <div id="mr445ResolutionControls" class="mr445ResolutionControls" role="group" aria-label="Scegli la risoluzione della pizza">
+    <button type="button" class="mr445ResolutionBtn" data-parts="8" aria-pressed="true"><span class="mr445ResolutionGlyph">&#xe1d7;</span><span>Croma</span><small>1/8</small></button>
+    <button type="button" class="mr445ResolutionBtn" data-parts="16" aria-pressed="false"><span class="mr445ResolutionGlyph">&#xe1d9;</span><span>Semicroma</span><small>1/16</small></button>
+    <button type="button" class="mr445ResolutionBtn" data-parts="32" aria-pressed="false"><span class="mr445ResolutionGlyph">&#xe1db;</span><span>Biscroma</span><small>1/32</small></button>
+    <button type="button" class="mr445ResolutionBtn" data-parts="64" aria-pressed="false"><span class="mr445ResolutionGlyph">&#xe1dd;</span><span>Semibiscroma</span><small>1/64</small></button>
    </div>
-  </div></div>
-  <main class="mr444PizzaStage">
-   <div class="mr444PizzaArea"><div class="mr444PizzaBoard">
-    <div class="mr444PizzaWheel" id="mr444PizzaWheel64" role="group" aria-label="Pizza suddivisa in 64 spicchi selezionabili" data-parts="64">
-     <img src="Assets/pizza-durates-444.png" alt="Pizza vista dall'alto" draggable="false" />
-     <svg viewBox="0 0 1000 1000" class="mr444PizzaSlices" id="mr444PizzaSlices64" aria-hidden="true"></svg>
-    </div>
-   </div></div>
-   <div class="mr444PizzaReading" id="mr444PizzaReading64"><div class="mr444PizzaCount" id="mr444PizzaCount64">0 / 64</div><div class="mr444PizzaNotes" id="mr444PizzaNotes64" aria-live="polite"></div><p class="mr444PizzaInstruction">Uno spicchio vale una semibiscroma. Somma gli spicchi per formare le figure puntate.</p></div>
-  </main>
+   <button type="button" class="reset-btn mr444StandardControl mr444Next mr445FooterArrow" id="mr444Pizza8Next" aria-label="Passa all'albero delle durate" title="Albero delle durate">❯</button>
+  </nav>
  </div>
 </div>
 <!-- ===========================
@@ -7580,7 +7565,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
           <span class="mr444TreeNameLine"><span id="mr443ChildName" class="mr443DurationName"></span><span id="mr444ChildFraction" class="mr444DurationFraction"></span></span>
         </div>
         <div class="top-right-controls mr442TopActions">
-          <button type="button" class="reset-btn mr443TreeControl mr444Prev" id="mr444TreePrev" aria-label="Torna alla pizza in 64 parti" title="Pizza in 64 parti">❮</button>
+          
           <button type="button" class="reset-btn mr443TreeControl" id="mr443TreeReset" aria-label="Ricomincia l'albero dalla semibreve" title="Ricomincia dalla semibreve">↺</button>
           <button type="button" class="reset-btn mr443TreeControl" id="mr443TreeRests" aria-label="Mostra le pause musicali" aria-pressed="false" title="Alterna figure e pause"><span class="mr443SwitchNote" aria-hidden="true">&#xe1d5;</span><span class="mr443SwitchArrow" aria-hidden="true">⇄</span><span class="mr443SwitchRest" aria-hidden="true">&#xe4e5;</span></button>
 
@@ -7590,6 +7575,11 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
     <main class="mr442TreeScroller" id="mr442TreeScroller" aria-label="Albero delle durate musicali, scorri per esplorare">
       <svg xmlns="http://www.w3.org/2000/svg" id="mr442TreeSvg" role="group" aria-label="Le figure musicali si dividono in due e rimangono nell'albero"></svg>
     </main>
+    <nav class="mr445PageFooter mr445TreeFooter" aria-label="Navigazione durate musicali">
+     <button type="button" class="reset-btn mr443TreeControl mr444Prev mr445FooterArrow" id="mr444TreePrev" aria-label="Torna alla pizza delle durate" title="Pizza delle durate">❮</button>
+     <span class="mr445FooterCaption">ALBERO DELLE DURATE</span>
+     <span class="mr445FooterSpacer" aria-hidden="true"></span>
+    </nav>
   </div>
 </div>
 
@@ -18489,7 +18479,7 @@ function hideAllPages() {
     if (learnTempoPage) learnTempoPage.style.display = "none";
     const tempoTreePage=document.getElementById('tempoTreePage');
     if(tempoTreePage) tempoTreePage.style.display = "none";
-    for(const id of ['mr444Pizza8Page','mr444Pizza64Page']){
+    for(const id of ['mr444Pizza8Page']){
       const durationPage=document.getElementById(id);
       if(durationPage)durationPage.style.display='none';
     }
@@ -18599,21 +18589,18 @@ function hideAllPages() {
   }
   function showLearnDurationPizza(parts=8){
     hideAllPages();homeScreen.style.display='none';
-    const id=parts===64?'mr444Pizza64Page':'mr444Pizza8Page';
+    const id='mr444Pizza8Page';
     const pie=document.getElementById(id);
-    if(pie){pie.style.display='flex';window.MRPizza444?.open(parts);}
+    if(pie){pie.style.display='flex';window.MRPizza444?.open();}
   }
   function showLearnTempo(){showLearnTempoExercises();}
   window.MusicRainbowOpenTempoExercisesMR=showLearnTempoExercises;
   window.MusicRainbowOpenTempoTreeMR=showLearnTempoTree;
   window.MusicRainbowOpenDurationsMR=showLearnDurationPizza;
   document.getElementById('mr442TreeHome')?.addEventListener('click',showHome);
-  document.getElementById('mr444TreePrev')?.addEventListener('click',()=>showLearnDurationPizza(64));
+  document.getElementById('mr444TreePrev')?.addEventListener('click',()=>showLearnDurationPizza());
   document.getElementById('mr444Pizza8Home')?.addEventListener('click',showHome);
-  document.getElementById('mr444Pizza64Home')?.addEventListener('click',showHome);
-  document.getElementById('mr444Pizza8Next')?.addEventListener('click',()=>showLearnDurationPizza(64));
-  document.getElementById('mr444Pizza64Prev')?.addEventListener('click',()=>showLearnDurationPizza(8));
-  document.getElementById('mr444Pizza64Next')?.addEventListener('click',()=>showLearnTempoTree(false));
+  document.getElementById('mr444Pizza8Next')?.addEventListener('click',()=>showLearnTempoTree(false));
   document.getElementById('homeLearnDurationsBtn')?.addEventListener('click',()=>{
     document.getElementById('learnSelectOverlay')?.classList.remove('active');showLearnDurationPizza(8);
   });
@@ -18645,7 +18632,7 @@ function hideAllPages() {
     if (learnTempoPage) learnTempoPage.style.display = "none";
     const tempoTreePage=document.getElementById('tempoTreePage');
     if(tempoTreePage) tempoTreePage.style.display = "none";
-    for(const id of ['mr444Pizza8Page','mr444Pizza64Page']){
+    for(const id of ['mr444Pizza8Page']){
       const durationPage=document.getElementById(id);
       if(durationPage)durationPage.style.display='none';
     }
@@ -18970,7 +18957,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.444";
+  const PAGE_BUILD = "2.445";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -28743,7 +28730,7 @@ document.querySelectorAll('.page-container .mr409-mimo-toggle,#homeScreen .mr409
 const floatingToggle=document.createElement('button');
 floatingToggle.type='button';floatingToggle.id='mr410MimoFloatingToggle';floatingToggle.className='mr409-mimo-toggle mr410-floating-toggle';
 floatingToggle.setAttribute('data-midi-learn-key','mr410-mimo-toggle-floating');
-floatingToggle.innerHTML=eye+eyeOff;
+floatingToggle.innerHTML='<img class="mr445MimoFace" src="Assets/mimo-face-toggle-445.png" alt="" aria-hidden="true">';
 floatingToggle.addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');enabled=!enabled;try{localStorage.setItem(STORAGE_KEY,enabled?'1':'0');}catch(e){}syncButtons();schedule();});
 document.body.appendChild(floatingToggle);allButtons.push(floatingToggle);
 syncButtons();
@@ -29642,7 +29629,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 </script>
 
 <style id="mr444-duration-layout-css">
-/* Build 2.444: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
+/* Build 2.445: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
 #tempoTreePage .mr442TopPanel,.mr444DurationPage .top-panel{
   position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;
   min-height:0!important;margin:0!important;padding:6px 14px 0!important;
@@ -29787,134 +29774,282 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 }
 
 </style>
-<script id="mr444-duration-pizza-js">
+<script id="mr445-duration-pizza-js">
 (()=>{'use strict';
- // The pizza wheels are a separate lesson: original rhythm/tamburo page remains untouched.
+ // Una sola pizza, con risoluzione regolabile, e frazioni musicali canoniche.
  const colors=['#e74455','#ec892a','#c5a100','#159962','#258fd3','#5954c9','#9750ca'];
- const values=[64,32,16,8,4,2,1];
- const fractions=['4/4','2/4','1/4','1/8','1/16','1/32','1/64'];
  const names=['SEMIBREVE','MINIMA','SEMIMINIMA','CROMA','SEMICROMA','BISCROMA','SEMIBISCROMA'];
+ const amounts=[64,32,16,8,4,2,1];
+ const baseFractions=['4/4','2/4','1/4','1/8','1/16','1/32','1/64'];
  const glyphs=[0xE1D2,0xE1D3,0xE1D5,0xE1D7];
- const flags=String.fromCodePoint(0xE240);
- const off=[[-15.42,8.04],[-11.91,8.04],[-12.03,8.40],[-11.91,8.40]];
- const selections=new Map([[8,new Set()],[64,new Set()]]);
- const panels=new Map();
+ const flag=String.fromCodePoint(0xE240);
+ const offsets=[[-15.42,8.04],[-11.91,8.04],[-12.03,8.40],[-11.91,8.40]];
  const NS='http://www.w3.org/2000/svg';
- const make=(tag,attrs={},val)=>{const el=document.createElementNS(NS,tag);
-  for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));
-  if(val!==undefined)el.textContent=val;return el;};
- function solution(units){
-  // One symbol where possible; otherwise the smallest exact combination of normal/dotted symbols.
-  const opts=[];
+ const svgEl=(name,attrs={},text)=>{const e=document.createElementNS(NS,name);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(text!==undefined)e.textContent=text;return e;};
+ const wheel=document.getElementById('mr444PizzaWheel8');
+ const sliceSvg=document.getElementById('mr444PizzaSlices8');
+ const label=document.getElementById('mr444Pizza8BarResult');
+ const countLabel=document.getElementById('mr444PizzaCount8');
+ const notation=document.getElementById('mr444PizzaNotes8');
+ const controls=document.getElementById('mr445ResolutionControls');
+ if(!wheel||!sliceSvg||!label||!countLabel||!notation||!controls)return;
+ let parts=8;
+ const selected=new Set();let paths=[];
+ const gcd=(a,b)=>b?gcd(b,a%b):a;
+ function fraction(units){
+  if(units===64)return '4/4';
+  if(units===48)return '3/4';
+  if(units===32)return '2/4';
+  if(units===16)return '1/4';
+  if(units===0)return '0/4';
+  const divisor=gcd(units,64);return (units/divisor)+'/'+(64/divisor);
+ }
+ function decompose(units){
+  const candidates=[];
   for(let level=0;level<7;level++){
-   opts.push({amount:values[level],level,dotted:false});
-   if(level>0)opts.push({amount:values[level]*1.5,level,dotted:true});
+   candidates.push({units:amounts[level],level,dotted:false});
+   const dotted=amounts[level]*1.5;
+   if(level>0&&Number.isInteger(dotted))candidates.push({units:dotted,level,dotted:true});
   }
-  opts.sort((a,b)=>b.amount-a.amount||(a.dotted?-1:1));
-  const dp=Array(units+1).fill(null);dp[0]=[];
-  for(let n=1;n<=units;n++){
-   for(const option of opts){if(option.amount>n||!dp[n-option.amount])continue;
-    const trial=[...dp[n-option.amount],option].sort((a,b)=>b.amount-a.amount);
-    if(!dp[n]||trial.length<dp[n].length)dp[n]=trial;
-   }
+  candidates.sort((a,b)=>b.units-a.units);
+  const dp=new Array(units+1).fill(null);dp[0]=[];
+  for(let u=1;u<=units;u++)for(const option of candidates){
+   const remain=u-option.units;
+   if(remain<0||!dp[remain])continue;
+   const trial=[...dp[remain],option].sort((a,b)=>b.units-a.units);
+   // Prefer fewest symbols; then prefer a single dotted note to ties/composites.
+   if(!dp[u]||trial.length<dp[u].length)dp[u]=trial;
   }
   return dp[units]||[];
  }
- function drawNote(el,option){
-  const svg=make('svg',{viewBox:'-40 -68 100 115','aria-hidden':'true'});
-  const [dx,dy]=option.level<=3?off[option.level]:off[3];
-  const cp=option.level<=3?glyphs[option.level]:glyphs[3];
-  svg.appendChild(make('text',{x:dx,y:dy,'class':'mr444SMuFLGlyph'},String.fromCodePoint(cp)));
-  if(option.level>=4){for(let n=1;n<=option.level-3;n++)svg.appendChild(
-   make('text',{x:9.1,y:8.4+n*10.2,'class':'mr444SMuFLGlyph'},flags));}
-  if(option.dotted)svg.appendChild(make('circle',{cx:30,cy:12,r:3.2,'class':'mr444Dot'}));
-  el.appendChild(svg);
-  const label=document.createElement('span');label.className='mr444NoteLabel';
-  label.style.color=colors[option.level];
-  label.textContent=names[option.level]+(option.dotted?' PUNTATA':'');
-  el.appendChild(label);
- }
- function piePath(index,count){
-  const start=-Math.PI/2+Math.PI*2*index/count,end=-Math.PI/2+Math.PI*2*(index+1)/count;
-  const x1=500+480*Math.cos(start),y1=500+480*Math.sin(start);
-  const x2=500+480*Math.cos(end),y2=500+480*Math.sin(end);
-  return `M500 500 L${x1.toFixed(3)} ${y1.toFixed(3)} A480 480 0 0 1 ${x2.toFixed(3)} ${y2.toFixed(3)} Z`;
- }
- function drawSlices(count){
-  const target=document.getElementById('mr444PizzaSlices'+count),wheel=document.getElementById('mr444PizzaWheel'+count);
-  const parts=[];if(!target||!wheel)return;
-  target.dataset.parts=count;
-  for(let i=0;i<count;i++){
-   const p=make('path',{d:piePath(i,count),'class':'mr444SliceTint','data-part':i});
-   parts.push(p);target.appendChild(p);
+ function drawGlyph(host,option,withLabel=true){
+  const svg=svgEl('svg',{viewBox:'-40 -68 100 115','aria-hidden':'true','class':'mr445NotationSvg'});
+  const [dx,dy]=offsets[Math.min(option.level,3)];
+  svg.appendChild(svgEl('text',{x:dx,y:dy,'class':'mr444SMuFLGlyph'},String.fromCodePoint(glyphs[Math.min(option.level,3)])));
+  if(option.level>=4){
+   for(let n=1;n<=option.level-3;n++)svg.appendChild(svgEl('text',{x:9.1,y:8.4+n*10.2,'class':'mr444SMuFLGlyph'},flag));
   }
-  for(let i=0;i<count;i++){
-   const angle=-Math.PI/2+Math.PI*2*i/count;
-   target.appendChild(make('line',{x1:500,y1:500,x2:500+462*Math.cos(angle),y2:500+462*Math.sin(angle),'class':'mr444CutLine'}));
-  }
-  wheel.addEventListener('pointerup',e=>{
-   if(e.pointerType==='mouse'&&e.button!==0)return;
-   const box=wheel.getBoundingClientRect();
-   const rx=(e.clientX-box.left)/box.width-.5,ry=(e.clientY-box.top)/box.height-.5;
-   if(Math.hypot(rx,ry)>.475)return;
-   const angle=(Math.atan2(ry,rx)+Math.PI/2+2*Math.PI)%(2*Math.PI);
-   let index=Math.min(count-1,Math.floor(angle/(Math.PI*2)*count));
-   const selected=selections.get(count);
-   if(selected.has(index))selected.delete(index);else selected.add(index);
-   repaint(count);
-   if(typeof window.MimoSounds?.play==='function')window.MimoSounds.play('touch');
-  });
-  wheel.addEventListener('keydown',e=>{ // Keyboard alternative: select the next non-selected slice.
-   if(e.key!=='Enter'&&e.key!==' ')return;e.preventDefault();
-   const sel=selections.get(count);const free=Array.from({length:count},(_,i)=>i).find(i=>!sel.has(i));
-   if(free!==undefined){sel.add(free);repaint(count);}
-  });
-  wheel.tabIndex=0;
-  panels.set(count,{target,parts});
-  repaint(count);
+  if(option.dotted)svg.appendChild(svgEl('circle',{cx:30,cy:12,r:3.2,'class':'mr444Dot'}));
+  host.appendChild(svg);
+  if(withLabel){const word=document.createElement('span');word.className='mr444NoteLabel';word.style.color=colors[option.level];word.textContent=names[option.level]+(option.dotted?' PUNTATA':'');host.appendChild(word);}
  }
- function repaint(count){
-  const sel=selections.get(count),units=sel.size*(64/count),parts=solution(units);
-  const figure=parts[0],color=figure?colors[figure.level]:'#8c79a5';
-  const glyphNodes=document.getElementById('mr444PizzaNotes'+count),countNode=document.getElementById('mr444PizzaCount'+count);
-  const bar=document.getElementById('mr444Pizza'+count+'BarResult');
-  if(!glyphNodes||!countNode||!bar)return;
-  countNode.textContent=sel.size+' / '+count;
-  countNode.style.color=color;
-  bar.textContent='';bar.style.color=color;
-  if(!parts.length){bar.textContent=count===8?'LA PIZZA DEGLI OTTAVI':'LA PIZZA DEI SESSANTAQUATTRESIMI';}
-  else{
-   const one=parts.length===1;
-   const title=one?names[figure.level]+(figure.dotted?' PUNTATA':''):parts.map(p=>names[p.level]+(p.dotted?' PUNTATA':'')).join(' + ');
-   bar.textContent=title+'  ·  '+sel.size+'/'+count;
-  }
-  glyphNodes.replaceChildren();
-  for(const part of parts){
-   const row=document.createElement('div');row.className='mr444PizzaNotation';
-   drawNote(row,part);glyphNodes.appendChild(row);
-  }
-  panels.get(count)?.parts.forEach((p,i)=>{
-   const on=sel.has(i);p.classList.toggle('is-on',on);
-   p.setAttribute('fill',on?color+'99':'transparent');
-  });
-  document.getElementById('mr444PizzaWheel'+count)?.setAttribute('aria-label',`Pizza con ${count} spicchi. Selezionati ${sel.size}. ${parts.map(p=>names[p.level]).join(', ')||'Tocca uno spicchio'}`);
+ function wedge(i,n){
+  const a=-Math.PI/2+2*Math.PI*i/n,b=-Math.PI/2+2*Math.PI*(i+1)/n;
+  const x1=500+481*Math.cos(a),y1=500+481*Math.sin(a);
+  const x2=500+481*Math.cos(b),y2=500+481*Math.sin(b);
+  return `M500 500 L${x1} ${y1} A481 481 0 ${n===1?1:0} 1 ${x2} ${y2} Z`;
  }
- for(const count of [8,64]){
-  drawSlices(count);
-  document.getElementById('mr444Pizza'+count+'Reset')?.addEventListener('click',()=>{
-   selections.get(count).clear();repaint(count);
-  });
+ function rebuildWheel(){
+  paths=[];sliceSvg.replaceChildren();wheel.dataset.parts=String(parts);
+  for(let i=0;i<parts;i++){
+   const p=svgEl('path',{d:wedge(i,parts),'class':'mr444SliceTint','data-part':i});
+   sliceSvg.appendChild(p);paths.push(p);
+  }
+  for(let i=0;i<parts;i++){
+   const a=-Math.PI/2+2*Math.PI*i/parts;
+   sliceSvg.appendChild(svgEl('line',{x1:500,y1:500,x2:500+460*Math.cos(a),y2:500+460*Math.sin(a),'class':'mr444CutLine'}));
+  }
  }
- window.MRPizza444={
-  open:count=>{if(count!==8&&count!==64)return;repaint(count);},
-  reset:count=>document.getElementById('mr444Pizza'+count+'Reset')?.click(),
-  select:(count,index)=>{if(!selections.has(count)||index<0||index>=count)return;const s=selections.get(count);s.has(index)?s.delete(index):s.add(index);repaint(count);},
-  inspect:count=>({selected:selections.get(count)?.size||0,
-   notes:solution((selections.get(count)?.size||0)*(64/count)).map(({level,dotted})=>names[level]+(dotted?' PUNTATA':'')),
-   bar:document.getElementById('mr444Pizza'+count+'BarResult')?.textContent||''})
- };
+ function repaint(){
+  const units=selected.size*(64/parts);
+  const figureList=decompose(units);
+  const lead=figureList[0];
+  const color=lead?colors[lead.level]:'#786d94';
+  const wholeTitle=figureList.map(p=>names[p.level]+(p.dotted?' PUNTATA':'')).join(' + ');
+  const conventional=fraction(units);
+  label.textContent=figureList.length?wholeTitle+' · '+conventional:'LE DURATE MUSICALI';
+  label.style.color=color;
+  countLabel.textContent=conventional;
+  countLabel.title=`${selected.size} spicchi su ${parts}`;
+  countLabel.style.color=color;
+  notation.replaceChildren();
+  for(const figure of figureList){
+   const row=document.createElement('div');row.className='mr444PizzaNotation';drawGlyph(row,figure);notation.appendChild(row);
+  }
+  paths.forEach((p,i)=>{
+   const active=selected.has(i);p.classList.toggle('is-on',active);
+   p.setAttribute('fill',active?color+'90':'transparent');
+  });
+  wheel.setAttribute('aria-label',`Pizza in ${parts} parti, selezionati ${selected.size}. ${wholeTitle||'Tocca uno spicchio per scoprire le figure'}. Durata: ${conventional}`);
+ }
+ function setResolution(newParts){
+  if(![8,16,32,64].includes(newParts))return;
+  if(parts!==newParts){parts=newParts;selected.clear();rebuildWheel();}
+  controls.querySelectorAll('.mr445ResolutionBtn').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.parts===parts)));
+  repaint();
+ }
+ function selectIndex(index){if(index<0||index>=parts)return;selected.has(index)?selected.delete(index):selected.add(index);repaint();}
+ wheel.addEventListener('pointerup',ev=>{
+  if(ev.pointerType==='mouse'&&ev.button!==0)return;
+  const rect=wheel.getBoundingClientRect();
+  const x=(ev.clientX-rect.left)/rect.width-.5,y=(ev.clientY-rect.top)/rect.height-.5;
+  if(Math.hypot(x,y)>.484)return;
+  const angle=(Math.atan2(y,x)+Math.PI/2+2*Math.PI)%(2*Math.PI);
+  selectIndex(Math.min(parts-1,Math.floor(angle/(2*Math.PI)*parts)));
+  window.MimoSounds?.play?.('touch');
+ });
+ wheel.addEventListener('keydown',ev=>{
+  if(!['Enter',' ','Backspace','Delete'].includes(ev.key))return;
+  ev.preventDefault();
+  if(ev.key==='Delete'||ev.key==='Backspace'){
+   const last=Array.from(selected).pop();if(last!==undefined)selectIndex(last);
+  }else{const free=Array.from({length:parts},(_,i)=>i).find(i=>!selected.has(i));if(free!==undefined)selectIndex(free);}
+ });
+ controls.querySelectorAll('.mr445ResolutionBtn').forEach(button=>{
+  const level=([8,16,32,64].indexOf(+button.dataset.parts))+3;
+  const holder=button.querySelector('.mr445ResolutionGlyph');
+  if(holder){holder.replaceChildren();drawGlyph(holder,{level,dotted:false},false);}
+  button.addEventListener('click',()=>setResolution(+button.dataset.parts));
+ });
+ document.getElementById('mr444Pizza8Reset')?.addEventListener('click',()=>{selected.clear();repaint();});
+ rebuildWheel();repaint();
+ window.MRPizza444={open:()=>repaint(),reset:()=>{selected.clear();repaint();},setResolution,
+  select:(n,i)=>{if([8,16,32,64].includes(n)&&parts!==n)setResolution(n);selectIndex(i);},
+  inspect:()=>({resolution:parts,selected:selected.size,notes:decompose(selected.size*(64/parts)).map(n=>names[n.level]+(n.dotted?' PUNTATA':'')),
+   fraction:fraction(selected.size*(64/parts)),bar:label.textContent})};
 })();
 
 </script>
+<style id="mr445-duration-style">
+/* Music Rainbow 2.445 — durate: stessa top bar dei livelli, nomi AL CENTRO,
+   navigazione in fondo. Niente testi spostati sotto i pulsanti su iPhone. */
+#tempoTreePage .mr442TopRow,
+#mr444Pizza8Page .top-row{
+ display:grid!important;
+ grid-template-columns:max-content minmax(0,1fr) max-content!important;
+ grid-template-rows:minmax(72px,auto)!important;
+ align-items:center!important;
+ column-gap:8px!important;row-gap:0!important;
+ padding:7px 12px!important;margin:6px auto 5px!important;
+ box-sizing:border-box!important;
+ --mr-topbar-control-h:clamp(40px,4.1vw,48px)!important;
+}
+#tempoTreePage .mr442TopRow .top-left-controls,
+#mr444Pizza8Page .top-row .top-left-controls{
+ grid-column:1!important;grid-row:1!important;align-self:center!important;justify-self:start!important;
+ display:flex!important;align-items:center!important;gap:5px!important;min-width:0!important;
+}
+#tempoTreePage .mr442TopActions,
+#mr444Pizza8Page .top-right-controls{
+ grid-column:3!important;grid-row:1!important;align-self:center!important;justify-self:end!important;
+ display:flex!important;align-items:center!important;gap:5px!important;min-width:0!important;
+}
+#tempoTreePage .mr442TopSelection,
+#mr444Pizza8Page .mr444DurationBarResult{
+ grid-column:2!important;grid-row:1!important;
+ align-self:center!important;justify-self:center!important;max-width:100%!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ flex-direction:column!important;gap:2px!important;min-height:42px!important;
+ margin:0!important;padding:0!important;text-align:center!important;
+ overflow-wrap:normal!important;white-space:normal!important;
+ font:850 clamp(10px,1.5vw,19px)/1.13 system-ui,-apple-system,sans-serif!important;
+}
+#tempoTreePage .mr444TreeNameLine{
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;
+ gap:3px 6px!important;max-width:100%!important;min-height:19px!important;white-space:normal!important;
+}
+#tempoTreePage .mr443DurationName,
+#tempoTreePage .mr444DurationFraction{white-space:normal!important;overflow-wrap:normal!important;font-weight:900!important;}
+#mr444Pizza8Page .mr444DurationBarResult{letter-spacing:0!important;}
+/* Icona Mìmo: il volto, non più l'occhio. Stesso controllo sulla Home e nelle top bar. */
+#mr410MimoFloatingToggle .mr445MimoFace{display:block;width:85%;height:85%;max-width:38px;max-height:38px;object-fit:contain;pointer-events:none!important;border-radius:50%;}
+#mr410MimoFloatingToggle[aria-pressed="false"] .mr445MimoFace{filter:grayscale(1);opacity:.65;}
+#tempoTreePage .top-row #mr410MimoFloatingToggle,
+#mr444Pizza8Page .top-row #mr410MimoFloatingToggle{order:2!important;}
+/* Contenuti e barra di navigazione: due pagine (pizza -> albero). */
+#tempoTreePage .mr442TreeApp,
+#mr444Pizza8Page .mr444DurationApp{height:100%!important;min-height:0!important;}
+#tempoTreePage .mr442TreeScroller{flex:1 1 0!important;min-height:0!important;}
+#mr444Pizza8Page .mr444PizzaStage{flex:1 1 0!important;min-height:0!important;}
+#tempoTreePage .mr445PageFooter,#mr444Pizza8Page .mr445PageFooter{
+ position:relative!important;z-index:60!important;
+ flex:0 0 auto!important;display:grid!important;grid-template-columns:clamp(40px,4.1vw,48px) minmax(0,1fr) clamp(40px,4.1vw,48px)!important;
+ align-items:center!important;gap:8px!important;
+ width:100%!important;padding:6px 14px calc(8px + env(safe-area-inset-bottom,0px))!important;
+ box-sizing:border-box!important;
+ background:rgba(255,255,255,.90)!important;border-top:1px solid rgba(161,127,204,.26)!important;
+}
+#tempoTreePage .mr445FooterArrow,#mr444Pizza8Page .mr445FooterArrow{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:clamp(40px,4.1vw,48px)!important;height:clamp(40px,4.1vw,48px)!important;
+ min-width:0!important;min-height:0!important;flex:0 0 auto!important;
+ background:#e9fce9!important;color:#168660!important;border:2px solid #69c798!important;
+ border-radius:12px!important;font-size:24px!important;line-height:1!important;
+ box-shadow:0 2px 5px #4f328a22!important;cursor:pointer!important;padding:0!important;
+}
+#tempoTreePage .mr445FooterArrow.mr444Prev{grid-column:1!important;justify-self:start!important;
+ color:#9d4d90!important;border-color:#e39ac4!important;background:#fff0f6!important;}
+#mr444Pizza8Page .mr445FooterArrow.mr444Next{grid-column:3!important;justify-self:end!important;}
+#tempoTreePage .mr445FooterCaption{grid-column:2!important;text-align:center;color:#775a9c;font:800 clamp(10px,1.2vw,14px)/1.2 system-ui,sans-serif;}
+#tempoTreePage .mr445FooterSpacer{grid-column:3!important;}
+#mr444Pizza8Page .mr445FooterSpacer{grid-column:1!important;}
+#mr444Pizza8Page .mr445ResolutionControls{grid-column:2!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:clamp(3px,.6vw,10px)!important;min-width:0!important;max-width:760px!important;width:100%!important;margin:auto!important;}
+#mr444Pizza8Page .mr445ResolutionBtn{
+ min-width:0!important;box-sizing:border-box!important;touch-action:manipulation!important;
+ cursor:pointer!important;border:2px solid #c6a5e8!important;background:#faf5ff!important;color:#5b3b8e!important;
+ padding:4px 2px!important;border-radius:12px!important;display:flex!important;flex-direction:column!important;
+ justify-content:center!important;align-items:center!important;gap:1px!important;
+ font:800 clamp(9px,1.1vw,14px)/1.18 system-ui,-apple-system,sans-serif!important;
+}
+#mr444Pizza8Page .mr445ResolutionBtn[aria-pressed="true"]{box-shadow:0 0 0 2px #d9c9f5!important;border-color:#7246c8!important;background:#efe4ff!important;}
+#mr444Pizza8Page .mr445ResolutionBtn:nth-child(1){--mr445-duration-color:#159962;}
+#mr444Pizza8Page .mr445ResolutionBtn:nth-child(2){--mr445-duration-color:#258fd3;}
+#mr444Pizza8Page .mr445ResolutionBtn:nth-child(3){--mr445-duration-color:#5954c9;}
+#mr444Pizza8Page .mr445ResolutionBtn:nth-child(4){--mr445-duration-color:#9750ca;}
+#mr444Pizza8Page .mr445ResolutionBtn[aria-pressed="true"]{border-color:var(--mr445-duration-color)!important;color:var(--mr445-duration-color)!important;}
+#mr444Pizza8Page .mr445ResolutionBtn small{font-size:clamp(9px,1.1vw,13px)!important;}
+#mr444Pizza8Page .mr445ResolutionGlyph{display:block;line-height:1!important;min-height:27px!important;}
+#mr444Pizza8Page .mr445ResolutionGlyph .mr445NotationSvg{height:27px!important;width:31px!important;display:block!important;}
+#mr444Pizza8Page .mr445NotationSvg text.mr444SMuFLGlyph{fill:#050505!important;font:400 63px/1 'MusicRainbow SMuFL',sans-serif!important;}
+/* La pizza deve apparire calda, cartoon volumetrica ma più realistica. */
+#mr444Pizza8Page .mr444PizzaBoard{box-shadow:inset 0 0 0 5px #f4d8a0,inset 0 0 24px #ffebc0,0 9px 0 #87502c,0 18px 34px #61402a66!important;}
+#mr444Pizza8Page .mr444PizzaWheel img{filter:saturate(1.13) contrast(1.07) drop-shadow(0 3px 2px #6d3b2c55)!important;}
+#mr444Pizza8Page .mr444PizzaSlices .mr444CutLine{stroke:rgba(77,45,26,.52)!important;opacity:.44!important;}
+@media(max-width:740px),(orientation:portrait){
+ #tempoTreePage .mr442TopRow,#mr444Pizza8Page .top-row{
+  grid-template-columns:max-content minmax(0,1fr) max-content!important;
+  grid-template-rows:minmax(76px,auto)!important;
+  min-height:76px!important;column-gap:4px!important;
+  padding:6px 7px!important;margin:6px auto 5px!important;
+  --mr-topbar-control-h:clamp(36px,9vw,44px)!important;
+ }
+ #tempoTreePage .mr442TopSelection,#mr444Pizza8Page .mr444DurationBarResult{
+  grid-column:2!important;grid-row:1!important;align-self:center!important;
+  font-size:clamp(9px,2.25vw,14px)!important;line-height:1.12!important;
+ }
+ #tempoTreePage .mr444TreeNameLine{gap:1px 4px!important;}
+ #tempoTreePage .mr444DurationFraction{white-space:nowrap!important;}
+ #mr444Pizza8Page .mr444PizzaStage{padding:5px 7px!important;gap:clamp(5px,1vh,16px)!important;}
+ #mr444Pizza8Page .mr444PizzaBoard{width:min(100%,calc(100dvh - 340px),500px)!important;}
+ #mr444Pizza8Page .mr445PageFooter,#tempoTreePage .mr445PageFooter{padding:5px 7px calc(6px + env(safe-area-inset-bottom,0px))!important;gap:4px!important;grid-template-columns:38px minmax(0,1fr) 38px!important;}
+ #mr444Pizza8Page .mr445ResolutionBtn{min-height:52px!important;}
+ #mr444Pizza8Page .mr445ResolutionBtn span:not(.mr445ResolutionGlyph){font-size:clamp(8px,2vw,12px)!important;}
+ #mr444Pizza8Page .mr445ResolutionGlyph .mr445NotationSvg{height:23px!important;width:26px!important;}
+}
+@media(orientation:landscape) and (max-height:540px){
+ #tempoTreePage .mr442TopRow,#mr444Pizza8Page .top-row{grid-template-rows:58px!important;min-height:58px!important;padding:3px 7px!important;margin:2px auto 3px!important;--mr-topbar-control-h:38px!important;}
+ #mr444Pizza8Page .mr445ResolutionBtn{min-height:39px!important;flex-direction:row!important;gap:4px!important;}
+ #mr444Pizza8Page .mr445ResolutionGlyph{min-height:25px!important;}
+ #mr444Pizza8Page .mr445ResolutionGlyph .mr445NotationSvg{height:23px!important;}
+ #mr444Pizza8Page .mr445PageFooter,#tempoTreePage .mr445PageFooter{padding:2px 9px 4px!important;}
+ #mr444Pizza8Page .mr444PizzaBoard{width:min(100%,calc(100dvh - 145px),620px)!important;}
+}
+
+/* Dimensione fisicamente quadrata: nessuna deformazione ovale nel flex layout. */
+#mr444Pizza8Page .mr444PizzaBoard{
+ width:min(100%,calc(100dvh - 260px),760px)!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ flex:0 0 auto!important;aspect-ratio:1/1!important;
+ align-self:center!important;
+}
+@media(max-width:740px),(orientation:portrait){
+ #mr444Pizza8Page .mr444PizzaBoard{width:min(100%,calc(100dvh - 380px),500px)!important;max-height:none!important;}
+}
+@media(orientation:landscape) and (max-height:540px){
+ #mr444Pizza8Page .mr444PizzaBoard{width:min(100%,calc(100dvh - 140px),560px)!important;max-height:none!important;}
+}
+
+</style>
 </body>
 </html>

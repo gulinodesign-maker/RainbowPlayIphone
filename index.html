@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.457</div>
+    <div class="intro-version-label">Build 2.458</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.457</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.458</div>
   </div>
 </div>
 
@@ -7521,7 +7521,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
-<!-- Build 2.457 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
+<!-- Build 2.458 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
 <div id="mr444Pizza8Page" class="page-container mr444DurationPage mr445DynamicPizza" style="display:none" aria-label="Le durate musicali: pizza interattiva">
  <div class="app mr444DurationApp">
   <div class="top-panel"><div class="top-row mr444DurationTopRow">
@@ -18958,7 +18958,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.457";
+  const PAGE_BUILD = "2.458";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -27056,7 +27056,7 @@ function init(){
  bubbleField439.id='mr439BathBubbleField';bubbleField439.hidden=true;
  bubbleField439.setAttribute('aria-hidden','true');
  bubbleField439.innerHTML='<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>';
-// Build 2.457: doccetta argentata, come nel riferimento dell'utente.
+// Build 2.458: doccetta argentata, come nel riferimento dell'utente.
  // Si anima SOLO durante il risciacquo; il rubinetto dorato nello sfondo resta
  // intatto, ed il suo hotspot trasparente continua ad avviare il lavaggio.
  // Il sistema di coordinate è quello della scena su cui è proiettato il PNG.
@@ -27077,69 +27077,66 @@ function init(){
     </linearGradient>
    </defs>
    <g class="mr457PhoneVisual">
-   <g class="mr457ShowerBody">
-    <path class="mr457PipeEdge" d="M 807 407 C 807 366 803 311 808 291 C 812 272 825 262 835 274 L 853 298"/>
-    <path class="mr457PipeMetal" d="M 807 407 C 807 366 803 311 808 291 C 812 272 825 262 835 274 L 853 298"/>
-    <path class="mr457PipeHighlight" d="M 804 402 C 805 355 802 311 807 290 C 812 273 826 266 832 276"/>
-    <g transform="rotate(29 856 309)">
-     <rect class="mr457NozzleNeck" x="845" y="290" width="21" height="20" rx="7"/>
-     <ellipse class="mr457NozzleShell" cx="855.5" cy="311" rx="18" ry="11"/>
-     <ellipse class="mr457NozzleFace" cx="855.5" cy="316" rx="16.3" ry="7.5"/>
-     <path class="mr457NozzleRim" d="M 841 316 Q 855.5 325 870 316"/>
+    <g class="mr457ShowerBody">
+     <path class="mr457PipeEdge" d="M 814 402 C 814 367 812 308 819 290 C 823 275 834 270 842 280 L 856 298"/>
+     <path class="mr457PipeMetal" d="M 814 402 C 814 367 812 308 819 290 C 823 275 834 270 842 280 L 856 298"/>
+     <path class="mr457PipeHighlight" d="M 812 398 C 813 354 812 307 818 290 C 825 274 835 275 842 285"/>
+     <g transform="rotate(23 860 312)">
+      <rect class="mr457NozzleNeck" x="851" y="298" width="18" height="15" rx="5"/>
+      <ellipse class="mr457NozzleShell" cx="860" cy="315" rx="15" ry="9"/>
+      <ellipse class="mr457NozzleFace" cx="860" cy="319" rx="13.8" ry="5.8"/>
+      <path class="mr457NozzleRim" d="M 848 319 Q 860 326 872 319"/>
+     </g>
+    </g>
+    <g class="mr457Spray">
+     <path d="M 848 322 Q 853 363 873 414"/>
+     <path d="M 852 323 Q 860 365 881 417"/>
+     <path d="M 856 324 Q 866 368 887 419"/>
+     <path d="M 860 325 Q 873 370 894 420"/>
+     <path d="M 864 325 Q 878 368 901 420"/>
+     <path d="M 868 324 Q 885 369 906 418"/>
+     <path d="M 872 322 Q 892 363 911 415"/>
+    </g>
+    <g class="mr457RainSparkles">
+     <circle cx="871" cy="363" r="1.4"/><circle cx="883" cy="394" r="1.3"/>
+     <circle cx="900" cy="417" r="1.5"/><circle cx="879" cy="418" r="1.4"/>
+    </g>
+    <g class="mr457Splash" transform="translate(890 416)">
+     <path d="M -14 0 Q -8 -6 -2 -4 Q 7 -9 14 -3"/>
+     <path d="M -12 2 Q -5 4 -2 2 M 3 3 Q 9 3 12 1"/>
     </g>
    </g>
-   <g class="mr457Spray">
-    <path d="M 840 320 Q 839 365 853 416"/>
-    <path d="M 844 321 Q 844 370 859 418"/>
-    <path d="M 848 323 Q 853 366 864 419"/>
-    <path d="M 852 324 Q 857 366 870 423"/>
-    <path d="M 856 325 Q 865 370 876 426"/>
-    <path d="M 860 327 Q 872 372 882 429"/>
-    <path d="M 864 326 Q 877 371 886 429"/>
-    <path d="M 868 325 Q 881 370 891 428"/>
-    <path d="M 872 322 Q 887 363 895 422"/>
-   </g>
-   <g class="mr457RainSparkles">
-    <circle cx="861" cy="372" r="1.7"/><circle cx="879" cy="396" r="1.5"/>
-    <circle cx="886" cy="414" r="1.8"/><circle cx="867" cy="427" r="1.8"/>
-    <circle cx="884" cy="432" r="2"/><circle cx="895" cy="425" r="1.4"/>
-   </g>
-   <g class="mr457Splash" transform="translate(872 431)">
-    <path d="M -17 0 Q -11 -8 -3 -6 Q 8 -12 16 -4"/>
-    <path d="M -20 1 Q -11 4 -3 3 M 5 3 Q 14 4 19 0"/>
-   </g></g>
    <g class="mr457IpadVisual">
-   <g class="mr457ShowerBody">
-    <path class="mr457PipeEdge" d="M 777 376 C 777 342 773 289 779 272 C 784 251 797 244 809 259 L 827 281"/>
-    <path class="mr457PipeMetal" d="M 777 376 C 777 342 773 289 779 272 C 784 251 797 244 809 259 L 827 281"/>
-    <path class="mr457PipeHighlight" d="M 774 371 C 774 326 774 287 778 271 C 783 254 797 248 806 260"/>
-    <g transform="rotate(29 830 292)">
-     <rect class="mr457NozzleNeck" x="818" y="272" width="22" height="20" rx="7"/>
-     <ellipse class="mr457NozzleShell" cx="829.5" cy="295" rx="18" ry="11"/>
-     <ellipse class="mr457NozzleFace" cx="829.5" cy="300" rx="16.3" ry="7.5"/>
-     <path class="mr457NozzleRim" d="M 815 300 Q 829.5 309 844 300"/>
+    <g class="mr457ShowerBody">
+     <!-- The pipe emerges from the REAR rim, not over the front tub panel. -->
+     <path class="mr457PipeEdge" d="M 808 330 C 807 304 806 260 812 247 C 819 229 828 231 837 239 L 853 254"/>
+     <path class="mr457PipeMetal" d="M 808 330 C 807 304 806 260 812 247 C 819 229 828 231 837 239 L 853 254"/>
+     <path class="mr457PipeHighlight" d="M 806.6 326 C 807 294 806 261 811 247 C 818 233 827 232 836 242"/>
+     <g transform="translate(0 -1) rotate(22 858 267)">
+      <rect class="mr457NozzleNeck" x="849" y="250" width="18" height="15" rx="5"/>
+      <ellipse class="mr457NozzleShell" cx="858" cy="268" rx="15" ry="9"/>
+      <ellipse class="mr457NozzleFace" cx="858" cy="272" rx="13.8" ry="5.8"/>
+      <path class="mr457NozzleRim" d="M 846 272 Q 858 280 871 272"/>
+     </g>
+    </g>
+    <g class="mr457Spray">
+     <path d="M 847 275 Q 848 302 870 329"/>
+     <path d="M 851 276 Q 853 301 875 331"/>
+     <path d="M 855 277 Q 859 306 881 334"/>
+     <path d="M 859 278 Q 866 306 887 334"/>
+     <path d="M 863 278 Q 873 307 892 337"/>
+     <path d="M 867 277 Q 878 304 898 334"/>
+     <path d="M 871 276 Q 884 304 903 331"/>
+    </g>
+    <g class="mr457RainSparkles">
+     <circle cx="857" cy="302" r="1.4"/><circle cx="883" cy="318" r="1.3"/>
+     <circle cx="895" cy="330" r="1.5"/><circle cx="870" cy="328" r="1.4"/>
+    </g>
+    <g class="mr457Splash" transform="translate(883 331)">
+     <path d="M -13 0 Q -8 -5 -2 -4 Q 7 -8 13 -3"/>
+     <path d="M -13 2 Q -6 4 -2 2 M 3 3 Q 8 3 12 1"/>
     </g>
    </g>
-   <g class="mr457Spray">
-    <path d="M 813 304 Q 812 336 820 370"/>
-    <path d="M 817 305 Q 817 336 825 374"/>
-    <path d="M 821 306 Q 824 339 830 374"/>
-    <path d="M 825 307 Q 831 339 836 376"/>
-    <path d="M 829 309 Q 836 340 841 378"/>
-    <path d="M 833 310 Q 842 343 847 381"/>
-    <path d="M 837 309 Q 849 340 852 379"/>
-    <path d="M 841 308 Q 854 337 857 373"/>
-    <path d="M 845 305 Q 858 335 862 369"/>
-   </g>
-   <g class="mr457RainSparkles">
-    <circle cx="821" cy="346" r="1.7"/><circle cx="837" cy="359" r="1.5"/>
-    <circle cx="849" cy="366" r="1.6"/><circle cx="825" cy="380" r="1.8"/>
-    <circle cx="841" cy="385" r="2"/><circle cx="861" cy="380" r="1.4"/>
-   </g>
-   <g class="mr457Splash" transform="translate(840 380)">
-    <path d="M -16 0 Q -9 -8 -2 -6 Q 8 -12 16 -4"/>
-    <path d="M -20 1 Q -11 4 -3 3 M 5 3 Q 14 4 19 0"/>
-   </g></g>
   </svg>`;
  let rinseTimer456=null;
  function showRinseWater456(){
@@ -27258,7 +27255,7 @@ function init(){
   return button;
  }
  shampooKinds439.forEach(cfg=>shampooShelf439.appendChild(buildSoapBottle439(cfg)));
- // Build 2.457 — intercetta il tocco nella zona del rubinetto PRIMA di Mìmo.
+ // Build 2.458 — intercetta il tocco nella zona del rubinetto PRIMA di Mìmo.
  // Mìmo e il suo canvas stanno sopra l'hotspot nella pila grafica: alzare il solo
  // z-index del pulsante non basta. Il listener in cattura sulla tela funziona
  // anche quando il bersaglio del tocco e' Mìmo o la schiuma.
@@ -29426,7 +29423,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 }
 @media(prefers-reduced-motion:reduce){#mr439BathBubbleField span{animation:none!important;}#mr439FaucetTouch.mr440FaucetReady,#mr344Scene[data-location="bath"] #mr439ShampooShelf .mr439ShampooTouch{animation:none!important;-webkit-backdrop-filter:brightness(1.18)!important;backdrop-filter:brightness(1.18)!important;}}
 
-/* 2.457: doccetta e pioggia sottile ancorate ALLA VASCA, non al pavimento.
+/* 2.458: doccetta e pioggia sottile ancorate ALLA VASCA, non al pavimento.
    Il disegno resta sopra lo sfondo soltanto per i 1,9 s del risciacquo. */
 #mr457Shower[hidden]{display:none!important;}
 #mr457Shower{position:absolute;inset:0;pointer-events:none!important;z-index:124;overflow:hidden;}
@@ -29434,19 +29431,19 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 #mr457Shower .mr457PhoneVisual{display:none;}
 #mr344Scene[data-room-layout="phone"] #mr457Shower .mr457PhoneVisual{display:block;}
 #mr344Scene[data-room-layout="phone"] #mr457Shower .mr457IpadVisual{display:none;}
-#mr457Shower .mr457PipeEdge{fill:none;stroke:#526c84;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;}
-#mr457Shower .mr457PipeMetal{fill:none;stroke:url(#mr457PipeMetalGradient);stroke-width:8.2;stroke-linecap:round;stroke-linejoin:round;}
-#mr457Shower .mr457PipeHighlight{fill:none;stroke:rgba(255,255,255,.82);stroke-width:2.2;stroke-linecap:round;}
+#mr457Shower .mr457PipeEdge{fill:none;stroke:#738b9c;stroke-width:8.3;stroke-linecap:round;stroke-linejoin:round;}
+#mr457Shower .mr457PipeMetal{fill:none;stroke:url(#mr457PipeMetalGradient);stroke-width:5.5;stroke-linecap:round;stroke-linejoin:round;}
+#mr457Shower .mr457PipeHighlight{fill:none;stroke:rgba(255,255,255,.69);stroke-width:1.55;stroke-linecap:round;}
 #mr457Shower .mr457NozzleNeck{fill:url(#mr457PipeMetalGradient);stroke:#6b8398;stroke-width:1.8;}
 #mr457Shower .mr457NozzleShell{fill:url(#mr457NozzleGradient);stroke:#5a748d;stroke-width:2.2;}
 #mr457Shower .mr457NozzleFace{fill:#b5d1df;stroke:#53748a;stroke-width:2;}
 #mr457Shower .mr457NozzleRim{fill:none;stroke:rgba(244,250,255,.92);stroke-width:1.9;stroke-linecap:round;}
 #mr457Shower .mr457ShowerBody{opacity:0;transform-origin:center;}
-#mr457Shower .mr457Spray{opacity:0;stroke:#bceeff;stroke-width:1.65;fill:none;stroke-linecap:round;stroke-dasharray:72 5 48 6;}
-#mr457Shower .mr457Spray path:nth-child(3n+1){stroke:#ebfbff;stroke-width:1.1;stroke-dasharray:62 5 48 4;}
-#mr457Shower .mr457Spray path:nth-child(3n+2){stroke:#83d8fa;stroke-width:1.3;stroke-dasharray:68 5 49 7;}
+#mr457Shower .mr457Spray{opacity:0;stroke:#bceeff;stroke-width:1.12;fill:none;stroke-linecap:round;stroke-dasharray:72 5 48 6;}
+#mr457Shower .mr457Spray path:nth-child(3n+1){stroke:#ebfbff;stroke-width:.95;stroke-dasharray:62 5 48 4;}
+#mr457Shower .mr457Spray path:nth-child(3n+2){stroke:#83d8fa;stroke-width:1.07;stroke-dasharray:68 5 49 7;}
 #mr457Shower .mr457RainSparkles{fill:#f2fcff;opacity:0;}
-#mr457Shower .mr457Splash{stroke:#e5faff;stroke-width:2.8;stroke-linecap:round;fill:none;opacity:0;}
+#mr457Shower .mr457Splash{stroke:#e5faff;stroke-width:1.7;stroke-linecap:round;fill:none;opacity:0;}
 #mr457Shower.mr457RinseRunning .mr457ShowerBody{animation:mr457ShowerBodyFade 1.9s ease-in-out both;}
 #mr457Shower.mr457RinseRunning .mr457Spray{animation:mr457WaterFlow 1.9s ease-in-out both,mr457RainMovement .36s linear infinite;}
 #mr457Shower.mr457RinseRunning .mr457RainSparkles{animation:mr457WaterFlow 1.9s ease-in-out both,mr457RainTwinkle .48s ease-in-out infinite alternate;}
@@ -29820,7 +29817,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 </script>
 
 <style id="mr444-duration-layout-css">
-/* Build 2.457: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
+/* Build 2.458: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
 #tempoTreePage .mr442TopPanel,.mr444DurationPage .top-panel{
   position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;
   min-height:0!important;margin:0!important;padding:6px 14px 0!important;

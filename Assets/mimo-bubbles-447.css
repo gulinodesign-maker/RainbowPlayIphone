@@ -1,0 +1,41 @@
+/* Music Rainbow 2.448 — fumetti di Mìmo: sovrapposizione leggera fuori dagli spartiti. */
+#mr435MimoBubble[hidden]{display:none!important;}
+#mr435MimoBubble{
+ position:fixed!important;z-index:2147483050!important;
+ width:max-content;max-width:min(290px,calc(100vw - 26px));min-width:155px;
+ padding:12px 36px 13px 14px;box-sizing:border-box;
+ border:2px solid #9064d9;border-radius:19px;
+ background:rgba(255,253,250,.98);color:#3e2962;
+ box-shadow:0 6px 22px rgba(54,30,89,.22);
+ font:700 clamp(13px,1.35vw,16px)/1.38 system-ui,-apple-system,sans-serif;
+ white-space:normal;overflow-wrap:break-word;
+ pointer-events:auto!important;touch-action:manipulation;
+ animation:mr435Pop .18s ease-out both;
+}
+#mr435MimoBubble[data-side="left"]:after,#mr435MimoBubble[data-side="right"]:after{
+ content:"";position:absolute;top:22px;width:12px;height:12px;background:#fffdfa;
+ transform:rotate(45deg);
+}
+#mr435MimoBubble[data-side="left"]:after{right:-8px;border-top:2px solid #9064d9;border-right:2px solid #9064d9;}
+#mr435MimoBubble[data-side="right"]:after{left:-8px;border-bottom:2px solid #9064d9;border-left:2px solid #9064d9;}
+#mr435MimoBubble .mr435BubbleHeading{display:block;color:#6d3fb3;font-weight:900;font-size:12px;letter-spacing:.02em;margin-bottom:3px;}
+#mr435MimoBubble .mr435BubbleText{display:block;}
+#mr435MimoBubble .mr435BubbleClose{
+ position:absolute;top:5px;right:5px;width:27px;height:27px;min-width:27px;
+ display:flex;align-items:center;justify-content:center;
+ background:transparent;border:0;border-radius:9px;color:#654799;
+ font:800 20px/1 system-ui,sans-serif;cursor:pointer;
+}
+#mr435MimoBubble .mr435BubbleClose:focus-visible,.mr435HelpButton:focus-visible{outline:3px solid #ffc94c;outline-offset:2px;}
+.page-container .top-row .top-left-controls .mr435HelpButton{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:var(--mr-topbar-control-h,44px)!important;height:var(--mr-topbar-control-h,44px)!important;min-width:var(--mr-topbar-control-h,44px)!important;min-height:var(--mr-topbar-control-h,44px)!important;
+ padding:0!important;margin:0 1px!important;flex:0 0 var(--mr-topbar-control-h,44px)!important;
+ border:2px solid #986cdd!important;border-radius:12px!important;
+ background:#f1eaff!important;color:#7043b6!important;
+ font:800 22px/1 system-ui,-apple-system,sans-serif!important;
+ cursor:pointer!important;touch-action:manipulation;
+}
+@keyframes mr435Pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@media(max-width:600px){#mr435MimoBubble{max-width:min(250px,calc(100vw - 22px));font-size:13px;padding:10px 32px 11px 12px;}.page-container .top-row .top-left-controls .mr435HelpButton{width:var(--mr-topbar-control-h,44px)!important;height:var(--mr-topbar-control-h,44px)!important;min-width:var(--mr-topbar-control-h,44px)!important;min-height:var(--mr-topbar-control-h,44px)!important;flex-basis:var(--mr-topbar-control-h,44px)!important;}}
+@media(prefers-reduced-motion:reduce){#mr435MimoBubble{animation:none!important;}}

@@ -1,5 +1,5 @@
-/* Music Rainbow Service Worker - Build 2.446; bypass large GLB; safe cache errors */
-const BUILD = "2.446";
+/* Music Rainbow Service Worker - Build 2.457; bypass large GLB; safe cache errors */
+const BUILD = "2.457";
 const PRECACHE = `music-rainbow-precache-${BUILD}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}`;
 
@@ -8,10 +8,10 @@ const CORE_PRECACHE_URLS = [
   "./index.html",
   "./manifest.webmanifest",
   "./Assets/Home-rainbow-main.png",
-  "./Assets/pizza-durates-445.png",
+  "./Assets/pizza-durates-450.png",
   "./Assets/mimo-face-toggle-445.png",
-  "./Assets/mimo-bubbles-446.css",
-  "./Assets/mimo-bubbles-446.js",
+  "./Assets/mimo-bubbles-447.css",
+  "./Assets/mimo-bubbles-447.js",
   "./Assets/home-icon-level.svg",
   "./Assets/home-icon-scores-2179.svg",
   "./Assets/home-icon-play.svg",
@@ -31,9 +31,15 @@ const CORE_PRECACHE_URLS = [
   "./Assets/room/room-fixedbath-ipad-night.png",
   "./Assets/room/room-fixedbath-phone-day.png",
   "./Assets/room/room-fixedbath-phone-night.png",
-  "./Assets/room/basket-back.png",
-  "./Assets/room/basket-ghost.png",
-  "./Assets/room/basket-front.png",
+  "./Assets/room/basket-back-day.png",
+  "./Assets/room/basket-back-night.png",
+  "./Assets/room/basket-ghost-day.png",
+  "./Assets/room/basket-ghost-night.png",
+  "./Assets/room/basket-front-day.png",
+  "./Assets/room/basket-front-night.png",
+  "./Assets/room/token-chest-day.png",
+  "./Assets/room/token-chest-night.png",
+  "./Assets/room/play-token-pretty.png",
   "./Assets/room/fruit-apple.png",
   "./Assets/room/fruit-banana.png",
   "./Assets/room/fruit-strawberry.png",

@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.446</div>
+    <div class="intro-version-label">Build 2.457</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.446</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.457</div>
   </div>
 </div>
 
@@ -7521,7 +7521,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
-<!-- Build 2.446 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
+<!-- Build 2.457 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
 <div id="mr444Pizza8Page" class="page-container mr444DurationPage mr445DynamicPizza" style="display:none" aria-label="Le durate musicali: pizza interattiva">
  <div class="app mr444DurationApp">
   <div class="top-panel"><div class="top-row mr444DurationTopRow">
@@ -7532,7 +7532,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <main class="mr444PizzaStage">
    <div class="mr444PizzaArea"><div class="mr444PizzaBoard">
     <div class="mr444PizzaWheel" id="mr444PizzaWheel8" role="group" tabindex="0" aria-label="Pizza con spicchi selezionabili" data-parts="8">
-     <img src="Assets/pizza-durates-445.png" alt="Pizza illustrata dall'alto, con crosta e formaggio" draggable="false" />
+     <img src="Assets/pizza-durates-450.png" alt="Pizza margherita illustrata vista dall’alto, con mozzarella, pomodoro e basilico" draggable="false" />
      <svg viewBox="0 0 1000 1000" class="mr444PizzaSlices" id="mr444PizzaSlices8" aria-hidden="true"></svg>
     </div>
    </div></div>
@@ -7922,9 +7922,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       <div class="top-row">
         <div class="top-left-controls">
           <button class="menu-btn" id="trophyHomeBtn" aria-label="Torna alla Home" title="Home"></button>
-          <button type="button" id="mr446RoomBubblesToggle" class="mr446RoomBubblesToggle" aria-label="Nascondi i fumetti di Mìmo" title="Nascondi i fumetti di Mìmo" aria-pressed="true">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11.5a7.5 7.5 0 0 1-7.6 7.5c-1.6 0-3.1-.4-4.3-1.2L3 19l1.4-4.2a7.5 7.5 0 0 1-.9-3.3 8.3 8.3 0 0 1 8.6-8A7.8 7.8 0 0 1 20 11.5Z"/><path d="M8.5 11.5h7"/><path class="mr446MuteSlash" d="M3.2 3.2 21 21"/></svg>
-          </button>
+          <button type="button" id="mr447RoomBubblesToggle" class="menu-btn mr447RoomBubblesToggle" aria-label="Nascondi i fumetti di Mìmo" title="Nascondi i fumetti di Mìmo" aria-pressed="true"></button>
         </div>
         <h1 class="rainbow-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
         <div class="top-right-controls"></div>
@@ -10718,12 +10716,12 @@ function renderTokensInTrophyPage(){
   if(!badge||!countEl)return;
   const count=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
   countEl.textContent=String(count);
-  badge.setAttribute('aria-label',count?`Cesto dei gettoni Play: ${count} disponibili. Tocca per usare un gettone e suonare il piano liberamente.`:'Cesto dei gettoni Play vuoto.');
-  badge.title=count?`Usa un gettone per suonare il piano liberamente (${count} disponibili)`:'Cesto dei gettoni Play vuoto';
+  badge.setAttribute('aria-label',count?`Scrigno dei gettoni Play: ${count} disponibili. Tocca per usare un gettone e suonare il piano liberamente.`:'Scrigno dei gettoni Play vuoto.');
+  badge.title=count?`Usa un gettone dello scrigno per suonare il piano liberamente (${count} disponibili)`:'Scrigno dei gettoni Play vuoto';
   // Come per la frutta: le sagome restano al 10% e quelle possedute si colorano.
   // Il numero è reale anche quando supera la capienza visiva dei sei alloggiamenti.
   badge.querySelectorAll('.mr402TokenFilled').forEach((coin,index)=>{
-    coin.setAttribute('opacity',index<count?'1':'0');
+    coin.style.opacity=index<count?'1':'0';
   });
 }
 
@@ -18960,7 +18958,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.446";
+  const PAGE_BUILD = "2.457";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -26840,7 +26838,7 @@ body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:1
 .mr353FruitStack img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(67,38,18,.28))}
 .mr353FruitCount{position:absolute;right:-4px;top:-2px;min-width:21px;height:21px;padding:0 5px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.96);color:#4b2e21;border:2px solid rgba(120,74,46,.28);font:800 11px/1 system-ui,sans-serif;box-sizing:border-box;box-shadow:0 2px 5px rgba(0,0,0,.15)}
 @keyframes mr353FruitArrive{from{transform:translateX(-50%) translateY(-16px) scale(.7) rotate(var(--rot,0deg));opacity:0}to{transform:translateX(-50%) rotate(var(--rot,0deg));opacity:1}}
-#mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;flex:0 0 auto}.mr344Stat{border-radius:12px;background:#fff2df;padding:7px 3px;text-align:center;font-size:12px;color:#6b4537}.mr344Stat b{display:block;font-size:12px}.mr344Hearts{color:#d34e72;letter-spacing:1px;font-size:15px}
+#mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;flex:0 0 auto}.mr344Stat{border-radius:12px;background:#fffaf5;padding:6px 8px;color:#6b4537;display:flex;align-items:center;gap:8px;box-sizing:border-box;min-width:0}.mr381NeedIcon{font:normal 18px/1 system-ui,-apple-system,sans-serif;flex:0 0 auto}.mr344BarWrap{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 auto}.mr344BarLabel{display:block;font-size:11px;line-height:1;font-weight:800;letter-spacing:.02em;color:#6b4537}.mr344BarTrack{position:relative;display:block;width:100%;height:10px;border-radius:999px;background:#e7e5e4;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}.mr344BarFill{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--mr-stat-color) 72%,#ffffff 28%),var(--mr-stat-color));box-shadow:0 0 0 1px rgba(255,255,255,.3) inset}.mr344BarValue{flex:0 0 auto;font:800 11px/1 system-ui,-apple-system,sans-serif;color:var(--mr-stat-color);white-space:nowrap}
 #mr344Message{text-align:center;font-size:13px;font-weight:750;min-height:20px;color:#70472e;flex:0 0 auto}
 #mr344Fruits,#mr344Fruits[hidden]{display:none!important}
 @media(max-height:700px){#mr344Scene{min-height:205px;max-height:calc(100dvh - 170px)}body.mr353-room-open #mr344Scene #mimoBuddy{height:45%}#mr344Stats{gap:4px}.mr344Stat{padding:4px 2px}}
@@ -26872,7 +26870,7 @@ const basketHotspots={
 };
 // Da dietro in avanti, come nell'immagine di riferimento: frutti alti dietro, frutti bassi davanti.
 const basketRenderOrder=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
-let state={food:6,sleep:6,clean:6,happy:6,heartScale417:8,overfed:0,fruitStreak414:0,lastFruitAt414:0,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
+let state={food:6,sleep:6,clean:6,happy:6,heartScale417:8,overfed:0,fruitStreak414:0,lastFruitAt414:0,fullFoodAttempts451:0,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
 const clamp=n=>Math.max(0,Math.min(8,Math.round(Number(n)||0)));
 let needsHeartMigration417=false;
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
@@ -26899,6 +26897,7 @@ let popPuffing414=false;
 state.fruitStreak414=Math.max(0,Math.min(7,Math.floor(Number(state.fruitStreak414)||0)));
 state.lastFruitAt414=Math.max(0,Number(state.lastFruitAt414)||0);
 state.overfed=Math.max(0,Math.min(overfedLimit413,Math.floor(Number(state.overfed)||0)));
+state.fullFoodAttempts451=Math.max(0,Math.min(2,Math.floor(Number(state.fullFoodAttempts451)||0)));
 function bodyTarget413(){
  if(popPuffing414)return 1; // pancino al massimo durante il POP.
  const hunger=clamp(state.food);
@@ -26959,36 +26958,20 @@ function tick(){
   state.clean=clamp(state.clean-2*Math.floor(n/3));
   state.last=now;
  }
+ if(clamp(state.food)<8)state.fullFoodAttempts451=0;
  syncMimoBody413();
  save();
 }
 function init(){
  const page=document.getElementById('trophyPage'),main=page?.querySelector('.trophy-main');if(!page||!main)return false;
  const room=document.createElement('div');room.id='mr344Room';room.innerHTML=`<div id="mr344Scene"><img class="mr353Background" src="Assets/room/room-fixedbath-ipad-day.png" alt="Cameretta di Mìmo"><div id="mr373Basket" aria-label="Cestino di Mìmo">
-<img class="mr373BasketLayer" src="Assets/room/basket-back.png" alt="" draggable="false">
-<img class="mr373BasketLayer" src="Assets/room/basket-ghost.png" alt="" draggable="false">
+<img class="mr373BasketLayer" src="Assets/room/basket-back-day.png" alt="" draggable="false">
+<img class="mr373BasketLayer" src="Assets/room/basket-ghost-day.png" alt="" draggable="false">
 <div id="mr353BasketFruit" aria-hidden="true"></div>
-<img class="mr373BasketLayer mr373BasketFront" src="Assets/room/basket-front.png" alt="" draggable="false">
+<img class="mr373BasketLayer mr373BasketFront" src="Assets/room/basket-front-day.png" alt="" draggable="false">
 <button type="button" id="mr373BasketTouch" aria-label="Avvicina Mìmo al cestino"></button>
 <div id="mr373BasketTouches" role="group" aria-label="Frutti del cestino"></div>
-</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div></div><div id="mr400RoomTokens" role="button" tabindex="0" aria-live="polite" aria-label="Cesto dei gettoni Play"><svg class="mr402TokenArt" viewBox="0 0 220 145" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-<defs>
- <linearGradient id="mr402BackGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b56634"/><stop offset=".32" stop-color="#f8c975"/><stop offset=".78" stop-color="#ce8042"/><stop offset="1" stop-color="#7f3c27"/></linearGradient>
- <linearGradient id="mr402FrontGold" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#ffe9ad"/><stop offset=".22" stop-color="#f5c16d"/><stop offset=".65" stop-color="#c7783e"/><stop offset="1" stop-color="#9b4727"/></linearGradient>
- <radialGradient id="mr402CoinGold" cx="35%" cy="25%" r="78%"><stop stop-color="#fffcca"/><stop offset=".42" stop-color="#ffd448"/><stop offset=".85" stop-color="#e8a31c"/><stop offset="1" stop-color="#ad6f17"/></radialGradient>
- <filter id="mr402Drop" x="-25%" y="-50%" width="150%" height="190%"><feGaussianBlur stdDeviation="3"/></filter>
-</defs>
-<ellipse cx="110" cy="129" rx="90" ry="10" fill="#2d1729" opacity=".33" filter="url(#mr402Drop)"/>
-<!-- Fondo interno, prima dei gettoni -->
-<path d="M17 76 Q20 60 39 57 Q110 37 181 57 Q200 62 203 77 L195 112 Q174 131 110 133 Q46 130 24 112Z" fill="url(#mr402BackGold)" stroke="#794222" stroke-width="4"/>
-<ellipse cx="110" cy="77" rx="89" ry="31" fill="#774326" stroke="#ffdc97" stroke-width="5"/>
-<ellipse cx="110" cy="75" rx="79" ry="24" fill="#5b3225" stroke="#a8663d" stroke-width="3"/>
-<!-- Sagome al 10%, anche con zero gettoni --><g transform="translate(54 78) rotate(-14)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="0" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(81 67) rotate(-8)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="1" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(109 65) rotate(0)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="2" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(137 68) rotate(8)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="3" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(163 79) rotate(15)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="4" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><g transform="translate(108 88) rotate(0)"><g opacity=".10"><ellipse cy="1" rx="16" ry="21" fill="#f8d77e" stroke="#fff7cf" stroke-width="3"/><ellipse cy="1" rx="11" ry="16" fill="none" stroke="#fff1b2" stroke-width="2"/></g><g class="mr402TokenFilled" data-slot="5" opacity="0"><ellipse cy="2" rx="17" ry="22" fill="#9c5412" stroke="#ffdf82" stroke-width="2"/><ellipse cy="-1" rx="15.5" ry="21" fill="url(#mr402CoinGold)" stroke="#fff8c1" stroke-width="2"/><ellipse cy="-1" rx="10.5" ry="15.5" fill="none" stroke="#cb8d19" stroke-width="2.2"/><path d="M-5 -10V8M1 -10V8M7 -10V8" stroke="#c18419" stroke-width="2" stroke-linecap="round"/></g></g><!-- Bordo anteriore fisicamente sopra ai gettoni: nessun gettone esce dal contenitore -->
-<path d="M21 84 Q33 108 110 112 Q186 108 199 84 L194 111 Q166 139 110 138 Q54 138 26 111Z" fill="url(#mr402FrontGold)" stroke="#854328" stroke-width="3"/>
-<path d="M23 84 Q45 107 110 109 Q175 106 197 84" fill="none" stroke="#ffe6a4" stroke-width="6" stroke-linecap="round"/>
-<path d="M39 113 Q107 141 181 113" fill="none" stroke="#fff0bc" stroke-width="2.3" opacity=".7"/>
-<path d="M55 125 Q108 137 164 125" fill="none" stroke="#8f512b" stroke-width="2" opacity=".5"/>
-</svg><span id="mr400RoomTokenCount">0</span></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
+</div><div id="mr354WingControls" role="group" aria-label="Movimenti delle ali"><button type="button" id="mr354CloseWings" aria-label="Chiudi le ali" title="Chiudi le ali">🪽</button><button type="button" id="mr354OpenWings" aria-label="Apri le ali" title="Apri le ali">🦋</button></div></div><div id="mr400RoomTokens" role="button" tabindex="0" aria-live="polite" aria-label="Scrigno dei gettoni Play"><img class="mr402ChestBase" id="mr402ChestBase" src="Assets/room/token-chest-day.png" alt="" draggable="false"><div class="mr402TokenSlots" aria-hidden="true"><div class="mr402TokenFilled" data-slot="0"><img class="mr402CoinArt" src="Assets/room/play-token-pretty.png" alt="" draggable="false"></div><div class="mr402TokenFilled" data-slot="1"><img class="mr402CoinArt" src="Assets/room/play-token-pretty.png" alt="" draggable="false"></div><div class="mr402TokenFilled" data-slot="2"><img class="mr402CoinArt" src="Assets/room/play-token-pretty.png" alt="" draggable="false"></div><div class="mr402TokenFilled" data-slot="3"><img class="mr402CoinArt" src="Assets/room/play-token-pretty.png" alt="" draggable="false"></div><div class="mr402TokenFilled" data-slot="4"><img class="mr402CoinArt" src="Assets/room/play-token-pretty.png" alt="" draggable="false"></div><div class="mr402TokenFilled" data-slot="5"><img class="mr402CoinArt" src="Assets/room/play-token-pretty.png" alt="" draggable="false"></div></div><span id="mr400RoomTokenCount">0</span></div><div id="mr344Stats"></div><div id="mr344Message" aria-live="polite"></div><div id="mr344Fruits" hidden></div>`;
  main.replaceChildren(room);
  // Build 2.400: viewport panoramico, contenuto in coordinate originali 4:3.
  // Non stirare né spostare indipendentemente i layer del cestino, Mìmo e i punti cliccabili.
@@ -27029,6 +27012,23 @@ function init(){
   setTimeout(updateMimoDiagnostic,10000);
  const scene=room.querySelector('#mr344Scene'),stats=room.querySelector('#mr344Stats'),msg=room.querySelector('#mr344Message'),fruitPicker=room.querySelector('#mr344Fruits'),basket=room.querySelector('#mr353BasketFruit'),hitArea=room.querySelector('#mr373BasketTouches');
  const backgroundImage=room.querySelector('.mr353Background');
+ const basketShell=room.querySelector('#mr373Basket');
+ const basketLayers=[...room.querySelectorAll('#mr373Basket .mr373BasketLayer')];
+ const tokenChest=room.querySelector('#mr400RoomTokens');
+ const tokenChestBase=room.querySelector('#mr402ChestBase');
+ const basketThemeSources448={
+  day:['Assets/room/basket-back-day.png','Assets/room/basket-ghost-day.png','Assets/room/basket-front-day.png'],
+  night:['Assets/room/basket-back-night.png','Assets/room/basket-ghost-night.png','Assets/room/basket-front-night.png']
+ };
+ function applyRoomTheme448(isNight){
+  const phase=isNight?'night':'day';
+  const sources=basketThemeSources448[phase];
+  basketLayers.forEach((img,index)=>{if(img&&sources[index]&&img.getAttribute('src')!==sources[index])img.setAttribute('src',sources[index]);});
+  if(basketShell)basketShell.dataset.dayphase=phase;
+  if(tokenChest)tokenChest.dataset.dayphase=phase;
+  const chestSrc=`Assets/room/token-chest-${phase}.png`;
+  if(tokenChestBase&&tokenChestBase.getAttribute('src')!==chestSrc)tokenChestBase.setAttribute('src',chestSrc);
+ }
  const labels=[['food','🍎','Fame','#e83b51'],['sleep','🌙','Sonno','#399edb'],['clean','🫧','Pulizia','#1aa77a'],['happy','💗','Felicità','#945de0']];
  const washState439={drag:null,soapy:false,lastSoap:''};
  // Hotspot invisibili sulle bottiglie GIA' DISEGNATE nei PNG.
@@ -27056,7 +27056,104 @@ function init(){
  bubbleField439.id='mr439BathBubbleField';bubbleField439.hidden=true;
  bubbleField439.setAttribute('aria-hidden','true');
  bubbleField439.innerHTML='<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>';
- sceneCanvas.append(shampooShelf439,faucetTouch439,bubbleField439);
+// Build 2.457: doccetta argentata, come nel riferimento dell'utente.
+ // Si anima SOLO durante il risciacquo; il rubinetto dorato nello sfondo resta
+ // intatto, ed il suo hotspot trasparente continua ad avviare il lavaggio.
+ // Il sistema di coordinate è quello della scena su cui è proiettato il PNG.
+ const rinseWater456=document.createElement('div');
+ rinseWater456.id='mr457Shower';rinseWater456.hidden=true;
+ rinseWater456.setAttribute('aria-hidden','true');
+ rinseWater456.innerHTML=`
+  <svg class="mr457ShowerArt" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+   <defs>
+    <linearGradient id="mr457PipeMetalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+     <stop offset="0" stop-color="#5d7587"/><stop offset=".22" stop-color="#f4fcff"/>
+     <stop offset=".50" stop-color="#a2bacd"/><stop offset=".75" stop-color="#e5f3f9"/>
+     <stop offset="1" stop-color="#536d83"/>
+    </linearGradient>
+    <linearGradient id="mr457NozzleGradient" x1="0%" y1="0%" x2="100%" y2="70%">
+     <stop offset="0" stop-color="#f6fcff"/><stop offset=".3" stop-color="#adcadb"/>
+     <stop offset=".7" stop-color="#7892a6"/><stop offset="1" stop-color="#ecf8ff"/>
+    </linearGradient>
+   </defs>
+   <g class="mr457PhoneVisual">
+   <g class="mr457ShowerBody">
+    <path class="mr457PipeEdge" d="M 807 407 C 807 366 803 311 808 291 C 812 272 825 262 835 274 L 853 298"/>
+    <path class="mr457PipeMetal" d="M 807 407 C 807 366 803 311 808 291 C 812 272 825 262 835 274 L 853 298"/>
+    <path class="mr457PipeHighlight" d="M 804 402 C 805 355 802 311 807 290 C 812 273 826 266 832 276"/>
+    <g transform="rotate(29 856 309)">
+     <rect class="mr457NozzleNeck" x="845" y="290" width="21" height="20" rx="7"/>
+     <ellipse class="mr457NozzleShell" cx="855.5" cy="311" rx="18" ry="11"/>
+     <ellipse class="mr457NozzleFace" cx="855.5" cy="316" rx="16.3" ry="7.5"/>
+     <path class="mr457NozzleRim" d="M 841 316 Q 855.5 325 870 316"/>
+    </g>
+   </g>
+   <g class="mr457Spray">
+    <path d="M 840 320 Q 839 365 853 416"/>
+    <path d="M 844 321 Q 844 370 859 418"/>
+    <path d="M 848 323 Q 853 366 864 419"/>
+    <path d="M 852 324 Q 857 366 870 423"/>
+    <path d="M 856 325 Q 865 370 876 426"/>
+    <path d="M 860 327 Q 872 372 882 429"/>
+    <path d="M 864 326 Q 877 371 886 429"/>
+    <path d="M 868 325 Q 881 370 891 428"/>
+    <path d="M 872 322 Q 887 363 895 422"/>
+   </g>
+   <g class="mr457RainSparkles">
+    <circle cx="861" cy="372" r="1.7"/><circle cx="879" cy="396" r="1.5"/>
+    <circle cx="886" cy="414" r="1.8"/><circle cx="867" cy="427" r="1.8"/>
+    <circle cx="884" cy="432" r="2"/><circle cx="895" cy="425" r="1.4"/>
+   </g>
+   <g class="mr457Splash" transform="translate(872 431)">
+    <path d="M -17 0 Q -11 -8 -3 -6 Q 8 -12 16 -4"/>
+    <path d="M -20 1 Q -11 4 -3 3 M 5 3 Q 14 4 19 0"/>
+   </g></g>
+   <g class="mr457IpadVisual">
+   <g class="mr457ShowerBody">
+    <path class="mr457PipeEdge" d="M 777 376 C 777 342 773 289 779 272 C 784 251 797 244 809 259 L 827 281"/>
+    <path class="mr457PipeMetal" d="M 777 376 C 777 342 773 289 779 272 C 784 251 797 244 809 259 L 827 281"/>
+    <path class="mr457PipeHighlight" d="M 774 371 C 774 326 774 287 778 271 C 783 254 797 248 806 260"/>
+    <g transform="rotate(29 830 292)">
+     <rect class="mr457NozzleNeck" x="818" y="272" width="22" height="20" rx="7"/>
+     <ellipse class="mr457NozzleShell" cx="829.5" cy="295" rx="18" ry="11"/>
+     <ellipse class="mr457NozzleFace" cx="829.5" cy="300" rx="16.3" ry="7.5"/>
+     <path class="mr457NozzleRim" d="M 815 300 Q 829.5 309 844 300"/>
+    </g>
+   </g>
+   <g class="mr457Spray">
+    <path d="M 813 304 Q 812 336 820 370"/>
+    <path d="M 817 305 Q 817 336 825 374"/>
+    <path d="M 821 306 Q 824 339 830 374"/>
+    <path d="M 825 307 Q 831 339 836 376"/>
+    <path d="M 829 309 Q 836 340 841 378"/>
+    <path d="M 833 310 Q 842 343 847 381"/>
+    <path d="M 837 309 Q 849 340 852 379"/>
+    <path d="M 841 308 Q 854 337 857 373"/>
+    <path d="M 845 305 Q 858 335 862 369"/>
+   </g>
+   <g class="mr457RainSparkles">
+    <circle cx="821" cy="346" r="1.7"/><circle cx="837" cy="359" r="1.5"/>
+    <circle cx="849" cy="366" r="1.6"/><circle cx="825" cy="380" r="1.8"/>
+    <circle cx="841" cy="385" r="2"/><circle cx="861" cy="380" r="1.4"/>
+   </g>
+   <g class="mr457Splash" transform="translate(840 380)">
+    <path d="M -16 0 Q -9 -8 -2 -6 Q 8 -12 16 -4"/>
+    <path d="M -20 1 Q -11 4 -3 3 M 5 3 Q 14 4 19 0"/>
+   </g></g>
+  </svg>`;
+ let rinseTimer456=null;
+ function showRinseWater456(){
+  if(rinseTimer456!==null)clearTimeout(rinseTimer456);
+  rinseWater456.hidden=false;
+  rinseWater456.classList.remove('mr457RinseRunning');
+  void rinseWater456.offsetWidth;
+  rinseWater456.classList.add('mr457RinseRunning');
+  rinseTimer456=setTimeout(()=>{
+   rinseWater456.classList.remove('mr457RinseRunning');
+   rinseWater456.hidden=true;rinseTimer456=null;
+  },1900);
+ }
+ sceneCanvas.append(shampooShelf439,faucetTouch439,bubbleField439,rinseWater456);
  document.body.append(soapHalo439);
  function ensureBathFoam439(){
   const host=document.getElementById('mimoBuddy');if(!host)return null;
@@ -27085,9 +27182,10 @@ function init(){
   bubbleField439.hidden=!(inBath&&washState439.soapy);
   faucetTouch439.hidden=!inBath;
   faucetTouch439.classList.toggle('mr440FaucetReady',inBath&&washState439.soapy);
-  faucetTouch439.setAttribute('aria-label',inBath&&washState439.soapy?'Rubinetto: risciacqua Mìmo e aggiungi un cuore di pulizia':'Rubinetto: risciacqua Mìmo');
+  faucetTouch439.setAttribute('aria-label',inBath&&washState439.soapy?'Rubinetto: risciacqua Mìmo e aumenta la pulizia':'Rubinetto: risciacqua Mìmo');
   faucetTouch439.title=inBath&&washState439.soapy?'Tocca per risciacquare Mìmo':'Rubinetto';
   shampooShelf439.hidden=false;
+  if(!inBath){if(rinseTimer456!==null){clearTimeout(rinseTimer456);rinseTimer456=null;}rinseWater456.hidden=true;rinseWater456.classList.remove('mr457RinseRunning');}
  }
  function applySoap439(kind){
   if(scene.dataset.location!=='bath'){
@@ -27098,20 +27196,20 @@ function init(){
   washState439.soapy=true;washState439.lastSoap=kind||'sky';
   updateWashVisuals439();applyPose('bath');
   window.MimoHaptics?.play?.('bath');
-  setMessage('Mìmo è pieno di schiuma e bollicine! Tocca il rubinetto illuminato per risciacquarlo e guadagnare un cuore di pulizia.');
+  setMessage('Mìmo è pieno di schiuma e bollicine! Tocca il rubinetto illuminato per risciacquarlo e far salire bene la barra della pulizia.');
  }
  function rinseMimo439(){
   if(scene.dataset.location!=='bath'){setMessage('Per risciacquare Mìmo, portalo prima nella vasca.');return;}
   if(!washState439.soapy){setMessage('Prima trascina uno shampoo sopra Mìmo.');window.MimoHaptics?.play?.('touch');return;}
   // Il cuore è assegnato SOLO qui, dopo un lavaggio effettivo, una sola volta per ciclo.
-  washState439.soapy=false;updateWashVisuals439();
+  washState439.soapy=false;updateWashVisuals439();showRinseWater456();
   tick(); // Applica l'eventuale passaggio del tempo PRIMA di assegnare il nuovo cuore.
   const wasClean=clamp(state.clean);
-  state.clean=clamp(wasClean+1);
+  state.clean=clamp(wasClean+4);
   applyPose('bath');refresh();
   window.MimoHaptics?.play?.('bath');
   setMessage(state.clean>wasClean
-    ?'Mìmo è risciacquato: la schiuma scompare e guadagna un cuoricino di pulizia!'
+    ?'Mìmo è risciacquato: la schiuma scompare e la barra della pulizia sale davvero!'
     :'Mìmo è risciacquato: la schiuma scompare. La pulizia è già al massimo!');
  }
  function updateSoapDrag439(x,y){
@@ -27160,18 +27258,54 @@ function init(){
   return button;
  }
  shampooKinds439.forEach(cfg=>shampooShelf439.appendChild(buildSoapBottle439(cfg)));
+ // Build 2.457 — intercetta il tocco nella zona del rubinetto PRIMA di Mìmo.
+ // Mìmo e il suo canvas stanno sopra l'hotspot nella pila grafica: alzare il solo
+ // z-index del pulsante non basta. Il listener in cattura sulla tela funziona
+ // anche quando il bersaglio del tocco e' Mìmo o la schiuma.
+ // Le coordinate sono frazioni della tela 4:3, non della finestra, quindi seguono
+ // il ritaglio effettivo su iPhone/iPad in entrambe le orientazioni.
+ const faucetHitZone455={
+  ipad:{left:.866,right:.994,top:.265,bottom:.468},
+  phone:{left:.742,right:.900,top:.345,bottom:.563}
+ };
+ function isOverOriginalFaucet455(clientX,clientY){
+  const rect=sceneCanvas.getBoundingClientRect();
+  if(rect.width<1||rect.height<1)return false;
+  const zone=faucetHitZone455[scene.dataset.roomLayout==='phone'?'phone':'ipad'];
+  const x=(clientX-rect.left)/rect.width;
+  const y=(clientY-rect.top)/rect.height;
+  return x>=zone.left&&x<=zone.right&&y>=zone.top&&y<=zone.bottom;
+ }
+ let lastRinseCaptureAt455=-Infinity;
+ sceneCanvas.addEventListener('pointerdown',ev=>{
+  if(ev.button!==0||ev.isPrimary===false||washState439.drag||
+     scene.dataset.location!=='bath'||!washState439.soapy||
+     !isOverOriginalFaucet455(ev.clientX,ev.clientY))return;
+  // Non dare inizio al trascinamento di Mìmo sotto il dito.
+  ev.preventDefault();ev.stopImmediatePropagation();
+  lastRinseCaptureAt455=performance.now();
+  rinseMimo439();
+ },true);
+ // Sopprime soltanto il click compatibile successivo al pointerdown gia' gestito.
+ // Il click di tastiera sul rubinetto continua a essere accessibile.
+ sceneCanvas.addEventListener('click',ev=>{
+  if(ev.detail!==0&&performance.now()-lastRinseCaptureAt455<900&&
+     isOverOriginalFaucet455(ev.clientX,ev.clientY)){
+   ev.preventDefault();ev.stopImmediatePropagation();
+  }
+ },true);
  // iPad Safari/WKWebView: pointerup è affidabile anche dopo interazioni drag-and-drop.
  // Evita che il click sintetico successivo sovrascriva il messaggio del risciacquo.
  let lastRinsePointerAt439=0;
  faucetTouch439.addEventListener('pointerup',ev=>{
-  if(ev.isPrimary===false)return;
+  if(ev.isPrimary===false||performance.now()-lastRinseCaptureAt455<900)return;
   if(ev.pointerType==='touch'||ev.pointerType==='pen'){
    ev.stopPropagation();lastRinsePointerAt439=performance.now();rinseMimo439();
   }
  });
  faucetTouch439.addEventListener('click',ev=>{
   ev.stopPropagation();
-  if(performance.now()-lastRinsePointerAt439<700)return;
+  if(performance.now()-lastRinseCaptureAt455<900||performance.now()-lastRinsePointerAt439<700)return;
   rinseMimo439();
  });
 
@@ -27203,6 +27337,7 @@ function init(){
   scene.dataset.dayphase=isNight?'night':'day';
   scene.dataset.roomLayout=usePhone?'phone':'default';
   if(backgroundImage.getAttribute('src')!==bgSrc)backgroundImage.setAttribute('src',bgSrc);
+  applyRoomTheme448(isNight);
   // Nella build 2.400 la vasca è incorporata nello sfondo: nessun layer aggiuntivo.
   return usePhone;
  }
@@ -27429,8 +27564,8 @@ function init(){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)endFruitDrag415(false)});
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')endFruitDrag415(false)});
  function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
- function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>`<div class="mr344Stat" role="group" aria-label="${label}: ${clamp(state[k])} su 8" title="${label}: ${clamp(state[k])}/8" style="--mr417-heart-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><span class="mr344Hearts" aria-hidden="true"><span class="mr417FilledHearts">${'♥'.repeat(clamp(state[k]))}</span><span class="mr417EmptyHearts">${'♡'.repeat(8-clamp(state[k]))}</span></span></div>`).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
- function markSessionFruitConsumed(kind){
+ function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>{const value=clamp(state[k]);const pct=Math.round(value/8*100);return `<div class="mr344Stat" role="group" aria-label="${label}: ${value} su 8" title="${label}: ${value}/8" style="--mr-stat-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><div class="mr344BarWrap"><b class="mr344BarLabel">${label}</b><span class="mr344BarTrack" aria-hidden="true"><span class="mr344BarFill" style="width:${pct}%"></span></span></div><span class="mr344BarValue" aria-hidden="true">${value}/8</span></div>`}).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
+function markSessionFruitConsumed(kind){
   const type=fruitInfo[kind]?.medal;if(!type)return false;
   const current=typeof getCurrentSession==='function'?getCurrentSession():null;
   const candidates=[current,...(Array.isArray(sessions)?sessions.slice().reverse():[])].filter((session,i,a)=>session&&a.findIndex(s=>s.id===session.id)===i);
@@ -27451,37 +27586,42 @@ function init(){
  function eat(kind){
   const count=Math.max(0,Math.floor(Number(state.fruits?.[kind])||0));
   if(!count){setMessage('Questo frutto non è ancora nel cestino.');return}
-  if(popPuffing414)return; // durante il POP non consumare altri frutti.
+  if(popPuffing414)return;
   setResting396(false);moveMimo('food');
-  state.fruits[kind]=count-1;markSessionFruitConsumed(kind);
-  const wasFull=clamp(state.food)===8;
-  if(wasFull){state.overfed=Math.min(overfedLimit413,state.overfed+1)}
-  else{state.food=clamp(state.food+2);state.overfed=Math.max(0,state.overfed-1)}
-  state.happy=clamp(state.happy+2);
-  // Otto frutti in successione, non otto cuori. Il timer si resetta dopo 2 minuti.
-  const now=Date.now();
-  const continued=state.lastFruitAt414>0&&now-state.lastFruitAt414<=consecutiveFruitWindow414&&now>=state.lastFruitAt414;
-  state.fruitStreak414=(continued?state.fruitStreak414:0)+1;
-  state.lastFruitAt414=now;
-  const pop=state.fruitStreak414>=8;
-  if(pop){
-   state.fruitStreak414=0;state.lastFruitAt414=0;
+  const isFull=clamp(state.food)===8;
+  if(isFull){
+   const tries=Math.max(0,Math.floor(Number(state.fullFoodAttempts451)||0));
+   if(tries<1){
+    state.fullFoodAttempts451=1;
+    window.MimoExpressions?.set?.('surprised',1800);
+    window.MimoHaptics?.play?.('touch');
+    setMessage('Non ne posso più, così esplodo!');
+    save();
+    return;
+   }
+   state.fullFoodAttempts451=0;
    popPuffing414=true;
-   state.overfed=0;state.food=8; // nessun danno; pancino normale dopo l'effetto.
-  }
-  syncMimoBody413();
-  if(pop){
-   // Il frutto dà un piccolo tocco; un secondo pattern segue il POP.
-   window.MimoHaptics?.play?.('eat');
-   // Il suono POP e i coriandoli sono sincronizzati all'esultanza 3D.
+   state.overfed=0;
+   state.food=4;
+   state.happy=clamp(state.happy+1);
+   syncMimoBody413();
+   window.MimoSounds?.play?.('pop');
+   window.MimoHaptics?.play?.('pop');
    window.MimoMotion?.superPancia?.();
+   setMessage('BOOM! Mìmo esplode in modo buffo e poi ricompare con la pancia di nuovo leggera.');
+   refresh();
    setTimeout(()=>{popPuffing414=false;syncMimoBody413();refresh()},3600);
-   setMessage('POP! Superpancia! Mìmo sparisce tra le stelline e torna tutto felice!');
-  }else{
-   window.MimoMotion?.eat?.();window.MimoExpressions?.set?.('standard',2400);
-   setMessage(wasFull?'Mìmo è già sazio! Il suo pancino diventa più rotondo.':
-     state.food<=4?'Mìmo si è rifocillato: il pancino tornerà piano piano normale.':'');
+   return;
   }
+  state.fullFoodAttempts451=0;
+  state.fruits[kind]=count-1;markSessionFruitConsumed(kind);
+  state.food=clamp(state.food+2);
+  state.overfed=0;
+  state.happy=clamp(state.happy+2);
+  state.fruitStreak414=0;state.lastFruitAt414=0;
+  syncMimoBody413();
+  window.MimoMotion?.eat?.();window.MimoExpressions?.set?.('standard',2400);
+  setMessage(state.food>=8?'Mìmo è sazio e felice!':'Mìmo si è rifocillato.');
   refresh();
  }
  const closeWing=room.querySelector('#mr354CloseWings'),openWing=room.querySelector('#mr354OpenWings');
@@ -27570,7 +27710,7 @@ function init(){
    fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');
    setTimeout(()=>{if(scene.dataset.location!=='bath')return;
     applyPose('bath');refresh();updateWashVisuals439();
-    setMessage('Per lavare Mìmo, trascina uno degli shampoo sopra di lui e poi tocca il rubinetto.');},900);
+    setMessage('Per lavare Mìmo, trascina uno degli shampoo sopra di lui e poi tocca il rubinetto: un lavaggio completo riempie bene la barra della pulizia.');},900);
   }else if(destination==='food'){
    window.MimoSounds?.play?.('food');setResting396(false);moveMimo('food');
    fruitPicker.hidden=true;clearPose();
@@ -27579,12 +27719,12 @@ function init(){
    window.MimoHaptics?.play?.('play');setResting396(false);moveMimo('tokens');
    fruitPicker.hidden=true;clearPose();
    const totalTokens=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
-   setMessage(totalTokens>0?'Mìmo è vicino al cesto dei gettoni: tocca il cesto per chiedergli di suonare il piano liberamente.':'Mìmo è vicino al cesto dei gettoni, ma ora il cesto è vuoto.');
+   setMessage(totalTokens>0?'Mìmo è vicino allo scrigno dei gettoni: tocca lo scrigno per chiedergli di suonare il piano liberamente.':'Mìmo è vicino allo scrigno dei gettoni, ma ora lo scrigno è vuoto.');
   }else{
    // Drop fuori bersaglio: Mìmo ritorna esattamente dove si trovava.
    moveMimo(drag.from,false);
    if(drag.from==='bed'||drag.from==='bath')applyPose(drag.from);
-   setMessage('Trascina Mìmo sul letto, nella vasca, sul tappeto oppure verso il cesto dei gettoni.');
+   setMessage('Trascina Mìmo sul letto, nella vasca, sul tappeto oppure verso lo scrigno dei gettoni.');
   }
  }
  function installMimoDrag418(host){
@@ -27625,14 +27765,14 @@ function init(){
  const useTokenBasket428=()=>{
   const total=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
   if(playSessionActive){setMessage('Hai già una sessione Play attiva.');return;}
-  if(total<1){window.MimoHaptics?.play?.('touch');setMessage('Il cesto dei gettoni è vuoto: conquista gettoni suonando.');return;}
+  if(total<1){window.MimoHaptics?.play?.('touch');setMessage('Lo scrigno dei gettoni è vuoto: conquista gettoni suonando.');return;}
   const ok=window.confirm(total===1?"Vuoi usare l'unico gettone per suonare il piano liberamente?":`Vuoi usare 1 dei ${total} gettoni per suonare il piano liberamente?`);
-  if(!ok){setMessage('Va bene: il gettone resta nel cesto.');return;}
+  if(!ok){setMessage('Va bene: il gettone resta nello scrigno.');return;}
   const spent=consumeOldestSessionToken();
   if(!spent){setMessage('Non riesco a usare il gettone adesso.');return;}
   window.MimoSounds?.play?.('coin');
   window.MimoHaptics?.play?.('play');
-  setMessage('Mìmo usa un gettone per suonare il piano liberamente!');
+  setMessage('Mìmo usa un gettone dello scrigno per suonare il piano liberamente!');
   if(typeof openPlayPageFromToken==='function')openPlayPageFromToken();
  };
  if(coinTray){
@@ -28747,7 +28887,8 @@ function position(){
  placeFloatingToggle();
  if(!page||room||lab){body.classList.remove('mr410-mimo-safe','mr410-mimo-no-space');return;}
  const keyboard=page.querySelector('.keyboard-container,.note-buttons-container,.piano,.hands-drums,.tempo-action-container');
- const staff=page.querySelector('.staff-stage-single,.staff-stage-l8,.activity-display-zone,.staff-container,.hands-staff-wrap,.middle-area');
+ const pizzaStage=page.querySelector('.mr444PizzaStage');
+ const staff=page.querySelector('.staff-stage-single,.staff-stage-l8,.activity-display-zone,.staff-container,.hands-staff-wrap,.middle-area')||pizzaStage;
  const panel=page.querySelector('.top-panel');
  if(!panel||(!keyboard&&!staff)){body.classList.remove('mr410-mimo-safe','mr410-mimo-no-space');return;}
  const topBar=panel.getBoundingClientRect();
@@ -28766,7 +28907,11 @@ function position(){
  const w=Math.max(49,Math.min(122,h*.85));
  const desired=st&&st.top>topBar.bottom?st.top-h-(training?9:4):topBar.bottom+8;
  const y=Math.max(topBar.bottom+5,Math.min(desired,bottom-h));
- const x=st&&st.width>0?st.left+st.width*.50:pageBox.left+pageBox.width/2;
+ let x=st&&st.width>0?st.left+st.width*.50:pageBox.left+pageBox.width/2;
+ if(page.id==='mr444Pizza8Page'&&pizzaStage&&pizzaStage.getClientRects().length){
+  const pizzaBox=pizzaStage.getBoundingClientRect();
+  x=Math.max(pageBox.left+54,Math.min(pageBox.right-54,pizzaBox.left+Math.min(88,pizzaBox.width*.11)));
+ }
  css.setProperty('--mr410-mimo-x',x.toFixed(1)+'px');css.setProperty('--mr410-mimo-y',y.toFixed(1)+'px');
  css.setProperty('--mr410-mimo-w',w.toFixed(1)+'px');css.setProperty('--mr410-mimo-h',h.toFixed(1)+'px');
  const host=document.getElementById('mimoBuddy');
@@ -29139,29 +29284,22 @@ html body.mr412-reward-active #mimoBuddy canvas{width:100%!important;height:100%
 </style>
 
 
-<style id="mr417-eight-needs-hearts">
-/* 2.417: quattro esigenze con 8 cuori; la larghezza è adattiva su iPhone e iPad. */
-#trophyPage #mr344Stats .mr344Stat{
- background:rgba(255,252,246,.97)!important;
- border:1px solid color-mix(in srgb,var(--mr417-heart-color) 25%,transparent)!important;
- min-width:0!important;
-}
-#trophyPage #mr344Stats .mr344Hearts{
- display:inline-flex!important;
- align-items:center!important;
- justify-content:center!important;
- flex:0 1 auto!important;
- min-width:0!important;
- white-space:nowrap!important;
- font:700 clamp(10px,1.4vw,16px)/1 system-ui,-apple-system,sans-serif!important;
- letter-spacing:-.4px!important;
-}
-#trophyPage #mr344Stats .mr417FilledHearts{color:var(--mr417-heart-color)!important;white-space:nowrap!important;}
-#trophyPage #mr344Stats .mr417EmptyHearts{color:#abb4c4!important;white-space:nowrap!important;}
-@media(max-width:740px), (max-height:440px){
- #trophyPage #mr344Stats .mr344Hearts{font-size:clamp(9px,2.1vw,13px)!important;letter-spacing:-.6px!important;}
- #trophyPage #mr344Stats .mr344Stat{gap:2px!important;}
- #trophyPage #mr344Stats .mr381NeedIcon{font-size:12px!important;}
+<style id="mr451-room-progress-bars">
+/* 2.454: barre di avanzamento al posto dei cuoricini. */
+#trophyPage #mr344Stats{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;}
+#trophyPage #mr344Stats .mr344Stat{display:flex!important;align-items:center!important;gap:7px!important;min-width:0!important;padding:6px 8px!important;border-radius:11px!important;background:rgba(255,252,246,.97)!important;border:1px solid color-mix(in srgb,var(--mr-stat-color) 26%,transparent)!important;box-shadow:0 1px 5px rgba(0,0,0,.08)!important;font-size:0!important;line-height:1!important;white-space:normal!important;}
+#trophyPage #mr344Stats .mr381NeedIcon{font:normal 17px/1 system-ui,-apple-system,sans-serif!important;flex:0 0 auto!important;}
+#trophyPage #mr344Stats .mr344BarWrap{display:flex!important;flex-direction:column!important;gap:3px!important;flex:1 1 auto!important;min-width:0!important;}
+#trophyPage #mr344Stats .mr344BarLabel{display:block!important;margin:0!important;font:800 10px/1 system-ui,-apple-system,sans-serif!important;color:#6b4537!important;letter-spacing:.02em!important;text-transform:none!important;}
+#trophyPage #mr344Stats .mr344BarTrack{display:block!important;position:relative!important;width:100%!important;height:9px!important;border-radius:999px!important;background:#e7e5e4!important;overflow:hidden!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.09)!important;}
+#trophyPage #mr344Stats .mr344BarFill{display:block!important;height:100%!important;border-radius:inherit!important;background:linear-gradient(90deg,color-mix(in srgb,var(--mr-stat-color) 72%,#ffffff 28%),var(--mr-stat-color))!important;box-shadow:0 0 0 1px rgba(255,255,255,.28) inset!important;}
+#trophyPage #mr344Stats .mr344BarValue{display:block!important;flex:0 0 auto!important;min-width:28px!important;text-align:right!important;font:800 10px/1 system-ui,-apple-system,sans-serif!important;color:var(--mr-stat-color)!important;}
+@media(max-width:740px),(max-height:440px){
+ #trophyPage #mr344Stats{gap:4px!important;}
+ #trophyPage #mr344Stats .mr344Stat{padding:4px 5px!important;gap:5px!important;border-radius:9px!important;}
+ #trophyPage #mr344Stats .mr381NeedIcon{font-size:13px!important;}
+ #trophyPage #mr344Stats .mr344BarLabel,#trophyPage #mr344Stats .mr344BarValue{font-size:8px!important;}
+ #trophyPage #mr344Stats .mr344BarTrack{height:7px!important;}
 }
 </style>
 
@@ -29243,7 +29381,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
  clip-path:polygon(8% 50%,15% 23%,65% 23%,65% 7%,90% 17%,92% 65%,57% 65%,57% 92%,8% 90%);
 }
 #trophyPage #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas > #mr439FaucetTouch{
- left:96.2%!important;top:40.0%!important;width:8.2%!important;height:10.0%!important;
+ left:81.2%!important;top:43.1%!important;width:8.2%!important;height:10.0%!important;
 }
 #trophyPage #mr344Scene #mr376SceneCanvas > #mr439FaucetTouch[hidden]{display:none!important;}
 #mr439FaucetTouch:focus-visible,#mr439ShampooShelf .mr439ShampooTouch:focus-visible{outline:3px solid #ffe27a!important;outline-offset:2px;}
@@ -29254,8 +29392,8 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy{
  0%,100%{-webkit-backdrop-filter:brightness(1) saturate(1);backdrop-filter:brightness(1) saturate(1);}
  50%{-webkit-backdrop-filter:brightness(1.47) saturate(1.55);backdrop-filter:brightness(1.47) saturate(1.55);}
 }
-#mr439BathBubbleField{position:absolute;left:80.4%;top:30.0%;width:18%;height:29%;z-index:13;pointer-events:none!important;}
-#mr344Scene[data-room-layout="phone"] #mr439BathBubbleField{left:79.8%;top:35.6%;width:19%;height:31%;}
+#mr439BathBubbleField{position:absolute;left:77.8%;top:33.0%;width:16%;height:26%;z-index:13;pointer-events:none!important;}
+#mr344Scene[data-room-layout="phone"] #mr439BathBubbleField{left:76.8%;top:39.0%;width:16%;height:28%;}
 #mr439BathBubbleField span{position:absolute;display:block;border-radius:50%;border:2px solid rgba(255,255,255,.92);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.92) 0%,rgba(209,246,255,.58) 30%,rgba(140,210,255,.15) 62%,rgba(140,210,255,0) 68%);opacity:.92;animation:mr439BubbleFloat 2.2s ease-in-out infinite;}
 #mr439BathBubbleField span:nth-child(1){left:8%;top:62%;width:15px;height:15px;animation-delay:0s;}
 #mr439BathBubbleField span:nth-child(2){left:23%;top:40%;width:11px;height:11px;animation-delay:.2s;}
@@ -29287,6 +29425,42 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  -webkit-clip-path:none!important;clip-path:none!important;
 }
 @media(prefers-reduced-motion:reduce){#mr439BathBubbleField span{animation:none!important;}#mr439FaucetTouch.mr440FaucetReady,#mr344Scene[data-location="bath"] #mr439ShampooShelf .mr439ShampooTouch{animation:none!important;-webkit-backdrop-filter:brightness(1.18)!important;backdrop-filter:brightness(1.18)!important;}}
+
+/* 2.457: doccetta e pioggia sottile ancorate ALLA VASCA, non al pavimento.
+   Il disegno resta sopra lo sfondo soltanto per i 1,9 s del risciacquo. */
+#mr457Shower[hidden]{display:none!important;}
+#mr457Shower{position:absolute;inset:0;pointer-events:none!important;z-index:124;overflow:hidden;}
+#mr457Shower .mr457ShowerArt{position:absolute;inset:0;width:100%;height:100%;pointer-events:none!important;}
+#mr457Shower .mr457PhoneVisual{display:none;}
+#mr344Scene[data-room-layout="phone"] #mr457Shower .mr457PhoneVisual{display:block;}
+#mr344Scene[data-room-layout="phone"] #mr457Shower .mr457IpadVisual{display:none;}
+#mr457Shower .mr457PipeEdge{fill:none;stroke:#526c84;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;}
+#mr457Shower .mr457PipeMetal{fill:none;stroke:url(#mr457PipeMetalGradient);stroke-width:8.2;stroke-linecap:round;stroke-linejoin:round;}
+#mr457Shower .mr457PipeHighlight{fill:none;stroke:rgba(255,255,255,.82);stroke-width:2.2;stroke-linecap:round;}
+#mr457Shower .mr457NozzleNeck{fill:url(#mr457PipeMetalGradient);stroke:#6b8398;stroke-width:1.8;}
+#mr457Shower .mr457NozzleShell{fill:url(#mr457NozzleGradient);stroke:#5a748d;stroke-width:2.2;}
+#mr457Shower .mr457NozzleFace{fill:#b5d1df;stroke:#53748a;stroke-width:2;}
+#mr457Shower .mr457NozzleRim{fill:none;stroke:rgba(244,250,255,.92);stroke-width:1.9;stroke-linecap:round;}
+#mr457Shower .mr457ShowerBody{opacity:0;transform-origin:center;}
+#mr457Shower .mr457Spray{opacity:0;stroke:#bceeff;stroke-width:1.65;fill:none;stroke-linecap:round;stroke-dasharray:72 5 48 6;}
+#mr457Shower .mr457Spray path:nth-child(3n+1){stroke:#ebfbff;stroke-width:1.1;stroke-dasharray:62 5 48 4;}
+#mr457Shower .mr457Spray path:nth-child(3n+2){stroke:#83d8fa;stroke-width:1.3;stroke-dasharray:68 5 49 7;}
+#mr457Shower .mr457RainSparkles{fill:#f2fcff;opacity:0;}
+#mr457Shower .mr457Splash{stroke:#e5faff;stroke-width:2.8;stroke-linecap:round;fill:none;opacity:0;}
+#mr457Shower.mr457RinseRunning .mr457ShowerBody{animation:mr457ShowerBodyFade 1.9s ease-in-out both;}
+#mr457Shower.mr457RinseRunning .mr457Spray{animation:mr457WaterFlow 1.9s ease-in-out both,mr457RainMovement .36s linear infinite;}
+#mr457Shower.mr457RinseRunning .mr457RainSparkles{animation:mr457WaterFlow 1.9s ease-in-out both,mr457RainTwinkle .48s ease-in-out infinite alternate;}
+#mr457Shower.mr457RinseRunning .mr457Splash{animation:mr457WaterFlow 1.9s ease-in-out both,mr457RainTwinkle .32s ease-in-out infinite alternate;}
+@keyframes mr457ShowerBodyFade{0%,100%{opacity:0;}7%,87%{opacity:1;}94%{opacity:.55;}}
+@keyframes mr457WaterFlow{0%,100%{opacity:0;}14%,82%{opacity:.9;}92%{opacity:.4;}}
+@keyframes mr457RainMovement{from{stroke-dashoffset:0;}to{stroke-dashoffset:-33;}}
+@keyframes mr457RainTwinkle{from{filter:brightness(.9);}to{filter:brightness(1.2);}}
+@media(prefers-reduced-motion:reduce){
+ #mr457Shower.mr457RinseRunning .mr457ShowerBody,
+ #mr457Shower.mr457RinseRunning .mr457Spray,
+ #mr457Shower.mr457RinseRunning .mr457RainSparkles,
+ #mr457Shower.mr457RinseRunning .mr457Splash{animation:none!important;opacity:.85;}
+}
 </style>
 
 <style id="mr438-settings-responsive-controls">
@@ -29367,8 +29541,8 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 }
 </style>
 <!-- 2.435: fumetti di Mìmo, primo tutorial e aiuto didattico su richiesta. -->
-<link rel="stylesheet" href="Assets/mimo-bubbles-446.css?v=446">
-<script src="Assets/mimo-bubbles-446.js?v=446"></script>
+<link rel="stylesheet" href="Assets/mimo-bubbles-447.css?v=447">
+<script src="Assets/mimo-bubbles-447.js?v=447"></script>
 <style id="mr442-tempo-tree-style">
 /* Impara il tempo: una nuova prima pagina senza tamburi. */
 #tempoTreePage{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;
@@ -29474,7 +29648,20 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  // Music Rainbow: durations from red (semibreve) to violet (semibiscroma).
  const colors=['#e74455','#ec892a','#c5a100','#159962','#258fd3','#5954c9','#9750ca'];
  const restGlyphs=[0xE4E3,0xE4E4,0xE4E5,0xE4E6,0xE4E7,0xE4E8,0xE4E9];
- const restOffsets=[[-10,12],[-10,12],[-11,12],[-10,11],[-12,12],[-16,11],[-17,9]];
+ // 2.449: SMuFL anchor placement, checked with actual bundled font metrics.
+ // Staff lines are y = -18,-9,0,9,18 (fifth to first). SMuFL y=0 is
+ // the nominal line of the rest glyph. With staffSpace=9px, fontSize=34px:
+ // E4E3 HANGS FROM the FOURTH line y=-9; E4E4 SITS ON the THIRD line y=0.
+ // Do not translate both symbols to the same visual height: that was the bug.
+ const restPlacements=[
+  {x:-13.3,y:8.30,size:34}, // semibreve, under fourth line
+  {x:-13.3,y:8.30,size:34}, // minima, above middle line
+  {x:-7.5, y:21,  size:42}, // semiminima, central on staff
+  {x:-7.6, y:21,  size:42}, // croma, one hook
+  {x:-9.0, y:21,  size:42}, // semicroma, two hooks
+  {x:-10.5,y:21,  size:42}, // biscroma, three hooks
+  {x:-12.0,y:21,  size:42}  // semibiscroma, four hooks
+ ];
  let showRests=false;
  const nodes=new Map();let currentId='',births=new Set(),layoutW=700,layoutH=1080,serial=0;
  function showNames(node){
@@ -29523,8 +29710,9 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    // Complete SMuFL U+E4E3…U+E4E9 rest glyphs from original Noto Music
    // outlines (same source as existing app font). No hand-drawn approximations.
    const code=String.fromCodePoint(restGlyphs[level]);
-   const [dx,dy]=restOffsets[level];
-   wrap.appendChild(E('text',{x:dx,y:dy,'class':'mr442NoteGlyph','aria-hidden':'true'},code));
+   const pos=restPlacements[level];
+   wrap.appendChild(E('text',{x:pos.x,y:pos.y,'class':'mr442NoteGlyph mr449RestGlyph',
+    'style':`font-size:${pos.size}px`,'aria-hidden':'true'},code));
   }else{
    const code=level<=3?String.fromCodePoint(glyphs[level]):note8;
    const [dx,dy]=level<=3?noteOffsets[level]:noteOffsets[3];
@@ -29632,7 +29820,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 </script>
 
 <style id="mr444-duration-layout-css">
-/* Build 2.446: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
+/* Build 2.457: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
 #tempoTreePage .mr442TopPanel,.mr444DurationPage .top-panel{
   position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;
   min-height:0!important;margin:0!important;padding:6px 14px 0!important;
@@ -29832,7 +30020,8 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   if(option.level>=4){
    for(let n=1;n<=option.level-3;n++)svg.appendChild(svgEl('text',{x:9.1,y:8.4+n*10.2,'class':'mr444SMuFLGlyph'},flag));
   }
-  if(option.dotted)svg.appendChild(svgEl('circle',{cx:30,cy:12,r:3.2,'class':'mr444Dot'}));
+  // Il punto di valore è sullo stesso asse verticale della testa della nota, non sotto di essa.
+  if(option.dotted)svg.appendChild(svgEl('circle',{cx:24,cy:0,r:3.0,'class':'mr444Dot'}));
   host.appendChild(svg);
   if(withLabel){const word=document.createElement('span');word.className='mr444NoteLabel';word.style.color=colors[option.level];word.textContent=names[option.level]+(option.dotted?' PUNTATA':'');host.appendChild(word);}
  }
@@ -30054,5 +30243,145 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 }
 
 </style>
+
+
+<style id="mr448-room-basket-and-chest-theme">
+/* 2.448: giorno/notte leggibili per i contenitori della stanza; scrigno con gettoni proporzionati. */
+#trophyPage #mr373Basket .mr373BasketLayer{
+ transition:filter .28s ease,opacity .28s ease;
+}
+#trophyPage #mr376SceneCanvas > #mr400RoomTokens{
+ left:72.2%!important;
+ top:24.7%!important;
+ width:11.2%!important;
+ aspect-ratio:520 / 360!important;
+ transform:translateX(-50%) rotate(-2deg)!important;
+ transform-origin:50% 100%!important;
+}
+#trophyPage #mr344Scene[data-room-layout="phone"] #mr376SceneCanvas > #mr400RoomTokens{
+ left:72.6%!important;
+ top:27.6%!important;
+ width:11.4%!important;
+ transform:translateX(-50%) rotate(-1.5deg)!important;
+}
+#trophyPage #mr400RoomTokens .mr402ChestBase{
+ display:block!important;
+ width:100%!important;
+ height:auto!important;
+ pointer-events:none!important;
+ filter:drop-shadow(0 5px 4px rgba(59,30,13,.28));
+}
+#trophyPage #mr400RoomTokens[data-dayphase="night"] .mr402ChestBase{
+ filter:brightness(.96) saturate(.92) drop-shadow(0 4px 5px rgba(9,13,37,.42));
+}
+#trophyPage #mr400RoomTokens .mr402TokenSlots{
+ position:absolute!important;
+ left:14.5%!important;
+ top:6.5%!important;
+ width:71%!important;
+ height:48%!important;
+ pointer-events:none!important;
+}
+#trophyPage #mr400RoomTokens .mr402TokenFilled{
+ position:absolute!important;
+ width:28%!important;
+ aspect-ratio:1/1!important;
+ opacity:0;
+ transition:opacity .22s ease,transform .22s ease;
+}
+#trophyPage #mr400RoomTokens .mr402CoinArt{
+ display:block!important;
+ width:100%!important;
+ height:100%!important;
+ object-fit:contain!important;
+ pointer-events:none!important;
+ filter:drop-shadow(0 2px 1px rgba(84,45,5,.26));
+}
+#trophyPage #mr400RoomTokens[data-dayphase="night"] .mr402CoinArt{
+ filter:brightness(.95) saturate(.92) drop-shadow(0 2px 2px rgba(8,20,58,.38));
+}
+#trophyPage #mr400RoomTokens .mr402TokenFilled[data-slot="0"]{left:2%;top:14%;transform:rotate(-16deg)}
+#trophyPage #mr400RoomTokens .mr402TokenFilled[data-slot="1"]{left:18%;top:2%;transform:rotate(-7deg)}
+#trophyPage #mr400RoomTokens .mr402TokenFilled[data-slot="2"]{left:38%;top:0%;transform:rotate(0deg)}
+#trophyPage #mr400RoomTokens .mr402TokenFilled[data-slot="3"]{left:57%;top:5%;transform:rotate(8deg)}
+#trophyPage #mr400RoomTokens .mr402TokenFilled[data-slot="4"]{left:8%;top:28%;transform:rotate(-8deg)}
+#trophyPage #mr400RoomTokens .mr402TokenFilled[data-slot="5"]{left:36%;top:24%;transform:rotate(5deg)}
+#trophyPage #mr400RoomTokenCount{
+ top:80%!important;
+ transform:translate(-50%,-50%)!important;
+ min-width:28px!important;
+ padding:4px 8px!important;
+ border-color:rgba(255,246,198,.95)!important;
+ background:#6e44ad!important;
+}
+#trophyPage #mr400RoomTokens[data-dayphase="night"] #mr400RoomTokenCount{
+ background:#4658c7!important;border-color:#d9e6ff!important;
+}
+</style>
+
+<style id="mr447-room-bubble-button-geometry">
+/* 2.447: Room bubble toggle and Home are peers with precisely the same geometry.
+   Styling is bundled inside index.html so missing external CSS cannot turn the
+   control into an unstyled narrow white rectangle. */
+#trophyPage .top-row .top-left-controls{
+ display:flex!important;flex-flow:row nowrap!important;align-items:center!important;
+ justify-content:flex-start!important;gap:6px!important;width:max-content!important;
+ min-width:0!important;max-width:none!important;overflow:visible!important;
+ pointer-events:auto!important;
+}
+#trophyPage .top-row .top-left-controls > #trophyHomeBtn,
+#trophyPage .top-row .top-left-controls > #mr447RoomBubblesToggle{
+ --mr447-room-button-size:44px;
+ -webkit-appearance:none!important;appearance:none!important;box-sizing:border-box!important;
+ display:inline-flex!important;position:relative!important;
+ align-items:center!important;justify-content:center!important;
+ flex:0 0 var(--mr447-room-button-size)!important;
+ width:var(--mr447-room-button-size)!important;min-width:var(--mr447-room-button-size)!important;
+ max-width:var(--mr447-room-button-size)!important;height:var(--mr447-room-button-size)!important;
+ min-height:var(--mr447-room-button-size)!important;max-height:var(--mr447-room-button-size)!important;
+ padding:0!important;margin:0!important;border-radius:14px!important;
+ border:2px solid #fdba74!important;background:rgba(255,247,237,.96)!important;
+ box-shadow:0 2px 10px rgba(0,0,0,.14)!important;
+ line-height:1!important;overflow:hidden!important;
+ cursor:pointer!important;touch-action:manipulation!important;
+ -webkit-tap-highlight-color:transparent!important;
+}
+/* Same emoji-icon method used by #trophyHomeBtn::before elsewhere. */
+#trophyPage #mr447RoomBubblesToggle::before{
+ content:"💬"!important;display:block!important;position:relative!important;
+ font:normal 23px/1 system-ui,-apple-system,sans-serif!important;
+ width:auto!important;height:auto!important;text-indent:0!important;
+ opacity:1!important;visibility:visible!important;transform:none!important;
+}
+#trophyPage #mr447RoomBubblesToggle.mr447RoomBubblesOff::before{
+ filter:grayscale(1)!important;opacity:.78!important;
+}
+#trophyPage #mr447RoomBubblesToggle.mr447RoomBubblesOff::after{
+ content:""!important;position:absolute!important;left:6px!important;right:6px!important;
+ top:calc(50% - 2px)!important;height:4px!important;
+ background:#7548ad!important;border:1px solid rgba(255,255,255,.92)!important;
+ border-radius:4px!important;transform:rotate(-45deg)!important;
+ pointer-events:none!important;
+}
+#trophyPage #mr447RoomBubblesToggle:focus-visible{
+ outline:3px solid #ffd54c!important;outline-offset:3px!important;
+}
+@media(max-width:700px){
+ #trophyPage .top-row .top-left-controls > #trophyHomeBtn,
+ #trophyPage .top-row .top-left-controls > #mr447RoomBubblesToggle{
+  --mr447-room-button-size:40px;border-radius:12px!important;
+ }
+ #trophyPage #mr447RoomBubblesToggle::before{font-size:21px!important;}
+}
+</style>
+
+<style id="mr451-room-final-tuning">
+/* 2.454: accorda le barre con i layout compatti della stanza. */
+#trophyPage #mr344Stats .mr344Stat{min-height:36px!important;}
+#trophyPage #mr344Stats .mr344BarWrap{justify-content:center!important;}
+#trophyPage #mr344Stats .mr344BarLabel{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+#trophyPage #mr344Stats .mr344BarTrack{max-width:none!important;}
+</style>
+
 </body>
 </html>

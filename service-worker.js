@@ -1,7 +1,7 @@
-/* Music Rainbow Service Worker - Build 2.463; bypass large GLB; safe cache errors */
-const BUILD = "2.463";
+/* Music Rainbow Service Worker - Build 2.464; bypass large GLB; safe cache errors */
+const BUILD = "2.464";
 // WebApp aggiornata con il pannello StoreKit nativo, senza modifiche ai dati locali.
-const CACHE_REVISION = "premium1";
+const CACHE_REVISION = "freemium-level1";
 const PRECACHE = `music-rainbow-precache-${BUILD}-${CACHE_REVISION}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}-${CACHE_REVISION}`;
 

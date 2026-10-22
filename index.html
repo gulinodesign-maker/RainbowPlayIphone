@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.463</div>
+    <div class="intro-version-label">Build 2.464</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.463</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.464</div>
   </div>
 </div>
 
@@ -10414,25 +10414,30 @@ function updateLevelUnlockUIMR(){
   const subtitle=document.getElementById("levelSelectSubtitle");
   if(subtitle){
     subtitle.textContent=mrTeacherModeActive
-      ?"Modalità Teacher attiva: tutti i livelli sono sbloccati."
-      :"Completa 10 sessioni valide del livello corrente per sbloccare il successivo.";
+      ?"Il livello 1 è gratuito; i livelli 2–8 richiedono Premium. Modalità Teacher: progressione sbloccata."
+      :"Livello 1 gratuito. Dal livello 2 serve Premium; completa 10 sessioni valide per sbloccare il livello successivo.";
   }
   document.querySelectorAll('#levelSelectOverlay .level-select-btn[data-level]').forEach(btn=>{
     const pageId=btn.getAttribute("data-level");
     const level=levelNumberFromPageIdMR(pageId);
     if(!level)return;
     const unlocked=isLevelUnlockedMR(level);
+    const isPremiumLevel=level>=2;
     btn.disabled=!unlocked;
     btn.classList.toggle("level-locked",!unlocked);
+    btn.classList.toggle("level-premium-mr464",isPremiumLevel);
     btn.replaceChildren();
     const number=document.createElement("span");number.className="level-number";number.textContent=String(level);btn.appendChild(number);
+    if(unlocked && isPremiumLevel){
+      const badge=document.createElement("span");badge.className="level-premium-label-mr464";badge.textContent="Premium";btn.appendChild(badge);
+    }
     if(!unlocked){
       const previous=Math.max(1,level-1);
       const progress=document.createElement("span");progress.className="level-lock-progress";
       progress.textContent=`${Math.min(MR_LEVEL_UNLOCK_THRESHOLD,Number(mrLevelSessionCounts[previous])||0)}/${MR_LEVEL_UNLOCK_THRESHOLD}`;
       btn.appendChild(progress);
-      btn.setAttribute("aria-label",`Livello ${level} bloccato: ${progress.textContent} sessioni del livello ${previous}`);
-    }else btn.setAttribute("aria-label",`Livello ${level}`);
+      btn.setAttribute("aria-label",`Livello ${level} bloccato: ${progress.textContent} sessioni del livello ${previous}${isPremiumLevel?' - richiede Premium':''}`);
+    }else btn.setAttribute("aria-label",`Livello ${level}${isPremiumLevel?' - abbonamento Premium richiesto':' - gratuito'}`);
   });
 }
 
@@ -18530,11 +18535,37 @@ function hideAllPages() {
     });
   }
 
-  function showLevel(pageId) {
+  // Build 464: i livelli 2–8 richiedono sempre una verifica StoreKit nativa.
+  // GitHub Pages non ha StoreKit: mantiene il livello 1 gratuito e mostra l'avviso.
+  let premiumLevelRequestBusyMR464 = false;
+  async function requestPremiumLevelMR464(level) {
+    if(premiumLevelRequestBusyMR464)return;
+    premiumLevelRequestBusyMR464=true;
+    try {
+      const access=await nativeAppRequestMR("premiumLevelAccess",{level},30000);
+      if(access && access.premiumActive===true) showLevel(`level${level}Page`,true);
+      // Altrimenti è la UI nativa StoreKit a mostrare l'abbonamento, con tasto per tornare gratis.
+    } catch(error) {
+      // La versione web non può verificare abbonamenti App Store senza un backend dedicato.
+      window.alert("Il livello 1 è gratuito! Per accedere ai livelli dal 2 in poi, usa Music Rainbow per iPhone o iPad e attiva Premium dall'App Store.");
+    } finally { premiumLevelRequestBusyMR464=false; }
+  }
+  window.addEventListener("musicrainbow:premium-granted",event=>{
+    const level=Number(event.detail&&event.detail.level);
+    if(level>=2&&level<=8&&isLevelUnlockedMR(level))showLevel(`level${level}Page`,true);
+  });
+  window.addEventListener("musicrainbow:premium-revoked",()=>{
+    if(Array.from(document.querySelectorAll('#level2Page,#level3Page,#level4Page,#level5Page,#level6Page,#level7Page,#level8Page')).some(el=>el&&el.style.display==='flex'))showHome();
+  });
+  function showLevel(pageId,premiumVerified=false) {
     const requestedLevel=levelNumberFromPageIdMR(pageId);
     if(requestedLevel&&!isLevelUnlockedMR(requestedLevel)){
       updateLevelUnlockUIMR();
       if(levelSelectOverlay)levelSelectOverlay.classList.add("active");
+      return;
+    }
+    if(requestedLevel>=2 && !premiumVerified){
+      void requestPremiumLevelMR464(requestedLevel);
       return;
     }
     hideAllPages();
@@ -18898,11 +18929,12 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
       if (lastGamePageId) {
         trophyPageEl.style.display = "none";
         if (lastGamePageId === "level1Page") level1Page.style.display = "flex";
-        if (lastGamePageId === "level2Page") level2Page.style.display = "flex";
-        if (lastGamePageId === "level3Page") level3Page.style.display = "flex";
-        if (lastGamePageId === "level4Page") level4Page.style.display = "flex";
-        if (lastGamePageId === "level5Page") level5Page.style.display = "flex";
-        if (lastGamePageId === "level6Page") level6Page.style.display = "flex";
+        if (/^level[2-8]Page$/.test(lastGamePageId)) {
+          const previousPaidLevel=lastGamePageId;
+          showHome(); // Lo sfondo resta navigabile se l'abbonamento non è più attivo.
+          showLevel(previousPaidLevel);
+          return;
+        }
         if (lastGamePageId === "playPage")   playPage.style.display   = "flex";
       } else {
         showHome();
@@ -18973,7 +19005,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.463";
+  const PAGE_BUILD = "2.464";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -30473,8 +30505,13 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 #trophyPage #mr344Stats .mr344BarTrack{max-width:none!important;}
 </style>
 
+<style id="mr464-freemium-level-styles">
+#levelSelectOverlay .level-select-btn.level-premium-mr464:not(.level-locked){position:relative;flex-direction:column;gap:2px!important;}
+#levelSelectOverlay .level-select-btn .level-premium-label-mr464{font-size:clamp(9px,.95vw,13px);font-weight:850;line-height:1;letter-spacing:.02em;color:#fff8cb;background:#6340a7;border:1px solid #debbff;padding:3px 5px;border-radius:9px;}
+#levelSelectOverlay .level-select-btn[data-level="level1Page"]{outline:2px solid rgba(255,255,255,.55);outline-offset:1px;}
+</style>
 <script id="mr459-premium-settings-bridge">
-/* Build 459: il controllo Premium e' nativo. GitHub Pages resta una demo indipendente. */
+/* Build 464: StoreKit iOS blocca solo i livelli dal 2 all'8; GitHub Pages è una demo gratuita del livello 1. */
 (function(){
   function initPremiumSettings(){
     const nativeBridge=window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.musicRainbowApp;
@@ -30497,8 +30534,8 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   else initPremiumSettings();
 })();
 </script>
-<link rel="stylesheet" href="Assets/room/mimo-minirooms-461.css?v=463">
-<script src="Assets/room/mimo-minirooms-rules-461.js?v=463"></script>
-<script src="Assets/room/mimo-minirooms-461.js?v=463"></script>
+<link rel="stylesheet" href="Assets/room/mimo-minirooms-461.css?v=464">
+<script src="Assets/room/mimo-minirooms-rules-461.js?v=464"></script>
+<script src="Assets/room/mimo-minirooms-461.js?v=464"></script>
 </body>
 </html>

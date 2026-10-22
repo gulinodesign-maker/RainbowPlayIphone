@@ -1,0 +1,16 @@
+name: Temporary unstick Pages deployment 428
+on:
+  push:
+    branches: [main]
+permissions:
+  actions: write
+  contents: read
+jobs:
+  force_cancel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Force cancel stuck run 39787348393
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "/repos/${{ github.repository }}/actions/runs/39787348393/force-cancel"

@@ -6207,7 +6207,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <h1 class="rainbow-title intro-title"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
   <div class="intro-logo-wrap">
     <img class="intro-logo" src="Assets/Home-rainbow-main.png?v=2.296" alt="Arcobaleno musicale" />
-    <div class="intro-version-label">Build 2.458</div>
+    <div class="intro-version-label">Build 2.461</div>
   </div>
 </div>
 
@@ -6240,7 +6240,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <div id="homeSettingsLabel" class="home-nav-label">Impostazioni</div>
       </div>
     </div>
-    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.458</div>
+    <div class="home-version-label mr373-home-build" aria-label="Versione dell’app">Build 2.461</div>
   </div>
 </div>
 
@@ -7521,7 +7521,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
-<!-- Build 2.458 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
+<!-- Build 2.459 — pizza unica a risoluzione 8/16/32/64 e albero SMuFL. -->
 <div id="mr444Pizza8Page" class="page-container mr444DurationPage mr445DynamicPizza" style="display:none" aria-label="Le durate musicali: pizza interattiva">
  <div class="app mr444DurationApp">
   <div class="top-panel"><div class="top-row mr444DurationTopRow">
@@ -7877,6 +7877,17 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
                 </select>
               </label>
             </div>
+          </div>
+          <!-- Native StoreKit subscription settings. Hidden on GitHub Pages. -->
+          <div class="settings-panel settings-section" id="mr459SubscriptionSettingsSection" style="display:none">
+            <div class="settings-panel-head">
+              <div class="settings-panel-icon" aria-hidden="true">🌈</div>
+              <div class="settings-panel-title-wrap">
+                <div class="settings-section-label" id="mr459PremiumHeading">Abbonamento Premium</div>
+                <div class="settings-panel-note" id="mr459PremiumHint">Gestisci o annulla il rinnovo dell'abbonamento tramite Apple.</div>
+              </div>
+            </div>
+            <button class="settings-teacher-btn" id="mr459ManageSubscriptionBtn" type="button" style="margin-top:8px" data-midi-learn="off">Gestisci abbonamento</button>
           </div>
           <div class="settings-panel settings-section settings-teacher-panel" id="teacherSettingsSection">
             <div class="settings-panel-head">
@@ -10529,6 +10540,8 @@ function clearSessionHistory() {
     localStorage.removeItem(SESSIONS_KEY);
     localStorage.removeItem(LEGACY_SESSIONS_KEY);
     localStorage.removeItem("musicRainbowChestCounter");
+    localStorage.removeItem(TOKEN_EXERCISES_KEY460);
+    tokenExerciseRemainder460 = 0;
   } catch (e) {
     console.warn("Errore nel cancellare la cronologia sessioni:", e);
   }
@@ -10545,6 +10558,16 @@ const rainbowCountElL3   = document.getElementById("rainbowCountL3");
 const rainbowCountElPlay = document.getElementById("rainbowCountPlay");
 
 const TOKENS_KEY = "musicRainbowPlayTokens";
+// 2.460: un gettone ogni CINQUE esercizi premiati, anche in livelli o sessioni differenti.
+const TOKEN_EXERCISES_KEY460 = "musicRainbowTokenExerciseProgress460";
+let tokenExerciseRemainder460 = 0;
+try {
+  const saved = Number(localStorage.getItem(TOKEN_EXERCISES_KEY460));
+  tokenExerciseRemainder460 = Number.isInteger(saved) && saved >= 0 && saved < 5 ? saved : 0;
+} catch (_) {}
+function persistTokenExerciseRemainder460() {
+  try { localStorage.setItem(TOKEN_EXERCISES_KEY460, String(tokenExerciseRemainder460)); } catch (_) {}
+}
 
 
 // ===========================
@@ -10657,31 +10680,23 @@ function showTokenWonPopup() {
 function checkForNewToken() {
   const s = getCurrentSession();
   if (!s) return;
-
-  const prevTotal = typeof s.tokenMedalCount === "number" ? s.tokenMedalCount : 0;
-  const currentTotal = (s.bronze || 0)
-    + (s.silver || 0)
-    + (s.gold   || 0)
-    + (s.green  || 0)
-    + (s.cyan   || 0)
-    + (s.blue   || 0)
-    + (s.violet || 0)
-    + (s.pink   || 0);
+  const currentTotal = (s.bronze || 0) + (s.silver || 0) + (s.gold || 0) +
+    (s.green || 0) + (s.cyan || 0) + (s.blue || 0) + (s.violet || 0) + (s.pink || 0);
+  const previousTotal = Math.max(0, Math.floor(Number(s.tokenMedalCount) || 0));
+  const newlyCompleted = Math.max(0, currentTotal - previousTotal);
+  if (!newlyCompleted) return; // Idempotente: niente gettoni per un semplice riavvio.
   s.tokenMedalCount = currentTotal;
-
-  const prevFloor = Math.floor(prevTotal / 5);
-  const newFloor  = Math.floor(currentTotal / 5);
-  if (newFloor > prevFloor) {
-    const gained = newFloor - prevFloor;
-    const currentTokens = typeof s.tokens === "number" ? s.tokens : 0;
-    s.tokens = currentTokens + gained;
+  const total = tokenExerciseRemainder460 + newlyCompleted;
+  const gained = Math.floor(total / 5);
+  tokenExerciseRemainder460 = total % 5;
+  persistTokenExerciseRemainder460();
+  if (gained) {
+    s.tokens = Math.max(0, Math.floor(Number(s.tokens) || 0)) + gained;
     showTokenWonPopup();
-    saveSessionsToStorage();
-    updateTokensUIAll();
-
   }
+  saveSessionsToStorage();
+  updateTokensUIAll();
 }
-
 function renderTokensPanel(panelId) {
   const panel = document.getElementById(panelId);
   if (!panel) return;
@@ -18958,7 +18973,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.458";
+  const PAGE_BUILD = "2.461";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -26260,16 +26275,17 @@ function drawMimoTongue(now,view,proj,width,height){
  lidCtx.restore();
 }
 function play(name,duration){
- const allowed=new Set(['Mimi_Idle','Mimi_Greet','Mimi_Flap','Mimi_Celebrate','Mimi_Think','Mimi_Yes','Mimi_No','Mimi_Talk','Mimi_Walk','Mimi_Tail','Mimi_Eat','Mimi_Ears']);
+ const allowed=new Set(['Mimi_Disco','Mimi_Idle','Mimi_Greet','Mimi_Flap','Mimi_Celebrate','Mimi_Think','Mimi_Yes','Mimi_No','Mimi_Talk','Mimi_Walk','Mimi_Tail','Mimi_Eat','Mimi_Ears']);
  if(!allowed.has(name))name='Mimi_Idle';
  mode=name;started=performance.now();
- const defaults={Mimi_Idle:Infinity,Mimi_Talk:Infinity,Mimi_Walk:1800,Mimi_Eat:1900,Mimi_Ears:2400,Mimi_Greet:2300,Mimi_Flap:2600,Mimi_Celebrate:2900,Mimi_Think:2200,Mimi_Yes:1500,Mimi_No:1700,Mimi_Tail:2100};
+ const defaults={Mimi_Disco:Infinity,Mimi_Idle:Infinity,Mimi_Talk:Infinity,Mimi_Walk:1800,Mimi_Eat:1900,Mimi_Ears:2400,Mimi_Greet:2300,Mimi_Flap:2600,Mimi_Celebrate:2900,Mimi_Think:2200,Mimi_Yes:1500,Mimi_No:1700,Mimi_Tail:2100};
  until=started+(Number.isFinite(duration)?Math.max(150,duration):(defaults[name]??2200));
  if(name==='Mimi_Celebrate'){victoryStart=started;victoryEnd=until;}
  else{victoryEnd=-Infinity;}
  host.dataset.mimoAction=name;
 }
 window.MimoMotion={
+ disco:(on)=>{play(on?'Mimi_Disco':'Mimi_Idle',Infinity);return true},
  play:(name,duration)=>{play(name,duration);return true},
  walk:(duration=1400)=>{play('Mimi_Walk',duration);return true},
  eat:()=>{window.MimoHaptics?.play?.('eat');play('Mimi_Eat',3400);return true},
@@ -26570,6 +26586,15 @@ function procedural(poses,t){
  const speed=dt/(wingCommand!==null ? .48 : (isFlying ? .38 : 1.15));wingFoldProgress+=Math.max(-speed,Math.min(speed,targetFold-wingFoldProgress));
  // Il comando non va applicato qui: i gesti lo sovrascriverebbero.
  switch(mode){
+ case 'Mimi_Disco':{
+  // Nuova coreografia continua: zampe alternate, ali ritmiche, testa, orecchie e codina.
+  const beat=lifeSeconds*2.1333333333,stepBeat=Math.sin(beat*Math.PI*2);
+  mouth(.82+.12*Math.sin(beat*Math.PI));
+  step(.55*stepBeat);nod(.17*Math.sin(beat*Math.PI*4));
+  flap(.38*Math.sin(beat*Math.PI*4+.4));ears(.19*Math.sin(beat*Math.PI*2+1));
+  tail(.25);rot(39,1,.17*Math.sin(beat*Math.PI));
+  break;
+ }
  case 'Mimi_No':mouth(.95);rot(39,1,.14*wave(1.5));rot(5,1,.24*wave(1.5));break;
  case 'Mimi_Yes':mouth(.95);nod(.25*wave(1.1));break;
  case 'Mimi_Talk':talk(mimoSpeaking||performance.now()<demoTalkingUntil?(.26+.54*Math.pow(Math.abs(wave(4.2)),.75)):.96);nod(.035*wave(.8));break;
@@ -26840,12 +26865,15 @@ body.mr353-room-open #mr344Scene #mimoBuddy canvas{width:100%!important;height:1
 @keyframes mr353FruitArrive{from{transform:translateX(-50%) translateY(-16px) scale(.7) rotate(var(--rot,0deg));opacity:0}to{transform:translateX(-50%) rotate(var(--rot,0deg));opacity:1}}
 #mr344Stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;flex:0 0 auto}.mr344Stat{border-radius:12px;background:#fffaf5;padding:6px 8px;color:#6b4537;display:flex;align-items:center;gap:8px;box-sizing:border-box;min-width:0}.mr381NeedIcon{font:normal 18px/1 system-ui,-apple-system,sans-serif;flex:0 0 auto}.mr344BarWrap{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 auto}.mr344BarLabel{display:block;font-size:11px;line-height:1;font-weight:800;letter-spacing:.02em;color:#6b4537}.mr344BarTrack{position:relative;display:block;width:100%;height:10px;border-radius:999px;background:#e7e5e4;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}.mr344BarFill{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,color-mix(in srgb,var(--mr-stat-color) 72%,#ffffff 28%),var(--mr-stat-color));box-shadow:0 0 0 1px rgba(255,255,255,.3) inset}.mr344BarValue{flex:0 0 auto;font:800 11px/1 system-ui,-apple-system,sans-serif;color:var(--mr-stat-color);white-space:nowrap}
 #mr344Message{text-align:center;font-size:13px;font-weight:750;min-height:20px;color:#70472e;flex:0 0 auto}
+#mr460BathWashProgress{margin:0 auto;padding:4px 12px;max-width:97%;border-radius:15px;background:#f8f2d5;color:#594523;border:1px solid #e7cf72;font:800 12px/1.45 system-ui,sans-serif;text-align:center;box-sizing:border-box;flex:0 0 auto}
+#mr460BathWashProgress[hidden]{display:none!important}
 #mr344Fruits,#mr344Fruits[hidden]{display:none!important}
 @media(max-height:700px){#mr344Scene{min-height:205px;max-height:calc(100dvh - 170px)}body.mr353-room-open #mr344Scene #mimoBuddy{height:45%}#mr344Stats{gap:4px}.mr344Stat{padding:4px 2px}}
 @media(max-width:700px){#mr344Scene .mr353PositionTag{width:38px;height:38px}#mr344Scene .mr353PositionTag .mr353TagGlyph{font-size:20px}#mr344Scene .mr353PositionTag img{width:24px;height:24px}#mr344Stats{grid-template-columns:repeat(2,minmax(0,1fr))}#mr353BasketFruit{left:36.8%;width:26.7%;height:13.2%}.mr353FruitStack{width:calc(16.5% * var(--scale,1))}}
 @media(prefers-reduced-motion:reduce){#mr344Scene .mr353PositionTag,body.mr353-room-open #mr344Scene #mimoBuddy{transition:none!important}.mr353FruitStack{animation:none!important}}
 </style>
 <script src="Assets/room/solar-cycle-396.js?v=399"></script>
+<script src="Assets/room/mimo-wash-rules-460.js?v=460"></script>
 <script id="mr353-room-script">
 (()=>{
 const key='musicRainbowMimoRoomV1';
@@ -26870,7 +26898,7 @@ const basketHotspots={
 };
 // Da dietro in avanti, come nell'immagine di riferimento: frutti alti dietro, frutti bassi davanti.
 const basketRenderOrder=['banana','apple','pear','orange','grapes','peach','strawberry','cherries'];
-let state={food:6,sleep:6,clean:6,happy:6,heartScale417:8,overfed:0,fruitStreak414:0,lastFruitAt414:0,fullFoodAttempts451:0,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
+let state={food:6,sleep:6,clean:6,happy:6,washCycle460:null,heartScale417:8,overfed:0,fruitStreak414:0,lastFruitAt414:0,fullFoodAttempts451:0,fruits:Object.fromEntries(fruitKinds.map(kind=>[kind,0])),awards:{},last:Date.now()};
 const clamp=n=>Math.max(0,Math.min(8,Math.round(Number(n)||0)));
 let needsHeartMigration417=false;
 function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}}
@@ -26883,6 +26911,12 @@ function load(){try{
  }
 }catch(e){}}
 load();
+// Il ciclo di lavaggio è persistente: non far pagare nuovamente Mìmo
+// se l'utente cambia pagina o riapre l'app prima del quinto risciacquo.
+const bathRules460 = window.MimoWashRules460;
+if (!bathRules460) throw new Error('Regole lavaggio Mìmo 460 non disponibili');
+state.washCycle460 = bathRules460.normalizeCycle(state.washCycle460);
+state.clean = bathRules460.clampClean(state.clean);
 // Aggiornamento non distruttivo dei vecchi salvataggi: 0..4 -> 0..8.
 if(needsHeartMigration417){
  for(const k of ['food','sleep','clean','happy'])state[k]=clamp((Number(state[k])||0)*2);
@@ -26955,7 +26989,7 @@ function tick(){
   // Dopo qualche tempo l'eccesso di sazietà si riassorbe spontaneamente.
   state.overfed=Math.max(0,Math.floor(Number(state.overfed)||0)-foodLost);
   state.happy=clamp(state.happy-2*Math.floor(n/3));
-  state.clean=clamp(state.clean-2*Math.floor(n/3));
+  state.clean=bathRules460.clampClean(state.clean-2*Math.floor(n/3));
   state.last=now;
  }
  if(clamp(state.food)<8)state.fullFoodAttempts451=0;
@@ -27031,6 +27065,38 @@ function init(){
  }
  const labels=[['food','🍎','Fame','#e83b51'],['sleep','🌙','Sonno','#399edb'],['clean','🫧','Pulizia','#1aa77a'],['happy','💗','Felicità','#945de0']];
  const washState439={drag:null,soapy:false,lastSoap:''};
+ const washInfo460=document.createElement('div');
+ washInfo460.id='mr460BathWashProgress';
+ washInfo460.setAttribute('role','status');washInfo460.setAttribute('aria-live','polite');
+ room.insertBefore(washInfo460,room.querySelector('#mr344Stats'));
+ function bathNoTokens460(){
+  const text='Mìmo: «Non ho gettoni per fare il bagno! Puoi guadagnare un gettone completando 5 esercizi, anche in livelli diversi. Poi potrai lavarmi 5 volte!»';
+  setMessage(text);
+  window.MimoMood?.preview?.('triste',2600);
+  window.MimoHaptics?.play?.('touch');
+  // La spiegazione rimane sempre leggibile; la voce italiana è opzionale e
+  // viene richiesta soltanto dal gesto diretto dell'utente sullo shampoo.
+  try {
+   if('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window){
+    window.speechSynthesis.cancel();
+    const utterance=new SpeechSynthesisUtterance('Non ho gettoni per fare il bagno! Puoi guadagnarne uno completando cinque esercizi, anche in livelli diversi. Un gettone vale cinque lavaggi.');
+    utterance.lang='it-IT';utterance.rate=.91;utterance.pitch=1.15;
+    window.__mimoBathSpeech460=utterance;
+    window.speechSynthesis.speak(utterance);
+   }
+  } catch (_) { /* Nessun blocco del gioco se la voce non è disponibile. */ }
+ }
+ function refreshBathWashInfo460(){
+  const cycle=bathRules460.normalizeCycle(state.washCycle460);
+  washInfo460.hidden=scene.dataset.location!=='bath';
+  if(washInfo460.hidden)return;
+  const available=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
+  washInfo460.textContent=cycle
+   ? `🫧 Lavaggi ${cycle.completed}/5 · altri ${5-cycle.completed} già pagati · 🪙 ${available} gettoni`
+   : bathRules460.clampClean(state.clean)>=8
+    ? `✨ Mìmo è pulitissimo! · 🪙 ${available} gettoni`
+    : `🪙 ${available} gettoni · 1 gettone = 5 lavaggi · +1 gettone ogni 5 esercizi`;
+ }
  // Hotspot invisibili sulle bottiglie GIA' DISEGNATE nei PNG.
  // Le coordinate cambiano con il layout, non aggiungiamo nuovi flaconi.
  const shampooKinds439=[
@@ -27056,7 +27122,7 @@ function init(){
  bubbleField439.id='mr439BathBubbleField';bubbleField439.hidden=true;
  bubbleField439.setAttribute('aria-hidden','true');
  bubbleField439.innerHTML='<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>';
-// Build 2.458: doccetta argentata, come nel riferimento dell'utente.
+// Build 2.459: doccetta argentata, come nel riferimento dell'utente.
  // Si anima SOLO durante il risciacquo; il rubinetto dorato nello sfondo resta
  // intatto, ed il suo hotspot trasparente continua ad avviare il lavaggio.
  // Il sistema di coordinate è quello della scena su cui è proiettato il PNG.
@@ -27189,25 +27255,47 @@ function init(){
    setMessage('Porta Mìmo nella vasca, poi trascina lo shampoo sopra di lui.');
    return;
   }
+  if (!state.washCycle460 && bathRules460.clampClean(state.clean)>=8){
+   setMessage('Mìmo è già pulitissimo! Non serve spendere un gettone.');return;
+  }
+  if (!state.washCycle460 && getTotalAvailableTokens()<1){
+   bathNoTokens460();return;
+  }
   // Uno o più shampoo prima del risciacquo costituiscono un SOLO lavaggio.
   washState439.soapy=true;washState439.lastSoap=kind||'sky';
   updateWashVisuals439();applyPose('bath');
   window.MimoHaptics?.play?.('bath');
-  setMessage('Mìmo è pieno di schiuma e bollicine! Tocca il rubinetto illuminato per risciacquarlo e far salire bene la barra della pulizia.');
+  const remaining=state.washCycle460?5-state.washCycle460.completed:5;
+  setMessage(`Mìmo è pieno di schiuma! Tocca il rubinetto per risciacquarlo. ${remaining} lavaggi rimasti nel ciclo da un gettone.`);
  }
  function rinseMimo439(){
   if(scene.dataset.location!=='bath'){setMessage('Per risciacquare Mìmo, portalo prima nella vasca.');return;}
   if(!washState439.soapy){setMessage('Prima trascina uno shampoo sopra Mìmo.');window.MimoHaptics?.play?.('touch');return;}
-  // Il cuore è assegnato SOLO qui, dopo un lavaggio effettivo, una sola volta per ciclo.
+  tick(); // Il tempo si applica prima di assegnare pulizia e felicità.
+  const next=bathRules460.previewRinse({
+   clean:state.clean,happy:state.happy,cycle:state.washCycle460,
+   hasToken:getTotalAvailableTokens()>0
+  });
+  if(next.status==='no-token'){washState439.soapy=false;updateWashVisuals439();bathNoTokens460();return;}
+  if(next.status==='already-clean'){washState439.soapy=false;updateWashVisuals439();setMessage('Mìmo è già pulitissimo!');return;}
+  // ADDEBITO UNICO: soltanto al primo risciacquo effettivamente riuscito.
+  // I successivi quattro restano pagati anche se l'utente chiude l'app.
+  if(next.spent && !consumeOldestSessionToken()){
+   washState439.soapy=false;updateWashVisuals439();bathNoTokens460();return;
+  }
+  state.clean=next.clean;
+  state.happy=next.happy;
+  state.washCycle460=next.cycle;
+  save(); // Il credito residuo è persistente con il salvataggio della stanza.
   washState439.soapy=false;updateWashVisuals439();showRinseWater456();
-  tick(); // Applica l'eventuale passaggio del tempo PRIMA di assegnare il nuovo cuore.
-  const wasClean=clamp(state.clean);
-  state.clean=clamp(wasClean+4);
   applyPose('bath');refresh();
   window.MimoHaptics?.play?.('bath');
-  setMessage(state.clean>wasClean
-    ?'Mìmo è risciacquato: la schiuma scompare e la barra della pulizia sale davvero!'
-    :'Mìmo è risciacquato: la schiuma scompare. La pulizia è già al massimo!');
+  if(next.status==='complete'){
+   window.MimoMotion?.celebrate?.();
+   setMessage('Bravissimo! 5 lavaggi completati: Mìmo è pulitissimo e ancora più felice! 🌈');
+  }else{
+   setMessage(`Lavaggio ${next.completed}/5! Mìmo è più pulito e più felice. Restano ${5-next.completed} lavaggi già pagati.`);
+  }
  }
  function updateSoapDrag439(x,y){
   const drag=washState439.drag;if(!drag)return;
@@ -27255,7 +27343,7 @@ function init(){
   return button;
  }
  shampooKinds439.forEach(cfg=>shampooShelf439.appendChild(buildSoapBottle439(cfg)));
- // Build 2.458 — intercetta il tocco nella zona del rubinetto PRIMA di Mìmo.
+ // Build 2.459 — intercetta il tocco nella zona del rubinetto PRIMA di Mìmo.
  // Mìmo e il suo canvas stanno sopra l'hotspot nella pila grafica: alzare il solo
  // z-index del pulsante non basta. Il listener in cattura sulla tela funziona
  // anche quando il bersaglio del tocco e' Mìmo o la schiuma.
@@ -27561,7 +27649,7 @@ function init(){
  document.addEventListener('visibilitychange',()=>{if(document.hidden)endFruitDrag415(false)});
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')endFruitDrag415(false)});
  function renderPicker(){fruitPicker.hidden=true;fruitPicker.replaceChildren()}
- function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=clamp(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>{const value=clamp(state[k]);const pct=Math.round(value/8*100);return `<div class="mr344Stat" role="group" aria-label="${label}: ${value} su 8" title="${label}: ${value}/8" style="--mr-stat-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><div class="mr344BarWrap"><b class="mr344BarLabel">${label}</b><span class="mr344BarTrack" aria-hidden="true"><span class="mr344BarFill" style="width:${pct}%"></span></span></div><span class="mr344BarValue" aria-hidden="true">${value}/8</span></div>`}).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();save()}
+ function refresh(){tick();state.food=clamp(state.food);state.sleep=clamp(state.sleep);state.clean=bathRules460.clampClean(state.clean);state.happy=clamp(state.happy);stats.innerHTML=labels.map(([k,ico,label,color])=>{const value=k==='clean'?bathRules460.clampClean(state[k]):clamp(state[k]);const display=k==='clean'?Number(value.toFixed(1)).toLocaleString('it-IT',{maximumFractionDigits:1}):String(value);const pct=Math.round(value/8*100);return `<div class="mr344Stat" role="group" aria-label="${label}: ${display} su 8" title="${label}: ${display}/8" style="--mr-stat-color:${color}"><span class="mr381NeedIcon" aria-hidden="true">${ico}</span><div class="mr344BarWrap"><b class="mr344BarLabel">${label}</b><span class="mr344BarTrack" aria-hidden="true"><span class="mr344BarFill" style="width:${pct}%"></span></span></div><span class="mr344BarValue" aria-hidden="true">${display}/8</span></div>`}).join('');renderBasket();renderPicker();syncMimoBody413();updateMood();renderTokensInTrophyPage();refreshBathWashInfo460();save()}
 function markSessionFruitConsumed(kind){
   const type=fruitInfo[kind]?.medal;if(!type)return false;
   const current=typeof getCurrentSession==='function'?getCurrentSession():null;
@@ -27707,7 +27795,11 @@ function markSessionFruitConsumed(kind){
    fruitPicker.hidden=true;setMessage('Mìmo va verso la vasca.');
    setTimeout(()=>{if(scene.dataset.location!=='bath')return;
     applyPose('bath');refresh();updateWashVisuals439();
-    setMessage('Per lavare Mìmo, trascina uno degli shampoo sopra di lui e poi tocca il rubinetto: un lavaggio completo riempie bene la barra della pulizia.');},900);
+    setMessage(state.washCycle460
+     ? `Hai già pagato il bagno: restano ${5-state.washCycle460.completed} lavaggi. Trascina lo shampoo e tocca il rubinetto!`
+     : getTotalAvailableTokens()>0
+      ? 'Un gettone vale 5 lavaggi: trascina uno shampoo su Mìmo e poi risciacqua per aumentare la pulizia e la felicità.'
+      : 'Mìmo non ha gettoni: completando 5 esercizi, anche in livelli diversi, ne guadagnerai uno per 5 lavaggi.');},900);
   }else if(destination==='food'){
    window.MimoSounds?.play?.('food');setResting396(false);moveMimo('food');
    fruitPicker.hidden=true;clearPose();
@@ -27778,6 +27870,7 @@ function markSessionFruitConsumed(kind){
  }
 
  window.MimoCare={
+   addJoy:(n=1)=>{state.happy=clamp(state.happy+Math.max(0,Math.floor(Number(n)||0)));save();refresh();return state.happy;},
    awardFullBasket:(rewardId)=>{
     const key='full-basket:'+String(rewardId||'');
     if(!rewardId||state.awards[key])return false;
@@ -29423,7 +29516,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 }
 @media(prefers-reduced-motion:reduce){#mr439BathBubbleField span{animation:none!important;}#mr439FaucetTouch.mr440FaucetReady,#mr344Scene[data-location="bath"] #mr439ShampooShelf .mr439ShampooTouch{animation:none!important;-webkit-backdrop-filter:brightness(1.18)!important;backdrop-filter:brightness(1.18)!important;}}
 
-/* 2.458: doccetta e pioggia sottile ancorate ALLA VASCA, non al pavimento.
+/* 2.459: doccetta e pioggia sottile ancorate ALLA VASCA, non al pavimento.
    Il disegno resta sopra lo sfondo soltanto per i 1,9 s del risciacquo. */
 #mr457Shower[hidden]{display:none!important;}
 #mr457Shower{position:absolute;inset:0;pointer-events:none!important;z-index:124;overflow:hidden;}
@@ -29817,7 +29910,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 </script>
 
 <style id="mr444-duration-layout-css">
-/* Build 2.458: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
+/* Build 2.459: una sola geometria di topbar, derivata da .top-panel/.top-row comuni. */
 #tempoTreePage .mr442TopPanel,.mr444DurationPage .top-panel{
   position:relative!important;flex:0 0 auto!important;width:100%!important;height:auto!important;
   min-height:0!important;margin:0!important;padding:6px 14px 0!important;
@@ -30380,5 +30473,32 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 #trophyPage #mr344Stats .mr344BarTrack{max-width:none!important;}
 </style>
 
+<script id="mr459-premium-settings-bridge">
+/* Build 459: il controllo Premium e' nativo. GitHub Pages resta una demo indipendente. */
+(function(){
+  function initPremiumSettings(){
+    const nativeBridge=window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.musicRainbowApp;
+    if(!nativeBridge || typeof nativeBridge.postMessage!=="function")return;
+    const section=document.getElementById('mr459SubscriptionSettingsSection');
+    const button=document.getElementById('mr459ManageSubscriptionBtn');
+    if(!section||!button)return;
+    section.style.display='';
+    button.addEventListener('click',function(){
+      nativeBridge.postMessage({type:'premiumManageSubscription'});
+    });
+    const lang=(document.getElementById('appLanguageSelect')||{}).value||'it';
+    if(lang==='en'){
+      document.getElementById('mr459PremiumHeading').textContent='Premium subscription';
+      document.getElementById('mr459PremiumHint').textContent='Manage or cancel your subscription with Apple.';
+      button.textContent='Manage subscription';
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initPremiumSettings,{once:true});
+  else initPremiumSettings();
+})();
+</script>
+<link rel="stylesheet" href="Assets/room/mimo-minirooms-461.css?v=461">
+<script src="Assets/room/mimo-minirooms-rules-461.js?v=461"></script>
+<script src="Assets/room/mimo-minirooms-461.js?v=461"></script>
 </body>
 </html>

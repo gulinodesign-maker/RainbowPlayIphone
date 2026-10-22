@@ -1,12 +1,17 @@
-/* Music Rainbow Service Worker - Build 2.458; bypass large GLB; safe cache errors */
-const BUILD = "2.458";
-const PRECACHE = `music-rainbow-precache-${BUILD}`;
-const RUNTIME = `music-rainbow-runtime-${BUILD}`;
+/* Music Rainbow Service Worker - Build 2.461; bypass large GLB; safe cache errors */
+const BUILD = "2.461";
+// WebApp aggiornata con il pannello StoreKit nativo, senza modifiche ai dati locali.
+const CACHE_REVISION = "premium1";
+const PRECACHE = `music-rainbow-precache-${BUILD}-${CACHE_REVISION}`;
+const RUNTIME = `music-rainbow-runtime-${BUILD}-${CACHE_REVISION}`;
 
 const CORE_PRECACHE_URLS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./icons/apple-touch-icon.png",
   "./Assets/Home-rainbow-main.png",
   "./Assets/pizza-durates-450.png",
   "./Assets/mimo-face-toggle-445.png",
@@ -27,6 +32,10 @@ const CORE_PRECACHE_URLS = [
   "./Assets/mimo-rigged-369.js",
   "./Assets/mimo-haptics-414.js",
   "./Assets/room/solar-cycle-396.js",
+  "./Assets/room/mimo-wash-rules-460.js",
+  "./Assets/room/mimo-minirooms-rules-461.js",
+  "./Assets/room/mimo-minirooms-461.js",
+  "./Assets/room/mimo-minirooms-461.css",
   "./Assets/room/room-fixedbath-ipad-day.png",
   "./Assets/room/room-fixedbath-ipad-night.png",
   "./Assets/room/room-fixedbath-phone-day.png",

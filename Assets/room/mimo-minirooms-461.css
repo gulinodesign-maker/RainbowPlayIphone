@@ -1,0 +1,68 @@
+/* Music Rainbow 2.0.1 build 461. Sfondo dedicato per ciascuna stanza;
+   Mìmo 3D e i comandi interattivi restano sovrapposti alle illustrazioni. */
+#trophyPage #mr344Room #mr461Entrances{position:absolute!important;left:50%!important;bottom:calc(env(safe-area-inset-bottom,0px) + 8px)!important;transform:translateX(-50%)!important;z-index:250!important;display:flex!important;gap:8px!important;align-items:center!important;justify-content:center!important;pointer-events:auto!important;white-space:nowrap!important}
+#mr461Entrances button{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:100px;min-height:52px;line-height:1.12;font:900 clamp(12px,2.2vw,16px)/1.15 system-ui,-apple-system,sans-serif;color:#452458;padding:6px 16px;border:3px solid #fff;border-radius:22px;background:linear-gradient(160deg,#ffde8e,#ffd0eb 48%,#b4e9fe);box-shadow:0 3px 12px #53316a77;cursor:pointer;touch-action:manipulation}
+#mr461Entrances button:first-letter{font-size:23px}
+#mr461Entrances button:active{transform:scale(.96)}
+#mr461Entrances #mr461NoTokens{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);width:min(78vw,600px);max-width:calc(100vw - 20px);font:800 13px/1.35 system-ui,sans-serif;text-align:center;white-space:normal;padding:12px 18px;border:3px solid #fde4a4;border-radius:17px;background:#fff7e8;color:#57306b;box-shadow:0 5px 20px #462b5e8c}
+#mr461Entrances #mr461NoTokens[hidden]{display:none!important}
+#mr461MiniStage{position:absolute!important;inset:0!important;isolation:isolate!important;z-index:300!important;overflow:hidden!important;border-radius:10px!important;background:#45244f!important;color:#fff;font-family:system-ui,-apple-system,sans-serif;touch-action:manipulation}
+#mr461MiniStage button{appearance:none;-webkit-appearance:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;font-family:inherit}
+#mr461MiniStage button:focus-visible,#mr461Entrances button:focus-visible{outline:4px solid #fff173;outline-offset:3px}
+#mr461MiniStage .mr461Backdrop{position:absolute;inset:0;z-index:-6;background-image:linear-gradient(135deg,rgba(61,21,116,.15),rgba(62,11,98,.06) 45%,rgba(12,35,96,.15)),url('stanza-discoteca-461.png');background-size:cover;background-position:center center;filter:saturate(1.08);}
+#mr461MiniStage .mr461GamesBackdrop{background-image:linear-gradient(135deg,rgba(83,203,221,.08),rgba(245,127,210,.10),rgba(255,222,119,.07)),url('stanza-giochi-461.png');}
+#mr461MiniStage .mr461GlowCurtains{position:absolute;inset:0;pointer-events:none;z-index:-4;opacity:.55;background:conic-gradient(from 0deg at 51% 3%,transparent 0deg,rgba(255,221,54,.55) 10deg,transparent 23deg,rgba(241,61,220,.45) 37deg,transparent 51deg,rgba(54,187,255,.55) 63deg,transparent 85deg,rgba(85,255,135,.43) 100deg,transparent 120deg);mix-blend-mode:screen;transition:opacity .4s}
+#mr461MiniStage.mr461LightsOn .mr461GlowCurtains,#mr461MiniStage.mr461MusicOn .mr461GlowCurtains{opacity:1;animation:mr461LightSpin 5s linear infinite}
+#mr461MiniStage .mr461Floor{position:absolute;left:20%;right:20%;bottom:-19%;height:55%;z-index:-2;transform:perspective(320px) rotateX(45deg);border:6px solid #ffe794;border-radius:15%;background:repeating-linear-gradient(0deg,transparent 0 16%,#fff6 16.5% 17%,transparent 17.5% 33.3%),repeating-linear-gradient(90deg,rgba(251,67,233,.85) 0 16%,#b0eaff 17% 34%,#ffe16f 35% 52%,#a88dff 53% 68%,#76f9c1 69% 85%,#ffb59e 86% 100%);box-shadow:0 0 22px #ff60fda1,0 0 90px #fe7ce970;opacity:.36}
+#mr461MiniStage.mr461MusicOn .mr461Floor{animation:mr461FloorPulse .5s ease-in-out infinite alternate}
+#mr461MiniStage[data-kind="games"] .mr461Floor{opacity:.34;animation:none;background:radial-gradient(circle,#ffefa9,#f6c6f3 48%,#cbe5ff 90%)}
+#mr461MiniStage .mr461Top{position:absolute;left:1%;right:1%;top:calc(env(safe-area-inset-top,0px) + 5px);z-index:60;display:flex;align-items:center;justify-content:space-between;gap:5px;padding:0;line-height:1.1;}
+#mr461MiniStage .mr461Top strong{font:900 clamp(15px,2.6vw,26px)/1 system-ui,sans-serif;text-shadow:0 2px 6px #311057;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mr461MiniStage .mr461Back,#mr461MiniStage #mr461Timer,#mr461MiniStage #mr461Money{flex:0 0 auto;min-height:35px;border-radius:100px;padding:8px 11px;background:linear-gradient(135deg,#fff0bc,#fff4e8);color:#3c2855;border:2px solid #fff9;box-shadow:0 3px 10px #1c124988;font:900 clamp(11px,1.8vw,17px)/1 system-ui,sans-serif}
+#mr461MiniStage #mr461Timer{background:linear-gradient(130deg,#2b1254,#5b249d);color:white;font-variant-numeric:tabular-nums}
+#mr461MiniStage .mr461Ball{position:absolute;left:50%;top:6%;transform:translateX(-50%);z-index:18;width:clamp(58px,12vw,145px);height:clamp(58px,12vw,145px);border:0;background:transparent;font-size:clamp(45px,10vw,105px);filter:drop-shadow(0 0 10px #ffe3e8);transition:filter .2s,transform .2s}
+#mr461MiniStage .mr461Ball:after{content:"";position:absolute;left:50%;top:85%;width:5px;height:38vh;transform:translateX(-50%);background:linear-gradient(#ff8bf9b3,transparent);opacity:0;pointer-events:none}
+#mr461MiniStage.mr461BallOn .mr461Ball{filter:drop-shadow(0 0 25px #ffffff) drop-shadow(0 0 50px #fb6bff);animation:mr461BallSpin 5s ease-in-out infinite}
+#mr461MiniStage.mr461BallOn .mr461Ball:after{opacity:.8}
+#mr461MiniStage .mr461Spot{position:absolute;top:13%;width:clamp(40px,7vw,78px);height:clamp(40px,7vw,78px);background:#2c1e5bbf;color:#fff;border:3px solid #fdebaf;border-radius:50%;font-size:clamp(24px,4.8vw,49px);z-index:22;box-shadow:0 0 12px #5ed0f9;transition:all .2s}
+#mr461MiniStage .mr461SpotLeft{left:15%;transform:rotate(-25deg)}
+#mr461MiniStage .mr461SpotRight{right:15%;transform:rotate(25deg)}
+#mr461MiniStage.mr461LightsOn .mr461Spot{background:#fff6a5;box-shadow:0 0 29px #ffe4a4,0 0 50px #8d9fff}
+#mr461MiniStage #mr461MimoStage{position:absolute;left:32%;top:27%;width:36%;height:55%;z-index:29;pointer-events:none;}
+body.mr353-room-open.mr461-mini-open #mr344Scene #mr376SceneCanvas > #mimoBuddy{position:absolute!important;left:50%!important;top:55%!important;right:auto!important;bottom:auto!important;width:clamp(130px,30%,340px)!important;height:58%!important;max-height:none!important;min-width:0!important;transform:translate(-50%,-50%) scale(1.06)!important;z-index:352!important;visibility:visible!important;opacity:1!important;display:block!important;clip-path:none!important;pointer-events:none!important;filter:drop-shadow(0 6px 12px #3c184d80);transition:none!important}
+body.mr353-room-open.mr461-mini-open #mr344Scene #mr376SceneCanvas > #mimoBuddy canvas{display:block!important;width:100%!important;height:100%!important;pointer-events:none!important;background:transparent!important}
+#mr461MiniStage.mr461MusicOn #mr461MimoStage{animation:mr461Jump .31s ease-in-out infinite alternate}
+#mr461MiniStage[data-move="1"] #mr461MimoStage{transform:rotate(-7deg)}
+#mr461MiniStage[data-move="2"] #mr461MimoStage{transform:rotate(6deg)}
+#mr461MiniStage[data-move="3"] #mr461MimoStage{transform:rotate(-3deg) scale(1.06)}
+#mr461MiniStage .mr461MimoHit{position:absolute;left:37%;width:28%;top:42%;height:31%;background:transparent;border:none;color:transparent;z-index:35;overflow:hidden}
+#mr461MiniStage .mr461Stereo{position:absolute;left:3%;bottom:10%;z-index:42;width:clamp(92px,18vw,215px);height:clamp(78px,23vh,145px);padding:15px 9px 6px;border:5px solid #ffbc66;border-radius:20px;color:white;background:linear-gradient(145deg,#8d36e0 5%,#fd558b 56%,#723bbf 100%);box-shadow:inset 0 0 9px #fff8,0 4px 14px #270d6288,0 0 15px #ffba7c8a;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}
+#mr461MiniStage .mr461Speakers{display:block;white-space:nowrap;font:900 clamp(24px,4.8vw,56px)/1 system-ui,sans-serif;color:#56c9ff;text-shadow:0 0 7px #6cfaff}
+#mr461MiniStage .mr461Speakers i{font:900 17px/1 system-ui,sans-serif;color:#ffe46d;vertical-align:middle}
+#mr461MiniStage .mr461StereoLabel{font-size:clamp(9px,1.55vw,14px);font-weight:900;line-height:1.1;text-align:center}
+#mr461MiniStage.mr461MusicOn .mr461Stereo{box-shadow:0 0 29px #44fcff,0 0 55px #f957e5,inset 0 0 20px #fff9;animation:mr461StereoBoom .3s linear infinite alternate}
+#mr461MiniStage .mr461Confetti,#mr461MiniStage .mr461Stars{position:absolute;right:5%;width:clamp(64px,11vw,140px);height:clamp(65px,11vh,100px);border-radius:22px;border:3px solid #fff1ac;background:linear-gradient(145deg,#fcdcf5,#ffe298);color:#4a2880;box-shadow:0 5px 14px #33116d6e;font-size:clamp(27px,5vw,55px);z-index:40}
+#mr461MiniStage .mr461Confetti{bottom:26%}
+#mr461MiniStage .mr461Stars{bottom:8%}
+#mr461MiniStage .mr461Confetti small,#mr461MiniStage .mr461Stars small{display:block;font:900 clamp(10px,1.4vw,14px)/1 system-ui,sans-serif}
+#mr461MiniStage.mr461StarsOn .mr461Stars,#mr461MiniStage.mr461ConfettiOn .mr461Confetti{background:linear-gradient(145deg,#ffcbea,#bcf1ff);box-shadow:0 0 20px #fd7dff,0 0 32px #b1f9ff}
+#mr461MiniStage #mr461Message{position:absolute;bottom:0;left:18%;right:18%;z-index:47;padding:6px 8px;margin:0 0 calc(env(safe-area-inset-bottom,0px) + 2px);min-height:24px;border-radius:20px 20px 0 0;background:#31224cb8;text-align:center;color:white;text-shadow:0 1px 2px #26105c;font:800 clamp(10px,1.55vw,15px)/1.2 system-ui,sans-serif}
+#mr461MiniStage .mr461Effects{position:absolute;inset:0;z-index:32;pointer-events:none;overflow:hidden}
+#mr461MiniStage .mr461Burst{position:absolute;font-size:clamp(18px,3.4vw,42px);animation:mr461Burst 1.15s ease-out both;filter:drop-shadow(0 0 10px #ff9ddd)}
+#mr461MiniStage[data-kind="games"] .mr461Confetti{background:linear-gradient(145deg,#ffe68d,#8bdaff)}
+#mr461MiniStage[data-kind="games"] .mr461Stars{background:linear-gradient(145deg,#b4e5ff,#ffc3e1)}
+.mr461EndNote{position:absolute;left:50%;top:35%;transform:translateX(-50%);z-index:600;width:min(80%,420px);box-sizing:border-box;background:#fff9eb;border:4px solid #fbd882;color:#49277c;border-radius:26px;box-shadow:0 10px 40px #311257bb;text-align:center;padding:17px;font:900 18px/1.3 system-ui,-apple-system,sans-serif}
+.mr461EndNote span{font-size:35px}.mr461EndNote button{background:#7f4ec3;border:0;border-radius:14px;color:white;padding:9px 25px;font:900 16px system-ui}
+@keyframes mr461LightSpin{to{filter:hue-rotate(360deg)}}
+@keyframes mr461FloorPulse{to{filter:hue-rotate(60deg) brightness(1.25)}}
+@keyframes mr461BallSpin{50%{transform:translateX(-50%) rotate(10deg) scale(1.04)}}
+@keyframes mr461Jump{to{transform:translateY(-9px) rotate(3deg)}}
+@keyframes mr461StereoBoom{to{transform:scale(1.035)}}
+@keyframes mr461Burst{to{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(210deg) scale(1.6)}}
+@media(max-width:650px){#mr461MiniStage .mr461Top strong{font-size:13px}#mr461MiniStage .mr461Back{font-size:10px;padding:7px}#mr461MiniStage #mr461Timer,#mr461MiniStage #mr461Money{padding:7px;font-size:12px}#mr461MiniStage .mr461Ball{top:8%}#mr461MiniStage #mr461Message{left:12%;right:12%}#mr461Entrances button{min-width:86px;padding:6px 12px}}
+@media(prefers-reduced-motion:reduce){#mr461MiniStage .mr461GlowCurtains,#mr461MiniStage .mr461Floor,#mr461MiniStage .mr461Ball,#mr461MiniStage #mr461MimoStage,#mr461MiniStage .mr461Stereo{animation:none!important}}
+
+/* 462: le nuove aree sono figlie del canvas, senza alterare la struttura della cameretta. */
+#mr376SceneCanvas > #mr461MiniStage{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
+#mr376SceneCanvas > #mr461MiniStage[hidden]{display:none!important}
+#mr461MiniStage #mr461MimoStage{display:none!important}

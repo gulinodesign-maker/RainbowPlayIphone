@@ -6293,15 +6293,15 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
         <span class="learn-select-choice-text">Impara il tempo</span>
       </button>
-      <button type="button" id="homeLearnDurationsBtn" class="learn-select-choice learn-select-durations learn-select-green" aria-label="L'albero delle durate: pizza e note">
+      <button type="button" id="homeLearnDurationsBtn" class="learn-select-choice learn-select-durations learn-select-yellow" aria-label="L'albero delle durate: pizza e note">
         <span class="learn-select-choice-icon" aria-hidden="true">🍕</span>
         <span class="learn-select-choice-text">Le durate musicali</span>
       </button>
-      <button type="button" id="homeLearnSolfeggioBtn" class="learn-select-choice learn-select-hands learn-select-yellow" aria-label="Apri il Solfeggio">
+      <button type="button" id="homeLearnSolfeggioBtn" class="learn-select-choice learn-select-hands learn-select-green" aria-label="Apri il Solfeggio">
         <span class="learn-select-choice-icon" aria-hidden="true">♩</span>
         <span class="learn-select-choice-text">Solfeggio</span>
       </button>
-      <button type="button" id="homeLearnHandsBtn" class="learn-select-choice learn-select-hands learn-select-yellow" aria-label="Impara le due mani">
+      <button type="button" id="homeLearnHandsBtn" class="learn-select-choice learn-select-hands learn-select-blue" aria-label="Impara le due mani">
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
         <span class="learn-select-choice-text">Impara le due mani</span>
       </button>
@@ -7686,7 +7686,7 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   <div class="top-panel"><div class="top-row">
    <div class="top-left-controls">
     <button type="button" class="menu-btn" id="mr476Home" aria-label="Torna alla Home" title="Home">🏠</button>
-    <button type="button" class="reset-btn" id="mr476Reset" aria-label="Ricomincia lo stesso spartito" title="Ricomincia">↺</button>
+    <button type="button" class="reset-btn" id="resetBtnSolfeggio" aria-label="Ricomincia lo stesso spartito" title="Ricomincia">↺</button>
    </div>
    <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
    <div class="top-right-controls"><div class="metronome-audio-pill" id="mr476AudioPill">
@@ -19114,7 +19114,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.480";
+  const PAGE_BUILD = "2.481";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -30977,7 +30977,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  width:clamp(92px,13vw,160px)!important;height:clamp(92px,13vw,160px)!important;
  transform:translateY(-50%);margin:0!important;aspect-ratio:1/1;
 }
-#solfeggioPage #mr476Reset,#solfeggioPage #mr476Reset *{color:#fff!important;-webkit-text-fill-color:#fff!important;}
+
 #solfeggioPage .mr478-arm{stroke-width:9;stroke-linecap:round;opacity:0;transition:opacity .15s ease;}
 #solfeggioPage .mr478-arm.is-lit{opacity:1;}
 #solfeggioPage .mr478-down{stroke:#e44747;}
@@ -31267,7 +31267,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   const syncMimoPlacement=()=>document.body.classList.toggle('mr479-solfeggio-active',
     page.getClientRects().length>0&&getComputedStyle(page).display!=='none');
   new MutationObserver(syncMimoPlacement).observe(page,{attributes:true,attributeFilter:['style','class','hidden']});
-  $('mr476Reset').addEventListener('click',restart);
+  $('resetBtnSolfeggio').addEventListener('click',restart);
   $('mr476Previous').addEventListener('click',()=>{if(state.index>0)goIndex(state.index-1);});
   $('mr476Next').addEventListener('click',nextBar);
   drum.addEventListener('click',tap);
@@ -31329,6 +31329,27 @@ html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
 #solfeggioPage .mr480-middle.mr476-cross-middle{fill:#fff;stroke:#efeaf8;stroke-width:3.7;filter:drop-shadow(0px 2px 3px rgba(58,42,90,.2))}
 #solfeggioPage .mr480-moving-dot.mr476-cross-dot{stroke:#fff;stroke-width:3.4;filter:drop-shadow(0px 1px 2px rgba(55,42,91,.28))}
 @media (prefers-reduced-motion:reduce){#solfeggioPage .mr480-pad-active.mr478-arm{transition:none}}
+</style>
+
+<style id="mr481-learn-colors-hands-help">
+/* Impara: cinque pulsanti originali con cinque colori dell'arcobaleno diversi. */
+#learnSelectOverlay #homeLearnNotesBtn{background:#fee2e2!important;color:#991b1b!important;border-color:#ef4444!important;}
+#learnSelectOverlay #homeLearnTempoBtn{background:#ffedd5!important;color:#9a3412!important;border-color:#f97316!important;}
+#learnSelectOverlay #homeLearnDurationsBtn{background:#fef9c3!important;color:#854d0e!important;border-color:#eab308!important;}
+#learnSelectOverlay #homeLearnSolfeggioBtn{background:#dcfce7!important;color:#166534!important;border-color:#22c55e!important;}
+#learnSelectOverlay #homeLearnHandsBtn{background:#dbeafe!important;color:#1e40af!important;border-color:#3b82f6!important;}
+/* La top bar delle due mani nasconde i caratteri dei pulsanti per visualizzare
+   le icone via ::before. Il pulsante help esistente non ne aveva una. */
+#learnHandsPage .top-left-controls > .mr435HelpButton{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ background:#f1eaff!important;color:#7043b6!important;
+ border-color:#986cdd!important;visibility:visible!important;opacity:1!important;
+}
+#learnHandsPage .top-left-controls > .mr435HelpButton::before{
+ content:"💬"!important;display:block!important;font-size:1.5rem!important;
+ font-family:-apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji",sans-serif!important;
+ line-height:1!important;visibility:visible!important;opacity:1!important;
+}
 </style>
 </body>
 </html>

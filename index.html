@@ -6297,6 +6297,10 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
         <span class="learn-select-choice-icon" aria-hidden="true">🍕</span>
         <span class="learn-select-choice-text">Le durate musicali</span>
       </button>
+      <button type="button" id="homeLearnSolfeggioBtn" class="learn-select-choice learn-select-hands learn-select-yellow" aria-label="Apri il Solfeggio">
+        <span class="learn-select-choice-icon" aria-hidden="true">♩</span>
+        <span class="learn-select-choice-text">Solfeggio</span>
+      </button>
       <button type="button" id="homeLearnHandsBtn" class="learn-select-choice learn-select-hands learn-select-yellow" aria-label="Impara le due mani">
         <span class="learn-select-choice-icon" aria-hidden="true">🥁</span>
         <span class="learn-select-choice-text">Impara le due mani</span>
@@ -7675,6 +7679,56 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
   </div>
 </div>
 
+
+<!-- Solfeggio: exact lesson components, landscape only, one 4/4 bar. -->
+<div id="solfeggioPage" class="page-container" style="display:none" aria-label="Solfeggio 4/4">
+ <div class="app">
+  <div class="top-panel"><div class="top-row">
+   <div class="top-left-controls">
+    <button type="button" class="menu-btn" id="mr476Home" aria-label="Torna alla Home" title="Home">🏠</button>
+    <button type="button" class="reset-btn" id="mr476Reset" aria-label="Ricomincia lo stesso spartito" title="Ricomincia">↺</button>
+   </div>
+   <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
+   <div class="top-right-controls"><div class="metronome-audio-pill" id="mr476AudioPill">
+    <button type="button" class="audio-tab" id="mr476Audio" aria-label="Attiva o disattiva audio"><span class="audio-icon">♪</span></button>
+   </div></div>
+  </div></div>
+  <div class="staff-stage-single" data-staff-id="mr476Staff">
+   <svg class="staff staff-overlay-single" id="mr476Staff" viewBox="0 0 1000 220" overflow="visible" role="img" aria-label="Battuta musicale in quattro quarti">
+    <g id="mr476StaffBase">
+     <line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"/>
+     <line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"/>
+     <line x1="20" y1="123.08" x2="980" y2="123.08" stroke="#111827" stroke-width="2"/>
+     <line x1="20" y1="138.46" x2="980" y2="138.46" stroke="#111827" stroke-width="2"/>
+     <line x1="20" y1="153.85" x2="980" y2="153.85" stroke="#111827" stroke-width="2"/>
+     <line x1="20" y1="92.31" x2="20" y2="153.85" stroke="#111827" stroke-width="3"/>
+     <line x1="970" y1="92.31" x2="970" y2="153.85" stroke="#111827" stroke-width="2"/>
+     <line x1="980" y1="91.54" x2="980" y2="154.62" stroke="#111827" stroke-width="4"/>
+     <g class="clef-group"><text x="48" y="159" font-size="90" class="clef-symbol">&#119070;</text></g>
+     <text x="130" y="122" class="mr476-signature" font-size="37">4</text>
+     <text x="130" y="155" class="mr476-signature" font-size="37">4</text>
+     <line x1="167" y1="92.31" x2="167" y2="153.85" stroke="#111827" stroke-width="2"/>
+    </g>
+    <g id="mr476Score"></g>
+   </svg>
+  </div>
+  <div class="mr476-play-row">
+    <button class="mr397-arrow mr397-arrow-back" type="button" id="mr476Previous" aria-label="Spartito precedente" title="Spartito precedente"><span aria-hidden="true">❮</span></button>
+    <button class="tempo-action-btn mr476-drum" type="button" id="mr476Drum" aria-label="Batti il tamburo">
+      <img class="tempo-drum-image" src="Assets/tempo-drum-transparent-hands.png?v=2.299" draggable="false" alt="" aria-hidden="true"/>
+    </button>
+    <svg class="mr476-cross" viewBox="0 0 100 100" id="mr476Cross" aria-label="Movimento della mano in otto colpi">
+      <line x1="50" y1="7" x2="50" y2="93" class="mr476-cross-stroke"/>
+      <line x1="7" y1="50" x2="93" y2="50" class="mr476-cross-stroke"/>
+      <circle cx="50" cy="50" r="13" class="mr476-cross-middle"/>
+      <circle cx="50" cy="50" r="10" id="mr476CrossDot" class="mr476-cross-dot"/>
+    </svg>
+    <button class="mr397-arrow mr397-arrow-next" type="button" id="mr476Next" aria-label="Spartito successivo" title="Spartito successivo"><span aria-hidden="true">❯</span></button>
+  </div>
+  <div class="mr476-figures" id="mr476Symbols" role="group" aria-label="Seleziona le figure e le pause da usare nello spartito"></div>
+  <span id="mr476Live" aria-live="polite" role="status"></span>
+ </div>
+</div>
 
 <!-- Coordinazione ritmica: un solo schermo, due tamburi originali -->
 <div id="learnHandsPage" class="page-container" style="display:none">
@@ -18497,7 +18551,7 @@ function isPlayablePageVisibleMR() {
     const ids = [
       "level1Page","level2Page","level3Page","level4Page",
       "level5Page","level6Page","level7Page","level8Page",
-      "learnNotesPage","learnTempoPage","learnHandsPage","playPage","scorePlayerPage"
+      "learnNotesPage","learnTempoPage","solfeggioPage","learnHandsPage","playPage","scorePlayerPage"
     ];
     return ids.some(id => {
       const el = document.getElementById(id);
@@ -18535,6 +18589,8 @@ function hideAllPages() {
     if (settingsPage) settingsPage.style.display = "none";
     if (learnNotesPage) learnNotesPage.style.display = "none";
     if (learnTempoPage) learnTempoPage.style.display = "none";
+    const solfeggioPage = document.getElementById("solfeggioPage");
+    if (solfeggioPage) solfeggioPage.style.display = "none";
     const tempoTreePage=document.getElementById('tempoTreePage');
     if(tempoTreePage) tempoTreePage.style.display = "none";
     for(const id of ['mr444Pizza8Page']){
@@ -19017,7 +19073,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2158-orientation-bridge">
 (() => {
-  const landscapePageIds=["level1Page","level2Page","level3Page","level4Page","level5Page","level6Page","level7Page","level8Page","learnNotesPage","learnTempoPage","learnHandsPage","playPage","scorePlayerPage","trophyPage"];
+  const landscapePageIds=["level1Page","level2Page","level3Page","level4Page","level5Page","level6Page","level7Page","level8Page","learnNotesPage","learnTempoPage","solfeggioPage","learnHandsPage","playPage","scorePlayerPage","trophyPage"];
   let lastMode="",queued=false;
   function isVisibleMR(el){if(!el)return false;const cs=getComputedStyle(el);return cs.display!=="none"&&cs.visibility!=="hidden";}
   function postOrientationMR(mode){try{const h=window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.musicRainbowApp;if(h&&typeof h.postMessage==="function")h.postMessage({type:"orientation",mode});}catch(e){}}
@@ -19030,7 +19086,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.474";
+  const PAGE_BUILD = "2.476";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -30161,7 +30217,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   if(Math.hypot(x,y)>.484)return;
   const angle=(Math.atan2(y,x)+Math.PI/2+2*Math.PI)%(2*Math.PI);
   selectIndex(Math.min(parts-1,Math.floor(angle/(2*Math.PI)*parts)));
-  window.MimoSounds?.play?.('touch');
+  if(typeof playTempoDrumHitMR==='function')playTempoDrumHitMR('strong',160,145);
  });
  wheel.addEventListener('keydown',ev=>{
   if(!['Enter',' ','Backspace','Delete'].includes(ev.key))return;
@@ -30838,96 +30894,280 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 /* Le stanze non adottano mai il fallback grafico portrait, neppure su iPhone. */
 @media(orientation:portrait){#mr461Stage{width:100%!important;height:100%!important}}
 </style>
-<style id="mr475-solfeggio-style">
-#solfeggioPage .app{padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));}
-#solfeggioPage .top-row{grid-template-columns:auto 1fr auto;}
-#solfeggioPage .mr475-title{font-size:clamp(1.4rem,4vw,2.4rem);font-weight:900;letter-spacing:.05em;color:#5b3ea6;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-#solfeggioPage .mr475-top-badge{min-width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,.85);color:#5b3ea6;font-weight:900;border:2px solid rgba(91,62,166,.18);box-shadow:0 2px 6px rgba(15,23,42,.12);}
-#solfeggioPage .mr475-status-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:-8px 18px 10px;}
-#solfeggioPage .mr475-chip{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.86);color:#4b5563;font-weight:800;box-shadow:0 4px 12px rgba(15,23,42,.12);border:2px solid rgba(255,255,255,.78);}
-#solfeggioPage .mr475-staff-card{margin:0 14px 10px;background:#fff;border-radius:22px;box-shadow:0 10px 22px rgba(15,23,42,.18);padding:10px 10px 4px;}
-#solfeggioPage .mr475-staff-wrap{position:relative;width:100%;overflow:hidden;}
-#solfeggioPage .mr475-staff-wrap svg{display:block;width:100%;height:auto;overflow:visible;}
-#solfeggioPage .mr475-helper{margin:8px 14px 10px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.8);text-align:center;font-weight:700;color:#475569;box-shadow:0 8px 18px rgba(15,23,42,.12);}
-#solfeggioPage .mr475-hand-wrap{display:flex;justify-content:center;align-items:center;margin:6px 0 10px;}
-#solfeggioPage .mr475-hand-guide{width:min(210px,48vw);height:auto;filter:drop-shadow(0 8px 16px rgba(15,23,42,.14));}
-#solfeggioPage .mr475-cross-line{stroke:#9ca3af;stroke-width:10;stroke-linecap:round;}
-#solfeggioPage .mr475-cross-ring{fill:#fff;stroke:#cbd5e1;stroke-width:6;}
-#solfeggioPage .mr475-hand-dot{fill:#cbd5e1;stroke:#fff;stroke-width:4;transition:cx .18s ease,cy .18s ease,fill .18s ease,r .12s ease;}
-#solfeggioPage .mr475-drum-row{display:flex;justify-content:center;align-items:center;gap:clamp(12px,3vw,26px);margin:0 12px 10px;}
-#solfeggioPage .mr475-arrow{width:56px;height:56px;border-radius:16px;border:2px solid rgba(15,23,42,.15);background:#fff;color:#5b3ea6;font-size:30px;font-weight:900;box-shadow:0 4px 10px rgba(15,23,42,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;}
-#solfeggioPage .mr475-arrow:disabled{opacity:.45;cursor:default;}
-#solfeggioPage .mr475-drum-btn{width:clamp(120px,22vw,170px);height:clamp(120px,22vw,170px);border:0;background:transparent;padding:0;cursor:pointer;touch-action:manipulation;}
-#solfeggioPage .mr475-drum-btn img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(15,23,42,.20));transition:transform .08s ease,filter .12s ease;}
-#solfeggioPage .mr475-drum-btn.mr475-hit img{animation:tempoDrumStrikeMR .22s ease-out;}
-#solfeggioPage .mr475-drum-btn.mr475-down img{transform:scale(.94);filter:brightness(1.06) saturate(1.04) drop-shadow(0 6px 10px rgba(15,23,42,.22));}
-#solfeggioPage .mr475-difficulty{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 14px 10px;}
-#solfeggioPage .mr475-difficulty-btn{border-radius:999px;padding:10px 16px;border:2px solid rgba(91,62,166,.18);background:rgba(255,255,255,.84);color:#5b3ea6;font-weight:900;box-shadow:0 4px 10px rgba(15,23,42,.12);cursor:pointer;}
-#solfeggioPage .mr475-difficulty-btn.is-active{background:#ede9fe;border-color:#8b5cf6;color:#4c1d95;box-shadow:0 0 0 3px rgba(139,92,246,.14),0 8px 16px rgba(15,23,42,.12);}
-#solfeggioPage .mr475-score-item .tempo-note-core,#solfeggioPage .mr475-score-item .smufl-rest-glyph{transition:filter .12s ease,opacity .12s ease,transform .12s ease;}
-#solfeggioPage .mr475-score-item .tempo-note-core{transform-origin:center;}
-#solfeggioPage .mr475-score-item.is-active .tempo-note-core,#solfeggioPage .mr475-score-item.is-active .smufl-rest-glyph{filter:drop-shadow(0 0 10px rgba(59,130,246,.35));}
-#solfeggioPage .mr475-score-item.is-active .smufl-note-glyph,#solfeggioPage .mr475-score-item.is-active .smufl-rest-glyph,#solfeggioPage .mr475-score-item.is-active .smufl-augmentation-dot{fill:#2563eb!important;}
-#solfeggioPage .mr475-score-item.is-active{transform:scale(1.05);}
-#solfeggioPage .mr475-score-item.is-done .smufl-note-glyph,#solfeggioPage .mr475-score-item.is-done .smufl-rest-glyph,#solfeggioPage .mr475-score-item.is-done .smufl-augmentation-dot{fill:#16a34a!important;opacity:.9;}
-#solfeggioPage .mr475-score-item.is-upcoming .smufl-note-glyph,#solfeggioPage .mr475-score-item.is-upcoming .smufl-rest-glyph,#solfeggioPage .mr475-score-item.is-upcoming .smufl-augmentation-dot{opacity:.82;}
-#solfeggioPage .mr475-caption{font-size:13px;font-weight:800;letter-spacing:.04em;fill:#64748b;}
-#solfeggioPage .mr475-time-signature{font-family:"Baloo 2",sans-serif;font-weight:900;fill:#111827;font-size:50px;}
-#solfeggioPage .mr475-measure-bar{stroke:#111827;stroke-width:3;}
-#solfeggioPage .mr475-complete-flash{animation:mr475CompletePulse .5s ease-out;}
-@keyframes mr475CompletePulse{0%{transform:scale(1)}50%{transform:scale(1.025)}100%{transform:scale(1)}}
+
+<style id="mr476-solfeggio-style">
+/* Solfeggio uses the SAME top bar, sheet, SMuFL glyphs and buttons as the lessons. */
+#solfeggioPage{overflow:hidden!important}
+#solfeggioPage>.app{display:flex;flex-direction:column;overflow:hidden!important;min-height:0;padding-bottom:calc(4px + env(safe-area-inset-bottom,0px))!important}
+#solfeggioPage .top-panel{flex:0 0 auto}
+#solfeggioPage .top-row{grid-template-columns:auto 1fr auto!important}
+#solfeggioPage .rainbow-title-level{font-size:1.9rem;line-height:1;margin:0;}
+#solfeggioPage .top-row .top-right-controls{justify-self:end}
+#solfeggioPage .staff-stage-single{
+ flex:0 1 auto!important;position:relative!important;
+ width:calc(100% - 24px)!important;max-width:none!important;
+ height:clamp(126px,32vh,294px)!important;min-height:114px!important;
+ aspect-ratio:auto!important;margin:5px 12px 10px!important;
+ padding:0!important;overflow:visible!important;
+}
+#solfeggioPage .staff-stage-single>.staff-bg-single,
+#solfeggioPage .staff-stage-single>.staff-overlay-single{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+}
+#solfeggioPage .staff-stage-single>.staff-bg-single{object-fit:fill!important;pointer-events:none!important}
+#solfeggioPage .staff-stage-single>.staff-overlay-single{overflow:visible!important}
+/* Precisely the existing rendering font, also for rests and augmentation dots. */
+#solfeggioPage .smufl-note-glyph,
+#solfeggioPage .smufl-rest-glyph,
+#solfeggioPage .smufl-augmentation-dot,
+#solfeggioPage .smufl-note-flag-glyph,
+#solfeggioPage .mr476-icon-glyph{
+ font-family:"MusicRainbow SMuFL"!important;font-weight:400!important;font-style:normal!important;
+ fill:#111827;stroke:none;pointer-events:none;text-rendering:geometricPrecision;
+}
+#solfeggioPage .staff-overlay-single .clef-group{opacity:1!important}
+#solfeggioPage .clef-symbol{font-family:"Apple Symbols","Noto Music",serif!important;fill:#111827!important;font-size:88px!important;transform:translate(8px,-7px)}
+#solfeggioPage .mr476-signature{font-weight:900;font-family:Georgia,serif;fill:#111827;text-anchor:middle}
+#solfeggioPage .mr476-note-group.is-done .smufl-note-glyph,
+#solfeggioPage .mr476-note-group.is-done .smufl-rest-glyph,
+#solfeggioPage .mr476-note-group.is-done .smufl-augmentation-dot{fill:#16a34a!important}
+#solfeggioPage .mr476-note-group.is-active .smufl-note-glyph,
+#solfeggioPage .mr476-note-group.is-active .smufl-rest-glyph,
+#solfeggioPage .mr476-note-group.is-active .smufl-augmentation-dot{fill:#0284c7!important}
+#solfeggioPage .mr476-play-row{
+ flex:1 1 auto;min-height:0;display:grid;
+ grid-template-columns:clamp(46px,5.6vw,72px) clamp(100px,16vw,180px) clamp(114px,17vw,196px) clamp(46px,5.6vw,72px);
+ align-items:center;justify-content:center;column-gap:clamp(8px,2vw,38px);
+ width:100%;padding:0 12px;
+}
+/* Use the same colourful navigation arrows used in Impara Tempo and Impara le due mani. */
+#solfeggioPage .mr397-arrow{
+ appearance:none!important;-webkit-appearance:none!important;
+ position:relative!important;inset:auto!important;transform:none;
+ box-sizing:border-box!important;
+ width:clamp(52px,6vw,72px)!important;height:clamp(52px,6vw,72px)!important;
+ min-width:52px!important;min-height:52px!important;
+ border-radius:24px!important;border:3px solid rgba(255,255,255,.97)!important;
+ color:white!important;font:900 clamp(27px,3.7vw,41px)/1 system-ui,-apple-system,sans-serif!important;
+ text-shadow:0 2px 1px rgba(0,0,0,.16)!important;
+ box-shadow:0 5px 0 rgba(76,52,122,.24),0 9px 20px rgba(63,43,99,.18),inset 0 2px 4px rgba(255,255,255,.38)!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ cursor:pointer;touch-action:manipulation;
+}
+#solfeggioPage .mr397-arrow-back{background:linear-gradient(145deg,#f9a8d4,#f472b6 42%,#b85cf6)!important}
+#solfeggioPage .mr397-arrow-next{background:linear-gradient(145deg,#86efac,#26c9b5 47%,#3b82f6)!important}
+#solfeggioPage .mr397-arrow:disabled{opacity:.32!important;filter:grayscale(.65)!important;cursor:default!important}
+#solfeggioPage .mr397-arrow:active:not(:disabled){transform:translateY(3px) scale(.94)!important}
+#solfeggioPage .mr476-drum{
+ display:block;width:100%;aspect-ratio:1/1;background:transparent;border:0!important;
+ box-shadow:none!important;margin:0;padding:0;cursor:pointer;touch-action:manipulation;
+}
+#solfeggioPage .mr476-drum img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 9px 16px rgba(15,23,42,.2));}
+#solfeggioPage .mr476-drum.mr476-hit img{animation:tempoDrumStrikeMR .22s ease-out}
+#solfeggioPage .mr476-cross{
+ display:block;width:100%;aspect-ratio:1/1;max-height:100%;
+ overflow:visible;justify-self:center;align-self:center;
+}
+#solfeggioPage .mr476-cross-stroke{stroke:#a5a3b6;stroke-width:9;stroke-linecap:round}
+#solfeggioPage .mr476-cross-middle{fill:white;stroke:#a5a3b6;stroke-width:4}
+#solfeggioPage .mr476-cross-dot{fill:#8b83a9;stroke:white;stroke-width:3.5;transition:cx .18s ease,cy .18s ease,fill .18s ease}
+/* A single strip of individually selectable SMuFL notes/rests: no difficulty card. */
+#solfeggioPage .mr476-figures{
+ flex:0 0 auto;display:flex;align-items:center;justify-content:safe center;
+ gap:clamp(3px,.7vw,12px);width:100%;padding:4px max(10px,env(safe-area-inset-left,0px));
+ overflow-x:auto;overflow-y:hidden;scrollbar-width:none;touch-action:pan-x;min-height:58px;
+}
+#solfeggioPage .mr476-figures::-webkit-scrollbar{display:none}
+#solfeggioPage .mr476-figure{
+ flex:0 0 auto;display:flex!important;align-items:center!important;justify-content:center!important;
+ width:clamp(43px,5vw,67px);height:clamp(50px,8vh,67px);
+ border-radius:13px;border:2px solid #b99bdf;background:#fff9ff;color:#57418e;
+ box-shadow:0 3px 6px #45356b26;position:relative;cursor:pointer;touch-action:manipulation;
+}
+#solfeggioPage .mr476-figure[aria-pressed="true"]{
+ background:#efe4ff!important;border-color:#7246c8!important;box-shadow:0 0 0 2px #d9c9f5!important;
+}
+#solfeggioPage .mr476-figure svg{width:92%;height:95%;pointer-events:none;overflow:hidden}
+#solfeggioPage .mr476-figure .smufl-note-glyph,#solfeggioPage .mr476-figure .smufl-rest-glyph,#solfeggioPage .mr476-figure .smufl-augmentation-dot{fill:#5b3ea6!important}
+#solfeggioPage .mr476-figure[aria-pressed="true"] .smufl-note-glyph,
+#solfeggioPage .mr476-figure[aria-pressed="true"] .smufl-rest-glyph,
+#solfeggioPage .mr476-figure[aria-pressed="true"] .smufl-augmentation-dot{fill:#197b63!important}
+#solfeggioPage .mr476-figure:focus-visible{outline:3px solid #1d4ed8!important;outline-offset:2px}
+#solfeggioPage #mr476Live{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (orientation:landscape) and (max-height:540px){
+ #solfeggioPage .top-row{margin-top:2px!important;margin-bottom:3px!important;padding-top:4px!important;padding-bottom:4px!important}
+ #solfeggioPage .rainbow-title-level{font-size:clamp(1.1rem,4vh,1.6rem)!important}
+ #solfeggioPage .staff-stage-single{height:clamp(108px,33vh,164px)!important;min-height:105px!important;margin-top:3px!important;margin-bottom:5px!important}
+ #solfeggioPage .mr476-play-row{grid-template-columns:46px min(22vh,120px) min(24vh,124px) 46px;column-gap:clamp(9px,2.5vw,26px);}
+ #solfeggioPage .mr397-arrow{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;border-radius:15px!important;font-size:27px!important}
+ #solfeggioPage .mr476-figures{min-height:49px;padding-top:0;padding-bottom:2px}
+ #solfeggioPage .mr476-figure{height:44px;width:44px;border-radius:11px}
+}
+/* iOS orientation is requested through MusicRainbow's existing native bridge; do not simulate portrait. */
 </style>
 
-<script id="mr475-solfeggio-script">(()=>{
-  const onReady=(fn)=>{if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});else fn();};
-  onReady(()=>{
-    const body=document.body; if(!body)return;
-    const learnStack=document.querySelector('#learnSelectOverlay .learn-select-stack');
-    if(learnStack && !document.getElementById('homeLearnSolfeggioBtn')){
-      const btn=document.createElement('button'); btn.type='button'; btn.id='homeLearnSolfeggioBtn'; btn.className='learn-select-choice learn-select-yellow'; btn.setAttribute('aria-label','Solfeggio');
-      btn.innerHTML='<span class="learn-select-choice-icon" aria-hidden="true">✚</span><span class="learn-select-choice-text">Solfeggio</span>';
-      const handsBtn=document.getElementById('homeLearnHandsBtn');
-      if(handsBtn&&handsBtn.parentNode===learnStack)learnStack.insertBefore(btn,handsBtn); else learnStack.appendChild(btn);
-    }
-    if(!document.getElementById('solfeggioPage')){
-      const page=document.createElement('div'); page.id='solfeggioPage'; page.className='page-container'; page.style.display='none';
-      page.innerHTML=`<div class="app"><div class="top-panel"><div class="top-row"><div class="top-left-controls"><button class="menu-btn" id="mr475SolfeggioHome" aria-label="Torna alla Home">⌂</button><button class="reset-btn" id="mr475SolfeggioReset" aria-label="Ricomincia la partitura">↺</button></div><div class="mr475-title">SOLFEGGIO</div><div class="top-right-controls"><span class="mr475-top-badge">4/4</span></div></div></div><div class="mr475-status-row"><div class="mr475-chip" id="mr475ScoreCounter">Spartito 1/1</div><div class="mr475-chip" id="mr475BeatCounter">0 / 8 colpi</div></div><div class="mr475-staff-card" id="mr475StaffCard"><div class="mr475-staff-wrap"><svg id="mr475SolfeggioStaff" viewBox="0 0 1000 220" role="img" aria-label="Spartito di solfeggio in quattro quarti"><g id="mr475StaffBase"><line x1="20" y1="92.31" x2="980" y2="92.31" stroke="#111827" stroke-width="2"></line><line x1="20" y1="107.69" x2="980" y2="107.69" stroke="#111827" stroke-width="2"></line><line x1="20" y1="123.08" x2="980" y2="123.08" stroke="#111827" stroke-width="2"></line><line x1="20" y1="138.46" x2="980" y2="138.46" stroke="#111827" stroke-width="2"></line><line x1="20" y1="153.85" x2="980" y2="153.85" stroke="#111827" stroke-width="2"></line><line x1="20" y1="92.31" x2="20" y2="153.85" stroke="#111827" stroke-width="3"></line><line x1="970" y1="92.31" x2="970" y2="153.85" stroke="#111827" stroke-width="2"></line><line x1="980" y1="91.54" x2="980" y2="154.62" stroke="#111827" stroke-width="4"></line><g class="clef-group"><text x="40" y="164" font-size="115" class="clef-symbol">&#119070;</text></g><text x="118" y="118" class="mr475-time-signature">4</text><text x="118" y="154" class="mr475-time-signature">4</text><line x1="160" y1="92.31" x2="160" y2="153.85" class="mr475-measure-bar"></line></g><g id="mr475SolfeggioScore"></g></svg></div></div><div class="mr475-helper" id="mr475SolfeggioStatus">Tocca il tamburo e conta gli 8 colpi della battuta. Quando la battuta finisce, viene proposto uno spartito nuovo.</div><div class="mr475-hand-wrap"><svg class="mr475-hand-guide" viewBox="0 0 100 100" aria-hidden="true"><line x1="50" y1="8" x2="50" y2="92" class="mr475-cross-line"></line><line x1="8" y1="50" x2="92" y2="50" class="mr475-cross-line"></line><circle cx="50" cy="50" r="16" class="mr475-cross-ring"></circle><circle id="mr475HandDot" cx="50" cy="50" r="11" class="mr475-hand-dot"></circle></svg></div><div class="mr475-drum-row"><button type="button" class="mr475-arrow" id="mr475PrevScore" aria-label="Spartito precedente">❮</button><button type="button" class="mr475-drum-btn" id="mr475DrumBtn" aria-label="Batti il tempo con il tamburo"><img src="Assets/tempo-drum-transparent-hands.png?v=2.299" alt="Tamburo" draggable="false"></button><button type="button" class="mr475-arrow" id="mr475NextScore" aria-label="Spartito successivo">❯</button></div><div class="mr475-difficulty" role="group" aria-label="Scegli la difficoltà ritmica"><button type="button" class="mr475-difficulty-btn" data-difficulty="semibreve">Semibreve</button><button type="button" class="mr475-difficulty-btn" data-difficulty="minima">Minima</button><button type="button" class="mr475-difficulty-btn" data-difficulty="semiminima">Semiminima</button><button type="button" class="mr475-difficulty-btn" data-difficulty="croma">Croma</button></div></div>`;
-      body.insertBefore(page, body.lastElementChild);
-    }
-    const solPage=document.getElementById('solfeggioPage'), scoreGroup=document.getElementById('mr475SolfeggioScore'), drumBtn=document.getElementById('mr475DrumBtn'), statusEl=document.getElementById('mr475SolfeggioStatus'), scoreCounterEl=document.getElementById('mr475ScoreCounter'), beatCounterEl=document.getElementById('mr475BeatCounter'), handDot=document.getElementById('mr475HandDot'), prevBtn=document.getElementById('mr475PrevScore'), nextBtn=document.getElementById('mr475NextScore'), resetBtn=document.getElementById('mr475SolfeggioReset'), homeBtn=document.getElementById('mr475SolfeggioHome'), difficultyBtns=[...document.querySelectorAll('#solfeggioPage .mr475-difficulty-btn')], staffCard=document.getElementById('mr475StaffCard');
-    const NOTE_Y_CHOICES=[107.69,123.08,138.46], handPositions=[{x:50,y:50,color:'#cbd5e1'},{x:50,y:82,color:'#ef4444'},{x:50,y:50,color:'#cbd5e1'},{x:18,y:50,color:'#facc15'},{x:50,y:50,color:'#cbd5e1'},{x:82,y:50,color:'#22c55e'},{x:50,y:50,color:'#cbd5e1'},{x:50,y:18,color:'#3b82f6'},{x:50,y:50,color:'#cbd5e1'}];
-    const rhythmPool={semibreve:[{name:'semibreve',label:'Semibreve',units:8,rest:false},{name:'semibreve',label:'Pausa di semibreve',units:8,rest:true}],minima:[{name:'semibreve',label:'Semibreve',units:8,rest:false},{name:'semibreve',label:'Pausa di semibreve',units:8,rest:true},{name:'minima_puntata',label:'Minima puntata',units:6,rest:false},{name:'minima_puntata',label:'Pausa di minima puntata',units:6,rest:true},{name:'minima',label:'Minima',units:4,rest:false},{name:'minima',label:'Pausa di minima',units:4,rest:true}],semiminima:[{name:'semibreve',label:'Semibreve',units:8,rest:false},{name:'semibreve',label:'Pausa di semibreve',units:8,rest:true},{name:'minima_puntata',label:'Minima puntata',units:6,rest:false},{name:'minima_puntata',label:'Pausa di minima puntata',units:6,rest:true},{name:'minima',label:'Minima',units:4,rest:false},{name:'minima',label:'Pausa di minima',units:4,rest:true},{name:'semiminima_puntata',label:'Semiminima puntata',units:3,rest:false},{name:'semiminima_puntata',label:'Pausa di semiminima puntata',units:3,rest:true},{name:'semiminima',label:'Semiminima',units:2,rest:false},{name:'semiminima',label:'Pausa di semiminima',units:2,rest:true}],croma:[{name:'semibreve',label:'Semibreve',units:8,rest:false},{name:'semibreve',label:'Pausa di semibreve',units:8,rest:true},{name:'minima_puntata',label:'Minima puntata',units:6,rest:false},{name:'minima_puntata',label:'Pausa di minima puntata',units:6,rest:true},{name:'minima',label:'Minima',units:4,rest:false},{name:'minima',label:'Pausa di minima',units:4,rest:true},{name:'semiminima_puntata',label:'Semiminima puntata',units:3,rest:false},{name:'semiminima_puntata',label:'Pausa di semiminima puntata',units:3,rest:true},{name:'semiminima',label:'Semiminima',units:2,rest:false},{name:'semiminima',label:'Pausa di semiminima',units:2,rest:true},{name:'croma',label:'Croma',units:1,rest:false},{name:'croma',label:'Pausa di croma',units:1,rest:true}]};
-    const solState={difficulty:'croma',history:[],historyIndex:-1,unitIndex:0,completeTimer:null};
-    const shuffle=arr=>{const copy=arr.slice(); for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [copy[i],copy[j]]=[copy[j],copy[i]];} return copy;};
-    const poolForDifficulty=level=>rhythmPool[level]||rhythmPool.croma; const chooseNoteY=()=>NOTE_Y_CHOICES[Math.floor(Math.random()*NOTE_Y_CHOICES.length)];
-    function generateBar(level){ const pool=poolForDifficulty(level), memo=new Map(); function build(remaining,depth=0){ if(remaining===0)return []; const key=remaining+'|'+depth; if(memo.has(key))return memo.get(key); let candidates=shuffle(pool.filter(item=>item.units<=remaining)).sort((a,b)=>{const av=remaining-a.units,bv=remaining-b.units; if(depth===0&&a.units===8&&b.units!==8)return 1; if(depth===0&&b.units===8&&a.units!==8)return -1; return av-bv;}); for(const item of candidates){ const tail=build(remaining-item.units,depth+1); if(tail){ const chosen=[{...item,noteY:item.rest?null:chooseNoteY()},...tail]; memo.set(key,chosen); return chosen; } } memo.set(key,null); return null; } const base=build(8,0)||[{name:'semibreve',label:'Semibreve',units:8,rest:false,noteY:123.08}]; return base.map((item,idx)=>({...item,id:'mr475_'+Date.now()+'_'+idx+'_'+Math.random().toString(36).slice(2,7)})); }
-    const currentPattern=()=>solState.history[solState.historyIndex]||null;
-    function setHandPosition(step){ const pos=handPositions[Math.max(0,Math.min(handPositions.length-1,step))]; if(!handDot||!pos)return; handDot.setAttribute('cx',String(pos.x)); handDot.setAttribute('cy',String(pos.y)); handDot.setAttribute('fill',pos.color); handDot.setAttribute('r',String(step===0?11:10)); }
-    function flashSolfeggioDrum(){ if(!drumBtn)return; drumBtn.classList.remove('mr475-hit'); void drumBtn.offsetWidth; drumBtn.classList.add('mr475-hit'); setTimeout(()=>drumBtn.classList.remove('mr475-hit'),180); }
-    function playSolfeggioDrum(strength='strong'){ flashSolfeggioDrum(); try{ const ctx=(typeof getAudioCtx==='function')?getAudioCtx():null; if(!ctx)return; if(typeof audioEnabled!=='undefined'&&!audioEnabled){ audioEnabled=true; audioPreferenceExplicit=true; try{localStorage.setItem(AUDIO_PREF_KEY,'1');}catch(e){} try{updateAudioButtonsUI();}catch(e){} } const run=()=>{ const now=ctx.currentTime+0.001, strong=strength!=='weak', duration=strong?.16:.12, frames=Math.max(1,Math.floor(ctx.sampleRate*duration)), buffer=ctx.createBuffer(1,frames,ctx.sampleRate), data=buffer.getChannelData(0); for(let i=0;i<frames;i++){ const x=i/frames, env=Math.exp(-(strong?8.2:10.5)*x); data[i]=(Math.random()*2-1)*env; } const noise=ctx.createBufferSource(); noise.buffer=buffer; const hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.setValueAtTime(strong?1500:2600,now); const band=ctx.createBiquadFilter(); band.type='bandpass'; band.frequency.setValueAtTime(strong?4700:6500,now); band.Q.setValueAtTime(strong?.72:1.05,now); const ng=ctx.createGain(); ng.gain.setValueAtTime(strong?.46:.23,now); ng.gain.exponentialRampToValueAtTime(.0001,now+duration); noise.connect(hp); hp.connect(band); band.connect(ng); ng.connect(getAppMasterNode(ctx)); noise.start(now); noise.stop(now+duration); const bodyOsc=ctx.createOscillator(); bodyOsc.type='triangle'; bodyOsc.frequency.setValueAtTime(strong?168:225,now); bodyOsc.frequency.exponentialRampToValueAtTime(strong?112:170,now+.07); const bg=ctx.createGain(); bg.gain.setValueAtTime(strong?.20:.075,now); bg.gain.exponentialRampToValueAtTime(.0001,now+Math.min(.17,duration*.72)); bodyOsc.connect(bg); bg.connect(getAppMasterNode(ctx)); bodyOsc.start(now); bodyOsc.stop(now+Math.min(.19,duration*.8)); }; if(ctx.state==='suspended'&&ctx.resume)ctx.resume().then(run).catch(()=>{}); else run(); }catch(e){} }
-    const difficultyLabel=level=>({semibreve:'Semibreve',minima:'Minima',semiminima:'Semiminima',croma:'Croma'})[level]||'Croma';
-    const updateDifficultyButtons=()=>difficultyBtns.forEach(btn=>btn.classList.toggle('is-active',btn.dataset.difficulty===solState.difficulty));
-    function computeActiveIndex(pattern,unitIndex){ let sum=0; for(let i=0;i<pattern.length;i++){ const next=sum+pattern[i].units; if(unitIndex<next)return i; sum=next; } return -1; }
-    function renderPattern(){ const pattern=currentPattern(); if(!scoreGroup||!pattern)return; scoreGroup.replaceChildren(); const fromX=160,toX=966,count=pattern.length; const centers=(typeof visualCentersFromExtentsMR==='function')?visualCentersFromExtentsMR(pattern.map(item=>rhythmVisualExtentMR({name:item.name})),fromX,toX,true,false):pattern.map((_,i)=>fromX+((toX-fromX)*(i+.5)/count)); pattern.forEach((item,index)=>{ const x=centers[index]||((fromX+toX)/2), y=item.rest?123.08:(item.noteY||123.08); const outer=document.createElementNS('http://www.w3.org/2000/svg','g'); outer.classList.add('mr475-score-item','is-upcoming'); outer.dataset.itemIndex=String(index); outer.setAttribute('transform',`translate(${x}, ${y})`); const core=document.createElementNS('http://www.w3.org/2000/svg','g'); core.classList.add('tempo-note-core','note-symbol'); if(item.rest)appendSmuflRestPartsMR(core,item.name); else appendSmuflNotePartsMR(core,item.name,y,'single',71); outer.appendChild(core); if(item.rest){ const label=document.createElementNS('http://www.w3.org/2000/svg','text'); label.setAttribute('x','0'); label.setAttribute('y','52'); label.setAttribute('text-anchor','middle'); label.classList.add('mr475-caption'); label.textContent='Pausa'; outer.appendChild(label);} item.element=outer; scoreGroup.appendChild(outer); }); updatePatternProgress(); }
-    function updatePatternProgress(){ const pattern=currentPattern(); if(!pattern)return; const activeIndex=computeActiveIndex(pattern,solState.unitIndex); let consumed=0; pattern.forEach(item=>{ const start=consumed,end=consumed+item.units; consumed=end; if(!item.element)return; item.element.classList.toggle('is-done',solState.unitIndex>=end); item.element.classList.toggle('is-active',solState.unitIndex>=start && solState.unitIndex<end); item.element.classList.toggle('is-upcoming',solState.unitIndex<start); }); if(beatCounterEl)beatCounterEl.textContent=`${Math.min(solState.unitIndex,8)} / 8 colpi`; if(scoreCounterEl)scoreCounterEl.textContent=`Spartito ${Math.max(1,solState.historyIndex+1)} / ${Math.max(1,solState.history.length)}`; if(prevBtn)prevBtn.disabled=solState.historyIndex<=0; if(statusEl){ const item=activeIndex>=0?pattern[activeIndex]:null; if(solState.unitIndex>=8)statusEl.textContent='Battuta completata! Tra poco compare uno spartito nuovo.'; else if(item)statusEl.textContent=`Difficoltà: ${difficultyLabel(solState.difficulty)} · Figura attiva: ${item.label} · Colpo ${solState.unitIndex+1} di 8.`; else statusEl.textContent='Tocca il tamburo e conta gli 8 colpi della battuta.'; } }
-    function resetCurrentPattern(){ if(solState.completeTimer){clearTimeout(solState.completeTimer); solState.completeTimer=null;} solState.unitIndex=0; setHandPosition(0); updatePatternProgress(); }
-    function ensureHistoryHasCurrent(){ if(solState.historyIndex<0||!solState.history.length){ solState.history=[generateBar(solState.difficulty)]; solState.historyIndex=0; } }
-    function loadCurrentPattern(){ ensureHistoryHasCurrent(); renderPattern(); resetCurrentPattern(); }
-    function generateNextPattern(auto=false){ if(solState.completeTimer){clearTimeout(solState.completeTimer); solState.completeTimer=null;} if(solState.historyIndex<solState.history.length-1 && !auto){ solState.historyIndex+=1; } else { solState.history=solState.history.slice(0,solState.historyIndex+1); solState.history.push(generateBar(solState.difficulty)); solState.historyIndex=solState.history.length-1; } loadCurrentPattern(); }
-    function goPrevPattern(){ if(solState.historyIndex>0){ if(solState.completeTimer){clearTimeout(solState.completeTimer); solState.completeTimer=null;} solState.historyIndex-=1; loadCurrentPattern(); } }
-    function setDifficulty(level){ solState.difficulty=level; updateDifficultyButtons(); solState.history=[]; solState.historyIndex=-1; loadCurrentPattern(); }
-    function completeMeasure(){ if(staffCard){ staffCard.classList.remove('mr475-complete-flash'); void staffCard.offsetWidth; staffCard.classList.add('mr475-complete-flash'); setTimeout(()=>staffCard.classList.remove('mr475-complete-flash'),520); } if(solState.completeTimer)clearTimeout(solState.completeTimer); solState.completeTimer=setTimeout(()=>{ solState.completeTimer=null; generateNextPattern(true); },700); }
-    function onDrumHit(){ ensureHistoryHasCurrent(); if(solState.unitIndex>=8)return; const strength=(Math.max(0,solState.unitIndex)%2===0)?'strong':'weak'; playSolfeggioDrum(strength); solState.unitIndex+=1; setHandPosition(solState.unitIndex); updatePatternProgress(); if(solState.unitIndex>=8)completeMeasure(); }
-    function openSolfeggio(){ try{hideAllPages();}catch(e){} const homeScreen=document.getElementById('homeScreen'); if(homeScreen)homeScreen.style.display='none'; if(solPage)solPage.style.display='flex'; updateDifficultyButtons(); loadCurrentPattern(); }
-    window.MusicRainbowOpenSolfeggioMR=openSolfeggio;
-    if(typeof hideAllPages==='function' && !hideAllPages.__mr475Patched){ const originalHideAllPages=hideAllPages; const patched=function(){ originalHideAllPages(); if(solPage)solPage.style.display='none'; }; patched.__mr475Patched=true; hideAllPages=patched; }
-    if(homeBtn)homeBtn.addEventListener('click',()=>{try{showHome();}catch(e){ if(solPage)solPage.style.display='none'; }}); if(resetBtn)resetBtn.addEventListener('click',resetCurrentPattern); if(prevBtn)prevBtn.addEventListener('click',goPrevPattern); if(nextBtn)nextBtn.addEventListener('click',()=>generateNextPattern(false));
-    if(drumBtn){ drumBtn.addEventListener('pointerdown',()=>{drumBtn.classList.add('mr475-down');}); const endDown=()=>drumBtn.classList.remove('mr475-down'); drumBtn.addEventListener('pointerup',endDown); drumBtn.addEventListener('pointercancel',endDown); drumBtn.addEventListener('pointerleave',endDown); drumBtn.addEventListener('click',onDrumHit); }
-    difficultyBtns.forEach(btn=>btn.addEventListener('click',()=>setDifficulty(btn.dataset.difficulty||'croma'))); document.getElementById('homeLearnSolfeggioBtn')?.addEventListener('click',()=>{document.getElementById('learnSelectOverlay')?.classList.remove('active'); openSolfeggio();});
-    const origMimoPlay=(window.MimoSounds && typeof window.MimoSounds.play==='function')?window.MimoSounds.play.bind(window.MimoSounds):null; if(origMimoPlay && !window.MimoSounds.__mr475PizzaPatched){ window.MimoSounds.play=function(name,...rest){ if(name==='touch' && window.__mr475PizzaTapMode){ try{playSolfeggioDrum((Math.random()>.5)?'weak':'strong');}catch(e){} return; } return origMimoPlay(name,...rest); }; window.MimoSounds.__mr475PizzaPatched=true; }
-    const pizzaWheel=document.getElementById('mr444PizzaWheel8'); if(pizzaWheel){ pizzaWheel.addEventListener('pointerup',()=>{window.__mr475PizzaTapMode=true; setTimeout(()=>{window.__mr475PizzaTapMode=false;},0);},true); pizzaWheel.addEventListener('keydown',(ev)=>{ if(['Enter',' ','Backspace','Delete'].includes(ev.key)){ window.__mr475PizzaTapMode=true; setTimeout(()=>{window.__mr475PizzaTapMode=false;},0); } },true); }
-    updateDifficultyButtons(); ensureHistoryHasCurrent(); setHandPosition(0);
-  });
+<script id="mr476-solfeggio-script">(()=>{
+ const onReady=callback=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',callback,{once:true}):callback();
+ onReady(()=>{
+  const $=id=>document.getElementById(id);
+  const page=$('solfeggioPage'),score=$('mr476Score'),drum=$('mr476Drum'),dot=$('mr476CrossDot'),symbols=$('mr476Symbols'),live=$('mr476Live');
+  if(!page||!score||!drum||!dot||!symbols)return;
+  const POSITIONS=[
+   [50,50,'#8b83a9'],[50,84,'#e44747'],[50,50,'#8b83a9'],
+   [16,50,'#e1b426'],[50,50,'#8b83a9'],[84,50,'#28a86a'],
+   [50,50,'#8b83a9'],[50,16,'#347ee7'],[50,50,'#8b83a9']
+  ];
+  // Duration units are sixteenths, allowing correct dotted eighths in a 4/4 bar.
+  // Dotted whole notes/rests (24 sixteenths) cannot fit, so they are not offered.
+  const DURATIONS=[['semibreve',16,'Semibreve'],['minima',8,'Minima'],
+    ['minima_puntata',12,'Minima puntata'],['semiminima',4,'Semiminima'],
+    ['semiminima_puntata',6,'Semiminima puntata'],['croma',2,'Croma'],
+    ['croma_puntata',3,'Croma puntata']];
+  const items=[];
+  for(const rest of [false,true])for(const [name,units,label] of DURATIONS){
+   items.push({id:(rest?'rest:':'note:')+name,rest,name,units,label:(rest?'Pausa di ':'')+label});
+  }
+  const selected=new Set(['note:semiminima','note:croma','rest:semiminima','rest:croma']);
+  const state={history:[],index:0,tick:0,timer:null,animationTimer:null};
+  const shuffled=values=>{
+    const arr=values.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;
+  };
+  const available=()=>items.filter(item=>selected.has(item.id));
+  function canFill(values){
+   const possible=Array(17).fill(false);possible[0]=true;
+   for(let sum=1;sum<=16;sum++)possible[sum]=values.some(i=>i.units<=sum&&possible[sum-i.units]);
+   return possible[16];
+  }
+  function randomBar(){
+   const pool=available(),reachable=Array(17).fill(false);reachable[0]=true;
+   for(let n=1;n<=16;n++)reachable[n]=pool.some(i=>i.units<=n&&reachable[n-i.units]);
+   if(!reachable[16])return null;
+   const out=[];let left=16;
+   while(left>0){
+    const fitting=shuffled(pool.filter(i=>i.units<=left&&reachable[left-i.units]));
+    // Prefer a varied but valid bar; never add a figure outside the chosen set.
+    const chosen=fitting[Math.floor(Math.random()*Math.min(4,fitting.length))];
+    if(!chosen)break;
+    out.push({id:chosen.id,name:chosen.name,units:chosen.units,rest:chosen.rest,label:chosen.label,
+      y:[107.69,115.38,123.08,130.77,138.46][Math.floor(Math.random()*5)]});
+    left-=chosen.units;
+   }
+   return left===0?out:null;
+  }
+  function equivalent(a,b){return Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&a.every((v,i)=>v.id===b[i].id&&v.y===b[i].y);}
+  function nextNewBar(){let result=randomBar();for(let i=0;i<8&&equivalent(result,state.history[state.index]);i++)result=randomBar();return result;}
+  const current=()=>state.history[state.index]||null;
+  function moveDot(){const [x,y,color]=POSITIONS[Math.max(0,Math.min(8,state.tick))];dot.setAttribute('cx',String(x));dot.setAttribute('cy',String(y));dot.setAttribute('fill',color);}
+  function render(){
+   const pattern=current();if(!pattern)return;
+   score.replaceChildren();
+   const left=190,right=946,count=pattern.length;
+   const extents=pattern.map(i=>typeof rhythmVisualExtentMR==='function'?rhythmVisualExtentMR({name:i.name}):{left:12,right:20});
+   const xs=typeof visualCentersFromExtentsMR==='function'?visualCentersFromExtentsMR(extents,167,966,true,false):pattern.map((_,i)=>left+(right-left)*(i+.5)/count);
+   pattern.forEach((item,index)=>{
+    const x=xs[index],y=item.rest?123.08:item.y;
+    const group=document.createElementNS('http://www.w3.org/2000/svg','g');
+    group.setAttribute('transform',`translate(${x},${y})`);
+    group.classList.add('mr476-note-group');
+    group.setAttribute('aria-label',item.label);
+    const core=document.createElementNS('http://www.w3.org/2000/svg','g');
+    core.classList.add('tempo-note-core','note-symbol');
+    // Reuse the SAME SMuFL composers as the existing musical levels.
+    if(item.rest)appendSmuflRestPartsMR(core,item.name);
+    else appendSmuflNotePartsMR(core,item.name,y,'single',71);
+    group.appendChild(core);score.appendChild(group);
+    item.node=group;
+   });
+   updateProgress();
+  }
+  function updateProgress(){
+   const pattern=current();if(!pattern)return;
+   let position=0;
+   pattern.forEach(item=>{
+    const end=position+item.units;
+    item.node?.classList.toggle('is-done',state.tick*2>=end);
+    item.node?.classList.toggle('is-active',state.tick*2>=position&&state.tick*2<end);
+    position=end;
+   });
+   $('mr476Previous').disabled=state.index===0;
+   live.textContent=`Spartito ${state.index+1} di ${state.history.length}, colpo ${state.tick} di 8`;
+  }
+  function stopTimer(){if(state.timer!==null){clearTimeout(state.timer);state.timer=null;}}
+  function restart(){stopTimer();state.tick=0;moveDot();updateProgress();}
+  function goIndex(index){stopTimer();state.index=index;render();restart();}
+  function nextBar(){
+   if(state.index<state.history.length-1)goIndex(state.index+1);
+   else{
+    const candidate=nextNewBar();if(!candidate)return;
+    state.history.push(candidate);goIndex(state.history.length-1);
+   }
+  }
+  function redrawSelection(){symbols.querySelectorAll('button[data-symbol]').forEach(btn=>btn.setAttribute('aria-pressed',String(selected.has(btn.dataset.symbol))));}
+  function drawIcons(){
+   symbols.replaceChildren();
+   items.forEach(item=>{
+    const button=document.createElement('button');button.type='button';button.className='mr476-figure mr445ResolutionBtn';
+    button.dataset.symbol=item.id;button.setAttribute('aria-label',item.label);button.title=item.label;
+    button.setAttribute('aria-pressed',String(selected.has(item.id)));
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','-39 -61 92 116');svg.setAttribute('aria-hidden','true');
+    const group=document.createElementNS('http://www.w3.org/2000/svg','g');
+    if(item.rest)appendSmuflRestPartsMR(group,item.name);
+    else appendSmuflNotePartsMR(group,item.name,123.08,'single',71);
+    svg.appendChild(group);button.appendChild(svg);
+    button.addEventListener('click',()=>{
+      if(selected.has(item.id))selected.delete(item.id);else selected.add(item.id);
+      if(!canFill(available())){
+       if(selected.has(item.id))selected.delete(item.id);else selected.add(item.id);
+       live.textContent='Questa scelta non permette di completare una battuta 4/4.';
+       return;
+      }
+      redrawSelection();state.history=[];state.index=0;
+      const bar=randomBar();if(bar){state.history=[bar];render();restart();}
+    });
+    symbols.appendChild(button);
+   });
+  }
+  function playDrum(strength){
+   // This is the ORIGINAL existing lesson drum, not a new approximation.
+   if(typeof playTempoDrumHitMR==='function')playTempoDrumHitMR(strength,160,145);
+   drum.classList.remove('mr476-hit');void drum.offsetWidth;drum.classList.add('mr476-hit');
+  }
+  function tap(){
+   if(state.tick>=8)return;
+   playDrum(state.tick%2===0?'strong':'weak');
+   state.tick++;moveDot();updateProgress();
+   if(state.tick===8){stopTimer();state.timer=setTimeout(()=>{state.timer=null;nextBar();},560);}
+  }
+  function syncAudio(){
+   const audio=$('mr476Audio');if(!audio)return;
+   const enabled=typeof audioEnabled==='boolean'?audioEnabled:true;
+   audio.classList.toggle('audio-on',enabled);audio.classList.toggle('audio-off',!enabled);
+   audio.setAttribute('aria-pressed',String(enabled));
+  }
+  function open(){
+   if(typeof window.MusicRainbowGoHomeMR==='function'){
+    // First close all other pages via the existing navigation, then hide Home.
+    window.MusicRainbowGoHomeMR();
+   }
+   const home=$('homeScreen');if(home)home.style.display='none';
+   $('learnSelectOverlay')?.classList.remove('active');
+   page.style.display='flex';
+   if(!current())state.history.push(randomBar());
+   render();restart();syncAudio();
+  }
+  window.MusicRainbowOpenSolfeggioMR=open;
+  $('homeLearnSolfeggioBtn')?.addEventListener('click',open);
+  $('mr476Home').addEventListener('click',()=>{stopTimer();window.MusicRainbowGoHomeMR?.();});
+  $('mr476Reset').addEventListener('click',restart);
+  $('mr476Previous').addEventListener('click',()=>{if(state.index>0)goIndex(state.index-1);});
+  $('mr476Next').addEventListener('click',nextBar);
+  drum.addEventListener('click',tap);
+  $('mr476Audio')?.addEventListener('click',()=>{if(typeof setAudioEnabled==='function')setAudioEnabled(!audioEnabled);syncAudio();});
+  window.addEventListener('musicrainbow:audio-changed',syncAudio);
+  drawIcons();state.history=[randomBar()];state.index=0;moveDot();
+ });
 })();</script>
+
 </body>
 </html>

@@ -19088,7 +19088,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.478";
+  const PAGE_BUILD = "2.479";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -31101,7 +31101,13 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
       const xs=typeof visualCentersFromExtentsMR==='function'
         ?visualCentersFromExtentsMR(extents,from,to,false,false)
         :pattern.map((_,i)=>from+(to-from)*(i+.5)/pattern.length);
+      // Same SMuFL engraving / beaming engine used in levels 5–8.
+      // A run may not cross a pause, a non-eighth note or a barline.
+      const notationForBeams=[];
+      let onsetUnits=0;
       pattern.forEach((item,index)=>{
+        const onsetBeat=measure*4+onsetUnits/4;
+        onsetUnits+=item.units;
         const x=xs[index],y=item.rest?123.08:item.y;
         const group=document.createElementNS('http://www.w3.org/2000/svg','g');
         group.setAttribute('transform',`translate(${x},${y})`);
@@ -31112,7 +31118,17 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
         if(item.rest)appendSmuflRestPartsMR(core,item.name);
         else appendSmuflNotePartsMR(core,item.name,y,'single',71);
         group.appendChild(core);score.appendChild(group);item.node=group;
+        notationForBeams.push({
+          cx:x,cy:y,onsetBeat,durationName:item.name,
+          midi:item.rest?null:71,isRest:item.rest,element:group
+        });
       });
+      // Substitutes the isolated flagged eighth glyphs with genuine SMuFL
+      // noteheads, correctly sized stems and a shared beam. This is precisely
+      // the pre-existing music notation helper, not a new drawing style.
+      if(typeof applyRhythmEighthBeamsMR==='function'){
+        applyRhythmEighthBeamsMR(notationForBeams,score,123.08);
+      }
     });
     updateProgress();
   }
@@ -31210,12 +31226,21 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    const home=$('homeScreen');if(home)home.style.display='none';
    $('learnSelectOverlay')?.classList.remove('active');
    page.style.display='flex';
+   document.body.classList.add('mr479-solfeggio-active');
    if(!current())state.history.push(randomScore());
    render();restart();syncAudio();
   }
   window.MusicRainbowOpenSolfeggioMR=open;
   $('homeLearnSolfeggioBtn')?.addEventListener('click',open);
-  $('mr476Home').addEventListener('click',()=>{stopTimer();window.MusicRainbowGoHomeMR?.();});
+  $('mr476Home').addEventListener('click',()=>{
+    stopTimer();document.body.classList.remove('mr479-solfeggio-active');
+    window.MusicRainbowGoHomeMR?.();
+  });
+  // Keep the original model correctly positioned even when an existing
+  // navigation route closes this page without clicking the local Home button.
+  const syncMimoPlacement=()=>document.body.classList.toggle('mr479-solfeggio-active',
+    page.getClientRects().length>0&&getComputedStyle(page).display!=='none');
+  new MutationObserver(syncMimoPlacement).observe(page,{attributes:true,attributeFilter:['style','class','hidden']});
   $('mr476Reset').addEventListener('click',restart);
   $('mr476Previous').addEventListener('click',()=>{if(state.index>0)goIndex(state.index-1);});
   $('mr476Next').addEventListener('click',nextBar);
@@ -31226,5 +31251,40 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  });
 })();</script>
 
+
+<style id="mr479-solfeggio-mimo-and-beams">
+/* The same SMuFL notehead/stem/beam classes as the other lessons. */
+#solfeggioPage .rhythm-notehead-glyph{
+ font-family:"MusicRainbow SMuFL"!important;
+ font-style:normal!important;font-weight:400!important;
+ fill:#111827;stroke:none;pointer-events:none;
+}
+#solfeggioPage .rhythm-note-beam,
+#solfeggioPage .rhythm-note-stem{fill:#111827!important;stroke:none!important;pointer-events:none!important;}
+#solfeggioPage .mr476-note-group.is-active .rhythm-notehead-glyph{fill:#0284c7!important;}
+#solfeggioPage .mr476-note-group.is-done .rhythm-notehead-glyph{fill:#16a34a!important;}
+/* Show the existing, genuine 3D Mìmo renderer at the bottom left only
+   while Solfeggio is open. Respect the user's Mìmo visibility preference. */
+html body.mr479-solfeggio-active:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy,
+html body.mr479-solfeggio-active.mr410-mimo-safe:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
+ position:fixed!important;
+ left:calc(env(safe-area-inset-left,0px) + clamp(8px,1.4vw,24px))!important;
+ right:auto!important;
+ top:auto!important;
+ bottom:calc(env(safe-area-inset-bottom,0px) + clamp(78px,10.3vh,120px))!important;
+ width:clamp(86px,11.5vw,155px)!important;
+ height:clamp(98px,17vh,175px)!important;
+ max-height:none!important;
+ transform:none!important;
+ clip-path:none!important;
+ overflow:visible!important;
+ z-index:200!important;
+}
+/* Never override the app's user-selectable Mìmo visibility. */
+html body.mr479-solfeggio-active.mr410-mimo-hidden #mimoBuddy,
+html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
+ visibility:hidden!important;opacity:0!important;pointer-events:none!important;
+}
+</style>
 </body>
 </html>

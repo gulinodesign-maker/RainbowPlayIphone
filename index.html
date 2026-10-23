@@ -7716,15 +7716,41 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
       </button>
       <button class="mr397-arrow mr397-arrow-next" type="button" id="mr476Next" aria-label="Spartito successivo" title="Spartito successivo"><span aria-hidden="true">❯</span></button>
     </div>
-    <svg class="mr476-cross" viewBox="0 0 100 100" id="mr476Cross" role="img" aria-label="Movimento della mano in otto colpi">
-      <line x1="50" y1="7" x2="50" y2="93" class="mr476-cross-stroke"/>
-      <line x1="7" y1="50" x2="93" y2="50" class="mr476-cross-stroke"/>
-      <line id="mr478ArmDown" x1="50" y1="50" x2="50" y2="93" class="mr478-arm mr478-down" />
-      <line id="mr478ArmLeft" x1="50" y1="50" x2="7" y2="50" class="mr478-arm mr478-left" />
-      <line id="mr478ArmRight" x1="50" y1="50" x2="93" y2="50" class="mr478-arm mr478-right" />
-      <line id="mr478ArmUp" x1="50" y1="50" x2="50" y2="7" class="mr478-arm mr478-up" />
-      <circle cx="50" cy="50" r="13" class="mr476-cross-middle"/>
-      <circle cx="50" cy="50" r="10" id="mr476CrossDot" class="mr476-cross-dot"/>
+    <svg class="mr476-cross mr480-directional-cross" viewBox="0 0 100 100" id="mr476Cross" role="img" aria-label="Gesto del solfeggio: otto colpi, giù rosso, sinistra verde, destra giallo, su blu">
+      <defs>
+        <linearGradient id="mr480InactiveKey" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ebe6f5"/><stop offset="1" stop-color="#bcb4d3"/></linearGradient>
+        <linearGradient id="mr480Blue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#75d8ff"/><stop offset=".40" stop-color="#278cff"/><stop offset="1" stop-color="#0759c6"/></linearGradient>
+        <linearGradient id="mr480Green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7df5c5"/><stop offset=".42" stop-color="#27cd79"/><stop offset="1" stop-color="#078944"/></linearGradient>
+        <linearGradient id="mr480Yellow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff89c"/><stop offset=".40" stop-color="#ffe033"/><stop offset="1" stop-color="#ed9c00"/></linearGradient>
+        <linearGradient id="mr480Red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9599"/><stop offset=".40" stop-color="#ff4b57"/><stop offset="1" stop-color="#c91736"/></linearGradient>
+      </defs>
+      <!-- Rounded arrow keys as in visual option 2. Each key lights up after its downbeat. -->
+      <g class="mr480-pad" aria-hidden="true">
+        <rect x="36" y="2" width="28" height="41" rx="10" fill="url(#mr480InactiveKey)" class="mr480-pad-base"/>
+        <rect id="mr478ArmUp" x="36" y="2" width="28" height="41" rx="10" fill="url(#mr480Blue)" class="mr478-arm mr478-up mr480-pad-active"/>
+        <path d="M44 27 L50 18 L56 27 Z" class="mr480-arrowhead"/>
+        <path d="M39 15 Q39 6 47 6 L53 6" class="mr480-sheen"/>
+      </g>
+      <g class="mr480-pad" aria-hidden="true">
+        <rect x="2" y="36" width="41" height="28" rx="10" fill="url(#mr480InactiveKey)" class="mr480-pad-base"/>
+        <rect id="mr478ArmLeft" x="2" y="36" width="41" height="28" rx="10" fill="url(#mr480Green)" class="mr478-arm mr478-left mr480-pad-active"/>
+        <path d="M27 44 L18 50 L27 56 Z" class="mr480-arrowhead"/>
+        <path d="M8 45 Q8 39 18 39 L31 39" class="mr480-sheen"/>
+      </g>
+      <g class="mr480-pad" aria-hidden="true">
+        <rect x="57" y="36" width="41" height="28" rx="10" fill="url(#mr480InactiveKey)" class="mr480-pad-base"/>
+        <rect id="mr478ArmRight" x="57" y="36" width="41" height="28" rx="10" fill="url(#mr480Yellow)" class="mr478-arm mr478-right mr480-pad-active"/>
+        <path d="M73 44 L82 50 L73 56 Z" class="mr480-arrowhead"/>
+        <path d="M64 39 L88 39" class="mr480-sheen"/>
+      </g>
+      <g class="mr480-pad" aria-hidden="true">
+        <rect x="36" y="57" width="28" height="41" rx="10" fill="url(#mr480InactiveKey)" class="mr480-pad-base"/>
+        <rect id="mr478ArmDown" x="36" y="57" width="28" height="41" rx="10" fill="url(#mr480Red)" class="mr478-arm mr478-down mr480-pad-active"/>
+        <path d="M44 73 L50 82 L56 73 Z" class="mr480-arrowhead"/>
+        <path d="M39 71 L39 66 Q39 60 45 60" class="mr480-sheen"/>
+      </g>
+      <circle cx="50" cy="50" r="14.5" class="mr476-cross-middle mr480-middle"/>
+      <circle cx="50" cy="50" r="10" id="mr476CrossDot" class="mr476-cross-dot mr480-moving-dot"/>
     </svg>
   </div>
   <div class="mr476-figures" id="mr476Symbols" role="group" aria-label="Seleziona le figure e le pause da usare nello spartito"></div>
@@ -19088,7 +19114,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.479";
+  const PAGE_BUILD = "2.480";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -31047,7 +31073,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   for(const rest of [false,true])for(const [name,units,label] of DURATIONS){
    items.push({id:(rest?'rest:':'note:')+name,rest,name,units,label:(rest?'Pausa di ':'')+label});
   }
-  const selected=new Set(['note:semiminima','note:croma','rest:semiminima','rest:croma']);
+  const selected=new Set(['note:semibreve','note:minima','note:semiminima']);
   const BAR_COUNT=3, TICKS_PER_BAR=8, TICKS_PER_SCORE=BAR_COUNT*TICKS_PER_BAR;
   const state={history:[],index:0,tick:0,timer:null,animationTimer:null};
   const shuffled=values=>{
@@ -31285,6 +31311,24 @@ html body.mr479-solfeggio-active.mr410-mimo-hidden #mimoBuddy,
 html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
  visibility:hidden!important;opacity:0!important;pointer-events:none!important;
 }
+</style>
+
+<style id="mr480-solfeggio-arrows">
+/* Option 2: raised directional arrow keys on the existing Solfeggio cross.
+   The original eight-step logic and inherited colours remain unchanged. */
+#solfeggioPage #mr476Cross.mr480-directional-cross{overflow:visible!important}
+#solfeggioPage .mr480-pad-base{stroke:#f5f3ff;stroke-width:1.3;filter:drop-shadow(0px 2px 2px rgba(63,43,99,.25))}
+#solfeggioPage .mr480-pad-active.mr478-arm{
+  stroke:none!important;stroke-width:0!important;stroke-linecap:initial!important;
+  opacity:0;transition:opacity .19s ease,filter .19s ease;
+  filter:drop-shadow(0px 1px 2px rgba(63,43,99,.13));
+}
+#solfeggioPage .mr480-pad-active.mr478-arm.is-lit{opacity:1;filter:drop-shadow(0px 1px 3px rgba(63,43,99,.29))}
+#solfeggioPage .mr480-arrowhead{fill:#fff;stroke:rgba(50,46,84,.11);stroke-width:.55;stroke-linejoin:round;pointer-events:none;filter:drop-shadow(0px 1px 1px rgba(36,32,70,.24))}
+#solfeggioPage .mr480-sheen{fill:none;stroke:rgba(255,255,255,.64);stroke-width:1.5;stroke-linecap:round;pointer-events:none}
+#solfeggioPage .mr480-middle.mr476-cross-middle{fill:#fff;stroke:#efeaf8;stroke-width:3.7;filter:drop-shadow(0px 2px 3px rgba(58,42,90,.2))}
+#solfeggioPage .mr480-moving-dot.mr476-cross-dot{stroke:#fff;stroke-width:3.4;filter:drop-shadow(0px 1px 2px rgba(55,42,91,.28))}
+@media (prefers-reduced-motion:reduce){#solfeggioPage .mr480-pad-active.mr478-arm{transition:none}}
 </style>
 </body>
 </html>

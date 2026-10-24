@@ -19179,7 +19179,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.486";
+  const PAGE_BUILD = "2.487";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -30817,7 +30817,15 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  const games=document.getElementById('mr469Games');if(!games)return;
  const $=id=>document.getElementById(id);
  function visualPhase(){return window.MusicRainbowSolar?.isVisualNight?.(new Date())?'night':'day';}
- function syncImage(){const phase=visualPhase();$('mr469GamesBackdrop').src=`Assets/room/giochi-${phase}-469.png`;requestAnimationFrame(fitGamesArt469);}
+ function syncImage(){
+   const phase=visualPhase(),stage=$('mr469GamesStage'),art=$('mr469GamesArtwork');
+   const ratio=stage&&stage.clientHeight?stage.clientWidth/stage.clientHeight:(innerWidth/Math.max(1,innerHeight));
+   const layout=ratio<1.72?'ipad':'phone';
+   if(art)art.dataset.mr487Layout=layout;
+   const image=layout==='ipad'?`Assets/room/giochi-ipad-${phase}-487.jpg`:`Assets/room/giochi-${phase}-469.png`;
+   if($('mr469GamesBackdrop').getAttribute('src')!==image)$('mr469GamesBackdrop').src=image;
+   requestAnimationFrame(fitGamesArt469);
+ }
  function fitGamesArt469(){
    const stage=$('mr469GamesStage'),art=$('mr469GamesArtwork'),backdrop=$('mr469GamesBackdrop');
    if(!stage||!art||games.hidden)return;
@@ -30831,7 +30839,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  }
  function openGames(){
   refreshGamesText482();syncImage();games.hidden=false;games.classList.add('mr469Open');fitGamesArt469();requestAnimationFrame(fitGamesArt469);document.body.classList.add('mr469-games-open');
-  document.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:window.MR482I18n?.t?.('gamesSoon')||'caming soon',mr482Translated:true,roomKey:'gamesSoon',roomParams:{},roomSource:'caming soon'}}));
+  // La lavagna e' disponibile: non annunciare più che la stanza è vuota.
  }
  document.addEventListener('musicrainbow:language-changed',refreshGamesText482);
  function closeGames(){games.classList.remove('mr469Open');games.hidden=true;document.body.classList.remove('mr469-games-open');}
@@ -31887,5 +31895,7 @@ html body.mr479-solfeggio-active.mr486-left-handed:not(.mr353-room-open):not(.mr
  });
 })();</script>
 
+<link rel="stylesheet" href="Assets/room/mimo-chalkboard-487.css?v=487">
+<script src="Assets/room/mimo-chalkboard-487.js?v=487"></script>
 </body>
 </html>

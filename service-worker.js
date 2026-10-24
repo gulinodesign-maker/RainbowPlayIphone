@@ -1,7 +1,7 @@
-/* Music Rainbow Service Worker - Build 2.470; bypass large GLB; safe cache errors */
-const BUILD = "2.486";
+/* Music Rainbow Service Worker - Build 2.487; bypass large GLB; safe cache errors */
+const BUILD = "2.487";
 // WebApp aggiornata con il pannello StoreKit nativo, senza modifiche ai dati locali.
-const CACHE_REVISION = "solfeggio-handedness-teacher-486";
+const CACHE_REVISION = "games-chalkboard-ipad-487";
 const PRECACHE = `music-rainbow-precache-${BUILD}-${CACHE_REVISION}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}-${CACHE_REVISION}`;
 
@@ -33,6 +33,10 @@ const CORE_PRECACHE_URLS = [
   "./Assets/mimo-rigged-369.js",
   "./Assets/mimo-haptics-414.js",
   "./Assets/room/solar-cycle-396.js",
+  "./Assets/room/mimo-chalkboard-487.js",
+  "./Assets/room/mimo-chalkboard-487.css",
+  "./Assets/room/giochi-ipad-day-487.jpg",
+  "./Assets/room/giochi-ipad-night-487.jpg",
   "./Assets/room/mimo-wash-rules-460.js",
   "./Assets/room/room-fixedbath-ipad-day.png",
   "./Assets/room/room-fixedbath-ipad-night.png",

@@ -7690,10 +7690,10 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
    </div>
    <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
    <div class="top-right-controls"><div class="metronome-audio-pill" id="mr476AudioPill">
-    <button type="button" class="audio-tab" id="mr476Audio" aria-label="Attiva o disattiva audio"><span class="audio-icon">♪</span></button>
     <button type="button" class="mr483-resolution-toggle" id="mr483RhythmResolution" aria-label="Croma: otto colpi per battuta" aria-pressed="true" title="Croma: otto colpi per battuta">
-      <svg id="mr483ResolutionIcon" viewBox="-32 -64 64 112" aria-hidden="true"><g id="mr483ResolutionGlyph"></g></svg>
+      <span id="mr483ResolutionFraction" aria-hidden="true">1/8</span>
     </button>
+    <button type="button" class="audio-tab" id="mr476Audio" aria-label="Attiva o disattiva audio"><span class="audio-icon">♪</span></button>
    </div></div>
   </div></div>
   <div class="staff-stage-single" data-staff-id="mr476Staff">
@@ -10485,6 +10485,7 @@ function setTeacherModeActiveMR(active){
   updateTeacherSettingsUIMR();
   updateLevelUnlockUIMR();
   if(typeof updateHomePlayButtonState==="function")updateHomePlayButtonState();
+  if(typeof updateTokensUIAll==="function")updateTokensUIAll();
 }
 function updateTeacherSettingsUIMR(){
   const status=document.getElementById("teacherStatusLabel");
@@ -10807,6 +10808,9 @@ function getOldestSessionWithToken() {
 }
 
 function consumeOldestSessionToken() {
+  // Teacher has unlimited access without changing the student's real balance.
+  // This non-persisted marker is valid only while Teacher is active.
+  if (isTeacherModeActiveMR()) return {id:'teacher',teacher:true};
   const s = getOldestSessionWithToken();
   if (!s) return null;
 
@@ -10865,6 +10869,14 @@ function renderTokensPanel(panelId) {
   if (!panel) return;
   const available = getAvailableTokens();
   panel.innerHTML = "";
+  if (isTeacherModeActiveMR()) {
+    const unlimited=document.createElement('div');
+    unlimited.className='token-label';
+    unlimited.textContent='∞';
+    unlimited.setAttribute('aria-label','Gettoni illimitati in modalità Teacher');
+    panel.appendChild(unlimited);
+    return;
+  }
   if (available <= 0) {
     const empty = document.createElement("div");
     empty.className = "trophy-empty";
@@ -10893,13 +10905,14 @@ function renderTokensInTrophyPage(){
   const countEl=document.getElementById('mr400RoomTokenCount');
   if(!badge||!countEl)return;
   const count=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
-  countEl.textContent=String(count);
-  badge.setAttribute('aria-label',count?`Gettoni disponibili: ${count}. Tocca per usare un gettone nella modalità Play.`:'Nessun gettone disponibile.');
-  badge.title=count?`Usa un gettone  per suonare il piano liberamente (${count} disponibili)`:'Nessun gettone disponibile';
+  const teacher=isTeacherModeActiveMR();
+  countEl.textContent=teacher?'∞':String(count);
+  badge.setAttribute('aria-label',teacher?'Gettoni illimitati in modalità Teacher. Tocca per suonare liberamente.':(count?`Gettoni disponibili: ${count}. Tocca per usare un gettone nella modalità Play.`:'Nessun gettone disponibile.'));
+  badge.title=teacher?'Gettoni illimitati in modalità Teacher':(count?`Usa un gettone per suonare il piano liberamente (${count} disponibili)`:'Nessun gettone disponibile');
   // Come per la frutta: le sagome restano al 10% e quelle possedute si colorano.
   // Il numero è reale anche quando supera la capienza visiva dei sei alloggiamenti.
   badge.querySelectorAll('.mr402TokenFilled').forEach((coin,index)=>{
-    coin.style.opacity=index<count?'1':'0';
+    coin.style.opacity=teacher||index<count?'1':'0';
   });
 }
 
@@ -10922,6 +10935,10 @@ function updateTokensUIAll() {
 
 
 function spendTokenFromSession(sessionId) {
+  if (isTeacherModeActiveMR()) {
+    if (!playSessionActive && typeof openPlayPageFromToken === 'function') openPlayPageFromToken();
+    return;
+  }
   // Trova la sessione corrispondente
   const s = sessions.find(sess => sess.id === sessionId);
   if (!s) return;
@@ -19162,7 +19179,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.484";
+  const PAGE_BUILD = "2.486";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -27209,12 +27226,15 @@ function init(){
   const cycle=bathRules460.normalizeCycle(state.washCycle460);
   washInfo460.hidden=scene.dataset.location!=='bath';
   if(washInfo460.hidden)return;
-  const available=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
+  const teacher=isTeacherModeActiveMR();
+  const available=teacher?'∞':String(Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0)));
   washInfo460.textContent=cycle
-   ? `🫧 Lavaggi ${cycle.completed}/5 · altri ${5-cycle.completed} già pagati · 🪙 ${available} gettoni`
+   ? `🫧 Lavaggi ${cycle.completed}/5 · restano ${5-cycle.completed} lavaggi · 🪙 ${available}`
    : bathRules460.clampClean(state.clean)>=8
-    ? `✨ Mìmo è pulitissimo! · 🪙 ${available} gettoni`
-    : `🪙 ${available} gettoni · 1 gettone = 5 lavaggi · +1 gettone ogni 5 esercizi`;
+    ? `✨ Mìmo è pulitissimo! · 🪙 ${available}`
+    : teacher
+     ? '🪙 ∞ · Modalità Teacher: lavaggi senza gettoni'
+     : `🪙 ${available} gettoni · 1 gettone = 5 lavaggi · +1 gettone ogni 5 esercizi`;
  }
  // Hotspot invisibili sulle bottiglie GIA' DISEGNATE nei PNG.
  // Le coordinate cambiano con il layout, non aggiungiamo nuovi flaconi.
@@ -27377,7 +27397,7 @@ function init(){
   if (!state.washCycle460 && bathRules460.clampClean(state.clean)>=8){
    setMessage('Mìmo è già pulitissimo! Non serve spendere un gettone.');return;
   }
-  if (!state.washCycle460 && getTotalAvailableTokens()<1){
+  if (!state.washCycle460 && !isTeacherModeActiveMR() && getTotalAvailableTokens()<1){
    bathNoTokens460();return;
   }
   // Uno o più shampoo prima del risciacquo costituiscono un SOLO lavaggio.
@@ -27393,7 +27413,7 @@ function init(){
   tick(); // Il tempo si applica prima di assegnare pulizia e felicità.
   const next=bathRules460.previewRinse({
    clean:state.clean,happy:state.happy,cycle:state.washCycle460,
-   hasToken:getTotalAvailableTokens()>0
+   hasToken:isTeacherModeActiveMR() || getTotalAvailableTokens()>0
   });
   if(next.status==='no-token'){washState439.soapy=false;updateWashVisuals439();bathNoTokens460();return;}
   if(next.status==='already-clean'){washState439.soapy=false;updateWashVisuals439();setMessage('Mìmo è già pulitissimo!');return;}
@@ -27934,7 +27954,7 @@ function markSessionFruitConsumed(kind){
     applyPose('bath');refresh();updateWashVisuals439();
     setMessage(state.washCycle460
      ? `Hai già pagato il bagno: restano ${5-state.washCycle460.completed} lavaggi. Trascina lo shampoo e tocca il rubinetto!`
-     : getTotalAvailableTokens()>0
+     : (isTeacherModeActiveMR() || getTotalAvailableTokens()>0)
       ? 'Un gettone vale 5 lavaggi: trascina uno shampoo su Mìmo e poi risciacqua per aumentare la pulizia e la felicità.'
       : 'Mìmo non ha gettoni: completando 5 esercizi, anche in livelli diversi, ne guadagnerai uno per 5 lavaggi.');},900);
   }else if(destination==='food'){
@@ -27989,6 +28009,13 @@ function markSessionFruitConsumed(kind){
  document.addEventListener('keydown',ev=>{if(ev.key==='Escape')finishMimoDrag418(false)});
  room.querySelector('#mr373BasketTouch').addEventListener('click',()=>{window.MimoHaptics?.play?.('touch');setResting396(false);moveMimo('food');setMessage(Object.values(state.fruits||{}).some(Number)?'Trascina un frutto dal cestino alla testa di Mìmo.':'Il cestino è vuoto: conquista frutta suonando.');});
  const useTokenBasket428=()=>{
+  // Teacher never needs to acquire/spend tokens, including this room shortcut.
+  if (isTeacherModeActiveMR()) {
+   if (playSessionActive) {setMessage('Hai già una sessione Play attiva.');return;}
+   window.MimoHaptics?.play?.('play');
+   if(typeof openPlayPageFromToken==='function')openPlayPageFromToken();
+   return;
+  }
   const total=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
   if(playSessionActive){setMessage('Hai già una sessione Play attiva.');return;}
   if(total<1){window.MimoHaptics?.play?.('touch');setMessage('Non ci sono gettoni: conquista gettoni suonando.');return;}
@@ -30755,7 +30782,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  $('mr463Stereo').addEventListener('click',()=>{
   if(sleeping()){tell('Shhh! Prima svegliami! 💤');return}
   if(remaining()>0)return;
-  if(typeof getTotalAvailableTokens!=='function'||getTotalAvailableTokens()<1){tell('Completa 5 esercizi musicali per guadagnare un gettone!');return}
+  if(!isTeacherModeActiveMR() && (typeof getTotalAvailableTokens!=='function'||getTotalAvailableTokens()<1)){tell('Completa 5 esercizi musicali per guadagnare un gettone!');return}
   if(typeof consumeOldestSessionToken!=='function'||!consumeOldestSessionToken())return;
   const until=Date.now()+300000;
   localStorage.setItem('mr461DiscoUntil',String(until));
@@ -31177,7 +31204,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   }
   const selected=new Set(['note:semibreve','note:minima','note:semiminima']);
   const BAR_COUNT=3;
-  const state={history:[],index:0,tick:0,ticksPerBar:8,timer:null,animationTimer:null};
+  const state={history:[],index:0,tick:0,ticksPerBar:8,timer:null,animationTimer:null,noteTimers:[]};
   const ticksPerScore=()=>BAR_COUNT*state.ticksPerBar;
   const shuffled=values=>{
     const arr=values.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;
@@ -31289,7 +31316,10 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
     $('mr476Previous').disabled=state.index===0;
     live.textContent=`Spartito ${state.index+1} di ${state.history.length}, battuta ${Math.min(BAR_COUNT,Math.floor(Math.max(0,state.tick-1)/state.ticksPerBar)+1)} di ${BAR_COUNT}, colpo ${state.tick} di ${ticksPerScore()}`;
   }
-  function stopTimer(){if(state.timer!==null){clearTimeout(state.timer);state.timer=null;}}
+  function stopTimer(){
+   if(state.timer!==null){clearTimeout(state.timer);state.timer=null;}
+   state.noteTimers.forEach(id=>clearTimeout(id));state.noteTimers=[];
+  }
   function restart(){stopTimer();state.tick=0;moveDot();updateProgress();}
   function goIndex(index){stopTimer();state.index=index;render();restart();}
   function nextBar(){
@@ -31342,8 +31372,46 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    if(typeof playTempoDrumHitMR==='function')playTempoDrumHitMR(strength,160,145);
    drum.classList.remove('mr476-hit');void drum.offsetWidth;drum.classList.add('mr476-hit');
   }
+  function playScoreNotesAtCurrentTap(){
+   const bars=current();if(!bars)return;
+   const barIndex=Math.floor(state.tick/state.ticksPerBar);
+   const bar=bars[barIndex];if(!bar)return;
+   const localTick=state.tick%state.ticksPerBar;
+   const unitStart=localTick*16/state.ticksPerBar;
+   const unitEnd=(localTick+1)*16/state.ticksPerBar;
+   const beatDurationMs=typeof tempoReferenceBeatMsMR==='function'?tempoReferenceBeatMsMR():720;
+   let onset=0;
+   for(const item of bar){
+    // Only newly beginning figures sound; a held note is NOT re-attacked.
+    // In 1/4 mode a croma that starts between taps is sounded at the
+    // next available tap, rather than inventing an automatic metronome.
+    if(!item.rest && onset>=unitStart-0.00001 && onset<unitEnd-0.00001){
+     const yIndex=Math.round((item.y-92.31)/7.6923);
+     const staffMidi=[77,76,74,72,71,69,67,65,64];
+     const midi=staffMidi[Math.max(0,Math.min(8,yIndex))];
+     const durationMs=Math.max(120,Math.round(item.units*beatDurationMs/4));
+     const freq=midiToFrequencyMR(midi);
+     const startDelay=Math.round((onset-unitStart)*beatDurationMs/4);
+     if(startDelay<=0){
+      try{playToneExactMR(freq,durationMs);}catch(e){console.warn('Solfeggio note audio',e)}
+     }else{
+      const expectedIndex=state.index,expectedTick=state.tick+1;
+      const timer=setTimeout(()=>{
+       state.noteTimers=state.noteTimers.filter(t=>t!==timer);
+       if(state.index!==expectedIndex||state.tick<expectedTick||page.style.display==='none')return;
+       try{playToneExactMR(freq,durationMs);}catch(e){console.warn('Solfeggio note audio',e)}
+      },startDelay);
+      state.noteTimers.push(timer);
+     }
+    }
+    onset+=item.units;
+   }
+  }
   function tap(){
    if(state.tick>=ticksPerScore())return;
+   // User tempo takes precedence over an estimated automatic subdivision.
+   state.noteTimers.forEach(id=>clearTimeout(id));state.noteTimers=[];
+   playScoreNotesAtCurrentTap();
    // In quarter mode all four strokes are on the principal beats.
    // In eighth mode the original alternating drum accent is retained.
    playDrum(state.ticksPerBar===4?'strong':(state.tick%2===0?'strong':'weak'));
@@ -31353,8 +31421,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    }
   }
   const resolutionBtn=$('mr483RhythmResolution');
-  const resolutionSvg=$('mr483ResolutionIcon');
-  const resolutionGlyph=$('mr483ResolutionGlyph');
+  const resolutionFraction=$('mr483ResolutionFraction');
   const resolutionLabels={
    it:['Croma: 8 colpi per battuta','Semiminima: 4 colpi per battuta'],
    en:['Eighth note: 8 taps per bar','Quarter note: 4 taps per bar'],
@@ -31367,28 +31434,14 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    ja:['8分音符：1小節8打','4分音符：1小節4打']
   };
   function updateResolutionIcon(){
-   if(!resolutionBtn||!resolutionSvg||!resolutionGlyph)return;
+   if(!resolutionBtn||!resolutionFraction)return;
    const isEighth=state.ticksPerBar===8;
    const language=typeof mrAppLanguage==='string'?mrAppLanguage:'it';
    const label=(resolutionLabels[language]||resolutionLabels.it)[isEighth?0:1];
    resolutionBtn.setAttribute('aria-label',label);
    resolutionBtn.setAttribute('title',label);
    resolutionBtn.setAttribute('aria-pressed',String(isEighth));
-   resolutionGlyph.replaceChildren();
-   // Same SMuFL note glyphs already used on the score and difficulty controls.
-   appendSmuflNotePartsMR(resolutionGlyph,isEighth?'croma':'semiminima',123.08,'single',71);
-   const centerGlyph=()=>{
-    if(!resolutionGlyph.isConnected)return;
-    try{
-     const b=resolutionGlyph.getBBox();
-     if(!b.width||!b.height)return;
-     const boxW=Math.max(b.width+18,(b.height+16)*.72);
-     const boxH=boxW/.75;
-     resolutionSvg.setAttribute('viewBox',`${b.x+b.width/2-boxW/2} ${b.y+b.height/2-boxH/2} ${boxW} ${boxH}`);
-    }catch(e){}
-   };
-   requestAnimationFrame(centerGlyph);
-   document.fonts?.ready?.then(centerGlyph).catch(()=>{});
+   resolutionFraction.textContent=isEighth?'1/8':'1/4';
   }
   function toggleResolution(){
    // Switching subdivisions changes only reading precision, not the selected
@@ -31546,32 +31599,49 @@ html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
 })();</script>
 
 <style id="mr483-solfeggio-resolution">
-/* Place the subdivision control directly to the right of the existing Audio
-   control, using that same pill and its compact lesson-button dimensions. */
-#solfeggioPage #mr476AudioPill{display:flex!important;align-items:stretch!important;gap:4px!important;max-width:none!important;overflow:visible!important}
+/* Build 2.485: fractional rhythm toggle BEFORE Audio. Use original top bar
+   geometry, but a high-contrast purple lesson button for better readability. */
+#solfeggioPage #mr476AudioPill{
+ display:flex!important;align-items:stretch!important;gap:5px!important;
+ max-width:none!important;overflow:visible!important;
+}
 #solfeggioPage #mr483RhythmResolution{
  position:relative!important;z-index:2!important;
  appearance:none!important;-webkit-appearance:none!important;
+ flex:0 0 65px!important;min-width:65px!important;width:65px!important;
  height:100%!important;min-height:0!important;
- flex:0 0 46px!important;min-width:46px!important;width:46px!important;
  display:inline-flex!important;align-items:center!important;justify-content:center!important;
- padding:3px!important;margin:0!important;border-radius:999px!important;
- background:#efe4ff!important;border:1px solid #b99bdf!important;
- box-shadow:inset 0 1px 2px rgba(255,255,255,.72)!important;
+ padding:0 6px!important;margin:0!important;
+ border-radius:12px!important;
+ border:2px solid #bc9dff!important;
+ background:linear-gradient(155deg,#9665f0 0%,#7949de 48%,#5936b5 100%)!important;
+ box-shadow:0 3px 7px rgba(69,35,133,.25),inset 0 1px 0 rgba(255,255,255,.26)!important;
+ color:white!important;-webkit-text-fill-color:white!important;
  cursor:pointer;touch-action:manipulation;
+ -webkit-tap-highlight-color:transparent;
 }
-#solfeggioPage #mr483ResolutionIcon{
- width:31px;height:35px;max-width:100%;max-height:100%;
- display:block;overflow:visible;pointer-events:none;
+#solfeggioPage #mr483ResolutionFraction{
+ display:block!important;
+ font-family:inherit!important;font-size:19px!important;
+ font-weight:900!important;line-height:1!important;letter-spacing:-.3px!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ font-variant-numeric:tabular-nums!important;
+ white-space:nowrap!important;pointer-events:none!important;
+ text-shadow:0 1px 2px rgba(35,17,83,.22)!important;
 }
-#solfeggioPage #mr483ResolutionIcon .smufl-note-glyph,
-#solfeggioPage #mr483ResolutionIcon .smufl-augmentation-dot{
- fill:#5b3ea6!important;font-family:"MusicRainbow SMuFL"!important;
+#solfeggioPage #mr483RhythmResolution:active{
+ transform:scale(.96);
+ filter:brightness(1.07);
 }
-#solfeggioPage #mr483RhythmResolution:focus-visible{outline:3px solid #5b3ea6;outline-offset:2px}
+#solfeggioPage #mr483RhythmResolution:focus-visible{
+ outline:3px solid #5b3ea6;outline-offset:2px;
+}
 @media (orientation:landscape) and (max-height:540px){
- #solfeggioPage #mr483RhythmResolution{flex-basis:39px!important;min-width:39px!important;width:39px!important}
- #solfeggioPage #mr483ResolutionIcon{width:27px;height:30px}
+ #solfeggioPage #mr483RhythmResolution{
+  flex-basis:53px!important;min-width:53px!important;width:53px!important;
+  border-radius:10px!important;
+ }
+ #solfeggioPage #mr483ResolutionFraction{font-size:16px!important}
 }
 </style>
 
@@ -31722,6 +31792,99 @@ html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
  }
  const schedule=()=>{if(raf)return;raf=requestAnimationFrame(arrange);};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+})();</script>
+
+
+<style id="mr486-handedness-layout">
+/* The original Solfeggio components move; they are not duplicated. */
+html body.mr486-right-handed #solfeggioPage #mr476Cross{
+ left:max(10px,calc(env(safe-area-inset-left,0px) + 8px))!important;
+ right:auto!important;
+}
+html body.mr486-left-handed #solfeggioPage #mr476Cross{
+ left:auto!important;
+ right:max(10px,calc(env(safe-area-inset-right,0px) + 8px))!important;
+}
+html body.mr479-solfeggio-active.mr486-right-handed:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
+ left:auto!important;
+ right:calc(env(safe-area-inset-right,0px) + clamp(8px,1.4vw,24px))!important;
+}
+html body.mr479-solfeggio-active.mr486-left-handed:not(.mr353-room-open):not(.mr357-lab-open) #mimoBuddy{
+ left:calc(env(safe-area-inset-left,0px) + clamp(8px,1.4vw,24px))!important;
+ right:auto!important;
+}
+/* Profile: small two-state control matching the established gender buttons. */
+#settingsPage #profileSettingsSection .mr486-hand-control{
+ display:flex;flex-direction:column;align-items:stretch;gap:5px;width:100%;margin-top:4px;
+}
+#settingsPage #profileSettingsSection .mr486-hand-title{font-size:clamp(11px,1.2vw,14px);font-weight:800;color:var(--mr-theme-text,#50416b);line-height:1.2}
+#settingsPage #profileSettingsSection .mr486-hand-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(5px,1vw,10px)}
+#settingsPage #profileSettingsSection .mr486-hand-button{
+ min-width:0;min-height:36px;appearance:none;-webkit-appearance:none;
+ border:2px solid #c4b5fd;border-radius:15px;background:#f5efff;
+ color:#5b3ea6;font:800 clamp(11px,1.3vw,16px)/1.2 system-ui,-apple-system,sans-serif;
+ padding:7px 5px;cursor:pointer;touch-action:manipulation;
+}
+#settingsPage #profileSettingsSection .mr486-hand-button[aria-pressed="true"]{
+ background:#e9deff;border-color:#8b5cf6;box-shadow:inset 0 1px 3px rgba(76,29,149,.12),0 0 0 2px rgba(139,92,246,.1);
+}
+#settingsPage #profileSettingsSection .mr486-hand-button:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+#settingsPage #profileSettingsSection .profile-controls-mr{flex:0 0 auto!important;min-height:0!important}
+#settingsPage #profileSettingsSection{justify-content:flex-start!important}
+#settingsPage #profileSettingsSection .mr486-hand-control{margin-top:auto}
+@media (orientation:landscape) and (max-height:550px){
+ #settingsPage #profileSettingsSection .mr486-hand-button{min-height:32px;padding:5px 3px}
+ #settingsPage #profileSettingsSection .mr486-hand-control{gap:3px;margin-top:2px}
+ #settingsPage #profileSettingsSection{min-height:136px!important}
+}
+@media (orientation:portrait) and (max-width:600px){
+ #settingsPage #profileSettingsSection{min-height:175px!important}
+ #settingsPage #profileSettingsSection .mr486-hand-button{min-height:41px}
+}
+</style>
+<script id="mr486-handedness-settings">(()=>{
+ const onReady=fn=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn,{once:true}):fn();
+ onReady(()=>{
+  const section=document.getElementById('profileSettingsSection');
+  if(!section)return;
+  const key='musicrainbow:solfeggio-handedness';
+  const messages={
+   it:['Mano dominante','Destro','Mancino'],en:['Dominant hand','Right-handed','Left-handed'],
+   es:['Mano dominante','Diestro','Zurdo'],fr:['Main dominante','Droitier','Gaucher'],
+   de:['Dominante Hand','Rechtshänder','Linkshänder'],pt:['Mão dominante','Destro','Canhoto'],
+   ru:['Ведущая рука','Правша','Левша'],zh:['惯用手','右撇子','左撇子'],
+   ja:['利き手','右利き','左利き']
+  };
+  const box=document.createElement('div');
+  box.className='mr486-hand-control';
+  box.innerHTML='<span class="mr486-hand-title" id="mr486HandTitle"></span><div class="mr486-hand-buttons" role="group" id="mr486HandButtons"><button type="button" class="mr486-hand-button" data-mr-hand="right"></button><button type="button" class="mr486-hand-button" data-mr-hand="left"></button></div>';
+  const gender=section.querySelector('.profile-controls-mr');
+  if(gender)gender.insertAdjacentElement('afterend',box);else section.appendChild(box);
+  const buttons=[...box.querySelectorAll('button[data-mr-hand]')];
+  const stored=()=>{try{return localStorage.getItem(key)==='left'?'left':'right'}catch(e){return 'right'}};
+  let choice=stored();
+  const apply=()=>{
+   document.body.classList.toggle('mr486-right-handed',choice==='right');
+   document.body.classList.toggle('mr486-left-handed',choice==='left');
+   const lang=(typeof mrAppLanguage==='string'?mrAppLanguage:'it');
+   const words=messages[lang]||messages.it;
+   const title=document.getElementById('mr486HandTitle');
+   if(title)title.textContent=words[0];
+   buttons.forEach((btn,i)=>{
+    const side=i===0?'right':'left';
+    btn.textContent=words[i+1];
+    btn.setAttribute('aria-pressed',String(choice===side));
+    btn.setAttribute('aria-label',words[i+1]);
+   });
+  };
+  buttons.forEach(btn=>btn.addEventListener('click',()=>{
+   choice=btn.dataset.mrHand==='left'?'left':'right';
+   try{localStorage.setItem(key,choice)}catch(e){}
+   apply();
+  }));
+  document.addEventListener('musicrainbow:language-changed',apply);
+  apply();
+ });
 })();</script>
 
 </body>

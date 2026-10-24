@@ -1,7 +1,7 @@
 /* Music Rainbow Service Worker - Build 2.470; bypass large GLB; safe cache errors */
-const BUILD = "2.482";
+const BUILD = "2.484";
 // WebApp aggiornata con il pannello StoreKit nativo, senza modifiche ai dati locali.
-const CACHE_REVISION = "mimo-bubbles-languages-482";
+const CACHE_REVISION = "settings-reference-484";
 const PRECACHE = `music-rainbow-precache-${BUILD}-${CACHE_REVISION}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}-${CACHE_REVISION}`;
 

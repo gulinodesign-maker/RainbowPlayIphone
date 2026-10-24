@@ -19162,7 +19162,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.483";
+  const PAGE_BUILD = "2.484";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -25901,7 +25901,7 @@ window.MusicRainbowMimoUIBuild = "2.434";
    grid.appendChild(button);
   }
   if(button.parentElement!==grid)grid.appendChild(button);
-  const ordered=['mr399ForceDay','mr399ForceNight','mimoRest','mimoOpen','mr357OpenLab','mr414MimoHaptics']
+  const ordered=['mr484DayNightToggle','mr484AutoCycleBtn','mimoRest','mimoOpen','mr357OpenLab','mr414MimoHaptics']
    .map(id=>settings.querySelector('#'+id)).filter(Boolean);
   if(ordered.length)grid.replaceChildren(...ordered);
   function sync(){
@@ -25956,15 +25956,15 @@ const MIMO_TOUCH_ARIA={it:'Tocca Mìmo per giocare con lui',en:'Tap Mìmo to pla
 Object.keys(MIMO_LANGUAGES).forEach(lang=>Object.assign(MIMO_LANGUAGES[lang],MIMO_CYCLE_LABELS[lang]||MIMO_CYCLE_LABELS.en,{touchMimo:MIMO_TOUCH_ARIA[lang]||MIMO_TOUCH_ARIA.en}));
 const mimoT = key => key==='movesTitle'?MIMO_MOVE_TITLES[mimoLocale()]:MIMO_LANGUAGES[mimoLocale()][key] || MIMO_LANGUAGES.it[key] || key;
 
-const KEY='mr_mimo_enabled',enabled=()=>{try{return localStorage.getItem(KEY)!=='0'}catch{return true}};
+const KEY='mr_mimo_enabled',enabled=()=>true; // Mìmo è sempre disponibile: disattivazione rimossa dalla UI.
 function boot(){
 const panel=document.createElement('div');panel.id='mimoSettingsSection';panel.className='settings-panel settings-section';
 panel.innerHTML=`<div class="settings-panel-head"><div class="settings-panel-icon">🦉</div><div class="settings-panel-title-wrap"><div class="settings-section-label">Mìmo</div></div></div>
-<div class="mimo-options">
- <label class="mimo-option"><input type="checkbox" id="mimoEnabled"><span id="mr361MimoActive"></span></label>
- <div class="mr399-cycle-settings"><label class="mimo-option"><input type="checkbox" id="mr399AutoCycle"><span id="mr399AutoCycleLabel"></span></label></div>
+<div class="mimo-options mr484MimoCompat" hidden aria-hidden="true">
+ <label class="mimo-option"><input type="checkbox" id="mimoEnabled" checked tabindex="-1"><span id="mr361MimoActive"></span></label>
+ <div class="mr399-cycle-settings"><label class="mimo-option"><input type="checkbox" id="mr399AutoCycle" tabindex="-1"><span id="mr399AutoCycleLabel"></span></label></div>
 </div>
-<div class="mr361SettingsActions"><div class="mr361ControlGrid" id="mr361MimoIconGrid" role="group" aria-label="Comandi di Mìmo"><button type="button" id="mr399ForceDay" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🌞</span></button><button type="button" id="mr399ForceNight" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🌙</span></button><button type="button" id="mimoRest" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🪽</span></button><button type="button" id="mimoOpen" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🦋</span></button><button type="button" id="mr357OpenLab" class="mr357LabLaunch mr361IconButton" aria-haspopup="dialog"><span class="mr361ButtonGlyph" aria-hidden="true">🎭</span></button><button type="button" id="mr414MimoHaptics" class="mr361IconButton mr414HapticIcon"><span class="mr361ButtonGlyph" aria-hidden="true">📳</span></button></div></div>
+<div class="mr361SettingsActions"><div class="mr361ControlGrid" id="mr361MimoIconGrid" role="group" aria-label="Comandi di Mìmo"><button type="button" id="mr484DayNightToggle" class="mr361IconButton" aria-pressed="false"><span class="mr361ButtonGlyph" aria-hidden="true">🌞</span></button><button type="button" id="mr484AutoCycleBtn" class="mr361IconButton" aria-pressed="false"><span class="mr361ButtonGlyph" aria-hidden="true">🔄</span></button><button type="button" id="mimoRest" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🪽</span></button><button type="button" id="mimoOpen" class="mr361IconButton"><span class="mr361ButtonGlyph" aria-hidden="true">🦋</span></button><button type="button" id="mr357OpenLab" class="mr357LabLaunch mr361IconButton" aria-haspopup="dialog"><span class="mr361ButtonGlyph" aria-hidden="true">🎭</span></button><button type="button" id="mr414MimoHaptics" class="mr361IconButton mr414HapticIcon"><span class="mr361ButtonGlyph" aria-hidden="true">📳</span></button></div></div>
 <p class="mr361SrOnly" id="mimoStatus" role="status" aria-live="polite"></p>`;
 
 const stack=document.querySelector('#settingsPage .settings-stack')||document.querySelector('#settingsPage')||document.body;stack.insertBefore(panel,stack.firstChild);
@@ -25973,7 +25973,7 @@ const normalizeSettingsGrid=()=>{
  const grid=settings?.querySelector('#mr361MimoIconGrid');
  if(!grid)return;
  settings.querySelectorAll('.mr414-haptic-preference').forEach(el=>el.remove());
- const ordered=['mr399ForceDay','mr399ForceNight','mimoRest','mimoOpen','mr357OpenLab','mr414MimoHaptics']
+ const ordered=['mr484DayNightToggle','mr484AutoCycleBtn','mimoRest','mimoOpen','mr357OpenLab','mr414MimoHaptics']
   .map(id=>settings.querySelector('#'+id)).filter(Boolean);
  if(ordered.length)grid.replaceChildren(...ordered);
 };
@@ -25994,27 +25994,50 @@ function mimoReport(phase,message){
   window.dispatchEvent(new CustomEvent('musicrainbow:mimo-render-status',{detail:window.MimoRenderStatus}));
 }
 mimoReport('loading','Caricamento del modello 3D…');
-const toggle=document.getElementById('mimoEnabled'),status=document.getElementById('mimoStatus');toggle.checked=enabled();const sync=()=>{host.style.display=toggle.checked?'block':'none';if(!toggle.checked)mimoReport('disabled','Mìmo disattivato nelle Impostazioni');else if(window.MimoRenderStatus?.phase==='disabled')mimoReport('loading','Mìmo attivato: caricamento in corso…')};toggle.onchange=()=>{try{localStorage.setItem(KEY,toggle.checked?'1':'0')}catch{}sync()};sync();
+const toggle=document.getElementById('mimoEnabled'),status=document.getElementById('mimoStatus');try{localStorage.setItem(KEY,'1');}catch(e){} toggle.checked=true;const sync=()=>{host.style.display=toggle.checked?'block':'none';if(!toggle.checked)mimoReport('disabled','Mìmo disattivato nelle Impostazioni');else if(window.MimoRenderStatus?.phase==='disabled')mimoReport('loading','Mìmo attivato: caricamento in corso…')};toggle.onchange=()=>{try{localStorage.setItem(KEY,toggle.checked?'1':'0')}catch{}sync()};sync();
 const cycleToggle=document.getElementById('mr399AutoCycle');
-const forceDayBtn=document.getElementById('mr399ForceDay');
-const forceNightBtn=document.getElementById('mr399ForceNight');
+const dayNightBtn=document.getElementById('mr484DayNightToggle');
+const autoCycleBtn=document.getElementById('mr484AutoCycleBtn');
+function mr484VisualIsNight(solar,mode){
+  if(mode==='night')return true;
+  if(mode==='day')return false;
+  return !!solar?.isVisualNight?.(new Date());
+}
 function syncCycleUi(){
   const solar=window.MusicRainbowSolar;
   const mode=solar?.getVisualMode?.()||'auto';
-  const auto=mode==='auto';
-  if(cycleToggle) cycleToggle.checked=auto;
-  if(forceDayBtn){forceDayBtn.disabled=auto;forceDayBtn.setAttribute('aria-pressed',String(mode==='day'));}
-  if(forceNightBtn){forceNightBtn.disabled=auto;forceNightBtn.setAttribute('aria-pressed',String(mode==='night'));}
+  const automatic=mode==='auto';
+  const night=mr484VisualIsNight(solar,mode);
+  if(cycleToggle)cycleToggle.checked=automatic;
+  if(dayNightBtn){
+    dayNightBtn.querySelector('.mr361ButtonGlyph').textContent=night?'🌙':'🌞';
+    dayNightBtn.setAttribute('aria-pressed',String(!automatic));
+    const next=night?mimoT('forceDay'):mimoT('forceNight');
+    dayNightBtn.setAttribute('aria-label',next);dayNightBtn.title=next;
+  }
+  if(autoCycleBtn){
+    autoCycleBtn.setAttribute('aria-pressed',String(automatic));
+    autoCycleBtn.querySelector('.mr361ButtonGlyph').textContent='🔄';
+    autoCycleBtn.setAttribute('aria-label',mimoT('autoCycle'));
+    autoCycleBtn.title=mimoT('autoCycle');
+  }
 }
-cycleToggle?.addEventListener('change',()=>{
+// Un solo pulsante commuta il giorno con la notte, uscendo dal ciclo automatico.
+dayNightBtn?.addEventListener('click',()=>{
   const solar=window.MusicRainbowSolar;
-  if(!solar?.setVisualMode) return;
-  if(cycleToggle.checked) solar.setVisualMode('auto');
-  else solar.setVisualMode(solar.isNight?.(new Date())?'night':'day');
+  if(!solar?.setVisualMode)return;
+  const mode=solar.getVisualMode?.()||'auto';
+  solar.setVisualMode(mr484VisualIsNight(solar,mode)?'day':'night');
   syncCycleUi();
 });
-forceDayBtn?.addEventListener('click',()=>{window.MusicRainbowSolar?.setVisualMode?.('day');syncCycleUi();});
-forceNightBtn?.addEventListener('click',()=>{window.MusicRainbowSolar?.setVisualMode?.('night');syncCycleUi();});
+// Il pulsante accanto attiva/disattiva il ciclo automatico senza saltare l'ora del giorno.
+autoCycleBtn?.addEventListener('click',()=>{
+  const solar=window.MusicRainbowSolar;
+  if(!solar?.setVisualMode)return;
+  const mode=solar.getVisualMode?.()||'auto';
+  solar.setVisualMode(mode==='auto'?(mr484VisualIsNight(solar,mode)?'night':'day'):'auto');
+  syncCycleUi();
+});
 window.MusicRainbowSolar?.subscribe?.(syncCycleUi);syncCycleUi();
 const lab=document.createElement('div');lab.id='mr357Lab';lab.hidden=true;
 lab.innerHTML=`<div class="mr357LabDialog" role="dialog" aria-modal="true" aria-labelledby="mr357LabTitle" tabindex="-1">
@@ -26091,8 +26114,7 @@ function updateMimoTranslations(){
  const preview=document.getElementById('mr357LabPreview');if(preview)preview.setAttribute('aria-label',mimoT('stage'));
  if(host?.getAttribute('role')==='button')host.setAttribute('aria-label',mimoT('touchMimo'));
  const cycleLabel=document.getElementById('mr399AutoCycleLabel');if(cycleLabel)cycleLabel.textContent=mimoT('autoCycle');
- const cycleDay=document.getElementById('mr399ForceDay');if(cycleDay){cycleDay.setAttribute('aria-label',mimoT('forceDay'));cycleDay.title=mimoT('forceDay');}
- const cycleNight=document.getElementById('mr399ForceNight');if(cycleNight){cycleNight.setAttribute('aria-label',mimoT('forceNight'));cycleNight.title=mimoT('forceNight');}
+ syncCycleUi(); // Aggiorna le due etichette accessibili nella lingua scelta.
  lab.querySelectorAll('.mr357LabButtons button').forEach(button=>{const name=getActionName(button.dataset.group,button.dataset.action);button.setAttribute('aria-label',name);button.title=name;});
  const message=lab.querySelector('#mr357LabMessage');if(message)message.textContent=mimoT('choose');
 }
@@ -31552,5 +31574,155 @@ html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
  #solfeggioPage #mr483ResolutionIcon{width:27px;height:30px}
 }
 </style>
+
+<style id="mr484-settings-reference-layout">
+/* Fedeltà al riferimento: Mìmo/Temi, Teacher/Suoni, Lingua/Note,
+   Tastiera MIDI/Profilo, Abbonamento/Accesso amministratore. */
+#settingsPage .settings-main{
+  display:flex!important;justify-content:center!important;align-items:flex-start!important;
+  width:100%!important;max-width:none!important;box-sizing:border-box!important;
+  padding:12px max(12px,env(safe-area-inset-right,0px)) 20px max(12px,env(safe-area-inset-left,0px))!important;
+  overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;
+}
+#settingsPage .settings-card{
+  box-sizing:border-box!important;
+  width:min(100%,1040px)!important;max-width:1040px!important;
+  padding:18px 18px 20px!important;gap:16px!important;
+  background:rgba(255,255,255,.89)!important;border-radius:26px!important;
+}
+#settingsPage .settings-title{font-size:clamp(22px,2.9vw,32px)!important;font-weight:900!important;text-align:center!important;margin:2px 0!important;}
+#settingsPage .settings-stack{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:none!important;grid-auto-rows:auto!important;
+  grid-auto-flow:row!important;gap:16px!important;align-items:stretch!important;
+}
+#settingsPage .settings-stack>.settings-panel{
+  box-sizing:border-box!important;grid-column:auto!important;grid-row:auto!important;
+  display:flex!important;flex-direction:column!important;min-width:0!important;
+  width:100%!important;max-width:100%!important;height:100%!important;
+  min-height:128px!important;margin:0!important;padding:16px!important;
+  border:1.5px solid #dbe3ef!important;border-radius:20px!important;
+  background:rgba(255,255,255,.89)!important;overflow:hidden!important;gap:12px!important;
+}
+#settingsPage .settings-panel-head{display:flex!important;align-items:center!important;gap:12px!important;min-height:44px!important;flex:0 0 auto!important;}
+#settingsPage .settings-panel-icon{width:52px!important;height:52px!important;min-width:52px!important;border-radius:14px!important;font-size:1.75rem!important;}
+#settingsPage .settings-section-label{font-size:clamp(16px,1.8vw,22px)!important;font-weight:900!important;white-space:normal!important;overflow-wrap:break-word!important;line-height:1.2!important;}
+#settingsPage #mimoSettingsSection,#settingsPage #mr466ThemeSettingsSection{min-height:192px!important;}
+#settingsPage #teacherSettingsSection,#settingsPage #interfaceSoundSettingsSection{min-height:185px!important;}
+#settingsPage #languageSettingsSection,#settingsPage #noteNamingSettingsSection{min-height:124px!important;}
+#settingsPage #midiSettingsSection,#settingsPage #profileSettingsSection{min-height:140px!important;}
+#settingsPage #mr459SubscriptionSettingsSection,#settingsPage #adminSettingsSection{min-height:165px!important;}
+/* Mìmo: sei icone affiancate. Il precedente interruttore di disattivazione
+   resta esclusivamente come stato tecnico, invisibile e non accessibile. */
+#settingsPage #mimoSettingsSection .mr484MimoCompat{display:none!important;}
+#settingsPage #mimoSettingsSection .mr361SettingsActions{
+  width:100%!important;max-width:100%!important;display:block!important;margin:auto 0 0!important;
+  container-type:normal!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid{
+  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  grid-template-rows:1fr!important;grid-auto-flow:row!important;gap:clamp(4px,.65vw,9px)!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  margin:0!important;padding:0!important;align-items:stretch!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid>button{
+  width:100%!important;min-height:0!important;height:auto!important;max-height:none!important;
+  aspect-ratio:1/1!important;border-radius:clamp(9px,1vw,15px)!important;
+  background:#f1edff!important;border:1.5px solid #bc9ee9!important;
+  box-sizing:border-box!important;margin:0!important;padding:0!important;
+  overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important;
+}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid>button[aria-pressed="true"]{background:#efe3ff!important;border-color:#8b5cf6!important;box-shadow:inset 0 0 0 1px #a78bfa!important;}
+#settingsPage #mimoSettingsSection #mr361MimoIconGrid>button>.mr361ButtonGlyph{
+  font:normal clamp(18px,2.5vw,33px)/1 system-ui,"Apple Color Emoji","Segoe UI Emoji",sans-serif!important;
+  display:block!important;max-width:100%!important;overflow:visible!important;
+}
+/* Temi: i quattro campioni dell'esempio, senza etichette visibili. */
+#settingsPage #mr466ThemeSettingsSection .profile-theme-block-mr{padding:0!important;border:0!important;justify-content:flex-end!important;margin-top:auto!important;flex:1 1 auto!important;}
+#settingsPage #mr466ThemeSettingsSection .theme-choice{height:94px!important;min-height:64px!important;border-radius:14px!important;padding:6px!important;}
+#settingsPage #mr466ThemeSettingsSection .theme-choice-label{display:none!important;}
+#settingsPage #mr466ThemeSettingsSection .theme-swatch{height:100%!important;min-height:0!important;border-radius:9px!important;}
+/* Teacher: pulsanti originali, affiancati come nel riferimento. */
+#settingsPage #teacherSettingsSection .settings-teacher-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-top:auto!important;width:100%!important;}
+#settingsPage #teacherSettingsSection .settings-teacher-status,#settingsPage #teacherSettingsSection .settings-teacher-btn{min-width:0!important;min-height:72px!important;width:100%!important;}
+/* Suoni: switch nel titolo, volume nel corpo della stessa card. */
+#settingsPage #interfaceSoundSettingsSection .settings-panel-head .settings-ui-sound-row{
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;
+  flex:0 0 auto!important;margin:0 0 0 auto!important;min-height:40px!important;
+}
+#settingsPage #interfaceSoundSettingsSection .app-master-volume-control{margin-top:auto!important;width:100%!important;}
+#settingsPage .settings-language-grid,#settingsPage .settings-midi-grid{margin-top:auto!important;}
+#settingsPage .settings-language-select,#settingsPage .settings-midi-select{min-height:52px!important;font-size:clamp(13px,1.55vw,19px)!important;font-weight:800!important;}
+/* Profilo: due pulsanti affiancati, stile originale. */
+#settingsPage #profileSettingsSection .profile-controls-mr{margin-top:auto!important;flex:0 0 auto!important;min-height:65px!important;}
+#settingsPage #profileSettingsSection .settings-gender-select{width:100%!important;display:flex!important;gap:14px!important;justify-content:space-between!important;}
+#settingsPage #profileSettingsSection .home-gender-option{flex:1 1 0!important;min-width:0!important;}
+/* Abbonamento: una sola azione, iconografica e realmente collegata a StoreKit. */
+#settingsPage #mr459SubscriptionSettingsSection .settings-panel-note{display:none!important;}
+#settingsPage #mr459ManageSubscriptionBtn{width:100%!important;min-height:68px!important;margin-top:auto!important;padding:8px 12px!important;flex-wrap:nowrap!important;}
+#settingsPage #adminSettingsSection .settings-admin-login-row{margin-top:auto!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;}
+#settingsPage #adminSettingsSection .settings-admin-cloud-note{font-size:clamp(10px,.9vw,13px)!important;line-height:1.2!important;}
+#settingsPage #adminSettingsSection .settings-admin-status{white-space:normal!important;}
+/* iPhone portrait: stessa sequenza e stesse card, ma un'unica colonna per
+   evitare i testi tagliati che l'utente ha evidenziato sul telefono. */
+@media (max-width:600px) and (orientation:portrait){
+ #settingsPage .settings-main{padding:8px 9px 16px!important;}
+ #settingsPage .settings-card{width:100%!important;padding:12px!important;gap:12px!important;border-radius:20px!important;}
+ #settingsPage .settings-title{font-size:23px!important;}
+ #settingsPage .settings-stack{grid-template-columns:minmax(0,1fr)!important;gap:10px!important;}
+ #settingsPage .settings-stack>.settings-panel{padding:11px!important;min-height:110px!important;gap:9px!important;}
+ #settingsPage #mimoSettingsSection,#settingsPage #mr466ThemeSettingsSection{min-height:152px!important;}
+ #settingsPage #teacherSettingsSection,#settingsPage #interfaceSoundSettingsSection{min-height:154px!important;}
+ #settingsPage #languageSettingsSection,#settingsPage #noteNamingSettingsSection{min-height:107px!important;}
+ #settingsPage #midiSettingsSection,#settingsPage #profileSettingsSection{min-height:122px!important;}
+ #settingsPage #mr459SubscriptionSettingsSection,#settingsPage #adminSettingsSection{min-height:140px!important;}
+ #settingsPage .settings-panel-icon{width:40px!important;height:40px!important;min-width:40px!important;font-size:1.35rem!important;}
+ #settingsPage .settings-section-label{font-size:17px!important;}
+ #settingsPage #mr466ThemeSettingsSection .theme-choice{height:68px!important;}
+ #settingsPage #mimoSettingsSection #mr361MimoIconGrid>button>.mr361ButtonGlyph{font-size:clamp(20px,6.5vw,30px)!important;}
+ #settingsPage #teacherSettingsSection .settings-teacher-status,#settingsPage #teacherSettingsSection .settings-teacher-btn{min-height:62px!important;}
+ #settingsPage #profileSettingsSection .settings-gender-select{gap:8px!important;}
+}
+/* iPhone landscape: due colonne a larghezza comoda, scrolling nella card. */
+@media (orientation:landscape) and (max-height:550px){
+ #settingsPage .settings-main{padding:5px 9px 12px!important;}
+ #settingsPage .settings-card{padding:10px!important;gap:8px!important;border-radius:17px!important;}
+ #settingsPage .settings-stack{gap:9px!important;}
+ #settingsPage .settings-stack>.settings-panel{padding:9px!important;gap:6px!important;min-height:110px!important;}
+ #settingsPage .settings-panel-head{min-height:34px!important;gap:7px!important;}
+ #settingsPage .settings-panel-icon{width:32px!important;height:32px!important;min-width:32px!important;font-size:1.05rem!important;}
+ #settingsPage .settings-section-label{font-size:15px!important;}
+ #settingsPage #mimoSettingsSection,#settingsPage #mr466ThemeSettingsSection{min-height:132px!important;}
+ #settingsPage #teacherSettingsSection,#settingsPage #interfaceSoundSettingsSection{min-height:145px!important;}
+ #settingsPage #languageSettingsSection,#settingsPage #noteNamingSettingsSection{min-height:100px!important;}
+ #settingsPage #midiSettingsSection,#settingsPage #profileSettingsSection{min-height:110px!important;}
+ #settingsPage #mr459SubscriptionSettingsSection,#settingsPage #adminSettingsSection{min-height:135px!important;}
+ #settingsPage #mr466ThemeSettingsSection .theme-choice{height:56px!important;min-height:40px!important;}
+ #settingsPage #mimoSettingsSection #mr361MimoIconGrid>button>.mr361ButtonGlyph{font-size:clamp(18px,2.6vw,25px)!important;}
+ #settingsPage #teacherSettingsSection .settings-teacher-status,#settingsPage #teacherSettingsSection .settings-teacher-btn{min-height:48px!important;}
+ #settingsPage .settings-language-select,#settingsPage .settings-midi-select{min-height:40px!important;}
+}
+</style>
+<script id="mr484-settings-reference-order">(()=>{
+ const stack=document.querySelector('#settingsPage .settings-stack');
+ if(!stack)return;
+ const order=['mimoSettingsSection','mr466ThemeSettingsSection','teacherSettingsSection','interfaceSoundSettingsSection',
+   'languageSettingsSection','noteNamingSettingsSection','midiSettingsSection','profileSettingsSection',
+   'mr459SubscriptionSettingsSection','adminSettingsSection'];
+ let raf=0;
+ function arrange(){
+  raf=0;
+  if(!document.getElementById('mimoSettingsSection'))return;
+  for(const id of order){const node=document.getElementById(id);if(node&&node.parentElement===stack)stack.appendChild(node);}
+  const info=document.getElementById('mr466SettingsInfo');if(info&&info.parentElement===stack)stack.appendChild(info);
+  const sound=document.getElementById('interfaceSoundSettingsSection');
+  const row=sound?.querySelector('.settings-ui-sound-row');
+  const head=sound?.querySelector('.settings-panel-head');
+  if(head&&row&&row.parentElement!==head)head.appendChild(row);
+ }
+ const schedule=()=>{if(raf)return;raf=requestAnimationFrame(arrange);};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+})();</script>
+
 </body>
 </html>

@@ -7691,6 +7691,9 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
    <h1 class="rainbow-title rainbow-title-level"><span>M</span><span>u</span><span>s</span><span>i</span><span>c</span><span>&nbsp;</span><span>R</span><span>a</span><span>i</span><span>n</span><span>b</span><span>o</span><span>w</span></h1>
    <div class="top-right-controls"><div class="metronome-audio-pill" id="mr476AudioPill">
     <button type="button" class="audio-tab" id="mr476Audio" aria-label="Attiva o disattiva audio"><span class="audio-icon">♪</span></button>
+    <button type="button" class="mr483-resolution-toggle" id="mr483RhythmResolution" aria-label="Croma: otto colpi per battuta" aria-pressed="true" title="Croma: otto colpi per battuta">
+      <svg id="mr483ResolutionIcon" viewBox="-32 -64 64 112" aria-hidden="true"><g id="mr483ResolutionGlyph"></g></svg>
+    </button>
    </div></div>
   </div></div>
   <div class="staff-stage-single" data-staff-id="mr476Staff">
@@ -7942,10 +7945,10 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
             <div class="profile-theme-block-mr">
               <div class="profile-theme-label-mr">Scegli il tema</div>
               <div class="theme-picker" role="radiogroup" aria-label="Tema grafico">
-                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="ocean" role="radio" aria-label="Ocean" title="Ocean"><span class="theme-swatch ocean" aria-hidden="true"></span><span class="theme-choice-label">Ocean</span></button>
-                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="candy" role="radio" aria-label="Candy" title="Candy"><span class="theme-swatch candy" aria-hidden="true"></span><span class="theme-choice-label">Candy</span></button>
-                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="galaxy" role="radio" aria-label="Galaxy" title="Galaxy"><span class="theme-swatch galaxy" aria-hidden="true"></span><span class="theme-choice-label">Galaxy</span></button>
-                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="rainbow" role="radio" aria-label="Rainbow" title="Rainbow"><span class="theme-swatch rainbow" aria-hidden="true"></span><span class="theme-choice-label">Rainbow</span></button>
+                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="ocean" role="radio" aria-label="Ocean" title="Ocean"><span class="theme-swatch ocean" aria-hidden="true"></span></button>
+                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="candy" role="radio" aria-label="Candy" title="Candy"><span class="theme-swatch candy" aria-hidden="true"></span></button>
+                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="galaxy" role="radio" aria-label="Galaxy" title="Galaxy"><span class="theme-swatch galaxy" aria-hidden="true"></span></button>
+                <button type="button" class="theme-choice" data-midi-learn="off" data-theme-choice="rainbow" role="radio" aria-label="Rainbow" title="Rainbow"><span class="theme-swatch rainbow" aria-hidden="true"></span></button>
               </div>
             </div>
           </div>
@@ -7971,11 +7974,11 @@ body,.page-container{min-height:100dvh!important;height:100dvh!important}
             <div class="settings-panel-head">
               <div class="settings-panel-icon" aria-hidden="true">🌈</div>
               <div class="settings-panel-title-wrap">
-                <div class="settings-section-label" id="mr459PremiumHeading">Abbonamento Premium</div>
+                <div class="settings-section-label" id="mr459PremiumHeading">Abbonamento</div>
                 <div class="settings-panel-note" id="mr459PremiumHint">Gestisci o annulla il rinnovo dell'abbonamento tramite Apple.</div>
               </div>
             </div>
-            <button class="settings-teacher-btn" id="mr459ManageSubscriptionBtn" type="button" style="margin-top:8px" data-midi-learn="off">Gestisci abbonamento</button>
+            <button class="settings-teacher-btn mr482-subscription-button" id="mr459ManageSubscriptionBtn" type="button" style="margin-top:8px" data-midi-learn="off" aria-label="Gestisci abbonamento"><span class="mr482SubscriptionIcon" aria-hidden="true">🧾</span><span class="mr482SubscriptionLabel">Gestisci abbonamento</span></button>
           </div>
           <div class="settings-panel settings-section settings-teacher-panel" id="teacherSettingsSection">
             <div class="settings-panel-head">
@@ -8114,6 +8117,7 @@ function applyLanguageMR(){
   try{if(typeof updateScoreStoreLanguageMR==="function")updateScoreStoreLanguageMR();}catch(e){}
   applyNoteNamingMR();
   try{window.updateMimoTranslations?.();}catch(e){console.warn("[Mìmo] Language refresh",e);}
+  document.dispatchEvent(new CustomEvent("musicrainbow:language-changed",{detail:{lang:mrAppLanguage}}));
 }
 function setAppLanguageMR(lang,persist=true){if(!MR_SUPPORTED_LANGS.has(lang))lang="it";mrAppLanguage=lang;if(persist){try{localStorage.setItem(MR_LANGUAGE_KEY,lang);}catch(e){}}applyLanguageMR();}
 function setNoteNamingMR(mode,persist=true){mrNoteNaming=mode==="letters"?"letters":"solfege";if(persist){try{localStorage.setItem(MR_NOTE_NAMING_KEY,mrNoteNaming);}catch(e){}}applyNoteNamingMR();}
@@ -9501,27 +9505,70 @@ function unlockAudioOnce() {
 // Avvia subito il preload locale; il primo gesto servirà soltanto a sbloccare l'uscita audio iOS.
 try { ensurePianoSamplesLoaded(); } catch (e) {}
 
-// Build 2.291 — recupero automatico dell'audio dopo sospensioni/interruzioni di WKWebView/iOS.
+// 2.483 — Recover the existing Web Audio context after WKWebView/iOS audio
+// session interruptions. Never change an explicitly disabled audio preference.
+let audioRecoveryPromiseMR=null;
+let audioRecoveryTimerMR=null;
+let audioRecoveryEpochMR=0;
+const AUDIO_RECOVERY_DELAYS_MR=[0,180,650,1500,2800];
+function cancelAudioRecoveryMR(){
+  audioRecoveryEpochMR++;
+  if(audioRecoveryTimerMR!==null){clearTimeout(audioRecoveryTimerMR);audioRecoveryTimerMR=null;}
+}
 function ensureAudioReadyMR(){
+  if(!audioEnabled||document.hidden)return Promise.resolve(false);
   const ctx=getAudioCtx();
   if(!ctx)return Promise.resolve(false);
   if(!pianoSampleBuffers.length&&!pianoSampleLoadPromise&&Date.now()>=pianoSampleRetryAfterMR){
     try{ensurePianoSamplesLoaded();}catch(e){}
   }
-  if(ctx.state!=="running"&&typeof ctx.resume==="function"){
-    return Promise.resolve(ctx.resume()).then(()=>{audioUnlocked=true;return true;}).catch(()=>false);
-  }
-  audioUnlocked=true;
-  return Promise.resolve(true);
+  if(ctx.state==="running"){audioUnlocked=true;return Promise.resolve(true);}
+  if(typeof ctx.resume!=="function")return Promise.resolve(false);
+  if(audioRecoveryPromiseMR)return audioRecoveryPromiseMR;
+  const pending=Promise.resolve().then(()=>ctx.resume()).then(()=>{
+    const ready=ctx.state==="running";
+    if(ready)audioUnlocked=true;
+    return ready;
+  }).catch(()=>false);
+  audioRecoveryPromiseMR=pending;
+  void pending.finally(()=>{if(audioRecoveryPromiseMR===pending)audioRecoveryPromiseMR=null;});
+  return pending;
 }
 function recoverAudioAfterInterruptionMR(){
-  if(document.hidden)return;
-  try{ensureAudioReadyMR();}catch(e){}
+  // Foreground only: restore the audio engine, not the playback of a track or
+  // new voices. Respect the existing mute preference and avoid duplicate notes.
+  cancelAudioRecoveryMR();
+  if(!audioEnabled||document.hidden)return;
+  const epoch=audioRecoveryEpochMR;
+  function retry(attempt){
+    if(epoch!==audioRecoveryEpochMR||document.hidden||!audioEnabled)return;
+    const delay=AUDIO_RECOVERY_DELAYS_MR[attempt];
+    if(delay===undefined)return;
+    audioRecoveryTimerMR=setTimeout(()=>{
+      audioRecoveryTimerMR=null;
+      if(epoch!==audioRecoveryEpochMR||document.hidden||!audioEnabled)return;
+      void ensureAudioReadyMR().then(ready=>{
+        if(!ready&&epoch===audioRecoveryEpochMR)retry(attempt+1);
+      });
+    },delay);
+  }
+  retry(0);
 }
 window.MusicRainbowAudio={resume:recoverAudioAfterInterruptionMR};
 window.addEventListener("pageshow",recoverAudioAfterInterruptionMR);
 window.addEventListener("focus",recoverAudioAfterInterruptionMR);
-document.addEventListener("visibilitychange",()=>{if(!document.hidden)recoverAudioAfterInterruptionMR();});
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)cancelAudioRecoveryMR();
+  else recoverAudioAfterInterruptionMR();
+});
+// A returning first touch is a user gesture, which may be required to unlock
+// WebAudio under iOS policies. No sound is generated by this handler.
+document.addEventListener("pointerdown",()=>{
+  if(audioEnabled&&!document.hidden&&audioCtx&&audioCtx.state!=="running"){
+    void ensureAudioReadyMR();
+  }
+},true);
+
 
 // Suoni interfaccia: preferenza separata dal pianoforte/metronomo.
 const MR_UI_SOUND_KEY="musicRainbowUiSoundEnabled";
@@ -10136,6 +10183,7 @@ function setAudioEnabled(enabled, persist = true) {
   }
 
   updateAudioButtonsUI();
+  if(!audioEnabled)cancelAudioRecoveryMR();
 
   if (!audioEnabled && wasEnabled) {
     try { stopAllPianoVoices(); } catch (e) {}
@@ -18669,7 +18717,7 @@ function hideAllPages() {
       const bridge=window.webkit?.messageHandlers?.musicRainbowApp;
       if(bridge?.postMessage) bridge.postMessage({type:"premiumRequestLevelAccess",level:requestedLevel});
       else document.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{
-        detail:{text:'Per giocare dal livello 2 puoi attivare Music Rainbow Premium dalle impostazioni dell’app.'}
+        detail:{text:window.MR482I18n?.t?.('premiumGate')||'Per giocare dal livello 2 puoi attivare Music Rainbow Premium dalle impostazioni dell’app.',roomSource:'Per giocare dal livello 2 puoi attivare Music Rainbow Premium dalle impostazioni dell’app.',roomKey:'premiumGate',roomParams:{},mr482Translated:true}
       }));
       return;
     }
@@ -19114,7 +19162,7 @@ if (btnLevel1) btnLevel1.addEventListener("click", () => { showLevel("level1Page
 
 <script id="build-2172-service-worker-stability">
 (() => {
-  const PAGE_BUILD = "2.481";
+  const PAGE_BUILD = "2.483";
   document.querySelectorAll('.intro-version-label,.mr373-home-build').forEach(el=>{if(el)el.textContent=`Build ${PAGE_BUILD}`;});
   // Xcode carica tutti i file dal bundle locale musicrainbow://.
   // Nessun service worker/cache web deve sovrascrivere le risorse native.
@@ -27562,7 +27610,16 @@ function init(){
   if(target!=='bath'&&washState439.soapy)washState439.soapy=false; // Nessun cuoricino senza risciacquo.
   updateWashVisuals439();
  }
- function setMessage(text){msg.textContent=text||'';if(text)window.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:String(text)}}));}
+ let lastRoomMessage482='';
+ function setMessage(text){
+  const raw=String(text||'');lastRoomMessage482=raw;
+  const localized=window.MR482I18n?.resolve?.(raw)||{text:raw,key:null,params:{}};
+  msg.textContent=localized.text;
+  if(raw)window.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:localized.text,mr482Translated:!!localized.key,roomSource:raw,roomKey:localized.key,roomParams:localized.params}}));
+ }
+ document.addEventListener('musicrainbow:language-changed',()=>{
+  if(lastRoomMessage482)msg.textContent=window.MR482I18n?.resolve?.(lastRoomMessage482)?.text||lastRoomMessage482;
+ });
  function updateMood(){
   const needs=[state.food,state.sleep,state.clean,state.happy].filter(n=>n<=2).length;
   const mood=needs>=3?'stressato':state.food<=2?'affamato':state.sleep<=2?'assonnato':
@@ -27913,7 +27970,10 @@ function markSessionFruitConsumed(kind){
   const total=Math.max(0,Math.floor(Number(getTotalAvailableTokens())||0));
   if(playSessionActive){setMessage('Hai già una sessione Play attiva.');return;}
   if(total<1){window.MimoHaptics?.play?.('touch');setMessage('Non ci sono gettoni: conquista gettoni suonando.');return;}
-  const ok=window.confirm(total===1?"Vuoi usare l'unico gettone per suonare il piano liberamente?":`Vuoi usare 1 dei ${total} gettoni per suonare il piano liberamente?`);
+  const confirmMessage482=total===1
+   ? (window.MR482I18n?.t?.('confirmOne')||"Vuoi usare l'unico gettone per suonare il piano liberamente?")
+   : (window.MR482I18n?.t?.('confirmMany',{n:total})||`Vuoi usare 1 dei ${total} gettoni per suonare il piano liberamente?`);
+  const ok=window.confirm(confirmMessage482);
   if(!ok){setMessage('Va bene: il gettone resta nel salvadanaio.');return;}
   const spent=consumeOldestSessionToken();
   if(!spent){setMessage('Non riesco a usare il gettone adesso.');return;}
@@ -29709,6 +29769,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 </style>
 <!-- 2.435: fumetti di Mìmo, primo tutorial e aiuto didattico su richiesta. -->
 <link rel="stylesheet" href="Assets/mimo-bubbles-447.css?v=447">
+<script src="Assets/mimo-room-i18n-482.js?v=482"></script>
 <script src="Assets/mimo-bubbles-447.js?v=447"></script>
 <style id="mr442-tempo-tree-style">
 /* Impara il tempo: una nuova prima pagina senza tamburi. */
@@ -30563,12 +30624,6 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
     button.addEventListener('click',function(){
       nativeBridge.postMessage({type:'premiumManageSubscription'});
     });
-    const lang=(document.getElementById('appLanguageSelect')||{}).value||'it';
-    if(lang==='en'){
-      document.getElementById('mr459PremiumHeading').textContent='Premium subscription';
-      document.getElementById('mr459PremiumHint').textContent='Manage or cancel your subscription with Apple.';
-      button.textContent='Manage subscription';
-    }
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initPremiumSettings,{once:true});
   else initPremiumSettings();
@@ -30602,7 +30657,10 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
  let timer=null,danceTimer=null,danceStep=0,mimoHome=null,lastActiveAt467=null;
  // Eight-beat movement cycle built from genuine 3D Mìmo poses; never use flat images.
  const danceMoves=['Mimi_Walk','Mimi_Yes','Mimi_Tail','Mimi_Greet','Mimi_Walk','Mimi_Flap','Mimi_Ears','Mimi_Celebrate'];
- function tell(message){document.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:message}}));}
+ function tell(message){
+  const localized=window.MR482I18n?.resolve?.(message)||{text:message,key:null,params:{}};
+  document.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:localized.text,mr482Translated:!!localized.key,roomSource:message,roomKey:localized.key,roomParams:localized.params}}));
+ }
  function sleeping(){return window.MimoCare?.isSleeping?.()===true;}
  function dance(){if(remaining()<=0||disco.hidden||sleeping())return;window.MimoMotion?.play?.(danceMoves[danceStep++%danceMoves.length],1000);}
  function syncImage(){const scene=$('mr344Scene');const phase=scene?.dataset.dayphase==='night'?'night':'day';$('mr461Backdrop').src=`Assets/room/discoteca-ipad-${phase}-461.jpg`;requestAnimationFrame(fitDiscoArt468);}
@@ -30719,7 +30777,14 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    const cover=Math.max(w/iw,h/ih);
    art.style.width=(iw*cover)+'px'; art.style.height=(ih*cover)+'px';
  }
- function openGames(){syncImage();games.hidden=false;games.classList.add('mr469Open');fitGamesArt469();requestAnimationFrame(fitGamesArt469);document.body.classList.add('mr469-games-open');try{window.MimoRoom?.say?.('caming soon');}catch(e){}}
+ function refreshGamesText482(){
+  const label=$('mr471GamesSoon');if(label)label.textContent=window.MR482I18n?.t?.('gamesSoon')||'caming soon';
+ }
+ function openGames(){
+  refreshGamesText482();syncImage();games.hidden=false;games.classList.add('mr469Open');fitGamesArt469();requestAnimationFrame(fitGamesArt469);document.body.classList.add('mr469-games-open');
+  document.dispatchEvent(new CustomEvent('musicrainbow:mimo-room-message',{detail:{text:window.MR482I18n?.t?.('gamesSoon')||'caming soon',mr482Translated:true,roomKey:'gamesSoon',roomParams:{},roomSource:'caming soon'}}));
+ }
+ document.addEventListener('musicrainbow:language-changed',refreshGamesText482);
  function closeGames(){games.classList.remove('mr469Open');games.hidden=true;document.body.classList.remove('mr469-games-open');}
  $('mr469GamesClose').addEventListener('click',closeGames);
  $('mr469GamesBackdrop').addEventListener('load',fitGamesArt469);
@@ -30752,7 +30817,22 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
 #mr463Stereo{position:absolute;right:3%;top:20%;width:34%;height:38%;border:0;
  background:transparent;cursor:pointer;z-index:3;touch-action:manipulation}
 #mr463Stereo:focus-visible{outline:3px solid #ffe580;border-radius:15px}
-</style><style id="mr463-bubble-style">#mr463Bubble{position:fixed;z-index:99999;left:50%;bottom:13%;transform:translateX(-50%);max-width:min(85vw,460px);padding:14px 19px;background:#fffdf4;color:#352456;border:3px solid #8a5cce;border-radius:24px;box-shadow:0 6px 18px #0006;font:700 17px/1.35 system-ui;text-align:center;display:none}#mr463Bubble:not(:empty){display:block}</style><div id="mr463Bubble" role="status" aria-live="polite"></div><script>(function(){let timer;function say(e){const b=document.getElementById('mr463Bubble');if(!b)return;if(window.MimoBubbles435?.roomBubblesEnabled===false){b.textContent='';return}b.textContent=e.detail?.text||'';clearTimeout(timer);timer=setTimeout(()=>b.textContent='',4200)}window.addEventListener('musicrainbow:mimo-room-message',say);document.addEventListener('musicrainbow:mimo-room-message',say);document.getElementById('mr447RoomBubblesToggle')?.addEventListener('click',()=>{if(window.MimoBubbles435?.roomBubblesEnabled===false){const b=document.getElementById('mr463Bubble');if(b)b.textContent=''}})})();</script>
+</style><style id="mr463-bubble-style">#mr463Bubble{position:fixed;z-index:99999;left:50%;bottom:13%;transform:translateX(-50%);max-width:min(85vw,460px);padding:14px 19px;background:#fffdf4;color:#352456;border:3px solid #8a5cce;border-radius:24px;box-shadow:0 6px 18px #0006;font:700 17px/1.35 system-ui;text-align:center;display:none}#mr463Bubble:not(:empty){display:block}</style><div id="mr463Bubble" role="status" aria-live="polite"></div><script>(function(){
+ let timer,last=null;
+ function say(e){
+  const b=document.getElementById('mr463Bubble');if(!b)return;
+  if(window.MimoBubbles435?.roomBubblesEnabled===false){b.textContent='';last=null;return;}
+  const detail=e.detail||{};last=detail.roomKey?{key:detail.roomKey,params:detail.roomParams||{}}:null;
+  b.textContent=detail.text||'';clearTimeout(timer);
+  timer=setTimeout(()=>{b.textContent='';last=null;},4200);
+ }
+ window.addEventListener('musicrainbow:mimo-room-message',say);
+ document.addEventListener('musicrainbow:mimo-room-message',say);
+ document.addEventListener('musicrainbow:language-changed',()=>{
+  const b=document.getElementById('mr463Bubble');if(b&&b.textContent&&last)b.textContent=window.MR482I18n?.t?.(last.key,last.params)||b.textContent;
+ });
+ document.getElementById('mr447RoomBubblesToggle')?.addEventListener('click',()=>{if(window.MimoBubbles435?.roomBubblesEnabled===false){const b=document.getElementById('mr463Bubble');if(b)b.textContent='';last=null;}});
+})();</script>
 <style id="mr464-room-toolbar">
 /* 2.464: unica toolbar reale, condivisa tra i 4 comandi, senza coordinate del fondale. */
 #trophyPage > .app > .top-panel{
@@ -31074,8 +31154,9 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    items.push({id:(rest?'rest:':'note:')+name,rest,name,units,label:(rest?'Pausa di ':'')+label});
   }
   const selected=new Set(['note:semibreve','note:minima','note:semiminima']);
-  const BAR_COUNT=3, TICKS_PER_BAR=8, TICKS_PER_SCORE=BAR_COUNT*TICKS_PER_BAR;
-  const state={history:[],index:0,tick:0,timer:null,animationTimer:null};
+  const BAR_COUNT=3;
+  const state={history:[],index:0,tick:0,ticksPerBar:8,timer:null,animationTimer:null};
+  const ticksPerScore=()=>BAR_COUNT*state.ticksPerBar;
   const shuffled=values=>{
     const arr=values.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;
   };
@@ -31107,7 +31188,12 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   function nextNewBar(){let result=randomScore();for(let i=0;i<8&&result&&state.history[state.index]&&result.every((bar,k)=>equivalent(bar,state.history[state.index][k]));i++)result=randomScore();return result;}
   const current=()=>state.history[state.index]||null;
   function moveDot(){
-    const step=state.tick===0?0:((state.tick-1)%TICKS_PER_BAR)+1;
+    // Eight subdivision gestures vs four quarter-note downbeats.
+    // In quarter mode there is no intermediate return-to-centre gesture.
+    const step=state.tick===0?0:
+      (state.ticksPerBar===8
+        ? ((state.tick-1)%state.ticksPerBar)+1
+        : [1,3,5,7][(state.tick-1)%state.ticksPerBar]);
     const [x,y,color]=POSITIONS[step];
     dot.setAttribute('cx',String(x));dot.setAttribute('cy',String(y));dot.setAttribute('fill',color);
     // Keep each arm coloured as it is reached within the active measure.
@@ -31163,11 +31249,13 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
     // At centre (tick 0) no figure is read. The first downbeat
     // starts the reading of the first symbol; each bar uses eight taps.
     bars.forEach((pattern,measure)=>{
-      const barStart=measure*TICKS_PER_BAR;
-      const localTick=Math.max(0,Math.min(TICKS_PER_BAR,state.tick-barStart));
+      const barStart=measure*state.ticksPerBar;
+      const localTick=Math.max(0,Math.min(state.ticksPerBar,state.tick-barStart));
       const started=state.tick>barStart;
-      const barFinished=state.tick>=barStart+TICKS_PER_BAR;
-      const readingUnits=started?(localTick-1)*2:-1;
+      const barFinished=state.tick>=barStart+state.ticksPerBar;
+      // The centre is a waiting position. The first downbeat starts the
+      // first figure; each subsequent stroke advances by an eighth or quarter.
+      const readingUnits=started?(localTick-1)*(16/state.ticksPerBar):-1;
       let units=0;
       pattern.forEach(item=>{
         const end=units+item.units;
@@ -31177,7 +31265,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
       });
     });
     $('mr476Previous').disabled=state.index===0;
-    live.textContent=`Spartito ${state.index+1} di ${state.history.length}, battuta ${Math.min(3,Math.floor(Math.max(0,state.tick-1)/8)+1)} di 3, colpo ${state.tick} di ${TICKS_PER_SCORE}`;
+    live.textContent=`Spartito ${state.index+1} di ${state.history.length}, battuta ${Math.min(BAR_COUNT,Math.floor(Math.max(0,state.tick-1)/state.ticksPerBar)+1)} di ${BAR_COUNT}, colpo ${state.tick} di ${ticksPerScore()}`;
   }
   function stopTimer(){if(state.timer!==null){clearTimeout(state.timer);state.timer=null;}}
   function restart(){stopTimer();state.tick=0;moveDot();updateProgress();}
@@ -31233,11 +31321,62 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    drum.classList.remove('mr476-hit');void drum.offsetWidth;drum.classList.add('mr476-hit');
   }
   function tap(){
-   if(state.tick>=TICKS_PER_SCORE)return;
-   playDrum(state.tick%2===0?'strong':'weak');
+   if(state.tick>=ticksPerScore())return;
+   // In quarter mode all four strokes are on the principal beats.
+   // In eighth mode the original alternating drum accent is retained.
+   playDrum(state.ticksPerBar===4?'strong':(state.tick%2===0?'strong':'weak'));
    state.tick++;moveDot();updateProgress();
-   if(state.tick===TICKS_PER_SCORE){stopTimer();state.timer=setTimeout(()=>{state.timer=null;nextBar();},650);}
+   if(state.tick===ticksPerScore()){
+    stopTimer();state.timer=setTimeout(()=>{state.timer=null;nextBar();},650);
+   }
   }
+  const resolutionBtn=$('mr483RhythmResolution');
+  const resolutionSvg=$('mr483ResolutionIcon');
+  const resolutionGlyph=$('mr483ResolutionGlyph');
+  const resolutionLabels={
+   it:['Croma: 8 colpi per battuta','Semiminima: 4 colpi per battuta'],
+   en:['Eighth note: 8 taps per bar','Quarter note: 4 taps per bar'],
+   es:['Corchea: 8 golpes por compás','Negra: 4 golpes por compás'],
+   fr:['Croche : 8 frappes par mesure','Noire : 4 frappes par mesure'],
+   de:['Achtelnote: 8 Schläge je Takt','Viertelnote: 4 Schläge je Takt'],
+   pt:['Colcheia: 8 batidas por compasso','Semínima: 4 batidas por compasso'],
+   ru:['Восьмая: 8 ударов на такт','Четверть: 4 удара на такт'],
+   zh:['八分音符：每小节8拍击','四分音符：每小节4拍击'],
+   ja:['8分音符：1小節8打','4分音符：1小節4打']
+  };
+  function updateResolutionIcon(){
+   if(!resolutionBtn||!resolutionSvg||!resolutionGlyph)return;
+   const isEighth=state.ticksPerBar===8;
+   const language=typeof mrAppLanguage==='string'?mrAppLanguage:'it';
+   const label=(resolutionLabels[language]||resolutionLabels.it)[isEighth?0:1];
+   resolutionBtn.setAttribute('aria-label',label);
+   resolutionBtn.setAttribute('title',label);
+   resolutionBtn.setAttribute('aria-pressed',String(isEighth));
+   resolutionGlyph.replaceChildren();
+   // Same SMuFL note glyphs already used on the score and difficulty controls.
+   appendSmuflNotePartsMR(resolutionGlyph,isEighth?'croma':'semiminima',123.08,'single',71);
+   const centerGlyph=()=>{
+    if(!resolutionGlyph.isConnected)return;
+    try{
+     const b=resolutionGlyph.getBBox();
+     if(!b.width||!b.height)return;
+     const boxW=Math.max(b.width+18,(b.height+16)*.72);
+     const boxH=boxW/.75;
+     resolutionSvg.setAttribute('viewBox',`${b.x+b.width/2-boxW/2} ${b.y+b.height/2-boxH/2} ${boxW} ${boxH}`);
+    }catch(e){}
+   };
+   requestAnimationFrame(centerGlyph);
+   document.fonts?.ready?.then(centerGlyph).catch(()=>{});
+  }
+  function toggleResolution(){
+   // Switching subdivisions changes only reading precision, not the selected
+   // note/rest pool, the generated score or its saved predecessors.
+   state.ticksPerBar=state.ticksPerBar===8?4:8;
+   restart();
+   updateResolutionIcon();
+  }
+  resolutionBtn?.addEventListener('click',toggleResolution);
+  document.addEventListener('musicrainbow:language-changed',updateResolutionIcon);
   function syncAudio(){
    const audio=$('mr476Audio');if(!audio)return;
    const enabled=typeof audioEnabled==='boolean'?audioEnabled:true;
@@ -31254,7 +31393,9 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
    page.style.display='flex';
    document.body.classList.add('mr479-solfeggio-active');
    if(!current())state.history.push(randomScore());
-   render();restart();syncAudio();
+   // The default mode when entering Solfeggio is eighth-note resolution.
+   state.ticksPerBar=8;
+   render();restart();syncAudio();updateResolutionIcon();
   }
   window.MusicRainbowOpenSolfeggioMR=open;
   $('homeLearnSolfeggioBtn')?.addEventListener('click',open);
@@ -31273,7 +31414,7 @@ body.mr353-room-open #mr344Scene.mr418RoomDragging #mimoBuddy > canvas{
   drum.addEventListener('click',tap);
   $('mr476Audio')?.addEventListener('click',()=>{if(typeof setAudioEnabled==='function')setAudioEnabled(!audioEnabled);syncAudio();});
   window.addEventListener('musicrainbow:audio-changed',syncAudio);
-  drawIcons();state.history=[randomScore()];state.index=0;moveDot();
+  drawIcons();state.history=[randomScore()];state.index=0;moveDot();updateResolutionIcon();
  });
 })();</script>
 
@@ -31349,6 +31490,66 @@ html body.mr479-solfeggio-active.mr409-level-mimo-hidden #mimoBuddy{
  content:"💬"!important;display:block!important;font-size:1.5rem!important;
  font-family:-apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji",sans-serif!important;
  line-height:1!important;visibility:visible!important;opacity:1!important;
+}
+</style>
+
+<style id="mr482-settings-compact-and-i18n">
+/* Subscription: original native card/button dimensions; icon plus readable text. */
+#settingsPage #mr459PremiumHeading{overflow-wrap:anywhere!important;white-space:normal!important;}
+#settingsPage #mr459ManageSubscriptionBtn{
+ font-size:clamp(12px,1.8vw,16px)!important;
+ color:var(--mr-theme-text,#573aa7)!important;
+ -webkit-text-fill-color:currentColor!important;
+ display:flex!important;gap:clamp(5px,.8vw,10px)!important;
+ align-items:center!important;justify-content:center!important;
+ flex-wrap:wrap!important;min-height:52px!important;
+ padding:8px 10px!important;line-height:1.2!important;
+}
+#settingsPage #mr459ManageSubscriptionBtn::before{content:none!important;display:none!important;}
+#settingsPage #mr459ManageSubscriptionBtn .mr482SubscriptionIcon{display:inline-block!important;font-size:clamp(20px,3vw,29px)!important;line-height:1!important;-webkit-text-fill-color:initial!important;}
+#settingsPage #mr459ManageSubscriptionBtn .mr482SubscriptionLabel{display:inline-block!important;font-size:clamp(12px,1.8vw,16px)!important;font-weight:800!important;-webkit-text-fill-color:initial!important;}
+#settingsPage #mr466ThemeSettingsSection .theme-choice-label{display:none!important;}
+#settingsPage #mr466ThemeSettingsSection .theme-swatch{height:100%!important;}
+</style>
+<script id="mr482-subscription-language">(()=>{
+ function sync(){
+  const t=window.MR482I18n?.t;if(!t)return;
+  const title=document.getElementById('mr459PremiumHeading');if(title)title.textContent=t('subscriptionTitle');
+  const hint=document.getElementById('mr459PremiumHint');if(hint)hint.textContent=t('subscriptionHint');
+  const button=document.getElementById('mr459ManageSubscriptionBtn');
+  if(button){button.querySelector('.mr482SubscriptionLabel').textContent=t('subscriptionButton');button.setAttribute('aria-label',t('subscriptionButtonAria'));}
+ }
+ document.addEventListener('musicrainbow:language-changed',sync);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
+})();</script>
+
+<style id="mr483-solfeggio-resolution">
+/* Place the subdivision control directly to the right of the existing Audio
+   control, using that same pill and its compact lesson-button dimensions. */
+#solfeggioPage #mr476AudioPill{display:flex!important;align-items:stretch!important;gap:4px!important;max-width:none!important;overflow:visible!important}
+#solfeggioPage #mr483RhythmResolution{
+ position:relative!important;z-index:2!important;
+ appearance:none!important;-webkit-appearance:none!important;
+ height:100%!important;min-height:0!important;
+ flex:0 0 46px!important;min-width:46px!important;width:46px!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ padding:3px!important;margin:0!important;border-radius:999px!important;
+ background:#efe4ff!important;border:1px solid #b99bdf!important;
+ box-shadow:inset 0 1px 2px rgba(255,255,255,.72)!important;
+ cursor:pointer;touch-action:manipulation;
+}
+#solfeggioPage #mr483ResolutionIcon{
+ width:31px;height:35px;max-width:100%;max-height:100%;
+ display:block;overflow:visible;pointer-events:none;
+}
+#solfeggioPage #mr483ResolutionIcon .smufl-note-glyph,
+#solfeggioPage #mr483ResolutionIcon .smufl-augmentation-dot{
+ fill:#5b3ea6!important;font-family:"MusicRainbow SMuFL"!important;
+}
+#solfeggioPage #mr483RhythmResolution:focus-visible{outline:3px solid #5b3ea6;outline-offset:2px}
+@media (orientation:landscape) and (max-height:540px){
+ #solfeggioPage #mr483RhythmResolution{flex-basis:39px!important;min-width:39px!important;width:39px!important}
+ #solfeggioPage #mr483ResolutionIcon{width:27px;height:30px}
 }
 </style>
 </body>

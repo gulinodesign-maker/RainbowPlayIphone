@@ -1,7 +1,7 @@
 /* Music Rainbow Service Worker - Build 2.470; bypass large GLB; safe cache errors */
-const BUILD = "2.474";
+const BUILD = "2.482";
 // WebApp aggiornata con il pannello StoreKit nativo, senza modifiche ai dati locali.
-const CACHE_REVISION = "mimo-bedroom-night-474";
+const CACHE_REVISION = "mimo-bubbles-languages-482";
 const PRECACHE = `music-rainbow-precache-${BUILD}-${CACHE_REVISION}`;
 const RUNTIME = `music-rainbow-runtime-${BUILD}-${CACHE_REVISION}`;
 
@@ -17,6 +17,7 @@ const CORE_PRECACHE_URLS = [
   "./Assets/mimo-face-toggle-445.png",
   "./Assets/mimo-bubbles-447.css",
   "./Assets/mimo-bubbles-447.js",
+  "./Assets/mimo-room-i18n-482.js",
   "./Assets/home-icon-level.svg",
   "./Assets/home-icon-scores-2179.svg",
   "./Assets/home-icon-play.svg",
